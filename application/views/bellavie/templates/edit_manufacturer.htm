@@ -1,0 +1,914 @@
+<style type="text/css">
+.ui-datepicker .ui-datepicker-title select {
+    margin: 0px;
+	font-size:11px;
+}
+#ui-datepicker-div{
+	z-index:3;
+}
+.spRequired{
+	margin-left:5px;
+	}
+</style>
+<div class="box_solar">
+	<!--<div class="tabbable analytics-tab paper-stack">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" data-target="#accountdetail_content" href="#">Account Details</a></li>
+            <li class=""><a data-toggle="tab" data-target="#permissions_content" href="#">Permissions</a></li>
+            <li class=""><a data-toggle="tab" data-target="#summary_content" href="#">Email Message</a></li>
+        </ul>
+    </div>-->
+    <div class="tab-content">
+    	<div class="tab-pane active">
+             <div id="title" style="margin-bottom:10px;">
+                <span style="color:#06C; font-size:14px; font-style:italic; margin-right:10px;">Please complete the required information accurately and in full</span>
+                <span style="color:#F00; font-size:12px; font-style:italic;">(* = Required)</span>
+            </div>
+            
+             <div style="float:left; overflow:hidden;width:50%;" align="left">
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:131px">Your Profile</span>
+            
+                <div style="float:left; clear:both;">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">First Name</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="2" type="text" class="input-text" id="first_name" size="10" maxlength="50" name="first_name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Middle Initial</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="middle_name" size="10"  name="middle_name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Last Name</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="last_name" size="10" name="last_name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Username</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="user_name" size="10"  name="user_name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Address</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="address" size="10"  name="address" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">City</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="city" size="10" name="city" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>            
+                <!--<div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Country:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <select name="slcountry" style="width:260px;" id="slcountry" onchange="showStates()" ></select>
+                    </span>
+                </div>-->
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">State</span>
+                    <span class="field-with-placeholder" style="float:left;" id="states_show"> 
+                        <input tabindex="6" type="text" class="input-text" id="state" size="10" name="state" value="" style="width:76px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:85px; text-align:right; padding-right:5px">Zip Code</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="zipcode_label" class="placeholder" for="zipcode"><span></span></label>
+                        <input tabindex="6" type="text" class="input-text" id="zipcode" size="10" name="zipcode" value="" style="width:70px;margin-top:-3px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Home Phone</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="phone_label" class="placeholder" for="phone"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="phone" size="10" name="phone" value="" style="width:250px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);">
+                    </span>
+                </div>
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Cell Phone</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="phone_label" class="placeholder" for="cell_phone"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="cell_phone" size="10" name="cell_phone" value="" style="width:250px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);">
+                    </span>
+                </div>
+                
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Email</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="9" type="text" class="input-text" id="email" size="10" maxlength="50" name="email" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+            </div>
+            
+            
+            
+            <div style="float:left; overflow:hidden;width:50%;" align="left">
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:131px">Company Settings</span>
+            
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">EFIN</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="tax_label" class="placeholder" for="efin"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="efin" size="10" name="efin" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Company Name</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="company_name_label" class="placeholder" for="company_name"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="company_name" size="10" name="company_name" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:131px">Business Address</span>  
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Address Line 1</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="address_line_1" size="10"  name="address_line_1" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>        
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Address Line 2</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="address_line_2" size="10"  name="address_line_2" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">City</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="city_business" size="10" name="city_business" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                <!--<div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Country:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <select name="slcountry" style="width:260px;" id="slcountry" onchange="showStates()" ></select>
+                    </span>
+                </div>-->
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">State</span>
+                    <span class="field-with-placeholder" style="float:left;" id="states_show">
+                        <input tabindex="6" type="text" class="input-text" id="state_business" size="10" name="state_business" value="" style="width:76px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:85px; text-align:right; padding-right:5px">Zip Code</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="zipcode_business_label" class="placeholder" for="zipcode_business"><span></span></label>
+                        <input tabindex="6" type="text" class="input-text" id="zipcode_business" size="10" name="zipcode_business" value="" style="width:70px;margin-top:-3px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                
+                
+                 <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:131px">Mailing Address</span>   
+                  <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Address Line 1</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="address_line_1mail" size="10"  name="address_line_mail" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>        
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Address Line 2</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="address_line_2mail" size="10"  name="address_line_mail" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">City:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="city_mail" size="10" name="city" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <!--<span class="spRequired">*</span>-->
+                </div>
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">State</span>
+                    <span class="field-with-placeholder" style="float:left;" id="states_show">
+                        <input tabindex="6" type="text" class="input-text" id="state_mail" size="10" name="state_mail" value="" style="width:76px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:85px; text-align:right; padding-right:5px">Zip Code</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="zipcode_business_label" class="placeholder" for="zipcode_mail"><span></span></label>
+                        <input tabindex="6" type="text" class="input-text" id="zipcode_mail" size="10" name="zipcode_mail" value="" style="width:70px;margin-top:-3px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                 
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:131px">Bank</span>
+                 <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Bank Name</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="payment_type_label" class="placeholder" for="bank_name"><span></span></label>
+                        <input tabindex="18" type="text" class="input-text" id="bank_name" size="10" name="bank_name" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Routing #</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="payment_type_label" class="placeholder" for="routing"><span></span></label>
+                        <input tabindex="18" type="text" class="input-text" id="routing" size="10" name="routing" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                 <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:150px; text-align:right; padding-right:5px">Account #</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="payment_type_label" class="placeholder" for="account"><span></span></label>
+                        <input tabindex="18" type="text" class="input-text" id="account" size="10" name="account" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>   
+        </div>   
+    </div>
+    <div style="overflow:hidden; width:100%">
+        <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="savebt" align="right">
+            <input type="button" style="float:right; margin-left:5px; margin-right:5px;" value="Submit" id="submit_bt" class="btn btn-primary" onclick="check_accountInfo()" />
+            <input type="button" style="float:right" value="Clear" id="clear_bt" class="btn" onclick="ClearBox();" />
+            <input type="button" value="Back" class="btn" style="margin-right:5px" onclick="history.go(-1);"/>
+        </div>
+        <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="key" name="key" value="{key}" />
+</div>   
+<script language="JavaScript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<script language="javascript">
+function redirect(){
+	$.post("index.php/admin/redirect",{
+		redirect:'yes',
+		user:dataObject[0].name,
+		password: dataObject[0].current_password
+	},function(data){
+		$.post("index.php/login/checklogin",{ u:dataObject[0].name, p:dataObject[0].current_password } ,function(data){
+			if(data != ''){
+				if(data !='no'){ //if correct login detail
+					var page = data;
+					$.post("shopping/ajax/ajax_login.php",{ u:dataObject[0].name, p:dataObject[0].current_password} ,function(data){
+						if(page=='Ok'){goHome(); return false;}
+						window.location = url_server__+page;
+					});
+				}else{
+					alert('The name or password incorrect.');		
+				}
+			}
+		});
+	});	
+}
+function showOriginCountries(){
+	var st = '';
+	var elSel = document.getElementById('origin_country');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	elSel.value = ct;
+}
+function showOriginStates(){
+	var st = '';
+	var country_value = document.getElementById('origin_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="origin_state" name="origin_state" style="width:110px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" class="input-text" id="origin_state" size="10" name="origin_state" value="" style="width:100px">';	
+			}
+			break;	
+		}	
+	}
+	$("#show_origin_states").empty().append(st);
+}
+function check_Legal_Business_Contact(checkError){
+	getValue_legalbusitact();
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(legalbusitact[i].first_name == '' && legalbusitact[i].last_name == '' && legalbusitact[i].middle_name == ''){
+			$('#first_name_'+legalbusitact[i].id).css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("first_name_"+legalbusitact[i].id));	
+				document.getElementById("first_name_"+legalbusitact[i].id).focus();	
+			}	
+		}
+		if(legalbusitact[i].email == ''){
+			$('#legal_email_'+legalbusitact[i].id).css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("legal_email_"+legalbusitact[i].id));	
+				document.getElementById("legal_email_"+legalbusitact[i].id).focus();	
+			}	
+		}else{
+			var msg = isValidEmail(legalbusitact[i].email);
+			if(msg != ""){
+				$('#legal_email_'+legalbusitact[i].id).css("background", '#ffffd5');
+				if(checkError == false){
+					checkError = true;
+					showTooltipRequi(document.getElementById('legal_email_'+legalbusitact[i].id));	
+					document.getElementById('legal_email_'+legalbusitact[i].id).focus();	
+				}
+			}		
+		}
+	}
+	return checkError;
+}
+function check_accountInfo(){
+	/*var checkError = false;
+	if($('#legal_business_name').val() == ''){
+		$('#legal_business_name').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("legal_business_name"));	
+			document.getElementById("legal_business_name").focus();	
+		}
+	}
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if(document.getElementById("business_type").value == ''){
+		$('#business_type').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("business_type"));	
+			document.getElementById("business_type").focus();
+		}
+	}
+	if($('#mail').val() == ''){
+		$('#mail').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("mail"));	
+			document.getElementById("mail").focus();	
+		}
+	}else{
+		var msg = isValidEmail($('#mail').val());
+		if(msg != ""){
+			$('#mail').css("background", '#ffffd5');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				showTooltipRequi(document.getElementById("mail"));	
+				document.getElementById("mail").focus();	
+			}
+		}		
+	}
+	if(trim($('#password').val()) != ''){
+		if(!passwordStrength(document.getElementById("password"))){
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}
+		}else{
+			if(trim($('#password').val()) != trim($('#confirm_password').val())){
+				$('#confirm_password').css("background", '#ffffd5');
+				if(checkError == false){
+					checkError = true;
+					showTooltipRequi(document.getElementById("confirm_password"));	
+					document.getElementById("confirm_password").focus();	
+				}
+			}
+		}
+	}
+	if(trim($('#confirm_password').val()) != ''){
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			$('#confirm_password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("confirm_password"));	
+				document.getElementById("confirm_password").focus();	
+			}
+		}
+	}
+	
+	checkError = check_Legal_Business_Contact(checkError);
+	
+	if(checkError == true){
+		return false;	
+	}
+	var user_status_value = 1;
+	var user_status = document.getElementsByName("user_status[]");
+	for(var i = 0; i < user_status.length; i++){
+		if(user_status[i].checked == true){
+			user_status_value = user_status[i].value;
+			break;	
+		}	
+	}
+	
+	var accessUser_save = [];
+	var accessUser = document.getElementsByName("access_user[]");
+	for(var i = 0; i < accessUser.length; i++){
+		if(accessUser[i].checked == true){
+			accessUser_save[accessUser_save.length] = accessUser[i].value;	
+		}
+	}*/
+	
+	var obj_submit = new Object();
+	obj_submit.firstname = document.getElementById("first_name").value;
+        obj_submit.lastname = document.getElementById("last_name").value;
+        obj_submit.middlename = document.getElementById("middle_name").value;
+        obj_submit.name = document.getElementById("user_name").value;
+	obj_submit.address = document.getElementById("address").value;
+	obj_submit.city = document.getElementById("city").value;
+	obj_submit.state = document.getElementById("state").value;
+	obj_submit.zipcode = document.getElementById("zipcode").value;
+	obj_submit.phone = document.getElementById("phone").value;
+        obj_submit.mobile = document.getElementById("cell_phone").value;
+        obj_submit.mail = document.getElementById("email").value;
+        obj_submit.status = 1;
+        
+        obj_submit.tax = document.getElementById("efin").value;
+        obj_submit.legal_business_name = document.getElementById("company_name").value;
+        obj_submit.address_business = document.getElementById("address_line_1").value;
+        obj_submit.city_business = document.getElementById("city_business").value;
+        obj_submit.state_business = document.getElementById("state_business").value;
+        obj_submit.zipcode_business = document.getElementById("zipcode_business").value;
+        
+        obj_submit.beneficiary_name = document.getElementById("bank_name").value;
+        obj_submit.account_NO = document.getElementById("routing").value;
+        obj_submit.SWIFT_CODE = document.getElementById("account").value;
+        
+        obj_submit.address_1 = document.getElementById("address_line_1mail").value;
+        obj_submit.address_2 = document.getElementById("address_line_2mail").value;
+        obj_submit.city_mail = document.getElementById("city_mail").value;
+        obj_submit.state_mail = document.getElementById("state_mail").value;
+        obj_submit.zipcode_mail = document.getElementById("zipcode_mail").value;
+        
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/manufacturers/edit", {
+		saveUser: obj_submit
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				if(data.error == 'User name already exists! Please, choose another.')
+				{
+						if(typeof(dataObject[0]) == 'object'){	
+						document.getElementById("name").value = ConvertToTest(dataObject[0].name);
+						}
+				}
+				alert(data.error);	
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/manufacturers';
+			}
+		}
+	}, "json");
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		return false;	
+	}
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));		
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			return false;	
+		}		
+		break;
+	case 'mail':
+		var msg = isValidEmail($('#mail').val());
+		if(msg != ""){
+			return false;		
+		}
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			return false;
+		}
+		break;
+	case 'billing_phone':
+		validatePhone(document.getElementById("billing_phone"));
+		break;
+	}
+}
+function SaveAccessUser(){
+	if(document.getElementsByName("access_user[]")){
+		var accessUser_save = [];
+		var accessUser = document.getElementsByName("access_user[]");
+		for(var i = 0; i < accessUser.length; i++){
+			if(accessUser[i].checked == true){
+				accessUser_save[accessUser_save.length] = accessUser[i].value;	
+			}
+		}
+		$("#loadingbt").show();
+		$("#savebt").hide();
+		if(document.getElementById("permissions_content").style.display != 'none') ShowLoadingObj({obj:document.getElementById("permissions_content"), image:"Loader-FloGradient16x16x.gif", width:880, height:400});
+		$.post("index.php/manufacturers", {
+			SaveAccessUser: 'yes',
+			uid:clients_select,
+			'accessUser[]':accessUser_save
+		},function(data){
+			HideLoadingObj(document.getElementById("permissions_content"));
+			$("#loadingbt").hide();
+			$("#savebt").show();
+		}, "json");		
+	}
+}
+function ClearBox(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			input_text[i].value = '';
+			onkeydownInputText(input_text[i]);	
+		}	
+	}
+	var textarea = document.getElementsByTagName('textarea');
+	for(var i = 0; i < textarea.length; i++){
+		textarea[i].value = '';
+	}
+	document.getElementById("business_type").value = '';
+}
+function loadPermission(){
+	var ukey_select = document.getElementById('key').value;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php/user/accesser/index/'+ukey_select,
+		cache: false,
+		success: function(message){
+			$("#permissions_content").append(message);
+			HideLoadingObj(document.getElementById("content_load"));
+			return false;
+		}
+	});
+}
+function loadEmployee(){
+	var ukey_select = document.getElementById('key').value;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php/manufacturers/employee/'+ukey_select,
+		cache: false,
+		success: function(message){
+			$("#employee_content").append(message);
+			HideLoadingObj(document.getElementById("content_load"));
+			return false;
+		}
+	});
+}
+var legalbusitact = [];
+var dem_legalbusitact = 0;
+function add_legalbusitact(){
+	getValue_legalbusitact();
+	var obj = new Object();
+	obj.id = dem_legalbusitact;
+	obj.gender = 'Mr';
+	obj.title = 0;
+	obj.first_name = '';
+	obj.last_name = '';
+	obj.middle_name = '';
+	obj.email = '';
+	obj.mobile = '';
+	obj.note = '';
+	obj.last_update_date = '';
+	legalbusitact[legalbusitact.length] = obj;
+	
+	dem_legalbusitact ++;
+	
+	show_Legal_business_contact();
+}
+function remove_legalbusitact(id){
+	getValue_legalbusitact();
+	
+	var legalbusitact_tam = legalbusitact;
+	legalbusitact = [];
+	for(var i = 0; i < legalbusitact_tam.length; i++){
+		if(legalbusitact_tam[i].id != parseInt(id, 10)){
+			legalbusitact[legalbusitact.length] = legalbusitact_tam[i];	
+		}	
+	}
+	show_Legal_business_contact();
+}
+function getValue_legalbusitact(){
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(document.getElementsByName("gender_"+legalbusitact[i].id+'[]')){
+			var gender_ = document.getElementsByName("gender_"+legalbusitact[i].id+'[]');
+			for(var j = 0; j < gender_.length; j++){
+				if(gender_[j].checked == true){
+					legalbusitact[i].gender = gender_[j].value;
+					break;	
+				}	
+			}		
+		}
+		if(document.getElementById('legal_title_'+legalbusitact[i].id)){
+			legalbusitact[i].title = document.getElementById('legal_title_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('first_name_'+legalbusitact[i].id)){
+			legalbusitact[i].first_name = document.getElementById('first_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('last_name_'+legalbusitact[i].id)){
+			legalbusitact[i].last_name = document.getElementById('last_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('middle_name_'+legalbusitact[i].id)){
+			legalbusitact[i].middle_name = document.getElementById('middle_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_email_'+legalbusitact[i].id)){
+			legalbusitact[i].email = document.getElementById('legal_email_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_mobile_'+legalbusitact[i].id)){
+			legalbusitact[i].mobile = document.getElementById('legal_mobile_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_note_'+legalbusitact[i].id)){
+			legalbusitact[i].note = document.getElementById('legal_note_'+legalbusitact[i].id).value;	
+		}
+		
+	}
+}
+function updateValue_legalbusitact(){
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(document.getElementsByName("gender_"+legalbusitact[i].id+'[]')){
+			var gender_ = document.getElementsByName("gender_"+legalbusitact[i].id+'[]');
+			for(var j = 0; j < gender_.length; j++){
+				if(gender_[j].value == legalbusitact[i].gender){
+					gender_[j].checked = true;
+					break;	
+				}	
+			}		
+		}
+		if(document.getElementById('legal_title_'+legalbusitact[i].id)){
+		 	document.getElementById('legal_title_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].title);	
+		}
+		if(document.getElementById('first_name_'+legalbusitact[i].id)){
+			 document.getElementById('first_name_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].first_name);	
+		}
+		if(document.getElementById('last_name_'+legalbusitact[i].id)){
+			 document.getElementById('last_name_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].last_name);	
+		}
+		if(document.getElementById('middle_name_'+legalbusitact[i].id)){
+			document.getElementById('middle_name_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].middle_name);	
+		}
+		if(document.getElementById('legal_email_'+legalbusitact[i].id)){
+			document.getElementById('legal_email_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].email);	
+		}
+		if(document.getElementById('legal_mobile_'+legalbusitact[i].id)){
+			document.getElementById('legal_mobile_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].mobile);	
+		}
+		if(document.getElementById('legal_note_'+legalbusitact[i].id)){
+			document.getElementById('legal_note_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].note);	
+		}	
+	}
+}
+
+function show_Legal_business_contact(){ 
+    for(var i in legalbusitact){
+        var legal =  legalbusitact[i];
+        document.getElementById("address_line_1mail").value = ConvertToTest(legal.address_1);
+        document.getElementById("address_line_2mail").value = ConvertToTest(legal.address_2);
+        document.getElementById("city_mail").value = ConvertToTest(legal.city);
+        document.getElementById("state_mail").value = ConvertToTest(legal.state);
+        document.getElementById("zipcode_mail").value = ConvertToTest(legal.zipcode);
+    }
+}
+var dataObject;
+function loadDataObject(){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/manufacturers/edit", {
+		loadData: 'yes',
+		key:document.getElementById('key').value
+	}, function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			dataObject = data;         
+		}
+		showData();
+	}, "json");
+}
+function showData(){
+	if(typeof(dataObject[0]) == 'object'){
+		$("#legal_business_id").empty().append(dataObject[0].legal_business_id);
+		$("#current_password").empty().append(dataObject[0].current_password);
+		$("#legal_business_id").empty().append(dataObject[0].legal_business_id);
+                console.log(dataObject[0]);           
+                document.getElementById("first_name").value = ConvertToTest(dataObject[0].firstname);
+                document.getElementById("last_name").value = ConvertToTest(dataObject[0].firstname);
+		document.getElementById("middle_name").value = ConvertToTest(dataObject[0].middlename);
+                document.getElementById("user_name").value = ConvertToTest(dataObject[0].name);
+                document.getElementById("address").value = ConvertToTest(dataObject[0].user_address);
+                document.getElementById("state").value = ConvertToTest(dataObject[0].user_state);
+                document.getElementById("city").value = ConvertToTest(dataObject[0].user_city);
+		document.getElementById("zipcode").value = ConvertToTest(dataObject[0].user_zipcode);
+		document.getElementById("phone").value = ConvertToTest(dataObject[0].home_phone);
+                document.getElementById("cell_phone").value = ConvertToTest(dataObject[0].user_mobile);
+                document.getElementById("email").value = dataObject[0].mail;
+                document.getElementById("efin").value = ConvertToTest(dataObject[0].tax);
+                document.getElementById("company_name").value = ConvertToTest(dataObject[0].legal_business_name);
+                
+                document.getElementById("bank_name").value = ConvertToTest(dataObject[0].beneficiary_name);
+		document.getElementById("routing").value = ConvertToTest(dataObject[0].account_NO);
+		document.getElementById("account").value = ConvertToTest(dataObject[0].SWIFT_CODE);
+                
+                legalbusitact = dataObject[0].legalbusitact;
+		for(var i = 0; i < legalbusitact.length; i++){
+			if(dem_legalbusitact < parseInt(legalbusitact[i].id, 10)) dem_legalbusitact = parseInt(legalbusitact[i].id, 10);	
+		}
+		dem_legalbusitact ++;
+		show_Legal_business_contact();
+
+		document.getElementById("address_line_1").value = ConvertToTest(dataObject[0].address);
+		document.getElementById("city_business").value = ConvertToTest(dataObject[0].city);
+                document.getElementById("state_business").value = ConvertToTest(dataObject[0].state);
+		document.getElementById("zipcode_business").value = ConvertToTest(dataObject[0].zipcode);	
+	}
+}
+function showCountriesListing(){
+	var st = '';
+	var elSel = document.getElementById('slcountry');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try{
+			elSel.add(elOptNew, null);
+		}catch(ex) {
+			elSel.add(elOptNew);
+		}		
+	}
+	if(ct != '')
+		elSel.value = ct;
+}
+function showStates(){
+	var st = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" style="width:100px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="state" size="10" name="state" value="" style="width:80px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';
+				st += '<span class="spRequired" style ="float:right">*</span>';	
+			}
+			break;	
+		}	
+	}
+	document.getElementById("zipcode").value = "";
+	$("#states_show").empty().append(st);	
+}
+
+function showCities(){
+    var ct ='';
+    var country_value = document.getElementById("slcountry").value;
+    for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				var cities = dataCountries[i].cities;
+				ct += '<select id="city" name="city" style="width:260px">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input tabindex="5" type="text" class="input-text" id="city" size="10" name="city" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';
+			}
+			break;	
+		}	
+	}
+        $("#cities_show").empty().append(ct);
+}
+
+function loadDataCountries(){
+	{load_countries}
+	//showCountriesListing();
+	//showStates();	
+       //showCities();
+}
+$(function() {
+	//ShowAccountDetail();
+	loadDataObject();
+	//loadPermission();
+	//loadEmployee();
+	//loadDataCountries();
+	clearForms();
+	var y = new Date();
+	var dates = $( "#contract_start_date, #contract_end_date" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		changeYear: true, 
+		yearRange: '1970:'+y.getFullYear(),
+		numberOfMonths: 2,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "contract_start_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" );
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+	$("#ui-datepicker-div").css('z-index', '100'); 
+});
+var editor_obj;
+function CreateEditor(id, width_){
+	
+	document.getElementById(id).value = "Hello " + document.getElementById("name").innerHTML + ",";
+	
+	editor_obj = CKEDITOR.replace( id, {
+		uiColor: '#7A17DE',
+	
+		enterMode : CKEDITOR.ENTER_BR,	
+        filebrowserBrowseUrl : 'misc/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Flash',
+        filebrowserUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		toolbar : [
+			[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+			[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+			[ 'Link','Unlink','Anchor' ],
+			[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		//	'/',
+			[ 'Styles','Format','Font','FontSize' ],
+			[ 'TextColor','BGColor' ],
+			[ 'Maximize', 'ShowBlocks']
+		]
+    });
+}
+function sendMail(){
+	var mail_title = document.getElementById("mail_title").value;
+	if(trim(mail_title) == ''){
+		alert("Please enter title mail");
+		document.getElementById("mail_title").focus();
+		return false;	
+	}
+	var mail_body = editor_obj.getData();
+	if(trim(mail_body) == ''){
+		alert("Please enter body mail");
+		document.getElementById("mail_body").focus();
+		return false;	
+	}
+	$("#send_mail_box").hide();
+	$("#loadingbt2").show();
+	$.post("index.php/manufacturers/edit", {
+		sendmail: 'yes',
+		mail_title:mail_title,
+		mail_body:mail_body,
+		ukey:document.getElementById("key").value
+	}, function(data){
+		$("#send_mail_box").show();
+		$("#loadingbt2").hide();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+			}else{
+				alert("Send mail completed.");
+				document.getElementById("mail_title").value = '';
+				editor_obj.setData("Hello " + document.getElementById("name").innerHTML + ",");
+				return false;
+			}
+		}
+	}, "json");		
+}
+</script>

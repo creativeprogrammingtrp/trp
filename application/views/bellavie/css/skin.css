@@ -1,0 +1,39 @@
+#left_banner,#right_banner{
+    overflow:hidden;
+	height:430px;
+}
+
+.item {
+    height:192px;
+}
+#actions_left{
+	top:690px;
+	position:absolute;
+	width:40px;
+	height:20px;
+	z-index:100;
+	float:left;}
+#actions_left  a,#actions_right  a{
+	width:50%;
+	height:100%;
+	display:block;
+	float:left;
+	cursor:pointer;}
+#actions_right{
+	position:absolute;
+	top:690px;
+	width:40px;
+	height:20px;
+	z-index:100;
+	float:right;}
+.disabled {
+}
+.left_prev,.right_prev{
+	background:url(../images/../images/arrow-asc.png) center center no-repeat;}
+.left_next,.right_next {
+	background:url(../images/../images/arrow-desc.png) center center no-repeat;
+}
+
+.box_banner_left,.box_banner_right {
+	position:relative;
+}

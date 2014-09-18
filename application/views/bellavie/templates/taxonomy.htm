@@ -1,0 +1,215 @@
+<script language="javascript">
+var data_Objects = [];
+function showObjectListings(){
+
+	var str_content = '';
+	var length_data = data_Objects.length;
+	
+	str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Category Name</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">List Position</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Products</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Set on menu</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+
+	if(length_data > 0){
+
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_Objects[i];
+			if(parseInt(obj.fid, 10) > 0) continue;
+			
+			var button = '';
+			if(obj.modify == 'yes'){
+				button += '<a href="javascript:void(0)" onclick="Edit_object(\''+obj.cat_key+'\')">Edit</a>';
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+				}
+				button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="delete_obj(\''+obj.cat_key+'\')">x</a>';	
+			}
+			
+			
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="middle" class="td-row"><a href="index.php/admin/products_manage?page=1&catid='+obj.cat_key+'" style="text-transform:capitalize">'+ConvertToHTML(obj.cat_name)+'</a></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + showWeight(obj.cat_key) + '</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + number_format(obj.products) + '</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + show_check_menu(obj.cat_key,obj.status_display) + '</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			str_content += showMenu_child(parseInt(obj.cat_id, 10), 20);	
+			
+		}
+		str_content += '	</tbody>';
+		
+	}
+	str_content += '</table>';
+	
+	$("#objects_list").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+	
+	for(var i = 0; i < length_data; i++){
+		if(document.getElementById("weight_"+data_Objects[i].cat_key)){
+			document.getElementById("weight_"+data_Objects[i].cat_key).value = data_Objects[i].weight;	
+		}	
+	}
+	
+}
+
+function show_check_menu(key,check)
+{
+	var str_check = check==1?"checked":"";
+	return '<input type="checkbox" '+str_check+' name="display_'+key+'" id="display_'+key+'">';
+	
+}
+
+function showMenu_child(id, padding){
+	var str_content = '';
+	
+	for(var i = 0; i < data_Objects.length; i++){
+		if(parseInt(data_Objects[i].fid, 10) == id){
+			var obj = data_Objects[i];
+			
+			var button = '';
+			if(obj.modify == 'yes'){
+				button += '<a href="javascript:void(0)" onclick="Edit_object(\''+obj.cat_key+'\')">Edit</a>';
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+				}
+				button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="delete_obj(\''+obj.cat_key+'\')">x</a>';	
+			}
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="middle" class="td-row"><span style="padding-left:'+padding+'px"><a href="index.php/admin/products_manage?page=1&catid='+obj.cat_key+'" style="text-transform:capitalize">'+ConvertToHTML(obj.cat_name)+'</a></span></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + showWeight(obj.cat_key) + '</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + number_format(obj.products) + '</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + show_check_menu(obj.cat_key,obj.status_display) + '</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			str_content += showMenu_child(parseInt(obj.cat_id, 10), padding + 20);	
+		}	
+	}
+	
+	return str_content;
+}
+
+function Edit_object(key){
+	window.location = 'index.php/admin/categories/edit/'+key;
+	return false;
+}
+
+function loadObjects(){
+	data_Objects = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/categories/listCate", {
+		loadObj:'yes'
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_Objects = data;
+		}
+		showObjectListings(1);
+	}, "json");
+	return false;
+}
+
+function AddNewObjects(){
+        window.location = 'index.php/admin/categories/add';
+}
+
+function delete_obj(key){
+	if(window.confirm("Are you sure you want to delete this category?")==false)
+		return false;
+	delete_obj__(key);
+}
+
+function delete_obj__(key){
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post('index.php/admin/categories/delete/'+key, {
+		delete_obj:'yes',
+		key:key
+	},function(data){
+		closeBox('box_popup');
+		data_Objects = [];
+		HideLoadingObj(document.getElementById("content_popup"));
+		if(typeof(data) == 'object'){
+			data_Objects = data;
+		}
+		showObjectListings();
+	}, "json");
+}
+
+function showWeight(key){
+	var st = '<select id="weight_'+key+'" name="weight[]" style="width:80px">';
+	st += '{@weight@}';
+	st += '</select>';
+	return st;
+}
+
+function saveForm(){
+	var weight = document.getElementsByName("weight[]");
+	
+	var obj_save = [];
+	for(var i = 0; i < data_Objects.length; i++){
+		var obj_ = new Object();
+		obj_.weight = data_Objects[i].weight;
+		obj_.cat_key = data_Objects[i].cat_key;
+		
+		if(document.getElementById("weight_"+data_Objects[i].cat_key)){
+			obj_.weight = document.getElementById("weight_"+data_Objects[i].cat_key).value;
+		}
+		if (document.getElementById("display_"+data_Objects[i].cat_key))
+		{
+			obj_.status_display = $("#display_"+data_Objects[i].cat_key).is(':checked')?1:0;
+		}
+		obj_save[obj_save.length] = obj_;		
+	}
+	
+	data_Objects = [];
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/admin/categories/saveFormList", {
+		saveform: obj_save
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+                if(data != ''){
+                        //alert(error);	
+						alert(fail_saved);
+                }else{
+						alert(success_saved);
+                        window.location = 'index.php/admin/categories';
+                }
+	});
+}
+
+$(function() {
+	loadObjects(); 
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+</script>
+<div class="box_solar">
+	<div style="clear:both; text-align:left">{add_cate_btn}</div>
+	<div style="clear:both; overflow:hidden; width:100%; padding-top:20px" align="left" id="objects_list"></div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+        <input type="button" value="Save" name="submit" class="btn btn-primary" style="margin-left:5px" onclick="saveForm()" />
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>

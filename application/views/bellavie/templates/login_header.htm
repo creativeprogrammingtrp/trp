@@ -1,0 +1,26 @@
+<div id="header_top">
+	<div id="logo_bella" onclick="goHome()"></div>	
+    <div class="accountAdmin">
+        <div id="contenthello">
+            <div id="newcustomer">Hello {login_name}&nbsp;&nbsp;-&nbsp;&nbsp;<a href="index.php/user/myaccount">My Account</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="index.php/logout" class="menu-link">Log out</a></div>
+        </div>
+    </div>
+</div>
+<div class="search" style="margin-bottom:3px">			
+    <div id="bosearchtrai"></div>
+    <div class="header_menu_midle">
+    	<div id="menu_link">
+        	{menu_system}
+        </div>
+    </div>
+    <div id="bosearchphai"></div>		
+</div>
+<script language="javascript">
+$(document).ready(function() {
+	$(".nav li").hover(function(){ 
+		$(this).find('ul:first').css({visibility: "visible",display: "none"}).show(400); 
+	},function(){ 
+		$(this).find('ul:first').css({visibility: "hidden"}); 
+	}); 				   
+});
+</script>

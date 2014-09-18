@@ -1,0 +1,232 @@
+<style>
+#objects_list
+{
+	padding-top: 20px;
+}
+#objects_list select
+{
+	margin: 0px;
+}
+.table th , .table td 
+{
+	line-height: 25px !important;
+}
+dd, dt
+{
+	line-height: 25px;
+}
+</style>
+<div class="box_solar">
+	<div style="clear:both; text-align:left">{addnewbt}</div>
+	<div class="widget-content table-container" id="objects_list"></div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+        <input type="button" value="Save" name="submit" class="btn btn-primary" style="margin-left:5px" onclick="saveForm()" />
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+var data_Objects = [];
+function showObjectListings(){
+	var str_content = '';
+	var length_data = data_Objects.length;
+	str_content += '<table class="v3" style="width: 100%;">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Menu Link</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Enabled</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">List Position</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	if(length_data > 0){
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_Objects[i];
+			if(parseInt(obj.parent, 10) > 0) continue;
+			
+			var button = '';
+			if(obj.modify == 'yes'){
+				button += '<a href="javascript:void(0)" onclick="Edit_object(\''+obj.mkey+'\')">Edit</a>';	
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+				}
+				button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="delete_obj__(\''+obj.mkey+'\')">x</a>';	
+			}
+			var check_ = 'checked="checked"';
+			if(parseInt(obj.status, 10) == 0) check_ = '';
+			
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="middle" class="td-row"><a href="'+obj.link+'">'+obj.name+'</a></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row"><input type="checkbox" class="input-checkbox" id="status_'+obj.mkey+'" name="menu[]" value="'+obj.id+'" '+check_+' /></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + showWeight(obj.mkey) + '</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			str_content += showMenu_child(parseInt(obj.id, 10), '-- ');	
+			
+		}
+		str_content += '	</tbody>';
+	}
+	str_content += '</table>';
+	
+	$("#objects_list").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+	for(var i = 0; i < length_data; i++){
+		if(document.getElementById("weight_"+data_Objects[i].mkey)){
+			document.getElementById("weight_"+data_Objects[i].mkey).value = data_Objects[i].weight;	
+		}	
+	}
+}
+function showMenu_child(id, padding){
+	var str_content = '';
+	for(var i = 0; i < data_Objects.length; i++){
+		if(parseInt(data_Objects[i].parent, 10) == id){
+			var obj = data_Objects[i];
+			var button = '';
+			if(obj.modify == 'yes'){
+				button += '<a href="javascript:void(0)" onclick="Edit_object(\''+obj.mkey+'\')">Edit</a>';	
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+				}
+				button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="delete_obj__(\''+obj.mkey+'\')">x</a>';	
+			}
+			var check_ = 'checked="checked"';
+			if(parseInt(obj.status, 10) == 0) check_ = '';
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="middle" class="td-row"><span><a href="'+obj.link+'">'+padding+obj.name+'</a></span></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row"><input type="checkbox" class="input-checkbox" id="status_'+obj.mkey+'" name="menu[]" value="'+obj.id+'" '+check_+' /></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">' + showWeight(obj.mkey) + '</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			str_content += showMenu_child(parseInt(obj.id, 10), padding + '-- ');	
+		}	
+	}
+	return str_content;
+}
+function Edit_object(key){
+	window.location = 'index.php/admin/menus/edit/'+key;
+	return false;
+}
+function loadObjects(){
+	data_Objects = [];
+	//ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/menus/lists", {
+		loadObj:'yes'
+	},function(data){
+		//HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_Objects = data;
+		}
+		showObjectListings(1);
+	}, "json");
+	return false;
+}
+function AddNewObjects(){
+	window.location = 'index.php/admin/menus/add';
+}
+function delete_obj(key){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete menu");
+	showbox('box_popup');
+	
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php?q=admin/menus/del&ajax=1&block=yes&key='+key,
+		cache: false,
+		success: function(message){
+			$("#content_popup").append(message);
+			HideLoadingObj(document.getElementById("content_popup"));
+			if(document.getElementById("cancel")){
+				document.getElementById("cancel").onclick = function(event){
+					closeBox("box_popup");
+				}	
+			}
+			return false;
+		}
+	});
+	return false;
+}
+function delete_obj__(key){
+	if(confirm('Delete this menu?')){
+		ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+		$.post("index.php/admin/menus/delete", {
+			delete_obj:'yes',
+			key:key
+		},function(data){
+			closeBox('box_popup');
+			data_Objects = [];
+			HideLoadingObj(document.getElementById("content_popup"));
+			alert(success_delete);
+			window.location.reload();
+		}, "json");
+	}
+}
+function showWeight(key){
+	var st = '<select id="weight_'+key+'" name="weight[]" style="width:80px">';
+	st += '{weight}';
+	st += '</select>';
+	return st;
+}
+function saveForm(){
+	var menu = document.getElementsByName("menu[]");
+	var weight = document.getElementsByName("weight[]");
+	
+	var obj_save = [];
+	for(var i = 0; i < data_Objects.length; i++){
+		var obj_ = new Object();
+		obj_.status = data_Objects[i].status;
+		obj_.weight = data_Objects[i].weight;
+		obj_.mkey = data_Objects[i].mkey;
+		
+		if(document.getElementById("status_"+data_Objects[i].mkey)){
+			if(document.getElementById("status_"+data_Objects[i].mkey).checked == true){
+				obj_.status = 1;	
+			}else{
+				obj_.status = 0;	
+			}
+		}
+		if(document.getElementById("weight_"+data_Objects[i].mkey)){
+			obj_.weight = document.getElementById("weight_"+data_Objects[i].mkey).value;
+		}
+		obj_save[obj_save.length] = obj_;		
+	}
+	data_Objects = [];
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/admin/menus/savelist", {
+		save_form:'yes',
+		saveform: obj_save
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(data != ''){
+			//alert(data);	
+			alert(fail_saved);
+		}else{
+			alert("Successfull");
+			window.location = 'index.php/admin/menus/';
+		}
+	}, "json");
+}
+$(function() {
+	loadObjects(); 
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+</script>

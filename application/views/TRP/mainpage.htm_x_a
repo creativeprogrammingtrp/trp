@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+	================================================== -->
+	<meta charset="utf-8">
+	<title>Scale Financial - Home</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	
+	<!-- CSS
+  ================================================== -->
+	<!-- Normalize default styles -->
+	<link rel="stylesheet" href="../frontend/css/normalize.css" media="screen" />
+	<!-- Fonts -->
+	<link rel="stylesheet" href="../frontend/css/fonts.css" media="screen" />
+	
+	<!-- <link rel="stylesheet" href="../frontend/css/brankic_font.css" media="screen" /> -->
+	
+	<link rel="stylesheet" href="../backend/css/font_style.css">
+	
+	<!-- Skeleton grid system -->
+	<link rel="stylesheet" href="../frontend/css/skeleton.css" media="screen" />
+	<!-- Base Template Styles-->
+	<link rel="stylesheet" href="../frontend/css/base.css" media="screen" />
+	<!-- Superfish Menu-->
+	<link rel="stylesheet" href="../frontend/css/superfish.css" media="screen" />
+	<!-- Template Styles-->
+	<link rel="stylesheet" href="../frontend/css/style.css" media="screen" />
+	<!-- PrettyPhoto -->
+	<link rel="stylesheet" href="../frontend/css/prettyPhoto.css" media="screen" />
+	<!-- Layout and Media queries-->
+	<link rel="stylesheet" href="../frontend/css/layout.css" media="screen" />
+	<!-- Onebyone styles-->
+	<link rel="stylesheet" href="../frontend/css/jquery.onebyone.css" media="screen" />
+	<!-- Animate CSS-->
+	<link rel="stylesheet" href="../frontend/css/animate.min.css" media="screen" />
+	
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="css/ie/ie8.css" media="screen" />
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="../frontend/favicon.ico">
+	<link rel="apple-touch-icon" href="../frontend/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../frontend/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../frontend/images/apple-touch-icon-114x114.png">
+	
+	
+	<!-- For Old Browsers
+	================================================== -->
+	<!--[if lt IE 8]>
+	<div style=' clear: both; text-align:center; position: relative;'>
+		<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+	</div>
+	<![endif]-->
+	
+	
+	
+</head>
+<body class="page home-page">
+
+	<!-- Primary Page Layout
+	================================================== -->
+	
+	<!-- BEGIN WRAPPER -->
+	<div id="wrapper">
+			
+			
+			<!-- BEGIN HEADER -->
+			<header id="header">
+				
+				<!--Main Header-->
+				<div id="main-header">
+					<div class="container">
+						<div class="grid_12">
+						
+							<!-- BEGIN LOGO -->
+							<div id="logo">
+								<!-- Image based Logo-->
+								<a href="index.html"><img src="../frontend/images/logo.png" alt=""/></a>
+								
+								
+								<!-- Text based Logo
+								<h1><a href="index.html"><span>Optima</span>Sales</a></h1>
+								<p class="tagline">optimize your business</p>
+								-->
+								
+							</div>
+							<!-- END LOGO -->
+							
+							<!-- BEGIN NAVIGATION -->
+                                                        
+                                                    <div class="login-holder fright" style="margin-top: 8px; margin-left:11px;">
+                                                        <!-- <a href="#" class="custom_a"></a> -->
+                                                        <!-- <a data-reveal-id="signin" class="btn_c btn-white" href="index.php/login">SIGN IN</a> -->
+                                                        <a class="btn_c btn-white" href="index.php/signin">SIGN IN</a>
+                                                        <a class="btn_c btn-success" href="index.php/signup">SIGN UP</a>
+                                                       <!-- <input data-reveal-id="signup"  type="button" value="SIGN UP" class="btn_c btn-success"> -->
+                                                        
+                                                    </div>
+                                                        
+                                                        
+							<nav class="primary" style="margin-top: 3px;">
+								<ul class="sf-menu">
+									<!-- <li class="current-menu-item">
+                                    	<a href="index.html">PRODUCTS</a>
+									</li>-->
+									<li class="">
+                                    	<a href="#products">PRODUCTS</a>
+									</li>
+									<li>
+                                    	<a href="#features">FEATURES</a>
+									</li>
+									<li>
+                                    	<a href="#pricing">PRICING</a>
+									</li>
+									<li>
+                                    	<a href="#customer">CUSTOMERS</a>
+									</li>
+									
+									<li><a href="#contactus">CONTACT</a>
+                                    </li>
+                                  
+								</ul>
+							</nav>
+							<!-- END NAVIGATION -->
+							
+						</div>
+					</div>
+				</div>
+				
+			</header>
+			<!-- END HEADER -->
+			
+			
+			<!-- BEGIN SLIDER -->
+			<section id="slider">
+				
+				<div class="container">
+					<div class="grid_12">
+						
+						<div id="banner">
+							
+							<div class="oneByOne_item">
+								
+								<h2>Bank Partner <br> Now Offers More</h2>
+								<p class="excerpt">
+								Create Bank Products, Issue Insurance Policies,<br>Offer Discount Benefits, All In One Solution 
+								</p>
+								<!-- .btn -->
+								<div class="btn-holder">
+									<a class="btn_c btn-success btn-lg" href="index.php/signup"> &nbsp;  &nbsp; Sign Up Now &nbsp;  &nbsp; </a>
+									<!-- <a href="#" class="btn_c btn_success ">
+										<span class="btn-inner">Sign Up Now<em>click here</em><i class="marker"></i></span>
+									</a>
+									 -->
+								</div>
+								<!-- //.btn -->
+								<img src="../frontend/images/home_banner.png" alt="" class="slide" data-animate="bounceIn">
+							</div>
+							
+							<!--
+							<div class="oneByOne_item">
+								
+								<h2>Save time and money</h2>
+								<p class="excerpt">Lorem ipsum dolor sit amet, con- sectetur adipiscing elit. Curabitur id ante nisi. In imperdiet sem  ante nisiac eros vestibulum facilisis.</p>
+								
+								<div class="btn-holder">
+									<a href="#" class="btn large">
+										<span class="btn-inner">Sign Up Now<em>click here</em><i class="marker"></i></span>
+									</a>
+								</div>
+								
+								<img src="../frontend/images/sample/home_banner.png" alt="" class="slide" data-animate="bounceInDown">
+							</div>
+							
+							 
+							<div class="oneByOne_item">
+								
+								<h2>Save time and money</h2>
+								<p class="excerpt">Lorem ipsum dolor sit amet, con- sectetur adipiscing elit. Curabitur id ante nisi. In imperdiet sem  ante nisiac eros vestibulum facilisis.</p>
+								
+								<div class="btn-holder">
+									<a href="#" class="btn large">
+										<span class="btn-inner">Sign Up Now<em>click here</em><i class="marker"></i></span>
+									</a>
+								</div>
+								
+								<img src="../frontend/images/sample/slide3.png" alt="" class="slide" data-animate="rotateInDownLeft">
+							</div>
+							 -->
+						</div>
+						
+					</div>
+				</div>
+				
+			</section>
+			<!-- END SLIDER -->
+			
+			
+			<!-- BEGIN CONTENT HOLDER -->
+			<div id="content-wrapper" class="large-text">
+				
+				 
+				<!-- BEGIN PRIMARY AREA -->
+				<section id="products" class="home-area indent">
+					
+					<div class="container">
+						<div class="grid_12" style="margin-bottom: 15px;">
+						
+							<div class="intro-widget">
+								<h2>Products</h2>
+								<!-- Scale Financial now offers Tax Preparers the ability to offer Bank Products integrated to offer Insurance Policies from major providers and offer discount benefits packages. -->
+							</div><!-- //.intro-widget -->
+						
+						
+						</div>
+						
+						<div class="grid_4 product" >
+							<div style="text-align: center;">
+								<h2>Bank Products</h2>
+								<img src="../frontend/images/prodcut_refund.png" alt="" >
+								<h1><small>Only</small> $19<small>/per</small><br><small>transaction</small></h1>
+								<ul class="ulstyle">
+									<li>Refund in less then 5 days</li>
+									<li>9000+ Check Cash partners</li>
+									<li>Available to Service Bureaus</li>
+								</ul>
+								<!-- <p>Scale now provides easy solution to get their customers tax refund from IRS in less then 5 days in a form of check, debit card or even direct deposit to their account.</p> -->
+							</div>
+						</div>
+						<div class="grid_4 product">
+							<div style="text-align: center;">
+								<h2>Insurance</h2>
+								<img src="../frontend/images/product_insurance.png" alt="" >
+								<h1><small>upto</small>15%<br><small>commission*</small></h1>
+								<ul class="ulstyle">
+									<li>Issue Policies in minutes</li>
+									<li>NO Licenses Required</li>
+									<li>Turnkey integrated solutions</li>
+								</ul>
+								<!-- <p>Scale is a comprehensive tool that gives the flexibility to tax offices offer Insurance policies all year around and help increase revenue in peak season.</p> -->
+							</div>
+						</div>
+						<div class="grid_4 product">
+							<div style="text-align: center;">
+								<h2>Discount Benefits</h2>
+								<img src="../frontend/images/product_benefits.png" alt="" >
+								<h1><small>upto</small> 35%<br><small>commission*</small></h1>
+								<ul class="ulstyle">
+									<li>Increase product offerings</li>
+									<li>Target client's needs</li>
+									<li>Deduct from Tax Refund</li>
+								</ul>
+								<!-- <p>Scale is an All in One solution that helps Tax Preparers offer packaged benefits to their clients and deduct it from Tax Refund.</p> -->
+							</div>
+						</div>
+						<div style="clear: both;"></div>
+						<!-- 
+						<hr style="border-top:1px solid #e8e8e8; border-bottom: none; border-left: none; margin-top: 24px;">
+						
+						<div class="intro-widget">
+							
+								Also tax offices can continue to generate revenue in off tax season by offering customers insurance and other supplemental services to their customers.
+								<p class="redtext">This all in all solution is one of a kind which helps tax offices generate more revenue with such an ease.</p>
+						</div>
+						 -->
+					</div>
+					
+				</section>
+				<!-- END PRIMARY AREA -->
+				
+				
+				<!-- BEGIN SECONDARY AREA -->
+				<section id="features" class="home-area indent">
+					
+					<div class="container">
+					
+						<div class="grid_12" style="margin: 0px;">
+							<div class="intro-widget " style="margin-bottom: 30px; ">
+								<h2>Features</h2>
+								Scale Financial now gives Tax Preparers and Service Bureaus the flexibility to offer more then just tax services. It lets you do this without leaving our platform.
+							</div><!-- //.intro-widget -->
+						
+							<ul class="home-services">
+							
+								<li>
+									<figure class="img-holder">
+										<a href="#"><img src="../frontend/images/feature_business.png" alt="" border="0" /></a>
+									</figure>
+									<h3>Increase Revenue</h3>
+									Scale now lets you offer your clients Bank Products, Insurance Policies and discount benefits all from one place. We help increase your product offerings and increase your revenues. 
+								</li>
+								<li>
+									<figure class="img-holder">
+										<a href="#"><img src="../frontend/images/feature_revinue.png" alt=""  border="0" /></a>
+									</figure>
+									<h3>Control Business</h3>
+									Scale now lets you keep control of all your reports from Pending Bank Products, Ready To Print, Issued Insurance Policies, Audit Tax Protection, and etc. 
+								</li>
+								<li>
+									<figure class="img-holder">
+										<a href="#"><img src="../frontend/images/feature_transication.png" alt="" border="0" /></a>
+									</figure>
+									<h3>One Transaction</h3>
+									Scale lets you add Bank Products, discount benefits in one simple transaction. You can now deduct discount benefits from your clients Tax refund. Easy and Simple! 
+								</li>
+								<!-- 
+								<li>
+									<figure class="img-holder">
+										<a href="#"><img src="../frontend/images/feature_secure.png" alt="" border="0" /></a>
+									</figure>
+									<h3>Secure</h3>
+									Pellentesque id dolor in purus mattis lacinia aenean aliquam elit aliquam vehicula fringilla imperdiet. Phasellus iaculis, tortor pellentesque luctus mattis, leo magna porta magna. 
+								</li>
+								 -->
+							</ul>
+							
+						</div>
+						
+					</div>
+					
+				</section>
+				<!-- END SECONDARY AREA -->
+				
+				
+				<!-- BEGIN TERTIARY AREA -->
+				<section id="pricing" class="home-area indent">
+					
+					
+						
+						<!-- BEGIN CUSTOMERS -->
+						<div class="widget-carousel customers-list">
+							<div class="container">
+								<div class="grid_12">
+									<div class="intro-widget " style="margin-bottom: 60px; ">
+										<h2>Pricing</h2>
+										Scale Financial has created a very simple pricing plan to cater to all our customers. Whether it’s a single transaction price model or monthly recurring charges.
+									</div>
+								</div>	
+								
+								<div class="grid_12" style="background-color:#fff;">
+								<div class="grid_4  pricing"  style="width:320px;  padding:0px; margin:0px;">
+										<div style="text-align: center;">
+											<div class="img-header">
+												<!-- <img src="../frontend/images/pricing_premium.png" alt="" > -->
+											</div>
+											
+											<p class="chooseplan">Choose a Plan</p>
+											<ul style="" class="text-right">
+												<li>First 5 Bank Products</li>
+												<li>Unlimited Bank Products</li>
+												<li>Unlimited Discount Benefits</li>
+												<li>Compliance Training</li>
+												<li>Powerful Reporting</li>
+												<li>Remote & Phone Support</li>
+												<li>Unlimited Insurance Policies</li>
+												<li>Employee Training</li>
+											</ul>
+											
+											<h1>&nbsp;</h1>
+											
+										</div>
+									</div>
+									
+									<div class="grid_4  pricing" style="width:320px; padding:0px; margin:0px;">
+										<div style="text-align: center;">
+											<div  class="img-header">
+												<img src="../frontend/images/pricing_starter.png" alt="" >
+											</div>
+											<h2>Basic</h2>
+											<p>Bank Products & Benefits</p>
+											
+											<ul style="" class="text-center">
+												<li class="odd"><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li class="text-success">$19/<small>each</small> </li>
+												<li class="odd"><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li class="odd"><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li class="odd">&nbsp; </li>
+												<li class="">&nbsp; </li>
+											</ul>
+											
+											<h1>Free</h1>
+											<a  class="btn_c btn-success margin-bottom" href="index.php/signup"> &nbsp; &nbsp; &nbsp; <i class=" icon-ok"></i>   &nbsp; &nbsp; Sign Up  &nbsp; &nbsp; &nbsp; </a>
+										</div>
+									</div>
+									<div class="grid_4  pricing"  style="width:318px;  padding:0px; margin:0px; border-right: 0px;">
+										<div style="text-align: center;">
+											<div  class="img-header">
+												<img src="../frontend/images/pricing_popular.png" alt="" >
+											</div>
+											<h2>Plus</h2>
+											<p>Include Insurance Policies</p>
+											<ul style="">
+												<li class="odd"><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li class="text-success">$19/<small>each</small> </li>
+												<li class="odd"><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li class="odd"><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li><i class=" icon-ok text-success"></i> &nbsp; </li>
+												<li class="odd"><i class=" icon-ok text-success"></i>&nbsp; </li>
+												<li class=""><i class=" icon-ok text-success"></i>&nbsp; </li>
+											</ul>
+											
+											<h1>$49/<small style="">per month</small></h1>
+											
+											<a  class="btn_c btn-success margin-bottom" href="index.php/signup">  &nbsp; &nbsp; &nbsp; <i class=" icon-ok"></i>  &nbsp; &nbsp; Sign Up  &nbsp; &nbsp; &nbsp; </a>
+										</div>
+									</div>
+									
+									<div style="clear: both;"></div>
+								</div>	
+									
+									
+									<!-- <p style="margin-top:40px;color:#192d38;">Get free <strong style="font-weight: 700">24 x 7 email support</strong> and <strong  style="font-weight: 700">24 x 5 phone support</strong> with all our plans.</p> -->
+									<!-- Elastislide Carousel -->
+									<!-- 
+									<div id="carousel1" class="es-carousel-wrapper">
+										<div class="es-carousel">
+											<ul class="clients-say">
+												<li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- Musician</span>
+                                                    <img src="../frontend/images/team-img1.jpg" alt="Customer 1 Info" />
+                                                </li>
+                                                <li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- CEO</span>
+                                                    <img src="../frontend/images/team-img2.jpg" alt="Customer 1 Info" />
+                                                </li>
+                                                <li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- Sales Manager</span>
+                                                    <img src="../frontend/images/team-img3.jpg" alt="Customer 1 Info" />
+                                                </li>
+                                                <li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- Manager</span>
+                                                    <img src="../frontend/images/team-img4.jpg" alt="Customer 1 Info" />
+                                                </li>
+                                                <li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- Director</span>
+                                                    <img src="../frontend/images/team-img1.jpg" alt="Customer 1 Info" />
+                                                </li>
+                                                <li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- Sales Manager</span>
+                                                    <img src="../frontend/images/team-img3.jpg" alt="Customer 1 Info" />
+                                                </li>
+                                                <li>                                                	
+                                                    <p>Cum sociis natoque penatus et maed pognis dis parturient montes, scettur aieo ridiculus mus. Etiam portaem maleyo io suada magna mollis euismod.</p>
+                                                    <span class="author">John Doe </span><span class="author-title">- Musician</span>
+                                                    <img src="../frontend/images/team-img2.jpg" alt="Customer 1 Info" />
+                                                </li>
+											</ul>
+										</div>
+									</div>
+									-->
+									<!-- End Elastislide Carousel -->
+									
+								
+							</div>
+						</div>
+						<!-- END CUSTOMERS -->
+				</section>
+				<!-- END TERTIARY AREA -->
+				
+				<!-- BEGAN CUSTOMER AREA -->
+				<section id="customer" class="home-area indent" style="border-bottom: 1px solid #e8e8e8; ">
+					
+					<div class="container">
+					
+						<div class="grid_12" style="margin: 0px;">
+							<div class="intro-widget " style="margin-bottom: 60px; ">
+								<h2>Customer</h2>
+								Scale Financial is an easy solution for all types of our customers. We have kept everyone in mind while creating Scale software. Ask us for a Free Demo!
+							</div>
+						</div>
+						
+						<div class="grid_3 product" >
+							<div style="text-align: center;">
+								<img src="../frontend/images/customer_ero.png" alt="" >
+								<h2>ERO</h2>
+							</div>
+						</div>
+						<div class="grid_3 product" >
+							<div style="text-align: center;">
+								<img src="../frontend/images/customer_service_bureau.png" alt="" >
+								<h2>Service Bureau</h2>
+							</div>
+						</div>
+						<div class="grid_3 product" >
+							<div style="text-align: center;">
+								<img src="../frontend/images/customer_insurence_agent.png" alt="" >
+								<h2>Insurance Agent</h2>
+							</div>
+						</div>
+						<div class="grid_3 product" >
+							<div style="text-align: center;">
+								<img src="../frontend/images/customer_resellers.png" alt="" >
+								<h2>Resellers</h2>
+							</div>
+						</div>
+					</div>
+				</section>		
+				<!-- END CUSTOMER AREA -->
+				
+				
+				<!-- BEGAN CONTACT US -->
+				<section id="contactus" class="home-area indent">
+					
+					<div class="container">
+					
+						<div class="grid_12" style="margin: 0px;">
+							<div class="intro-widget " style="margin-bottom: 60px; ">
+								<h2>Contact Us</h2>
+								Feel free to leave us a note. We will reply you back. 
+							</div>
+						</div>
+						<div class="grid_12 successmessage" style="margin: 0px; display:none;"><h3>Your message sent successfully.</h3></div>
+						<form action="#" class="" method="post" name="contactus_form" id="contactus_form">
+						<div class="grid_4 product" style="margin-left:0px;" >
+							<div style="">
+								<label>NAME</label>
+								<input type="text" name="cname" id="cname">
+							</div>
+						</div>
+						<div class="grid_4 product" >
+							<div style="">
+								<label>EMAIL</label>
+								<input type="text" name="cemail" id="cemail">
+							</div>
+						</div>
+						<div class="grid_4 product"  style="margin-right:0px;">
+							<div style="">
+								<label>PHONE</label>
+								<input type="text" name="cphone" id="cphone">
+							</div>
+						</div>
+						<div class="grid_12 product"  style="margin:0px;">
+							<div style="">
+								<label>MESSAGE</label>
+								<textarea rows="5" cols="" name="cmessage"  id="cmessage"></textarea>
+							</div>
+						</div>
+						
+						<div style="clear: both;"></div>
+						<br>
+						<!-- <a class="btn_c btn-success" href="javascript:void(0);"> &nbsp; SEND MESSAGE &nbsp; </a> -->
+						<input style="padding:11px 50px 9px;" type="submit" value="SEND MESSAGE" class="btn_c btn-success" id="contact_submit" />
+						</form>
+					</div>
+				</section>		
+				<!-- END CONTACT US -->
+				
+				<!-- BOTTOM SIGN UP -->
+				<section id="signup-home-area" class="home-area indent">
+					
+					<div class="container">
+						<span style="color: #91a1ab; font-weight: 700; vertical-align: middle; line-height: 57px; font-size: 13pt;">Try our All In One Financial Solution.</span>
+						<a  style="float: right;" class="btn_c btn-success btn-lg" href="index.php/signup"> &nbsp;  &nbsp; Sign Up Now &nbsp;  &nbsp; </a>
+						
+						
+					</div>
+				</section>	
+					
+				<!-- END BOTTOM SIGN UP -->
+			</div>
+			<!-- END CONTENT HOLDER -->
+			
+			
+			<!-- BEGIN WIDGETS -->
+			<section id="widgets">
+				<div class="indent">
+					<div class="container">
+						<div class="grid_4 colborder" style="margin-left: 0px; margin-top: 16px;">
+							<div class="extra-widget-area">
+								<div class="inner" style="padding: 0px;">
+								
+									<!-- BEGIN REQUEST Widget -->
+									<div class="widget widget-request">
+										<img src="../frontend/images/logo.png" alt="" style="margin-left: 39px;">
+										<h2 style="background-image: url('../frontend/images/phone.png'); background-position: left center; background-repeat: no-repeat;">832 858 1144</h2>
+									</div>
+									<!-- END REQUEST Widget -->
+									
+									
+								</div>
+							</div>
+						</div>
+						<div class="grid_3 colborder">
+							<!-- BEGIN NAV Widget -->
+							<div class="widget widget-nav">
+								<h3>COMPANY</h3>
+								<ul>
+									<li><a href="#products">Products</a></li>
+									<li><a href="#features">Features</a></li>
+									<li><a href="#pricing">Pricing</a></li>
+									<li><a href="#contactus">Contact</a></li>
+									
+									
+								</ul>
+							</div>
+							<!-- END NAV Widget -->
+						</div>
+						<!-- BEGIN SOCIAL LINKS Widget -->
+						<!-- 
+						<div class="grid_3 colborder">
+							
+							<div class="widget widget-social">
+								<h3>MORE LINKS</h3>
+								<ul class="">
+									<li><a href="index.html">Home</a></li>
+									<li><a href="#">Bank Products</a></li>
+									<li><a href="#">Services</a></li>
+									
+								</ul>
+							</div>
+							
+						</div>
+						-->
+						<!-- END SOCIAL LINKS Widget -->
+						<div class="grid_3">
+							<!-- BEGIN TWITTER Widget -->
+							<div class="widget ">
+								<h3>STAY CONNECTED</h3>
+								<img style="margin-top:10px;" alt="" src="../frontend/images/socal_icons.png">
+							</div>
+							<!-- END TWITTER Widget -->
+						</div>
+						
+						
+					</div>
+				</div>
+			</section>
+			<!-- END WIDGETS -->
+			
+			
+			<!-- BEGIN FOOTER -->
+			<footer id="footer">
+				<div class="container">
+					<div class="grid_12" style="text-align: center;">
+						<small>&copy;2014 Scale Financial. All rights reserved.</small><a href="#">Privacy policy</a> | <a href="#">Terms of use</a>
+					</div>
+				</div>
+			</footer>
+			<!-- END FOOTER -->
+			
+		
+	</div>
+	<!-- END WRAPPER -->
+	
+	
+	<!-- BEGIN MODAL WINDOWS -->
+	
+        <div id="signup_success" class="reveal-modal">
+		<header class="reveal-modal-header">
+			Success
+		</header>
+		<div class="cont">
+			<form action="#"> 
+                                <p class="clearfix">
+					<label>Sign up Successful</label>	
+				</p>
+			</form>		
+		</div>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<!-- END MODAL WINDOWS -->
+	
+	
+	<!-- Javascript Files
+	================================================== -->
+	
+	<!-- initialize jQuery Library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../frontend/js/jquery-1.8.2.min.js"><\/script>')</script>
+	<!-- Modernizr -->
+	<script type="text/javascript" src="../frontend/js/modernizr.custom.14583.js"></script>
+	<!-- Superfish Menu -->
+	<script type="text/javascript" src="../frontend/js/superfish.js"></script>
+	<!-- easing plugin -->
+	<script type="text/javascript" src="../frontend/js/jquery.easing.min.js"></script>
+	<!-- Prettyphoto -->
+	<script type="text/javascript" src="../frontend/js/jquery.prettyPhoto.js"></script>
+	<!-- Mobile Menu -->
+	<script type="text/javascript" src="../frontend/js/jquery.mobilemenu.js"></script>
+	<!-- Twitter -->
+	<script type="text/javascript" src="../frontend/js/jquery.twitter.js"></script>
+	<!-- Elastslide -->
+	<script type="text/javascript" src="../frontend/js/jquery.elastislide.js"></script>
+	<!-- Custom Checkbox -->
+	<script type="text/javascript" src="../frontend/js/jquery.checkbox.js"></script>
+	<!-- Reveal Modal -->
+	<script type="text/javascript" src="../frontend/js/jquery.reveal.js"></script>
+	<!-- Onebyone slider -->
+	<script type="text/javascript" src="../frontend/js/jquery.onebyone.min.js"></script>
+	<!-- Touchwipe -->
+	<script type="text/javascript" src="../frontend/js/jquery.touchwipe.min.js"></script>
+	<!-- Dropkick select -->
+	<script type="text/javascript" src="../frontend/js/dropkick.js"></script>
+	<!-- Custom radio-checkboxes -->
+	<script type="text/javascript" src="../frontend/js/jquery.custom-radio-checkbox.js"></script>
+	<!-- Tooltips (tipsy) -->
+	<script type="text/javascript" src="../frontend/js/jquery.tipsy.js"></script>
+	<!-- phone mask -->
+	<script type="text/javascript" src="../frontend/js/jquery.maskedinput.js"></script>
+	
+	<!-- Custom -->
+	<script type="text/javascript" src="../frontend/js/custom.js"></script>
+        
+        <script type="text/javascript" src="../frontend/js/custom_mainpage.js"></script>
+        
+        <script type="text/javascript" src="misc/scripts/js.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	<!-- Onebyone slider init -->
+	<script type="text/javascript">
+                var url_server__ = '{curPageURLServer}'; 
+                dir_theme = 'application/views/{dir_theme}/';
+		var url_base_path__ = '{url_base_path}';
+		$(document).ready(function(){
+			$('#banner').oneByOne({
+				className: 'oneByOne1',
+				sliderClassName: 'oneByOne_item',
+				pauseByHover: true,	             
+				easeType: 'random',
+				width: 940, 
+				height: 470,
+				showButton: false,
+				enableDrag: true,
+				showArrow: true,
+				slideShow: true,
+				responsive: true,
+				minWidth: 0
+			});
+			
+			$("#efin_signup").mask("999999");
+		    $("#phone_signup").mask("(999) 999-9999");
+		    
+		    $("#cphone").mask("(999) 999-9999");
+		    
+		    /* Initialize Form Validation */
+	        $('#contactus_form').validate({
+	           
+	            rules: {
+	            	cname : {
+	                    required: true
+	                },
+	                cemail: {
+		                required: true,
+	                    email: true
+	                },
+	                cmessage:{
+	                	required: true
+	                }
+	            },
+	            messages: {
+	            	    
+	            	cname :{
+	            		required: 'Please enter your name.'
+	                },
+	                
+	                cemail: {
+	                	required: 'Please enter your email address.'
+	                },
+	                cmessage: {
+	                	required: 'Please enter your message.'
+	                }
+	            },
+	            submitHandler: function(form) {
+	            	$.post(url_base_path__ + "login/sendmessage", {
+	        			senddata : 'yes',
+	                    
+	        			cname : $("#cname").val(),
+	        			cemail : $("#cemail").val(),
+	        			cphone : $("#cphone").val(),
+	        			cmessage : $("#cmessage").val()
+	                         
+	        		}, function(data) {
+	        			console.log('done1');
+	        			//if (data === "ok") {
+	        				console.log('done');
+	        				$("#cname").val('');
+	        				$("#cemail").val('');
+	        				$("#cphone").val('');
+	        				$("#cmessage").val('');
+	        				
+	        				$('.successmessage').css('display','block');
+	                                 
+	        			//}
+	        			
+	        		}, "json");
+
+	        		return false;
+	            }
+	             
+	        });
+	    	/*End Form validation*/
+		});
+		
+	</script>
+	
+</body>
+</html>

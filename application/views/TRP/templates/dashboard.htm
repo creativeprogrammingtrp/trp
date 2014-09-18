@@ -1,0 +1,896 @@
+<div style="padding-top:20px;margin-bottom:20px; padding-left:24px;" class="col-md-12"><h2 style="margin:0px; color:#54565F;"><i class="icon-meter"></i> &nbsp;{title_page}</h2></div>
+
+<div style="clear:both"></div>
+
+<div style="" class="state-overview" >
+<!-- Top part -->
+	<div class="col-md-4">
+		<section class="panel">
+             <div class="symbol terques" >
+                 <i class="gemicon-medium-custome-white-applications gemicon-medium-white"></i>
+             </div>
+             <div class="value">
+                 <h2 class="count">{totalrecentapp}</h2>
+                 <p>TODAY'S APPLICATIONS</p>
+                 <a href="index.php/admin/bankproducts">View all <i class="icon-long-arrow-right"></i></a>
+             </div>
+         </section>
+	</div>
+	
+	<div class="col-md-4">
+		<section class="panel">
+            <div class="symbol perpal">
+                <i class="gemicon-medium-custome-white-pending-application gemicon-medium-white"></i>
+            </div>
+            <div class="value">
+                <h2 class="count">{totalPendingapp}</h2>
+                 <p>PENDING APPLICATIONS</p>
+                 <a href="index.php/admin/bankproducts">View all <i class="icon-long-arrow-right"></i></a>
+            </div>
+        </section>
+	</div>
+	
+	<div class="col-md-4">
+		<section class="panel">
+            <div class="symbol green">
+                <i class="gemicon-medium-custome-white-print gemicon-medium-white"></i>
+            </div>
+            <div class="value">
+                <h2 class="count">{totalreadytoprintapp}</h2>
+                 <p>READY TO PRINT</p>
+                 <a href="index.php/admin/bankproducts#ready_print">View all <i class="icon-long-arrow-right"></i></a>
+            </div>
+        </section>
+	</div>
+	
+	<div style="clear:both"></div>
+<!-- End Top Part -->
+
+<!-- Chart -->
+
+<div class="col-md-8">
+		<section class="panel refund_chart" style="padding: 15px 22px 6px 22px;">
+             <img alt="" src="../backend/img/refund_chart.png"> 
+             <!-- <h3>Refund Application</h3>
+             <div id="example-chart-stacked" class="chart"></div>
+              -->
+        </section>
+	</div>
+	
+	<div class="col-md-4">
+		<section class="panel">
+            <div class="panel-body" style="padding: 15px 0px 0px 9px">
+            	<!-- <img alt="" src="../backend/img/commission_chart.jpg" > -->
+            	<h3 style="font-weight: 400; line-height: 18px; color: rgb(84, 86, 95); font-size: 14pt; margin: 8px 0px 0px 16px;">Commission</h3>
+                   <div id="donut" class="chart" style="height:110px; width:300px"></div>              
+               <!--  <div id="donut" class="chart" style="width:300px; height:300px;">.</div> -->
+            </div>
+        </section>
+	</div>
+	
+	<div class="col-md-4">
+		<section class="panel progress-div" style="padding: 10px">
+			<h3>Product Sold</h3>
+			<div class="progress-panel">
+				<div class="col-md-4" style="padding-right: 0px">
+				Bank Product
+				</div>
+				<div class="col-md-6" style="padding-right: 0px">
+		            <div class="progress progress-mini">
+		                <div class="progress-bar progress-bar-success" style="width: 45%"></div>
+		            </div>
+	            </div>
+	            <div class="col-md-1 parcent" >
+	            45
+	            </div>
+            	<div style="clear:both"></div>
+            </div>
+            
+            <div class="progress-panel">
+				<div class="col-md-4" style="padding-right: 0px">
+				Audit Guard
+				</div>
+				<div class="col-md-6" style="padding-right: 0px">
+		            <div class="progress progress-mini">
+		                <div class="progress-bar progress-bar-success" style="width: 84%"></div>
+		            </div>
+	            </div>
+	            <div class="col-md-1 parcent">
+	            84
+	            </div>
+            	<div style="clear:both"></div>
+            </div>
+            
+            <div class="progress-panel">
+				<div class="col-md-4" style="padding-right: 0px">
+				Insurance
+				</div>
+				<div class="col-md-6" style="padding-right: 0px">
+		            <div class="progress progress-mini">
+		                <div class="progress-bar progress-bar-success" style="width: 55%"></div>
+		            </div>
+	            </div>
+	            <div class="col-md-1 parcent">
+	            55
+	            </div>
+            	<div style="clear:both"></div>
+            </div>
+            
+            <div class="progress-panel">
+				<div class="col-md-4" style="padding-right: 0px">
+				Gold Package
+				</div>
+				<div class="col-md-6" style="padding-right: 0px">
+		            <div class="progress progress-mini">
+		                <div class="progress-bar progress-bar-success" style="width: 96%"></div>
+		            </div>
+	            </div>
+	            <div class="col-md-1 parcent">
+	            96
+	            </div>
+            	<div style="clear:both"></div>
+            </div>
+            
+            <div class="progress-panel">
+				<div class="col-md-4" style="padding-right: 0px">
+				AAA Discunt
+				</div>
+				<div class="col-md-6" style="padding-right: 0px">
+		            <div class="progress progress-mini">
+		                <div class="progress-bar progress-bar-success" style="width: 37%"></div>
+		            </div>
+	            </div>
+	            <div class="col-md-1 parcent">
+	            37
+	            </div>
+            	<div style="clear:both"></div>
+            </div>
+        </section>
+	</div>
+	<div style="clear:both"></div>
+<!-- End Chart -->	
+	
+<!-- Report table section -->
+<div class="col-md-6">
+	<section class="panel">
+		<header class="panel-heading">
+            <span style="" class="title">
+			   Recent Applications
+			</span>
+            <span style="" class="tools pull-right icons">
+              <i class="icon-user"></i>
+          </span>
+        </header>
+	    <div class="panel-body" style="padding: 0px">
+			<table class="table table-striped" id="resent_last5_app_table">
+		   </table>
+	   </div>
+	</section>
+</div>
+<div class="col-md-6">
+<section class="panel">
+		<header class="panel-heading">
+            <span style="" class="title">
+			   Ready To Print
+			</span>
+            <span style="" class="tools pull-right icons">
+              <i class="icon-user"></i>
+          </span>
+        </header>
+	    <div class="panel-body" style="padding: 0px">
+			<table class="table table-striped" id="readyToPrintLastFive">
+		       
+		   </table>
+	   </div>
+	</section>
+</div>
+
+<!-- End  Report table section-->	
+<div style="clear:both"></div>
+</div>
+
+<div style="clear:both"></div>
+<!-- For Edit Application -->
+
+<div id="modal_editApplication" class="modal slide modal_allero">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="glyphicon-bank"></i> Banking Products</h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+            
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="application_edit_form" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+				    <!-- Form Header -->
+				  
+				    <!-- Form Content -->
+				    <div class="form-box-content" style="padding:0px;">
+				        <!-- First Step -->
+				        <div style="clear: both;"></div>
+				        <div id="body_edit_application" class="step" style="background-color: #F5F9FD; padding-top:22px;">
+						     <div class="col-md-12 ">
+						           	<div class="alert alert-warning">
+				                       <i class="icon-busy"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">PENDING</strong>
+				                       
+				                    </div>
+                                </div>    
+						         <div class="col-md-6" style=" width:49%; margin:0px 0 5px 8px;" >
+						         
+						         <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							       Customer Info
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-user"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						         
+						         	<hr class="dottline" style="border-top:1px solid #eee; margin: 11px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/customer_info_icon.png">
+						            </div>
+						            <div class="form-group">
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                	<span  class="control-label col-md-12  text_300" id="first_name_lab">John</span>
+						                    <div class="input-group1 nopadding col-md-12" id="first_name_div"  style="display:none;">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						               	 	<span  class="control-label col-md-12  text_300" id="last_name_lab">Dev</span>
+						                    <div class="input-group1 nopadding col-md-12" id="last_name_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						           <hr class="dottline info_hr"  style=" margin: 8px 5px;" />
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6 form-group1">
+							                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+							                	<span  class="control-label col-md-12  text_300" id="ss_number_lab">312-21-1232</span>
+							                    <div class="input-group1 nopadding col-md-12" id="ss_number_div"  style="display:none;">
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                    </div>
+							                </div>
+						                	<div class="col-md-6 form-group1">
+						                		<label for="dob" class="control-label col-md-12">Birth Date</label>
+						                		<span  class="control-label col-md-12  text_300" id="dob_lab">12/12/1979</span>
+						                    	<div class="input-group1 nopadding col-md-12" id="dob_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="" placeholder="MM/DD/YYYY">
+						                    	</div>
+						                	</div>
+						                
+						            </div>
+						            
+						            <div id="dependent-box" style="margin-top: 45px;">
+							            <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+								            <div class="col-md-12 text-center" style="margin-top:-30px;">
+								            	<img alt="" src="../backend/img/spouse_info_icon.png">
+								            </div>
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-12">Spouse's First Name</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_first_name_lab">yasmin</span>
+								                    <input type="text" class="form-control ui-wizard-content"  style="display:none;" name="sp_first_name" id="sp_first_name" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-12">Spouse's Last Name</label>
+							                		<span  class="control-label col-md-12  text_300" id="sp_last_name_lab">Akter</span>
+							                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_last_name" id="sp_last_name" value="">
+							                	</div>
+							                
+							            </div>
+							            <hr class="dottline info_hr" style=" margin: 8px 5px;" />
+							            <div class="form-group">
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_ss_number_lab">232-22-2323</span>
+								                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_ss_number" id="sp_ss_number" value="">
+								                </div>
+							            
+							            
+								                <div class="col-md-6">
+								                	<label for="sp_dob" class="control-label col-md-12">Birth Date</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_dob_lab">12/12/1981</span>
+								                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_dob" id="sp_dob" value="" placeholder="MM/DD/YYYY">
+								                </div>
+							            </div>
+						            </div>
+						            
+						            
+						            
+						            <div class="form-group" style="margin-top: 15px">
+						                <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/address_info_icon.png">
+						            </div>
+						                <div class="col-md-12 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Address</label>
+						                	<span  class="control-label col-md-12  text_300" id="street_address_lab">this is address</span>
+						                    <div class="input-group1 nopadding col-md-12" id="street_address_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            <!-- 
+						             <div class="form-group">
+						                <div class="col-md-12">
+						                	<label for="street_address" class="control-label col-md-12">Address 2</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address2" id="street_address2" value="">
+						                    </div>
+						                </div>
+						            </div>
+						             -->
+						             <hr class="dottline info_hr" style=" margin: 8px 5px;" />
+						            <div class="form-group">
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                	<span  class="control-label col-md-12  text_300" id="city_lab">Dhaka</span>
+						                    <div class="input-group1 nopadding col-md-12" id="city_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	<span  class="control-label col-md-12  text_300" id="state_lab">NK</span>
+						                	<div class="input-group1 nopadding col-md-12" id="state_div" style="display:none;">
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	{states}
+						                    </select>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<span  class="control-label col-md-12  text_300" id="zip_code_lab">12123</span>
+						                	<div class="input-group1 nopadding col-md-12" id="zip_code_div" style="display:none;">
+						                		<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                	</div>	
+						                </div>
+						            </div>
+						            
+						           
+						            <div class="form-group" style="margin-top: 15px">
+						                <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/contact_info_icon.png">
+						            </div>
+						                <!-- 
+						                <div class="col-md-6">
+						                	 <label for="payment_method" class="control-label col-md-12">Country</label>
+						                    <div class="input-group1 nopadding col-md-12">
+							                    <select class="form-control ui-wizard-content" name="country" id="country">
+							                    	<option></option>
+							                    	{countries}
+							                    </select>
+							               </div>     
+						                </div>
+						                 -->
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                	<span  class="control-label col-md-12  text_300" id="cell_phone_lab">()232) 231 - 2232</span>
+						                    <div class="input-group1 nopadding col-md-12" id="cell_phone_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+								            </div>        	
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="email_add" class="control-label col-md-12">Email Address</label>
+						                	<span  class="control-label col-md-12  text_300" id="email_add_lab">shuvro@osourcebd.com</span>
+						                	<div class="input-group1 nopadding col-md-12" id="email_add_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content"  name="email_add" id="email_add" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						          <!-- Panel End -->
+						          </div>
+						          
+						          <div style="background-color: #F5F9FB; padding:20px 22px;">
+			                            <button value="Downlaod" style="float: left; margin-right: 10px;" id="edit_cust_info_btn" type="button" onclick="editEnable('body_edit_application');" class="edit_cust_info_btn btn btn-white-red">
+				                              <i class="icon-pencil6"></i> Edit
+				                         </button>
+				                         <button style="display:none;" class=" btn btn-success" type="submit" id="saveData" value="Next">
+				                                <i class="icon-ok"></i> Save
+				                            </button>
+				                        <div style="clear:both;"></div>
+				                         
+				                        </div>
+						          </section> 
+						          
+						          <!-- File Section -->
+						          <section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Files
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="gemicon-small-file"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:0px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" style="padding:0px;">
+									 	<ul class="icons-ul push" style="padding: 20px 23px; margin: 0px;">
+			                                <li><i class="icon-file4"></i> <strong>Concent Form</strong>,<br><em>Disclouse of tax return confirmation.</em></li>
+			                                <li><i class="icon-file4"></i> <strong>Refund Transfer Form</strong>,<br><em>Refund Aggrement and apploication.</em></li>
+			                                <!-- <li><i class="icon-file4"></i> <strong>File #3</strong>,<br><em>This is the description of this file..</em></li>
+                                			<li><i class="icon-file4"></i> <strong>File #4</strong>,<br><em>This is the description of this file..</em></li> -->
+			                            </ul> 
+			                            <div style="background-color: #F5F9FB; padding:20px 22px;">
+			                            <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="glyphicon-download_alt"></i> Download
+				                         </button>
+				                         <!-- &nbsp; &nbsp; 
+				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="icon-save"></i> Save
+				                         </button>
+				                          -->
+				                         &nbsp; &nbsp; 
+				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="icon-print"></i> Print
+				                         </button>
+				                        </div>    
+									 </div>
+							  </div>
+							</section>
+						          <!-- End File Section --> 
+						          
+						          <!-- Additional section -->
+						           
+							
+							         <div class="col-md-12 text-left" id="bank_insurance_additional_info" style="padding:0px;">
+									 	
+			                              
+									 </div>
+							 
+						
+						          <!-- End Additional section -->
+						</div>
+						<div class="col-md-6" style="margin-top:0px; padding:0 10px 0 0;" >
+						
+				        <div class="col-md-12" style=" margin:0px 5px;" >  
+				          
+				          <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Summary
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-undo"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						
+							<div class="form-group form-group1" style="padding-bottom:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border:1px solid #eee; border-radius:4px; padding:8px 28px 12px;">
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Refund Amount </label>
+						                <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="total_refund_amt_3">$0.00</label>
+	                                </div>
+                                
+								<div class="col-md-3 ">
+								</div>
+							</div>
+							
+							<div class="col-md-12 text-center" style="padding-left:0px;" >
+				            <img src="../backend/img/refund_minus_icon_small.png" align="middle"  />
+				            </div>
+				            
+							<div class="form-group form-group1" style="padding-top:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border: 1px solid #eee; border-radius: 4px; padding: 8px 28px 12px; background-color: #fff; z-index: 9;">
+						                <label for="" class="control-label col-md-12 text-center" style="padding:0px; color:#8A95A7; font-weight: 600; ">Banking Fee</label>
+					             <label for="" class="control-label col-md-12  text-center" style="color: #8A95A7; font-weight: 600; padding: 0px;" id="banking_fee" >$0.00</label>
+	                                </div>
+								<div class="col-md-3 ">
+								</div>
+							</div>
+							
+							
+							<div class="form-group form-group1" style="margin:0px 5px; padding-bottom:0px;">
+								
+								<div class="col-md-12 " style="border: 1px solid #eee; border-radius: 4px; padding: 50px 28px 12px; margin-top: -36px; background-color: #fff;">
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Tax Preparation Fee</label>
+						                <span  class="control-label col-md-3  text_300 text-right" id="tax_preparation_fee_3">$120.00</span>
+		                                <div style="clear: both;" ></div>
+		                                <hr class="dottline" style="border-top:1px dotted #666; margin-top:8px; margin-bottom:8px;">
+		                                
+		                                
+		                                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Bank Transmission Fee</label>
+						                <span  class="control-label col-md-3  text_300 text-right" id="bank_transmission_fee_3">$19.95</span>
+						                        
+		                                <div style="clear: both;"></div>
+		                                <hr class="dottline" style="border-top:1px dotted #666;  margin-top:8px; margin-bottom:8px;" />
+	                                
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">SB Fee</label>
+						                <span  class="control-label col-md-3  text_300 text-right" id="sb_fee_3">$120.00</span>
+		                                <div style="clear: both;"></div>
+		                                <hr class="dottline" style="border-top:1px dotted #666;  margin-top:8px; margin-bottom:8px;">
+		                                
+		                                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Add On Fee</label>
+						               <span  class="control-label col-md-3  text_300 text-right" id="add_on_fee_3">$120.00</span>
+		                                <div style="clear: both;"></div>
+		                                
+	                                </div>
+	                                <div style="clear: both;"></div>
+							</div>
+							
+							<!-- For service  -->
+							<div class="col-md-12 text-center" style="padding-left:0px;" >
+				            <img src="../backend/img/refund_minus_icon_small.png" align="middle"  />
+				            </div>
+				            
+							<div class="form-group form-group1" style="padding-top:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border: 1px solid #eee; border-radius: 4px; padding: 8px 28px 12px; background-color: #fff; z-index: 9;">
+						                <label for="" class="control-label col-md-12 text-center" style="padding:0px; color:#8A95A7; font-weight: 600; ">Product Fee</label>
+					             <label for="" class="control-label col-md-12  text-center" style="color: #8A95A7; font-weight: 600; padding: 0px;" id="product_fee" >$0.00</label>
+	                                </div>
+								<div class="col-md-3 ">
+								</div>
+							</div>
+							
+							
+							<div class="form-group form-group1" style="margin:0px 5px; padding-bottom:0px;">
+								
+								<div class="col-md-12 " style="border: 1px solid #eee; border-radius: 4px; padding: 50px 28px 12px; margin-top: -36px; background-color: #fff;">
+						        <div id="cart_details_view" style="padding:0px 0px 20px 0px;">    
+						        <div class="col-md-2 service_img">
+									<img alt=""  src="../backend/img/benefit.png">
+								</div>
+								<div class="col-md-8 service_title_2">
+									<h4>First Benefit</h4>
+								</div>
+								
+								<div class="col-md-2 price_2 text-right">
+									<h5>$15.00</h5>
+								</div>
+								<div style="clear: both;"></div>
+								<hr style="margin: 20px 0px;">
+								
+								<div class="col-md-2 service_img">
+									<img alt=""  src="../backend/img/benefit.png">
+								</div>
+								<div class="col-md-8 service_title_2">
+									<h4>First Benefit</h4>
+								</div>
+								
+								<div class="col-md-2 price_2 text-right ">
+									<h5>$150.00</h5>
+								</div>
+								<div style="clear: both;"></div>
+							</div>
+		                                
+	                                </div>
+	                                <div style="clear: both;"></div>
+							</div>
+							<!-- end service list -->
+							
+							<div class="col-md-12  text-center" style="padding-left:0px;">
+				            <img src="../backend/img/refund_equals_small.png" align="middle" />
+				            </div>
+				            
+							<div class="form-group form-group1" style="padding-top:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border:1px solid #eee; border-radius:4px; padding:8px 28px 12px;">
+						         <label for="cell_phone" class="control-label col-md-12 text-center" style="padding:0px; color:#8A95A7; font-weight: 600; ">Net Refund Amount</label>
+					             <label for="cell_phone" class="control-label col-md-12  text-center" style="color: #8A95A7;  font-weight: 600; padding: 0px;" id="net_refund_amt_3_label" >$0.00</label>
+	                                </div>
+								<div class="col-md-3 ">
+								</div>
+							</div>
+							    <input type="hidden" value="" id="application_id" name="application_id">
+							    <input type="hidden" value="" id="app_type" name="app_type">
+					            <input type="hidden" value="dashboard" id="app_type_d" name="app_type_d">
+				            <!-- End panel -->
+				            </div>
+				            </section>
+				           </div>
+				           
+				            
+						</div>
+						<div style="clear:both;"></div>
+						
+						<div class="col-md-12" style="margin:0px 5px;" > 
+				            <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							     Disbursement Method 
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-credit"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+				            
+							<div class="form-group form-group1" id='disbursement_method_details'>
+				                <div class="col-md-6 "  style="margin-top:20px">
+						           	<div class="alert alert-success">
+				                       <i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>1111-23232</strong>
+				                    </div>
+                                </div>
+                                <div class="col-md-6 "  style="margin-top:20px">
+					           		<div class="alert alert-success">
+					           			<i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>1111-23232</strong><br>
+				                        <i class="icon-ok"></i> &nbsp; &nbsp;  Routing # <strong>2342-75656</strong>
+				                    </div>
+                                </div>
+                                <!-- <div class="col-md-4 "  style="margin-top:20px">
+					           		<div class="alert alert-success">
+				                        <i class="icon-ok"></i> &nbsp; &nbsp;  Card # <strong>XXXX-XXXX-XXXX-1111</strong>
+				                    </div>
+                                </div>
+                                 -->
+				            </div>
+				            <!-- Panel End -->
+				            </div>
+				            </section>
+				          </div>
+						            <div class="form-group1 form-actions" style="margin-top:30px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-12 text-center">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_app_edit" >
+				                                <i class="icon-repeat"></i> Close
+				                            </button>
+						                </div>
+						              <!--  <div class="col-md-6 text-left">
+						                    <button  class=" btn btn-success btn-lg" type="submit" id="step1" value="Next">
+				                                <i class="icon-ok"></i> Submit
+				                            </button>
+						                </div>
+						                 --> 
+						                <div style="clear: both;"></div>
+						            </div>
+						            </div>
+						        
+						    </div> 
+						   <!-- End Steps 1 -->  
+					</div>
+			</form>	
+				<!--  END OF AMIN FORM -->
+            	
+            </div>
+         </div>
+     </div>
+</div>
+<!-- End of Edit Application -->
+
+<!-- Print modal -->
+
+
+
+<div id="modal_check_for_print" class="modal slide" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="glyphicon-bank"></i> Print Check</h4>
+            </div>
+            <div class="modal-body" id="body_check_for_print" style="padding:0px; " >
+             Loading Applications ...
+            </div>
+        </div>
+     </div>
+</div>
+
+<!-- End   Print modal-->
+ <!--script for this page only-->
+       <script src="../backend/js/flot-chart.js"></script>
+       
+<script>
+var dataClient = [];
+var dataClientLastFiveReadyToPrint = [];
+var heads = ["Name","SSN#","Refund Amount","Action"];
+
+function loadObject() {
+    {dataLoad}
+    {dataLoad1}
+    loadClients();
+    loadClientsReadyToPrint();
+}
+
+
+function loadClients() {
+    var htm = ''; 
+    htm +='<thead>';
+                htm +='<tr>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[0]+'</th>';
+                    htm +='<th>'+heads[1]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+                    htm +='<th class="cell-small text-center">'+heads[3]+'</th>';
+                htm +='</tr>';
+    htm +='</thead>';
+    htm +='<tbody>';
+    
+    for(var i = 0 ; i < dataClient.length ; i++){
+           var obj = dataClient[i];
+           var uid = obj.uid;
+          // var appid = obj.app_id;
+           var parent = 'body_edit_application';
+           var count = 0;
+             htm +='<tr>';
+             htm +='<td class="text-left hidden-xs"><strong>'+obj.first_name+' '+obj.last_name+'</strong></td>';
+             htm +='<td>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+              htm +='<td class="text-center">';
+                        htm +='<div class="btn-group">'; 
+                        htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editApplication(\''+obj.app_id+'\',\''+parent+'\')" >View</a>';
+                       htm += '</div>';
+                htm += '</td>'
+             
+             
+
+           htm +='</tr>';
+    }
+   htm +=' </tbody>';
+
+    $("#resent_last5_app_table").empty().append(htm);	
+    
+    $("#state").empty().append('{states}');
+    
+}
+
+function loadClientsReadyToPrint() {
+    var htm = ''; 
+    htm +='<thead>';
+                htm +='<tr>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[0]+'</th>';
+                    htm +='<th>'+heads[1]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+                    htm +='<th class="cell-small text-center">'+heads[3]+'</th>';
+                htm +='</tr>';
+    htm +='</thead>';
+    htm +='<tbody>';
+    
+    for(var i = 0 ; i < dataClientLastFiveReadyToPrint.length ; i++){
+           var obj1 = dataClientLastFiveReadyToPrint[i];
+           var uid = obj1.uid;
+          // var appid = obj.app_id;
+           var parent = 'body_edit_application';
+           var count = 0;
+             htm +='<tr>';
+             htm +='<td class="text-left hidden-xs"><strong>'+obj1.first_name+' '+obj1.last_name+'</strong></td>';
+             htm +='<td>XXX-XX-'+obj1.ss_number.substring(7,11);+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">$'+obj1.app_net_refund_amt+'</td>';
+              htm +='<td class="text-center">';
+                        htm +='<div class="btn-group">'; 
+                        htm += ' <button class="btn btn-xs btn-info print_check1" type="button" id="print" value="'+obj1.app_id+'" style="">Print</button>';
+                       // htm += '<a class="btn btn-xs btn-info " rel="tooltip" title="Print" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  >Print</a>';
+                       htm += '</div>';
+                htm += '</td>'
+             
+             
+
+           htm +='</tr>';
+    }
+   htm +=' </tbody>';
+
+    $("#readyToPrintLastFive").empty().append(htm);	
+    
+    $("#state").empty().append('{states}');
+    
+}
+
+function printCheckModal1(actionFrom){
+    $(".print_check1").click(function(){
+    	
+    	
+    	var arr = [];
+    	var ids='';
+    	var i = 0;
+    	    $('.ready_to_print_check:checked').each(function(){        
+    	    	arr[i++] = $(this).val();	
+    	    });
+    	    //alert(arr.length);
+    	    if(arr.length > 0){
+    	     	ids = arr.join(",");
+    	    }
+    	    else{
+    	    	ids = $(this).val();
+    	    }
+    	    
+    	    
+    	    
+    	    $.ajax({
+                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplication?ajax=1&ids='+ids+'',
+                cache: false,
+                success: function(message){
+                //	alert(message);
+                        $("#body_check_for_print").empty().append(message);
+                      //  $(".print_check").css('display','block');
+                        return false;
+                }
+			});	
+    	 
+
+        	if(actionFrom != ''){
+	        	var $parent = $("#" + actionFrom);
+	        	$parent.closest("#modal_editApplication").modal('hide');
+        	}
+    	
+    	$("#modal_check_for_print").modal('show');
+    });
+}
+
+$(function(){
+	loadObject();
+	clickToEditApplicationInfo('body_edit_application');
+	/*
+	var chartStacked = $('#example-chart-stacked');
+	
+	// Stacked Chart 
+    var stackedData1 = [];
+    for (var i = 0; i <= 10; i++)
+        stackedData1.push([i, parseInt(Math.random() * 20)]);
+
+    var stackedData2 = [];
+    for (var i = 0; i <= 10; i++)
+        stackedData2.push([i, parseInt(Math.random() * 20)]);
+
+    var stackedData3 = [];
+    for (var i = 0; i <= 10; i++)
+        stackedData3.push([i, parseInt(Math.random() * 20)]);
+
+    var stackedData4 = [];
+    for (var i = 0; i <= 10; i++)
+        stackedData4.push([i, parseInt(Math.random() * 20)]);
+
+    var stack = 0, bars = true, lines = false, steps = false;
+	var labelMaginbottom = [];
+	
+	labelMaginbottom = ['1/5','1/6','1/7','1/8','1/5','1/6','1/7','1/8','1/9']; 
+	// Initialize Stacked Chart
+    $.plot(chartStacked, [{data: stackedData1, label: 'Number of Applications'}, {data: stackedData2, label: 'Funded Application'}, {data: stackedData3, label: 'Pending Application'}, {data: stackedData4, label: 'Ready to Print'}], {
+        series: {
+            stack: true,
+            lines: {show: true, fill: true}
+        },
+        lines: {show: true, lineWidth: 1.5, fill: true, fillColor: {colors: [{opacity: 0.7}, {opacity: 0.7}]}},
+        legend: {
+            backgroundColor: '#f6f6f6',
+            backgroundOpacity: 0.8
+        },
+        colors: ['#59ace2', '#f78189', '#a59ae3', '#7dd1a4'],
+        grid: {
+            borderColor: '#fff',
+            color: '#8a95a5',
+            labelMargin: 10
+        },
+        yaxis: {
+            ticks: 5
+        },
+        xaxis: {
+            tickSize: 1
+        }
+    });
+	*/
+	// End of chart 
+	
+	// for print action
+	
+    
+	
+    printCheckModal1();
+});
+</script>
+<!--script for this page only-->
+   <!-- <script src="../backend/js/flot-chart.js"></script> -->
+   
+   

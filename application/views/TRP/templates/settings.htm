@@ -1,0 +1,177 @@
+<h3>{title_page}</h3>
+<!--<div class="dash-tiles row">
+    <div class="col-md-4">
+        <div class="clearfix alert alert-info" style="padding-top: 51px;">
+            <ul class="static left">
+                <li>Your Bank</li>
+                <li></li>
+                <li>$0.00</li>
+                <li>Credit Card</li>
+            </ul>
+            <ul class="static right circle_default" >
+                <li>0</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="clearfix alert alert-info" >
+            <ul class="static left">
+                <li>Bank of Intuit</li>
+                <li></li>
+                <li>$0.00</li>
+                <li>Interest Checking</li>
+                <li>$0.00</li>
+                <li>TRP Balance</li>
+            </ul>
+            <ul class="static right circle_default" >
+                <li>0</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        
+        <div class="clearfix alert alert-info">
+            <div class="dash-tile-icon"><i class="icon-globe"></i></div>
+            <div class="dash-tile-text">+90%</div>
+        </div>
+    </div>
+
+</div>-->
+
+<!--<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#new-transactions">New Transactions</a></li>
+    <li class=""><a href="#in-trp">In TRP</a></li>
+    <li class=""><a href="#excluded">Excluded</a></li>
+</ul>
+
+<div class="tab-content tab-content-default">
+    <div id="new-transactions" class="tab-pane active">
+        <ul data-toggle="tabs" class="nav nav-tabs push">
+            <li class="active"><a href="#company_info">Company Info</a></li>
+            <li class=""><a href="#profile_settings">Profile Settings</a></li>
+            <li class=""><a href="#user_account">User Accounts</a></li>
+            <li class=""><a href="#services">Services</a></li>
+            <li class=""><a href="#payment_info">Payment Info</a></li>
+        </ul>
+        <div class="tab-content tab-content-default">
+            <div id="company_info" class="tab-pane active">
+               This will be Company Info
+            </div>
+            <div id="profile_settings" class="tab-pane">
+                This will be Profile Settings
+            </div>
+            <div id="user_account" class="tab-pane">
+                This will be User Accounts
+            </div>
+            <div id="services" class="tab-pane">
+                This will be Services
+            </div>
+            <div id="payment_info" class="tab-pane">
+                This will be Payment Info
+            </div>
+        </div>
+
+    </div>
+    <div id="in-trp" class="tab-pane">
+        comming soon
+    </div>
+    <div id="excluded" class="tab-pane">
+        comming soon
+    </div>
+
+</div>-->
+
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#company_info" onclick="ChangeContent(1);">Company Info</a></li>
+    <li class=""><a href="#profile_settings"  onclick="ChangeContent(2);">Profile Settings</a></li>
+    <li class=""><a href="#user_account">User Accounts</a></li>
+    <li class=""><a href="#services">Services</a></li>
+    <li class=""><a href="#payment_info" >Payment Info</a></li>
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="company_info" class="tab-pane active">
+    </div>
+<div id="profile_settings" class="tab-pane" >
+   
+</div>
+<div id="user_account" class="tab-pane">
+    This will be User Accounts
+</div>
+<div id="services" class="tab-pane">
+    This will be Services
+</div>
+<div id="payment_info" class="tab-pane">
+    This will be Payment Info
+</div>
+</div>
+
+<script type="text/javascript">
+     function same_check(){
+ 
+            $('#example-checkbox1').change(function () {
+                 if($(this).is(":checked")){
+                    $("#address_1_m").val($("#address_1").val());
+                    $("#address_2_m").val($("#address_2").val());
+                    $("#zipcode_m").val($("#zipcode").val());
+                    $("#city_m").val($("#city").val());
+                    $("#state_m").val($("#state").val());
+                }else{
+                    $("#address_1_m").val("");
+                    $("#address_2_m").val("");
+                    $("#zipcode_m").val("");
+                    $("#city_m").val("");
+                    $("#state_m").val("");
+                }
+            });
+            
+        }
+        
+         var tab_selected = 1;
+     function same_check(){
+ 
+            $('#example-checkbox1').change(function () {
+                 if($(this).is(":checked")){
+                    $("#address_1_m").val($("#address_1").val());
+                    $("#address_2_m").val($("#address_2").val());
+                    $("#zipcode_m").val($("#zipcode").val());
+                    $("#city_m").val($("#city").val());
+                    $("#state_m").val($("#state").val());
+                }else{
+                    $("#address_1_m").val("");
+                    $("#address_2_m").val("");
+                    $("#zipcode_m").val("");
+                    $("#city_m").val("");
+                    $("#state_m").val("");
+                }
+            });
+            
+        }
+        
+    function showProfileSetting(){
+	$.ajax({
+                url: 'index.php/admin/settings/profileSetting?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#profile_settings").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+    function showCompanyInformation(){
+	$.ajax({
+                url: 'index.php/admin/settings/showCompanyInformation?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#company_info").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+    $(function(){
+        same_check();
+        showCompanyInformation();
+    });
+</script>
+

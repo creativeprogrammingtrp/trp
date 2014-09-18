@@ -1,0 +1,263 @@
+<style>
+div.catimg {
+
+/* This centers the image */
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 300px; 
+height: 300px;
+float: left;
+margin: 10px 10px 10px 0px;
+
+/* This adds the border */
+padding:8px;
+border:solid;
+border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
+border-width: 1px 2px 2px 1px;
+background-color:white;
+}
+img.cat
+{
+	max-width: 100%;
+	max-height: 100%;
+	min-width: 100%;
+	min-height: 100%;
+}
+img.deleteimg
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor:pointer;
+	background-color: #FFF;
+	z-index: 999;
+}
+img.deleteimg:hover
+{
+	background-color: #999;
+}
+</style>
+<script language="javascript">
+function submitForm(){
+	var checkError = false;
+	if($('#cat_name').val() == ''){
+		$('#cat_name').css("background", '#ffffd5');
+		hidelabelfocus("cat_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("cat_name"));	
+			document.getElementById("cat_name").focus();	
+		}
+	}
+
+	if(checkError == true){
+		return false;	
+	}
+	
+	var img_arr = [];
+	var arr_img = $(".cat");
+	for (var i=0;i<arr_img.length;i++)
+	{
+		str = $(arr_img[i]).attr('src').split('/');
+		img_arr.push(str[str.length-1]);
+	}
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/admin/categories/saveEdit", {
+		id:{id},
+		saveObj: 'yes',
+		key:document.getElementById("key").value,
+		cat_name:$("#cat_name").val(),
+		description:$("#description").val(),
+		fid:document.getElementById("fid").value,
+		weight:document.getElementById("weight").value,
+		img:JSON.stringify(img_arr),
+		display:$('#display').is(':checked')
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(fail_saved);
+				//alert(data.error);	
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/admin/categories';
+				return false;
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+$(function() {
+	clearForms();
+	uploadGallery();
+	$('.deleteimg').click(function(){
+		$(this).parent().remove();
+	});
+});
+
+</script>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+var arr_img = ['jpg','JPG','jpeg','JPEG','gif','GIF','png','PNG'];
+var objGallery = [];
+var uploadImgProduct;
+function uploadGallery(){
+	uploadImgProduct = new plupload.Uploader({
+		runtimes : 'gears,html5,flash,silverlight,browserplus',
+		browse_button : 'upload_browser',
+		max_file_size : '80mb',
+		url : 'plupload/server/upload_category_banner.php',
+		flash_swf_url : 'plupload/js/plupload.flash.swf',
+		silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+		filters : [
+			{title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+		],
+		multipart_params: {
+        'cat_id': {id},
+        }
+	});
+	uploadImgProduct.bind('FilesAdded', function(up, files) {
+		objGallery = [];
+		currentFile = files[0];
+		document.getElementById("Progress_bar").style.display = 'block';
+		document.getElementById("file_name").innerHTML = files[0].name;
+		document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+		document.getElementById("progress_bar_pecent").style.width = 0 + '%';	
+		setTimeout(function () {	 
+			uploadImgProduct.start();
+		}, 50);
+	});
+	uploadImgProduct.bind('UploadProgress', function(up, file) {
+		document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+		var text = "Uploaded "+file.percent+"% &nbsp;("+plupload.formatSize(file.loaded)+" of "+plupload.formatSize(file.size)+")";
+		document.getElementById("progress_bar_size").innerHTML = text;
+	});
+	uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+		setTimeout(function () {
+			$("#Progress_bar").hide();
+		}, 200);
+		var obj = jQuery.parseJSON(dataJson.response);
+		if(obj.error == ''){
+			show_new_data(obj);
+		}
+	}, 'json');
+	uploadImgProduct.bind('Error', function(up, err) {
+		CancelUploadProduct()
+		alert(err.message);
+	});
+	uploadImgProduct.init();
+}
+function CancelUploadProduct(){	
+	uploadImgProduct.stop();
+	$("#Progress_bar").hide();
+	$("#upload_browser").show();
+}
+function show_new_data(obj)
+{
+	var img = document.createElement('img');
+	img.src = url_server__+obj.path;
+	img.className = "cat";
+	var div = document.createElement('div');
+	div.className = "catimg"
+	div.appendChild(img);
+	div.style.position = "relative";
+	var imgdelete = document.createElement('img');
+	imgdelete.src = "../images/b_drop.png";
+	imgdelete.className = "deleteimg";
+	div.appendChild(imgdelete);
+	$('#clients_list').append(div);
+}
+</script>
+<div class="box_solar">
+	<form method="post" name="tax_form" onsubmit="return submitForm();">
+    <div style="clear:both; float:left;">
+        <div style="font-weight:bold;">Name:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <!--<label id="cat_name_label" class="placeholder" for="cat_name"><span>Required</span></label>-->
+            <input tabindex="0" type="text" class="input-text" id="cat_name" size="10" name="cat_name" maxlength="30" value="{@cat_name@}" style="width:255px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="Required">
+        </span>
+    </div>
+    <div style="clear:both; float:left; padding-top:10px">
+        <div style="font-weight:bold;">Description:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <textarea id="description" name="description" style="width:255px; height:100px" class="input-text">{@description@}</textarea>
+        </span>
+    </div>
+    <div style="clear:both; float:left; padding-top:10px">
+        <div style="font-weight:bold;">Parent:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <select id="fid">
+                <option value="0">--- Root ---</option>
+                {@parent@}
+            </select>
+        </span>
+    </div>
+    <div style="float:left; clear:both; padding-top:10px;">
+        <div style="font-weight:bold;">Weight:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <select id="weight" style="width:80px">
+                {@weight@}
+            </select>
+        </span>
+    </div>
+    <div style="float:left; clear:both; padding-top:10px;">
+        <div style="font-weight:bold; float:left;">Set in menu:</div>
+        <span class="field-with-placeholder" style="float:left;">
+            <input type="checkbox" {check} name="display" id="display" />
+        </span>
+    </div>
+    <div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list">
+    {img}
+    <div class="catimg" style="position: relative;">
+    	<img src="{list_img}" class="cat"><img src="../images/b_drop.png" class="deleteimg">
+    </div>
+    {/img}
+    </div>
+    <input type="button" value="Upload Banner" id="upload_browser" class="btn btn-primary" style="position: relative; z-index: 0; margin-top: 10px;">
+    
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+        <input type="button" value="Back" class="btn" style="margin-left:5px" onclick="history.go(-1);" />
+        <input type="submit" value="Submit" name="submit" class="btn  btn-primary" style="margin-left:5px" />
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+    <input type="hidden" id="key" name="key" value="{@key@}" />
+    </form>
+</div>
+<div id="Progress_bar" class="progress_bar" align="left" style="display:none">
+	<div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadProduct()" style="cursor:pointer" /></div>
+	<div class="progress_bar_top">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="file_name"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+    	<div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#7838b7; width:100%;"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="progress_bar_size"></td>
+            </tr>
+        </table>
+    </div>
+</div>

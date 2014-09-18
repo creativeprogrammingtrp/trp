@@ -1,0 +1,72 @@
+<style>
+    .comment-form label{
+        width:180px; }
+    </style>
+    <div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="index.php/home">Home</a></li>
+            <li>/</li>
+            <li><a href="index.php/myaccount_links">My Account</a></li>
+            <li>/</li>
+            <li>{title_page}</li>
+        </ul>
+    </div>
+</div>
+<div class="main-container holder">
+    <div class="tabs-vertical">
+        <h4 ><label>MyWallet amount:</label>&nbsp;&nbsp;${balance}</h4>
+        <div class="tab-content">
+            <p class="italic"><span class="bold">Note:</span>  It is recommeded that you keep a minimum of $50 in your MyWallet for next purchase without having to pay with your credit card</p>
+            <div class="comment-form">
+                <p><label>Amount to be transferred:</label> <span class="text"><input type="text" name="transferred_amount" id="transferred_amount" onkeypress="return isNumberFloatKey(event)" /></span></p>
+                <p><input type="submit" class="btn orange" id="transfer"  value ="Submit" style="float:right ;margin-bottom: 50px"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<input type ="hidden" name ="firstname"  value ="{firstname}" id="firstname">
+<input type ="hidden" name ="lastname"  value ="{lastname}" id="lastname">
+<input type ="hidden" name ="email" value ="{email}" id="email">
+<input type ="hidden" name ="address" value="{address}" id="address">
+<input type ="hidden" name ="balance" value="{balance}" id="balance">
+
+<script type="text/javascript">
+    function checkBeforecClick(){
+        var balance = $("#balance").val();
+        if(parseInt(balance) > 50){
+            $("#transfer").attr("disabled","disabled");
+            $("#transfer").prop('disabled', true);
+        }
+    }
+    function transferMoney(){
+        checkBeforecClick();
+        $("#transfer").click(function(){
+            var amount = $("#transferred_amount").val();
+            var balance = $("#balance").val();
+            
+            if(amount == ''){
+                alert("Please enter money");
+            }
+            else{
+                if(amount > parseInt(balance) && parseInt(balance) < 50){
+                    alert("Please enter money less wallet amount ");
+                }else{
+                    $.post("index.php/user/hyperwallet/transferMoney",
+                    {
+                        amount : $("#transferred_amount").val()
+                    },
+                    function(data){
+                        window.location.reload();
+                    },'json');
+                    return false;
+                }
+            }
+        });
+    }
+    $(document).ready(function(){
+        transferMoney();
+    });
+    
+</script>

@@ -1,0 +1,22 @@
+<div class="divPageTitle">{title_page}</div>
+<div style="width:100%;">
+    <div style="width:100%; height:200px; background:url(../images/sendemailcomplete.gif) center center no-repeat;"></div>
+    <div id="divMsg" >
+        <p style="color:#7E7E7E; font-size:14px;">Dear {customer_name},  </p>
+        <p>You have to register successfully.</p> 
+        <p>Your ID#: <span style="color:#F7961E; font-size:16px;">{customerID}</span></p>
+        <p> <span style="color:#06C; font-style:italic;">Check your email to receive instructions on how to activate your account.</span> </p>
+        <p><a href="#" onclick="goHome()" style="color:#06C;"> Click here</a> to return Home. </p>
+        <p>Thank you for joining Bellavie Network. Regards, </p>
+        <p style="text-transform:uppercase; color:#F7961E; font-size:14px">Bellavie Network </p>
+    </div>
+</div>
+<style>
+#divMsg{ 
+border: #DADADA solid 1px;
+border-radius: 8px;
+-moz-border-radius: 8px;
+padding:5px;
+}
+#divMsg p{ line-height:2em;}
+</style>

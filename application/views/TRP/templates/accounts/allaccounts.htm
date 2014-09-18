@@ -1,0 +1,1316 @@
+<table class="table table-striped" id="lists___">
+
+</table>
+
+<div id="modal_editEro" class="modal slide modal_allero">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit ERO</h4>
+            </div>
+            <div class="modal-body" style="padding:15px 0px 0px;" >
+
+
+                <ul data-toggle="tabs" class="nav nav-tabs push modal_tab_allero">
+                    <li class="active"><a href="#company-setting">Company Info</a></li>
+                    <li class=""><a href="#profile-setting">Profile Settings</a></li>
+                    <li class=""><a href="#user-account" onclick="showUserListEro()" >Users</a></li>
+                    <li class=""><a href="#payment-info">Banking Info</a></li>
+                    <li class=""><a href="#banking">Fees Info</a></li>
+                </ul>
+
+                <div class="row" id="body_allero">
+                    <div class="tab-content tab-content-default">
+						
+                        <div id="company-setting" class="tab-pane active">
+								<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                               <div class="form-box-content">
+
+<div class="col-md-4" style="padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Company Info</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-briefcase"></i></span>
+        </header>
+        <div class="panel-body">
+                                    <div class="form-group">
+                                        
+                                        <div class="col-md-4 choose_file">
+                                            <ul class="thumbnails clearfix">
+                                                <li>
+                                                    <a class="thumbnail" style="width:265px;height:87px;overflow: hidden;" name="name"  id="image_show" href="javascript:void(0)">
+                                                        <img style="width:160px;height:120px;" name="name" class="img-rounded" alt="Logo" src="../backend/img/placeholders/image_light_160x120.png">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12 choose_file">         
+                                            <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_logo" value="" >Upload Logo</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+                                         
+                                         <div class="form-group">
+                                         <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-companyname"
+                                                   class="control-label col-md-12">Company Name<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-companyname" id="company_name" value="">
+                                            </div>
+                                        </div>    
+                                        </div>
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-efin"
+                                                   class="control-label col-md-12">EFIN #</label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content efin"
+                                                       value="" disabled="disabled" name="example-advanced-efin" id="efin" >
+                                            </div>
+                                        </div>    
+                                        </div>
+                                       <!-- 
+                                        <div class="form-group">
+                                            <label for="example-advanced-efin"
+                                                   class="control-label col-md-3">Parent EFIN #</label>
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control ui-wizard-content parent_efin"
+                                                       value="" name="example-advanced-parent_efin" id="parent_efin" >
+                                            </div>
+                                        </div>
+                                         -->
+                                         <div class="form-group">
+                                         <div class="col-md-12 form-group1">
+							                <label for="p_efin"
+							                       class="control-label col-md-12"> &nbsp; <input type="checkbox" name="pefin_check_box" disabled="disabled" value="" id="pefin_check_box"> Do you have Parent EFIN #? </label>
+							                <div class="col-md-12  nopadding">
+							                
+							                    <input type="text" disabled="disabled" class="form-control ui-wizard-content" value=""  name="example-advanced-parent-efin" id="parent_efin">
+							                
+							                </div>
+							               
+							                <div class="col-md-12 efincheckloader" style="display:none;">
+							                	
+							                	<span class="loader-04 icon-2x loader"></span>
+							                	<span id="pefinsuccess" class="text-success" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-ok"></i></span>
+							                	<span id="pefinerror" class="text-danger" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-remove"></i> This Parent EFIN # does not exist.</span>
+							                </div>
+							               </div> 
+							            </div>
+							            <div class="form-group">
+							            <div class="col-md-12 form-group1">
+							                <label for="p_efin"
+							                       class="control-label col-md-12" style='padding-right:0px;'> &nbsp; <input type="checkbox" disabled="disabled" name="pservice_bureau_check_box" value="" id="pservice_bureau_check_box"> Do you have Service Bureau EFIN#? </label>
+							                <div class="col-md-12 nopadding">
+							                    <input type="text" disabled="disabled" class="form-control ui-wizard-content"
+							                           value=""  name="example-advanced-service_bureau_efin"
+							                           id="service_bureau_efin">
+							                </div> 
+							                <div class="col-md-12 sbefincheckloader" style="display:none;">
+							                	<span class="loader-04 icon-2x sbloader"></span>
+							                	<span id="sbefinsuccess" class="text-success" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-ok"></i></span>
+							                	<span id="sbefinerror" class="text-danger" style="display:none; font-size:16px; margin-top:6px"><i class="glyphicon-remove"></i> This Service Bureau EFIN # does not exist</span>
+							                </div>
+							            </div>    
+							            </div>
+</div>
+</div>
+</section>
+</div>
+
+  <div class="col-md-4" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Business Address</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-map"></i></span>
+        </header>
+        <div class="panel-body">
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-address1"
+                                                   class="control-label col-md-12">Address Line 1<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-address1" id="address_1" value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-address2"
+                                                   class="control-label col-md-12">Address Line 2</label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-address2" id="address_2"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                         <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="com_phoneno"
+	                       class="control-label col-md-12">Phone #<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="com_phoneno" id="com_phoneno"
+	                           value="">
+	                </div>
+	            </div> 
+            </div>
+            
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-city"
+                                                   class="control-label col-md-12">City<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-city" id="city" value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-state"
+                                                   class="control-label col-md-12">State<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <select class="form-control" name="state" id="state">
+                                                    <option value="">State</option>
+                                                </select>  
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-zipcode"
+                                                   class="control-label col-md-12">Zip<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-zip" id="zipcode"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+</div>
+</section>
+</div>
+
+<div class="col-md-4" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Mailing Address</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-map"></i></span>
+        </header>
+        <div class="panel-body">
+                                        
+                                        <div class="form-group" style="margin-bottom:36px;">
+							            	<div class="col-md-12 form-group1">
+								                <div class="checkbox same1 col-md-12">
+								                    <input type="checkbox" value="option1" name="example-checkbox1" id="example-checkbox1"> Same as above
+								                </div>
+								            </div>    
+							            </div>
+							            
+                                        <div class="form-group" >
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-address1_m"
+                                                   class="control-label col-md-12">Address Line 1<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-address1_m" id="address_1_m"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-address2_m"
+                                                   class="control-label col-md-12">Address Line 2</label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-address2_m" id="address_2_m"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-city_m"
+                                                   class="control-label col-md-12">City<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-city_m" id="city_m" value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-state_m"
+                                                   class="control-label col-md-12">State<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <select class="form-control" name="state" id="state_m">
+                                                    <option value="">State</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                        <div class="col-md-12 form-group1">
+                                            <label for="example-advanced-zipcode_m"
+                                                   class="control-label col-md-12">Zip<span class="required1">*</span></label>
+                                            <div class="col-md-12 nopadding">
+                                                <input type="text" class="form-control ui-wizard-content"
+                                                       name="example-advanced-zipcode_m" id="zipcode_m"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+</div>
+</section>
+</div>
+
+<div style="clear:both;"></div>
+<div class="col-md-12" style=""> 
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Software</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-cd"></i></span>
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+            
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Taxwise" > Taxwise <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Crosslink" > Crosslink <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="SimpleTax" > SimpleTax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="ProSeries" > ProSeries <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Lacerte" > Lacerte <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="ATX" > ATX <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="TurboTax" > TurboTax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Drake" > Drake <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Ultra Tax" > Ultra Tax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Tax Act" > Tax Act <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="TaxSlayer" > TaxSlayer <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Other" > Other <br>
+            </div>
+            <!-- 
+                <label for="tax" class="control-label col-md-3">Tax Software</label>
+
+                <div class="col-md-4">
+                    <select class="form-control" name="tax" id="tax1">
+                        <option value="Taxwise">Taxwise</option>
+                        <option value="Crosslink">Crosslink</option>
+                        <option value="SimpleTax">SimpleTax</option>
+                        <option value="ProSeries">ProSeries</option>
+                        <option value="Lacerte">Lacerte</option>
+                        <option value="ATX">ATX</option>
+                        <option value="TurboTax">TurboTax</option>
+                        <option value="Drake">Drake</option>
+                        <option value="Ultra Tax">Ultra Tax</option>
+                        <option value="Tax Act">Tax Act</option>
+                        <option value="TaxSlayer">TaxSlayer</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                 -->
+            </div>
+</div>
+</section>
+</div>
+                                        
+
+                                        
+
+                                        <div class="form-group form-actions1">
+                                            <div class="col-md-10 col-md-offset-2">
+
+                                                <div class="modal fade">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Warning</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Successfully Saved.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+<!-- 
+                                                <input type="submit" value="Save" id="save"
+                                                       class="btn btn-success ui-wizard-content ui-formwizard-button all pending"   data-toggle="modal" data-target=".bs-modal-sm">
+                                                <input type="submit" value="Cancel" id="cancel_allero"
+                                                       class="btn btn-danger ui-wizard-content ui-formwizard-button">
+ -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="col-md-12" style="padding: 0px 0px 20px 30px; ">
+          <button class="btn btn-success" id="save" type="submit" >  &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+          <button class="btn btn-danger" id="cancel_allero" type="button" >  &nbsp; &nbsp;  <i class="icon-repeat"></i> &nbsp; Cancel &nbsp; &nbsp; </button>   
+      </div>
+								</form> 
+                                </div>
+                            
+                        
+
+
+
+
+                        <!--tab-->              
+                        <div id="profile-setting" class="tab-pane">
+
+                            <div id="forum-forum" class="tab-pane active">
+                                <form class="form-horizontal form-box remove-margin ui-formwizard"
+                                      method="post" id="advanced-wizard" novalidate="novalidate">
+
+                                    
+
+
+                                    <div class="form-box-content">
+<div class="col-md-12" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Profile Settings </span>
+	       <span class="tools pull-right icons" style=""><i class="icon-user"></i></span>
+        </header>
+        <div class="panel-body" style="padding: 0px 15px; ">
+
+        
+                                        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+                                          <div class="col-md-5" style="padding:10px 0 0 7px;">
+                                            <div class="form-group1">
+                                                <label for="example-advanced-username"
+                                                       class="control-label col-md-12"><i class="icon-user"></i>  Username</label>
+                                                <div class="col-md-12 nopadding">
+                                                    <input type="text" class="form-control ui-wizard-content"
+                                                           name="example-advanced-username" value="" disabled="disabled"
+                                                           id="username">
+                                                </div>
+                                                <!-- 
+                                                <div class="col-md-2">
+                                                    <input type="button" value="Change Username" id="change_username" class="btn btn-info btn-sm ui-wizard-content ui-formwizard-button">
+                                                </div>
+-->
+                                            </div>
+                                            <div class="form-group1">
+                                                <label for="example-advanced-role" class="control-label col-md-12"><i class="glyphicon-user_add"></i>  Role</label>
+                                                <div class="col-md-12 nopadding" >
+                                                    <input type="text" disabled="disabled" class="form-control ui-wizard-content"
+                                                           name="example-advanced-role" id="role">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group1">
+					            <label for="ptin1" class="control-label col-md-12"><i class="icon-signup"></i> PTIN #</label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content"
+				                           name="ptin" id="ptin">
+				                </div>
+				            </div>
+</div>
+<div class="col-md-2" style="min-height: 285px;	background-image: url('../backend/img/line.png'); background-repeat: no-repeat;background-position: top center;">
+			        </div>
+			        
+			        <div class="col-md-5" style="padding:10px 15px 0 0px">
+                                            <div class="form-group">
+                                                <label for="example-advanced-firstname"
+                                                       class="control-label col-md-12"><i class="glyphicon-nameplate"></i> First Name</label>
+                                                <div class="col-md-12 nopadding ">
+                                                    <input type="text" class="form-control ui-wizard-content"
+                                                           name="example-advanced-firstname" id="first_name">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="example-advanced-lastname"
+                                                       class="control-label col-md-12"><i class="glyphicon-nameplate"></i> Last Name</label>
+                                                <div class="col-md-12 nopadding">
+                                                    <input type="text" class="form-control ui-wizard-content"
+                                                           name="example-advanced-lastname" id="last_name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-advanced-email"
+                                                       class="control-label col-md-12"><i class="icon-envelop"></i> Email Address</label>
+                                                <div class="col-md-12 nopadding">
+                                                    <input type="text" class="form-control ui-wizard-content"
+                                                           name="example-advanced-email" id="email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-advanced-phone"
+                                                       class="control-label col-md-12"><i class="icon-phone"></i> Contact Number</label>
+                                                <div class="col-md-12 nopadding">
+                                                    <input type="text" class="form-control ui-wizard-content"
+                                                           name="example-advanced-phone" id="phone">
+                                                </div>
+                                            </div>
+                                        </div>    
+										<!-- 	
+                                            <div class="form-group">
+                                                <label for="example-advanced-cellphone"
+                                                       class="control-label col-md-3">Cell Phone</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control ui-wizard-content"
+                                                           name="example-advanced-cellphone" id="cell_phone">
+                                                </div>
+                                            </div>
+										 -->	
+                                           
+
+                                            <div class="form-group form-actions1">
+                                                <div class="col-md-10 col-md-offset-2">
+
+                                                    <div class="modal slide">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title">Warning</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Successfully Saved.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+<!-- 
+                                                    <input type="submit" value="Save" id="save_p"
+                                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                                    <input type="submit" value="Cancel" id="cancel"
+                                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                                           
+                                                           <input type="button" value="Reset Password" id="reset_p"
+                                                           class="btn btn-info ui-wizard-content ui-formwizard-button">
+                                                            -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                        </section>
+                                        </div>
+                                      <div class="col-md-12 form-group1"  style="padding: 0 0 20px 30px ">
+	
+	<button class="btn btn-success" id="save_p" type="submit"  > &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+	<button class="btn btn-danger" id="cancel" type="button"  > &nbsp; &nbsp;  <i class="icon-repeat"></i> &nbsp; Cancel &nbsp; &nbsp; </button>
+	<button class="btn btn-info" id="reset_p" type="button"  data-toggle="modal" data-target=".bs-modal-sm" > &nbsp; &nbsp; <i class="icon-lock"></i> &nbsp;  Change Password &nbsp; &nbsp; </button>
+	 <!-- <input type="button" value="Change Password" id="reset_p1" class="btn btn-info ui-wizard-content ui-formwizard-button"> -->	 
+</div>
+ 
+                                    </div>
+                                </form> 
+
+                            </div>
+
+                            <div id="modal_reset_pass" class="modal slide">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                                            <h4 class="modal-title">Reset Password</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                                                <div class="form-box-content">
+                                                    <!-- First Step -->
+                                                    <div class="step ui-formwizard-content">
+                                                        <div class="form-group">
+                                                            <label for="current_p" class="control-label col-md-4">Current Password</label>
+                                                            <div class="col-md-6">
+                                                                <input type="password" class="form-control ui-wizard-content" name="example-advanced-current_p" value="" id="current_p">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="new_p" class="control-label col-md-4">New Password</label>
+                                                            <div class="col-md-6">
+                                                                <input type="password" class="form-control ui-wizard-content" name="example-advanced-new_p" value="" id="new_p">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="confirm_p" class="control-label col-md-4">Confirm New Password</label>
+                                                            <div class="col-md-6">
+                                                                <input type="password" class="form-control ui-wizard-content" name="example-advanced-confirm_p" value="" id="confirm_p">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-actions">
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <input type="button" value="Save" id="save_re"
+                                                                       class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                                                <input type="button" value="Cancel" id="cancel_re"
+                                                                       class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>      
+
+
+                        </div>
+
+
+
+
+                       <div id="user-account" class="tab-pane col-md-12" style="padding-bottom: 20px;">
+                              <form novalidate="novalidate" id="advanced-wizard" method="post" class="form-horizontal remove-margin ui-formwizard">
+                                
+                                 <div class="col-md-12" style=" padding-top: 25px;" >
+                                 <button type="button" id="add_new_user" style="margin-right: 0px; margin-bottom:25px; display: block; float: right;" class="btn btn-lg btn-success"> &nbsp; &nbsp;  <i class="icon-plus-sign"></i> &nbsp; Add User &nbsp; &nbsp; </button>
+                                 
+                                 <div style="clear:both;"></div>
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Users</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-user"></i></span>
+        </header>
+        <div class="panel-body">
+                               <table class="table table-bordered" id="modal_list_user">
+
+                                </table>
+                                </div>
+                                </section>
+                                </div>  
+                            </form>
+                       </div>
+                        
+                        <div id="service" class="tab-pane  col-md-12">
+                            <form novalidate="novalidate" id="advanced-wizard" method="post" class="form-horizontal remove-margin ui-formwizard">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="add_user"></label>            
+                                    <div class="col-md-9">
+                                        <input type="button" style="float:right" class="btn btn-success ui-wizard-content ui-formwizard-button" id="add_new_service" value="Add Service">                      
+                                    </div>
+                                </div>
+
+                                <table class="table table-bordered" id="modal_list_service">
+
+                                </table>   
+
+                            </form>
+
+
+                        </div>
+                        
+                        <div id="payment-info" class="tab-pane">
+                        <form class="form-horizontal form-box remove-margin ui-formwizard"
+      method="post" id="advanced-wizard" novalidate="novalidate">
+                        <div class="col-md-5" style="margin: 0 0 0 13px; padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Banking Info</span>
+	       <span class="tools pull-right icons" style=""><i class="glyphicon-bank"></i></span>
+        </header>
+        <div class="panel-body">
+		<!-- Panel start --> 
+                        	
+    <!-- Form Header -->
+    
+    <!-- Form Content -->
+    <div class="form-box-content">
+        <!-- First Step -->
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+            
+            <div class="form-group1">
+                <label for="efin"
+                       class="control-label col-md-12">Bank Name<span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text"  class="form-control ui-wizard-content"
+                           value="" name="example-advanced-bank_name"
+                           id="bank_name1">
+                </div>
+            </div>
+            <div class="form-group1">
+                <label for="p_efin"
+                       class="control-label col-md-12">Routing Number<span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           value="" name="example-advanced-parent-bank_routing"
+                           id="bank_routing1">
+                </div>
+            </div>
+            <div class="form-group1">
+                <label for="company_name"
+                       class="control-label col-md-12">Account Number<span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="example-advanced-account_name" id="b_account_name1" value="">
+                </div>
+            </div>
+
+            <div class="form-group form-actions1">
+                <div class="col-md-10 col-md-offset-2">
+
+                    <div id="modal_success2" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- 
+                    <input type="submit" value="Save" id="save_payment"
+                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                    <input type="button" value="Cancel" id="cancel1"
+                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                            -->
+                </div>
+            </div>
+        </div>
+	</div>
+
+    </div>
+    </section>
+    </div>
+    
+    <div class="col-md-1" style="padding-top: 25px;">&nbsp;
+	</div>
+	
+	<div class="col-md-6" style="padding-top: 25px; width: 43%">
+	<section class="panel">
+    	
+        <div class="panel-body" style="padding:40px 0px 40px 9px;">
+            <img alt="" style="margin:26px 0px 19px px;" src="../backend/img/check_sample.jpg">
+         </div>
+         </section>       
+            </div>
+	<div style="clear: both;"></div>
+                </form> 
+                
+                <div class="col-md-12 text-left" style ="padding-left:25px; padding-bottom: 20px">
+
+                  <button class="btn btn-success" id="save_payment" type="submit" > &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+                  <button class="btn btn-danger" id="cancel1" type="button"  > &nbsp; &nbsp;  <i class="icon-repeat"></i> &nbsp; Cancel &nbsp; &nbsp; </button>   
+                </div>       	
+                        </div>
+                        
+                        <div id="banking" class="tab-pane">
+                        <form class="form-horizontal form-box remove-margin ui-formwizard"
+      method="post" id="bank_info_form" novalidate="novalidate">
+      
+      <div class="col-md-12" style="margin: 0 0 0 13px; padding-top: 25px; width: 98%;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Fees Info</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-dollar"></i></span>
+        </header>
+        <div class="panel-body">
+		<!-- Panel start --> 
+    
+    <!-- Form Content -->
+    <div class="form-box-content">
+        <!-- First Step -->
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+            
+            <div class="form-group">
+            	<div class="col-md-3 form-group1">
+                <label for="efin"
+                       class="control-label col-md-12">Tax Preparation Fee <i class="icon-question4 toottip_product"data-toggle="tooltip"  data-original-title="Tax Preparation Fee "></i></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           value="" name="tax_preparation_fee1"
+                           id="tax_preparation_fee1">
+                </div>
+                </div>
+                
+                <div class="col-md-3 form-group1">
+                	<label for="p_efin"
+                       class="control-label col-md-12">Bank Transmission Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           value="" name="bank_transmission_fee1"
+	                           id="bank_transmission_fee1">
+	                </div>
+                </div>
+                
+                <div class="col-md-3 form-group1">
+                	<label for="company_name"
+                       class="control-label col-md-12">SB Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="sb_fee1" id="sb_fee1" value="">
+	                </div>
+                </div>
+                
+                <div class="col-md-3 form-group1">
+                	 <label for="company_name"
+                       class="control-label col-md-12">Add On Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Add On Fee"></i>	</label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="add_on_fee1" id="add_on_fee1" value="">
+	                </div>
+                </div>
+            </div>
+            
+            <!--  
+            <div class="form-group">
+                <label for="company_name"
+                       class="control-label col-md-3">E-file Fee</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="e_file_fee1" id="e_file_fee1" value="">
+                </div>
+            </div>
+            -->
+          
+
+            <div class="form-group form-actions1">
+                <div class="col-md-10 col-md-offset-2">
+
+                    <div id="modal_success3" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- 
+                    <input type="submit" value="Save" id="save_bank"
+                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                    <input type="button" value="Cancel" id="cancel3"
+                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                            -->
+                </div>
+            </div>
+        </div>
+	</div>
+	</div>
+	</section>
+	</div>
+	
+	<div class="col-md-12"  style="padding-left: 26px; padding-bottom:20px;">
+		<button class="btn btn-success" id="save_bank" type="submit"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+		<button class="btn btn-danger" id="cancel3" type="button"  > &nbsp; &nbsp;  <i class="icon-repeat"></i> &nbsp; Cancel &nbsp; &nbsp; </button>
+	</div>
+</form>
+                        
+                        </div>
+
+                       <input type="hidden" name="uid_master" value="" id="uid_master" > 
+                    </div>
+
+                </div>
+                
+            </div>
+                    
+        </div>
+    </div>
+</div>
+
+<!--modal service edit-->
+<div id="modal_addservice" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Service</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+
+                    <div class="form-box-content">
+
+                        <div style="display: block;" id="advanced-first" class="step ui-formwizard-content">  
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="example-advanced-efin"></label>  
+                                <div class="col-md-4 choose_file">
+                                    <ul class="thumbnails clearfix">
+                                        <li>
+                                            <a href="javascript:void(0)" id="tmp_logo" name="name" style="width:160px;height:120px;overflow: hidden;" class="thumbnail"><img src="../backend/img/placeholders/image_light_160x120.png"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="example-advanced-efin"></label>  
+                                <div class="col-md-4 choose_file">         
+                                    <button value="" id="upload_service" name="upload" class="btn btn-success col-md-12 " type="submit" style="z-index: 0;">Upload Logo</button>
+                                    <!--<input type="file" class="form-control" name="example-file" id="example-file">-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="name_service">Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="name_service" name="example-advanced-name_service" value="" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="Cost">Cost</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="Cost" name="example-advanced-parent-Cost" value="" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="sb_saleprice">SB sales price</label>
+                                <div class="col-md-6">
+                                    <input type="text" value="" id="sb_saleprice" name="example-advanced-sb_saleprice" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="ero_saleprice">ERO sales price</label>
+                                <div class="col-md-6">
+                                    <input type="text" value="" id="ero_saleprice" name="example-advanced-ero_saleprice" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+
+                            <div class="form-group form-actions div_group">
+                                <div class="col-md-10 col-md-offset-2">
+
+                                    <div class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                    <h4 class="modal-title">Warning</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Save successfully.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-actions button_group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <button data-target=".bs-modal-sm" data-toggle="modal" type="submit" id="save_service"  class="btn btn-success"><i class="icon-ok"></i> Save</button>
+                                            <button type="button" class="btn btn-danger btn-cancel"><i class="icon-repeat"></i> Cancel</button>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="s_id" value=""/>
+                        </div>			
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end -->
+
+<!--modal tab user account -->
+
+<div id="modal_adduser" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">User</h4>
+            </div>
+            <div class="modal-body">
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                    <div class="form-box-content">   
+                        <div class="step ui-formwizard-content">
+                            <div class="form-group">
+                                <label for="ptin" class="control-label col-md-4">PTIN #</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-ptin" value="" id="add_ptin">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name" class="control-label col-md-4">First Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-first_name" value="" id="add_first_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name" class="control-label col-md-4">Last Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-last_name" value="" id="add_last_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label col-md-4">Email Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-email" value="" id="add_email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_name" class="control-label col-md-4">User Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-add_user_name" value="" id="add_user_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label col-md-4">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-password" value="" id="add_password">
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="role" class="control-label col-md-4">Role</label>
+                                <div class="col-md-6">
+                                    <select id="add_role" name="state" class="form-control">
+                                        <option value="6">Employee</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-md-7"></div>
+                                <div class="col-md-offset-2">
+                                    <input type="button" value="Save" id="save_user"
+                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                    <input type="button" value="Cancel" id="cancel_user"
+                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                </div>
+                            </div>
+                            <input type="hidden" name="cid" id="cid" value="" />
+                            <input type="hidden" name="author" id="author" />
+                        </div>
+                    </div>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end -->
+
+
+
+<script type="text/javascript">
+	var dataClient = [];
+        var objGallery = [];
+        var uploadImgProduct;
+        var uploadImgProduct_s;
+        var fileID = '';
+	var extention = '';
+        
+        var heads = ["#","EFIN#","Email Address","User Name","status","Created Date","Action"];
+	function loadObject() {
+		{dataLoad}
+                loadClients();  
+	}
+
+	function loadClients() {
+            var htm = ''; 
+            htm +='<thead>';
+                        htm +='<tr>';
+                            htm +='<th class="text-center">'+heads[0]+'</th>';
+                            htm +='<th>'+heads[1]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[3]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[5]+'</th>';
+                            htm +='<th class=" text-center">'+heads[6]+'</th>';
+                        htm +='</tr>';
+            htm +='</thead>';
+            htm +='<tbody>';
+            
+            for(var i = 0 ; i < dataClient.length ; i++){
+                   var obj = dataClient[i];
+                   var efin = obj.efin;
+                   var status = '' ;
+                   var uid = obj.uid;
+                   var parent = 'body_allero';
+                   if(obj.efin_status == 1){    
+                   status = 'Approved';
+                   }else if(obj.efin_status == 2){
+                        status = 'Rejected' ;
+                   }else{
+                        status = 'Pending Approval' ; ""; 
+                   }
+                     htm +='<tr>';
+                     htm +='<td class="cell-small text-center">'+(i+1)+'</td>';
+                     htm +='<td>'+obj.user_efin+'</td>';
+                     htm +='<td>'+obj.mail+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.name+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+status+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.format_date+'</td>';
+                     
+                      htm +='<td class="text-center">';
+                                //htm +='<div class="btn-group">'; 
+                                htm += '<a class="btn btn-sm btn-success EditEro" style="font-size:13px; margin-right:5px;" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEro(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
+                                 htm += '<a class="btn btn-sm btn-danger deleteEro"  style="font-size:13px;" rel="tooltip" title="Delete" data-toggle="tooltip" href="#"  data-original-title="Delete" id ="'+efin+'" ><i class="icon-trash"></i></a>';   
+                               //htm += '</div>';
+                        htm += '</td>'
+                     
+                     
+      
+                   htm +='</tr>';
+            }
+           htm +=' </tbody>';
+
+            $("#lists___").empty().append(htm);
+	}
+        
+        function deleteEro(){
+            $(".deleteEro").click(function(){
+				if(confirm('Delete this ERO?')){
+					var efin = $(this).attr("id");
+					$.ajax({
+					url: 'index.php/admin/ero/deleteEro?ajax=1&efin='+efin,
+					cache: false,
+					success: function(data){
+						$("#lists___").empty().append(data);
+					   }
+					});
+				}
+            });
+        }
+        
+        function uploadGallery(){   
+        uploadImgProduct = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_logo',
+            max_file_size : '80mb',
+            url : 'plupload/server/uploadLogo.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+            ]
+        });
+        uploadImgProduct.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct.start();
+            }, 50);
+        });
+       
+        uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                $("#image_show").empty();
+                objGallery = obj;
+                show_logo();   
+            }
+        }, 'json');
+        uploadImgProduct.init();
+    }
+    function CancelUploadProduct(){	
+        uploadImgProduct.stop(); 
+    }
+    function show_logo(){
+        var newImg = document.createElement('img');
+        document.getElementById("image_show").appendChild(newImg);
+        newImg.width = objGallery.width;
+        newImg.height = objGallery.height;
+        newImg.src = "plupload/thumb.php?id="+objGallery.file_id;  
+    }
+    
+    function uploadGallery_s(){
+        uploadImgProduct_s = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_service',
+            max_file_size : '80mb',
+            url : 'plupload/server/uploadLogo.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+            ]
+        });
+        uploadImgProduct_s.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct_s.start();
+            }, 50);
+        });
+       
+        uploadImgProduct_s.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                $("#tmp_logo").empty();
+                objGallery = obj;
+                fileID = obj.file_id;
+                extention = obj.ext;
+                show_signature_s();   
+            }
+        }, 'json');
+        uploadImgProduct_s.init();
+    }
+    function CancelUploadProduct_s(){	
+        uploadImgProduct_s.stop(); 
+    }
+    function show_signature_s(){
+        var newImg = document.createElement('img');
+        document.getElementById("tmp_logo").appendChild(newImg);
+        newImg.width = objGallery.width;
+        newImg.height = objGallery.height;
+        newImg.src = "plupload/thumb.php?id="+objGallery.file_id;  
+    }
+    
+     
+	$(function() {
+		loadObject(); 
+                deleteEro();
+                ClickToEditEro('allero','body_allero');
+                clickSaveProfile('allero','body_allero');
+                ClickToEditPaymentInfo('allero','body_allero');
+                clickToEditBankInfo('allero','body_allero');
+                same_check('body_allero');
+                showEditEroModal('modal_tab_allero');
+                uploadGallery();
+                changeUser('body_allero');
+                showResetPass('body_allero');
+                cancelResetPass('body_allero');
+                resetPass('body_allero');
+                cancelEditModal('body_allero');  
+                uploadGallery_s();
+                save_service('body_allero');
+                showFormAddService('body_allero');
+                add_new_user('body_allero');
+                showFormAddUser('body_allero');
+                $("[rel='tooltip']").tooltip(); 
+                
+               
+            	
+            	/*
+                $('#lists___').dataTable({
+                	"sDom": 'T<"clear">lfrtip',
+                	"oTableTools": {
+            			//"aButtons": [ "xls", "pdf","copy", "print" ]
+                		"aButtons": [ 
+                		{
+                            "sExtends":     "csv",
+                            "sButtonClass": "my_button_class"
+                        }
+                		]
+            		},
+            		"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]});
+                */
+                
+                $('#lists___').dataTable( {
+                 	"sDom": 'T<"clear">lfrtip',
+                 	"oTableTools": {
+             			//"aButtons": [ "xls", "pdf","copy", "print" ]
+                 		"aButtons": [
+            						{
+            						    "sExtends":     "xls",
+            						    "sButtonText": "Excel	",
+                                        "sFileName": "recentApplication-*.pdf",
+            						    "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+            						    
+            						},
+                             		{
+                                         "sExtends":     "pdf",
+                                        // "sButtonClass": "btn btn-primary",
+                                         "sButtonText": "PDF",
+                                         "sFileName": "recentApplication-*.pdf",
+                                         "sPdfOrientation": "landscape",
+                                         "mColumns": [ 0, 1, 2, 3, 4, 5],
+                                         
+                                     },
+                                     {
+                                         "sExtends":     "print",
+                                        // "sButtonClass": "btn btn-info",
+                                         "sButtonText": "Print",
+                                         "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+                                         
+                                     },
+                                     
+                             		]
+             		},
+             		"aoColumnDefs": [
+               		                { 'bSortable': false, 'aTargets': [0,6 ] }
+               		             ]
+                 } );
+                
+                $('#modal_list_user').dataTable( {
+                 	"sDom": 'T<"clear">lfrtip',
+                 	"oTableTools": {
+             			//"aButtons": [ "xls", "pdf","copy", "print" ]
+                 		"aButtons": [
+            						{
+            						    "sExtends":     "xls",
+            						    "sButtonText": "Excel	",
+                                        "sFileName": "recentApplication-*.pdf",
+            						    "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+            						    
+            						},
+                             		{
+                                         "sExtends":     "pdf",
+                                        // "sButtonClass": "btn btn-primary",
+                                         "sButtonText": "PDF",
+                                         "sFileName": "recentApplication-*.pdf",
+                                         "sPdfOrientation": "landscape",
+                                         "mColumns": [ 0, 1, 2, 3, 4, 5],
+                                         
+                                     },
+                                     {
+                                         "sExtends":     "print",
+                                        // "sButtonClass": "btn btn-info",
+                                         "sButtonText": "Print",
+                                         "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+                                         
+                                     },
+                                     
+                             		]
+             		},
+             		"aoColumnDefs": [
+             		                { 'bSortable': false, 'aTargets': [0,6 ] }
+             		             ]
+             		/*"aaSorting": [],
+             		"aoColumns": [
+             		             { "bSortable": false },
+             		            null,
+             		             null,
+             		             null,
+             		             null,
+             		            null,
+             		           { "bSortable": false },
+             		          { "bSortable": false }
+             		           ]*/
+            		//"aoColumns": [{ "bSortable": false },null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }]
+                 } );
+                
+                $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	});
+</script>

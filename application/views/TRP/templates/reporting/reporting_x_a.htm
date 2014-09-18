@@ -1,0 +1,1891 @@
+<style>
+.table thead > tr > th{
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+div.DTTT_container {
+    float: right;
+    margin: 14px 225px 0 0;
+    padding-left: 0;
+    position: relative;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #357ebd;
+    border-color: #3071a9;
+    color: #fff;
+}
+
+.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
+    background: none repeat scroll 0 0 #08c;
+    border: 1px solid #08c;
+    color: #fff;
+}
+
+.datapickerposition{
+	position: absolute; margin-top: 17px; right: 27px
+}
+
+.ffSelectWrapper{background:#fff;width:130px}
+</style>
+<script src="../backend/js/fancyfields.js" type="text/javascript"></script>
+ <script type="text/javascript">
+	$(document).ready(function () {
+		
+		//$("#bank_products_report_list").fancyfields();
+	});
+</script>
+<!-- <h3>{title_page}</h3> -->
+<div class="col-md-12" style="padding-top:33px;margin-bottom:25px; padding-left:24px;"><h2 style="margin:0px; color:#54565F;"><i class="icon-bars"></i> &nbsp;{title_page}</h2></div>
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a data-toggle="tab" href="#bank_products_report" onclick="">Bank Products</a></li>
+    <li class=""><a data-toggle="tab" href="#discount_benefits_report"  onclick="">Discount Benefits</a></li>
+   <li class=""><a data-toggle="tab" href="#insurance_report">Insurance</a></li>
+    <li class=""><a data-toggle="tab" href="#total_report">Total</a></li> 
+    <li class=""><a data-toggle="tab" href="#service_bureau_report">Service Bureau</a></li> 
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="bank_products_report" class="tab-pane active tab-pane-width">
+    <!-- 
+    <ul data-toggle="tabs" class="nav nav-tabs push">
+	    <li class="active"><a href="#discount_benefits_revenue_report" onclick="">Revenue Report</a></li>
+	    <li class=""><a href="#discount_benefits_customers_report"  onclick="">By Customers</a></li>
+	    <li class=""><a href="#discount_benefits_employees_report"  onclick="">By Employees</a></li>
+	</ul>
+	 -->
+	 <!-- 
+		<div class="wrapper-demo" style="padding-top:15px; margin-bottom:10px;">
+			<div id="dd" class="wrapper-dropdown-3" tabindex="1" style="margin-left:0px;">
+				<span>Revenue Report</span>
+				<ul class="dropdown">
+					<li><a href="#" onclick="loadReport('bank_products_revenue_report')">Revenue Report</a></li>
+					<li><a href="#" onclick="loadReport('bank_products_customer_report')">By Customer</a></li>
+					<li><a href="#" onclick="loadReport('bank_products_employee_report')">By Employee</a></li>
+				</ul>
+			</div>
+		</div>
+		 -->
+	<div style="padding-top: 15px; position: absolute;">
+		<select name="bank_products_report_list" id="bank_products_report_list" onchange="loadReport(this)" style="padding:7px 15px; ">
+			<option value="bank_products_revenue_report" >Revenue Report</option>
+			<option value="bank_products_customer_report" >By Customer</option>
+			<option value="bank_products_employee_report" >By Employee</option>
+		</select>
+	</div>	 
+	
+	<div class="datapickerposition" style="" id="bank_products_revenue_report_daterangepicker_div">
+       <div id="bank_products_revenue_report_daterangepicker" class="btn btn-default">
+           <i class="icon-calendar"></i>
+           <span></span>
+           <b class="caret"></b>
+       </div>
+       <input type="hidden" name="bank_products_revenue_report_daterangepicker_hidden" id="bank_products_revenue_report_daterangepicker_hidden" value="" />
+   </div>
+		
+	<div id="bank_products_revenue_report" >
+    	<table class="table table-striped" id="finance_result">
+                        <thead>
+                             <tr>
+                            	<th rowspan="2" class="text-center">Date</th>
+                            	<th colspan="4"  class="text-center">Expected</th>
+                            	<th colspan="5"  class="text-center">Actual</th>
+                            	<th rowspan="2" class="text-center">Variance</th>
+                            
+                            </tr>
+                                <tr>
+                                <th class=""  style="width:80px;">Tax Prep</th>
+                                <th  style="width:80px;">Add Ons</th>
+                                <th class="hidden-xs hidden-sm">Audit Guard</th>
+                                <th class="hidden-xs hidden-sm">Total</th>
+                                <th class="hidden-xs hidden-sm">Posted Date</th>
+                                <th class=" text-center">Tax Prep</th>
+                                <th class=" text-center">Add Ons</th>
+                                <th class=" text-center">Audit Guard</th>
+                                <th class=" text-center">Total</th>
+                            </tr>
+                            
+                        </thead>
+                        <tfoot>
+                        	<tr>
+						  		<td class=" text-center" ></td>
+						  		<td class=" text-right" ><span>$2083</span><br>Total</td>
+                                <td class="text-right"><span>$1925</span><br>Total</td>
+                                <td class="text-right"><span>$2096</span><br>Total</td>
+                                <td class=" text-right" ><span>$6103</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$1262</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$2003</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$1582</span><br>Total</td>
+                                <td class="text-right"><span>$2023</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$6870</span><br>Total</td>
+                                <td class="text-center"><span>65%</span><br>Total</td>
+                              </tr>  
+						</tfoot>
+                        <tbody>
+                        	
+                            <tr>
+                                <td class=" text-center border-right">06-12-2013</td>
+                                <td class="text-right">$450</td>
+                                <td class="text-right">$650</td>
+                                <td class="hidden-xs hidden-sm text-right">$600</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$1700</td>
+                                <td class="hidden-xs hidden-sm text-right">21-10-2014</td>
+                                <td class="text-right">$550</td>
+                                <td class="hidden-xs hidden-sm text-right">$320</td>
+                                <td class="text-right">$480</td>
+                                <td class=" text-right bold">$1600</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">20%</td>
+                            </tr>
+                            
+                            <tr>
+                                <td class=" text-center border-right">06-10-2013</td>
+                                <td class="text-right">$650</td>
+                                <td class="text-right">$600</td>
+                                <td class="hidden-xs hidden-sm text-right">$500</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$1750</td>
+                                <td class="hidden-xs hidden-sm text-right">03-25-2014</td>
+                                <td class="text-right">$480</td>
+                                <td class="hidden-xs hidden-sm text-right">$250</td>
+                                <td class="text-right">$600</td>
+                                <td class=" text-right bold">$1650</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">10%</td>
+                            </tr>
+                            
+                            <tr>
+                                <td class=" text-center border-right">06-07-2013</td>
+                                <td class="text-right">$560</td>
+                                <td class="text-right">$440</td>
+                                <td class="hidden-xs hidden-sm text-right">$780</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$1780</td>
+                                <td class="hidden-xs hidden-sm text-right">06-07-2014</td>
+                                <td class="text-right">$430</td>
+                                <td class="hidden-xs hidden-sm text-right">$670</td>
+                                <td class="text-right">$400</td>
+                                <td class=" text-right bold">$1850</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">10%</td>
+                            </tr>
+                            
+                            <tr>
+                                <td class=" text-center border-right">06-12-2013</td>
+                                <td class="text-right">$423</td>
+                                <td class="text-right">$234</td>
+                                <td class="hidden-xs hidden-sm text-right">$216</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$873</td>
+                                <td class="hidden-xs hidden-sm text-right">04-03-2014</td>
+                                <td class="text-right">$543</td>
+                                <td class="hidden-xs hidden-sm text-right">$342</td>
+                                <td class="text-right">$543</td>
+                                <td class=" text-right bold">$1770</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">25%</td>
+                            </tr>
+                            
+                           
+                            
+                            
+                        </tbody>
+                    </table>
+                 </div> <!-- End of Revinue Report -->  
+                 
+                 <!-- Start of By Customer bank prodcut Report -->
+                 <div id="bank_products_customer_report" style="display:none;">
+    	<table class="table table-striped" id="bank_products_customer_report_result">
+                        <thead>
+                             <tr>
+                            	<th rowspan="2" class="text-center">Date</th>
+                            	<th rowspan="2" class="">Name</th>
+                            	<th colspan="4"  class="text-center">Expected</th>
+                            	<th colspan="5"  class="text-center">Actual</th>
+                            	<th rowspan="2" class="text-center">Variance</th>
+                            
+                            </tr>
+                                <tr>
+                                <th class=""  style="width:80px;">Tax Prep</th>
+                                <th  style="width:80px;">Add Ons</th>
+                                <th class="">Audit Guard</th>
+                                <th class="">Total</th>
+                                <th class="">Posted Date</th>
+                                <th class=" text-center">Tax Prep</th>
+                                <th class=" text-center">Add Ons</th>
+                                <th class=" text-center">Audit Guard</th>
+                                <th class=" text-center">Total</th>
+                            </tr>
+                            
+                        </thead>
+                        <tfoot>
+                        	<tr>
+						  		<td class=" text-center" ></td>
+						  		<td class=" text-center" ></td>
+						  		<td class=" text-right" ><span>$750</span><br>Total</td>
+                                <td class="text-right"><span>$80</span><br>Total</td>
+                                <td class="text-right"><span>$180</span><br>Total</td>
+                                <td class=" text-right" ><span>$1010</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"></td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$650</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$80</span><br>Total</td>
+                                <td class="text-right"><span>$180</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$910</span><br>Total</td>
+                                <td class="text-right"><span>60%</span><br>Total</td>
+                              </tr>  
+						</tfoot>
+                        <tbody>
+                        	
+                            <tr>
+                                <td class=" text-center ">06-12-2013</td>
+                                <td class=" border-right" >Marina Andreade <br> XXX-XX-3489</td>
+                                <td class="text-right">$150</td>
+                                <td class="text-right">$10</td>
+                                <td class="hidden-xs hidden-sm text-right">$45</td>
+                                <td class="hidden-xs hidden-sm border-right text-right  bold">$205</td>
+                                <td class="hidden-xs hidden-sm text-right">02-12-2014</td>
+                                <td class="text-right">$150</td>
+                                <td class="hidden-xs hidden-sm text-right">$10</td>
+                                <td class="text-right">$45</td>
+                                <td class=" text-right  bold">$205</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">0%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">03-16-2013</td>
+                                <td class=" border-right" >Daniel Garcia <br> XXX-XX-3487</td>
+                                <td class="text-right">$250</td>
+                                <td class="text-right">$20</td>
+                                <td class="hidden-xs hidden-sm text-right">$45</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$315</td>
+                                <td class="hidden-xs hidden-sm text-right">01-12-2014</td>
+                                <td class="text-right">$200</td>
+                                <td class="hidden-xs hidden-sm text-right">$20</td>
+                                <td class="text-right">$45</td>
+                                <td class=" text-right  bold">$265</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">30%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">03-12-2013</td>
+                                <td class=" border-right" >Michele Moreno <br> XXX-XX-3373</td>
+                                <td class="text-right">$200</td>
+                                <td class="text-right">$40</td>
+                                <td class="hidden-xs hidden-sm text-right">$45</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$285</td>
+                                <td class="hidden-xs hidden-sm text-right">01-12-2014</td>
+                                <td class="text-right">$200</td>
+                                <td class="hidden-xs hidden-sm text-right">$40</td>
+                                <td class="text-right">$45</td>
+                                <td class=" text-right bold">$285</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">0%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">06-12-2013</td>
+                                <td class=" border-right" >Mr.Sylvia Paiz <br> XXX-XX-3433</td>
+                                <td class="text-right">$150</td>
+                                <td class="text-right">$10</td>
+                                <td class="hidden-xs hidden-sm text-right">$45</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$205</td>
+                                <td class="hidden-xs hidden-sm text-right">04-12-2014</td>
+                                <td class="text-right">$100</td>
+                                <td class="hidden-xs hidden-sm text-right">$10</td>
+                                <td class="text-right">$45</td>
+                                <td class=" text-right bold">$155</td>
+                                <td class="hidden-xs hidden-sm border-left text-center bold">30%</td>
+                            </tr>
+                             
+                        </tbody>
+                    </table>
+                 </div> <!-- End of By Customer bank prodcut Report -->   
+                 
+                 <div id="bank_products_employee_report" style="display:none;">
+        
+        <table class="table table-striped" id="bank_products_employee_report_result">
+        	<thead>
+                             <tr>
+                            	<th rowspan="2" class="text-center">Date</th>
+                            	<th rowspan="2" class="">Employee Name</th>
+                            	<th colspan="4"  class="text-center">Expected</th>
+                            	<th colspan="2"  class="text-center">Actual</th>
+                            </tr>
+                                <tr>
+                                <th class=""  style="width:80px;">Tax Prep</th>
+                                <th  style="width:80px;">Add Ons</th>
+                                <th class="hidden-xs hidden-sm">Audit Guard</th>
+                                <th class="hidden-xs hidden-sm">Total</th>
+                                <th class="hidden-xs hidden-sm">Refund Amount</th>
+                                <th class=" text-center">Actual Refund</th>
+                                <th class=" text-center">Accuracy %</th>
+                            </tr>
+                            
+                        </thead>
+                        <tfoot>
+                        	<tr>
+						  		<td class=" text-center" ></td>
+						  		<td class=" text-center" ></td>
+                                <td class="text-right"><span>$2070</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$1210</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$1940</span><br>Total</td>
+                                <td class="text-right"><span>$5220</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$4850</span><br>Total</td>
+                                <td class="text-right"><span>$4570</span><br>Total</td>
+                                <td class="text-right"></td>
+                              </tr>  
+						</tfoot>
+                        <tbody>
+                        	
+                            <tr>
+                                <td class=" text-center ">07-10-2014</td>
+                                <td class=" border-right" >Michele Moreno </td>
+                                <td class="text-right">$450</td>
+                                <td class="text-right">$200</td>
+                                <td class="hidden-xs hidden-sm text-right">$750</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$1400</td>
+                                <td class="text-right">$1000</td>
+                                <td class="text-right ">$950</td>
+                                <td class="text-center  bold">95%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">07-10-2014</td>
+                                <td class=" border-right" >Daniel Garcia </td>
+                                <td class="text-right">$550</td>
+                                <td class="text-right">$230</td>
+                                <td class="hidden-xs hidden-sm text-right">$470</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$1250</td>
+                                <td class="text-right">$1150</td>
+                                <td class="text-right ">$1100</td>
+                                <td class="text-center  bold">95%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">07-12-2014</td>
+                                <td class=" border-right" >Mr.Sylvia Paiz</td>
+                                <td class="text-right">$320</td>
+                                <td class="text-right">$280</td>
+                                <td class="hidden-xs hidden-sm text-right">$300</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$900</td>
+                                <td class="text-right">$1250</td>
+                                <td class="text-right ">$1250</td>
+                                <td class="text-center  bold">100%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">07-12-2014</td>
+                                <td class=" border-right" >Linda Rebollar</td>
+                                <td class="text-right">$330</td>
+                                <td class="text-right">$270</td>
+                                <td class="hidden-xs hidden-sm text-right">$220</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">$820</td>
+                                <td class="text-right">$550</td>
+                                <td class="text-right ">$420</td>
+                                <td class="text-center  bold">97%</td>
+                            </tr>
+                            
+                             <tr>
+                                <td class=" text-center ">06-14-2014</td>
+                                <td class=" border-right" >Marina Andreade</td>
+                                <td class="text-right">$420</td>
+                                <td class="text-right">$230</td>
+                                <td class="hidden-xs hidden-sm text-right">$200</td>
+                                <td class="hidden-xs hidden-sm border-right text-right  bold">$850</td>
+                                <td class="text-right">$900</td>
+                                <td class="text-right ">$850</td>
+                                <td class="text-center  bold">95%</td>
+                            </tr>
+            </tbody>          
+        </table>
+        
+        </div>
+    </div>
+    
+    
+    
+ <div id="discount_benefits_report" class="tab-pane tab-pane-width" >
+    <!-- 
+    <ul data-toggle="tabs" class="nav nav-tabs push">
+	    <li class="active"><a href="#discount_benefits_revenue_report" onclick="">Revenue Report</a></li>
+	    <li class=""><a href="#discount_benefits_customers_report"  onclick="">By Customers</a></li>
+	    <li class=""><a href="#discount_benefits_employees_report"  onclick="">By Employees</a></li>
+	</ul>
+	 -->
+	 <!-- 
+	<div class="wrapper-demo1" style="padding-top:15px; margin-bottom:10px;">
+			<div id="dd1" class="wrapper-dropdown-3" tabindex="1" style="margin-left:0px;">
+				<span>Revenue Report</span>
+				<ul class="dropdown">
+					<li><a href="#" onclick="loadReport('discount_benefits_revenue_report')">Revenue Report</a></li>
+					<li><a href="#" onclick="loadReport('discount_benefits_customers_report')">By Customer</a></li>
+					<li><a href="#" onclick="loadReport('discount_benefits_employees_report')">By Employee</a></li>
+				</ul>
+			</div>
+		</div>
+		 -->
+	<div style="padding-top: 15px; position: absolute;">
+		<select name="discount_benefits_report_list" id="discount_benefits_report_list" onchange="loadReport(this)" style="padding:7px 15px;">
+			<option value="discount_benefits_revenue_report" >Revenue Report</option>
+			<option value="discount_benefits_customers_report" >By Customer</option>
+			<option value="discount_benefits_employees_report" >By Employee</option>
+		</select>
+	</div>	 
+		 
+	
+	<div class="datapickerposition" style="" id="discount_benefits_report_daterangepicker_div">
+       <div id="discount_benefits_report_daterangepicker" class="btn btn-default">
+           <i class="icon-calendar"></i>
+           <span></span>
+           <b class="caret"></b>
+       </div>
+       <input type="hidden" name="discount_benefits_report_daterangepicker_hidden" id="discount_benefits_report_daterangepicker_hidden" value="" />
+   </div>
+   
+    	<div id="discount_benefits_revenue_report" class="" >
+    		<table class="table table-striped" id="discount_benefits_revenue_report_result">
+                        <thead>
+                            <tr>
+                            	<th rowspan="2" class="text-center">Date</th>
+                            	<th colspan="4"  class="text-center">Packages Sold</th>
+                            	<th colspan="4"  class="text-center">Amount Sold</th>
+                            </tr>
+                            
+                                <tr>
+                                <!-- <th class="text-center">Date</th> -->
+                                <th class="">Health Package</th>
+                                <th>Lifestyle Package</th>
+                                <th class="hidden-xs hidden-sm">Combination Package</th>
+                                <th class="hidden-xs hidden-sm">Total</th>
+                                <th class="hidden-xs hidden-sm">Health Package</th>
+                                <th class=" ">Lifestyle Package</th>
+                                <th class=" ">Combination Package</th>
+                                <th class=" text-center">Total</th>
+                                
+                            </tr>
+                            
+                        </thead>
+                        <tfoot>
+                        	<tr>
+                        		<td class="">&nbsp;</td>
+                                <td class=" text-right"><span>560</span><br>Total</td>
+                                <td class=" text-right"><span>519</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>330</span><br>Total</td>
+                                <td class="hidden-xs hidden-sm text-right"><span>1409</span><br>Total </td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$10640</span><br>Total </td>
+                                <td class="text-right"><span>$25431</span><br>Total </td>
+                                <td class="hidden-xs hidden-sm text-right"><span>$32670</span><br>Total </td>
+                                <td class="text-right"><span>$68741</span><br>Total </td>
+                              </tr>  
+						</tfoot>
+                        <tbody>
+                        	
+                            <tr>
+                                <td class=" text-center border-right text-right">07-12-2014</td>
+                                <td class="  text-right">200</td>
+                                <td class=" text-right">250</td>
+                                <td class="hidden-xs hidden-sm text-right">145</td>
+                                <td class="hidden-xs hidden-sm border-right  bold text-right">595</td>
+                                <td class="hidden-xs hidden-sm text-right">$3800</td>
+                                <td class="text-right">$12250</td>
+                                <td class="hidden-xs hidden-sm text-right">$14355</td>
+                                <td class="text-right  bold">$30405</td>
+                            </tr>
+                            
+                            <tr>
+                                <td class=" text-center border-right text-right">07-11-2014</td>
+                                <td class="  text-right">190</td>
+                                <td class=" text-right">99</td>
+                                <td class="hidden-xs hidden-sm text-right">90</td>
+                                <td class="hidden-xs hidden-sm border-right bold text-right">379</td>
+                                <td class="hidden-xs hidden-sm text-right">$3610</td>
+                                <td class="text-right">$4851</td>
+                                <td class="hidden-xs hidden-sm text-right">$8910</td>
+                                <td class="text-right bold">$17371</td>
+                            </tr>
+                            
+                            <tr>
+                                <td class=" text-center border-right text-right">07-11-2014</td>
+                                <td class=" text-right ">120</td>
+                                <td class=" text-right">135</td>
+                                <td class="hidden-xs hidden-sm text-right">75</td>
+                                <td class="hidden-xs hidden-sm border-right bold text-right">330</td>
+                                <td class="hidden-xs hidden-sm text-right">$2280</td>
+                                <td class="text-right">$6615</td>
+                                <td class="hidden-xs hidden-sm text-right">$7425</td>
+                                <td class="text-right bold">$16320</td>
+                            </tr>
+                            
+                            <tr>
+                                <td class=" text-center border-right  text-right">07-09-2014</td>
+                                <td class="  text-right">50</td>
+                                <td class=" text-right">35</td>
+                                <td class="hidden-xs hidden-sm text-right">20</td>
+                                <td class="hidden-xs hidden-sm border-right text-right bold">105</td>
+                                <td class="hidden-xs hidden-sm text-right">$950</td>
+                                <td class="text-right">$1715</td>
+                                <td class="hidden-xs hidden-sm text-right">$1980</td>
+                                <td class="text-right bold">$4645</td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+        </div>
+        
+        <div id="discount_benefits_customers_report" class="" style="display:none;">
+        
+        <table class="table table-striped" id="discount_benefits_customers_report_result">
+        	<thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Name</th>
+                    <th class="">Health Package</th>
+                    <th class="hidden-xs hidden-sm">Lifestyle Package</th>
+                    <th class="hidden-xs hidden-sm">Combination Package</th>
+                    <th class="hidden-xs hidden-sm">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+					<td class=" text-center" ></td>
+					<td class="hidden-xs hidden-sm text-right"><span>$95</span><br>Total Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$147</span><br>Total Lifestyle</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$198</span><br>Total Combination</td>
+                    <td class="text-right"><span>$440</span><br>Total</td>
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" ">Marina Andreade<br> XXX-XX-3445</td>
+                    <td class="text-right">$38</td>
+                    <td class="hidden-xs hidden-sm text-right">$0</td>
+                    <td class="hidden-xs hidden-sm text-right">$99</td>
+                    <td class="text-right bold">$137</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Mr.Sylvia Paiz<br> XXX-XX-3433</td>
+                    <td class="text-right">$19</td>
+                    <td class="hidden-xs hidden-sm text-right">$49</td>
+                    <td class="hidden-xs hidden-sm text-right">$0</td>
+                    <td class="text-right bold">$68</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Daniel Garcia<br> XXX-XX-3498</td>
+                    <td class="text-right">$19</td>
+                    <td class="hidden-xs hidden-sm text-right">$49</td>
+                    <td class="hidden-xs hidden-sm text-right">$99</td>
+                    <td class="text-right bold">$167</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Michele Moreno <br> XXX-XX-3467</td>
+                    <td class="text-right">$19</td>
+                    <td class="hidden-xs hidden-sm text-right">$49</td>
+                    <td class="hidden-xs hidden-sm text-right">$0</td>
+                    <td class="text-right bold">$68</td>
+                </tr>
+            </tbody>          
+        </table>
+        
+        </div>
+        <div id="discount_benefits_employees_report" class="" style="display:none;">
+        	<table class="table table-striped" id="discount_benefits_employees_report_result">
+        	<thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Employee Name</th>
+                    <th class="">Health Package</th>
+                    <th class="hidden-xs hidden-sm">Lifestyle Package</th>
+                    <th class="hidden-xs hidden-sm">Combination Package</th>
+                    <th class="hidden-xs hidden-sm">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+					<td class=" text-center" ></td>
+					<td class="hidden-xs hidden-sm text-right"><span>$2620</span><br>Total Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$2809</span><br>Total Lifestyle</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1649</span><br>Total Combination</td>
+                    <td class="text-right"><span>$7080</span><br>Total</td>
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Michele Moreno </td>
+                    <td class="text-right">$550</td>
+                    <td class="hidden-xs hidden-sm text-right">$780</td>
+                    <td class="hidden-xs hidden-sm text-right">$450</td>
+                    <td class="text-right bold">$1780</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Mr.Sylvia Paiz</td>
+                    <td class="text-right">$543</td>
+                    <td class="hidden-xs hidden-sm text-right">$990</td>
+                    <td class="hidden-xs hidden-sm text-right">$180</td>
+                    <td class="text-right bold">$1713</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Marina Andreade</td>
+                    <td class="text-right">$543</td>
+                    <td class="hidden-xs hidden-sm text-right">$213</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right bold">$1098</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Mr. QRE </td>
+                    <td class="text-right">$543</td>
+                    <td class="hidden-xs hidden-sm text-right">$513</td>
+                    <td class="hidden-xs hidden-sm text-right">$345</td>
+                    <td class="text-right bold">$1401</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Daniel Garcia</td>
+                    <td class="text-right">$443</td>
+                    <td class="hidden-xs hidden-sm text-right">$313</td>
+                    <td class="hidden-xs hidden-sm text-right">$332</td>
+                    <td class="text-right bold">$1088</td>
+                </tr>
+            </tbody>          
+        </table>
+        </div>
+	 
+ </div>
+ 
+ 
+ <div id="insurance_report" class="tab-pane tab-pane-width">
+ <!-- 
+    <ul data-toggle="tabs" class="nav nav-tabs push">
+	    <li class="active"><a href="#insurance_revenue_report" onclick="">Revenue Report</a></li>
+	    <li class=""><a href="#insurance_policies_report"  onclick="">By Policies</a></li>
+	    <li class=""><a href="#insurance_customers_report"  onclick="">By Customers</a></li>
+	    <li class=""><a href="#insurance_employees_report"  onclick="">By Employees</a></li>
+	</ul>
+	 -->
+	<div style="padding-top: 15px; position: absolute;">
+		<select name="insurance_report_list" id="insurance_report_list" onchange="loadReport(this)" style="padding:7px 15px;">
+			<option value="insurance_revenue_report" >Revenue Report</option>
+			<option value="insurance_policies_report" >By Policies</option>
+			<option value="insurance_customers_report" >By Customers</option>
+			<option value="insurance_employees_report" >By Employee</option>
+		</select>
+	</div>	 
+	
+	<div class="datapickerposition" style="" id="insurance_report_daterangepicker_div">
+       <div id="insurance_report_daterangepicker" class="btn btn-default">
+           <i class="icon-calendar"></i>
+           <span></span>
+           <b class="caret"></b>
+       </div>
+       <input type="hidden" name="insurance_report_daterangepicker_hidden" id="insurance_report_daterangepicker_hidden" value="" />
+   </div>
+	
+    	<div id="insurance_revenue_report" class="">
+    		<table class="table table-striped" id="insurance_revenue_report_result">
+        	<thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Health</th>
+                    <th>Group Health</th>
+                    <th class="hidden-xs hidden-sm">Life</th>
+                    <th class="hidden-xs hidden-sm">Auto</th>
+                    <th class="hidden-xs hidden-sm">Home</th>
+                    <th class="hidden-xs hidden-sm">Property</th>
+                    <th class="hidden-xs hidden-sm">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+					<td class="hidden-xs hidden-sm text-right"><span>$1680</span><br>Total Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1372</span><br>Total Group Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1611</span><br>Total Life</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$2692</span><br>Total Auto</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$3044</span><br>Total Home</td>
+                    <td class="text-right"><span>$2021</span><br>Total Property</td>
+                    <td class="text-right"><span>$12375</span><br>Total</td>
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">07-12-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$216</td>
+                    <td class="hidden-xs hidden-sm text-right">$213</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right">$543</td>
+                    <td class="hidden-xs hidden-sm text-right" >$513</td>
+                    <td class="hidden-xs hidden-sm text-right">$542</td>
+                    <td class="text-right  bold">$2369</td>
+                </tr>
+                
+               <tr>
+                    <td class=" text-center">07-13-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$326</td>
+                    <td class="hidden-xs hidden-sm text-right">$531</td>
+                    <td class="hidden-xs hidden-sm text-right">$242</td>
+                    <td class="text-right">$740</td>
+                    <td class="hidden-xs hidden-sm text-right" >$685</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right bold">$2866</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-15-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$526</td>
+                    <td class="hidden-xs hidden-sm text-right">$132</td>
+                    <td class="hidden-xs hidden-sm text-right">$343</td>
+                    <td class="text-right">$543</td>
+                    <td class="hidden-xs hidden-sm text-right" >$655</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right bold">$2541</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-16-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$396</td>
+                    <td class="hidden-xs hidden-sm text-right">$238</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right">$323</td>
+                    <td class="hidden-xs hidden-sm text-right" >$678</td>
+                    <td class="hidden-xs hidden-sm text-right">$453</td>
+                    <td class="text-right bold">$2430</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-17-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$216</td>
+                    <td class="hidden-xs hidden-sm text-right">$213</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right">$543</td>
+                    <td class="hidden-xs hidden-sm text-right" >$513</td>
+                    <td class="hidden-xs hidden-sm text-right">$342</td>
+                    <td class="text-right bold">$2169</td>
+                </tr>
+            </tbody>          
+        </table>
+    	</div>
+    	
+    	<div id="insurance_policies_report" class="" style="display: none;">
+    		<table class="table table-striped" id="insurance_policies_report_result">
+        	<thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Health</th>
+                    <th>Group Health</th>
+                    <th class="hidden-xs hidden-sm">Life</th>
+                    <th class="hidden-xs hidden-sm">Auto</th>
+                    <th class="hidden-xs hidden-sm">Home</th>
+                    <th class="hidden-xs hidden-sm">Property</th>
+                    <th class="hidden-xs hidden-sm">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+					<td class="hidden-xs hidden-sm text-right"><span>415</span><br>Total Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>765</span><br>Total Group Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>700</span><br>Total Life</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>685</span><br>Total Auto</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>761</span><br>Total Home</td>
+                    <td class=" text-right"><span>550</span><br>Total Property</td>
+                    <td class=" text-right"><span>3750</span><br>Total</td>
+                    
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">07-12-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">100</td>
+                    <td class="hidden-xs hidden-sm text-right">120</td>
+                    <td class="hidden-xs hidden-sm text-right">140</td>
+                    <td class=" text-right">200</td>
+                    <td class="hidden-xs hidden-sm text-right">195</td>
+                    <td class="hidden-xs hidden-sm text-right">165</td>
+                    <td class="text-right bold">920</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-13-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">110</td>
+                    <td class="hidden-xs hidden-sm text-right">140</td>
+                    <td class="hidden-xs hidden-sm text-right">125</td>
+                    <td class=" text-right">205</td>
+                    <td class="hidden-xs hidden-sm text-right">190</td>
+                    <td class="hidden-xs hidden-sm text-right">90</td>
+                    <td class="text-right bold">734</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-14-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">95</td>
+                    <td class="hidden-xs hidden-sm text-right">310</td>
+                    <td class="hidden-xs hidden-sm text-right">155</td>
+                    <td class=" text-right">145</td>
+                    <td class="hidden-xs hidden-sm text-right">120</td>
+                    <td class="hidden-xs hidden-sm text-right">135</td>
+                    <td class="text-right bold">960</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-15-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">110</td>
+                    <td class="hidden-xs hidden-sm text-right">195</td>
+                    <td class="hidden-xs hidden-sm text-right">280</td>
+                    <td class="text-right">135</td>
+                    <td class="hidden-xs hidden-sm text-right">256</td>
+                    <td class="hidden-xs hidden-sm text-right">160</td>
+                    <td class="text-right bold">1136</td>
+                </tr>
+            </tbody>          
+        </table>
+    	</div>
+    	<div id="insurance_customers_report" class=""  style="display: none;">
+    		<table class="table table-striped" id="insurance_customers_report_result">
+        	<thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Name</th>
+                    <th class="">Health</th>
+                    <th>Group Health</th>
+                    <th class="hidden-xs hidden-sm">Life</th>
+                    <th class="hidden-xs hidden-sm">Auto</th>
+                    <th class="hidden-xs hidden-sm">Home</th>
+                    <th class="hidden-xs hidden-sm">Property</th>
+                    <th class="hidden-xs hidden-sm">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+					<td class=" text-center" ></td>
+					<td class="hidden-xs hidden-sm text-right"><span>$1152</span><br>Total Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1065</span><br>Total Group Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1208</span><br>Total Life</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1335</span><br>Total Auto</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1285</span><br>Total Home</td>
+                    <td class="text-right"><span>$1380</span><br>Total Property</td>
+                    <td class="text-right"><span>$7425</span><br>Total</td>
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Michele Moreno  <br>XXX-XX-3456</td>
+                    <td class="hidden-xs hidden-sm text-right">$190</td>
+                    <td class="hidden-xs hidden-sm text-right">$200</td>
+                    <td class="hidden-xs hidden-sm text-right">$178</td>
+                    <td class="text-right">$320</td>
+                    <td class="hidden-xs hidden-sm text-right">$270</td>
+                    <td class="hidden-xs hidden-sm text-right">$280</td>
+                    <td class="text-right bold">$1438</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Mr.Sylvia Paiz<br>XXX-XX-6455</td>
+                    <td class="hidden-xs hidden-sm text-right">$235</td>
+                    <td class="hidden-xs hidden-sm text-right">$275</td>
+                    <td class="hidden-xs hidden-sm text-right">$155</td>
+                    <td class="text-right">$200</td>
+                    <td class="hidden-xs hidden-sm text-right">$320</td>
+                    <td class="hidden-xs hidden-sm text-right">$400</td>
+                    <td class="text-right bold">$1585</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Mr. Smith<br>XXX-XX-5323</td>
+                    <td class="hidden-xs hidden-sm text-right">$232</td>
+                    <td class="hidden-xs hidden-sm text-right">$165</td>
+                    <td class="hidden-xs hidden-sm text-right">$410</td>
+                    <td class="text-right">$200</td>
+                    <td class="hidden-xs hidden-sm text-right">$185</td>
+                    <td class="hidden-xs hidden-sm text-right">$300</td>
+                    <td class="text-right bold">$1492</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Daniel Garcia<br>XXX-XX-8884</td>
+                    <td class="hidden-xs hidden-sm text-right">$250</td>
+                    <td class="hidden-xs hidden-sm text-right">$280</td>
+                    <td class="hidden-xs hidden-sm text-right">$290</td>
+                    <td class="text-right">$310</td>
+                    <td class="hidden-xs hidden-sm text-right">$275</td>
+                    <td class="hidden-xs hidden-sm text-right">$210</td>
+                    <td class="text-right bold">$1615</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">06-12-2014</td>
+                    <td class=" " >Mary  Lisa <br>XXX-XX-3342</td>
+                    <td class="hidden-xs hidden-sm text-right">$245</td>
+                    <td class="hidden-xs hidden-sm text-right">$145</td>
+                    <td class="hidden-xs hidden-sm text-right">$175</td>
+                    <td class="text-right">$305</td>
+                    <td class="hidden-xs hidden-sm text-right">$235</td>
+                    <td class="hidden-xs hidden-sm text-right">$190</td>
+                    <td class="text-right bold">$1295</td>
+                </tr>
+            </tbody>          
+        </table>
+    	</div>
+    	<div id="insurance_employees_report" class=""  style="display: none;">
+    		<table class="table table-striped" id="insurance_employees_report_result">
+        	<thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Employee Name</th>
+                    <th class="">Health</th>
+                    <th>Group Health</th>
+                    <th class="hidden-xs hidden-sm">Life</th>
+                    <th class="hidden-xs hidden-sm">Auto</th>
+                    <th class="hidden-xs hidden-sm">Home</th>
+                    <th class="hidden-xs hidden-sm">Property</th>
+                    <th class="hidden-xs hidden-sm">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+					<td class=" text-center" ></td>
+					<td class="hidden-xs hidden-sm text-right"><span>$1152</span><br>Total Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1065</span><br>Total Group Health</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1208</span><br>Total Life</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1335</span><br>Total Auto</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1285</span><br>Total Home</td>
+                    <td class="text-right"><span>$1380</span><br>Total Property</td>
+                    <td class="text-right"><span>$7425</span><br>Total</td>
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">07-12-2014</td>
+                    <td class=" " >Park Campbell </td>
+                    <td class="hidden-xs hidden-sm text-right">$245</td>
+                    <td class="hidden-xs hidden-sm text-right">$145</td>
+                    <td class="hidden-xs hidden-sm text-right">$175</td>
+                    <td class="text-right">$305</td>
+                    <td class="hidden-xs hidden-sm text-right">$235</td>
+                    <td class="hidden-xs hidden-sm text-right">$190</td>
+                    <td class="text-right bold">$1295</td>
+                </tr>
+                
+               <tr>
+                    <td class=" text-center">07-13-2014</td>
+                    <td class=" " > Mitchell Turner </td>
+                    <td class="hidden-xs hidden-sm text-right">$232</td>
+                    <td class="hidden-xs hidden-sm text-right">$165</td>
+                    <td class="hidden-xs hidden-sm text-right">$410</td>
+                    <td class="text-right">$200</td>
+                    <td class="hidden-xs hidden-sm text-right">$185</td>
+                    <td class="hidden-xs hidden-sm text-right">$300</td>
+                    <td class="text-right bold">$1492</td>
+                </tr>
+                
+                
+                <tr>
+                    <td class=" text-center">07-15-2014</td>
+                    <td class=" " >Mr. Gonzalez </td>
+                    <td class="hidden-xs hidden-sm text-right">$190</td>
+                    <td class="hidden-xs hidden-sm text-right">$200</td>
+                    <td class="hidden-xs hidden-sm text-right">$178</td>
+                    <td class="text-right">$320</td>
+                    <td class="hidden-xs hidden-sm text-right">$270</td>
+                    <td class="hidden-xs hidden-sm text-right">$280</td>
+                    <td class="text-right bold">$1438</td>
+                </tr>
+                
+                
+                <tr>
+                    <td class=" text-center">07-16-2014</td>
+                    <td class=" " >John Rodriguez</td>
+                    <td class="hidden-xs hidden-sm text-right">$235</td>
+                    <td class="hidden-xs hidden-sm text-right">$275</td>
+                    <td class="hidden-xs hidden-sm text-right">$155</td>
+                    <td class="text-right">$200</td>
+                    <td class="hidden-xs hidden-sm text-right">$320</td>
+                    <td class="hidden-xs hidden-sm text-right">$400</td>
+                    <td class="text-right bold">$1585</td>
+                </tr>
+                
+                <tr>
+                    <td class=" text-center">07-18-2014</td>
+                    <td class=" " > Walk  Walker </td>
+                    <td class="hidden-xs hidden-sm text-right">$250</td>
+                    <td class="hidden-xs hidden-sm text-right">$280</td>
+                    <td class="hidden-xs hidden-sm text-right">$290</td>
+                    <td class="text-right">$310</td>
+                    <td class="hidden-xs hidden-sm text-right">$275</td>
+                    <td class="hidden-xs hidden-sm text-right">$210</td>
+                    <td class="text-right bold">$1615</td>
+                </tr>
+                
+            </tbody>          
+        </table>
+    	</div>
+    	
+</div>
+
+<div id="total_report" class="tab-pane tab-pane-width">
+	
+	<div class="datapickerposition" style="" id="total_report_daterangepicker_div">
+       <div id="total_report_daterangepicker" class="btn btn-default">
+           <i class="icon-calendar"></i>
+           <span></span>
+           <b class="caret"></b>
+       </div>
+       <input type="hidden" name="total_report_daterangepicker_hidden" id="total_report_daterangepicker_hidden" value="" />
+   </div>
+   
+    <table class="table table-striped" id="total_report_result">
+        <thead>
+                <tr>
+                    <th class="hidden-xs hidden-sm text-center">Date</th>
+                    <th class="">Bank Products</th>
+                    <th>Discount Benefits</th>
+                    <th class="hidden-xs hidden-sm">Insurance</th>
+                    <th class="hidden-xs hidden-sm">Total Revenue</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<tr>
+					<td class=" text-center" ></td>
+                    <td class="text-right"><span>$2720</span><br>Total Fees</td>
+                    <td class="text-right"><span>$2040</span><br>Total Fees</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$1080</span><br>Total Fees</td>
+                    <td class="hidden-xs hidden-sm text-right"><span>$5840</span><br>Total Fees</td>
+                  </tr> 
+			</tfoot>
+            <tbody>
+                <tr>
+                    <td class=" text-center">07-12-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$550</td>
+                    <td class="hidden-xs hidden-sm text-right">$430</td>
+                    <td class="hidden-xs hidden-sm text-right">$170</td>
+                    <td class="text-right bold">$1150</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">07-11-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$630</td>
+                    <td class="hidden-xs hidden-sm text-right">$370</td>
+                    <td class="hidden-xs hidden-sm text-right">$180</td>
+                    <td class="text-right bold">$1180</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">07-10-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$540</td>
+                    <td class="hidden-xs hidden-sm text-right">$560</td>
+                    <td class="hidden-xs hidden-sm text-right">$140</td>
+                    <td class="text-right bold">$1240</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">07-09-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$780</td>
+                    <td class="hidden-xs hidden-sm text-right">$230</td>
+                    <td class="hidden-xs hidden-sm text-right">$240</td>
+                    <td class="text-right bold">$1250</td>
+                </tr>
+                
+                 <tr>
+                    <td class=" text-center">07-08-2014</td>
+                    <td class="hidden-xs hidden-sm text-right">$220</td>
+                    <td class="hidden-xs hidden-sm text-right">$450</td>
+                    <td class="hidden-xs hidden-sm text-right">$350</td>
+                    <td class="text-right bold">$1020</td>
+                </tr>
+            </tbody>          
+        </table>
+</div>
+
+
+<div id="service_bureau_report" class="tab-pane tab-pane-width">
+    
+    <!-- 
+    <ul data-toggle="tabs" class="nav nav-tabs push">
+	    <li class="active"><a href="#service_bureau_revenue_report" onclick="">Revenue Report</a></li>
+	    <li class=""><a href="#service_bureau_ero_report"  onclick="">By ERO</a></li>
+	</ul>
+	 -->
+	<div style="padding-top: 15px; position: absolute;">
+		<select name="service_bureau_report_list" id="service_bureau_report_list" onchange="loadReport(this)" style="padding:7px 15px;">
+			<option value="service_bureau_revenue_report" >Revenue Report</option>
+			<option value="service_bureau_ero_report" >By ERO</option>
+		</select>
+	</div>	
+	
+	<div class="datapickerposition" style="" id="service_bureau_report_daterangepicker_div">
+       <div id="service_bureau_report_daterangepicker" class="btn btn-default">
+           <i class="icon-calendar"></i>
+           <span></span>
+           <b class="caret"></b>
+       </div>
+       <input type="hidden" name="service_bureau_report_daterangepicker_hidden" id="service_bureau_report_daterangepicker_hidden" value="" />
+   </div>
+	
+    	<div id="service_bureau_revenue_report" class="tab-pane active ">
+    		<table class="table table-striped" id="service_bureau_revenue_report_result">
+                  <thead>
+                      <tr>
+                          <th class="hidden-xs hidden-sm text-center">Date</th>
+                          <th class="">Expected Fee</th>
+                          <th>Actual Fee</th>
+                          <th class="hidden-xs hidden-sm">Collected Fee</th>
+                          <th class="hidden-xs hidden-sm">Pending Fee</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                  	<tr>
+  						<td class=" text-center" ></td>
+                          <td class="text-right"><span>$36750</span><br>Total Fees</td>
+                          <td class="text-right"><span>$34912</span><br>Total Fees</td>
+                          <td class="hidden-xs hidden-sm text-right"><span>$26831</span><br>Total Fees</td>
+                          <td class="hidden-xs hidden-sm text-right"><span>$9081</span><br>Total Fees</td>
+                        </tr> 
+				  </tfoot>
+                  <tbody>
+                      <tr>
+                          <td class=" text-center">07-12-2014</td>
+                          <td class="hidden-xs hidden-sm text-right">$3450</td>
+                          <td class="hidden-xs hidden-sm text-right">$3322</td>
+                          <td class="hidden-xs hidden-sm text-right">$2231</td>
+                          <td class="text-right">$1091</td>
+                      </tr>
+                      
+                     <tr>
+                          <td class=" text-center">07-13-2014</td>
+                          <td class="hidden-xs hidden-sm text-right">$8700</td>
+                          <td class="hidden-xs hidden-sm text-right">$8200</td>
+                          <td class="hidden-xs hidden-sm text-right">$5500</td>
+                          <td class="text-right">$2700</td>
+                      </tr>
+                      
+                      <tr>
+                          <td class=" text-center">07-14-2014</td>
+                          <td class="hidden-xs hidden-sm text-right">$7500</td>
+                          <td class="hidden-xs hidden-sm text-right">$6990</td>
+                          <td class="hidden-xs hidden-sm text-right">$5500</td>
+                          <td class="text-right">$1490</td>
+                      </tr>
+                      
+                      <tr>
+                          <td class=" text-center">07-15-2014</td>
+                          <td class="hidden-xs hidden-sm text-right">$9500</td>
+                          <td class="hidden-xs hidden-sm text-right">$8800</td>
+                          <td class="hidden-xs hidden-sm text-right">$8200</td>
+                          <td class="text-right">$600</td>
+                      </tr>
+                      
+                      <tr>
+                          <td class=" text-center">07-16-2014</td>
+                          <td class="hidden-xs hidden-sm text-right">$7600</td>
+                          <td class="hidden-xs hidden-sm text-right">$7600</td>
+                          <td class="hidden-xs hidden-sm text-right">$5400</td>
+                          <td class="text-right">$3200</td>
+                      </tr>
+                  </tbody>
+              </table>
+    	</div>
+    	<div id="service_bureau_ero_report" class="tab-pane" style="display: none;">
+    		<table class="table table-striped" id="service_bureau_ero_report_result">
+                  <thead>
+                      <tr>
+                          <th class="">ERO Name</th>
+                          <th class="">Expected Fee</th>
+                          <th>Actual Fee</th>
+                          <th class="hidden-xs hidden-sm">Collected Fee</th>
+                          <th class="hidden-xs hidden-sm">Pending Fee</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                  	<tr>
+  						<td class=" text-center" ></td>
+                          <td class="text-right"><span>$29250</span><br>Total Fees</td>
+                          <td class="text-right"><span>$27922</span><br>Total Fees</td>
+                          <td class="hidden-xs hidden-sm text-right"><span>$21331</span><br>Total Fees</td>
+                          <td class="hidden-xs hidden-sm text-right"><span>$7591</span><br>Total Fees</td>
+                        </tr> 
+				  </tfoot>
+                  <tbody>
+                      <tr>
+                          <td class=" hidden-xs hidden-sm">Jennifer Lopez</td>
+                          <td class="hidden-xs hidden-sm text-right">$7600</td>
+                          <td class="hidden-xs hidden-sm text-right">$7600</td>
+                          <td class="hidden-xs hidden-sm text-right">$5400</td>
+                          <td class="text-right">$3200</td>
+                      </tr>
+                      
+                       <tr>
+                          <td class=" hidden-xs hidden-sm"> Michael Angelo</td>
+                          <td class="hidden-xs hidden-sm text-right">$9500</td>
+                          <td class="hidden-xs hidden-sm text-right">$8800</td>
+                          <td class="hidden-xs hidden-sm text-right">$8200</td>
+                          <td class="text-right">$600</td>
+                      </tr>
+                      
+                        <tr>
+                          <td class=" hidden-xs hidden-sm">John Daniel</td>
+                           <td class="hidden-xs hidden-sm text-right">$8700</td>
+                          <td class="hidden-xs hidden-sm text-right">$8200</td>
+                          <td class="hidden-xs hidden-sm text-right">$5500</td>
+                          <td class="text-right">$2700</td>
+                      </tr>
+                      
+                        <tr>
+                          <td class=" hidden-xs hidden-sm">Christopher Kaily</td>
+                          <td class="hidden-xs hidden-sm text-right">$3450</td>
+                          <td class="hidden-xs hidden-sm text-right">$3322</td>
+                          <td class="hidden-xs hidden-sm text-right">$2231</td>
+                          <td class="text-right">$1091</td>
+                      </tr>
+                  </tbody>
+              </table>
+    	</div>
+    	
+	
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+function loadReport(val){
+	
+	//var val1 = $('#'+report.id+' option:selected').val();
+	
+	var val1 = val;
+	
+	//alert(val1);
+	$('#bank_products_revenue_report').hide();
+	$('#bank_products_customer_report').hide();
+	$('#bank_products_employee_report').hide();
+	
+	
+	$('#discount_benefits_revenue_report').hide();
+	$('#discount_benefits_customers_report').hide();
+	$('#discount_benefits_employees_report').hide();
+	
+
+	$('#insurance_revenue_report').hide();
+	$('#insurance_policies_report').hide();
+	$('#insurance_customers_report').hide();
+	$('#insurance_employees_report').hide();
+	
+	
+	$('#service_bureau_revenue_report').hide();
+	$('#service_bureau_ero_report').hide();
+	
+	
+	   
+	//var classname = $(item).attr('class');
+	
+	/*if(val1 == 'New'){
+		$(".ship_invoice_file_class_"+classname).show();
+	}
+	else{
+		$(".ship_invoice_file_class_"+classname).hide();
+		$(".invoice_file"+classname).val('');
+	}*/
+	//console.log(val1);
+	$('#'+val1).show();
+	
+}
+
+ $(function(){
+       // $('#appBtnArea').remove();
+      // var oTable = $('#example').dataTable();
+    //new FixedHeader( oTable, { "bottom": true } );
+        
+     //var hash = window.location.hash;
+
+    // do some validation on the hash here
+
+    //hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+    
+    // Initialize DateRangePicker Advanced 
+        var bankProductsRevenueReportDaterangepicker = $('#bank_products_revenue_report_daterangepicker');
+        var bankProductsRevenueReportDaterangepickerSpan = $('#bank_products_revenue_report_daterangepicker span');
+        
+        bankProductsRevenueReportDaterangepicker.daterangepicker({
+        	startDate: moment().subtract('days', 29),
+            endDate: moment(),
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+               'Last 7 Days': [moment().subtract('days', 6), moment()],
+               'Last 30 Days': [moment().subtract('days', 29), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'left',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+            }
+        },
+        function(start, end, label) {
+        	//console.log(start.format('YYYY-MM-D'));
+        	bankProductsRevenueReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+        	$('#bank_products_revenue_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
+        });
+       
+       // Set the default content when page loads
+        bankProductsRevenueReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+         
+       
+     // Initialize DateRangePicker Advanced 
+        var discountBenefitsReportDaterangepicker = $('#discount_benefits_report_daterangepicker');
+        var discountBenefitsReportDaterangepickerSpan = $('#discount_benefits_report_daterangepicker span');
+        
+        discountBenefitsReportDaterangepicker.daterangepicker({
+        	startDate: moment().subtract('days', 29),
+            endDate: moment(),
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+               'Last 7 Days': [moment().subtract('days', 6), moment()],
+               'Last 30 Days': [moment().subtract('days', 29), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'left',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+            }
+        },
+        function(start, end, label) {
+        	//console.log(start.format('YYYY-MM-D'));
+        	discountBenefitsReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+        	$('#discount_benefits_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
+        });
+       
+       // Set the default content when page loads
+        discountBenefitsReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+        
+       
+     // Initialize DateRangePicker Advanced 
+        var insuranceReportDaterangepicker = $('#insurance_report_daterangepicker');
+        var insuranceReportDaterangepickerSpan = $('#insurance_report_daterangepicker span');
+        
+        insuranceReportDaterangepicker.daterangepicker({
+        	startDate: moment().subtract('days', 29),
+            endDate: moment(),
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+               'Last 7 Days': [moment().subtract('days', 6), moment()],
+               'Last 30 Days': [moment().subtract('days', 29), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'left',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+            }
+        },
+        function(start, end, label) {
+        	//console.log(start.format('YYYY-MM-D'));
+        	insuranceReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+        	$('#discount_benefits_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
+        });
+       
+       // Set the default content when page loads
+        insuranceReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+       
+       
+     // Initialize DateRangePicker Advanced 
+        var totalReportDaterangepicker = $('#total_report_daterangepicker');
+        var totalReportDaterangepickerSpan = $('#total_report_daterangepicker span');
+        
+        totalReportDaterangepicker.daterangepicker({
+        	startDate: moment().subtract('days', 29),
+            endDate: moment(),
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+               'Last 7 Days': [moment().subtract('days', 6), moment()],
+               'Last 30 Days': [moment().subtract('days', 29), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'left',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+            }
+        },
+        function(start, end, label) {
+        	//console.log(start.format('YYYY-MM-D'));
+        	totalReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+        	$('#discount_benefits_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
+        });
+       
+       // Set the default content when page loads
+        totalReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+       
+       
+     // Initialize DateRangePicker Advanced 
+        var serviceBureauReportDaterangepicker = $('#service_bureau_report_daterangepicker');
+        var serviceBureauReportDaterangepickerSpan = $('#service_bureau_report_daterangepicker span');
+        
+        serviceBureauReportDaterangepicker.daterangepicker({
+        	startDate: moment().subtract('days', 29),
+            endDate: moment(),
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+               'Last 7 Days': [moment().subtract('days', 6), moment()],
+               'Last 30 Days': [moment().subtract('days', 29), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'left',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+            }
+        },
+        function(start, end, label) {
+        	//console.log(start.format('YYYY-MM-D'));
+        	serviceBureauReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+        	$('#discount_benefits_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
+        });
+       
+       // Set the default content when page loads
+        serviceBureauReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+       
+        
+        
+
+
+ // You can bind to change event on original element
+ 
+ $('#bank_products_report_list').selectric({
+ 	onOpen: function(){
+ 		//alert('Open');
+ 	},
+ 	// Or set an onChange function
+ 	onChange: function(e){
+ 	
+ 	
+ 	var val1 = $('#'+e.id+' option:selected').val();
+ 	// console.log(val1);
+ 	
+ 	loadReport(val1);
+ 	
+ 	bankProductsRevenueReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+ 	
+ 	/*$('#bank_products_revenue_report').hide();
+	$('#bank_products_customer_report').hide();
+	$('#bank_products_employee_report').hide();
+	
+	
+	$('#discount_benefits_revenue_report').hide();
+	$('#discount_benefits_customers_report').hide();
+	$('#discount_benefits_employees_report').hide();
+	
+
+	$('#insurance_revenue_report').hide();
+	$('#insurance_policies_report').hide();
+	$('#insurance_customers_report').hide();
+	$('#insurance_employees_report').hide();
+	
+	
+	$('#service_bureau_revenue_report').hide();
+	$('#service_bureau_ero_report').hide();
+ 	 
+ 	 $('#'+val1).show();*/
+ 	},
+ 	onClose: function(){
+ 		//alert('Close');
+ 	}
+ });
+ 
+ $('#discount_benefits_report_list').selectric({
+	 	onOpen: function(){ //alert('Open');
+	 	},
+	 	// Or set an onChange function
+	 	onChange: function(e){
+	 		var val1 = $('#'+e.id+' option:selected').val();
+	 	 	//console.log(val1);
+	 		loadReport(val1);
+	 		discountBenefitsReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+	 	},
+	 	onClose: function(){ //alert('Close'); 
+	 	}
+	 });
+ 
+ $('#insurance_report_list').selectric({
+	 	onOpen: function(){ //alert('Open');
+	 	},
+	 	// Or set an onChange function
+	 	onChange: function(e){
+	 		var val1 = $('#'+e.id+' option:selected').val();
+	 	 	//console.log(val1);
+	 		loadReport(val1);
+	 		insuranceReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+	 	},
+	 	onClose: function(){ //alert('Close'); 
+	 	}
+	 });
+ 
+ $('#service_bureau_report_list').selectric({
+	 	onOpen: function(){ //alert('Open');
+	 	},
+	 	// Or set an onChange function
+	 	onChange: function(e){
+	 		var val1 = $('#'+e.id+' option:selected').val();
+	 	 	//console.log(val1);
+	 		loadReport(val1);
+	 		serviceBureauReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+	 	},
+	 	onClose: function(){ //alert('Close'); 
+	 	}
+	 });
+
+
+
+ 
+  
+    $('.nav-tabs').click('show', function(e) {  
+        paneID = $(e.target).attr('href');
+        
+        if(paneID == '#bank_products_report'){
+        	$('#bank_products_revenue_report').show();
+        	$('#bank_products_customer_report').hide();
+        	$('#bank_products_employee_report').hide();
+        	
+        	$('#bank_products_report_list').val('bank_products_revenue_report');
+        	
+        
+        }else if(paneID == '#discount_benefits_report'){
+        	$('#discount_benefits_revenue_report').show();
+        	$('#discount_benefits_customers_report').hide();
+        	$('#discount_benefits_employees_report').hide();
+        	
+        	$('#discount_benefits_report_list').val('discount_benefits_revenue_report');
+        	
+        	
+        
+        }else if(paneID == '#insurance_report'){
+        	$('#insurance_revenue_report').show();
+        	$('#insurance_policies_report').hide();
+        	$('#insurance_customers_report').hide();
+        	$('#insurance_employees_report').hide();
+        	
+        	$('#insurance_report_list').val('insurance_revenue_report');
+        	
+        	
+        
+        }else if(paneID == '#service_bureau_report'){
+        	$('#service_bureau_revenue_report').show();
+        	$('#service_bureau_ero_report').hide();
+        	
+        	$('#service_bureau_report_list').val('service_bureau_revenue_report');
+        	
+        }
+       // console.log(paneID);
+        
+    });
+    
+    
+    $('#finance_result').dataTable( {
+         	"sDom": 'T<"clear">lfrtip',
+         	"oTableTools": {
+     			//"aButtons": [ "xls", "pdf","copy", "print" ]
+         		"aButtons": [
+    						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                             { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		]
+     		},
+     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0 ] }],
+     		"bLengthChange": false,
+       		"bAutoWidth": false,  
+       		"aoColumns": [
+       		            { sWidth: '10%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '11%' },
+       		            { sWidth: '6%' },
+       		            { sWidth: '11%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '11%' },
+       		            { sWidth: '6%' },
+       		            { sWidth: '9%' } ]
+         });
+    
+    $('#bank_products_customer_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+ 			//"aButtons": [ "xls", "pdf","copy", "print" ]
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 		},
+ 		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0 ] }],
+   		"bAutoWidth": false,  
+   		"bLengthChange": false,
+   		"aoColumns": [
+   		            { sWidth: '9%' },
+   		         	{ sWidth: '13%' },
+   		            { sWidth: '8%' },
+   		            { sWidth: '9%' },
+   		            { sWidth: '7%' },
+   		            { sWidth: '6%' },
+   		            { sWidth: '9%' },
+   		            { sWidth: '9%' },
+   		            { sWidth: '9%' },
+   		            { sWidth: '7%' },
+   		            { sWidth: '6%' },
+   		            { sWidth: '9%' } ]
+     });
+    
+    $('#bank_products_employee_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"bLengthChange": false,
+     	"oTableTools": {
+ 			//"aButtons": [ "xls", "pdf","copy", "print" ]
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 		},
+ 		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0 ] }],
+   		"bAutoWidth": false,  
+   		"aoColumns": [
+   		            { sWidth: '10%' },
+   		         	{ sWidth: '14%' },
+   		            { sWidth: '8%' },
+   		            { sWidth: '8%' },
+   		            { sWidth: '10%' },
+   		            { sWidth: '7%' },
+   		            { sWidth: '12%' },
+   		            { sWidth: '12%' },
+   		         	{ sWidth: '10%' },
+   		             ]
+     });
+    
+    
+    
+    
+    $('#discount_benefits_revenue_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }
+ 			],
+ 			"columnDefs": [ {
+ 	            "visible": false,
+ 	            "targets": -1
+ 	        } ],
+ 	       "bLengthChange": false,
+ 			"bAutoWidth": false,  
+ 	   		"aoColumns": [
+ 	   		            { sWidth: '10%' },
+ 	   		         	{ sWidth: '10%' },
+ 	   		            { sWidth: '10%' },
+ 	   		            { sWidth: '15%' },
+ 	   		            { sWidth: '10%' },
+ 	   		            { sWidth: '10%' },
+ 	   		            { sWidth: '10%' },
+ 	   		            { sWidth: '15%' },
+ 	   		        	{ sWidth: '10%' },
+ 	   		             ]
+     });
+    
+    $('#service_bureau_revenue_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"bLengthChange": false,
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+     });
+    
+    $('#service_bureau_ero_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"bLengthChange": false,
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+     });
+    	
+    $('#total_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"bLengthChange": false,
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+     });
+    
+    $('#insurance_revenue_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"bLengthChange": false,
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+ 			"bAutoWidth": false,  
+ 	   		"aoColumns": [
+ 	   		            { sWidth: '10%' },
+ 	   		         	{ sWidth: '10%' },
+ 	   		            { sWidth: '18%' },
+ 	   		            { sWidth: '12%' },
+ 	   		            { sWidth: '10%' },
+ 	   		            { sWidth: '10%' },
+ 	   		            { sWidth: '15%' },
+ 	   		            { sWidth: '25%' },
+ 	   		             ]
+     });
+    
+    $('#insurance_policies_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+ 			"bAutoWidth": false,  
+ 			"bLengthChange": false,
+       		"aoColumns": [
+						{ sWidth: '12%' },
+						{ sWidth: '12%' },
+						{ sWidth: '20%' },
+						{ sWidth: '12%' },
+						{ sWidth: '12%' },
+						{ sWidth: '12%' },
+						{ sWidth: '12%' },
+						{ sWidth: '12%' },
+       		            ]
+ 			 	
+     });
+    
+    $('#insurance_customers_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+ 			"bAutoWidth": false,
+ 			"bLengthChange": false,
+       		"aoColumns": [
+       		           { sWidth: '9%' },
+      		            { sWidth: '18%' },
+      		            { sWidth: '9%' },
+      		            { sWidth: '15%' },
+      		            { sWidth: '9%' },
+      		            { sWidth: '9%' },
+      		            { sWidth: '9%' },
+      		            { sWidth: '13%' },
+      		            { sWidth: '9%' },
+       		            ]
+     });
+    
+    $('#insurance_employees_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+ 			"bAutoWidth": false, 
+ 			"bLengthChange": false,
+       		"aoColumns": [
+       		            { sWidth: '9%' },
+       		            { sWidth: '18%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '15%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '13%' },
+       		            { sWidth: '9%' },
+       		            ]
+     });
+    
+    $('#discount_benefits_employees_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+ 			"bLengthChange": false,
+     });
+    
+    $('#discount_benefits_customers_report_result').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+     		"aButtons": [
+						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf","mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                         {"sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                 		]
+ 			},
+ 			"bLengthChange": false,
+ 			"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [0 ] }],
+     });
+    
+    
+        
+        $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+
+       
+    });
+</script>

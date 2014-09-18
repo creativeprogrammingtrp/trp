@@ -1,0 +1,774 @@
+<style>
+#image_product img
+{
+	width: 100%;
+}
+#showLoadingImg > img
+{
+	width: 100%;
+}
+dt, dd
+{
+	float:left !important;
+}
+.thumbButtons
+{
+	width: 100%;
+}
+.review
+{
+	display: inline-block;
+}
+</style>
+<div class="row">
+    <div class="span9">
+        <div class="row">
+
+            <div class="product-details clearfix">
+                <div class="span5">
+                    <div class="product-title">
+                        <h4>{item_name}</h4>
+                    </div>
+                    <!--<div class="product-img">
+                         <a class="fancybox" href="{image_big}" tppabs="{image_big}"><img src='{image_big}' tppabs="{image_big}" alt=""></a>
+                     </div>-->
+                    <div class="product-img" id="showLoadingImg"></div>
+                    <div id="image_thumb"  class="product-img-thumb" style="overflow:hidden; clear:both; position:relative"></div>
+
+                    <!-- <div class="product-img-thumb">
+                         <a class="fancybox" href="{image_small}" tppabs="img/650x700.jpg"><img src="{image_small}" tppabs="img/68x60.jpg" alt=""></a>
+                     </div>-->
+                </div><!--end span5-->
+
+                <div class="span4">
+                    <div class="product-set">
+                        <div class="product-price">
+                            <span>${item_price}</span>
+                        </div><!--end product-price-->
+                        <div class="product-rate clearfix">
+                            {rating}
+                            <span>{total_Review} Review(s) &nbsp;&nbsp;<a data-toggle="tab" href="#make-review" class ="review">Make a Review</a></span>
+                        </div><!--end product-inputs-->
+                        <div class="product-info">
+                            <dl class="dl-horizontal">
+                                <dt>Availabilty:</dt>
+
+                                <dd>{inventories}</dd>
+								<br/>
+                                <dt>Product Code:</dt>
+                                <dd>{item_model}</dd>
+                                <dd>{in_stock}</dd>
+								<br/>
+                                <dt>Review Points:</dt>
+                                <dd>{total_Points} &nbsp; Points</dd>
+                                <br/>
+                                {origin}
+                            </dl>
+                        </div><!--end product-info-->
+                        <div class="product-inputs">
+                            <!-- <form method="post" action="page">-->
+
+                            <div class="input-append">
+                                {addToCart}
+                                {addwishlist}
+                            </div>
+
+                            <!--</form>--><!--end form-->
+
+                        </div><!--end product-inputs-->
+                    </div><!--end product-set-->
+                </div><!--end span4-->
+
+            </div><!--end product-details-->
+            <input type ="hidden" value ="{item_id}" id="key">
+        </div><!--end row-->
+        
+		<div class="product-tab">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#descraption" data-toggle="tab">Description</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#specfications">Specfications</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reviews <i class="icon-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#read-review" data-toggle="tab" id="readReview" >Read Reviews</a></li>
+                        <li><a href="#make-review" data-toggle="tab">Make Review</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="descraption">
+                    {description}
+                </div>
+                
+                <div id="specfications" class="tab-pane">
+                    
+                </div>
+                
+                <div class="tab-pane readreview" id="read-review">
+                    
+                </div>
+
+                <div class="tab-pane" id="make-review">
+                    <form method="post" action="page" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputName">Your Name <span class="text-error">*</span></label>
+                            <div class="controls">
+                                <input type="text" name="#" id="inputName" placeholder="John Doe...">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputReview">Your Review <span class="text-error">*</span></label>
+                            <div class="controls">
+                                <textarea name="#" id="inputReview" placeholder="Put your review here..."></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputReview">Your Review <span class="text-error">*</span></label>
+                            <div class="controls">
+                                <div id="rating" class="btn-group" data-toggle="buttons-radio">
+
+                                    <button type="button" class="btn btnreview" data-toggle="tooltip" data-title="1/5" value="1"><i class="icon-star"></i></button>
+                                    <button type="button" class="btn btnreview" data-toggle="tooltip" data-title="2/5" value="2"><i class="icon-star"></i></button>
+                                    <button type="button" class="btn btnreview" data-toggle="tooltip" data-title="3/5" value="3"><i class="icon-star"></i></button>
+                                    <button type="button" class="btn btnreview" data-toggle="tooltip" data-title="4/5" value="4"><i class="icon-star"></i></button>
+                                    <button type="button" class="btn btnreview"  data-toggle="tooltip" data-title="5/5" value="5"><i class="icon-star"></i></button>
+
+                                    <button type="button" class="btn refresh" data-title="Refresh" data-toggle="tooltip">
+                                        <i class="icon-refresh"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary addReview" name="submit">Add Review</button>
+                            </div>
+                        </div>
+                    </form><!--end form-->
+                </div>
+            </div><!--end tab-content-->
+        </div><!--end product-tab-->
+        
+         <div class="related-product">
+            <div class="titleHeader clearfix  related">
+                <h3>Related Product</h3>
+            </div><!--end titleHeader-->
+
+            <div class="row">
+                <ul class="hProductItems clearfix" id="relatedProduct"></ul>
+            </div>
+        </div><!--end related-product-->
+
+        
+    </div><!--end span9-->
+
+
+    <aside class="span3">
+        <div class="aside-inner" id="product-aside">
+            {specials}
+            {featured}
+        </div><!--end aside-inner-->
+    </aside><!--end span3-->
+
+</div><!--end row-->
+<!-- Sidebar Widget
+================================================== -->
+<!-- End Sidebar Widget-->
+<!--Use javascript-->
+<script src="../shop/js/jquery.fancybox.js"></script>
+<script type="text/javascript">
+    var specialItems = [];  
+    var itmID = '{item_id}';
+    var dataReview =  [];
+    var dataRelated = [];
+    {if("load_instock" == "yes");}
+    {if('product_image'=='ok');}
+    function savePrimary(){
+        $(".addReview").click(function(){
+            if($('#inputReview').val() ==''){
+                alert("Please input content !");
+            }else if($('#inputName').val()==''){
+                alert("Please input your name !");
+            }else{
+                $.post("index.php/shop/item_details/saveReview",
+                {
+                    itm_id:itmID,
+                    name: $('#inputName').val(),
+                    review: $('#inputReview').val(),
+                    rating: $('#rating').find('.active').val()
+                },
+                function(data){
+                    window.location.reload();
+                });
+            }    
+            return false;
+        });
+    }
+    
+    function hoverRating(){
+        /* $('.btnreview').hover(function(){
+            $(this).css('color','yellow');
+            $(this).prevAll().css('color','yellow');//#F16325
+        },function(){
+            $(this).css('color','');
+            $(this).prevAll().css('color','');
+        })*/
+        $('.refresh').click(function(){
+            $(this).siblings().removeClass('active');
+            $(this).siblings().css('color','');
+            return false;
+        });
+        $('.btnreview').click(function(){
+            //$(this).unbind('mouseenter').unbind('mouseleave');
+            $(this).css('color','yellow');
+            $(this).addClass('active');
+            $(this).prevAll().css('color','yellow');
+            $(this).nextAll().css('color','');
+            $(this).prevAll().removeClass('active');
+            $(this).nextAll().removeClass('active');
+            return false;
+        });
+      
+    }
+    
+    function openTabMakeReview(){
+        $('.review').on('click',function(){
+            $('li.dropdown').addClass('active').siblings('li').removeClass('active');
+            $('html, body').animate({
+                scrollTop: $(".product-tab").offset().top
+            }, 2000);
+            $("#inputName").focus();
+        });
+    }
+    function loadObj(){
+        
+        {if('dataReview'=='ok');};
+        {if('dataRelated'=='ok');};
+        loadReview();
+        loadRelated();
+        openTabMakeReview();
+        showPopup('.btn');
+    }
+ 
+    function loadReview(){
+        var html = '';
+        for(var i = 0 ; i< dataReview.length ; i++){
+            var obj = dataReview[i];
+            if(obj.itm_id != null){
+                html += '<div class="single-review clearfix">';
+                html += '<div class="review-header">';
+                html += '<ul class="rating">';
+                for(var j = 1 ; j <= obj.rating ; j++){
+                    html += '<li><i class="star-on"></i></li>';
+                }
+                for (var k = 1; k <= (5-obj.rating) ; k++){
+                    html += '<li><i class="star-off"></i></li>'; 
+                }
+                html += '</ul>';
+           
+                html += '<h4>'+obj.rname+'</h4>';
+                html += '<small>'+obj.date_comment+'</small>';
+                html += '</div>';
+                html += '<div class="review-body">';
+                html += '<p>'+obj.rcontent+'</p>';
+                html += '</div></div></div>';
+            }
+        }
+            
+        $("#read-review").empty().append(html);
+    }
+    
+    
+    function loadRelated(){
+        var html = '';
+        var j = 1;
+
+        for(var i = 0 ; i <dataRelated.length ; i++ ){
+            var obj = dataRelated[i];
+            var url_item_relate = 'shop/item_details?itemid='+obj.itm_key;
+              
+            if(j %3 == 1){html += '<div class="itm-wrapper clearfix">';}
+            html += ' <li class="span3 clearfix">';
+            html += '<div class="thumbnail">';
+			var file = (obj.filename.file).indexOf('.')>=0?'shopping/data/img/thumb_home/'+obj.filename.file:dir_theme+"/shop/images/212x192.jpg";
+            html += ' <a href="'+url_base_path__+url_item_relate+'"><img src="'+file+'" tppabs="img/212x192.jpg" alt=""></a></div>';
+            html += '<div class="thumbSetting">';
+            html += '<div class="thumbTitle same_height">'; 
+            html += '<a href="'+url_base_path__+url_item_relate+'" class="invarseColor">'+obj.itm_name+'</a>'+obj.outOfStock+'</div>';
+            html += '<div class="thumbPrice"> <span>$'+obj.current_cost+'</span> </div>';
+            // html += ' <div class="thumbButtons"> <button class="btn btn-primary btn-small" data-title="+To Cart" data-placement="top" data-toggle="tooltip">';
+            // html += '<i class="icon-shopping-cart"></i> </button>';
+            html += ' <div class="thumbButtons">'+obj.addCart;
+            //html += '<button class="btn btn-small" data-title="+To WishList" data-placement="top" data-toggle="tooltip"  onClick="addToWishlist(\'{item_id}\')">';
+            //html += ' <i class="icon-heart"></i> </button>';
+            html += obj.Wishlist;
+            //html += '<button data-toggle="tooltip" data-placement="top" data-title="+To Compare" class="btn btn-small"><i class="icon-refresh"></i> </button>';
+            // html += ' <ul class="rating" style="margin-top:5px;margin-left:10px" >';
+            // html += ' <li><i class="star-on"></i></li>';
+            // html += ' <li><i class="star-on"></i></li>';
+            //html +=' <li><i class="star-on"></i></li>';
+            //html += ' <li><i class="star-off"></i></li>';
+            html += ' <ul class="rating" style="margin:7px 0px " >';
+            html += obj.rating;
+            html += '</ul>';
+            html += '</div> </li>';
+               
+            if(j % 3  == 0){html += '</div>';}
+            
+            ++j;     
+        }		
+        if(j % 3  == 0){html += '</div>';}
+		if (html != "")
+		{
+        	$('#relatedProduct').empty().append(html);
+		}
+		else
+		{
+			$('.related-product').remove();
+		}
+    }
+    function saveWishlist(){
+        $('.Wishlists').click(function(){
+            $.post("index.php/shop/item_details/saveWishlist", {
+                addWishlist:'yes',
+                itemID:itmID
+            },function(data){
+                alert(data);
+            });	
+            return false;
+        });
+    }
+    
+   /* function schedule(key){
+        window.location = url_base_path__+'shop/item_details?itemid='+key;
+        return false;
+    }*/
+   
+  /*  function find_location(itm_key){
+        window.location = 'index.php/shop/item_details/findLocation?itmid='+itm_key;
+        return false;
+    }*/
+    
+    var imgActive = '';   
+    var arr_movie = ['wmv','WMV','wma','WMA','avi','AVI','mpeg','MPEG','mpg','MPG','mov','MOV','mp4','MP4','mpe','MPE','m1v','M1V','dvr-ms','DVR-MS','mpe','MPE','mp2','MP2','mpv2','MPV2'];
+    var arr_flv = ['flv','FLV'];
+    var arr_swf = ['swf','SWF'];
+    var arr_img = ['jpg','JPG','jpeg','JPEG','pjpeg','PJPEG','gif','GIF','bmp','BMP','png','PNG'];
+
+    function parseJson(string_object){
+        return JSON.parse(string_object);
+    }
+
+    function loadImagesProduct(){
+        $("#image_thumb").empty();
+        var st = '';
+        var st_video = '';
+        var arr_video = [];
+        dataImgProduct = parseJson(dataImgProduct);
+        if(dataImgProduct.length > 0){
+            var st = '<table cellpadding="0" cellspacing="0" border="0" id="rpdata1_listimg"><tr>';
+            for(var i = 0; i < dataImgProduct.length; i++){
+                if(dataImgProduct[i] != ''){
+                    var arr_fileID = dataImgProduct[i].split(".");
+                    var play_bt = true;
+                    var url__ = dataImgProduct[i];
+                    if(arr_fileID.length > 0){
+                        var extend_ = arr_fileID[arr_fileID.length-1];	
+                        for(var j = 0; j < arr_img.length; j++){
+                            if(arr_img[j] == extend_){
+                                play_bt = false;
+                                break;	
+                            }	
+                        }
+                        if(play_bt == true){
+                            url__ = dataImgProduct[i].replace("."+extend_, ".jpg");	
+                        }
+                    }
+                    if(play_bt == true){
+                        st_video += '<div class="thumb_video" id="video_'+dataImgProduct[i]+'" style="background:url(shopping/data/img/thumb/'+url__+') no-repeat" onclick="ShowADs(\''+dataImgProduct[i]+'\')"><div style="overflow:hidden; margin-top:25px; margin-left:30px; background:url(../images/icon_play.png) no-repeat; width:30px; height:30px;"></div></div>';
+                        arr_video[arr_video.length] = dataImgProduct[i];
+                    }else{
+                        st += '<td valign="middle"><div id="'+dataImgProduct[i]+'" class="liImgthumb" style="background:url(shopping/data/img/thumb_slide/'+url__+') no-repeat 4px 4px; width:62px; height:56px; overflow:hidden ; cursor: pointer; border-radius: 4px 4px 4px 4px; border: 1px solid #E0E0E0;  padding: 2px px 2px 4px; margin: 8px 13px 0 0;  transition: all 0.2s ease-in-out 0s;  background-color: #FFFFFF;" onclick="ActiveImgProduct(\''+dataImgProduct[i]+'\')" align="left"></div></td>';	
+                    }
+                }	
+            }
+            st += '</tr></table>';
+            $("#image_thumb").append(st);
+            var check_active = false;
+            for(var i = 0; i < dataImgProduct.length; i++){
+                if(document.getElementById(dataImgProduct[i])){
+                    if(dataImgProduct[i] == imgActive){
+                        showActive(i);
+                        if(document.getElementById(imgActive)) document.getElementById(imgActive).className = 'liImgthumbActive';	
+                        check_active = true;
+                    }		
+                }	
+            }
+            if(check_active == false){
+                showActive(0);
+                imgActive = dataImgProduct[0];	
+                if(document.getElementById(imgActive)) document.getElementById(imgActive).className = 'liImgthumbActive';	
+            }
+        }
+    }
+
+    function ShowADs(file_name){
+        var dir =  "shopping/data/img/thumb_show/";
+        var arr__ = file_name.split(".");
+        var extend = arr__[arr__.length-1];
+        if(file_name != ''){
+            var check_type = false;
+            var path_src = dir + file_name;
+            for(var i = 0; i < arr_movie.length; i++){
+                if(extend == arr_movie[i]){ 
+                    var movie_content = '<div style="overflow:hidden; width:608px; height:372px" align="center">';
+                    movie_content += '<OBJECT TYPE="application/x-mplayer2" data="'+path_src+'" ID="MediaPlayer" WIDTH="608px" HEIGHT="372px">';
+                    movie_content += '<PARAM NAME="FileName" VALUE="'+path_src+'">';
+                    movie_content += '<PARAM name="autostart" VALUE="false">'
+                    movie_content += '<PARAM name="ShowControls" VALUE="true">';
+                    movie_content += '<param name="ShowStatusBar" value="false">';
+                    movie_content += '<PARAM name="ShowDisplay" VALUE="false">';
+                    movie_content += '<param name="wmode" value="transparent">';
+                    movie_content += '</OBJECT>';
+                    movie_content += '</div>';
+                    $("#file_ads").empty().append(movie_content);
+                    check_type = true;
+                    break;				
+                }
+            }
+            if(!check_type){
+                for(var i = 0; i < arr_flv.length; i++){
+                    if(extend == arr_flv[i]){
+                        var flv_str = '<div style="overflow:hidden; width:608px; height:372px" align="center">';
+                        flv_str += '<embed src="misc/flvplayer/flvplayer.swf" allowfullscreen="true" allowscriptaccess="always" flashvars="file='+path_src+'&backcolor=0x#000000&frontcolor=0xFFFFFF&lightcolor=0xFFFFFF&showdigits=true&showfsbutton=true&autostart=false&repeat=false&volume=100&width=608&height=372" height="372px" width="608px"></embed>';
+                        flv_str += '</div>';
+                        $("#file_ads").empty().append(flv_str);
+                        check_type = true;
+                        break;
+                    }
+                }
+            }
+            if(!check_type){
+                for(var i = 0; i < arr_swf.length; i++){
+                    if(extend == arr_swf[i]){	
+                        var swf_content = '<div style="overflow:hidden; width:608px; height:372px" align="center">';
+                        swf_content += '<object type="application/x-shockwave-flash" data="'+path_src+'" width="608px" height="372px">';
+                        swf_content += '<param name="movie" value="'+path_src+'" />';
+                        swf_content += '<param name="quality" value="high" />';
+                        swf_content += '<param name="wmode" value="transparent">';
+                        swf_content += '</object>';	
+                        swf_content += '</div>';
+                        $("#file_ads").empty().append(swf_content);
+                        check_type = true;
+                        break;
+                    }
+                }
+            }	
+        }	
+    }
+    function showActive(index){
+        var dir =  "shopping/data/img/thumb_show/";
+        var extend__ = '';
+        var fileid__ = '';
+        if(typeof(dataImgProduct[index]) == 'string'){
+            var arr_fileID = dataImgProduct[index].split(".");
+            fileid__ = (typeof(arr_fileID[0]) == 'string') ? arr_fileID[0] : '';	
+            extend__ = (typeof(arr_fileID[1]) == 'string' && arr_fileID[1] != '') ? arr_fileID[1] : '';
+        }
+        var check_type = false;
+        var path_src = dir + fileid__ + '.' + extend__;
+    
+        for(var i = 0; i < arr_movie.length; i++){
+            if(extend__ == arr_movie[i]){ 
+                var movie_content = '<div style="overflow:hidden; width:100%; padding-top:45px" align="center">';
+                movie_content += '<OBJECT TYPE="application/x-mplayer2" data="'+path_src+'" ID="MediaPlayer" WIDTH="360px" HEIGHT="225px">';
+                movie_content += '<PARAM NAME="FileName" VALUE="'+path_src+'">';
+                movie_content += '<PARAM name="autostart" VALUE="false">'
+                movie_content += '<PARAM name="ShowControls" VALUE="true">';
+                movie_content += '<param name="ShowStatusBar" value="false">';
+                movie_content += '<PARAM name="ShowDisplay" VALUE="false">';
+                movie_content += '<param name="wmode" value="transparent">';
+                movie_content += '</OBJECT>';
+                movie_content += '</div>';
+                $("#showLoadingImg").empty().append(movie_content);
+                check_type = true;
+                break;				
+            }
+        }
+        if(!check_type){
+            for(var i = 0; i < arr_flv.length; i++){
+                if(extend__ == arr_flv[i]){
+                    var flv_str = '<div style="overflow:hidden; width:100%; padding-top:45px" align="center">';
+                    flv_str += '<embed src="misc/flvplayer/flvplayer.swf" allowfullscreen="true" allowscriptaccess="always" flashvars="file='+path_src+'&backcolor=0x#000000&frontcolor=0xFFFFFF&lightcolor=0xFFFFFF&showdigits=true&showfsbutton=true&autostart=false&repeat=false&volume=100&width=360&height=225" height="225px" width="360px"></embed>';
+                    flv_str += '</div>';
+                    $("#showLoadingImg").empty().append(flv_str);
+                    check_type = true;
+                    break;
+                }
+            }
+        }
+        if(!check_type){
+            for(var i = 0; i < arr_swf.length; i++){
+                if(extend__ == arr_swf[i]){
+                    var swf_content = '<div style="overflow:hidden; width:100%; padding-top:45px" align="center">';
+                    swf_content += '<object type="application/x-shockwave-flash" data="'+path_src+'" width="360px" height="225px">';
+
+                    swf_content += '<param name="movie" value="'+path_src+'" />';
+                    swf_content += '<param name="quality" value="high" />';
+                    swf_content += '<param name="wmode" value="transparent">';
+                    swf_content += '</object>';			
+                    swf_content += '</div>';
+                    $("#showLoadingImg").empty().append(swf_content);
+                    check_type = true;
+                    break;
+                }
+            }
+        }
+        if(!check_type){
+            var st_ = '';
+            st_ += '<div id="wrap" style="top: 0px; z-index: 1; position: relative; padding :6px">';
+            st_ += '	<a id="image_product" style="position: relative; display: block;" href="shopping/data/img/thumb_crop/'+dataImgProduct[index]+'" >';
+            st_ +='          <img border="0px" src="shopping/data/img/thumb_show/'+dataImgProduct[index]+'" style="display: block;">';
+            st_ +='</a>';
+            st_ += '</div>';
+               
+            $("#showLoadingImg").empty().append(st_);
+			$("#image_product").fancybox({
+				openEffect	: 'none',
+				closeEffect	: 'none'
+			});
+        }
+    }
+    function ActiveImgProduct(activeimg){
+        if(imgActive == activeimg) {
+            return;
+        }else{
+            if(document.getElementById(activeimg)){
+                document.getElementById(imgActive).className = 'liImgthumb';	
+                imgActive = activeimg;	
+                document.getElementById(imgActive).className = 'liImgthumbActive';	
+                for(var i = 0; i < dataImgProduct.length; i++){
+                    if(dataImgProduct[i] == imgActive){
+                        showActive(i);
+                        break;	
+                    }
+                }
+            }
+        }
+    }
+
+    function CheckExitsImg(src){
+        if(src.indexOf(".", 0) != -1) return true; 
+        return false;
+    }
+    function resizeImgThumb(newImg){
+        if(newImg.complete) {	
+            newImg.width = 54;
+            newImg.height = 48;
+            newImg.style.display = 'block';
+        }else{
+            setTimeout(function () {	 
+                resizeImgThumb(newImg)
+            }, 100);	
+        }
+    }
+    ///////////////////////// scrolling thumb image //////////////////////////////////////
+    var timerID;
+    var nhay = 10;
+    var setTimeOut = 40;
+    var thumb_section;
+    var timerRunning = false;
+
+    function StartScrolling(image_thumb){
+        thumb_section = document.getElementById("image_thumb");	
+        addEventHandler(thumb_section, 'mouseover', function(event){moveThumb(event);});
+        addEventHandler(thumb_section, 'mousemove', function(event){moveThumb(event);});
+        addEventHandler(thumb_section, 'mouseout', function(event){DungLai();});
+    }
+    function moveThumb(e){
+        if(timerRunning == false){
+            timerRunning = true;
+            if(document.all) e = event;
+            var st = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
+            if(navigator.userAgent.toLowerCase().indexOf('safari')>=0)st=0;
+	
+            var leftPos = e.clientX - findPosX(thumb_section);
+            if(leftPos < 0) leftPos = 0;
+		
+            if(leftPos <= 62){
+                move_left();
+            }else if(leftPos > 308){
+                move_right();
+            }else{
+                DungLai();	
+            }		
+        }
+    }
+    function move_right() {
+        if(timerRunning){
+            var scrollLeft = thumb_section.scrollLeft;
+            thumb_section.scrollLeft = scrollLeft + nhay;
+            timerID = setTimeout(function () {
+                move_right();	
+            }, setTimeOut);	
+        }
+    }
+    function move_left() {
+        if(timerRunning){
+            var scrollLeft = thumb_section.scrollLeft;
+            if (scrollLeft > 0){
+                thumb_section.scrollLeft = scrollLeft - nhay;
+                if(thumb_section.scrollLeft < 0){
+                    thumb_section.scrollLeft = 0;
+                    DungLai();
+                }else{
+                    timerID = setTimeout(function () {
+                        move_left();	
+                    }, setTimeOut);		
+                }
+            }else{
+                thumb_section.scrollLeft = 0;
+                DungLai();	
+            }
+        }
+    }
+    function DungLai(){
+        timerRunning = false;
+        clearTimeout(timerID);
+    }
+    
+    
+    function fancyBox(){
+        $("#showLoadingImg #wrap a[rel=example_group]").fancybox({
+
+            'transitionIn'	: 'elastic',
+            'transitionOut': 'elastic'
+               
+        });
+        return false;
+    }
+    
+    
+    function functionfb()
+    {
+        $(this).fancybox({
+            'autoScale': true,
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 500,
+            'speedOut': 300,
+            'autoDimensions': true,
+            'centerOnScroll': true
+        })
+    }
+     
+ 
+    $(document).ready(function(){
+        loadObj();
+        saveWishlist();  
+        savePrimary();
+        hoverRating();
+        loadImagesProduct();
+		display_NoImage();
+        StartScrolling();
+		change_layout_grid();
+  		$(window).resize(function(){
+			change_layout_grid();
+		});
+                
+           
+    });
+	
+	//Qui Modified
+	var status_resize = -1;
+	function display_NoImage()
+	{
+		if ($.trim($('#showLoadingImg').html())=="")
+		{
+			$('#showLoadingImg').append('<img src="'+dir_theme+'/shop/images/372x370.jpg"/>');
+		}
+	}
+	
+	function change_layout_grid()
+	{
+		width = $(window).width();
+		if ((width>=980) && (status_resize!=1))
+		{
+			$('.same_height').attr('style','');
+			status_resize = 1;
+			fix_products_layout(width);
+		}
+		else if ((width<980) && (width>=768) && (status_resize!=2))
+		{
+			$('.same_height').attr('style','');
+			status_resize = 2;
+			fix_products_layout(1);
+		}
+		else if ((width<768) && (status_resize != 3)){
+			status_resize = 3;
+			$('.same_height').attr('style','');
+		}; 
+	}
+	
+	function fix_products_layout(width)
+	{
+		var arr = $('.same_height');
+		if (arr.length>0)
+		{
+			var i;
+			for (i = 0;i<arr.length;i++)
+			{
+				if ($(arr[i]).height() > 30)
+				{
+					var new_height = $(arr[i]).height();
+					var position = $(arr[i]).position();
+					var top = position.top;
+					
+					var m = i+1;
+					while ((m<(i+3)) && (m<arr.length))
+					{
+						var mposition = $(arr[m]).position();
+						if ((top < mposition.top+5)&& (top > mposition.top-5) && (new_height < $(arr[m]).height()))
+						new_height = $(arr[m]).height();
+						m++;
+					}
+					$(arr[i]).height(new_height);
+					
+					var k = i-1;
+					while ((k>i-3) && (k>=0))
+					{
+						var position_compare = $(arr[k]).position();
+						if ((position_compare.top < top+5)&&(position_compare.top > top - 5 ))
+						{
+							$(arr[k]).height(new_height);
+						}
+						k--;
+					}
+					
+					var j = i+1;
+					var i_step = 0;
+					while (j<(i+3) && (j<arr.length))
+					{
+						var position_compare = $(arr[j]).position();
+						if ((position_compare.top < top+5)&&(position_compare.top > top - 5 ))
+						{
+							$(arr[j]).height(new_height);
+							i_step++;
+						}
+						j++;
+					}
+					i += i_step;
+				}
+			}
+		}
+	}
+
+</script>
+
+
+

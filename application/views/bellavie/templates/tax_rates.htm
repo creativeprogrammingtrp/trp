@@ -1,0 +1,346 @@
+<style>
+.td-row{
+	max-width:600px;
+	word-wrap:break-word !important;}
+</style>
+<script language="javascript">
+
+var data_clients = [];
+var header_first 	= ['Name', 'Rate', 'State'];
+var header_last 	= ['Name', 'Rate', 'State'];
+var columeb = null;
+var sort_list = '';
+
+var pager_number = 1;
+var clients_select = 0;
+
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+
+function loadClients(){
+	
+	var str_content = '';
+	var length_data = data_clients.length;
+	
+	str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per"></th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0)">'+header_last[0]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(1)">'+header_last[1]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(2)">'+header_last[2]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+
+	if(length_data > 0){
+
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_clients[i];
+			
+			var button = '';
+			if(obj.modify == 'yes'){
+				button += '<img src="../images/b_edit.png" border="0" style="cursor:pointer" onclick="Edit_clients('+parseInt(obj.id, 10)+')" />';
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;';	
+				}
+				button +='<img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="delete_Client('+parseInt(obj.id, 10)+')" />'; 	
+			}
+			
+			str_content += '		<tr class="tr-row" id="tax_'+obj.id+'">';
+			str_content += '			<td align="left" valign="top" class="td-row"><div class="draggable"></div></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.name)+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.rate)+'%</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.state+'</td>';
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			
+		}
+		str_content += '	</tbody>';
+		
+	}
+	str_content += '</table>';
+//	pager_new(total_row, data_clients, page, 'loadClients', ['pager']);
+	$("#clients_list").empty().append(str_content);
+//	$('.v3').fixedtableheader();  
+	$("tbody").sortable({
+			handle: '.draggable',
+			update: function(e, ui){
+				
+				var image_thumb_children = $("tbody").children();
+				var dataImgProduct_tam = data_clients;
+				data_clients = [];
+				for(var j = 0; j < image_thumb_children.length; j++){
+					for(var k = 0; k < dataImgProduct_tam.length; k++){
+						if("tax_"+dataImgProduct_tam[k].id == image_thumb_children[j].id){
+							data_clients[data_clients.length] = dataImgProduct_tam[k];	
+							break;	
+						}	
+					}
+				}
+			}
+		}
+	);
+	$("tbody").disableSelection();
+}
+
+function filtList_adminclient(colum){
+	// Xac dinh Sort type
+	reset_headerAdminClient();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = data_clients.length;
+
+	if(row_sort > 0){
+		var min_index = 0;
+		var max_index = row_sort;		
+	
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name < data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name > data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}	
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].rate) < parseFloat(data_clients[j].rate)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].rate) > parseFloat(data_clients[j].rate)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 2){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].state < data_clients[j].state){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].state > data_clients[j].state){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 3){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].weight < data_clients[j].weight){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].weight > data_clients[j].weight){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}
+	}
+	loadClients();
+}
+
+function loadObjectClients(){
+	data_clients = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/tax", {
+		loadTaxs:'yes'
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		loadClients();
+	}, "json");
+	return false;
+}
+
+function Edit_clients(id){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '295px');
+		$("#content_popup").css("width", '600px');
+	}
+	$("#title_popup").empty().append("Edit Tax rates");
+	showbox('box_popup');
+	
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php/store/tax/edit/'+id,
+		cache: false,
+		success: function(message){
+			$("#content_popup").append(message);
+			HideLoadingObj(document.getElementById("content_popup"));
+			return false;
+		}
+	});
+	return false;
+}
+
+function AddNewAccount(){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '295px');
+		$("#content_popup").css("width", '600px');
+	}
+	$("#title_popup").empty().append("Add Tax Rates");
+	showbox('box_popup');
+	clients_select = 0;
+	
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php/store/tax/add',
+		cache: false,
+		success: function(message){
+			$("#content_popup").append(message);
+			HideLoadingObj(document.getElementById("content_popup"));
+			return false;
+		}
+	});
+	return false;
+}
+function delete_Client(ukey){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete Tax Rates");
+	showbox('box_popup');
+	
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php/store/tax/delete/'+ukey,
+		cache: false,
+		success: function(message){
+			$("#content_popup").append(message);
+			HideLoadingObj(document.getElementById("content_popup"));
+			return false;
+		}
+	});
+	return false;
+}
+function delete_tax(ukey){
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/tax/delete", {
+		delete_tax:'yes',
+		id:ukey
+	},function(data){
+		closeBox('box_popup');
+		data_clients = [];
+		HideLoadingObj(document.getElementById("content_popup"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		clients_select = 0;
+		loadClients();
+	}, "json");
+}
+
+function saveForms(){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/tax", {
+		saveDatas:'yes',
+		datas:data_clients
+	},function(data){
+		data_clients = [];
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		loadClients();
+	}, "json");
+}
+
+$(function() {
+	loadObjectClients(); 
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+
+</script>
+<div class="box_solar">
+    <div style="clear:both; padding-bottom:20px; width:100%; overflow:hidden">
+        {addnewbt}
+    </div>
+    <div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list"></div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="submitproductbt" align="left">
+        <input type="button" value="Save" class="btn btn-primary" onclick="saveForms()" />
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>

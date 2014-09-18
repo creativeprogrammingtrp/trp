@@ -1,0 +1,227 @@
+<div class="box_solar">	
+    <div style="clear:both; width:100%; overflow:hidden; padding-bottom:20px">
+        <form method="post" name="form_filter" onsubmit="return pageObject()">
+        <span class="field-with-placeholder" style="float:left">
+            <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{key_word}" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+        </span>
+        <span style="float:left; padding-left:5px">
+            {months}
+        </span>
+        <span style="float:left; padding-left:5px">
+            {years}
+        </span>
+        <span style="float:left; padding-left:10px"><input type="submit" class="btn" value="Filter" /></span>
+        <span style="float:left; padding-left:10px"><input type="submit" class="btn" value="Export To Excel" /></span>
+        </form>
+    </div>
+	<div id="pager" style="min-height:20px; width:100%" align="right"></div>
+	<div style="clear:both; min-height:200px" id="order_history_list" align="left"></div>	
+</div>
+<script language="javascript">
+var pager_number = 1;
+var data_order = [];
+var roleID = 0;
+var header_first 	= ['Member','Name','Email','Address','Amount'];
+var header_last 	= ['Member','Name','Email','Address','Amount'];
+var columeb = null;
+function delete_refund(rkey){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete Refund");
+	showbox('box_popup');
+	var str = '';
+	str += '<div style="clear:both; font-weight:bold">';
+	str += '	Are you sure you want to delete this refund?';
+	str += '</div>';
+	str += '<div style="clear:both; padding-top:20px">';
+	str += '	<div id="cancel_del" class="btn" style="float:right; margin-left:10px; margin-right:5px" align="center" onclick="closeBox(\'box_popup\')">Cancel</div>';
+	str += '	<div id="delete_acc" class="btn" style="float:right;" align="center" onclick="delete_objRefund(\''+rkey+'\')">Delete Refund</div>';
+	str += '</div>';
+	$("#content_popup").append(str);
+	return false;
+}
+
+function delete_Client(ukey){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete Order");
+	showbox('box_popup');
+	var str = '';
+	str += '<div style="clear:both; font-weight:bold">';
+	str += '	Are you sure you want to delete this Order?';
+	str += '</div>';
+	str += '<div style="clear:both; padding-top:20px">';
+	str += '	<div id="cancel_del" class="btn" style="float:right; margin-left:10px; margin-right:5px" align="center" onclick="closeBox(\'box_popup\')">Cancel</div>';
+	str += '	<div id="delete_acc" class="btn" style="float:right;" align="center" onclick="delete_acc(\''+ukey+'\')">Delete Order</div>';
+	str += '</div>';
+	$("#content_popup").append(str);
+	return false;
+}
+
+function returnURL(page,colum,sort_list){
+	if(page == null || page == 0) page = 1;
+	var url = 'index.php/store/transfermoney';
+	url += '?page='+page;
+	if(document.getElementById("key_word") && document.getElementById("key_word").value != ''){
+		url += '&key='+ encodeURIComponent(document.getElementById("key_word").value);
+	}
+	if(document.getElementById("month") && document.getElementById("month").value != ''){
+		url += '&month='+document.getElementById("month").value;	
+	}
+	if(document.getElementById("years") && document.getElementById("years").value != ''){
+		url += '&year='+document.getElementById("years").value;	
+	}
+	if(colum != null){
+		url += '&col='+colum;
+	}
+	if(sort_list != null){
+		url += '&sort='+sort_list;
+	}
+	return url;
+}
+function pageObject(page,colum,sort_list){
+	window.location = returnURL(page,colum,sort_list);
+	return false;
+}
+function filtList_order_admin(colum, page, maxlength){
+	var url = returnURL(page);
+	
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 0;
+	}else{
+		if(sort_list == 0){
+			sort_list = 1;
+		}
+		else{
+			sort_list = 0;
+		}
+	}
+	url += '&col='+columeb+'&sort='+sort_list;
+	window.location.href = url;
+	return false;
+}
+function loadObjectOrder(){
+	{if('load_order'=='yes');}
+	{if('load_sort_list'=='yes');}
+	{if('load_columeb'=='yes');}
+	if(sort_list == 0)
+		header_last[columeb] = header_first[columeb]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	else if(sort_list == 1) 
+		header_last[columeb] = header_first[columeb]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+
+	data_order = data_obj.data;
+	roleID = data_obj.rid;
+	var max_length = data_obj.maxlength;
+	var page = data_obj.page;
+	loadOrderList(page, max_length,columeb,sort_list);	
+}
+	
+function loadOrderList(page, maxlength,colum,sort_list){
+	
+	if(page == 0 || page == null) page = 1;
+	var str_content = '';
+	var length_data = data_order.length;
+	var total_row = 20;
+	
+	str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(0,'+page+','+maxlength+')">'+header_last[0]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(1,'+page+','+maxlength+')">'+header_last[1]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(2,'+page+','+maxlength+')">'+header_last[2]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(3,'+page+','+maxlength+')">'+header_last[3]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(4,'+page+','+maxlength+')">'+header_last[4]+'</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	if(length_data > 0){
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_order[i];
+			var color = '';
+			if(obj.status == 4) color = 'color:#F00';
+			str_content += '		<tr class="tr-row" id="'+obj.ukey+'">';
+
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.ukey+'</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.firstname+" "+obj.lastname+'</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.mail+'</td>';
+                        str_content += '			<td align="left" valign="middle" class="td-row">'+obj.address+", "+obj.city+", "+obj.state+" "+obj.zipcode+", "+obj.country+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row"><span style="'+color+'">$'+formatAsMoney(obj.amount)+'</span></td>';
+			str_content += '		</tr>';
+		}
+		str_content += '</tbody>';
+	}
+	str_content += '</table>';
+	if(IsNumeric(colum) && IsNumeric(sort_list)){
+		pagerAjax_1(total_row, maxlength, page, 'pageObject', ['pager'], colum, sort_list);
+	}else
+		pagerAjax(total_row, maxlength, page, 'pageObject', ['pager']);
+	$("#order_history_list").empty().append(str_content);
+}
+
+function collapse_row(okey, refund_key){
+	$("#"+okey+"_img").empty().append('<img src="../images/group-expand.gif" border="0" style="cursor:pointer" onclick="expand_row(\''+okey+'\',\''+refund_key+'\')" />');
+	if(document.getElementById(okey)){
+		document.getElementById(okey).style.background = '#ffffff';
+	}
+	if(refund_key != ''){
+		var arr_refund = refund_key.split(",");
+		for(var i = 0; i < arr_refund.length; i++){
+			$("#"+arr_refund[i]).hide();
+		}		
+	}
+}
+function pagerSim(page,num_pe_page,total_row,url,pager_name){
+	var st = '';
+	if(page > 1){
+		var page_select = page - 1;
+		var new_url = url+'&page='+page_select;
+		st += '<a href="'+new_url+'">Previous</a>';	
+	}else{
+		st += 'Previous';	
+	}
+	st += '&nbsp;&nbsp;|&nbsp;&nbsp;';
+	if(total_row > num_pe_page){
+		var page_select = page + 1;
+		var new_url = url+'&page='+page_select;
+		st += '<a href="'+new_url+'">Next</a>';
+	}else{
+		st += 'Next';	
+	}
+	for(var i = 0; i < pager_name.length; i++){
+		$("#"+pager_name[i]).empty().append(st);
+	} 	
+}
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function downloadPDF(type, okey){	
+	alert('Comming soon'); return;
+	window.open("export.php?type="+type+"&okey="+okey);
+}
+$(function() {  
+	clearForms(); 
+	loadObjectOrder();   
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+</script>

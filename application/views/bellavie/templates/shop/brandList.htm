@@ -1,0 +1,28 @@
+ <style>
+#brands-list li .thumbnail a{
+	text-align:center;
+	display: block;
+    line-height: 90px;
+    width: 100%;}
+</style>
+<div class="row">
+    <div class="span12">
+        <div class="titleHeader clearfix">
+            <h3>Brands</h3>
+        </div><!--end titleHeader-->
+        <div class="row">
+            <ul id="brands-list" class="hProductItems clearfix">
+                {brands}
+                    <li class="span3 clearfix">
+                        <div class="thumbnail"><b><a class="invarseColor" href="">{m_name}</a></b></div>
+                    </li>
+                {/brands}
+            </ul>
+        </div><!--end row-->
+        <div class="pagination pagination-right">
+            <span class="pull-left" id="number_display"></span>
+            <div id="pagination">
+            </div>
+        </div><!--end pagination-->
+    </div><!--end span9-->
+</div><!--end row-->

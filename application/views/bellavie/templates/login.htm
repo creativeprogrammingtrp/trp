@@ -1,0 +1,49 @@
+<style>
+#msg_box {
+    display: block;
+    font-size: 12px;
+    height: 20px;
+    padding: 5px;
+    text-align: right;
+    }
+</style>
+<!--<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="javascript:goHome();">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>                               
+        </ul>
+    </div>
+</div>  -->     
+<div class="container holder">
+    <div class="grid-cols">
+        <div class="col50" style="margin-left:200px; margin-top:80px;">
+            <span id="msg_box"></span>
+            <form  id="formLogin" name="formLogin" method="post" onsubmit="return login_('formLogin','txtUsername','txtPassword','msg_box');" class="comment-form">
+                <fieldset>
+                    <div class="row">
+                        <label for="email">User / Member ID:</label>
+                        <span class="text">
+                            <input type="text" value="" name="txtUsername" id="txtUsername" class="inputTxt" autocomplete="off" />
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label for="subject">Password:</label>
+                        <span class="text">
+                            <input type="password" value="" name="txtPassword" id="txtPassword" class="inputTxt" autocomplete="off"/>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="submit">
+                            Login
+                            <input type="submit" value="Login" id="btnSubmitLogin" class="pinkButton" name="btnSubmitLogin" autocomplete="off"/>
+                        </span>
+                        <a href="index.php/getpassword" style="padding:0px 20px; line-height:35px;" >Forgot your password ?</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

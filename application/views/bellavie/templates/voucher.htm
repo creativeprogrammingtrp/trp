@@ -1,0 +1,251 @@
+<style>
+    table.voucher{
+        width:100%;
+    }
+    td.common{
+        text-shadow:#999999 0 1px 1px;
+    }
+    table.voucher tr td{
+       border-bottom: 1px dotted #ddd;
+    }
+    td.output_data{
+        text-shadow:#999999 0 1px 1px;
+    }
+    div.date{
+        display: block;
+        float: right;
+    }
+    div.date span{
+        text-align: left;
+        color:#006400;
+        text-shadow:#999999 0 1px 1px;
+    }
+    div.order span{
+        text-shadow:#999999 0 1px 1px;
+    }
+    div label{
+        color:black;
+        margin-right:10px;
+    }
+    .showHide{
+        display: none;
+    }
+    .errVoucher{
+        display: none;
+        position: absolute;
+        color:red;
+        padding-left: 8px;
+    }
+    .errMember{
+        display: none;
+        position: absolute;
+        color:red;
+        padding-left:8px;
+    }
+    
+    div.line{
+
+        border-bottom:1px dotted #ddd;
+    }
+</style>
+<div class="box_solar check_voucher" style="width: 700px;margin-left: 220px;">	
+   <fieldset style="border:1px solid #D3D3D3">
+        <legend style="font-weight:normal;text-shadow: 0 1px 1px #999999;" class="divPageTitle">{title_page}</legend>
+    <div style="clear:both; width:100%; overflow:hidden; padding-bottom:20px">
+        <form method="post" name="form" style="text-align: center;position: relative">
+            <span class="field-with-placeholder" style="display:block; padding:10px;"><span class ="error" style="position:absolute;left:270px;color:red;text-shadow: 0 1px 1px #999999;"></span><span class ="right" style="position:absolute;left:270px;text-shadow: 0 1px 1px #999999;"></span></span>
+        <span class="field-with-placeholder" style="display:block; padding:10px">
+            <span style="padding-right: 10px;text-shadow: 0 1px 1px #999999;">Voucher Id </span><input type="text" class="input-text" id="voucher_code" placeholder="Voucher Id" size="10" name="voucher_code" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+            <span class="errVoucher">Please fill voucher id</span>
+        </span>
+        <span class="field-with-placeholder" style="display:block; padding:5px">
+             <span style="padding-right: 10px;text-shadow: 0 1px 1px #999999;">Member Id </span><input type="text" class="input-text" id="member_id" placeholder="Member Id" size="10" name="member_id" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+             <span class="errMember">Please fill member id</span>
+        </span>
+            <span style="display:block; padding:10px;margin-left:130px;" class="update"><input type="submit" class="button" value="Redeem" style="margin-left: 80px"/></span>
+        </form>
+    </div>
+    </fieldset>
+</div>
+<div class="backchange" style="display:none;float:right;margin-right:155px;padding-top:8px">
+<input type="submit" class="back" value="Back" />
+<!--<input type="submit" class="change" value="Apply" style="margin-left:5px;" />-->
+</div>
+<script language="javascript">
+  var obj =[];
+  var data_clients = [];
+  function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+var flag = false;
+function checkValues(){
+    var button ='';
+    var right = $(".right");
+    $(".button").bind("click",function(){
+        var voucherId = $("#voucher_code").val().trim().replace(/\s+/gi,'');
+        var memberId = $("#member_id").val().trim().replace(/\s+/gi,'');
+        if(memberId == '' && voucherId == ''){
+            $("#voucher_code").select();
+        }else if(memberId == ''){
+            $(".errMember").fadeIn(1000).fadeOut();
+            $("#member_id").select();
+        }else if(voucherId == ''){
+            $(".errVoucher").fadeIn(1000).fadeOut();
+            $("#voucher_code").select();
+        }else{
+              $.post("index.php/store/vouchers",{load:'yes',vid:voucherId,mid:memberId},function(data){
+                 if(typeof(data) == 'object'){
+                    if(data.length == ''){
+                         right.empty().append("Voucher is invalid !").css('color','red');
+                    }else{
+                        
+                        if(data[0].current_date <= data[0].end_date){
+                  
+                             if( data[0].statusv == '0'){
+                
+                                alert("Redeem success !");
+                                flag =true;
+                                data_clients = data;
+                                loadVoucher();
+                                updates(voucherId,memberId);
+                                resetVoucher();
+                            }else{
+                                right.empty().append("Voucher were used !").css('color','red');
+                                flag = false;
+                                resetForm();
+                            }
+                        
+                        }else{
+                            right.empty().append("Voucher was too time used !").css('color','blue');
+                        }
+                    } 
+                 }
+                  /*if(flag == true){
+                        $(".reset").remove();
+                    }*/
+       },'json')
+        }
+        return false;
+    }); 
+}
+
+
+function resetForm(){
+    $(".reset").bind("click",function(){
+        window.location.reload();
+        return false;
+    });
+}
+
+function updates(voucherId , memberId){
+    $.post("index.php/store/vouchers/updateVouchers",{vid:voucherId,mid:memberId},function(data){
+       },'json')
+}
+
+
+function resetVoucher(){
+    $(".back").bind("click",function(){
+        window.location.reload();
+    });
+}
+
+function loadVoucher(){
+    var voucher ='';
+    (data_clients[0].voucher_value != '0.00'?data_clients[0].voucher_format:'0.00');
+    voucher += '<div class="box_solar table_voucher" style="width: 700px;margin-top: 10px;display: block;">';
+    voucher +='<fieldset style="border:1px solid #93AED3" class="voucher_bill">';
+    voucher +='<table class="voucher">';
+    voucher +='<tr>';
+    voucher +='<td>Customer </td>';
+    voucher +='<td colspan="3" class = "common">'+data_clients[0].billing_name+'</td>';
+    voucher +='</tr>';
+    voucher +='<tr>';
+    voucher +='<td>Address </td>';
+    voucher +='<td colspan="3" class = "common">'+data_clients[0].billing_address+", "+data_clients[0].billing_city+", "+data_clients[0].billing_state+", "+data_clients[0].billing_country+'</td>';
+    voucher +='</tr>';
+    voucher +='<tr>';
+    voucher +='<td>Phone </td>';
+    voucher +='<td colspan="3" class = "common">'+data_clients[0].billing_phone+'</td>';
+    voucher +='</tr>';
+    voucher +='<tr>';
+    voucher +='<td rowspan ="5"><img src =shopping/data/img/thumb/'+data_clients[0].image+'></td>';
+    voucher +='<td>Name </td>';
+    voucher +='<td class="output_data">'+data_clients[0].itm_name+'</td>';
+    voucher +='</tr>';
+    voucher +='<tr>';
+    voucher +='<td>Model </td>';
+    voucher +='<td class="output_data">'+data_clients[0].itm_model+'</td>';
+    voucher +='</tr>';
+    if(data_clients[0].voucher_value != '0.00'){
+          voucher +='<tr>';
+          voucher +='<td>Voucher value </td>';
+          voucher +='<td class="output_data">$'+data_clients[0].voucher_value+'</td>';
+          voucher +='</tr>';
+    }
+    voucher +='<tr>';
+    voucher +='<td>Price </td>';
+    voucher +='<td class="output_data">$'+data_clients[0].itemprice+'</td>';
+    voucher +='</tr>';
+    voucher +='<tr>';
+    voucher +='<td>Total </td>';
+    voucher +='<td class="output_data">$'+data_clients[0].itemprice+'</td>';
+    voucher +='</tr>';
+    voucher +='<div class="date">';
+    voucher +='<div><label>Order Date </label><span>'+data_clients[0].order_format+'</span></div>';
+    voucher +='<div><label>Expiry Date</label><span>'+data_clients[0].date_format+'</span></div>';
+    voucher +='</div>';
+    voucher +='<div class="order"><label>Member Id</label><span>'+data_clients[0].voucher_id+'</span></div>';
+    voucher +='<div class="order"><label>Voucher Id</label><span>'+data_clients[0].member_id+'</span></div>';
+    voucher +='<div class="order"><label>Active Date</label><span>'+data_clients[0].actived_date+'</span></div>';
+    voucher +='<div class="line"></div>';
+    voucher +='</table>';
+    voucher += '</div>';
+    voucher +='</fieldset>';
+    $(".check_voucher").empty().append(voucher);
+    if(flag == true){
+        $(".backchange").css("display","block").show();
+    }else{
+        $(".backchange").hide().css("display","none");
+    }
+    
+}
+
+function checkPermission(user,role){
+    var length_data = obj.length; 
+    for(var i = 0 ; i<length_data ; i++){
+        var object = obj[i];
+       if(user == object.uid && role == '5' || role == '3'){
+           $(".check_voucher").css("display","block").show();
+       }else{
+           $(".check_voucher").addClass("showHide");
+       }
+    }
+} 
+
+function parseJson(string_object){
+    return JSON.parse(string_object);
+}
+
+function replace_quote(string_replace){
+    return string_replace = string_replace.replace(/["']{1}/gi,"");
+}
+function loadObjectItems(){
+       var data_obj_string = '{uid_role}';
+       var data_obj = parseJson(data_obj_string);
+       obj = data_obj.data;
+       var user_role = replace_quote('{users}');
+       var number_rid = replace_quote('{role}');
+       checkPermission(user_role,number_rid);
+       checkValues();
+}
+
+$(function() { 
+        clearForms(); 
+        loadObjectItems();
+        $(".check_voucher").addClass("showHide");
+});
+</script>

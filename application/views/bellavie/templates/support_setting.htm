@@ -1,0 +1,365 @@
+<script language="javascript">
+ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+</script>
+<script language="JavaScript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<style type='text/css'>
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,
+pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
+
+body {
+font-size: 14px;
+line-height:1.3em;
+}
+
+a, a:visited {
+outline:none;
+color:#7d5f1e;
+}
+
+.clear {
+clear:both;
+}
+
+#wrapper {
+	margin:0px auto;
+	padding:15px 0px;
+    color:#999999;
+}
+
+.comment {
+	padding:5px;
+	border:1px solid #93AED3;
+	margin-top:15px;
+	list-style:none;
+}
+.child{
+    border:none;
+}
+.linestyle{
+   border-bottom:1px solid #eee;
+}
+.aut {
+	font-weight:normal;
+        color:#FFAB11;
+        text-decoration: underline;
+}
+
+.timestamp {
+	font-size:85%;
+	float:right;
+}
+
+#comment_form {
+	margin-top:15px;
+}
+
+/*#comment_form input{
+	font-size:1.2em;
+	margin:0 0 10px;
+	padding:3px;
+	display:block;
+	width:100%;
+}*/
+
+#comment_body {
+	display:block;
+	width:100%;
+	height:150px;
+        position: absolute;     
+}
+div.comment-body{
+   padding-top:5px;
+}
+
+#submit_button {
+	text-align:center; 
+        margin-top: 20px;
+	clear:both;
+}
+.reply1{
+    margin-left: 830px;
+    width:40px;
+    margin-top: -18px;
+    color:#666699;
+}
+.reply{
+    color:#666699;
+}
+.reply1:hover ,.reply:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  
+}
+#cke_comment_body{
+    margin-top: 20px;
+}
+.showHide{
+    display: none;
+}
+.subj{
+    padding-top: 3px;
+ 
+}
+.subj:hover{
+    cursor: pointer;
+    text-decoration:underline;
+    color:#000;
+}
+</style>
+ 
+<div style="clear:both; width:100%; overflow:hidden; padding-bottom:10px; margin-top:10px;">
+    	<div style="float:left; clear:both; padding-top:30px; font-size:16px; ">Support Comments</div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <form method="get" name="form_filter" onsubmit="return pageObject()">
+                <span class="field-with-placeholder" style="float:left">
+                    <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{key_word}" style="width:200px" placeholder="Key word">
+                </span>
+                <span style="float:left; padding-left:10px"><input type="submit" class="btn btn-primary" value="Filter" /></span>
+            </form>
+    	</div>
+ </div>
+<div style="clear:both; width:100%; overflow:hidden; border-bottom:1px solid #D3D3D3; padding-bottom:7px; margin-bottom:12px;">
+    	<div style="float:left; font-weight:bold" id="total_items"></div>
+        <div id="pager" style="float:right;"></div>
+</div>
+<div class="modal" id="del_product" style="display:none; overflow:hidden">
+    <div class="modal-hd" style="cursor: move" id="title_popup">Delete Event <span title="Close" class="close" onclick="closeBox('del_product')"></span></div>
+    <div class="modal-bd">
+    	<div style="overflow:hidden; width:350px; min-height:65px" id="content_popup"></div>
+    </div>
+</div>
+<div id='wrapper'>
+<ul id ="parent">
+</ul>
+	<label for="comment_body" style="margin-bottom:20px"></label>
+        <textarea name="comment_body" id='comment_body'></textarea>
+	<input type='hidden' name='parent_id' id='parent_id' value='0'/>
+        <div id='submit_button'>
+		<input type="submit" id="reply" value="Reply" style="float:right"/>
+                <input type="submit" id="back" value="Back" onclick="window.location.reload();" style="float:right;margin-right: 10px;"/>
+        </div>
+</div>
+
+<script language="javascript">
+var arr_object = [];
+var del = '{delPerm}';
+var dell = '{delPerms}';
+var arr_object_reply =[];
+var editor_obj;
+
+function CreateEditor(id){
+	editor_obj = CKEDITOR.replace( id, {
+		uiColor: '#7E7E7E',
+		height:300,
+		enterMode : CKEDITOR.ENTER_BR,	
+        filebrowserBrowseUrl : 'misc/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Flash',
+        filebrowserUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		toolbar : [
+			[ 'Source'],
+			[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+			[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+			[ 'Link','Unlink','Anchor' ],
+			[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		//	'/',
+			[ 'Styles','Format','Font','FontSize' ],
+			[ 'TextColor','BGColor' ],
+			[ 'Maximize', 'ShowBlocks']
+		]
+    });
+}
+function delete_product(itm_key){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/support/delete", {
+		delete_item:'yes',
+		itemid:itm_key
+	},function(data){
+		closeBox('del_product');
+		window.location.reload();
+	});
+}
+
+function deleteItem(itm_key){
+	if(itm_key != ''){
+		$("#content_popup").empty();
+		if(document.getElementById("content_popup")){
+			$("#content_popup").css("min-height", '65px');
+			$("#content_popup").css("width", '350px');
+		}
+		$("#title_popup").empty().append("Delete Event");
+		showbox('del_product');
+		var st = '<div style="clear:both; font-weight:bold">';
+		st += '	Are you sure you want to delete this event?';
+		st += '</div>';
+		st += '<div style="clear:both; padding-top:20px; height:35px;">';
+		st += '	<div id="cancel" class="button" style="float:right; margin-left:10px; margin-right:5px" align="center">Cancel</div>';
+		st += '	<div id="delete_acc" class="btn btn-primary" style="float:right;" align="center" onclick="delete_product(\''+itm_key+'\');">Delete</div>';
+		st += '</div>';
+		$("#content_popup").append(st);
+		if(document.getElementById("cancel")){
+			document.getElementById("cancel").onclick = function(event){
+				closeBox("del_product");
+			}	
+		}
+	}
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function returnURL(page){
+	if(page == null || page == 0) page = 1;
+	var url = 'index.php/support/lists/'+page;
+        var idparent = $("#parent_id").val();
+	var keyword = '';
+	var start_date = '';
+	if(document.getElementById("key_word") && trim(document.getElementById("key_word").value) != '')
+	{
+		keyword = trim(document.getElementById("key_word").value);
+	}
+        if(keyword == ''){
+            url;
+        }else{
+            url += '/?keyword='+encodeURIComponent(keyword);//+'&start_date='+encodeURIComponent(start_date);
+        }
+		
+	return url;
+}
+function pageObject(page){
+	window.location = returnURL(page);
+	return false;
+}
+
+function loadPage(){
+    $(".parent_comment").addClass('showHide');
+    $(".parent_comment").closest(".comment").find(".child_comment").addClass('showHide');
+    $(".subj").bind("click",function(){
+       $(this).closest(".comment").find(".parent_comment").toggleClass('showHide').end().find(".child_comment").toggleClass('showHide');
+        if($(this).closest(".comment").find(".parent_comment,.child_comment").hasClass("showHide")){
+          $(this).closest(".comment").find("div.linestyle").hide().css("display","none");
+       }else{
+           $(this).closest(".comment").find("div.linestyle").show().css("display","block");
+           $(this).closest(".comment").find("div.linestyle").first().css("margin-top","4px");
+       }
+    });
+}
+
+function parseJson(string_object){
+    return JSON.parse(string_object);
+}
+
+function loadObjectItems(){
+	delPerm = '{delPerm}'
+        var data_obj_reply_string = '{loadReply}';
+        var data_object_reply = parseJson(data_obj_reply_string);
+        arr_object_reply = data_object_reply.data;
+        var data_object_string ='{loadComment}';
+        var data_object_comment = parseJson(data_object_string);
+        arr_object = data_object_comment.data;
+        var pageAdmin = data_object_comment.page;
+        var max_length = data_object_comment.maxlength;
+        getComment(pageAdmin,max_length);
+        removeLastLine();
+	$("#total_items").empty().append("Total: "+number_format(max_length));
+        loadPage();
+        $("#comment_body").hide();
+        $("#submit_button").hide();
+}
+
+function saveData()
+{
+     $("#reply").click(function(){
+         var body_ = editor_obj.getData();
+         $.post("index.php/support/saveData",
+            {save:'yes',
+               comment:body_,
+                parent_id:$("#parent_id").val()
+            },function(data){
+                window.location.reload();
+            }
+         )
+     });   
+}
+
+function getComment(page,maxlength)
+{
+    if(page == 0 || page == null) page = 1;
+    var total_row = 20;
+    var html = '';
+    var length_data = arr_object_reply.length;
+     var length_datas = arr_object.length;
+    for(var i = 0; i < length_data; i++){
+        html +="<li class='comment'>";
+        if(arr_object_reply[i].status =='0')
+        {
+             html += "<div class='subj'>"+arr_object_reply[i].subject+"<span class='new' style='float:right;color:#7D5F1E;font-style:oblique'><img src='../images/new_message.png'><span></div>";
+        }
+        else
+        {
+             html += "<div class='subj'>"+arr_object_reply[i].subject+"<span class='new' style='float:right;color:red'><span></div>";    
+        }
+        html +="<div class='aut'>"+arr_object_reply[i].firstname+" "+arr_object_reply[i].lastname+"</div>";    
+        html +="<div class='comment-body parent_comment'>"+arr_object_reply[i].comment+"</div>";
+        html +="<div class='timestamp'>"+arr_object_reply[i].start_date+"</div>";
+        html += "<div class='reply' id="+arr_object_reply[i].id+" onclick='deleteItem("+arr_object_reply[i].id+")' style='margin-left: 880px;'>Delete</div>";
+        html += "<div class='reply1' id="+arr_object_reply[i].id+">Reply</div>";
+        html += "<div class ='linestyle'></div>";
+       
+            for(var j = 0; j < length_datas; j++){
+                if(arr_object[j].idparent==arr_object_reply[i].id){
+                html += "<ul class='child_comment'>";
+                html +="<li class='comment child'>";
+                html +="<div class='aut' style='margin-top:-18px'>"+arr_object[j].firstname+" "+arr_object[j].lastname+"</div>";
+                html +="<div class='comment-body'>"+arr_object[j].comment+"</div>";
+                html +="<div class='timestamp'>"+arr_object[j].start_date+"</div>";
+                html += "<div class='reply' id="+arr_object[j].id+" onclick='deleteItem("+arr_object[j].id+")' style='margin-left: 870px;'>Delete</div>";
+                html += "</li>";
+                html += "</ul>";
+                html += "<div class ='linestyle'></div>";
+               }
+            }
+         html +="</li >";   
+    }
+    pagerAjax(total_row,maxlength, page, 'pageObject', ['pager']);
+    $("#parent").empty().append(html); 
+    
+}
+
+function removeLastLine(){
+    $("div.linestyle").hide().css("display","none");
+    $("div.linestyle:last-child").css("border","none");
+}
+function getSubComment()
+{
+      $(".reply1").bind("click",function() {
+		var id = $(this).attr("id");
+		$("#parent_id").attr("value", id);
+                CreateEditor('comment_body');
+                $("#reply").focus();
+                $("#submit_button").delay(1000).fadeIn();
+                $("html,body").animate({ scrollTop: $(document).height() }, 1500);
+        
+
+                return false;
+	});    
+}
+function showValDate(date) {
+	var todate_ = new Date('{todate}');
+	if(date < todate_) return [false, date.getDate() + '_day'];	
+  	return [true, ''];
+}
+
+$(function() { 
+	clearForms();
+	loadObjectItems();
+        saveData();
+        getSubComment();
+	HideLoadingObj(document.getElementById("content_load"));
+});
+</script>

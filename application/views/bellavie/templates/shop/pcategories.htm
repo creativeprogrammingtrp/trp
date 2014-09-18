@@ -1,0 +1,374 @@
+<link rel="stylesheet" href="../shop/css/pages/pcategories.css">
+<div class="row">
+    <aside class="span3">
+        <div class="categories">
+            <div class="titleHeader clearfix">
+                <h3>Categories</h3>
+            </div><!--end titleHeader-->
+            <ul class="unstyled">
+                {leftCategories}
+            </ul>
+        </div><!--end categories-->
+        {specials}
+    </aside><!--end aside-->
+    <div class="span9">
+        <div id="productSlider" class="carousel slide">
+            <!-- Carousel items -->
+            <div id="banner_slide" class="carousel-inner">
+            {banner}
+              <div class="item"><img class="banner_img" src="{list_img}" alt=""></div>
+             {/banner}
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#productSlider" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#productSlider" data-slide="next">&rsaquo;</a>
+        </div><!--end productSlider-->
+        <div id="error" class="alert alert-info" style="display:none;">
+			Choose a valid category.
+		</div>
+        <div class="productFilter clearfix" id="control_search">
+
+            <div class="sortBy inline pull-left">
+                Sort By
+                <select name="sortItem" id="sortItem" onchange="sortData()">
+                    <option sortby="default" direction= "" value="default">Default</option>
+                    <option sortby="name" direction = "asc" value="name-asc">Name (A-Z)</option>
+                    <option sortby="name" direction = "desc" value="name-desc">Name (Z-A)</option>
+                    <option sortby="price" direction = "asc" value="price-asc">Price (Low-Hight)</option>
+                    <option sortby="price" direction = "desc" value="price-desc">Price (Height-Low)</option>
+                    <option sortby="rating" direction = "desc" value="rating-desc">Highest Rating</option>
+                    <option sortby="rating" direction = "asc" value="rating-asc">Lowest Rating</option>
+                </select>
+            </div>
+            <div class="showItem inline pull-left">
+                Show
+                <select name="showItem" id="showItem" onchange="changeRecordPerPage()">
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                </select>
+            </div><!--end sortBy-->
+            <div class="displaytBy inline pull-right">
+                Display
+                <div class="btn-group">
+                    <button class="btn viewby btn-primary active" id="viewby-grid" onclick="displayItems('grid')"><i class="icon-th"></i></button>
+                    <button class="btn viewby" id="viewby-list" onclick="displayItems('list')"><i class="icon-list"></i></button>
+                </div>
+            </div>
+            <!--end displaytBy-->
+        </div><!--end productFilter-->
+        <div class="row" id="product-list"></div><!--end row-->
+        <div class="pagination pagination-right">
+            <span class="pull-left list-info"></span>
+            <div id="pagination"></div>
+        </div><!--end pagination-->
+    </div><!--end span9-->
+</div><!--end row-->
+<input type="hidden" id="cat-key" value="{catkey}" />
+<script src="misc/scripts/shop/common.js"></script>
+<script src="../shop/js/pages/pcategories.js"></script>
+<script language="javascript">
+var numberOfRecords = 0;
+var page = 1;
+var keyword = '';
+var sortby = '';
+var direction = '';
+var numberOfDisplayingLinks = 6;
+var recordsPerPage = parseInt('{recordsPerPage}');
+var viewby = "grid";
+var adObject = {};
+function setVars()
+{
+	recordsPerPage = getParameter("showItem");
+	if(!recordsPerPage)
+		recordsPerPage = parseInt('{recordsPerPage}');; 
+	page = getParameter("page");
+	if(!page)
+		page = 1; 
+	keyword = getParameter("keyword");
+	if(!keyword)
+		keyword = '';
+	else
+		$("#key_word").val(keyword);
+	
+	sortby = getParameter("sortby");
+	if(!sortby)
+		sortby = '';
+	direction = getParameter("direction");
+	if(!direction)
+		direction = '';
+	if(sortby!='' && direction!='')
+		$("[sortby='"+sortby+"']").removeAttr("class").addClass("sorting_"+direction);	
+	$("#showItem").val(recordsPerPage);
+	$("#sortItem").val(sortby+'-'+direction);
+}//function setVars
+
+function reloadData( m_page )
+{
+	page = m_page;
+	window.location.href = returnURL();
+	loadData();
+}//function reloadData
+
+function returnURL()
+{
+	params = '#';
+	if(recordsPerPage > 1)
+		params 	+= '&showItem='+escape(recordsPerPage);
+	if(page > 1)
+		params 	+= '&page='+escape(page);
+	if(sortby)
+		params 	+= '&sortby='+escape(sortby);
+	if(direction)
+		params 	+= '&direction='+escape(direction);
+	if(keyword)
+		params 	+= '&keyword='+escape(keyword);
+	return params;
+}//function returnURL
+function loadData()
+{	
+	if(!page || parseInt(page) <= 0)
+		page = 1;
+	$.post('index.php/shop/pcategories',
+	{
+		loadProducts:'yes',
+		catkey: $("#cat-key").val(),
+		page: page,
+		keyword: keyword,
+		sortby: sortby,
+		direction: direction,
+		recordsPerPage: recordsPerPage,
+	},
+	function( data )
+	{
+		if(typeof(data)!= 'object')
+		{
+			$('#control_search').hide();
+			$('#error').show();
+			return false;
+		}
+		adObject = data.data;
+		if (adObject.length > 0)
+		{
+			$('#control_search').show()
+			$('#error').hide();
+		} else 
+		{
+			$('#control_search').hide();
+			$('#error').show();
+		}
+		numberOfRecords = data.records;
+		showData();
+	},'json')
+}//function loadData
+function displayItems(display)
+{
+	if(display==viewby)
+		return false;
+	if(display=="grid" || display=="list")
+		viewby = display;
+	$(".viewby").removeClass("btn-primary active");
+	$("#viewby-"+viewby).addClass("btn-primary active");
+	showData();
+}//displayItems
+function showData()
+{
+	if(viewby=="grid")
+		showDataGrid();
+	else if(viewby=="list")
+		showDataList();	
+                showPopup('.btn');
+}//showData
+function showDataList()
+{
+	var str = '';
+	if(adObject.length > 0)
+	{
+		for(i=0; i<adObject.length; i++)
+		{
+			var obj = adObject[i];
+			
+			var price_str = '';
+			var price = obj.itm_price;
+			price_str = '$' + formatAsMoney(price);
+			
+			var promotion_ = '';
+			for(var p = 0; p < obj.promotions.length; p++){
+				promotion_ += '<div>';
+				promotion_ += '		<img src="../images/ico-gift.png" border="0" width="25px"/>' + obj.promotions[p].promo_name;
+				promotion_ += '</div>';	
+			}
+			
+			var origin = obj.origin;
+			if(origin == null) origin = '';
+			if(origin != ''){
+				origin = '<div>'+ConvertToHTML(origin)+'</div>';	
+			}
+			var outOfStock="";
+			if(obj.outOfStock!="")
+				outOfStock = '<div class="text-error">'+obj.outOfStock+'</div>';
+			var play_bt = '<div><img src="../images/playbt.png" border="0" width="54px" height="54px" /></div>';
+			if(parseInt(obj.video, 10) == 0) play_bt = '';
+			
+			
+			var file = (obj.file!='')?"shopping/data/img/thumb_home/"+obj.file:"../shop/images/212x192.jpg";
+			
+			str += '	<li class="clearfix">';	
+			str += '		<div class="span3">';	
+			str += '			<div class="thumbnail">';	
+			str += '				<a href="index.php/shop/item_details?itemid='+obj.itm_key+'""><img alt="" src="'+file+'"></a>';	
+			str += '			</div>';	
+			str += '		</div>';	
+			str += '		<div class="span6">';	
+			str += '			<div class="thumbSetting">';	
+			str += '				<div class="thumbTitle">';	
+			str += '					<a class="invarseColor" href="index.php/shop/item_details?itemid='+obj.itm_key+'">'+ConvertToHTML(obj.itm_name)+'</a>';	
+			str += 						promotion_;
+			str += 						origin;	
+			str += '				</div>';
+			str += 					outOfStock;		
+			str += '				<div class="thumbPriceRate clearfix">';	
+			str += '					<span>'+price_str+'</span>';	
+            str += 					obj.stars;	
+			str += '				</div>';
+			str += '				<div class="thumbButtons">';	
+                        str += obj.addCart;
+                        str += obj.Wishlist;	
+			str += '				</div>';	
+			str += '			</div>';	
+			str += '		</div>';	
+			str += '	</li>';	
+		}//for		
+	}//if
+	str = '<ul class="listProductItems clearfix">'+str+'</ul>';
+	$("#product-list").empty().append(str); 
+	showListItemInfo();
+	setMinHeightForTtmTitle();
+	pagination("reloadData", "pagination", numberOfRecords, page, numberOfDisplayingLinks, recordsPerPage);
+}//showDataList
+
+function showDataGrid()
+{
+	var str = '';
+	if(adObject.length > 0)
+	{
+		for(i=0; i<adObject.length; i++)
+		{
+			var obj = adObject[i];
+			
+			var price_str = '';
+			var price = obj.itm_price;
+			price_str = '$' + formatAsMoney(price);
+			
+			var promotion_ = '';
+			for(var p = 0; p < obj.promotions.length; p++){
+				promotion_ += '<div>';
+				promotion_ += '		<img src="../images/ico-gift.png" border="0" width="25px"/>' + obj.promotions[p].promo_name;
+				promotion_ += '</div>';	
+			}
+			
+			var origin = obj.origin;
+			if(origin == null) origin = '';
+			if(origin != ''){
+				origin = '<div>'+ConvertToHTML(origin)+'</div>';	
+			}
+			
+			var play_bt = '<div><img src="../images/playbt.png" border="0" width="54px" height="54px" /></div>';
+			if(parseInt(obj.video, 10) == 0) play_bt = '';
+			
+			
+			var file = (obj.file!='')?"shopping/data/img/thumb_home/"+obj.file:"../shop/images/212x192.jpg";
+			if(i%3==0)
+				str += '<div class="itm-wrapper clearfix">';
+			str += '	<li class="span3 clearfix">';
+            str += '        <div class="thumbnail">';
+            str += '            <a href="index.php/shop/item_details?itemid='+obj.itm_key+'"><img src="'+file+'" alt=""></a>';
+            str += '        </div>';
+            str += '        <div class="thumbSetting">';
+            str += '            <div class="itm-title">';
+            str += '            	<div class="thumbTitle">';
+            str += '                 	<a href="index.php/shop/item_details?itemid='+obj.itm_key+'" class="invarseColor">'+ConvertToHTML(obj.itm_name)+'</a>';
+            str += '            	</div>';
+			str += 					promotion_;
+			str += 					origin;	
+			str += '				<div class="text-error">'+obj.outOfStock+'</div>';	
+            str += '            </div>';
+            str += '            <div class="thumbPrice">';
+            str += '                <span>'+price_str+'</span>';
+            str += '            </div>';
+            str += '            <div class="thumbButtons">';
+            str += obj.addCart
+            str += obj.Wishlist
+            str += '           </div>';
+            str += 	obj.stars;
+            str += '        </div>';
+            str += '    </li>';
+			if(i%3==2)
+				str += '</div>';
+		}
+	}
+	str = '<ul class="hProductItems clearfix">'+str+'</ul>';
+	$("#product-list").empty().append(str); 
+	showListItemInfo();
+	setMinHeightForTtmTitle();
+	pagination("reloadData", "pagination", numberOfRecords, page, numberOfDisplayingLinks, recordsPerPage);
+}//showDataGrid
+
+function setMinHeightForTtmTitle()
+{
+	$(".itm-wrapper").each(function(){
+		var maxH = 0;
+		$(this).find('li .itm-title').each(function(){
+			if(maxH < $(this).height())
+				maxH = 	$(this).height();
+		})
+		$(this).find('li .itm-title').each(function(){
+			$(this).css("min-height",maxH+"px");
+		})
+	})
+}//setMinHeightForTtmTitle
+
+function sortData( )
+{
+	var sortname  = $("#sortItem option:selected").attr("sortby");
+	var directionName = $("#sortItem option:selected").attr("direction");
+	if(numberOfRecords <= 1)
+		return false;
+	if(!sortname || sortname=='' )
+		return false;
+	sortby	= sortname;
+	if(directionName == 'asc' || directionName =='desc')
+		direction = directionName;
+	else
+		direction = 'asc';
+	reloadData(page);
+}//function sortData
+
+  
+function changeRecordPerPage()
+{
+	recordsPerPage  = $("#showItem option:selected").val();	
+	reloadData(page);
+}//fucntion changeRecordPerPage
+$(function()
+{
+	if(window.location.hash != '' && window.location.hash != '#') 
+		setVars();
+	loadData();
+	if ($.trim($('#banner_slide').html()) == "") 
+	{
+		$('#banner_slide').parent().remove();
+		$(".productFilter").css('margin',"5px");
+	}
+	else 
+	{
+		$('#banner_slide').find('div:first-child').addClass('active');
+		if ($('#banner_slide').find('div').length == 1)
+		{
+			$('#productSlider').find('a').remove();
+		}
+	}
+	
+})
+</script>

@@ -1,0 +1,79 @@
+<div class="col-md-12" style="padding-top:33px;margin-bottom:25px; padding-left:24px;"><h2 style="margin:0px; color:#54565F;"><i class="icon-film4"></i> &nbsp;{title_page}</h2></div>
+<!-- <h3><span style="float:left;">{title_page}</span> --> 
+
+<!-- <span style="float:left; margin-left: 20px; font-size:14px;" id="marterialsExamButton"><a>please complete the compliance training to activate your account.</a></span> -->
+<div style="clear:both"></div>
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#test" onclick="ChangeContent(14)">Compliance</a></li>
+    <li class=""><a href="#forms" onclick="ChangeContent()">Forms</a></li>
+    <li class=""><a href="#tutorial"  onclick="ShowExamResult();">Tutorials</a></li>
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="test" class="tab-pane active">
+    
+    </div>
+    
+    <div id="forms" class="tab-pane ">
+    <h1>Comming soon</h1>
+    </div>
+    
+    <div id="tutorial" class="tab-pane" > 
+    <h1>Comming soon</h1>
+    	<!-- 
+    	<iframe width="320" height="315"  style="margin-right: 40px;" src="//www.youtube.com/embed/kY5P9sZqFas" frameborder="0" allowfullscreen></iframe>
+    	
+    	<iframe width="320" height="315"  style="margin-right: 40px;" src="//www.youtube.com/embed/ki3B8a-jLrE" frameborder="0" allowfullscreen></iframe>
+    	
+    	<iframe width="320" height="315" src="//www.youtube.com/embed/j79SE36O62w?list=PLA68C1F33757B4A38" frameborder="0" allowfullscreen></iframe>
+    	 -->
+    </div>
+</div>
+
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" >
+    /*
+     function showCompliance() {
+           $.ajax({
+               url: 'index.php/admin/training/showCompliance?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#test").empty().append(message);
+                   return false;
+               }
+           });
+       }
+     */
+     function showReviewMaterials() {
+         $.ajax({
+             url: 'index.php/admin/training/showReviewMaterials?ajax=1',
+             cache: false,
+             success: function(message) {
+                 $("#test").empty().append(message);
+                 return false;
+             }
+         });
+     }
+     
+     
+    
+    
+       
+       $(function(){
+    	 var compiliance_test1 = '{compiliance_test5}';
+       	//console.log(compiliance_test1);
+       	 if(compiliance_test1 === '1'){
+       	  //$("#marterialsExamPassResult").css('display','block');
+       	  $("#marterialsExamButton").css('display','none');
+       	 }else{
+       		// $("#marterialsExamPassResult").css('display','none');
+       	  $("#marterialsExamButton").css('display','block');
+       	 }
+       	 
+    	   showReviewMaterials();
+    	   //$('#toppart').remove();
+    	   
+    	  
+    	   
+    	  // ShowExamResult();
+       });
+</script>

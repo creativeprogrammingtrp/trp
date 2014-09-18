@@ -1,0 +1,136 @@
+<form action="index.php/admin/paypal_setting/saveform" method="post">
+	<div style="width:100%; overflow:hidden">
+    	<div style="float:left; overflow:hidden; width:49%" align="left">
+        	<fieldset>
+            	<legend>Payment Gateway</legend>
+                <div style="clear:both; overflow:hidden">
+                	<div style="clear:both; overflow:hidden">
+                    	<div style="float:left; width:25px"><input autocomplete="off" type="radio" name="payment_type[]" {authorize_gateway} value="authorize" /></div>
+                        <div style="float:left; font-weight:bold">Authorize.net Gateway</div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px;">Login ID:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="auth_net_login_id" name="auth_net_login_id" value="{auth_net_login_id}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px">Transaction key:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="auth_net_tran_key" name="auth_net_tran_key" value="{auth_net_tran_key}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px;">&nbsp;</div>
+                        <div style="float:left;">
+                        	<div style="float:left; width:20px">
+                            	<input autocomplete="off" type="radio" name="authorize_mode[]" {authorize_0} value="0" />
+                            </div>
+                            <div style="float:left;">Testing</div>
+                            <div style="float:left; width:20px; padding-left:20px">
+                            	<input autocomplete="off" type="radio" name="authorize_mode[]" {authorize_1} value="1" />
+                            </div>
+                            <div style="float:left;">Production</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both; overflow:hidden; padding-top:20px">
+                	<div style="clear:both; overflow:hidden">
+                    	<div style="float:left; width:25px"><input autocomplete="off" type="radio" name="payment_type[]" {paypal_gateway} value="paypal" /></div>
+                        <div style="float:left; font-weight:bold">Paypal Gateway</div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px;">User name:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="API_USERNAME" name="API_USERNAME" value="{API_USERNAME}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px">Password:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="API_PASSWORD" name="API_PASSWORD" value="{API_PASSWORD}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px">Signature:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="API_SIGNATURE" name="API_SIGNATURE" value="{API_SIGNATURE}" /></div>
+                    </div>
+                </div>
+                <div style="clear:both; overflow:hidden; padding-top:20px">
+                	<div style="clear:both; overflow:hidden">
+                    	<div style="float:left; width:25px"><input autocomplete="off" type="radio" name="payment_type[]" {first_data_gateway} value="firstdata" /></div>
+                        <div style="float:left; font-weight:bold">First Data Global Gateway</div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px;">Host:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="__firstdata_host__" name="__firstdata_host__" value="{__firstdata_host__}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px">Port:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="__firstdata_port__" name="__firstdata_port__" value="{__firstdata_port__}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px">Store Number:</div>
+                        <div style="float:left;"><input autocomplete="off" type="text" class="input-text" style="width:300px" id="__firstdata_store_number__" name="__firstdata_store_number__" value="{__firstdata_store_number__}" /></div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px;">&nbsp;</div>
+                        <div style="float:left;">
+                        	<div style="float:left; width:20px">
+                            	<input autocomplete="off" type="radio" name="first_data_mode[]" {first_data_0} value="DECLINE" />
+                            </div>
+                            <div style="float:left;">Testing</div>
+                            <div style="float:left; width:20px; padding-left:20px">
+                            	<input autocomplete="off" type="radio" name="first_data_mode[]" {first_data_1} value="LIVE" />
+                            </div>
+                            <div style="float:left;">Production</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div style="float:right; overflow:hidden; width:49%" align="left">
+        	<fieldset>
+            	<legend>Order Mail</legend>
+                <div style="clear:both; overflow:hidden">
+                	<div style="clear:both; overflow:hidden;">
+                    	<div style="float:left; width:110px; padding-top:2px;">Email to get order:</div>
+                        <div style="float:left; width:350px">
+                        	<span class="email-wrapper">
+                                <input type="text" class="input-text" style="width:300px" name="email_to_get_order[]" value="{email_to_get_order}" autocomplete="off" />
+                            </span>
+                        	<span class="plus-button"><img onclick="add_email();" src="../images/icons/plus.png" width="16px" title="add more email" /></span>
+                        </div>
+                    </div>
+                    <div style="clear:both; overflow:hidden; padding-top:5px">
+                    	<div style="float:left; width:110px; padding-top:2px">Signature:</div>
+                        <div style="float:left;"><input type="text" class="input-text" style="width:300px" id="signature" name="signature" value="{signature}" autocomplete="off" /></div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div style="clear:both; padding-top:20px; margin-bottom:5px" align="left">
+        	<input type="submit" class="btn btn-primary" value="Submit" autocomplete="off" />
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+var email_obj = [];
+{email_obj};
+$(function(){
+	loadEmailList();	
+})
+function loadEmailList(){
+	if(email_obj.length <=1) return false;
+	var str='';
+	for(i=1; i< email_obj.length; i++){
+		str += '<input type="text" class="input-text" style="width:300px" name="email_to_get_order[]" value="'+email_obj[i]+'" />';
+		str += '<span id="email_'+i+'" class="minus-button"><img onclick="remove_email(\'email_'+i+'\');" src="../images/icons/minus.png" width="16px" title="remove this email" /></span>';
+	}
+	$('.email-wrapper').append(str); 
+}
+function remove_email(email_id){
+	var selector = '#'+email_id;
+	$(selector).prev('[name="email_to_get_order[]"]').remove();
+	$(selector).remove();
+}
+function add_email(){
+	var str = '';
+	var count = $('[name="email_to_get_order[]"]').length;
+	str += '<input type="text" class="input-text" style="width:300px" name="email_to_get_order[]" value="" />';
+	str += '<span id="email_'+count+'" class="minus-button"><img onclick="remove_email(\'email_'+count+'\');" src="../images/icons/minus.png" width="16px" title="remove this email" /></span>';
+	$('.email-wrapper').append(str);                                
+}
+</script>

@@ -1,0 +1,278 @@
+<style>
+.td-row{
+	max-width:650px;
+	word-wrap:break-word !important;}
+.td-row a{
+	width:100%;
+	display:block;
+}
+</style>
+<div class="box_solar">
+    <div style="clear:both; width:100%; overflow:hidden; padding-bottom:20px">
+        <form method="post" name="form_filter" onsubmit="return pageObject()">
+            <span class="field-with-placeholder" style="float:left">
+                <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{key_word}" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" placeholder="">
+            </span>
+            <span style="float:left; padding-left:5px">
+                <select id="featured" style="width:100px; color:#AEAEAE">
+                    <option value="" style="color:#AEAEAE">All Featured</option>
+                    {featured}
+                </select>
+            </span>
+            {categories}
+            {manufacturer}
+            <span style="float:left; padding-left:10px"><input type="submit" class="btn" value="Filter" /></span>
+            <div style="float:right"><input type="submit" class="btn btn-primary" value="Export to Excel" onclick="return Export_to_Excel()"/></div>
+        </form>
+    </div>
+    <div style="clear:both; width:100%; overflow:hidden; min-height:20px">
+    	<div style="float:left; font-weight:bold" id="total_items"></div>
+        <div id="pager" style="float:right;"></div>
+    </div>
+    <div style="clear:both; text-align:center; width:100%; overflow:hidden" id="products_list"></div>
+</div>
+<div class="modal" id="del_product" style="display:none; overflow:hidden">
+    <div class="modal-hd" style="cursor: move">Delete account <span title="Close" class="close" onclick="closeBox('del_product')"></span></div>
+    <div class="modal-bd">
+    	<div style="overflow:hidden; width:350px; min-height:65px" id="account_content">
+        	
+        </div>
+    </div>
+</div>
+<script language="javascript">
+var arr_object = [];
+var header_first 	= ['Name / Model', 'In Stock', 'Number of viewers', 'Sold'];
+var header_last 	= ['Name / Model', 'In Stock', 'Number of viewers', 'Sold'];
+var columeb = null;
+var sort_list = '';
+var roleID = 0;
+
+function Export_to_Excel(){
+	ShowLoadingObj({obj:document.getElementById("content-inner"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/report/products/excel_export",{
+		type:'xls',
+		//arr_object:arr_object
+	},function(data){
+		if(data.error == 'error'){
+			HideLoadingObj(document.getElementById("content-inner"));
+			alert(data.error);	
+		}else{
+			HideLoadingObj(document.getElementById("content-inner"));
+			 window.open("index.php/download/get_file/Products_Report.xls");
+		}
+	},"json");
+	return false;	
+}
+function CheckExitsImg(src){
+	if(src.indexOf(".", 0) != -1) return true; 
+	return false;
+}
+function loadProductsPage(page, maxlength){
+	if(page == 0 || page == null) page = 1;
+	var total_row = 20;
+	var str_content = '';
+	var length_data = arr_object.length;
+	str_content += '<table class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_Products(0, '+page+', '+maxlength+')">'+header_last[0]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_Products(1, '+page+', '+maxlength+')">'+header_last[1]+'</th>';
+	if(roleID != 5){
+		str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_Products(2, '+page+', '+maxlength+')">'+header_last[2]+'</th>';
+	}
+	str_content += '			<th align="right" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_Products(3, '+page+', '+maxlength+')">'+header_last[3]+'</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	if(length_data > 0){
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = arr_object[i];
+			var itm_featured = 'No';
+			if(parseInt(obj.itm_featured, 10) == 1) itm_featured = 'Yes';
+		
+			var itm_price = obj.itm_price;
+			if(obj.itm_price != 'n/a') itm_price = formatAsMoney(obj.itm_price);
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="top" class="td-row"><div style="width:54px; height:48px; float:left; margin-right:5px; background:url(shopping/data/img/thumb_slide/'+obj.file+') no-repeat"></div><div style="float:left;"><a href="index.php/admin/products_manage/edit/'+obj.itm_key+'">'+ConvertToHTML(obj.itm_name)+'</a><br>'+ConvertToHTML(obj.itm_model)+'</div></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+number_format(obj.inventories)+'</td>';
+			if(roleID != 5){
+				str_content += '			<td align="left" valign="top" class="td-row">'+number_format(obj.view)+'</font></td>';
+			}
+			str_content += '			<td align="right" valign="top" class="td-row">'+number_format(obj.sold)+'</td>';
+			str_content += '		</tr>';
+		}
+		str_content += '	</tbody>';
+	}
+	str_content += '</table>';
+	pagerAjax(total_row, maxlength, page, 'pageObject', ['pager']);
+	$("#products_list").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+}
+function reset_headerProductst(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+function filtList_Products(colum, page, maxlength){
+	// Xac dinh Sort type
+	reset_headerProductst();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = arr_object.length;
+	if(row_sort > 0){
+		var min_index = 0;
+		var max_index = row_sort;
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(arr_object[i].itm_name < arr_object[j].itm_name){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(arr_object[i].itm_name > arr_object[j].itm_name){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(arr_object[i].inventories, 10) < parseInt(arr_object[j].inventories, 10)){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(arr_object[i].inventories, 10) > parseInt(arr_object[j].inventories, 10)){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 2){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(arr_object[i].view, 10) < parseInt(arr_object[j].view, 10)){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(arr_object[i].view, 10) > parseInt(arr_object[j].view, 10)){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 3){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(arr_object[i].sold) < parseFloat(arr_object[j].sold)){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(arr_object[i].sold) > parseFloat(arr_object[j].sold)){
+							var tam = arr_object[i];
+							arr_object[i] = arr_object[j];
+							arr_object[j] = tam;
+						}
+					}		
+				}
+			}			
+		}
+	}
+	loadProductsPage(page, maxlength);
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function returnURL(page){
+	if(page == null || page == 0) page = 1;
+	var url = 'index.php/report/products/productList';
+	var keyword = 'no-keyword';
+	var featured = 'all-featured';	
+	var catid = 'all-cat';
+	var manufacturer = 'all-manufacturer';
+	if(document.getElementById("key_word") && document.getElementById("key_word").value != ''){
+		keyword = document.getElementById("key_word").value;	
+	}
+	if(document.getElementById("featured") && document.getElementById("featured").value != ''){
+			featured = document.getElementById("featured").value;	
+	}
+	if(document.getElementById("categories") && document.getElementById("categories").value != ''){
+			catid = document.getElementById("categories").value;	
+	}
+	if(document.getElementById("manufacturer")&& document.getElementById("manufacturer").value != ''){
+			manufacturer = document.getElementById("manufacturer").value;	
+	}
+	keyword = encodeURIComponent(keyword);
+	
+	url = url +'?'+'key='+keyword+'&cat='+catid+'&feature='+featured+'&manufacture='+manufacturer+'&page='+page;
+	return url;
+}
+function pageObject(page){
+	window.location.href = returnURL(page);
+	return false;
+}
+function loadObjectItems(){
+	{load_products}
+   
+	arr_object = data_obj.data;
+	var max_length = data_obj.maxlength;
+	var page = data_obj.page;
+	roleID = data_obj.rid;
+	$("#total_items").empty().append("Total: "+number_format(max_length));
+	loadProductsPage(page, max_length);
+}
+$(function() {
+	clearForms();
+	loadObjectItems();
+});
+</script>

@@ -1,0 +1,192 @@
+<style>
+.spRequired{
+	margin-left:5px;}
+</style>
+<script language="javascript">
+function submitTax(){
+	var checkError = false;
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#rate').val() == ''){
+		$('#rate').css("background", '#ffffd5');
+		hidelabelfocus("rate_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("rate"));	
+			document.getElementById("rate").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/tax/add", {
+		saveTax: 'yes',
+		name:$("#name").val(),
+		rate:$("#rate").val(),
+		state:document.getElementById("states").value,
+		weight:document.getElementById("weight").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_saved);
+				clients_select = 0;
+				data_clients = [];
+				data_clients = data.data;
+				loadClients(1);
+				closeBox("box_popup");
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+	
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));			
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}		
+		break;
+	case 'email':
+		var msg = isValidEmail($('#email').val());	
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}	
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			hidelabelfocus(o.id+"_label");
+			return false;
+		}
+		break;
+	}
+}
+
+function clearDataForm(){
+	var check = true;
+	if(document.getElementById("name")){
+		if(document.getElementById("name").value != ''){
+			onkeydownInputText(document.getElementById("name"));	
+		}
+	}else check = false;
+	if(document.getElementById("rate")){
+		if(document.getElementById("rate").value != ''){
+			onkeydownInputText(document.getElementById("rate"));	
+		}
+	}else check = false;
+	if(check == true){
+		setTimeout(function () {
+			clearDataForm();
+		}, 70);
+	}
+}
+$(function() {
+	clearDataForm();
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+});
+
+</script>
+<div id="title" style="margin-bottom:10px;">
+    <span style="color:#06C; font-size:12px; font-style:italic; margin-right:10px;">Please complete the required information accurately and in full</span>
+    <span style="color:#F00; font-size:12px; font-style:italic;">(* = Required)</span>
+</div>
+<form method="post" name="tax_form" onsubmit="return submitTax();">
+<div style="clear:both; float:left;">
+    <div style="font-weight:bold;">Name:</div>
+    <span class="field-with-placeholder" style="clear:both; float:left;">
+        <input tabindex="0" type="text" class="input-text" id="name" size="10" name="name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+    </span>
+    <span class="spRequired">*</span>
+    <span style="clear:both; float:left; color:#000; font-size:9px">This name will appear to the customer when this tax is applied to an order.<br />It will also be used to name the corresponding predicate for this rate.</span>
+</div>
+<div style="float:left; clear:both; padding-top:10px;">
+    <div style="font-weight:bold;">Rate (%):</div>
+    <span class="field-with-placeholder" style="clear:both; float:left;">
+        <input tabindex="1" type="text" class="input-text" id="rate" size="10" name="rate" value="" style="width:100px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberFloatKey(event)">
+    </span>
+    <span class="spRequired">*</span>
+</div>
+<div style="float:left; clear:both; padding-top:10px;">
+    <div style="font-weight:bold;">State:</div>
+    <span class="field-with-placeholder" style="clear:both; float:left;">
+       {state}
+    </span>
+    <span style="clear:both; float:left; color:#000; font-size:9px">Apply taxes to state.</span>
+</div>
+<div style="float:left; clear:both; padding-top:10px;">
+    <div style="font-weight:bold;">Weight:</div>
+    <span class="field-with-placeholder" style="clear:both; float:left;">
+        <select id="weight" style="width:80px">
+            <option value="10">10</option>
+            <option value="9">9</option>
+            <option value="8">8</option>
+            <option value="7">7</option>
+            <option value="6">6</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+            <option value="0" selected="selected">0</option>
+            <option value="-1">-1</option>
+            <option value="-2">-2</option>
+            <option value="-3">-3</option>
+            <option value="-4">-4</option>
+            <option value="-5">-5</option>
+            <option value="-6">-6</option>
+            <option value="-7">-7</option>
+            <option value="-8">-8</option>
+            <option value="-9">-9</option>
+            <option value="-10">-10</option>
+        </select>
+    </span>
+    <span style="clear:both; float:left; color:#000; font-size:9px">Taxes are sorted by weight and then applied to the order sequentially. This value is important when taxes need to include other tax line items.</span>
+</div>
+<div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+	<input type="submit" value="Submit" name="submit" class="btn btn-primary" style="margin-left:5px" />
+	<input type="button" value="Cancel" class="button" id="btn" style="margin-left:5px" onclick="$('#box_popup').hide();$('#fancy_box').hide();" />
+</div>
+<div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>
+</form>
+
+
+
+
+

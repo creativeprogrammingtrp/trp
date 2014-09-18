@@ -1,0 +1,117 @@
+<div class="box_solar" style="clear:both">
+    <div class="divPageTitle case"><h3>{title_page}</h3></div>
+    <div  class="case" style="width:100%; clear:both; overflow:hidden">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td align="left" valign="top"><h3>Order #: {order_number}<br />Date: {order_date}<br />Status: {order_status}</h3></td>
+                <td align="left" valign="top" style="padding-left:5px"><h3>Ship To Address: <br>{shippingName}<br>{shippingAddress}<br>{shippingCity}</h3></td>
+                <td align="left" valign="top" style="padding-left:5px"><h3>Billing Address:<br>{billingName}<br>{billingAddress}<br>{billingCity}<br /><a href="mailto:{billingEmail}">{billingEmail}</h3></a></td>
+                <td align="right" valign="top" style="padding-left:5px"><h3>Credit Card: {card_number}</h3></td>
+            </tr>
+        </table>
+    </div>
+    <div class="case" style="width:100%; clear:both; overflow:hidden; padding-top:20px" id="tableContainer">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per" id="items_detail_listing">
+            <thead>
+                <tr>
+                    <th align="left" valign="middle" class="th-per" ><h3>Description</h3></th>
+                    <th width="5px" class="th-per" align="center" valign="middle">|</th>
+                    <th align="center" valign="middle" class="th-per"><h3>Price</h3></th>
+                    <th width="5px" class="th-per" align="center" valign="middle">|</th>
+                    <th align="center" valign="middle" class="th-per"><h3>Quantity</h3></th>
+                    <th width="5px" class="th-per" align="center" valign="middle">|</th>
+                    <th align="center" valign="middle" class="th-per"><h3>Return</h3></th>
+                     <th width="5px" class="th-per" align="center" valign="middle">|</th>
+                    <th align="right" valign="middle" class="th-per"><h3>Total</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                {ItemDetails}
+                <tr class="tr-row">
+                    <td align="left" valign="top" class="td-row">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td align="left" valign="top" width="100px" style="float:left"><img src="{img}" border="0" /></td>
+                                <td align="left" valign="top" style="float:left"><h5>{desc}</h5></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td align="left" valign="top" class="td-row"></td>
+                    <td align="center" valign="middle" class="td-row"><h5 style=" float:left;padding: 30px 0px 30px 75px">${price}</h5></td>
+                    <td align="left" valign="middle" class="td-row"></td>
+                    <td align="center" valign="middle" class="td-row"><h5 style=" float:left;padding: 30px 0px 30px 75px">{qty_buy}</h5></td>
+                    <td align="left" valign="middle" class="td-row"></td>
+                    <td align="center" valign="middle" class="td-row"><h5 style=" float:left;padding: 30px 0px 30px 75px">{qty_return}</h5></td>
+                    <td align="left" valign="middle" class="td-row"></td>
+                    <td align="right" valign="middle" class="td-row"><h5 style=" float:right;padding: 30px 0px 30px 75px">${total}</h5></td>
+                </tr>
+                {/ItemDetails}
+            </tbody>
+        </table>
+    </div>
+    <div  class="case" style="width:100%; clear:both; overflow:hidden; padding-top:10px" align="right">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="right" valign="middle"><h3>Subtotal:</h3></td>
+                <td align="right" valign="middle" style="padding-left:20px"><h5>${suptotal}</h5></td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle"><h3>Tax:</h3></td>
+                <td align="right" valign="middle" style="padding-left:20px"><h5>${tax}</h5></td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle"><h3>{ship_label}:</h3></td>
+                <td align="right" valign="middle" style="padding-left:20px"><h5>${shipping_fee}</h5></td>
+            </tr>
+            <tr><td colspan="2" height="20px"></td></tr>	
+            <tr>
+                <td align="right" valign="middle"><h3>TOTAL:<h3></td>
+                <td align="right" valign="middle" style="padding-left:20px"><h5>${totalPrice}</h5></td>
+            </tr>
+           <!-- {check_commission}
+            <tr>
+                <td style="text-align:right; padding-right:5px;"><h3>MyWallet Account:</h3></td>
+                <td style="text-align:right"><h5>{my_wallet}</h5></td>
+            </tr>
+            <tr>
+                <td style="text-align:right; padding-top:10px; padding-right:10px; border-top:#000 solid 1px"><h3>TOTAL:</h3></td>
+                <td style="text-align:right; padding-top:10px;border-top:#000 solid 1px"><h5>{total_last}</h5>
+                </td>
+            </tr> 
+            {/check_commission}-->
+            {refund_row}
+        </table>
+    </div>
+    <div class="case" style="clear:both; padding-top:20px;" align="right" id="savebt">
+        <input type="button" value="Back" class="button btn" onclick="history.go(-1);" style="margin-left:5px" />
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="okey" name="okey" value="@okey@" />
+
+<SCRIPT language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></SCRIPT>
+<script type="text/javascript">
+    function printOrder(){
+        var okey = document.getElementById("okey").value;
+        ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+        $.ajax({
+            url: "index.php?q=print/odetails&ajax=1&block=yes&okey="+okey,
+            type: "GET",
+            success: function(html){
+                HideLoadingObj(document.getElementById("content_load"));
+                var newWin=window.open('', '', 'width=1000,height=auto', false);
+                newWin.document.open();
+                newWin.document.write('<html><body onload="window.print()">'+html+'</body></html>');
+                newWin.document.close();
+            }
+        });
+    }
+    $(function() {   
+        $('#items_detail_listing').fixedtableheader();
+    });
+</script>

@@ -1,0 +1,20 @@
+<form name="formSponsor" id="formSponsor" method="post" onsubmit="return setFirstIR();" >
+    <input type="text" id="affID" name="affID" placeholder="Affiliate ID#" style="width:200px; margin:0px;" />
+    <input type="submit" value="Enroll" name="btnSubmit" id="btnSubmit" class="btn btn-primary">
+</form>
+<script type="text/javascript">
+function setFirstIR()
+{
+	if($("#affID").val() == '')
+	{
+		alert("Please enter affiliate ID#!");
+		return false;	
+	}
+	$.post("index.php/representatives/setFirstIR", {
+		affID: $("#affID").val()
+	}, function(data){
+		alert(data)
+	});
+	return false;
+}
+</script>

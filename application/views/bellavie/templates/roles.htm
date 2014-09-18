@@ -1,0 +1,381 @@
+<script language="javascript">
+var dataRoles = [];
+$(function() {
+	loadDataRoles();
+});
+
+function loadDataRoles(){
+	$.post("index.php/user/roles", {
+		loadDataRoles:'yes'
+	},function(data){
+		if(typeof(data) == 'object'){
+			dataRoles = data;
+		}
+		showDataRoles();
+	}, "json");	
+}
+function loadpagePermission()
+{
+	var load =window.open('index.php/user/permissions','newtaborsomething');
+	
+}
+function View_clients(key){
+	window.location = 'index.php/user/rolepermission?key='+key;
+	return false;
+}
+function showDataRoles(){
+	var str = '';
+	str += '<table class="v3">';
+	str += '	<thead>';
+	str += '		<tr>';
+	str += '			<th class="th-per" align="left" valign="middle">Role ID</th>';
+	str += '			<th class="th-per" align="left" valign="middle">Role Name</th>';
+	str += '			<th  class="th-per" align="left" valign="middle">Link</th>';	
+	str += '			<th class="th-per" align="left" valign="middle">Action</th>';
+	
+	str += '		</tr>';
+	str += '	</thead>';
+	if(dataRoles.length > 0){
+	
+		str += '	<tbody>';
+		for(var i = 0; i < dataRoles.length; i++){
+			var edit_del = '';
+			var epermession='<a href="javascript:View_clients('+dataRoles[i].rid+')">Permission</a>';
+			//if(dataRoles[i].rid > 3 ){
+				edit_del = '<a href="javascript:void(0)" onclick="delRole('+dataRoles[i].rid+')" style = "color:#ffab11;">Delete</a>';	
+			//}
+			var background = '';
+			if(i%2!=0) background = 'style="background-color:#e2e2e2"';
+			str += '		<tr '+background+'>';
+			str += '			<td height="25px" align="left" valign="middle" >'+dataRoles[i].rid+'</td>';
+			str += '			<td align="left" valign="middle"><div style="cursor:pointer" id="RoleName_'+dataRoles[i].rid
+									+'" onclick="javascript:toggle2('+dataRoles[i].rid+',1);">'+dataRoles[i].name
+									+'</div><input type="text" id="RoleID_'+dataRoles[i].rid
+									+'" style="width:225px;display: none;" value="'+dataRoles[i].name
+									+'" onblur="javascript:UpdateRole('+dataRoles[i].rid
+									+',1);"></td>'; 
+			str += '			<td align="left" valign="middle" ><div style="cursor:pointer" id="RoleLink_'+dataRoles[i].rid
+									+'" onclick="javascript:toggle2('+dataRoles[i].rid+',2);">'+dataRoles[i].rlink
+									+'</div><input type="text" id="RoleIDLink_'+dataRoles[i].rid
+									+'" style="width:225px;display: none;" value="'+dataRoles[i].rlink
+									+'" onblur="javascript:UpdateRole('+dataRoles[i].rid
+									+',2);"></td>'; 
+									
+			str += '			<td align="left" valign="middle" id="delbt_'+dataRoles[i].rid+'">'+epermession+' | '+edit_del+'</td>';
+			str += '		</tr>';		
+		}
+		str += '	</tbody>';		
+	}
+	str += '<tfoot>';
+	str += '	<tr>';
+	str += '		<td align="left" valign="middle">';
+	str += '			&nbsp;';
+	str += '		</td>';
+	str += '		<td align="left" valign="middle" style="color:#ffab11;">';
+	str += '			<span class="field-with-placeholder">';
+	str += '				<label id="role_name_label" class="placeholder" for="role_name"><span>Role Name</span></label>';
+	str += '				<input type="text" class="input-text" id="role_name" maxlength="50" size="10" name="role_name" value="" style="width:225px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';
+	str += '			</span>';
+	str += '		</td>';
+	str += '		<td align="left" valign="middle" style="color:#ffab11;">';
+	str += '			<span class="field-with-placeholder">';
+	str += '				<label id="role_link_label" class="placeholder" for="role_link"><span>Link</span></label>';
+	str += '				<input type="text" class="input-text" id="role_link" maxlength="50" size="10" name="role_link" value="" style="width:225px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';
+	str += '			</span>';
+	str += '		</td>';
+	str += '		<td align="left" valign="middle" id="savebt"><a href="javascript:void(0)" onclick="addRole()" class = "pinkButton">Add</a></td>';
+	str += '	</tr>';
+	str += '</tfoot>';
+	str += '</table>';
+	$("#showPermissionTable").empty().append(str);
+		
+}
+
+function delRole(rid){
+	$("#delbt_"+rid).empty().append('<table cellpadding="0" cellspacing="0" border="0"><tr><td valign="middle"><img src="../images/Loader-FloGradient16x16x.gif" border="0" /></td><td align="left" valign="middle" style="padding-left:3px">Deleting...</td></tr></table>');
+	$.post("index.php/user/roles", {delRole: 'yes', rid: rid}, function(data){
+		if(typeof(data) == 'object'){
+			dataRoles = data;
+		}
+		showDataRoles();
+	}, "json");	
+}
+
+function addRole(){
+	dataRoles = [];
+	var role_name = document.getElementById("role_name").value;
+	var role_link = document.getElementById("role_link").value;
+	if(role_name == ''){
+		$('#role_name').css("background", '#ffffd5');
+		hidelabelfocus("role_name_label");
+		return false;	
+	}
+	if(role_link=='')
+	{
+		$('#role_link').css("background", '#ffffd5');
+		hidelabelfocus("role_link_label");
+		return false;
+	}
+	$("#savebt").empty().append('<table cellpadding="0" cellspacing="0" border="0"><tr><td valign="middle"><img src="../images/Loader-FloGradient16x16x.gif" border="0" /></td><td align="left" valign="middle" style="padding-left:3px">Saving...</td></tr></table>');
+	$.post("index.php/user/roles", {saveRole: 'yes', rolename: role_name, rolelink:role_link}, function(data){
+		$("#savebt").empty().append('<a href="javascript:void(0)" onclick="addRole()">Add</a>');
+		if(typeof(data) == 'object'){
+			dataRoles = data;
+		}
+		showDataRoles();
+	}, "json");
+}
+function upRole(rid,rname)
+{
+	$.post("index.php/user/roles",
+	 {upRole: 'yes', rid: rid, rname: rname}, 
+	 function(data)
+		{
+			if(typeof(data) == 'object')
+			{
+				dataRoles = data;
+			}
+		
+		showDataRoles();
+		}
+	, "json");	
+}
+function onblurInputText(o){
+	
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function toggle2(id, type) 
+{
+	if(type==1)
+	{
+		var ele = document.getElementById("RoleID_"+id);
+		var text = document.getElementById("RoleName_"+id);
+		if(ele.style.display == "block") 
+		{
+			ele.style.display = "none";
+			text.style.display = "block";
+			
+		}
+		else
+		{
+			ele.style.display = "block";	
+			text.style.display = "none";
+			ele.focus();
+		}
+	}
+	else
+	{
+		var ele = document.getElementById("RoleIDLink_"+id);
+		var text = document.getElementById("RoleLink_"+id);
+		if(ele.style.display == "block") 
+		{
+			ele.style.display = "none";
+			text.style.display = "block";
+			
+		}
+		else
+		{
+			ele.style.display = "block";	
+			text.style.display = "none";
+			ele.focus();
+		}
+	}
+
+
+} 
+function setDefault()
+{
+	if(dataRoles.length > 0)
+	{
+			for(var i = 0; i < dataRoles.length; i++)
+			{
+				var ele = document.getElementById("RoleID_"+dataRoles[i].rid);
+				var text = document.getElementById("RoleName_"+dataRoles[i].rid);
+				
+				ele.style.display = "none";
+				text.style.display = "block";
+			
+				
+			}
+			
+	}
+}
+function UpdateRole(rid)
+{
+	
+	var rname = document.getElementById("RoleID_"+rid).value;
+	if(rname=='')
+	{
+		alert("Not empty! Please input data...");
+		showDataRoles();
+	}
+	else
+	{
+		upRole(rid,rname);
+		<!--alert(rname);-->
+	}
+	setDefault()
+}
+function UpdateRole(rid, type)
+{
+	if(type==1)
+	{
+		var rname = document.getElementById("RoleID_"+rid).value;
+		if(rname=='')
+		{
+			alert("Not empty! Please input data...");
+			showDataRoles();
+		}
+		else
+		{
+			upRole(rid,rname,1);
+			<!--alert(rname);-->
+		}
+		setDefault(1);
+	}
+	else
+	{
+		var rname = document.getElementById("RoleIDLink_"+rid).value;
+		if(rname=='')
+		{
+			alert("Not empty! Please input data...");
+			showDataRoles();
+		}
+		else
+		{
+			upRole(rid,rname,2);
+			<!--alert(rname);-->
+		}
+		setDefault(2);
+	}
+}
+function setDefault(type)
+{ 
+	if(type==1)
+	{
+		if(dataRoles.length > 0)
+		{
+			for(var i = 0; i < dataRoles.length; i++)
+			{
+				var ele = document.getElementById("RoleID_"+dataRoles[i].rid);
+				var text = document.getElementById("RoleName_"+dataRoles[i].rid);					
+				ele.style.display = "none";
+				text.style.display = "block";
+			}
+		}
+	}
+	else
+	{
+		if(dataRoles.length > 0)
+		{
+			for(var i = 0; i < dataRoles.length; i++)
+			{
+				var ele = document.getElementById("RoleIDLink_"+dataRoles[i].rid);
+				var text = document.getElementById("RoleLink_"+dataRoles[i].rid);
+				ele.style.display = "none";
+				text.style.display = "block";
+			}				
+		}
+	}
+}
+function toggle2(id, type) 
+{
+	if(type==1)
+	{
+		var ele = document.getElementById("RoleID_"+id);
+		var text = document.getElementById("RoleName_"+id);
+		if(ele.style.display == "block") 
+		{
+			ele.style.display = "none";
+			text.style.display = "block";
+			
+		}
+		else
+		{
+			ele.style.display = "block";	
+			text.style.display = "none";
+			ele.focus();
+		}
+	}
+	else
+	{
+		var ele = document.getElementById("RoleIDLink_"+id);
+		var text = document.getElementById("RoleLink_"+id);
+		if(ele.style.display == "block") 
+		{
+			ele.style.display = "none";
+			text.style.display = "block";
+			
+		}
+		else
+		{
+			ele.style.display = "block";	
+			text.style.display = "none";
+			ele.focus();
+		}
+	}
+
+
+} 
+function upRole(rid,rname,type)
+{
+	if(type==1)
+	{
+		$.post("index.php/user/roles",
+		 {upRole: 'yes', rid: rid, rname: rname}, 
+		 function(data)
+			{
+				if(typeof(data) == 'object')
+				{
+					dataRoles = data;
+				}
+			
+			showDataRoles();
+			}
+		, "json");	
+	}
+	else
+	{
+		$.post("index.php/user/roles",
+		 {upRole: 'yes', rid: rid, rlink: rname}, 
+		 function(data)
+			{
+				if(typeof(data) == 'object')
+				{
+					dataRoles = data;
+				}
+			
+			showDataRoles();
+			}
+			, "json");
+	}
+}
+
+</script>
+<!--<input type="text"/>-->
+<style type="text/css">
+.table-per .th-per {
+    background: none repeat scroll 0 0 #E1E2DC;
+    border: 1px solid #BEBFB9;
+    font-weight: normal;
+    padding: 3px 5px;
+}
+.table-per {
+    border: 1px solid #BEBFB9;
+    width: 100%;
+	border-collapse:collapse;
+	border-spacing:0;
+}
+#showPermissionTable
+{
+	width: 100%;
+}
+</style>
+<div class="box_solar">
+    <div id="showPermissionTable">
+    </div>
+</div>

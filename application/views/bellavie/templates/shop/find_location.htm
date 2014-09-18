@@ -1,0 +1,336 @@
+<div class="row">
+    <div class="span12">
+        <div class="row">
+
+            <div class="product-details clearfix">
+                <div class="span">
+                    <div class="span2">
+                        <div class="product-title">
+                            <h4>{item_name}</h4>
+                        </div>
+                        <div class="product-img-thumb">
+                            <a tppabs="{img_source}" href="{img_source}" class="fancybox"><img alt="" tppabs="{img_source}" src="{img_source}"></a>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <div class="product-set">
+                            <div class="product-price">
+                                <span>{price_string}</span>
+                            </div>
+                            <div class="product-info">
+                                <dl class="dl-horizontal">
+                                    <dt>Availabilty:</dt>
+                                    <dd>{in_stock}</dd>
+
+                                    <dt>Product Code:</dt>
+                                    <dd>{item_model}</dd>
+                                </dl>
+                                <dl>
+                                    <dd>{origin}</dd>
+                                </dl>
+                            </div>
+                            <div class="product-inputs">
+                                <form onsubmit="return find_location()">
+                                    <div class="controls-row">
+                                        <input type="text" placeholder="Address or Zipcode"  id="zipcode" value="{zip}" name="" class="span2">
+                                        <input type="text" placeholder="Radius" value="{radius}" id="radius" name="" class="span1">
+                                    </div>
+
+                                    <button title="" data-original-title="" class="btn btn-primary btn-small button" data-title="Find Location" data-placement="top" data-toggle="tooltip">
+                                        <i class=""></i>Find
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="span6">
+                    <div id="store_list" class="span6"></div>
+                    <div id="list_location_choosed" class="span6" ></div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<!--<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.jscrollpane.min.js"></script>-->
+<script type="text/javascript">
+    
+    var ItemID = '';
+    var instock = 0;
+    var item_price = 0;
+    var Locations = [];
+    var arr_list_location = [];
+    function add_to_list(location_id){
+        var obj_location = new Object;
+        obj_location.id = location_id;
+        obj_location.location = $("#location_"+location_id).html();
+        obj_location.quantity = $("#p_qlty_"+location_id).val();
+        obj_location.attributes = ItemID;
+        arr_list_location[arr_list_location.length] = obj_location;
+        $("#location_tr_"+location_id).fadeOut(300);	
+        remove_location_available(location_id);
+        show_list_location();
+        return false;
+    }
+    function remove_location_available(location_id){
+        var arr_temp = Locations;
+        Locations = [];
+        for(var i = 0; i < arr_temp.length; i++){
+            if(arr_temp[i].id != location_id){
+                Locations[Locations.length] = arr_temp[i];
+            }
+        }
+        show_list_location_available();
+    }
+    function show_list_location_available(){
+        var str = '';
+        if(Locations)
+            if(Locations.length > 0){
+                str += '<div style="margin-top:10px;">';
+                str += '<div style="margin-bottom:8px; font-weight:bold; color:#FFAB11">Availble Location</div>';
+                str += '<table border="0" cellpadding="0" cellspacing="0" style="width:100%" class="table">';
+                str += '<thead>';
+                str += '		<tr>';
+                str += '			<th align="left" valign="middle" class="th-per" style="border-bottom:1px solid #CCC; line-height:20px; width:20px">#</th>';
+                str += '			<th align="left" valign="middle" class="th-per " style="border-bottom:1px solid #CCC; padding-left:50px">Address</th>';
+                str += '			<th align="right" valign="middle" class="th-per " style=" border-bottom:1px solid #CCC;">Quantity</th>';
+                str += '			<th align="right" valign="middle" class="th-per" style="width:60px; border-bottom:1px solid #CCC;">&nbsp;</th>';
+                str += '		</tr>';
+                str += '</thead>';
+                str += '</table>';
+                str += '<div class="holder osX" style="overflow:auto; overflow-x: hidden; clear:both;">';
+                str += ' <div id="list_content_available" style="width:100%;" align="left">';
+                str += '<table border="0" cellpadding="0" cellspacing="0" style="width:100%;" class="table">';
+                str += '<tbody>';
+                for(var i = 0; i < Locations.length; i++){
+                    var location = Locations[i];
+                    var border = 'border-top:1px dashed #CCC';
+                    if(i == 0)
+                        border = '';
+                    str += '<tr id="location_tr_'+location.id+'" style="color:#444">';
+                    str += '<td style="width:20px;line-height:30px; '+border+'">'+(i+1)+'</td>';
+                    str += '<td style="padding-left:4px; font-style:italic; '+border+'"><div align ="left" id="location_'+location.id+'">'+location.location+'</div></td>';
+                    str += '<td align="center" style="width:100px;'+border+'">';
+                    str += '	<input type="text" class="input-text " id="p_qlty_'+location.id+'" name="p_qlty_'+location.id+'" style="width:40px;text-align:right; margin-top:10px;" value="1" onkeypress="return isNumberIntKey(event)"/>';
+                    str += '</td>';
+                    str += '<td align="center" style="width:60px ;'+border+'">';
+                    str += '	<a href="javascript:void(0)" onClick="return add_to_list(\''+location.id+'\')"><input type="button" class="button btn btn-primary btn-small" value="+" style="padding:3px 5px; font-size:10px;float:right"/></a>';
+                    str += '</td>';
+                    str += '</tr>';
+                }
+            str += '</tbody>';
+            str += '</table>';
+            str += '</div>';
+            str += '</div>';
+            str += '</div>';
+        }
+        $("#store_list").empty().append(str);
+        //$("#list_content_available").jScrollPane({showArrows:false, verticalGutter:0});
+    }
+    
+    function show_list_location(){
+        var price = $("#item_price").val();
+        var str = '';
+        str += '<div style="margin-top:10px">';
+        str += '<div style="margin-bottom:8px; font-weight:bold; color:#FFAB11">My Location</div>';
+        str += '<table class = "table" border="0" cellpadding="0" cellspacing="0" style="width:100%">';
+        str += '<thead>';
+        str += '		<tr>';
+        str += '			<th align="left" valign="middle" class="th-per" style="border-bottom:1px solid #CCC; line-height:20px; width:20px">#</th>';
+        str += '			<th align="left" valign="middle" class="th-per" style="border-bottom:1px solid #CCC; padding-left:4px">Address</th>';
+        str += '			<th align="right" valign="middle" class="th-per" style="width:100px; border-bottom:1px solid #CCC">Quantity</th>';
+        str += '			<th align="right" valign="middle" class="th-per" style="width:60px; border-bottom:1px solid #CCC;">&nbsp;</th>';
+        str += '		</tr>';
+        str += '</thead>';
+        str += '</table>';
+        str += '<div class="holder osX" style="overflow: auto; overflow-x: hidden; clear:both;">';
+        str += ' <div id="list_content_choosed" style="width:100%;" align="left">';
+        str += '<table border="0" cellpadding="0" cellspacing="0" style="width:100%">';
+        str += '<tbody>';
+        for(var i = 0; i < arr_list_location.length; i++){
+            var border = 'border-top:1px dashed #CCC';
+            if(i == 0)
+                border = '';
+            str += '<tr id="location_choose_tr_'+arr_list_location[i].id+'" style="color:#444">';
+            str += '<td align = "center" style="width:20px; line-height:30px; '+border+'">'+(i+1)+'</td>';
+            str += '<td style="padding-left:4px; font-style:italic;'+border+'">'+arr_list_location[i].location+'</td>';
+            str += '<td align="center" style="width:100px; '+border+'">';
+            str += '	<input type="text" class="input-text" id="location_choosed_'+arr_list_location[i].id+'" name="location_choosed_'+arr_list_location[i].id+'" style="width:40px; text-align:right;margin-top:10px" value="'+arr_list_location[i].quantity+'" onkeypress="return isNumberIntKey(event)"/>';	
+            str += '</td>';
+            str += '<td align="right" style="width:60px; '+border+'">';
+            str += '	<a href="javascript:void(0)" onClick="return remove_location(\''+arr_list_location[i].id+'\')"><input type="button" class="button btn btn-primary btn-small" value="x" style="padding:3px 5px; font-size:10px;"/></a>';
+            str += '</td>';
+            str += '</tr>';
+        }
+        str += '</tbody>';
+        str += '</table>';
+        str += '	</div>';
+        str += '</div>';
+        str += '</div>';
+        str += '<div style="margin-top:10px" id="add2cart" align="right">';
+        str += '	<input type="button" class="button btn btn-primary btn-small" value="Add to Cart" onclick="a2c_service(\'a\', \''+ItemID+'\');" />';
+        str += '</div>';
+        $("#list_location_choosed").empty().append(str);
+        //$("#list_content_choosed").jScrollPane({showArrows:false, verticalGutter:0});
+    }
+    function add_to_list_available(location_id){
+        var address = '';
+        for(var i = 0; i < arr_list_location.length; i++){
+            if(arr_list_location[i].id ==  location_id){
+                address	= arr_list_location[i].location;
+                break;
+            }
+        }
+        var obj_location = new Object;
+        obj_location.id = location_id;
+        obj_location.location = address;
+        Locations[Locations.length] = obj_location;
+
+        show_list_location_available();
+    }
+
+    function remove_location(location_id){
+	
+        add_to_list_available(location_id);
+        $("#location_choose_tr_"+location_id).fadeOut(300);
+	
+        var arr_temp = arr_list_location;
+        arr_list_location = [];
+        for(var i = 0; i < arr_temp.length; i++){
+            if(arr_temp[i].id != location_id){
+                arr_list_location[arr_list_location.length] = arr_temp[i];
+            }
+        }
+        show_list_location();
+    }
+
+    function find_location(){
+        var zipcode = document.getElementById("zipcode").value;
+        if(trim(zipcode) == ''){
+            alert("Please enter address or zipcode to find.");
+            document.getElementById("zipcode").focus();
+            return false; 
+        }
+        var radius = document.getElementById("radius").value;
+        if(trim(radius) == ''){
+            alert("Please enter radius want to find.");
+            document.getElementById("radius").focus();
+            return false; 
+        }
+        if(zipcode != ''){
+            var url = 'index.php/shop/item_details/findLocation?itmid='+ItemID;
+            url += '&address='+trim(zipcode)+'&radius='+trim(document.getElementById("radius").value);
+            window.location = url;
+        }else{
+            window.location = 'index.php/shop/item_details/findLocation'; 
+        }
+        return false;
+    }
+    
+    var data_required = [];
+    var dataAttributes = [];
+    function loadAttributes(){
+        $.post("index.php/shop/item_details/loadAttributes", {
+            loadAttributes:'yes',
+            ItemID:ItemID
+        },function(data){
+            dataAttributes = data;
+            showAttributes();
+        }, "json");
+    }
+    function showAttributes(){
+        for(var i = 0; i < dataAttributes.length-1; i++){
+            for(var j = i+1; j < dataAttributes.length; j++){	
+                if(parseInt(dataAttributes[i].weight, 10) < parseInt(dataAttributes[j].weight, 10)){
+                    var tam = dataAttributes[i];
+                    dataAttributes[i] = dataAttributes[j];
+                    dataAttributes[j] = tam;	
+                }
+            }
+        }
+        var st = '';
+	
+        for(var i = 0; i < dataAttributes.length; i++){
+            var obj = dataAttributes[i];
+            if(parseInt(obj.display_type, 10) > 0){
+                if(typeof(obj.options) == 'undefined' || obj.options.length == 0){
+                    continue;	
+                }	
+            }
+            var attribute_id = 'attribute_'+obj.akey;
+            var required = '';
+            if(parseInt(obj.required, 10) == 1){
+                data_required[data_required.length] = attribute_id;
+                required = '<span style="color:#FF0000;">*</span>';
+            }
+            st += '<div style="clear:both; padding-top:5px"><b>'+obj.label+': '+required+'</b></div>';
+            st += '<div style="clear:both">'+show_display_type(obj, attribute_id)+'</div>';		
+        }
+        $("#attributes_listing").empty().append(st);
+    }
+
+    function show_display_type(obj, attribute_id){
+        var st = '';
+        for(var i = 0; i < obj.options.length-1; i++){
+            for(var j = i+1; j < obj.options.length; j++){	
+                if(parseInt(obj.options[i].weight, 10) < parseInt(obj.options[j].weight, 10)){
+                    var tam = obj.options[i];
+                    obj.options[i] = obj.options[j];
+                    obj.options[j] = tam;	
+                }
+            }
+        }
+        switch(parseInt(obj.display_type, 10)){
+            case 0:
+                st += '<input type="text" class="input-text" id="'+attribute_id+'" value="" style="width:189px" />';
+                break;
+            case 1:
+                st += '<select id="'+attribute_id+'" style="width:200px">';
+                st += '	<option value="">Please select</option>';
+                for(var j = 0; j < obj.options.length; j++){
+                    st += '	<option value="'+obj.options[j].okey+'">'+obj.options[j].name+'  (+$'+formatAsMoney(obj.options[j].price)+')</option>';	
+                }
+                st += '</select>';
+                break;
+            case 2:
+                for(var j = 0; j < obj.options.length; j++){
+                    var default_ = '';
+                    if(parseInt(obj.options[j].odefault, 10) == 1) default_ = 'checked="checked"';
+                    st += '<div style="clear:both">';
+                    st += '	<span style="float:left; width:22px; padding-top:2px"><input type="radio" name="'+attribute_id+'[]" value="'+obj.options[j].okey+'" '+default_+' /></span>';
+                    st += '	<span style="float:left">'+obj.options[j].name+'  (+$'+formatAsMoney(obj.options[j].price)+')</span>';
+                    st += '</div>';	
+                }
+                break;
+            case 3:
+                for(var j = 0; j < obj.options.length; j++){
+                    var default_ = '';
+                    if(parseInt(obj.options[j].odefault, 10) == 1) default_ = 'checked="checked"';
+                    st += '<div style="clear:both">';
+                    st += '	<span style="float:left; width:22px; padding-top:2px"><input type="checkbox" name="'+attribute_id+'[]" value="'+obj.options[j].okey+'" '+default_+' /></span>';
+                    st += '	<span style="float:left">'+obj.options[j].name+'  (+$'+formatAsMoney(obj.options[j].price)+')</span>';
+                    st += '</div>';	
+                }
+                break;	
+        }
+        return st;
+    }
+
+    $(function(){
+        {if('loadItemID'=='yes');}
+        {if('loadInStock'=='yes');}
+        {if('load_list_available' == 'yes');}
+        loadAttributes();
+        show_list_location_available();
+    });
+</script>

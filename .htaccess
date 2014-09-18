@@ -1,0 +1,23 @@
+#RewriteEngine On
+#RewriteBase /trpplus
+#RewriteCond $1 !^(index\.php|images|css|components|robots\.txt)
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+#RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+#RewriteEngine On
+#RewriteBase /trpplus
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*) index.php?/$1 [L]
+
+<ifModule mod_rewrite.c>
+
+  Options +FollowSymlinks
+  RewriteEngine on
+  # Send request via index.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?/$1 [L]
+  
+</ifModule>

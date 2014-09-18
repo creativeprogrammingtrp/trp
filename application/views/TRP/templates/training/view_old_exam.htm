@@ -1,0 +1,161 @@
+<form style="margin-top:0px" id="basic-wizard" action="#" method="post" class="form-horizontal form-box">
+	<div class="form-box-content">
+			
+			<div class="wizard-steps row">
+               <div class="col-md-3 text-left active left_padding">Exam Details</div>
+               <div class="col-md-3 text-left active left_padding exmdate">Date:</div>
+               <div class="col-md-3 text-left active left_padding exmresult">Result:</div>
+               <div class="col-md-3 text-left active left_padding rightQues">Correct Ans:</div>
+           </div>
+           
+           <div class="form-group">
+               <label class="control-label col-md-2" for="example-username">Question 1:</label>
+               <div class="col-md-3">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewQues1">Is this interesting?</span>
+                   </div>
+               </div>
+           </div>
+           <div class="form-group"> 
+               <label class="control-label col-md-2" for="example-username">Ans 1:</label>
+               <div class="col-md-4">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewAns1">Yes</span>
+                   </div>
+               </div>
+           </div>
+           
+           
+           <div class="form-group">
+               <label class="control-label col-md-2" for="example-username">Question 2:</label>
+               <div class="col-md-3">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewQues2">Is this interesting?</span>
+                   </div>
+               </div>
+           </div>
+           <div class="form-group"> 
+               <label class="control-label col-md-2" for="example-username">Ans 2:</label>
+               <div class="col-md-4">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewAns2">Yes</span>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="form-group">
+               <label class="control-label col-md-2" for="example-username">Question 3.</label>
+               <div class="col-md-3">
+                   <div class="input-group">
+                     
+                      <span class=" ui-wizard-content" id="reviewQues3">Is this interesting?</span>
+                   </div>
+               </div>
+           </div>
+           <div class="form-group"> 
+               <label class="control-label col-md-2" for="example-username">Ans 3 :</label>
+               <div class="col-md-4">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewAns3"></span>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="form-group">
+               <label class="control-label col-md-2" for="example-username">Question 4.</label>
+               <div class="col-md-3">
+                   <div class="input-group">
+                     
+                      <span class=" ui-wizard-content" id="reviewQues4">Is this interesting?</span>
+                   </div>
+               </div>
+           </div>
+           <div class="form-group"> 
+               <label class="control-label col-md-2" for="example-username">Ans 4 :</label>
+               <div class="col-md-4">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewAns4"></span>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="form-group">
+               <label class="control-label col-md-2" for="example-username">Question 5.</label>
+               <div class="col-md-3">
+                   <div class="input-group">
+                     
+                      <span class=" ui-wizard-content" id="reviewQues5">Is this interesting?</span>
+                   </div>
+               </div>
+           </div>
+           <div class="form-group"> 
+               <label class="control-label col-md-2" for="example-username">Ans 5 :</label>
+               <div class="col-md-4">
+                   <div class="input-group">
+                      <span class=" ui-wizard-content" id="reviewAns5"></span>
+                   </div>
+               </div>
+           </div>
+           
+            <!-- Form Buttons -->
+        <div class="form-group form-actions">
+            <div class="col-md-10 col-md-offset-2">
+               
+               <a class="btn btn-info " rel="tooltip" title="Back" data-toggle="tooltip" href="index.php/admin/training"  data-original-title="Edit" >Back</a>
+            </div>
+        </div>
+        <!-- END Form Buttons -->
+     </div>
+ </form>
+<script type="text/javascript">
+	var dataClient = [];
+	
+	 
+		function loadObject2() {
+			{dataLoad}
+	                loadClients2();  
+		}
+		
+		function loadClients2() {
+            var htm = ''; 
+            
+             $("#reviewQues1").html(dataClient[0].Ques1);
+			 $("#reviewAns1").html(dataClient[0].Ques1Ans);
+		     
+			 $("#reviewQues2").html(dataClient[0].Ques2);
+			 $("#reviewAns2").html(dataClient[0].Ques2Ans);
+		     
+			 $("#reviewQues3").html(dataClient[0].Ques3);
+			 $("#reviewAns3").html(dataClient[0].Ques3Ans);
+		     
+			 $("#reviewQues4").html(dataClient[0].Ques4);
+			 $("#reviewAns4").html(dataClient[0].Ques4Ans);
+		     
+			 $("#reviewQues5").html(dataClient[0].Ques5);
+			 $("#reviewAns5").html(dataClient[0].Ques5Ans);
+			 
+			 $(".exmdate").html('Date : '+dataClient[0].exam_date);
+			 $(".exmresult").html('Result : '+dataClient[0].resultParcent+ '%');
+			 $(".rightQues").html('Correct Ans : '+dataClient[0].rightAns + ' of 5');
+			 
+			 
+			 
+           // $("#showExamResult").empty().append(htm);
+	}
+		
+
+		function setExamResult(){
+			$("#nextExam1").click(function() {
+				
+				
+			      
+			});
+		}
+		
+		$(function() {
+			loadObject2(); 
+			
+			setExamResult();
+			//$('#toppart').remove();
+			});
+</script>	

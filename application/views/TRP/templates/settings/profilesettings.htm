@@ -1,0 +1,322 @@
+
+			<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="profile_settings_form_setting">
+			    
+			  <div class="col-md-12" style="margin: 0 0 0 13px; padding-top: 25px; width: 98%;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Profile Settings </span>
+	       <span class="tools pull-right icons" style=""><i class="icon-user"></i></span>
+        </header>
+        <div class="panel-body" style="padding:0px;">
+		<!-- Panel start -->  
+			    <!-- Form Content -->
+			    <div class="form-box-content">
+			        <!-- First Step -->
+			        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+			        <div class="col-md-5" style="padding:10px 0 0 7px;">
+			           
+			            	<div class="form-group1"> 
+				                <label for="username1"
+				                       class="control-label col-md-12"><i class="icon-user"></i> Username</label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content"
+				                           name="username1" value="" disabled="disabled"
+				                           id="username1">
+				                </div>
+				                <!-- <div class="col-md-2">
+				                	<input type="button" value="Change Username" id="change_username1" class="btn btn-info btn-sm ui-wizard-content ui-formwizard-button">
+				                </div> -->
+				            </div> 
+				            <div class="form-group1"> 
+					            <label for="role1" class="control-label col-md-12"><i class="glyphicon-user_add"></i> Role</label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" disabled="disabled" class="form-control ui-wizard-content"
+				                           name="role1" id="role1">
+				                </div>
+				            </div>
+				            <div class="form-group1">
+					            <label for="ptin1" class="control-label col-md-12"><i class="icon-signup"></i> PTIN #</label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content"
+				                           name="ptin1" id="ptin1">
+				                </div>
+				            </div>
+			            
+			        </div>
+			        <div class="col-md-2" style="min-height: 285px;	background-image: url('../backend/img/line.png'); background-repeat: no-repeat;background-position: top center;">
+			        </div>
+			        <div class="col-md-5" style="padding:10px 7px 0 0px">    
+			            
+				            <div class="form-group1">
+				                <label for="first_name1" class="control-label col-md-12"><i class="glyphicon-nameplate"></i> First Name<span class="required1">*</span></label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content" name="first_name1" id="first_name1">
+				                </div>
+				            </div> 
+				            
+				            <div class="form-group1">
+					            <label for="last_name1" class="control-label col-md-12"><i class="glyphicon-nameplate"></i> Last Name<span class="required1">*</span></label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content" name="last_name1" id="last_name1">
+				                </div>
+				            </div>
+				            
+				            <div class="form-group1">
+				            	<label for="email1" class="control-label col-md-12"><i class="icon-envelop"></i> Email Address</label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content" name="email1" id="email1">
+				                </div>
+				            </div>
+				            
+				            <div class="form-group1">
+				            	<label for="phone1" class="control-label col-md-12"><i class="icon-phone"></i> Contact Number </label>
+				                <div class="col-md-12 nopadding">
+				                    <input type="text" class="form-control ui-wizard-content" name="phone1" id="phone1">
+				                </div>
+				            </div>   
+			            
+			       </div>
+			           
+					<!-- 
+			            <div class="form-group">
+			                <label for="cell_phone"
+			                       class="control-label col-md-3">Cell Phone</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           name="example-advanced-cellphone" id="cell_phone1">
+			                </div>
+			            </div>
+			             -->
+			            
+			        </div>
+				</div>
+				
+				</div>
+	</section>
+</div>
+
+<div class="col-md-12 form-group1"  style="padding-left: 30px">
+	
+	<button class="btn btn-success" id="save_p" type="submit"  > &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+	<button id="profileSaveBtnLoad" style="display:none;" class=" btn btn-success" type="submit"> <i class="glyphicon-refresh"></i> Saving... </button>
+	<button class="btn btn-info" id="reset_p1" type="button"  data-toggle="modal" data-target=".bs-modal-sm" > &nbsp; &nbsp; <i class="icon-lock"></i> &nbsp;  Change Password &nbsp; &nbsp; </button>
+	 <!-- <input type="button" value="Change Password" id="reset_p1" class="btn btn-info ui-wizard-content ui-formwizard-button"> -->	 
+</div>
+
+<div class="col-md-12" id="companySaveBtnLoad" style="display:none; padding-left: 30px">
+          
+      </div>
+
+ 
+						
+			            
+			            <div id="modal_success1" class="modal slide">
+			                        <div class="modal-dialog">
+			                            <div class="modal-content">
+			                                <div class="modal-header">
+			                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                                    <h4 class="modal-title">Warning</h4>
+			                                </div>
+			                                <div class="modal-body">
+			                                    <p>Save successfully.</p>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			</form>
+		
+
+
+<div id="modal_reset_pass1" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                    <div class="form-box-content">
+                        <!-- First Step -->
+                        <div class="step ui-formwizard-content">
+                            <div class="form-group">
+                                <label for="current_p" class="control-label col-md-4">Current Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-current_p" value="" id="current_p1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_p" class="control-label col-md-4">New Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-new_p" value="" id="new_p1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_p" class="control-label col-md-4">Confirm New Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-confirm_p" value="" id="confirm_p1">
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <input type="button" value="Save" id="save_re1"
+                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                    <input type="button" value="Cancel" id="cancel_re1"
+                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+var dataClient = [];
+
+function loadObject() {
+		{dataLoad}
+                loadClients();
+}
+function reset_pass(){
+	$("#save_re1").click(function() {
+		if($("#new_p1").val() !== $("#confirm_p1").val()){
+			alert("New password and confirm new password is not equal");
+			return false;
+		}
+		$.post("index.php/admin/settings/resetPassword", {
+			reset_p : 'yes',
+			current_p:$("#current_p1").val(),
+			new_p:$("#new_p1").val()
+		}, function(data) {
+			if (data == 'ok') {
+				$('#modal_reset_pass1').modal('hide');
+			}else{
+				alert(data);
+				return false;	
+			}
+		}, "json");
+		return false;
+	});
+}
+function loadClients() {
+        if(dataClient.disabled == 'yes') $("#role1").attr('disabled','disabled');
+	$("#username1").val(dataClient.name);
+	$("#role1").val(dataClient.role);
+	$("#ptin1").val(dataClient.ptin);
+	$("#first_name1").val(dataClient.firstname);
+	$("#last_name1").val(dataClient.lastname);
+	$("#email1").val(dataClient.mail);
+	$("#phone1").val(dataClient.phone);
+	$("#cell_phone1").val(dataClient.mobile);
+}
+
+function clickSaveProfile() {
+	$("#save_p").click(function() {
+
+		$.post("index.php/admin/settings/saveProfileInfo", {
+			load_p : 'yes',
+			username : $("#username1").val(),
+			role : $("#role1").val(),
+			ptin : $("#ptin1").val(),
+			first_name : $("#first_name1").val(),
+			last_name : $("#last_name1").val(),
+			email : $("#email1").val(),
+			phone : $("#phone1").val()
+			//,
+			//cell_phone : $("#cell_phone1").val()
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+								//$('#modal_success1').modal('show');
+                                //$("#two").trigger('click');
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+}
+
+$(function(){
+	$("#reset_p1").click(function(){
+		$("#modal_reset_pass1").modal('show');	
+	});
+	$("#cancel_re1").click(function(){
+		$("#modal_reset_pass1").modal('hide');
+	});
+	$("#change_username1").click(function(){
+		$("#username1").removeAttr('disabled');
+	});
+	loadObject();
+	//clickSaveProfile();
+	reset_pass();
+	
+	
+	$("#phone1").mask("(999) 999-9999");
+	
+	/* Initialize Form Validation */
+    $('#profile_settings_form_setting').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group1 > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+          //  e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.form-group1').removeClass('has-success has-error');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	
+        	first_name1 : { required: true },
+        	last_name1  : { required: true },
+            
+        },
+        messages: {
+        	
+        },
+        submitHandler: function(form) {
+        	
+        	$('#save_p').hide();
+			$('#profileSaveBtnLoad').show();
+			
+        	$.post("index.php/admin/settings/saveProfileInfo", {
+    			load_p : 'yes',
+    			username : $("#username1").val(),
+    			role : $("#role1").val(),
+    			ptin : $("#ptin1").val(),
+    			first_name : $("#first_name1").val(),
+    			last_name : $("#last_name1").val(),
+    			email : $("#email1").val(),
+    			phone : $("#phone1").val()
+    			//,
+    			//cell_phone : $("#cell_phone1").val()
+    		}, function(data) {
+    			if (typeof (data) == 'object') {
+    				dataClient = data;
+    				
+    				$('#save_p').show();
+    				$('#profileSaveBtnLoad').hide();
+    								//$('#modal_success1').modal('show');
+                                    //$("#two").trigger('click');
+    			}
+    			loadClients();
+    		}, "json");
+
+    		return false;
+        }
+         
+    });
+	/*End Form validation*/
+});
+
+</script>

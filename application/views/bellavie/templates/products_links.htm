@@ -1,0 +1,72 @@
+<style>
+.sub_menu_tr td{
+	border-bottom:1px #BABABA dotted;
+	padding-bottom:10px; 
+	padding-top:10px;
+	}
+.submenu_des{
+	padding-top:3px;}
+.submenu_titlen{
+	font-size:14px;
+	text-decoration:none; color:#F7961E; font-weight:bold;
+	font: 300 24px/36px 'Oswald',Arial,Helvetica,sans-serif;}
+</style>
+<script type="text/javascript">
+function gotoOrder(){
+	window.location = 'index.php/store/orders';	
+}
+function gotoOrderDelivery(){
+	window.location = 'index.php/store/autodelivery';	
+}
+</script>
+<div class="content-panel" style="margin-bottom:0px;">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="index.php/home">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>
+<div class="main-container holder" style="margin-bottom:20px;">
+    <table cellpadding="0" cellspacing="0"  width="100%">
+        <tr class="sub_menu_tr">
+            <td width="90px" valign="top">
+                <img src="../images/submenu_icons/shopping.png" alt="profile icons" title="profile icons" style="vertical-align:middle;"> 
+            </td>
+            <td valign="top">
+                <div>
+                    <a  href="javascript:void(0)" onclick="gotoShopping()"  class = "submenu_titlen">Place an Order</a>
+                </div>
+                <div class="submenu_des">
+                Find the product you want to buy. Review it. And you can create a new order is easy.
+                </div>
+            </td>
+        </tr>
+        <tr class="sub_menu_tr">
+            <td width="90px" valign="top">
+                <img src="../images/submenu_icons/orders.png" alt="profile icons" title="profile icons" style="vertical-align:middle;"> 
+            </td>
+            <td valign="top">
+                <div>
+                    <a href="javascript:void(0)" onclick="gotoOrder()" class = "submenu_titlen">My Order</a>
+                </div>
+                <div class="submenu_des">Manage your orders. View, cancel or refund your orders. Tracking your package is easy.</div>
+            </td>
+        </tr>
+        <tr class="sub_menu_tr">
+            <td width="90px" valign="top">
+                <img src="../images/submenu_icons/delivery.png" alt="profile icons" title="profile icons" style="vertical-align:middle;"> 
+            </td>
+            <td valign="top">
+                <div>
+                    <a href="javascript:void(0)" onclick="gotoOrderDelivery()" class = "submenu_titlen">Autoship</a>
+                </div>
+                <div class="submenu_des">
+                
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

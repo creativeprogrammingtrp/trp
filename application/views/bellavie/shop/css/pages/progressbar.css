@@ -1,0 +1,51 @@
+/* CSS Document */
+/*-------------------------Progress_bar------------------------------*/
+.progress_bar{
+	overflow:hidden;
+	position:fixed;
+	left:42%;
+	top:45%;
+	z-index:999;
+	width:280px;
+	border:1px solid #FFCC05;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0px 0px 10px #FFF2C0;
+    box-shadow: 0px 0px 10px #FFF2C0;
+	-webkit-box-shadow: 0px 0px 10px #FFF2C0;
+	background:#fff;
+	padding:5px;
+	display:none;
+}
+.progress_bar_top{
+	position:relative;
+	width:100%;
+	clear:both;
+	font-size:11px;
+	height:20px;
+	overflow:hidden;
+}
+.progress_bar_midle{
+	position:relative;
+	width:100%;
+	clear:both;
+	height:2px;
+	overflow:hidden;
+	font-size:11px;
+	background:#d2d2d2;
+}
+.progress_bar_bottom{
+	position:relative;
+	width:100%;
+	clear:both;
+	height:20px;
+	overflow:hidden;
+	font-size:11px;
+}
+.description_class{
+	color:#999999;
+	font-size:10px;
+	font-style:italic;
+}
+

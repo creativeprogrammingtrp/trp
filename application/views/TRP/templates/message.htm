@@ -1,0 +1,414 @@
+
+
+
+<!--<div class="alert alert-warning">
+    <button data-dismiss="alert" class="close" type="button">×</button>
+    <ul id="message">
+        <li><i class="icon-hand-right icon_point"></i> Please Complete Company Info.</li>
+        <li><i class="icon-hand-right icon_point"></i> Please Complete Profile Settings.</li>
+        <li><i class="icon-hand-right icon_point"></i> Please Complete Compliance Training.</li>
+        <li><i class="icon-hand-right icon_point"></i> Please Complete Order Supplies.</li>
+    </ul>
+</div>-->
+<style>
+
+.badgedone{height: 20px;
+    line-height: 20px;
+    margin: -8px 0px 0px 9px;
+    padding: 0 7px;
+    position: absolute;
+   /* right: 0;
+    top: 0;*/
+z-index: 30000;
+}
+.badge{
+	
+}
+
+.overlay { 
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+    /*z-index: 10000;*/
+}
+</style>
+<ul class="nav-dash" id="topmessagepart">
+<h3 style="margin-top:0px;">Let's get you set up!</h3>
+<li id="setupcompanyli" >
+<span class="badge badgedone" id="badge_setup_company" style="display:none; background: none;"><img alt="" src="../backend/img/steps/tick-icon.png"></span>
+<p>Step 1: Setup Company Info</p>
+                            <img alt="" src="../backend/img/steps/company_info_settings.jpg">
+                           <!-- <a title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Users">
+                                <i class="icon-user"></i>
+                            </a>
+                             <input type="button" style="float:right"  class="btn btn-info ui-wizard-content ui-formwizard-button" id="add_new_service" value="Start Here">
+                              <a class="btn btn-xs btn-success " rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="addCompanyInfo"  onclick="showCompanySetup('modal_addservice')" ><i class="icon-pencil"></i>Start Here</a> -->
+                            <button class="btn btn-sm btn-info" onclick="showCompanySetup('modal_company_setup')" type="button" id="setupcompanybutton">Start Here <i class="icon-arrow-right"></i></button>
+                            
+                        </li>
+                        <li id="setuptestli">
+                        <span class="badge badgedone" id="badge_test" style="display:none; background: none;"><img alt="" src="../backend/img/steps/tick-icon.png"></span>
+                        <p>Step 2: Pass Compliance Test</p>
+                        <img alt="" src="../backend/img/steps/pass_compliance_test.jpg">
+                            <!-- <a title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Users">
+                                <i class="icon-user"></i>
+                            </a> -->
+                            <button class="btn btn-sm btn-info" onclick="top.location='index.php/admin/training'" type="button" id="setuptestbutton">Start Here <i class="icon-arrow-right"></i></button>
+                        </li> 
+                        <li id="setupordersuppliesli">
+                        <span class="badge badgedone" id="badge_order_supplies" style="display:none; background: none;"><img alt="" src="../backend/img/steps/tick-icon.png"></span>
+                        <p>Order Supplies</p>
+                        <img alt="" src="../backend/img/steps/order_supplies.jpg">
+                        <!-- 
+                            <a title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Users">
+                                <i class="icon-user"></i>
+                            </a>
+                             -->
+                            <button class="btn btn-sm btn-info" onclick="showOrderSuppliesSetup('modal_order_supplies_setup')" type="button" id="ordersuppliesbutton">Start Here <i class="icon-arrow-right"></i></button>
+                        </li>
+</ul>
+
+<!-- Modal Box For Success Order Supplies -->
+<div id="modal_order_supplies_success" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Step 2: Order Supplies</h4>
+            </div>
+            <div class="modal-body">
+            	<h2 style="text-align: center;">Thank you!</h2> <h5>Your order has been placed and an email confirmation has been sent to you.</h5>
+            	<img alt="" align="right" src="../backend/img/thank-you.jpg">
+            	<div style="clear: both;"></div>
+ 			</div>
+ 		</div>
+ 	</div>		
+ </div>
+ 
+ 
+<!-- Modal Box For Order Supplies -->
+<div id="modal_order_supplies_setup" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Order Supplies</h4>
+            </div>
+            <div class="modal-body">
+            	<div class="itemlist" style="display: block;">
+					<div class="item-cell" style="width:100%;">
+					<p class="thumb" style="margin:0px auto; height:100px;">
+						<a href="javascript:void(0);">
+							<img alt="" src="../backend/img/steps/order_supplies.jpg">
+						</a>
+					</p>
+					
+					<h2 style="height: 25px; font-size:17px; margin-top:5px; text-align: center;"><a href="javascript:void(0);"> Blank Checks</a></h2>
+					<p class="short-desc">Box of 500 Checks</p>
+					<p class="price">Free</p>
+					<div class="div__addtocart">
+						<div class="div__addtocart1">
+						<a class="btn btn-primary " rel="tooltip" title="Order Now" data-toggle="tooltip" href="javascript:void(0);"  data-original-title="Order Now" id ="ord_now_btn_on_modal"  >Order Now</a>
+						</div>
+					</div>
+					</div>
+				</div>	
+ 			</div>
+ 		</div>
+ 	</div>	
+ 	<script type="text/javascript">
+ 	 $(function(){
+ 		$("#ord_now_btn_on_modal").click(function() {
+ 			 $.ajax({
+                 url: 'index.php/admin/orders/saveOrderFromModal?ajax=1',
+                 cache: false,
+                 success: function(message){
+                       //  $("#setup_company_info").empty().append(message);
+                       $('#modal_order_supplies_setup').modal('hide');
+			 			$('#modal_order_supplies_success').modal('show');
+			 			
+			 			$("#ordersuppliesbutton").attr('disabled','disabled');
+			 	          $("#setupordersuppliesli").css('disabled','disabled');
+			 	          $("#setupordersuppliesli").attr('class','overlay');
+			 	          $("#badge_order_supplies").css('display','block');
+                         return false;
+                 }
+ 			});	
+ 			  
+ 		});
+ 		
+    });	
+ 	 </script>
+ </div>		
+
+<!--modal company setup -->
+<div id="modal_company_setup" class="modal slide">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Setup Company Info</h4>
+            </div>
+            <div class="modal-body">
+               
+               <!-- Company setting modal -->
+               
+<!-- <ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#company_info" onclick="ChangeContent(1);">Company Info</a></li>
+    <li class=""><a href="#profile_settings"  onclick="ChangeContent(2);">Profile Settings</a></li>
+    <li class=""><a href="#user_account" onclick="ChangeContent(3);">User Accounts</a></li>
+    <li {style} class=""><a href="#services" onclick="ChangeContent(9);" >Services</a></li>
+    <li class=""><a href="#payment_info" >Payment Info</a></li>
+    <li class=""><a href="#banking" >Banking</a></li>
+</ul>
+ -->
+
+<div class="tab-content tab-content-default" style="background-color: #fff;">
+    <div id="setup_company_info" class="tab-pane active">
+    </div>
+    <!-- 
+<div id="profile_settings" class="tab-pane" >
+   
+</div>
+<div id="user_account" class="tab-pane">
+   
+</div>
+<div id="services" class="tab-pane">
+ 
+</div>
+<div id="payment_info" class="tab-pane">
+    This will be Payment Info
+</div>
+ <div id="banking" class="tab-pane">
+    This will be banking Info
+</div>   
+   --> 
+</div>
+
+<script type="text/javascript">
+/*
+     var tab_selected = 1;
+     
+     function same_check(){
+ 
+            $('#example-checkbox1').change(function () {
+                 if($(this).is(":checked")){
+                    $("#address_1_m").val($("#address_1").val());
+                    $("#address_2_m").val($("#address_2").val());
+                    $("#zipcode_m").val($("#zipcode").val());
+                    $("#city_m").val($("#city").val());
+                    $("#state_m").val($("#state").val());
+                }else{
+                    $("#address_1_m").val("");
+                    $("#address_2_m").val("");
+                    $("#zipcode_m").val("");
+                    $("#city_m").val("");
+                    $("#state_m").val("");
+                }
+            });
+            
+        }
+        
+    function showProfileSetting(){
+	$.ajax({
+                url: 'index.php/admin/settings/profileSetting?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#profile_settings").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+    */
+    function showSetupCompanyInformation(){
+	$.ajax({
+                url: 'index.php/admin/settings/showSetupCompanyInformation?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#setup_company_info").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+    /*
+    function showUserList(){
+	$.ajax({
+                url: 'index.php/admin/settings/showUserLists?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#user_account").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+    
+     function ShowService(){
+	$.ajax({
+                url: 'index.php/admin/settings/ShowService?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#services").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+   */
+    $(function(){
+    	showSetupCompanyInformation();
+    });
+</script>
+               
+               <!-- End company setting modeal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--end -->
+
+<!-- 
+<div class="alert alert-success">
+    <button data-dismiss="alert" class="close" id="one" type="button">×</button>
+  <a href="index.php/admin/settings"> Please Complete Company Info.</a>
+</div>
+
+<div class="alert alert-info">
+    <button data-dismiss="alert" class="close"  id="two"  type="button">×</button>
+    <a href="index.php/admin/settings">Please Complete Profile Settings.</a>
+</div>
+<div class="alert alert-danger">
+    <button data-dismiss="alert" class="close"  id="three"  type="button">×</button>
+    <a href="#">Please Complete Compliance Training.</a>
+</div>
+
+<div class="alert alert-warning">
+    <button data-dismiss="alert" class="close"  id="four"  type="button">×</button>
+    <a href="index.php/admin/orders">Please Complete Order Supplies.</a>
+</div>
+-->
+<script type="text/javascript">
+    
+    $(function(){
+      var company_setting = '{company_setting}';
+      var company_info =  '{company_info}';
+      var compiliance_test = '{compiliance_test}';
+     var order_supplies_setting  = '{order_supplies_setting}';
+          
+     if(company_info === '1'){
+         $(".alert-success").css('display','none');
+     } 
+     /*
+     if((order_supplies_setting === '1') && (compiliance_test === '1') && (company_setting === '1')){
+         //$(".alert-info").css('display','none');
+   	  		  $("#ordersuppliesbutton").attr('disabled','disabled');
+	          $("#setupordersuppliesli").css('disabled','disabled');
+	          $("#setupordersuppliesli").attr('class','overlay');
+	          $("#badge_order_supplies").css('display','block');
+      	}
+	      else{
+	       	  //$("#setupcompanybutton").attr('disabled','disabled');
+	       	  //$("#setuptestbutton").attr('disabled','disabled');
+	       	  $("#ordersuppliesbutton").removeAttr('disabled');
+	       	
+	      }
+       
+      */
+      if((compiliance_test === '1') && (company_setting === '1') && (order_supplies_setting !== '1')){
+          //$(".alert-info").css('display','none');
+          $("#setuptestbutton").attr('disabled','disabled');
+          $("#setuptestli").css('disabled','disabled');
+          $("#setuptestli").attr('class','overlay');
+          $("#badge_test").css('display','block');
+          
+          $("#setupcompanybutton").attr('disabled','disabled');
+          $("#setupcompanyli").css('disabled','disabled');
+          $("#setupcompanyli").attr('class','overlay');
+          $("#badge_setup_company").css('display','block');
+          
+       }
+      /*else{
+       	  $("#setupcompanybutton").attr('disabled','disabled');
+       	  $("#ordersuppliesbutton").attr('disabled','disabled');
+       	  $("#setuptestbutton").removeAttr('disabled');
+       	  
+      }*/
+      
+      if((company_setting === '1') && (compiliance_test !== '1') && (order_supplies_setting !== '1')){
+          //$(".alert-info").css('display','none');
+          $("#setupcompanybutton").attr('disabled','disabled');
+          $("#setupcompanyli").css('disabled','disabled');
+          $("#setupcompanyli").attr('class','overlay');
+          $("#badge_setup_company").css('display','block');
+          
+          $("#ordersuppliesbutton").attr('disabled','disabled');
+          
+       }
+      else{
+     	  $("#setuptestbutton").attr('disabled','disabled');
+     	  $("#ordersuppliesbutton").attr('disabled','disabled');
+     	  $("#setupcompanybutton").removeAttr('disabled');
+     	  
+       }
+      
+      //$('#menu-orders').hide();
+      //$('#menu-setting').hide();
+      //$('#menu-training').hide();
+      
+      //alert(order_supplies_setting);
+      
+      
+ 	 
+      
+      
+      
+      
+      
+     
+      
+      
+      
+      
+      if(order_supplies_setting == '1')
+    	{
+    	  
+    	} else 
+	  {
+	  		//$('#menu-orders').show();  
+    		$("#menu-orders").attr('class','overlay');
+    	    $('#menu-orders').on('click', function(e){ e.preventDefault(); });  
+	  }
+
+	  if(company_setting == '1') {
+		  //$('#menu-setting').show();  
+	  }else{
+		  $("#menu-setting").attr('class','overlay');
+	      $('#menu-setting').on('click', function(e){ e.preventDefault(); });
+	  }
+	  
+	  
+	  if(compiliance_test == '1'){
+		  //$('#menu-training').show();	  
+	  }
+	  else{
+		  /*$("#menu-reporting").attr('class','overlay');
+	      $('#menu-reporting').on('click', function(e){ e.preventDefault(); });
+	
+	      $("#menu-accounts").attr('class','overlay');
+	      $('#menu-accounts').on('click', function(e){ e.preventDefault(); });*/
+	      
+	      $("#menu-training").attr('class','overlay');
+	      $('#menu-training').on('click', function(e){ e.preventDefault(); });
+	  }
+	  
+      
+     // overlay
+      /*$(".alert-danger >a").click(function(){ 
+         $("li").closest(".nav").find(".active").removeClass("active").end().find("li:eq(2)").addClass("active").children('a').trigger('click');  
+      });*/
+ 
+    });
+</script>
+

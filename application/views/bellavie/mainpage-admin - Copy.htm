@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="expires" content="Mon, 26 Jul 1997 05:00:00 GMT"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="INDEX,FOLLOW" />
+<meta name="description" content="{description_site}" />
+<meta name="keywords" content="{keywords_site}" />
+<title>{title_site}</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon"> 
+<link rel="stylesheet" type="text/css" href="../css/system.css" />
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/menu.css" />
+<link rel="stylesheet" type="text/css" href="../css/layout_2.css" />
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-ui-1.8.20.custom.min.js"></script>
+<script type="text/javascript" src="misc/scripts/constant.js"></script>
+<SCRIPT language="javascript" type="text/javascript" src="misc/scripts/js.js"></SCRIPT>
+<link rel="stylesheet" type="text/css" href="../css/base/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" href="../popups/theme1/styles/popup.css" />
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.tooltip.min.js"></script>
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+</head>
+<script type="text/javascript">
+var url_server__ = '{curPageURLServer}';
+dir_theme = 'application/views/{dir_theme}/';
+var url_base_path__ = '{url_base_path}';
+$(function(){
+	$(".headerNavItem").hover(function(){
+		if($(this).hasClass("menuActive")) return;
+		$(this).addClass("menuHover");	
+	},function(){
+		$(this).removeClass("menuHover");		
+	})
+	$(".nav li").hover(function(){ 
+		$(this).find('ul:first').css({visibility: "visible",display: "none"}).show(); 
+	},function(){ 
+		$(this).find('ul:first').css({visibility: "hidden"}); 
+	}); 
+})
+</script>
+<style type="text/css">
+html,body{
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+}
+.nav li{margin-right:0px;}
+</style>
+<body>
+<div class="container_div">
+	<div class="header_main">{account_content}</div>
+    <div class="content_main" align="left" id="content_load">
+    	<div class="bodyContent">
+        	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td valign="top" align="left" style="padding-top:20px; padding-bottom:20px;">{content_site}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="fancy_box"></div>
+<div id="coherent_bubble_node" style="left: 0px; top: 0px; width: 203px; display:none" class="bubble">
+    <span class="chrome tl"></span>
+    <span class="chrome tr"></span>
+    <span class="chrome top"></span>
+    <span class="chrome left"></span>
+    <span class="chrome right"></span>
+    <span class="chrome bottom"></span>
+    <span class="chrome bl"></span>
+    <span class="chrome br"></span>
+    <span class="chrome center"></span>
+    <div class="spinner" __parametersid="parameters_7" id="coherent_id_30" style="display: none;"></div>
+    <div class="container" id="coherent_id_35">
+        <div class="content" id="coherent_id_34"><span>Please complete this mandatory field.</span></div>
+        <ul class="buttons" __parametersid="parameters_10" id="coherent_id_31" style="display: none;"></ul>
+    </div>
+    <span class="chrome arrow" id="coherent_id_36" style="left: 101px;"></span>
+</div> 
+<div class="modal" id="box_popup" style="display:none; overflow:hidden">
+    <div class="modal-hd" style="cursor: move"><span id="title_popup">Empty the Spam folder</span> <span title="Close" class="close" id="closebox"></span> </div>
+    <div class="modal-bd">
+        <div id="content_popup" style="overflow:hidden"></div>
+    </div>
+</div>   
+</body>
+</html>

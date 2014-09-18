@@ -1,0 +1,138 @@
+<style>
+.tr_order_details td{
+	text-transform:uppercase;
+	padding:10px 5px 10px 5px;
+}
+.table_invoice p{
+	margin:0px;
+	padding:0px;}
+.td_info{
+	padding-top:20px;}
+.td_info p{
+	margin:0px;
+	padding:0px;
+	line-height:1.7em;
+	}
+.td_title{
+	text-transform:uppercase;
+	font-size:16px;
+	font-weight:bold;
+	padding-top:20px;
+	padding-bottom:10px;}
+.td_order_title{
+	width:12%;
+	font-style:italic;}
+.td_order_des{
+	width:38%;
+	padding-right:5px;}
+</style>
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+<tr>
+	<td align="center" valign="top">
+        <table cellpadding="0" cellspacing="0" border="0" width="600px" style="margin:0px auto 0px auto;" class="table_invoice">
+            <tr>
+                <td width="60%">
+                    <img src="../images/logo.png" alt="Bellavie Network" title="Bellavie Network" width="300px"/>
+                </td>
+                <td width="40%" style="padding:30px 10px 30px 10px;" bgcolor="#ffab11">
+                    <p >Order date: <span style="font-weight:bold;">{date}</span></p>
+                    <p >Order #: <span style="font-weight:bold;">{order_number}</span></p>
+                    <p style="font-size:16px; font-weight:bold; margin-top:20px;">SHIPMENT INFORMATIONS</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table cellpadding="2" cellspacing="0" border="0" width="100%" class="table_order_details">
+                        <tr valign="top">
+                            <td colspan="2" class="td_title">BILLING & PAYMENT TYPE</td>
+                            <td colspan="2" class="td_title">SHIP TO</td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Name:</td>
+                            <td class="td_order_des">{billingName}</td>
+                            <td class="td_order_title">Name:</td>
+                            <td class="td_order_des">{shippingName}</td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Address:</td>
+                            <td class="td_order_des">
+                                {billingAddress}<br/> 
+                                {billingCity}
+                            </td>
+                            <td class="td_order_title">Address:</td>
+                            <td class="td_order_des">
+                                {shippingAddress}<br/> 
+                                {shippingCity}
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Tel:</td>
+                            <td class="td_order_des">{billingPhone}</td>
+                            <td class="td_order_title">Tel:</td>
+                            <td class="td_order_des">{shippingPhone}</td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Payment method:</td>
+                            <td class="td_order_des">{payment_method}</td>
+                            <td class="td_order_title">Email:</td>
+                            <td class="td_order_des">{billingEmail}</td>
+                        </tr>
+                         <tr valign="top">
+                            <td class="td_order_title">Card #:</td>
+                            <td class="td_order_des">{card_number}</td>
+                            <td class="td_order_title"></td>
+                            <td class="td_order_des"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top:20px;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td colspan="5" class="td_title" style=" border-top:#000000 dotted 1px;">
+                            PACKAGES
+                        </td>
+                    </tr>
+                    <tr class="tr_order_details" style=" font-size:12px; text-transform:capitalize; font-weight:bold;"  bgcolor="#ffab11">
+                        <td width="30%" align="left">PACKAGE ID</td>
+                        <td width="40%" align="left">PRODUCTS</td>
+                        <td width="30%" align="right">PACKAGE TYPE</td>
+                    </tr>
+                    {details_arr}
+                    <tr class="tr_order_details">
+                        <td>{PACKAGE_ID}</td>
+                        <td align="right">{PRODUCTS}</td>
+                        <td align="center">{PACKAGE_TYPE}</td>
+                    </tr>
+                    {/details_arr}
+                    <tr>
+                        <td colspan="5" class="td_title" style=" border-top:#000000 dotted 1px;">
+                            SHIPMENT DATA
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="left" style="border-top: 1px dotted #000000; margin-top:10px; padding-top:10px;">
+                            <table cellpadding="0" cellspacing="0" border="0" width="50%">
+                                <tr>
+                                    <td style="text-align:left; padding-right:5px;">Tracking number :</td>
+                                    <td style="text-align:left">{Tracking_number}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left; padding-right:5px;">Ship date :</td>
+                                    <td style="text-align:left">{Ship_date}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left; padding-right:5px;">Expected delivery :</td>
+                                    <td style="text-align:left">{Expected_delivery}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>	
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>

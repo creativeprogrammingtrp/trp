@@ -1,0 +1,612 @@
+<style>
+.header-table
+{
+	height: 37px;
+	border: 1px solid #ddd;
+	background: #e7e7e7;
+	background: -moz-linear-gradient(top, #f7f7f7 0%, #e7e7e7 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#e7e7e7));
+	background: -webkit-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: -o-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: -ms-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: linear-gradient(to bottom, #f7f7f7 0%,#e7e7e7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e7e7e7',GradientType=0 );
+	font-size: 14px;
+}
+.header-table .header-item-d
+{
+	width: 40%;
+	float:left;
+	padding: 8px 0px;
+}
+.header-table .header-item-p
+{
+	width: 15%;
+	float:left;
+	padding: 8px 0px;
+}
+.header-table .header-item-q
+{
+	width: 15%;
+	float:left;
+	padding: 8px 0px;
+}
+.header-table .header-item-t
+{
+	width: 10%;
+	float:left;
+	padding: 8px 0px;
+}
+.header-table .header-item-a
+{
+	width: 20%;
+	text-align: right;
+	float:left;
+	padding: 8px 0px;
+}
+
+.schedule .schedule-title
+{
+	background-color: #AAA;
+	height: 37px;
+}
+.schedule .schedule-title .schedule-left-title
+{
+	font-size: 12px;
+	float:left;
+	padding: 8px 10px;
+	color: #FFF;
+	font-weight:bold;
+}
+.schedule .schedule-title .schedule-right-title
+{
+	font-size: 12px;
+	float:right;
+	padding: 8px 10px;
+	font-weight:bold;
+}
+
+.schedule-item
+{
+	display: block;
+	clear: both;
+	border-bottom: 1px solid #AAA;
+}
+
+.schedule-item .image
+{
+	padding: 8px 0px;
+	width: 15%;
+	float:left;
+}
+.schedule-item .desc
+{
+	padding: 8px 0px;
+	float:left;
+	width: 25%;
+}
+.schedule-item .price
+{
+	padding: 8px 0px;
+	float:left;
+	width: 15%;
+}
+.schedule-item .quantity
+{
+	padding: 8px 0px;
+	float:left;
+	width: 15%;
+}
+.schedule-item .total
+{
+	padding: 8px 0px;
+	float: left;
+	width: 10%;
+}
+.schedule-item .action
+{
+	padding: 8px 0px;
+	float:left;
+	text-align: right;
+	width: 20%;
+}
+.schedule-subtotal
+{
+	float: right;
+	clear: both;
+	width: 100%;
+	text-align: right;
+	padding: 8px 0px;
+	background: #e7e7e7;
+	background: -moz-linear-gradient(top, #f7f7f7 0%, #e7e7e7 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#e7e7e7));
+	background: -webkit-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: -o-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: -ms-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: linear-gradient(to bottom, #f7f7f7 0%,#e7e7e7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e7e7e7',GradientType=0 );
+}
+.detail_title
+{
+	display: none;
+}
+.schedule-subtotal span
+{
+	padding-right: 5px;
+}
+.schedule-date
+{
+	float: right;
+	clear: both;
+	width: 100%;
+	text-align: right;
+	padding: 8px 0px;
+	background: #e7e7e7;
+	background: -moz-linear-gradient(top, #f7f7f7 0%, #e7e7e7 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#e7e7e7));
+	background: -webkit-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: -o-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: -ms-linear-gradient(top, #f7f7f7 0%,#e7e7e7 100%);
+	background: linear-gradient(to bottom, #f7f7f7 0%,#e7e7e7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e7e7e7',GradientType=0 );
+	margin-bottom: 20px;
+}
+@media (max-width: 768px)
+{
+	.detail_title
+	{
+		display: inline-block;
+		margin-right: 10px;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.header-table div
+	{
+		width: 100%;
+	}
+	.schedule-item .image
+	{
+		width: 100%;
+	}
+	.schedule-item .desc
+	{
+		width: 100%;
+	}
+	.schedule-item .desc > span:first-child
+	{
+		margin-bottom: 15px;
+	}
+	.schedule-item .price
+	{
+		width: 100%;
+	}
+	.schedule-item .quantity
+	{
+		width: 100%;
+	}
+	.schedule-item .total
+	{
+		width: 100%;
+	}
+	.schedule-item .action
+	{
+		width: 100%;
+		float: left;
+		text-align: left;
+	}
+	.header-table
+	{
+		display: none;
+	}
+}
+</style>
+
+<div id="content_load">
+<div class="container">
+
+    <div class="row">
+
+        <div class="span12" id="cartlistings">
+            
+        </div><!--end span12-->
+        <div class="span7">
+            
+        </div><!--end span7-->
+        <div class="span5">
+            <div class="cart-receipt">
+                <table class="table table-receipt">
+                    <tr>
+                        <td class="alignRight"><h2>Sub Total: <span id="suptotal">$0.00</span></h2></td>
+                    </tr>
+                    <tr>
+                        <td class="alignRight">
+                        	<div class="control-group pull-right">
+                                <div class="controls">
+                                    <div class="btn-checkout pull-right" id="gocheckout"></div>
+                                    <button class="btn btn-success pull-right" onclick="window.location = 'index.php/shop/shome'">Continue Shoping</button>
+                                </div>
+                            </div>
+            			</td>
+                    </tr>
+                </table>
+            </div>
+        </div><!--end span5-->
+    </div><!--end row-->
+</div><!--end conatiner-->
+</div>
+<!--<script language="javascript" type="text/javascript" src="misc/scripts/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-ui-1.8.20.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>-->
+<script language="javascript">
+function removaItem(attributes, ckey){
+	var post_card = new Object();
+	post_card.attributes 	= attributes;
+	post_card.type 			= 'd';
+	$.post("index.php/shop/cart/shopcart", {
+		addcard:post_card,
+		ckey:ckey
+	},function(data){
+		$("#itemsNumber").empty().append(data);
+		loadObjectCart();
+	});
+}
+function removeOrder(ckey){
+	if(confirm("Remove this order?")){
+		dataOrdersCarts = [];
+		dataOrdersPromotions = [];
+		$.post("index.php/shop/cart/remove_schedule",{
+			removeOrder:'yes',
+			ckey:ckey
+		},function(data){
+			if(typeof(data) == 'object'){
+				dataOrdersCarts = data.shopping;
+				dataOrdersPromotions = data.promotions;
+			}
+			loadObjectCart();
+			showCart();
+		},'json');	
+	}
+}
+function showCart(){
+	var post_card = new Object();
+	post_card.type 			= 's';
+	
+	$.post("index.php/shop/cart", {
+		addcard:post_card
+	},function(data){
+		$("#itemsNumber").empty().append(data);
+		loadObjectCart();
+	});	
+}
+function updateItem(s, attributes, ckey, inventories, qty){
+	if(s.value == ''){
+		alert("Please enter Quantity for product.");
+		s.focus();
+		return false;	
+	}
+	var new_qty = parseInt(s.value, 10);
+	if(new_qty <= 0){
+		removaItem(attributes, ckey);	
+	}
+	if(new_qty > inventories){
+		alert("This quantity out of stock, select smaller quantity or contact to us to buy more.");
+		s.value = qty;
+		s.focus();
+		return false;
+	}else{
+		var post_card = new Object();
+		post_card.attributes 	= attributes;
+		post_card.type 			= 'u';
+		post_card.qlt 			= new_qty;
+		
+		$.post("index.php/shop/cart/shopcart", {
+			addcard:post_card,
+			ckey:ckey
+		},function(data){
+			$("#itemsNumber").empty().append(data);
+			loadObjectCart();
+		});		
+	}
+}
+var dataOrdersCarts = [];
+var dataOrdersPromotions = [];
+function loadObjectCart(){
+	dataCarts = [];
+	dataPromotions = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/shop/cart", {
+		loadshoppingcart:'yes'
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			dataOrdersCarts = data.shopping;
+			dataOrdersPromotions = data.promotions;
+		}
+		loadShoppingList();
+                showPopup('.btn');
+	}, "json");
+	
+}
+function loadShoppingList(){
+	var total_price = 0;
+	var str_next = '';
+	var str_date = '';
+	var str_content = '';
+	
+	str_content += '<div class="header-table">';
+	str_content += '	<div class="header-item-d">&nbsp;&nbsp;&nbsp;Description</div>';
+	str_content += '	<div class="header-item-p">Price</div>';
+	str_content += '	<div class="header-item-q">Quantity</div>';
+	str_content += '	<div class="header-item-t">Total</div>';
+	str_content += '	<div class="header-item-a">Action&nbsp;&nbsp;&nbsp;</div>';
+	str_content += '<div style="clear:both;"></div>'
+	str_content += '</div>';
+//	str_content += '	<tbody>';
+	if(dataOrdersCarts.length > 0){
+		for(var or = 0; or < dataOrdersCarts.length; or++){
+			var subOrderTotal = 0;
+			dataCarts = dataOrdersCarts[or].items_content;
+			dataPromotions = dataOrdersPromotions[or].items_content;	
+					
+			if(dataCarts.length > 0){
+			
+				str_content += '<div style="clear:both"></div><div class="schedule">';
+				str_content += '	<div class="schedule-title"> ';
+				str_content += '	<div class="schedule-left-title">Schedule '+(or+1)+'</div>';
+				str_content += '	<div class="schedule-right-title" onclick=removeOrder(\''+dataOrdersCarts[or].ckey+'\')><a href="javascript:void(0)" style="color:#F16325">Remove</a></div>';
+				str_content += '	</div>';
+				
+				for(var i = 0; i < dataCarts.length; i++){
+					var obj = dataCarts[i];
+					var price = parseFloat(obj.itm_price);
+					var attributes__ = '';
+					if(typeof(obj.attributes) == 'object'){
+						for(var j = 0; j < obj.attributes.length; j++){
+							var at_price = Math.round(parseFloat(obj.attributes[j].price)*100)/100;
+							price += at_price;
+							attributes__ += '<br><b>' + obj.attributes[j].label + ': </b>' + obj.attributes[j].name;
+							if(at_price > 0){
+								attributes__ += '&nbsp;&nbsp;(+$'+formatAsMoney(at_price)+')';	
+							}	
+						}	
+					}
+					
+					var qty = parseInt(obj.qty, 10);
+					if(qty <= 0) continue;
+					
+					price = Math.round(price*100)/100;
+					var new_price = price;
+					
+					var promotions_row = '';
+					var arr_show_promotions = [];
+					for(var k = 0; k < dataPromotions.length; k++){
+						if(parseInt(dataPromotions[k].promo_type, 10) == 2 && dataPromotions[k].product_key == obj.itm_key){	//Free Products
+							var bac_qty = parseInt(qty / parseInt(dataPromotions[k].minqty, 10), 10);
+							var qty_free = bac_qty * parseFloat(dataPromotions[k].freeqty);
+							
+							promotions_row += '	<div style="clear:both"></div><div class="schedule-item">';
+							promotions_row += '	<div class="image">';
+							promotions_row += '<span class="detail_title">Image: </span><img src="data/img/thumb/'+dataPromotions[k].file+'" border="0" />';
+							promotions_row += '	</div>';
+							promotions_row += '	<div class="desc">';
+							promotions_row += '<span class="detail_title">Name: </span><a href="index.php/shop/item_details?itemid='+dataPromotions[k].itm_key+'" style="font-weight:bold;">'+ConvertToHTML(dataPromotions[k].itm_name)+'</a><br><b>Model: </b>'+ConvertToHTML(dataPromotions[k].itm_model);
+							promotions_row += '<span>Free Products</span>'
+							promotions_row += '	</div>';
+							
+							promotions_row += '	<div class="price">';
+							promotions_row += '<span class="detail_title">Price: </span>$0.00';
+							promotions_row += '	</div>';
+							
+							promotions_row += '	<div class="quantity"><span class="detail_title">Quantity: </span>';
+							promotions_row += number_format(qty_free);
+							promotions_row += '	</div>';
+							promotions_row += '	<div class="total"><span class="detail_title">Total: </span>';
+							promotions_row += '$0.00';
+							promotions_row += '	</div>';
+							promotions_row += '	<div class="action">';
+							promotions_row += '	</div>';
+							promotions_row += '	</div>';
+							promotions_row += '	<div style="clear:both"></div>';
+						}
+						if(obj.itm_key == dataPromotions[k].itm_key){
+							var discount_type = parseInt(dataPromotions[k].discount_type, 10);
+							var discount = parseFloat(dataPromotions[k].discount);
+							var promo_type = parseInt(dataPromotions[k].promo_type, 10);
+							if(promo_type == 1){
+								if(discount_type == 0){
+									new_price -= price * discount / 100;
+								}else{
+									new_price -= discount;	
+								}	
+							}
+							var arr_show_promotions_step = new Object();
+							arr_show_promotions_step.promo_type = promo_type;
+							arr_show_promotions_step.discount_type = discount_type;
+							arr_show_promotions_step.discount = discount;
+							
+							var check_exist_pro = false;
+							for(var p = 0; p < arr_show_promotions.length; p++){
+								if(arr_show_promotions[p].promo_type == promo_type && arr_show_promotions[p].discount_type == discount_type){
+									arr_show_promotions[p].discount += discount;
+									check_exist_pro = true;
+									break;	
+								}	
+							}
+							if(check_exist_pro == false) arr_show_promotions[arr_show_promotions.length] = arr_show_promotions_step;	
+						}	
+					}
+					var promotions_ = '';
+					for(var p = 0; p < arr_show_promotions.length; p++){
+						switch(arr_show_promotions[p].promo_type){
+							case 1:
+								var discount = '';
+								if(discount_type == 0){
+									discount = number_format(arr_show_promotions[p].discount) + '%';	
+								}else{
+									discount = '$' + formatAsMoney(arr_show_promotions[p].discount);	
+								}
+								promotions_ += '<div style="clear:both; padding-top:10px">';
+								promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+								promotions_ += '	<tr>';
+								promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+								promotions_ += '		<td align="left" valign="top" style="text-align:left; padding-left:10px; font-weight:bold; font-size:16px; color:#EEE">Product Discounts: '+discount+'</td>';
+								promotions_ += '	</tr>';
+								promotions_ += '</table>';
+								promotions_ +='</div>';
+								break;
+							case 3:
+								var discount = '';
+								if(arr_show_promotions[p].discount_type == 0){
+									discount = number_format(arr_show_promotions[p].discount) + '%';	
+								}else{
+									discount = '$' + formatAsMoney(arr_show_promotions[p].discount);	
+								}
+								promotions_ += '<div style="clear:both; padding-top:10px">';
+								promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+								promotions_ += '	<tr>';
+								promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+								promotions_ += '		<td align="left" valign="top" style="text-align:left; padding-left:10px; font-weight:bold; font-size:16px; color:#EEE">Shipping Discounts: '+discount+'</td>';
+								promotions_ += '	</tr>';
+								promotions_ += '</table>';
+								promotions_ +='</div>';
+								break;
+							case 4:
+								promotions_ += '<div style="clear:both; padding-top:10px">';
+								promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+								promotions_ += '	<tr>';
+								promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+								promotions_ += '		<td align="left" valign="top" style="text-align:left; padding-left:10px; font-weight:bold; font-size:16px; color:#EEE">Free Shippings</td>';
+								promotions_ += '	</tr>';
+								promotions_ += '</table>';
+								promotions_ +='</div>';
+								break;
+						}
+					}
+					
+					if(new_price < 0) new_price = 0;
+					new_price = Math.round(new_price*100)/100;
+					var total = new_price * qty;
+					total = Math.round(total*100)/100;
+					total_price += total;
+					subOrderTotal+= total;
+                                        
+					
+					var price_show = formatAsMoney(price);
+					if(new_price != price) price_show = formatAsMoney(new_price) + '<br><span style="text-decoration:line-through">$'+formatAsMoney(price)+'</span>';
+					
+					str_content += '	<div class="schedule-item">';
+					str_content += '	<div class="image">';
+					str_content += '<span class="detail_title">Image: </span><img src="shopping/data/img/thumb/'+obj.file+'" border="0" />';
+					str_content += '	</div>';
+					str_content += '	<div class="desc">';
+					str_content += '<span class="detail_title">Name: </span><a href="index.php/shop/item_details?itemid='+obj.itm_key+'" style="font-weight:bold">'+ConvertToHTML(obj.itm_name)+'</a><br><b>Model: </b>'+ConvertToHTML(obj.itm_model)+attributes__ ;
+					str_content += promotions_;
+					str_content += '	</div>';
+					
+					str_content += '	<div class="price"><span class="detail_title">Price: </span>';
+					str_content += '$'+price_show;
+					str_content += '	</div>';
+					
+					str_content += '	<div class="quantity"><span class="detail_title">Quantity: </span>';
+					str_content += '<input type="text" class="input-text" style="width:30px" onblur="updateItem(this, \''+obj.attributes_key+'\',\''+dataOrdersCarts[or].ckey+'\','+obj.minimum_in_stock+','+qty+');" onkeypress="return isNumberIntKey(event)" value="'+qty+'"/>';//inventories
+					str_content += '	</div>';
+					str_content += '	<div class="total"><span class="detail_title">Total: </span>';
+					str_content += '$'+formatAsMoney(total);
+					str_content += '	</div>';
+					str_content += '	<div class="action"><span class="detail_title">Action: </span>';
+					str_content += '<button class="btn btn-small" data-title="Update" data-placement="top" data-toggle="tooltip" style="margin-right:3px;"><i class="icon-refresh"></i></button><button class="btn btn-small btn-danger" data-title="Remove" data-placement="top" data-toggle="tooltip" onclick="removaItem(\''+obj.attributes_key+'\',\''+dataOrdersCarts[or].ckey+'\')"><i class="icon-trash"></i></button>';
+					str_content += '	</div>';
+					str_content += '	</div>';
+					str_content += '<div style="clear:both"></div>';
+					
+					str_content += promotions_row;
+				}
+				str_content += '<div style="clear:both"></div>	</div>';
+			}else{
+				str_content += '<div style="clear:both"></div><div class="schedule">';
+				str_content += '	<div class="schedule-title"> ';
+				str_content += '	<div class="schedule-left-title">Schedule '+(or+1)+'</div>';
+				str_content += '	<div class="schedule-right-title" onclick=removeOrder(\''+dataOrdersCarts[or].ckey+'\')><a href="javascript:void(0)" style="color:#F16325">Remove</a></div>';
+				str_content += '	</div>';
+				str_content += '	<div class="schedule-empty-body">';
+				str_content += 		'Empty Item';
+				str_content += '	</div>';
+				str_content += '</div>';
+			}
+			str_content += '<div style="clear:both"></div><div class="schedule-subtotal">';
+			str_content += 'Subtotal: <span style="color:#F16325">$'+formatAsMoney(subOrderTotal)+'</span>';
+			str_content += '</div>';
+			
+			var cdate = '';
+			var str_cdate = '';
+			if(dataOrdersCarts[or].cdate != null && dataOrdersCarts[or].cdate != ''){
+				cdate = dataOrdersCarts[or].cdate;
+				str_cdate = '<div style=" padding-bottom:5px; display:inline-block;">Schedule of Delivery '+(or+1)+': &nbsp;</div><input type="text" style="color:#F16325; width:190px; overflow:hidden; display:inline-block; margin-bottom: 3px;" id="delivery_date_'+or+'" name="'+dataOrdersCarts[or].ckey+'" value="'+cdate+'" class="input-date" />';
+				//str_cdate += '<div style="color:#F16325; background-color:#CCC; padding:3px 5px; text-align:right; display:inline-block;  overflow:hidden; width:auto; text-align:center;" id="cdate_'+or+'" onclick="return show_input_date(\''+or+'\')"><span style="display:inline-block;">Schedule of Delivery '+(or+1)+':</span> &nbsp;<span style="display:inline-block;">'+cdate+'</span></div>';
+			}else{
+				str_cdate = '<div style=" padding-bottom:3px; display:inline-block;">Schedule of Delivery '+(or+1)+': &nbsp;</div><input type="text" style=" color:#F16325; width:190px; display:inline-block; overflow:hidden; margin-bottom: 3px;" id="delivery_date_'+or+'" name="'+dataOrdersCarts[or].ckey+'" value="'+cdate+'" class="input-date" />';	
+			}
+			str_content += '<div style="clear:both"></div><div class="schedule-date">';
+			str_content += str_cdate;
+			str_content += '</div>';
+			
+			if(or != 0)
+				str_date += ' ,#delivery_date_'+or;
+			else
+				str_date += '#delivery_date_'+or;
+		}
+	}
+	$("#cartlistings").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+	
+	if(total_price <= 0){
+		str_next = '<button class="btn btn-primary" disabled>Checkout</button>';
+	}else if(total_price > 0){
+		str_next = '<button class="btn btn-primary" onclick="return gotoCheckout()">Checkout</button>';
+	}
+	$("#suptotal").empty().append('$'+formatAsMoney(total_price));
+	$("#gocheckout").empty().append(str_next);
+	
+	var dates = $( str_date ).datepicker({
+		beforeShowDay: NotBeforeToday,
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 2,
+		dateFormat: "DD, d MM, yy"
+		/*onSelect: function( selectedDate ) {
+			var option = this.id == "minDate" ,
+				instance = $( this ).data( "datepicker" );
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}*/
+	}); 
+}
+
+
+function NotBeforeToday(date)
+{
+    var now = new Date();
+    if (date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth() && date.getDate() >= now.getDate())
+        return [true];
+    if (date.getFullYear() >= now.getFullYear() && date.getMonth() > now.getMonth())
+       return [true];
+     if (date.getFullYear() > now.getFullYear())
+       return [true];
+    return [false];
+}
+
+
+
+function show_input_date(id){
+	$("#cdate_"+id).hide();
+	$("#delivery_date_"+id).show().css('display','inline-block').prev().show().css('display','inline-block');
+	document.getElementById("delivery_date_"+id).focus();
+	return false;	
+}
+$(function() {
+	loadObjectCart();  
+});
+</script>

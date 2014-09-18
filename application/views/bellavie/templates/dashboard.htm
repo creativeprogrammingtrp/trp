@@ -1,0 +1,186 @@
+
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+
+
+    <!-- dashboard.html  Mon, 05 Aug 2013 04:04:06 GMT -->
+    <link rel="stylesheet" href="../admin/assets/css/dashboard_chart.css">
+    
+    <!-- jquery-ui Stylesheets -->
+    <link rel="stylesheet" href="../admin/assets/jui/timepicker/jquery-ui-timepicker.css" media="screen">
+
+    <!-- Plugin Stylsheets first to ease overrides -->
+
+    <!-- iButton -->
+    <link rel="stylesheet" href="../admin/plugins/ibutton/jquery.ibutton.css" media="screen">
+
+    <!-- Circular Stat -->
+    <link rel="stylesheet" href="../admin/custom-plugins/circular-stat/circular-stat.css">
+
+    <!-- Fullcalendar -->
+    <link rel="stylesheet" href="../admin/plugins/fullcalendar/fullcalendar.css" media="screen">
+    <link rel="stylesheet" href="../admin/plugins/fullcalendar/fullcalendar.print.css" media="print">
+
+    <!-- End Plugin Stylesheets -->
+    
+    <ul class="stats-container">
+
+        <!-- :::: Start Total Users :::: -->
+        <li>
+            <a href="#" class="stat summary">
+                <span class="sparkline" sparkType="bar" sparkBarColor="red" sparkBarWidth="6" sparkHeight="28">{data_users}</span>
+                <span class="digit">
+                    <span class="text">Total Users</span>
+                    {total_users}
+                </span>
+            </a>
+        </li>
+        <!-- :::: End Total Users :::: -->
+
+        <!-- :::: Start Total Orders :::: -->
+        <li>
+            <a href="#" class="stat summary">
+                <span class="sparkline" sparkType="bar" sparkBarColor="green" sparkBarWidth="6" sparkHeight="28">{data_orders}</span>
+                <span class="digit">
+                    <span class="text">Total Orders</span>
+                    {total_orders}
+                </span>
+            </a>
+        </li>
+        <!-- :::: End Total Orders :::: -->
+
+        <!-- :::: Start Total Money :::: -->
+        <li>
+            <a href="#" class="stat summary">
+                <span class="sparkline" sparkType="bar" sparkBarColor="blue" sparkBarWidth="6" sparkHeight="28">{data_money}</span>
+                <span class="digit">
+                    <span class="text">Total Money</span>
+                    {total_money}
+                </span>
+            </a>
+        </li>
+        <!-- :::: End Total Money :::: -->
+
+        <!-- :::: Start Total Vouchers :::: -->
+        <li>
+            <a href="#" class="stat summary">
+                <span class="sparkline" sparkType="bar" sparkBarColor="orange" sparkBarWidth="6" sparkHeight="28">{data_vouchers}</span>
+                <span class="digit">
+                    <span class="text">Vouchers</span>
+                    {total_vouchers}
+                </span>
+            </a>
+        </li>
+        <!-- :::: End Total Vouchers :::: -->
+    </ul>
+
+    <div id="dashboard-demo" class="tabbable analytics-tab paper-stack">
+        <div id="loding_screen" style="background: url('../admin/assets/images/bg_loading_1.png') repeat; height: 100%; width: 100%; position: absolute; z-index: 9999; display: none "><img src="../admin/assets/images/loading45.gif" style="height: 100px; width: 100px; position: absolute; left: 50%; top: 50%; margin-left: -50px; margin-top: -50px; " /></div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#" data-target="#user_Chart" data-toggle="tab"><i></i> Users</a></li>
+            <li><a href="#" data-target="#order_Chart" data-toggle="tab"><i></i> Orders</a></li>
+            <li><a href="#" data-target="#money_Chart" data-toggle="tab"><i></i> Sell</a></li>
+            <li><a href="#" data-target="#voucher_Chart" data-toggle="tab"><i></i> Voucher</a></li>
+        </ul>
+        <div class="tab-content">
+            <!--:::::::::::: START USER CHART ::::::::::::-->
+            <div class="analytics-tab-header clearfix"><span id="title_chart" style="font-size: 24px; font-weight: bold"></span></div>
+            <div id="user_Chart" class="tab-pane active">
+                <div class="analytics-tab-content">
+                     <div id="userChart" style="width: 240px; height:300px; margin: 12px auto 12px auto;"></div>
+                </div>
+            </div>
+            <!--:::::::::::: END USER CHART ::::::::::::-->   
+
+            <!--:::::::::::: START ORDER CHART ::::::::::::-->
+            <div id="order_Chart" class="tab-pane">
+                <div class="analytics-tab-content">
+                     <div id="orderChart" style="width: 240px; height:300px; margin: 12px auto 12px auto;"></div>
+                </div>
+            </div>
+            <!--:::::::::::: END ORDER CHART ::::::::::::-->
+            
+            <!--:::::::::::: START SELL CHART ::::::::::::-->
+            <div id="money_Chart" class="tab-pane">
+                <div class="analytics-tab-content">
+                     <div id="moneyChart" style="width: 240px; height:300px; margin: 12px auto 12px auto;"></div>
+                </div>
+            </div>
+            <!--:::::::::::: END SELL CHART ::::::::::::-->
+            
+            <!--:::::::::::: START VOUCHER CHART ::::::::::::-->
+            <div id="voucher_Chart" class="tab-pane">
+                <div class="analytics-tab-content">
+                     <div id="voucherChart" style="width: 240px; height:300px; margin: 12px auto 12px auto;"></div>
+                </div>
+            </div>
+            <!--:::::::::::: END VOUCHER CHART ::::::::::::-->
+        </div>
+    </div>
+<!--    <div style="width: 170px; height: 100px; margin: auto;">
+        <table>
+            <tr>
+                <td colspan="2" align="center"><span id="errtxtYearOfChart" style="color: red;"></span></td>
+            </tr>
+            <tr>
+                <td>Enter the year:</td>
+                <td><input id="txtYearOfChart" type="text" maxlength="4" style="width: 60px" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="btn btn-primary" id="btnSubmitChart" type="button" value="Submit" style="margin-bottom: 10px;"/></td>
+            </tr>
+        </table>
+    </div>-->
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-header">
+                    <span class="title">
+                        <i class="icon-calendar"></i> My Schedule
+                    </span>
+                </div>
+                <div class="widget-content no-padding no-border">
+                    <div id="demo-calendar-01"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Customizer, remove if not needed -->
+
+    <!-- Plugin Scripts -->
+
+    <!-- Flot -->
+    <!--[if IE 8]>
+    <script src="../admin/plugins/flot/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="../admin/plugins/flot/jquery.flot.min.js"></script>
+    <script src="../admin/plugins/flot/plugins/jquery.flot.tooltip.min.js"></script>
+    <script src="../admin/plugins/flot/plugins/jquery.flot.pie.min.js"></script>
+    <script src="../admin/plugins/flot/plugins/jquery.flot.resize.min.js"></script>
+
+    <!-- Circular Stat -->
+    <script src="../admin/custom-plugins/circular-stat/circular-stat.min.js"></script>
+
+    <!-- SparkLine -->
+    <script src="../admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- iButton -->
+    <script src="../admin/plugins/ibutton/jquery.ibutton.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script src="../admin/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="../admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../admin/plugins/datatables/TableTools/js/TableTools.min.js"></script>
+    <script src="../admin/plugins/datatables/dataTables.bootstrap.js"></script>
+
+    <!-- Demo Scripts -->
+    <script src="../admin/assets/js/demo/dashboard.js"></script>
+    <script src="../admin/assets/js/customizer.js"></script>
+

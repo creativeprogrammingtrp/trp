@@ -1,0 +1,104 @@
+<script language="javascript">
+function submitForm(){
+	var checkError = false;
+	if($('#cat_name').val() == ''){
+		$('#cat_name').css("background", '#ffffd5');
+		hidelabelfocus("cat_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("cat_name"));	
+			document.getElementById("cat_name").focus();	
+		}
+	}
+
+	if(checkError == true){
+		return false;	
+	}
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/admin/categories/subadd", {
+		saveObj: 'yes',
+		cat_name:$("#cat_name").val(),
+		description:$("#description").val(),
+		fid:document.getElementById("fid").value,
+		weight:document.getElementById("weight").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				window.location = 'index.php/admin/categories';
+				return false;
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+$(function() {
+	clearForms();
+});
+
+</script>
+<div class="titlepage-admin">{title_page}</div>
+<div class="box_solar">
+	<form method="post" name="tax_form" onsubmit="return submitForm();">
+    <div style="clear:both; float:left;">
+        <div style="font-weight:bold;">Name:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <!--<label id="cat_name_label" class="placeholder" for="cat_name"><span>Required</span></label>-->
+            <input tabindex="0" type="text" class="input-text" id="cat_name" size="10" name="cat_name" maxlength="30" value="" style="width:255px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="Required">
+        </span>
+    </div>
+    <div style="clear:both; float:left; padding-top:10px">
+        <div style="font-weight:bold;">Description:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <textarea id="description" name="description" style="width:255px; height:100px" class="input-text"></textarea>
+        </span>
+    </div>
+    <div style="clear:both; float:left; padding-top:10px">
+        <div style="font-weight:bold;">Parent:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <select id="fid">
+                <option value="0">--- Root ---</option>
+                {@parent@}
+            </select>
+        </span>
+    </div>
+    <div style="float:left; clear:both; padding-top:10px;">
+        <div style="font-weight:bold;">Weight:</div>
+        <span class="field-with-placeholder" style="clear:both; float:left;">
+            <select id="weight" style="width:80px">
+                {@weight@}
+            </select>
+        </span>
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+        <input type="button" value="Back" class="button" style="margin-left:5px" onclick="history.go(-1);" />
+        <input type="submit" value="Submit" name="submit" class="button" style="margin-left:5px" />
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+
+
+

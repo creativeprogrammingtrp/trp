@@ -1,0 +1,1466 @@
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../jScrollPane/styles/jquery.jscrollpane.css" />
+<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.jscrollpane.min.js"></script>
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<script type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<script language="javascript">
+    ShowLoadingObj({obj: document.getElementById("content_load"), image: "Loader-FloGradient16x16x.gif"});
+</script>
+<link rel="stylesheet" type="text/css" href="../css/products.css" />
+<link rel="stylesheet" type="text/css" href="../css/products_system.css" />
+<style>
+    .spRequired
+    {
+        float:left;
+        line-height: 30px;
+        padding-left: 2px;
+    }
+</style>
+
+<div class="box_solar">
+    <div style="width:100%; clear:both">
+        <div style="clear:both; float:left; min-height:40px" align="left">
+            <div style="float:left" class="tab_active" id="product_infomations_tab" onclick="ChangeContent(1);">Product information</div>
+            {price_markup_tab}
+            {tax_tab}
+            <div style="float:left; margin-left:10px; display:none" class="tab" id="location_tab" onclick="ChangeContent(6);">Locations Service</div>
+            <div style="float:left; margin-left:10px; display:none" class="tab" id="warranty_settings_tab" onclick="ChangeContent(2);">Shipping &amp; Warranty</div>
+            <div style="float:left; margin-left:10px" class="tab" id="attributes_settings_tab" onclick="ChangeContent(3);">Attributes</div>
+            {Promotions_tab}
+        </div>
+        <div style="float:right; overflow:hidden; padding-bottom:4px" align="right">
+            <div style="font-weight:bold; clear:both; padding-bottom:3px">Product Type : <select id="product_type" style="width:300px" disabled="disabled" onchange="changeProductType()">{product_type}</select></div>
+            <div style="font-weight:bold; clear:both; padding-bottom:3px">Categories : <select id="category_value" style="width:300px" onchange="showboxDressingRoom();"><option value='0'>Inactived Products</option>{categories}</select></div>
+            {manufacturer}
+        </div>
+    </div>
+    <div id="product_infomations" style="width:100%; overflow:hidden;" align="left">
+        <div style="clear:both; text-align:left; width:100%;">
+            <div style="float:left; width: 48%">
+                <div style="clear:both">
+                    <div style="float:left; margin-left:5px" class="tab_img_pro_active" id="image_video_product" onclick="showBoxUploadProduct(0)">Image &amp; Video</div>
+                    <div style="float:left" class="tab_img_pro" id="dressing_room_product" onclick="showBoxUploadProduct(1)">Dressing Room</div>
+                </div>
+                <div style="clear:both; overflow:hidden; height:415px" id="image_video_product_box">
+                    <div id="image_sample" style="height:320px;">
+                        Upload Image as large as possible.
+                    </div>
+                    <div id="image_thumb" style="height:56px; overflow:hidden; background-color:#ffab11; clear:both; position:relative"></div>
+                    <div style="clear:both; padding-top:2px">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td align="center" valign="middle" class="uploadImage_product" onclick="showBoxUploadImgProduct()">+</td>
+                                <td align="center" valign="middle" class="removeImage_product" onclick="RemoveImgProduct()">&minus;</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div style="clear:both; overflow:hidden; display:none" class="dressing_room_product_box" id="dressing_room_product_box">
+                    <div style="overflow:hidden; padding:10px">
+                        <div style="clear:both; padding-top:10px; overflow:hidden; display:none" id="box_dressing_room_access">
+                            <div style="float:left;"><input type="checkbox" class="input-checkbox" onclick="showUploadDressingRoom()" id="check_dressing_room" /></div>
+                            <div style="float:left; padding-left:5px">View this in the dressing room</div>
+                        </div>
+                        <div style="clear:both; overflow:hidden; padding-top:10px; display:none" id="show_upload_dressing_room">
+                            <div style="clear:both"><a href="javascript:void(0)" id="upload_img_dressing_room" style="text-decoration:none">Upload image for dressing room</a></div>
+                            <div style="clear:both; overflow:hidden;" id="img_dressing_room" align="center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float: right; text-align:left; overflow:hidden; width: 48%">
+                <div style="clear:both;">
+                    <span style="font-weight:bold; float:left; margin-top:3px; width:80px">Name:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input type="text" class="input-text" id="name_item" size="10" name="name_item" value="{name_item}" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                <div style="clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; margin-top:3px; width:80px">Model:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input type="text" class="input-text" id="model_item" size="10" name="model_item" value="{model_item}" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                <div style="clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; margin-top:3px; width:80px">Origin:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <textarea id="origin" name="origin" class="input-text" style="height:60px">{origin}</textarea>
+                    </span>
+                </div>
+                <div style="clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; margin-top:3px; width:80px">In Stock:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input type="text" class="input-text" id="inventories" size="10" name="inventories" value="{inventories}" style="width:40px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberIntKey(event)">
+                    </span>
+                    <span class="spRequired">*</span>
+                    <span style="font-weight:bold; float:left; margin-top:3px; margin-left:10px; width:130px">Minimum In Stock:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input type="text" class="input-text" id="minimum_in_stock" size="10" name="minimum_in_stock" value="{minimum_in_stock}" style="width:40px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberIntKey(event)">
+                    </span>
+                    <span class="spRequired">*</span>
+                    <div style="float:left; display:none" id="expiration_date_show">
+                        <div style="font-weight:bold; float:left; margin-top:3px; margin-left:20px;">Expiration Date:</div>
+                        <div style="float:left; padding-left:10px"><input type="text" value="{expiration_date}" id="expiration_date" style="width:40px; text-align:right" onkeypress="return isNumberIntKey(event)"/></div>
+                        <div style="float:left; padding-left:5px"><select id="expiration_date_unit">{expiration_date_unit}</select></div>
+                    </div> 
+                </div>
+                <div style="clear:both; overflow:hidden; margin-bottom:4px;" id="Package_section">
+                    <fieldset>
+                        <legend style="font-weight:bold; padding-left:5px; padding-right:5px; margin-left:5px">Package</legend>
+                        <div style="clear:both;overflow:hidden">
+                            <div style="float:left; overflow:hidden">
+                                <div style="font-weight:bold; clear:both">Weight:</div>
+                                <span class="field-with-placeholder" style="clear:both">
+                                    <input type="text" id="weight" size="10" name="weight" value="{weight}" style="width:60px" onkeypress="return isNumberFloatKey(event)">
+                                </span>
+                            </div>
+                            <div style="float:left; overflow:hidden; padding-left:10px">
+                                <div style="font-weight:bold; clear:both">Units of weight:</div>
+                                <span class="field-with-placeholder" style="clear:both">
+                                    <select id="UnitOfPackageWeight" name="UnitOfPackageWeight">
+                                        {_weight_units_}
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="clear:both; overflow:hidden; padding-top:4px">
+                            <div style="float:left; overflow:hidden">
+                                <div style="font-weight:bold; clear:both">Length:</div>
+                                <span class="field-with-placeholder" style="clear:both">
+                                    <input type="text" id="length" size="10" name="length" value="{length}" style="width:60px" onkeypress="return isNumberFloatKey(event)">
+                                </span>
+                            </div>
+                            <div style="float:left; overflow:hidden; padding-left:10px">
+                                <div style="font-weight:bold; clear:both">Width:</div>
+                                <span class="field-with-placeholder" style="clear:both">
+                                    <input type="text" class="input-text" id="width" size="10" name="width" value="{width}" style="width:60px" onkeypress="return isNumberFloatKey(event)">
+                                </span>
+                            </div>
+                            <div style="float:left; overflow:hidden; padding-left:10px">
+                                <div style="font-weight:bold; clear:both">Height:</div>
+                                <span class="field-with-placeholder" style=" clear:both">
+                                    <input type="text" class="input-text" id="height" size="10" name="height" value="{height}" style="width:60px" onkeypress="return isNumberFloatKey(event)">
+                                </span>
+                            </div>
+                            <div style="float:left; overflow:hidden; padding-left:10px">
+                                <div style="font-weight:bold; clear:both">Units of measurement:</div>
+                                <span class="field-with-placeholder" style="clear:both">
+                                    <select id="UnitOfDimensions">
+                                        {_units_measurement_}
+                                    </select>
+                                </span>
+                            </div>
+                        </div>	
+                    </fieldset>
+                </div>
+                <div style="clear:both; overflow:hidden; margin-bottom:4px; display:none">
+                    <fieldset>
+                        <legend style="font-weight:bold; padding-left:5px; padding-right:5px; margin-left:5px">Refund</legend>
+                        <div style="font-weight:bold;">
+                            <span style="float:left; clear:both; padding-top:3px; width:150px">Limited Time Refund:</span>
+                            <span class="field-with-placeholder" style="float:left;">
+                                <input tabindex="0" type="text" class="input-text" id="duration" size="10" name="duration" value="{duration}" style="width:70px; text-align:right" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberIntKey(event)">
+                            </span>
+                            <span style="float:left; padding-left:5px">
+                                <select id="duration_type" style="width:100px">
+                                    <option value="1" {days}>Days</option>
+                                    <option value="30" {months}>Months</option>
+                                    <option value="365" {years}>Years</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div style="clear:both; overflow:hidden; padding-top:4px;">
+                            <span style="float:left; clear:both; font-weight:bold; padding-top:3px; width:150px">Charges for Refund:</span>
+                            <span class="field-with-placeholder" style="float:left;">
+                                <input type="text" class="input-text" id="charge_refund"  name="charge_refund" value="{charge_refund}" style="width:70px; text-align:right" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" onkeypress="return isNumberFloatKey(event)">
+                            </span>
+                            <div style="float:left; padding-left:5px">
+                                <select id="charge_refund_type" name="charge_refund_type" style="width:100px">
+                                    <option value="0" {percentage}>Percentage</option>
+                                    <option value="1" {dollar}>Dollar amount</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div style="clear:both; padding-top:20px">
+                    <div style="float:left; padding-top:2px">{feature}</div><div style="float:left; padding-left:10px"><b>Promoted to front page</b></div>
+                </div>
+                <div style="clear:both; padding-top:5px">
+                    <div style="float:left; padding-top:2px"><input type="checkbox" value="1" id="special" {special_product} /></div><div style="float:left; padding-left:10px"><b>Special Product</b></div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both; overflow:hidden; width:100%;">
+            <div style="clear:both;"><b>Description:</b></div>
+            <div style="clear:both">
+                <textarea id="description_item" class="input-text" name="description_item" style="height:150px; width:100%"  onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">{description_item}</textarea>
+            </div>
+        </div>
+        <div style="position:relative; padding-top:10px; clear:both; width:100%; text-align:left" id="limit_drag">
+            <div id="product-box-search" class="border-radius-4">
+                <span class="field-with-placeholder" style="float:left; clear:both">
+                    <input type="text" class="input-text" id="search_product" size="10" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);
+        filterProducts();" placeholder="Search Product Related" />
+                </span>
+                <ul id="gallery" class="gallery ui-helper-reset"></ul>
+            </div>
+            <div id="related" class="border-radius-4">
+                <h4 class="ui-widget-header">Product Related</h4>
+            </div>
+        </div>
+        <div style="clear:both; overflow:hidden; padding-top:10px">
+            <fieldset>
+                <legend style="font-weight:bold; padding-left:5px; padding-right:5px; margin-left:5px">Reviews</legend>
+                <div style="clear:both">
+                    <table class="v3">
+                        <thead>
+                            <tr>
+                                <th class="td_name">Name</td>
+                                <th class="td_review">Review</td>
+                                <th class="td_rating">Rating</td>
+                                <th class="td_active">Active</td>
+                                <th class="td_del">Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody id="_review_body">
+                            {product_reviews}
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    {tax_list}
+
+    <div id="warranty_settings"  class="product_tab" align="left">
+        <div style="float:left; width:52%; overflow:hidden">
+            <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px;">Shipping rates</span>  
+            <div style="clear:both;">Overrides the default shipping rate per product for each flat rate shipping method. Leave field empty to use the method's default value.</div>
+            <div id="shipping_content" style="clear:both;"></div>
+        </div>
+        <div style="float:left; width:48%; overflow:hidden">
+            <div style="padding-left:20px;">
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px;">Warranty</span>
+                <div id="warranty_content" style="clear:both"></div>
+            </div>
+        </div>
+    </div>
+    <div id="attributes_settings" class="product_tab" align="left">
+        <div style="clear:both; width:100%">Add attributes to this product using the <a href="index.php/store/attributes/add">add attributes form</a>. You may then adjust the settings for these attributes on this page and go on to configure their options in the Options section.</div>
+        <div style="clear:both; width:100%; padding-top:10px; padding-left:20px"><a href="javascript:void(0)" onclick="Add_Attributes()">+ Add an attribute</a></div>
+        <div style="clear:both; width:100%; padding-top:10px" id="attributes_listing"></div>
+    </div>
+    <div id="promotion_settings" class="product_tab" align="left"></div>
+    <div id="price_markup_setting" class="product_tab" align="left">
+        <div style="width:100%; height:20px; float:left; clear:both"></div>
+        <div style="clear:both; overflow:hidden">
+            <div style="float:left;">
+                <span style="float:left; margin-top:3px; width:75px; font-weight:bold">Last Cost:</span>
+                <span class="field-with-placeholder" style="float:left; padding-top:3px;" id="last_cost">${last_cost}</span>
+                <span style="clear:both; float:left; font-style:italic; padding-left:75px; height:20px" id="last_cost_date">{last_cost_date}</span>
+            </div>
+            <div style="float:left; padding-left:20px">
+                <span style="font-weight:bold; float:left; margin-top:3px; width:95px">Current Cost:</span>
+                <div style="float:left">
+                    <span style="float:left; margin-top:3px; width:9px">$</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input type="text" class="input-text" id="current_cost" @disabled_cost@ size="10" name="current_cost" value="{current_cost}" style="width:70px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this);
+        Selling_price();" onkeypress="return isNumberFloatKey(event)">
+                    </span>
+                    <span class="spRequired">*</span>
+                    <span style="clear:both; float:left; font-style:italic; padding-left:9px; height:20px" id="current_cost_date">{current_cost_date}</span>
+                </div>
+            </div>
+            <div style="float:left; padding-left:20px">
+                <span style="float:left; margin-top:3px; font-weight:bold">Selling Price:</span>
+                <span class="field-with-placeholder" style="float:left; padding-top:3px; padding-left:5px" id="selling_price">$0.00</span>
+            </div>  
+            <div style="float:left; padding-left:20px;" id="voucher">
+                <span style="float:left; margin-top:3px; font-weight:bold">Voucher Value:</span>
+                <span class="field-with-placeholder" style="float:left; padding-top:3px; padding-left:5px">$ </span>
+                <input type="text" class="input-text" id="voucher_value" @disabled_cost@ size="10" name="voucher_value" value="{voucher_value}" style="width:70px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this);" onkeypress="return isNumberFloatKey(event)">
+            </div> 
+        </div>
+        {markup_tab}
+    </div>
+    <div id="location_setting" class="product_tab">
+        <div class="location_item">
+            <div class="text">
+                <input type="text" name="locations[]" id="" class="address_text" placeholder="Address 1" />
+            </div>
+            <div class="add">
+                <a href="javascript:void(0)" onclick="add_location()" title="Add">+</a>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="submitproductbt" align="right">
+        <input type="button" value="Back" class="btn" onclick="history.go(-1);" />
+        <input type="button" value="Submit" class="btn btn-primary" onclick="check_additem()" style="margin-left:5px" />
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<div id="Progress_bar" class="progress_bar" align="left">
+    <div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadProduct()" style="cursor:pointer" /></div>
+    <div class="progress_bar_top">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr><td align="left" valign="middle" height="20px" id="file_name"></td></tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+        <div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#7838b7; width:100%"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr><td align="left" valign="middle" height="20px" id="progress_bar_size"></td></tr>
+        </table>
+    </div>
+</div>
+<div class="modal m-modal" id="box_uploadImgProduct" style="overflow:hidden; margin-left:-365px; margin-top:-260px; z-index:9999; display:none;">
+    <div class="modal-hd" style="cursor: move"><span id="title_popup">Upload Image or Video for Product</span> <span title="Close" class="close" onclick="closeBox('box_uploadImgProduct');
+        CancelUploadProduct();"></span> </div>
+    <div class="modal-bd">
+        <div style="overflow:hidden;">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td align="left" valign="top" style="border:1px solid #666 ">
+                        <div style="width:700px; height:500px; overflow:auto; position:relative" align="left" id="gallery-main"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td align="left" valign="middle" height="25px">
+                                    <div id="upload_bt">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td align="left" valign="middle"><a href="javascript:void(0)" id="spanButtonPlaceHolder_gallery" style="color:#000" >upload</a></td>
+                                                <td align="left" valign="middle" style="padding-left:10px"><a href="javascript:void(0)" onclick="removeAdFile()" style="color:#000">remove</a></td>
+                                                <td align="left" valign="middle" style="padding-left:10px" id="savebt"><a href="javascript:void(0)" onclick="saveAdFile()" style="color:#000">save</a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td align="right" valign="middle">
+                                    <div id="zoom-img">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td align="left" valign="middle"><img src="../images/zoomin.gif" border="0" style="cursor:pointer" width="22px" height="22px" onclick="zoom(1)" onmousedown="startZoom(1)" onmouseup="stopZoom()" onmouseout="stopZoom()" /></td>
+                                                <td align="left" valign="middle" style="padding-left:5px"><img src="../images/zoomout.gif" border="0" style="cursor:pointer" width="22px" height="22px" onclick="zoom(0)" onmousedown="startZoom(0)" onmouseup="stopZoom()" onmouseout="stopZoom()" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>                            	
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="item_id" id="item_id" value="{item_id}" />
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="misc/scripts/swfobject.js"></script>
+<script language="JavaScript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="../js/add_item.js"></script>
+<script type="text/javascript">
+    var ItemID = '', tab_selected = 1, arr_locations = [], dem_locations = 0;
+    var warranty_selected = '{item_warranty}';
+    var ob_upload_dressing_room;
+    var img_dressing_room = '{img_dressing_room}';
+    var arr_dressing_room = [];
+//    {
+//        load_dressing
+//    }
+    function showboxDressingRoom() {
+        var check_no = false;
+        if (document.getElementById("category_value")) {
+            var category_value = document.getElementById("category_value").value;
+            for (var i = 0; i < arr_dressing_room.length; i++) {
+                if (arr_dressing_room[i] == category_value) {
+                    $("#box_dressing_room_access").show();
+                    if (img_dressing_room != '') {
+                        document.getElementById("check_dressing_room").checked = true;
+                        showUploadDressingRoom();
+                        $("#img_dressing_room").empty();
+                        var newImg = document.createElement("img");
+                        newImg.setAttribute("style", 'margin:0px; z-index:0;');
+                        document.getElementById("img_dressing_room").appendChild(newImg);
+                        newImg.width = parseInt(340 * 358 / 498, 10);
+                        newImg.height = 340;
+                        newImg.src = (CheckExitsImg(img_dressing_room) == true) ? "shopping/data/img/" + img_dressing_room : "plupload/thumb.php?id=" + img_dressing_room;
+                    }
+                    check_no = true;
+                    break;
+                }
+            }
+        }
+        if (check_no == false) {
+            $("#box_dressing_room_access").hide();
+            $("#show_upload_dressing_room").hide();
+            $("#dressing_room_product").hide();
+            img_dressing_room = '';
+        } else {
+            $("#box_dressing_room_access").show();
+            $("#show_upload_dressing_room").show();
+            $("#dressing_room_product").show();
+            //	img_dressing_room = '';	
+        }
+    }
+    function check_Box(id) {
+        if (document.getElementById("chk_" + id)) {
+            var chk = document.getElementById("chk_" + id);
+            if (chk.checked) {
+                document.getElementById(id).value = document.getElementById("hd_" + id).value;
+                document.getElementById(id).setAttribute('disabled', true);
+            } else {
+                document.getElementById(id).removeAttribute('disabled');
+            }
+        }
+    }
+    function uploadImgDressingRoom() {
+        if (typeof(ob_upload_dressing_room) == 'object')
+            return false;
+        ob_upload_dressing_room = new plupload.Uploader({
+            runtimes: 'gears,html5,flash,silverlight,browserplus',
+            browse_button: 'upload_img_dressing_room',
+            max_file_size: '1000mb',
+            chunk_size: "10mb",
+            url: 'plupload/server/uploadImgProduct.php',
+            flash_swf_url: 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url: 'plupload/js/plupload.silverlight.xap',
+            filters: [
+                {title: "Images files", extensions: "jpg,gif,png"}
+            ]
+        });
+        ob_upload_dressing_room.bind('FilesAdded', function(up, files) {
+            currentFile = files[0];
+            document.getElementById("Progress_bar").style.display = 'block';
+            document.getElementById("file_name").innerHTML = files[0].name;
+            document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+            document.getElementById("progress_bar_pecent").style.width = 0 + '%';
+            setTimeout(function() {
+                ob_upload_dressing_room.start();
+            }, 50);
+        });
+        ob_upload_dressing_room.bind('UploadProgress', function(up, file) {
+            document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+            var text = "Uploaded " + file.percent + "% &nbsp;(" + plupload.formatSize(file.loaded) + " of " + plupload.formatSize(file.size) + ")";
+            document.getElementById("progress_bar_size").innerHTML = text;
+        });
+        ob_upload_dressing_room.bind('FileUploaded', function(up, file, dataJson) {
+            setTimeout(function() {
+                $("#Progress_bar").hide();
+            }, 200);
+            var obj = jQuery.parseJSON(dataJson.response);
+            if (obj.error == '') {
+                showImgDressingRoom(obj);
+            }
+        }, 'json');
+        ob_upload_dressing_room.init();
+    }
+    function showImgDressingRoom(serverData) {
+        $("#img_dressing_room").empty();
+        var fileId__ = serverData.file_id;
+        var width = parseInt(serverData.width, 10);
+        var height = parseInt(serverData.height, 10);
+        var extend__ = serverData.ext;
+        img_dressing_room = fileId__;
+
+        var newImg = document.createElement("img");
+        newImg.setAttribute("style", 'margin:0px; z-index:0;');
+        document.getElementById("img_dressing_room").appendChild(newImg);
+        newImg.width = parseInt(340 * 358 / 498, 10);
+        newImg.height = 340;
+        newImg.src = "plupload/thumb.php?id=" + fileId__;
+    }
+    function deleteReview(rid, item_id) {
+        $.ajax({
+            url: 'index.php/admin/products_manage/deleteReview',
+            data: {"itm": item_id, "rid": rid},
+            type: 'post',
+            cache: false,
+            success: function(data) {
+                $("#_review_body").html(data);
+            }
+        })
+    }
+    function check_additem() {
+        var checkError = false;
+        var category_value = document.getElementById("category_value").value;
+        if (category_value == '') {
+            if (checkError == false) {
+                onfocusInputText(document.getElementById("category_value"));
+                document.getElementById("category_value").focus();
+                return false;
+            }
+        }
+        if ($('#name_item').val() == '') {
+            $('#name_item').css("background", '#ffffd5');
+            hidelabelfocus("name_item_label");
+            if (checkError == false) {
+                checkError = true;
+                onfocusInputText(document.getElementById("name_item"));
+                document.getElementById("name_item").focus();
+            }
+        }
+        if ($('#model_item').val() == '') {
+            $('#model_item').css("background", '#ffffd5');
+            hidelabelfocus("model_item_label");
+            if (checkError == false) {
+                checkError = true;
+                onfocusInputText(document.getElementById("model_item"));
+                document.getElementById("model_item").focus();
+            }
+        }
+        if ($('#inventories').val() == '') {
+            $('#inventories').css("background", '#ffffd5');
+            hidelabelfocus("inventories_label");
+            if (checkError == false) {
+                checkError = true;
+                onfocusInputText(document.getElementById("inventories"));
+                document.getElementById("inventories").focus();
+            }
+        }
+        if ($('#minimum_in_stock').val() == '') {
+            $('#minimum_in_stock').css("background", '#ffffd5');
+            hidelabelfocus("minimum_in_stock_label");
+            if (checkError == false) {
+                checkError = true;
+                onfocusInputText(document.getElementById("minimum_in_stock"));
+                document.getElementById("minimum_in_stock").focus();
+            }
+        }
+        if ($('#current_cost').val() == '') {
+            $('#current_cost').css("background", '#ffffd5');
+            hidelabelfocus("current_cost_label");
+            if (checkError == false) {
+                checkError = true;
+                onfocusInputText(document.getElementById("current_cost"));
+                document.getElementById("current_cost").focus();
+            }
+        }
+        var description_item = editor_obj.getData();
+        /*
+         if(dataImgProduct.length <= 0){
+         if(checkError == false){
+         alert("Please upload product's image.");
+         return false;
+         }
+         }*/
+        var ids_related_post = [];
+        var products_rela = $("#related > ul").children();
+        for (var i = 0; i < products_rela.length; i++) {
+            var spli = products_rela[i].id.split("_");
+            if (typeof(spli[1]) != 'undefined') {
+                ids_related_post[ids_related_post.length] = parseInt(spli[1], 10);
+            }
+        }
+        if (checkError == true) {
+            ShowProductInformation();
+            return false;
+        }
+        var uid__ = '';
+        if (document.getElementById("Ofmanufacturer")) {
+            uid__ = document.getElementById("Ofmanufacturer").value;
+        }
+        var feature_value = 0;
+        if (document.getElementById("feature")) {
+            if (document.getElementById("feature").checked == true) {
+                feature_value = 1;
+            }
+        }
+        var item_markup = '';
+        var MultiLevel = [];
+        var markup_percentage = 0;
+        var commission_charities = 0;
+        var commission_employees_bonus = 0;
+        var credit_merchant = 0;
+        var commission_trust_charity = 0;
+        var commission_member = 0;
+        var commission_affiliate = 0;
+        if (document.getElementById("markup_key")) {
+            item_markup = document.getElementById("markup_key").value;
+            markup_percentage = $("#markup_percentage").val();
+            commission_charities = $("#commission_charities").val();
+            commission_employees_bonus = $("#commission_employees_bonus").val();
+            credit_merchant = $("#credit_merchant").val();
+            commission_trust_charity = $("#commission_trust_charity").val();
+            commission_member = $("#commission_member").val();
+            commission_affiliate = $("#commission_affiliate").val();
+            var level_ = document.getElementsByName("level[]");
+            for (var i = 0; i < level_.length; i++) {
+                var value_level = level_[i].value;
+                if (value_level == '')
+                    value_level = 0;
+                MultiLevel[MultiLevel.length] = value_level;
+            }
+        }
+        if (document.getElementsByName('warranty_select[]')) {
+            var warranty_select = document.getElementsByName('warranty_select[]');
+            for (var i = 0; i < warranty_select.length; i++) {
+                if (warranty_select[i].checked == true) {
+                    warranty_selected = warranty_select[i].value;
+                    break;
+                }
+            }
+        }
+        var promotion_selected = 'NA';
+        if (document.getElementById("__promotion_exist__")) {
+            promotion_selected = [];
+            var promotions = document.getElementsByName('promotions[]');
+            for (var i = 0; i < promotions.length; i++) {
+                if (promotions[i].checked == true) {
+                    promotion_selected[promotion_selected.length] = promotions[i].value;
+                }
+            }
+            if (promotion_selected.length == 0)
+                promotion_selected = 'zero';
+        }
+
+        var items_shippings = 'NA';
+        if (document.getElementById("__shipping_exist__")) {
+            items_shippings = [];
+            for (var i = 0; i < arr_shipping__.length; i++) {
+                if (document.getElementById(arr_shipping__[i].skey + "_handling_fee")) {
+                    if (document.getElementById(arr_shipping__[i].skey + "_handling_fee").value != '') {
+                        arr_shipping__[i].new_handling = document.getElementById(arr_shipping__[i].skey + "_handling_fee").value;
+                    }
+                }
+                for (var j = 0; j < arr_shipping__[i].countries.length; j++) {
+                    if (arr_shipping__[i].countries[j].rate_type == 1) {
+                        if (document.getElementById(arr_shipping__[i].skey + "_country_" + j)) {
+                            arr_shipping__[i].countries[j].rate = document.getElementById(arr_shipping__[i].skey + "_country_" + j).value;
+                        }
+                    } else {
+                        for (var k = 0; k < arr_shipping__[i].countries[j].states.length; k++) {
+                            if (document.getElementById(arr_shipping__[i].skey + '_' + j + "_state_" + k)) {
+                                arr_shipping__[i].countries[j].states[k].rate = document.getElementById(arr_shipping__[i].skey + '_' + j + "_state_" + k).value;
+                            }
+                        }
+                    }
+                }
+            }
+            items_shippings = arr_shipping__;
+        }
+        //arrAttributes
+        var items_attributes = [];
+        var _items_options_ = [];
+        if (check_loadAttribute == true) {
+            for (var i = 0; i < arrAttributes.length; i++) {
+                if (parseInt(arrAttributes[i].my_attribute, 10) == 1) {
+                    var obj_attribute = new Object();
+                    obj_attribute.akey = arrAttributes[i].akey;
+
+                    var label = arrAttributes[i].label;
+                    if (document.getElementById('label_' + arrAttributes[i].akey) && trim(document.getElementById('label_' + arrAttributes[i].akey).value) != '') {
+                        label = trim(document.getElementById('label_' + arrAttributes[i].akey).value);
+                    }
+                    obj_attribute.label = label;
+
+                    var required = arrAttributes[i].required;
+                    if (document.getElementById("required_" + arrAttributes[i].akey)) {
+                        if (document.getElementById("required_" + arrAttributes[i].akey).checked == true) {
+                            required = 1;
+                        } else {
+                            required = 0;
+                        }
+                    }
+                    obj_attribute.required = required;
+
+                    var display = arrAttributes[i].display_type;
+                    if (document.getElementById("display_type_" + arrAttributes[i].akey)) {
+                        display = document.getElementById('display_type_' + arrAttributes[i].akey).value;
+                    }
+                    obj_attribute.display = display;
+
+                    var weight = arrAttributes[i].weight;
+                    if (document.getElementById("weight_" + arrAttributes[i].akey)) {
+                        weight = document.getElementById('weight_' + arrAttributes[i].akey).value;
+                    }
+                    obj_attribute.weight = weight;
+
+                    items_attributes[items_attributes.length] = obj_attribute;
+
+                    if (typeof(arrAttributes[i].options) != 'undefined') {
+                        for (var j = 0; j < arrAttributes[i].options.length; j++) {
+                            if (parseInt(arrAttributes[i].options[j].my_option, 10) == 1) {
+                                _items_options_[_items_options_.length] = arrAttributes[i].options[j].my_objOption;
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            items_attributes = 'NA';
+        }
+        if (document.getElementById("check_dressing_room")) {
+            if (document.getElementById("check_dressing_room").checked == false)
+                img_dressing_room = '';
+        }
+        var data_reviews = [];
+        var cb_review = document.getElementsByName('cb_review[]');
+        for (var i = 0; i < cb_review.length; i++) {
+            var status_review = 0;
+            if (cb_review[i].checked == true)
+                status_review = 1;
+            var obj_review = new Object();
+            obj_review.rid = cb_review[i].value;
+            obj_review.status = status_review;
+            data_reviews[data_reviews.length] = obj_review;
+        }
+        var special = 0;
+        if (document.getElementById("special").checked == true)
+            special = 1;
+
+        getValue_location();
+
+        var tax_lists = [];
+        if (document.getElementsByName('tax_list[]')) {
+            tax_list = document.getElementsByName('tax_list[]');
+            for (var i = 0; i < tax_list.length; i++) {
+                var chk = document.getElementById("chk_" + tax_list[i].id);
+                if (chk.checked == false) {
+                    var obj_tax = new Object;
+                    obj_tax.id = tax_list[i].id;
+                    obj_tax.rate = tax_list[i].value;
+                    tax_lists[tax_lists.length] = obj_tax;
+                }
+            }
+        }
+        $("#submitproductbt").hide();
+        $("#loadingbt").show();
+        $.post("index.php/admin/products_manage", {
+            add_item: 'yes',
+            item_id: ItemID,
+            uid: uid__,
+            category: category_value,
+            inventories: $("#inventories").val(),
+            minimum_in_stock: $("#minimum_in_stock").val(),
+            current_cost: $("#current_cost").val(),
+            voucher_value: $("#voucher_value").val(),
+            item_warranty: warranty_selected,
+            name_item: $('#name_item').val(),
+            model_item: $('#model_item').val(),
+            origin: $("#origin").val(),
+            description_item: description_item,
+            itm_featured: feature_value,
+            'image_id[]': dataImgProduct,
+            'ids_related[]': ids_related_post,
+            items_promotion: promotion_selected,
+            items_attributes: items_attributes,
+            items_options: _items_options_,
+            items_duration: $("#duration").val(),
+            items_duration_type: document.getElementById("duration_type").value,
+            items_charge_refund: $("#charge_refund").val(),
+            items_charge_refund_type: document.getElementById("charge_refund_type").value,
+            weight: $("#weight").val(),
+            UnitOfPackageWeight: $("#UnitOfPackageWeight").val(),
+            length: $("#length").val(),
+            width: $("#width").val(),
+            height: $("#height").val(),
+            UnitOfDimensions: $("#UnitOfDimensions").val(),
+            items_shippings: items_shippings,
+            img_dressing_room: img_dressing_room,
+            item_markup: item_markup,
+            markup_percentage: markup_percentage,
+            commission_charities: commission_charities,
+            commission_employees_bonus: commission_employees_bonus,
+            credit_merchant: credit_merchant,
+            commission_trust_charity: commission_trust_charity,
+            commission_member: commission_member,
+            commission_affiliate: commission_affiliate,
+            MultiLevel: MultiLevel,
+            data_reviews: data_reviews,
+            product_type: $("#product_type").val(),
+            special: special,
+            expiration_date: $("#expiration_date").val(),
+            expiration_date_unit: $("#expiration_date_unit").val(),
+            locations: arr_locations,
+            tax_lists: tax_lists
+        }, function(data) {
+            $("#submitproductbt").show();
+            $("#loadingbt").hide();
+            if (data != '') {
+                if (data == 'ok') {
+                    window.location = 'index.php/admin/products_manage';
+                }
+                else {
+                    alert(fail_saved);
+                }
+            }
+        });
+        return false;
+    }
+    function uploadGallery() {
+
+        if (typeof(uploadImgProduct) == 'object')
+            return false;
+        uploadImgProduct = new plupload.Uploader({
+            runtimes: 'gears,html5,flash,silverlight,browserplus',
+            browse_button: 'spanButtonPlaceHolder_gallery',
+            max_file_size: '1000mb',
+            chunk_size: "10mb",
+            unique_names: true,
+            url: 'plupload/server/uploadImgProduct.php',
+            flash_swf_url: 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url: 'plupload/js/plupload.silverlight.xap',
+            filters: [
+                {title: "Product files", extensions: "jpg,gif,png,wmv,wma,avi,mov,flv,swf,mp4,dvr-ms,mpeg,mpg,mpe,m1v,mp2,mpv2"}
+            ]
+        });
+        uploadImgProduct.bind('FilesAdded', function(up, files) {
+            currentFile = files[0];
+            $("#upload_bt").hide();
+            document.getElementById("Progress_bar").style.display = 'block';
+            document.getElementById("file_name").innerHTML = files[0].name;
+            document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+            document.getElementById("progress_bar_pecent").style.width = 0 + '%';
+            setTimeout(function() {
+                uploadImgProduct.start();
+            }, 50);
+        });
+        uploadImgProduct.bind('UploadProgress', function(up, file) {
+            document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+            var text = "Uploaded " + file.percent + "% &nbsp;(" + plupload.formatSize(file.loaded) + " of " + plupload.formatSize(file.size) + ")";
+            document.getElementById("progress_bar_size").innerHTML = text;
+        });
+        uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+            setTimeout(function() {
+                $("#Progress_bar").hide();
+            }, 200);
+            var obj = jQuery.parseJSON(dataJson.response);
+            if (obj.error == '') {
+                adshop_view(obj);
+            }
+            $("#upload_bt").show();
+        }, 'json');
+        uploadImgProduct.init();
+    }
+    function adshop_view(serverData) {
+        var dir = "plupload/uploads/";
+        $("#zoom-img").hide();
+        var gallery_main = document.getElementById("gallery-main");
+        $(gallery_main).empty();
+        fileId = serverData.file_id;
+        var width = parseInt(serverData.width, 10);
+        var height = parseInt(serverData.height, 10);
+        extend = serverData.ext;
+        file_name = fileId + '.' + extend;
+        if (fileId != '') {
+            var check_type = false;
+            var path_src = dir + fileId + '.' + extend;
+            for (var i = 0; i < arr_movie.length; i++) {
+                if (extend == arr_movie[i]) {
+                    var movie_content = '<div style="overflow:hidden; width:698px; padding-top:60px" align="center">';
+                    movie_content += '<OBJECT TYPE="application/x-mplayer2" ID="MediaPlayer" data="' + path_src + '" WIDTH="600px" HEIGHT="375px">';
+                    movie_content += '<PARAM NAME="FileName" VALUE="' + path_src + '">';
+                    movie_content += '<PARAM name="autostart" VALUE="false">'
+                    movie_content += '<PARAM name="ShowControls" VALUE="true">';
+                    movie_content += '<param name="ShowStatusBar" value="false">';
+                    movie_content += '<PARAM name="ShowDisplay" VALUE="false">';
+                    movie_content += '<param name="wmode" value="transparent">';
+                    movie_content += '</OBJECT>';
+                    movie_content += '</div>';
+                    $("#gallery-main").empty().append(movie_content);
+                    check_type = true;
+                    break;
+                }
+            }
+            if (!check_type) {
+                for (var i = 0; i < arr_flv.length; i++) {
+                    if (extend == arr_flv[i]) {
+                        var flv_str = '<div style="overflow:hidden; width:698px; padding-top:60px" align="center">';
+                        flv_str += '<embed src="misc/flvplayer/flvplayer.swf" allowfullscreen="true" allowscriptaccess="always" flashvars="file=' + path_src + '&backcolor=0x#000000&frontcolor=0xFFFFFF&lightcolor=0xFFFFFF&showdigits=true&showfsbutton=true&autostart=false&repeat=false&volume=100&width=600&height=375" height="375px" width="600px"></embed>';
+                        flv_str += '</div>';
+                        $("#gallery-main").empty().append(flv_str);
+                        check_type = true;
+                        break;
+                    }
+                }
+            }
+            if (!check_type) {
+                for (var i = 0; i < arr_swf.length; i++) {
+                    if (extend == arr_swf[i]) {
+                        var swf_content = '<div style="overflow:hidden; width:698px; padding-top:60px" align="center">';
+                        swf_content += '<object type="application/x-shockwave-flash" data="' + path_src + '" width="360px" height="225px">';
+                        swf_content += '<param name="movie" value="' + path_src + '" />';
+                        swf_content += '<param name="quality" value="high" />';
+                        swf_content += '<param name="wmode" value="transparent">';
+                        swf_content += '</object>';
+                        swf_content += '</div>';
+                        $("#gallery-main").empty().append(swf_content);
+                        check_type = true;
+                        break;
+                    }
+                }
+            }
+            if (!check_type) {
+                for (var i = 0; i < arr_img.length; i++) {
+                    if (extend == arr_img[i]) {
+                        ShowLoadingObj({obj: document.getElementById("gallery-main"), image: "Loader-FloGradient16x16x.gif"});
+                        rate = 1;
+                        if (width > imgCrop_width || height > imgCrop_height) {
+                            if (width / imgCrop_width > height / imgCrop_height) {
+                                rate = width / imgCrop_width;
+                            } else {
+                                rate = height / imgCrop_height;
+                            }
+                        }
+                        boxWidth = width / rate;
+                        boxHeight = boxWidth * height / width;
+                        $("#zoom-img").show();
+                        var left_ = (box_width - boxWidth) / 2;
+                        if (left_ < 0)
+                            left_ = 0;
+                        var top_ = (box_height - boxHeight) / 2;
+                        if (top_ < 0)
+                            top_ = 0;
+                        var newImg = document.createElement("img");
+                        newImg.setAttribute("style", 'margin:0px; z-index:0; position:absolute; left:' + left_ + 'px; top:' + top_ + 'px');
+                        newImg.id = "img_customize_gallery";
+                        gallery_main.appendChild(newImg);
+                        newImg.width = boxWidth;
+                        newImg.height = boxHeight;
+                        newImg.src = "plupload/thumb.php?id=" + fileId;
+                        newImg.style.display = 'none';
+                        ShowCropImage(newImg, gallery_main);
+                        check_type = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    var dataImgProduct = [];
+    var imgActive = '';
+    function saveAdFile() {
+        if (fileId == '') {
+            alert("Please upload image to save!");
+            return false;
+        }
+        var current_w = 0;
+        var current_h = 0;
+        var left_banner = 0;
+        var top_banner = 0;
+        var left_img = 0;
+        var top_img = 0;
+        var width_gallery_main = 0;
+        var height_gallery_main = 0;
+        if (document.getElementById('move_banner')) {
+            var move_banner = document.getElementById('move_banner');
+            var img_customize_gallery = document.getElementById("img_customize_gallery");
+            var gallery_main = document.getElementById("gallery-main");
+            current_w = parseFloat(img_customize_gallery.offsetWidth);
+            current_h = parseFloat(img_customize_gallery.offsetHeight);
+            left_banner = parseFloat(move_banner.offsetLeft);
+            top_banner = parseFloat(move_banner.offsetTop);
+            left_img = parseFloat(img_customize_gallery.offsetLeft);
+            top_img = parseFloat(img_customize_gallery.offsetTop);
+            width_gallery_main = parseFloat(gallery_main.offsetWidth);
+            height_gallery_main = parseFloat(gallery_main.scrollHeight);
+        }
+        $("#savebt").empty().append('<table cellpadding="0" cellspacing="0" border="0"><tr><td align="left" valign="middle"><img src="../images/Loader-FloGradient16x16x.gif" border="0" /></td><td align="left" valign="middle" style="padding-left:5px">saving...</td></tr></table>');
+        $.post("index.php/admin/products_manage/add", {
+            uploadImgProduct: 'yes',
+            fileId: fileId,
+            file_name: file_name,
+            left_img: left_img,
+            top_img: top_img,
+            left_banner: left_banner,
+            top_banner: top_banner,
+            width_img: current_w,
+            height_img: current_h,
+            width_main: width_gallery_main,
+            height_main: height_gallery_main,
+            rate: rate
+        }, function(data) {
+            $("#savebt").empty().append('<a href="javascript:void(0)" onclick="saveAdFile()" style="color:#000">save</a>');
+            setTimeout(function() {
+                closeBox('box_uploadImgProduct');
+            }, 200);
+            dataImgProduct[dataImgProduct.length] = fileId + '|' + extend;
+            loadImagesProduct();
+        }, "json");
+    }
+    function loadImgProducts() {
+        dataImgProduct = [];
+        if (ItemID != '') {
+            ShowLoadingObj({obj: document.getElementById("image_sample"), image: "Loader-FloGradient16x16x.gif"});
+            $.post("index.php/admin/products_manage/edit", {
+                loadImgProduct: 'yes',
+                itemID: ItemID
+            }, function(data) {
+                HideLoadingObj(document.getElementById("image_sample"));
+                dataImgProduct = data;
+                loadImagesProduct();
+            }, "json");
+        }
+    }
+    function loadImagesProduct() {
+        $("#image_sample").empty();
+        $("#image_thumb").empty();
+        if (dataImgProduct.length > 0) {
+            var w_ = (thumb_width + 8) * dataImgProduct.length;
+            var st = '<div id="rpdata1_listimg" style="width:' + w_ + 'px; position:relative">';
+            for (var i = 0; i < dataImgProduct.length; i++) {
+                if (dataImgProduct[i] != '') {
+                    var arr_fileID = dataImgProduct[i].split("|");
+                    var play_bt = '<div style="overflow:hidden; margin-top:15px; margin-left:18px"><img src="../images/playbt.png" border="0" width="26px" height="26px" /></div>';
+                    if (typeof(arr_fileID[1]) == 'string') {
+                        if (arr_fileID[1] != '') {
+                            for (var j = 0; j < arr_img.length; j++) {
+                                if (arr_img[j] == arr_fileID[1]) {
+                                    play_bt = '';
+                                    break;
+                                }
+                            }
+                        } else {
+                            play_bt = '';
+                        }
+                    } else {
+                        play_bt = '';
+                    }
+                    var url__ = (CheckExitsImg(arr_fileID[0]) == true) ? "shopping/data/img/thumb_slide/" + arr_fileID[0] : "plupload/thumbbiz.php?id=" + arr_fileID[0] + "&type_img=thumb_slide";
+                    st += '<div id="' + dataImgProduct[i] + '" class="liImgthumb" style="background:url(' + url__ + ') no-repeat 4px 4px; width:' + (thumb_width + 8) + 'px; height:' + (thumb_height + 8) + 'px; overflow:hidden" onclick="ActiveImgProduct(\'' + dataImgProduct[i] + '\')">' + play_bt + '</div>';
+                }
+            }
+            st += '</div>';
+            $("#image_thumb").append(st);
+            $("#rpdata1_listimg").sortable({
+                //	handle: 'b',
+                update: function(e, ui) {
+                    var image_thumb_children = $("#rpdata1_listimg").children();
+                    var dataImgProduct_tam = dataImgProduct;
+                    dataImgProduct = [];
+                    for (var j = 0; j < image_thumb_children.length; j++) {
+                        for (var k = 0; k < dataImgProduct_tam.length; k++) {
+                            if (dataImgProduct_tam[k] == image_thumb_children[j].id) {
+                                dataImgProduct[dataImgProduct.length] = dataImgProduct_tam[k];
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            );
+            $("#rpdata1_listimg").disableSelection();
+            var check_active = false;
+            for (var i = 0; i < dataImgProduct.length; i++) {
+                if (document.getElementById(dataImgProduct[i])) {
+                    if (dataImgProduct[i] == imgActive) {
+                        showActive(i);
+                        document.getElementById(imgActive).className = 'liImgthumbActive';
+                        check_active = true;
+                    }
+                }
+            }
+            if (check_active == false) {
+                showActive(0);
+                imgActive = dataImgProduct[0];
+                document.getElementById(imgActive).className = 'liImgthumbActive';
+            }
+        } else {
+            $("#image_sample").append('Upload Image as large as possible.');
+        }
+    }
+    function showActive(index) {
+        var dir = "plupload/uploads/";
+        if (typeof(dataImgProduct[index]) == 'string') {
+            var arr_fileID = dataImgProduct[index].split("|");
+            var fileid__ = (typeof(arr_fileID[0]) == 'string') ? arr_fileID[0] : '';
+            var extend__ = (typeof(arr_fileID[1]) == 'string' && arr_fileID[1] != '') ? arr_fileID[1] : '';
+            if (CheckExitsImg(arr_fileID[0]) == true) {
+                dir = "shopping/data/img/thumb_show/";
+                if (extend__ != '')
+                    fileid__ = fileid__.replace(/.jpg/gi, "");
+            }
+        }
+        var check_type = false;
+        var path_src = dir + fileid__ + '.' + extend__;
+        for (var i = 0; i < arr_movie.length; i++) {
+            if (extend__ == arr_movie[i]) {
+                var movie_content = '<div style="overflow:hidden; width:100%; padding-top:45px" align="center">';
+                movie_content += '<OBJECT ID="MediaPlayer" TYPE="application/x-mplayer2" WIDTH="360px" HEIGHT="225px" data="' + path_src + '">';
+                movie_content += '<PARAM NAME="FileName" VALUE="' + path_src + '">';
+                movie_content += '<PARAM name="autostart" VALUE="false">'
+                movie_content += '<PARAM name="ShowControls" VALUE="true">';
+                movie_content += '<param name="ShowStatusBar" value="false">';
+                movie_content += '<PARAM name="ShowDisplay" VALUE="false">';
+                movie_content += '<param name="wmode" value="transparent">';
+                movie_content += '</OBJECT>';
+                movie_content += '</div>';
+                $("#image_sample").empty().append(movie_content);
+                check_type = true;
+                break;
+            }
+        }
+        if (!check_type) {
+            for (var i = 0; i < arr_flv.length; i++) {
+                if (extend__ == arr_flv[i]) {
+                    var flv_str = '<div style="overflow:hidden; width:100%; padding-top:45px" align="center">';
+                    flv_str += '<embed src="misc/flvplayer/flvplayer.swf" allowfullscreen="true" allowscriptaccess="always" flashvars="file=' + path_src + '&backcolor=0x#000000&frontcolor=0xFFFFFF&lightcolor=0xFFFFFF&showdigits=true&showfsbutton=true&autostart=false&repeat=false&volume=100&width=360&height=225" height="225px" width="360px"></embed>';
+                    flv_str += '</div>';
+                    $("#image_sample").empty().append(flv_str);
+                    check_type = true;
+                    break;
+                }
+            }
+        }
+        if (!check_type) {
+            for (var i = 0; i < arr_swf.length; i++) {
+                if (extend__ == arr_swf[i]) {
+                    var swf_content = '<div style="overflow:hidden; width:100%; padding-top:45px" align="center">';
+                    swf_content += '<object type="application/x-shockwave-flash" data="' + path_src + '" width="360px" height="225px">';
+                    swf_content += '<param name="movie" value="' + path_src + '" />';
+                    swf_content += '<param name="quality" value="high" />';
+                    swf_content += '<param name="wmode" value="transparent">';
+                    swf_content += '</object>';
+                    swf_content += '</div>';
+                    $("#image_sample").empty().append(swf_content);
+                    check_type = true;
+                    break;
+                }
+            }
+        }
+        if (!check_type) {
+            var newImg2 = document.createElement("img");
+            document.getElementById("image_sample").appendChild(newImg2);
+            newImg2.style.cursor = 'pointer';
+            newImg2.style.visibility = 'hidden';
+            newImg2.src = (CheckExitsImg(fileid__) == true) ? "shopping/data/img/thumb_show/" + fileid__ : "plupload/thumbbiz.php?id=" + fileid__ + "&type_img=thumb_show";
+            loadingImgSample(newImg2);
+            newImg2.onload = function() {
+                fadeIn(newImg2, 0);
+            };
+        }
+    }
+// --------------------------------------------------------     Loading product exists
+    var arrProducts = [];
+    var arrProductsShow = [];
+    function loadProductsExist() {
+        ShowLoadingObj({obj: document.getElementById("gallery"), image: "Loader-FloGradient16x16x.gif"});
+        $.post("index.php/admin/products_manage", {
+            loadProductExists: 'yes',
+            ItemID: ItemID
+        }, function(data) {
+            HideLoadingObj(document.getElementById("gallery"));
+            if (typeof(data) == 'object') {
+                arrProducts = data;
+                loadListofIDrelated();
+            }
+        }, "json");
+    }
+    function loadListofIDrelated() {
+        var string_relates = '';
+        if (ids_related.length > 0) {
+            string_relates += '<ul class="gallery ui-helper-reset">';
+            for (var i = 0; i < ids_related.length; i++) {
+                var img = '';
+                for (var j = 0; j < arrProducts.length; j++) {
+                    if (parseInt(arrProducts[j].itm_id, 10) == parseInt(ids_related[i], 10)) {
+                        img = arrProducts[j].file;
+                        break;
+                    }
+                }
+                string_relates += '<li id="item_' + ids_related[i] + '" class="ui-widget-content ui-corner-tr" style="display: list-item; width: 45px;">';
+                string_relates += '	<img width="90px" height="80px" border="0" src="shopping/data/img/thumb/' + img + '" style="display: inline-block; height: 35px;">';
+                string_relates += '	<a class="ui-icon-zoomin cboxElement" title="view larger image" href="shopping/data/img/thumb_show/' + img + '">view</a>';
+                string_relates += '	<a class="ui-icon ui-icon-refresh" href="javascript:void(0)">delete</a>';
+                string_relates += '</li>';
+            }
+            string_relates += '</ul>';
+        }
+        $("#related").append(string_relates);
+        $("ul.gallery > li").click(function(event) {
+            var $item = $(this),
+                    $target = $(event.target);
+            if ($target.is("a.ui-icon-trash")) {
+                deleteImage($item);
+            } else if ($target.is("a.ui-icon-refresh")) {
+                recycleImage($item);
+            }
+            return false;
+        });
+    }
+    function loadProductsList() {
+        var st = '';
+        for (var i = 0; i < arrProductsShow.length; i++) {
+            st += '<li class="ui-widget-content ui-corner-tr" id="item_' + arrProductsShow[i].itm_id + '">';
+            st += '    <img src="shopping/data/img/thumb/' + arrProductsShow[i].file + '" alt="' + arrProductsShow[i].itm_model + '" border="0" width="90px" height="80px"/>';
+            st += '    <a href="shopping/data/img/thumb_show/' + arrProductsShow[i].file + '" title="view larger image" class="ui-icon-zoomin">view</a>';
+            st += '    <a href="javascript:void(0)" title="add this image" class="ui-icon-trash">add</a>';
+            st += '</li>';
+        }
+        $("#gallery").empty().append(st);
+        if (st != '') {
+            $(".ui-icon-zoomin").colorbox({
+                initialWidth: 70,
+                initialHeight: 50,
+                height: false,
+                opacity: 0.2,
+                scrolling: false
+            });
+            $("ul.gallery > li").click(function(event) {
+                var $item = $(this),
+                        $target = $(event.target);
+                if ($target.is("a.ui-icon-trash")) {
+                    deleteImage($item);
+                } else if ($target.is("a.ui-icon-refresh")) {
+                    recycleImage($item);
+                }
+                return false;
+            });
+        }
+    }
+    function deleteImage($item) {
+        var $trash = $("#related");
+        var recycle_icon = "<a href='javascript:void(0)' class='ui-icon ui-icon-refresh'>delete</a>";
+        $item.fadeOut(function() {
+            var $list = $("ul", $trash).length ? $("ul", $trash) : $("<ul class='gallery ui-helper-reset'/>").appendTo($trash);
+            $item.find("a.ui-icon-refresh").remove();
+            $item.find("a.ui-icon-trash").remove();
+            $item.append(recycle_icon).appendTo($list).fadeIn(function() {
+                $item
+                        .animate({width: "45px"})
+                        .find("img")
+                        .animate({height: "35px"});
+            });
+        });
+    }
+    function recycleImage($item) {
+        var $gallery = $("#gallery");
+        var trash_icon = '<a href="javascript:void(0)" title="add this image" class="ui-icon-trash">add</a>';
+        $item.fadeOut(function() {
+            $item.find("a.ui-icon-refresh").remove().end().find("a.ui-icon-trash").remove().end().css("width", "94px").append(trash_icon).find("img").css("height", "80px").end().appendTo($gallery).fadeIn();
+        });
+    }
+    var arr_promoItems = [];
+    function loadProductsPromotion() {
+        ShowLoadingObj({obj: document.getElementById("content_load"), image: "Loader-FloGradient16x16x.gif"});
+        $.post("index.php/admin/products_manage", {
+            loadProductsPromotion: 'yes',
+            ItemID: ItemID
+        }, function(data) {
+            HideLoadingObj(document.getElementById("content_load"));
+            if (typeof(data) == 'object') {
+                arr_promoItems = data;
+            }
+        }, "json");
+    }
+    var arrAttributes = [];
+    var check_loadAttribute = false;
+    function loadObjAttributes() {
+        ShowLoadingObj({obj: document.getElementById("attributes_settings"), image: "Loader-FloGradient16x16x.gif"});
+        $.post("index.php/admin/products_manage/edit", {
+            loadAttributes: 'yes',
+            ItemID: ItemID
+        }, function(data) {
+            HideLoadingObj(document.getElementById("attributes_settings"));
+            if (typeof(data) == 'object') {
+                arrAttributes = data;
+                loadAttributesListing();
+            }
+        }, "json");
+    }
+
+    function Add_Attributes() {
+        $("#title_popup").empty().append("Add attributes");
+        $("#content_popup").css("width", '500px');
+        var list_attributes = '';
+        for (var i = 0; i < arrAttributes.length; i++) {
+            if (parseInt(arrAttributes[i].my_attribute, 10) == 1)
+                continue;
+            list_attributes += '<div style="clear:both">';
+            list_attributes += '	<span style="float:left; padding-top:2px"><input type="checkbox" class="input-checkbox" id="attribute_' + arrAttributes[i].akey + '" value="' + arrAttributes[i].akey + '" /></span>';
+            list_attributes += '    <span style="float:left; padding-left:5px">' + ConvertToHTML(arrAttributes[i].name) + '</span>';
+            list_attributes += '</div>';
+        }
+        if (list_attributes == '')
+            list_attributes = 'No attributes left to add.';
+        var str = '';
+        str += '<div style="clear:both">Select the attributes you want to add and submit the form.<br />You may add more attributes <a href="index.php/store/attributes/add">here</a>.</div>';
+        str += '<div style="clear:both; font-weight:bold; padding-top:10px">Attributes</div>';
+        str += '<div class="holder osX" style="overflow: auto; overflow-x: hidden; clear:both; padding-top:10px;"><div class="scroll-pane" style="overflow-x: hidden; width:500px; height:250px;" id="attributes_list_add">' + list_attributes + '</div></div>';
+        str += '<div style="clear:both; width:100%; padding-top:20px; margin-right:5px; margin-bottom:5px;" align="right">';
+        str += '	<input type="button" class="button" value="Add attributes" onclick="Add_Attributes_toProduct()" />';
+        str += '    <input type="button" class="button" value="Cancel" style="margin-left:5px" id="cancel" />';
+        str += '</div>';
+        $("#content_popup").empty().append(str);
+        $("#attributes_list_add").jScrollPane({showArrows: false, verticalGutter: 0});
+        showbox('box_popup');
+        if (document.getElementById("cancel")) {
+            document.getElementById("cancel").onclick = function() {
+                closeBox("box_popup");
+            }
+        }
+        return false;
+    }
+    var arr_shipping__ = [];
+    function showShippingListings() {
+        $("#shipping_content").empty();
+        if (document.getElementById("warranty_settings_tab")) {
+            arr_shipping__ = [];
+            var caid = document.getElementById("category_value").value;
+            ShowLoadingObj({obj: document.getElementById("content_load"), image: "Loader-FloGradient16x16x.gif"});
+            $.ajax({
+                url: 'index.php/store/shipping/view?ajax=1&caid=' + caid + '&ItemID=' + ItemID,
+                cache: false,
+                dataType: 'json',
+                success: function(message) {
+                    HideLoadingObj(document.getElementById("content_load"));
+                    if (typeof(message) == 'object') {
+                        arr_shipping__ = message;
+                        ViewShippingListing();
+                    }
+                    return false;
+                }
+            });
+        }
+    }
+    function showPromotionListings() {
+        if (document.getElementById("promotion_settings_tab")) {
+            ShowLoadingObj({obj: document.getElementById("content_load"), image: "Loader-FloGradient16x16x.gif"});
+            $.ajax({
+                url: 'index.php/store/promotion/view?ajax=1',
+                cache: false,
+                success: function(message) {
+                    HideLoadingObj(document.getElementById("content_load"));
+                    $("#promotion_settings").empty().append(message);
+                    if (document.getElementsByName('promotions[]')) {
+                        var promotions = document.getElementsByName('promotions[]');
+                        for (var i = 0; i < promotions.length; i++) {
+                            for (var j = 0; j < arr_promoItems.length; j++) {
+                                if (arr_promoItems[j] == promotions[i].value) {
+                                    promotions[i].checked = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    return false;
+                }
+            });
+        }
+    }
+    function showWarrantyListings() {
+        if (document.getElementById("warranty_settings_tab")) {
+            var caid = document.getElementById("category_value").value;
+            ShowLoadingObj({obj: document.getElementById("content_load"), image: "Loader-FloGradient16x16x.gif"});
+            $.ajax({
+                url: 'index.php/store/warranty/view?ajax=1&caid=' + caid + '&ItemID=' + ItemID,
+                cache: false,
+                success: function(message) {
+                    $("#warranty_content").empty().append(message);
+                    if (document.getElementsByName('warranty_select[]')) {
+                        var warranty_select = document.getElementsByName('warranty_select[]');
+                        for (var i = 0; i < warranty_select.length; i++) {
+                            if (warranty_select[i].value == warranty_selected) {
+                                warranty_select[i].checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    HideLoadingObj(document.getElementById("content_load"));
+                    return false;
+                }
+            });
+        }
+    }
+    function showMarkupListings() {
+        if (document.getElementById("product_markup_settings")) {
+            var caid = document.getElementById("category_value").value;
+            var mid = document.getElementById("Ofmanufacturer").value;
+            ShowLoadingObj({obj: document.getElementById("content_load"), image: "Loader-FloGradient16x16x.gif"});
+            $.ajax({
+                url: 'index.php/store/markup/view?ajax=1&caid=' + caid + '&mid=' + mid + '&ItemID=' + ItemID,
+                cache: false,
+                success: function(message) {
+                    $("#product_markup_settings").empty().append(message);
+                    Selling_price();
+                    HideLoadingObj(document.getElementById("content_load"));
+                    return false;
+                }
+            });
+        }
+    }
+    var editor_obj;
+    function CreateEditor(id, width) {
+        editor_obj = CKEDITOR.replace(id, {
+            uiColor: '#7E7E7E',
+            enterMode: CKEDITOR.ENTER_BR,
+            filebrowserBrowseUrl: 'misc/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: 'misc/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: 'misc/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl: 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+            toolbar: [
+                ['Source'],
+                ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'],
+                ['Link', 'Unlink', 'Anchor'],
+                ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
+                //	'/',
+                ['Styles', 'Format', 'Font', 'FontSize'],
+                ['TextColor', 'BGColor'],
+                ['Maximize', 'ShowBlocks']
+            ]
+        });
+    }
+    function loadDataLocations() {
+//        {
+//            load_locations
+//        }
+        for (var i = 0; i < data_locations.length; i++) {
+            add_location_detail(data_locations[i].location, data_locations[i].id);
+        }
+    }
+    $(function() {
+        changeProductType();
+        if (document.getElementById("item_id"))
+            ItemID = document.getElementById("item_id").value;
+        loadProductsPromotion();
+        var dates = $("#from_date, #to_date").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onSelect: function(selectedDate) {
+                var option = this.id == "from_date" ? "minDate" : "maxDate",
+                        instance = $(this).data("datepicker");
+                date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                        $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings);
+                dates.not(this).datepicker("option", option, date);
+            }
+        });
+        uploadGallery();
+        showboxDressingRoom();
+        showMarkupListings();
+        Selling_price();
+        loadProductsExist();
+//        {
+//            load_ids_related
+//        }
+        loadImgProducts();
+        var left = Math.round((truebody().clientWidth - 213) / 2);
+        document.getElementById("Progress_bar").style.left = left + "px";
+        StartScrolling();
+        CreateEditor('description_item', 500);
+        clearForms();
+        loadDataLocations();
+        showLocations();
+    });
+</script>

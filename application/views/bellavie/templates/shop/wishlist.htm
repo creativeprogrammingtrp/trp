@@ -1,0 +1,97 @@
+<style>
+.wishlist-wrapper .icon-remove-sign{color:#b94a48;}
+.wishlist-wrapper .icon-ok{color:#468847;}
+
+</style>
+<div class="row wishlist-wrapper">
+    <div class="span9">
+        <div class="titleHeader clearfix">
+            <h3>My Wish list</h3>
+        </div><!--end titleHeader-->
+        <table class="table" style="margin:36px 0 0;">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th class="desc">Description</th>
+                    <th>Model</th>
+                    <th>Stock</th>
+                    <th>Unit Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="wl-items"></tbody>
+        </table>
+    </div><!--end span9-->
+	<aside class="span3">
+    	<div id="product-aside" class="aside-inner">
+        {specials}
+        </div>
+    </aside> <!--end span3-->
+</div>
+<script type="text/javascript">
+var adObject = {};
+function loadData()
+{
+	$.post("index.php/shop/wishlist",
+	{
+		loadData: "yes",
+	},
+	function(data){
+		if(typeof(data)!= 'object')
+			return false;
+		adObject = data.data;
+		showData();
+                showPopup('.btn');
+	},"json")	
+}//loadData
+
+function showData()
+{
+	var str = '';
+	if(adObject.length > 0)
+	{
+		for(i=0; i<adObject.length; i++)
+		{
+			var obj = adObject[i];
+			str += '	<tr>';
+			str += '		<td>';
+			str += '			<a href="index.php/shop/item_details?itemid='+obj.itm_key+'"><img alt=""  src="'+obj.file+'" style="width:72px; height:72px"></a>';
+			str += '		</td>';
+			str += '		<td class="desc">';
+			str += '			<h4><a class="invarseColor" href="index.php/shop/item_details?itemid='+obj.itm_key+'">'+obj.itm_name+'</a></h4>';
+                        str += obj.rating;
+			str += '		</td>';
+			str += '		<td>'+obj.itm_model+'</td>';
+			str += '		<td>'+obj.outOfStock+'</td>';
+			str += '		<td><h2>$'+obj.itm_price+'</h2></td>';
+			str += '		<td>';
+			str += obj.addCartButton ;		
+			str += '			<button data-toggle="tooltip" data-placement="top" data-title="Remove" class="btn btn-small btn-danger" data-original-title="" title="" onClick="deleteWishlist(\''+obj.itm_key+'\')"><i class="icon-trash"></i></button>';
+			str += '		</td>';
+			str += '	</tr>';
+			
+		}
+	}
+	$("#wl-items").empty().append(str); 
+}//showData
+function deleteWishlist(key)
+{
+	$.post("index.php/shop/wishlist",
+	{
+		deleteItem: "yes",
+		itmkey: key
+	},
+	function(data){
+		if(data=="1")
+			loadData();	
+		else{
+			alert("Error!");	
+			return false;
+		}
+	})	
+}//function deleteWishlist
+
+$(function(){
+	loadData();	
+})
+</script>

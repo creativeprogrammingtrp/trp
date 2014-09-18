@@ -1,0 +1,120 @@
+<!-- content-panel -->				
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="javascript:goHome();">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>			
+<div class="container holder">
+    <!-- content -->
+    <div id="content" style="height: 1247px;" class="same-height-left">
+        <div class="c1">
+            <!-- post-box -->
+            <article class="post-box">
+                <!-- comment-form -->
+                <form id="form1" name="form1" method="post" class="comment-form">
+                    <fieldset>
+                        <div class="meta">
+                            <h3>Do you have any suggestions or ideas? Share with us, we'd love to hear</h3>
+                        </div>
+                        <div class="row">
+                            <label for="email">Your Email  (*)</label>
+                            <span class="text">
+                            	<input type="text" value="" name="t_email" maxlength="50" id="t_email" class="input-text" autocomplete="off">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <label for="subject">Your Subject</label>
+                            <span class="text">
+                            	<input type="text" value="" name="t_title" maxlength="50" id="t_title" class="input-text" autocomplete="off">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <label for="message">Your Message  (*)</label>
+                            <span class="textarea">
+                            	<textarea rows="10" cols="30" value="" name="t_content" id="t_content" class="w_focus"></textarea>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="submit">
+                                Send Email
+                                <input type="button" value="Send Email" onclick="return check()" autocomplete="off" >
+                            </span>
+                        </div>
+                    </fieldset>
+                </form>
+            </article>
+        </div>
+    </div>
+    <!-- sidebar -->
+    <aside id="sidebar" style="height: 1247px;" class="same-height-right">
+        <!-- widget -->
+        <div class="widget">
+        {content}
+        </div>
+    </aside>
+</div>
+<script language="javascript">
+var arr_object = [];
+var del = '{delPerm}';
+function check()
+{
+	var checkError = false;
+	if($('#t_title').val() == ''){
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("t_title"));	
+			document.getElementById("t_title").focus();	
+		}
+	}
+	if($('#t_email').val() == ''){
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("t_email"));	
+			document.getElementById("t_email").focus();	
+		}
+	}
+	else
+	{
+		var msg = '';
+		var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var address = document.getElementById('t_email').value;
+		if(reg.test(address) == false) { msg= 'Invalid Email Address';	}
+		if(msg != ""){
+			alert(invalid_email);
+			if(checkError == false){
+				checkError = true;		
+				document.getElementById("t_email").focus();	
+				document.getElementById("t_email").value = "";
+			}		
+		}	
+	}
+	
+	if($('#t_content').val() == ''){
+		if(checkError == false){
+			checkError = true;
+			document.getElementById("t_content").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	//register_btn
+	$("#register_btn").empty().append('<img src="../images/Loader-FloGradient16x16x.gif" border="0"/> Saving...');
+	$.post("index.php/contact",{
+		send:'yes',
+		t_title:$('#t_title').val(),
+		t_email:$('#t_email').val(),
+		t_content:$('#t_content').val()	
+	} ,function(data){
+		$("#register_btn").empty().append(' <input type="button" value="Send mail" onclick="return check()" />');
+		alert("Send comment successfully!")
+		window.location.reload();
+	});
+	return false;
+}
+</script>

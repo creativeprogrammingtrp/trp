@@ -1,0 +1,28 @@
+<div class="bodyContent">
+	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td rowspan="2" width="400px" height="100%" style="padding-bottom:16px;" valign="bottom">
+                <img width="270" src="../images/logo.png" alt="Bella Logo" title="Go Home" style="cursor:pointer" onclick="goHome()" />
+            </td>
+            <td align="right" valign="top" style="padding-top:20px;">
+               <div>
+                  <div id="newcustomer">Hello {login_name}&nbsp;&nbsp;-&nbsp;&nbsp;<a href="index.php/user/myaccount">My Account</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="index.php/logout" class="menu-link">Log out</a></div>
+              </div>                     
+            </td>
+        </tr>
+        <tr>
+            <td valign="bottom" style="padding-bottom:15px;">
+                {menu_system}
+            </td>
+        </tr>
+    </table>
+</div>
+<script language="javascript">
+$(document).ready(function() {
+	$(".nav li").hover(function(){ 
+		$(this).find('ul:first').css({visibility: "visible",display: "none"}).show(400); 
+	},function(){ 
+		$(this).find('ul:first').css({visibility: "hidden"}); 
+	}); 
+});
+</script>

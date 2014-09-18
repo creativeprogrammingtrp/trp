@@ -1,0 +1,243 @@
+<div style="clear:both; float:left; overflow:hidden; width:678px; height:185px">
+    <div style="float:right;">
+    	<span style="float:right; clear:both; font-weight:bold; color:#999;">DATE</span>
+        <span style="float:right; clear:both">{datetime}</span>
+    </div>
+    <div style="float:left;">
+        <span style="float:left; font-weight:bold; color:#999;">SIGNATURE</span>
+        <div style="clear:both; float:left; overflow:hidden; margin-top:3px; width:500px; height:160px; border:1px solid #CCC; border-radius:5px">
+            <div id="signature_show"></div> 
+        </div>
+    </div>
+    <button type="button" id="upload_bt" class="btn btn-primary" style="float:left; margin-left:10px; margin-top:120px; position:relative" align="center" onclick="">Upload</button>
+</div>
+<div style="clear:both;"></div>
+<div style="clear:both; float:left; margin-top:10px;">
+	<div style="clear:both; overflow:hidden; width:100%;">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+            	<td align="left" valign="middle" style="color:#999; padding-bottom:5px" width="20px"><input type="checkbox" id="checkbox_all" onchange="check_all()"/></td>
+                <td align="left" valign="middle" style="color:#999; padding-bottom:5px" width="90px">ID#</td>
+                <td align="left" valign="middle" style="color:#999; padding-bottom:5px" width="200px">Legal Business Name</td>
+                <td align="right" valign="middle" style="color:#999; padding-bottom:5px" width="117px">Total</td>
+                <td align="right" valign="middle" style="color:#999; padding-bottom:5px" width="116px">Paid</td>
+                <td align="right" valign="middle" style="color:#999; padding-bottom:5px" width="117px">Balance</td>
+            </tr>
+        </table>
+    </div>
+    <div >
+    <div class="holder osX" style="overflow: auto; overflow-x: hidden; clear:both;">
+		<div id="list_content" style="width:678px; height:250px;" align="left"></div>
+    </div>
+    <div style="clear:both; float:left; margin-top:10px; width:678px;">
+        <span id="show_totalPayment" style="float:right; font-weight:bold; width:110px; text-align:right" ></span>
+        <span style="float:right; font-weight:bold; padding-right:5px;">Total:</span>
+    </div>
+</div>
+<div style="clear:both; padding-top:10px;">
+	<button id="cancel_bt" type="button" class="btn" style="float:right; margin-left:10px; margin-right:2px; position:relative" align="center" onclick="closeBox('signature_details')">Cancel</button>
+    <button type="button" id="submit_bt" class="btn btn-primary" style="float:right; position:relative" align="center" onclick="submit_signature()">Pay</button>
+</div>
+<div id="Progress_bar" class="progress_bar" align="left">
+	<div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadProduct()" style="cursor:pointer" /></div>
+	<div class="progress_bar_top">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="file_name"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+    	<div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#7838b7; width:100%;"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="progress_bar_size"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" media="all" href="../jScrollPane/styles/jquery.jscrollpane.css" />
+<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+function submit_signature(){
+	var arr_saleRep = [];
+	var saleRep = document.getElementsByName("saleRep[]");
+	for(var i = 0; i < saleRep.length; i++){
+		if(saleRep[i].checked == true){
+			arr_saleRep[arr_saleRep.length] = saleRep[i].value;	
+		}	
+	}
+	$.post("index.php/report/salerep/payment", {
+		arr_saleRep:arr_saleRep,
+		file_id:fileID
+	},function(data){
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+			}else{
+				alert(success_payment);
+				var checkContent = data.checkContent;
+	
+				var newWin=window.open('');
+				newWin.document.open();
+				newWin.document.write('<html><body onload="window.print()">'+checkContent+'</body></html>');
+				newWin.document.close();
+				
+				window.location.reload();
+			}
+		}
+	}, "json");
+}
+var arr_img = ['jpg','JPG','jpeg','JPEG','gif','GIF','png','PNG'];
+var objGallery = [];
+var fileID = '';
+var uploadImgProduct;
+function uploadGallery(){
+	uploadImgProduct = new plupload.Uploader({
+		runtimes : 'gears,html5,flash,silverlight,browserplus',
+		browse_button : 'upload_bt',
+		max_file_size : '10mb',
+		url : 'plupload/server/uploadSignature.php',
+		flash_swf_url : 'plupload/js/plupload.flash.swf',
+		silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+		filters : [
+			{title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+		]
+	});
+	uploadImgProduct.bind('FilesAdded', function(up, files) {
+		objGallery = [];
+		currentFile = files[0];
+		document.getElementById("Progress_bar").style.display = 'block';
+		document.getElementById("file_name").innerHTML = files[0].name;
+		document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+		document.getElementById("progress_bar_pecent").style.width = 0 + '%';	
+		setTimeout(function () {	 
+			uploadImgProduct.start();
+		}, 50);
+	});
+	uploadImgProduct.bind('UploadProgress', function(up, file) {
+		document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+		var text = "Uploaded "+file.percent+"% &nbsp;("+plupload.formatSize(file.loaded)+" of "+plupload.formatSize(file.size)+")";
+		document.getElementById("progress_bar_size").innerHTML = text;
+	});
+	uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+		setTimeout(function () {
+			$("#Progress_bar").hide();
+		}, 200);
+		var obj = jQuery.parseJSON(dataJson.response);
+		if(obj.error == ''){
+			$("#signature_show").empty();
+			objGallery = obj;
+			fileID = obj.file_id;
+			show_signature();
+		}
+	}, 'json');
+	uploadImgProduct.init();
+}
+function CancelUploadProduct(){	
+	uploadImgProduct.stop();
+	$("#Progress_bar").hide();
+	$("#upload_bt").show();
+}
+function show_signature(){
+	var newImg = document.createElement('img');
+	document.getElementById("signature_show").appendChild(newImg);
+	newImg.width = objGallery.width;
+	newImg.height = objGallery.height;
+	newImg.src = "plupload/thumb.php?id="+objGallery.file_id;
+}
+var data_clients = [];
+function loadDataAffiliates(page){
+	data_clients = [];
+	ShowLoadingObj({obj:document.getElementById("affiliates_listing"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/report/salerep/replistpay", {
+		loadDataAffiliates:'yes',
+	},function(data){
+		HideLoadingObj(document.getElementById("affiliates_listing"));
+		if(typeof(data) == 'object'){
+			data_clients = data.data;
+		}
+		loadClients();
+	}, "json");
+	return false;
+}
+function check_all(){
+	if(document.getElementById("checkbox_all").checked == true){
+		var total_pay = 0;
+		for(var i = 0; i < data_clients.length; i++){
+			var balance = data_clients[i].earnings - data_clients[i].paid;
+			if(balance < 0 ) continue;
+			var new_price = 0;
+			new_price = balance;
+			document.getElementById("checkbox_"+ConvertToHTML(data_clients[i].id)).checked = true;
+			if(new_price != '')
+				total_pay += parseFloat(new_price);		
+		}	
+		$("#show_totalPayment").empty().append(showUSAMoney(total_pay));
+	}else{
+		for(var i = 0; i < data_clients.length; i++){
+			var balance = data_clients[i].earnings - data_clients[i].paid;
+			if(balance < 0 ) continue;
+			document.getElementById("checkbox_"+ConvertToHTML(data_clients[i].id)).checked = false;
+		}		
+		$("#show_totalPayment").empty().append(showUSAMoney(0));
+	}
+}
+function sumTotalPay(){
+	var checked = true;
+	var total_pay = 0;
+	for(var i = 0; i < data_clients.length; i++){
+		var balance = data_clients[i].earnings - data_clients[i].paid;
+		if(balance < 0 ) continue;
+		var new_price = 0;
+		if(document.getElementById("checkbox_"+ConvertToHTML(data_clients[i].id)).checked == true){
+			new_price = balance;
+		}else{
+			checked = false;
+		}
+		if(new_price != '')
+			total_pay += parseFloat(new_price);		
+	}
+	if(checked == false){
+		document.getElementById("checkbox_all").checked = false;	
+	}else{
+		document.getElementById("checkbox_all").checked = true;		
+	}
+	$("#show_totalPayment").empty().append(showUSAMoney(total_pay));
+}
+function loadClients(){
+	var str_content = '';
+	var length_data = data_clients.length;
+	var total_pay = 0;
+	str_content += '<table cellpadding="0" cellspacing="0" border="0">';
+	if(length_data > 0){
+		for(var i = 0; i < length_data; i++){
+			var obj = data_clients[i];
+			var balance = obj.earnings - obj.paid;
+			if(balance < 0 ) continue;
+			total_pay += balance;
+			str_content += '		<tr>';
+			str_content += '			<td align="left" valign="top" width="20px" style="padding-top:5px; padding-bottom:5px; border-top:1px solid #d3d3d3;"><input type="checkbox" id="checkbox_'+ConvertToHTML(obj.id)+'" name="saleRep[]" value="'+obj.id+'" onchange="sumTotalPay()" /></td>';
+			str_content += '			<td align="left" valign="top" width="90px" style="padding-top:5px; padding-bottom:5px; border-top:1px solid #d3d3d3;">'+ConvertToHTML(obj.id)+'</td>';
+			str_content += '			<td align="left" valign="top" width="200px" style="padding-top:5px; padding-bottom:5px; border-top:1px solid #d3d3d3;">'+ConvertToHTML(obj.name)+'</td>';
+			str_content += '			<td align="right" valign="top" width="117px" style="padding-top:5px; padding-bottom:5px; border-top:1px solid #d3d3d3;"><font>$'+formatAsMoney(obj.earnings, 2)+'</font></td>';
+			str_content += '			<td align="right" valign="top" width="116px" style="padding-top:5px; padding-bottom:5px; border-top:1px solid #d3d3d3;"><font>$'+formatAsMoney(obj.paid, 2)+'</font></td>';
+			str_content += '			<td align="right" valign="top" width="117px" style="padding-top:5px; padding-bottom:5px; border-top:1px solid #d3d3d3;"><font>'+showUSAMoney(balance, 2)+'</font></td>';
+			str_content += '		</tr>';
+		}
+	}
+	str_content += '</table>';
+	$("#list_content").empty().append(str_content);
+	$("#show_totalPayment").empty().append(showUSAMoney(total_pay));
+	$("#list_content").jScrollPane({showArrows:false, verticalGutter:0});
+//	$('.table-per').fixedtableheader();  
+}
+$(function(){
+	uploadGallery();
+	loadDataAffiliates(1);
+});
+</script>

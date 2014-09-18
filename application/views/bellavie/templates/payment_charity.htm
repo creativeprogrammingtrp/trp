@@ -1,0 +1,179 @@
+<form onsubmit="return submitForms();">
+<fieldset style="text-align:left; padding:10px">
+	<legend style="padding-left:5px; padding-right:5px;font-size:18px; color:#4A0B8A">Payment</legend>
+    <div style="overflow:hidden; width:450px">
+    	<div style="clear:both; overflow:hidden">
+        	<div style="float:left; overflow:hidden">
+            	<div style="clear:both; font-weight:bold; color:#999">CHECK NUMBER</div>
+        		<div style="clear:both; color:#000;"><input type="text" id="check_number" value="" class="input-text" style="width:110px;" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"/></div>
+            </div>
+        	<div style="float:right; overflow:hidden" align="right">
+            	<div style="clear:both; font-weight:bold; color:#999" align="right">DATE</div>
+        		<div style="clear:both; color:#000;" align="right">{date}</div>
+            </div>
+        </div>
+        <div style="clear:both; font-weight:bold; color:#999; padding-top:10px">PAY TO</div>
+        <div style="clear:both"><input type="text" id="legal_business_name" value="{legal_business_name}" class="input-text" style="width:250px;" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"/></div>
+        <div style="clear:both; color:#000; font-style:italic">ID# : {legal_business_id}</div>
+        <div style="clear:both; width:100%; padding-top:5px" align="right">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td align="right">Total Earnings:</td>
+                    <td align="right" style="padding-left:15px">${total_commission}</td>
+                </tr>
+                <tr><td colspan="2" height="2px"></td></tr>
+                <tr>
+                	<td align="right">Paid:</td>
+                    <td align="right" style="padding-left:15px">${total_paid}</td>
+                </tr>
+                <tr><td colspan="2" height="10px"></td></tr>
+                <tr>
+                	<td align="right" style="font-weight:bold">Total:</td>
+                    <td align="right" style="padding-left:15px; font-weight:bold">${total}</td>
+                </tr>
+                <tr><td colspan="2" height="2px"></td></tr>
+                <tr>
+                	<td align="right" style="font-weight:bold">Pay:</td>
+                    <td align="right" style="padding-left:15px; font-weight:bold"><input type="text" class="input-text" id="pay_money" style="width:80px; text-align:right" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberFloatKey(event)"/></td>
+                </tr>
+            </table>
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px" align="right" id="savebt">
+            <input type="button" value="Cancel" class="button" onclick="closebox()" />
+            <input type="submit" value="Submit" name="submit" class="button" style="margin-left:5px" />
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px; display:none" align="right" id="loadingbt">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px; display:none" align="right" id="showExport">
+        	<img src="../images/excel_icon.png" border="0" style="cursor:pointer" onclick="export_invoice('xls');" align="absmiddle" />&nbsp;&nbsp;<img src="../images/64px-PDF.png" border="0" style="cursor:pointer" onclick="export_invoice('pdf');" align="absmiddle"/>&nbsp;&nbsp;<img src="../images/print-icon.png" border="0" style="cursor:pointer" onclick="printDiv();" align="absmiddle"/>
+        </div>
+    </div>
+</fieldset>
+<input type="hidden" id="pay_month" value="{pay_month}" />
+<input type="hidden" id="pay_year" value="{pay_year}" />
+<input type="hidden" id="key" name="key" value="{key}" />
+<input type="hidden" id="total" name="total" value="{@total@}" />
+</form>
+<script language="javascript">
+var pay_key = '';
+var error_ = '';
+function submitForms(){
+	var checkError = false;
+	if($('#check_number').val() == ''){
+		$('#check_number').css("background", '#ffffd5');
+		hidelabelfocus("check_number_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("check_number"));	
+			document.getElementById("check_number").focus();	
+		}
+	}
+	if($('#legal_business_name').val() == ''){
+		$('#legal_business_name').css("background", '#ffffd5');
+		hidelabelfocus("legal_business_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("legal_business_name"));	
+			document.getElementById("legal_business_name").focus();	
+		}
+	}
+	if($('#pay_money').val() == ''){
+		$('#pay_money').css("background", '#ffffd5');
+		hidelabelfocus("pay_money_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("pay_money"));	
+			document.getElementById("pay_money").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	var total = document.getElementById("total").value;
+	if(total == '') total = 0;
+	total = parseFloat(total);
+	
+	var pay_money = document.getElementById("pay_money").value;
+	if(pay_money == '') pay_money = 0;
+	pay_money = parseFloat(pay_money);
+	if(pay_money > total){
+		alert("The total payment amount must be less than $"+formatAsMoney(total)+".");
+		document.getElementById("pay_money").focus();	
+		return false;	
+	}
+	if(pay_money <= 0){
+		alert("The total payment amount must be greater than $0.00.");
+		document.getElementById("pay_money").focus();	
+		return false;	
+	}
+
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/report/charities_report/payment", {
+		saveObj: 'yes',
+		pay_money:pay_money,
+		key:document.getElementById("key").value,
+		check_number:$("#check_number").val(),
+		legal_business_name:$("#legal_business_name").val(),
+		pay_month:document.getElementById("pay_month").value,
+		pay_year:document.getElementById("pay_year").value
+	}, function(data){
+		$("#loadingbt").hide();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+			}else{
+				alert(success_payment);
+				window.open('index.php/print/invoices_print/printInvoice/'+data.pay_key);
+				window.location.reload();
+			}
+		}
+	}, "json");
+	return false;	
+}
+function clearAll(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			input_text[i].value = '';
+		}	
+	}
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function closebox(){
+	$("#cboxClose").click();
+	return false;
+}
+function export_invoice(type){
+	window.open('index.php?q=export/invoice_acquisitions&type='+type+'&pay_key='+pay_key);
+	return false;
+}
+function printDiv(){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: "index.php?q=print/invoices&ajax=1&block=yes&key="+pay_key,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			var newWin=window.open('', '', 'width=800,height=320', false);
+			newWin.document.open();
+			newWin.document.write('<html><body onload="window.print()">'+html+'</body></html>');
+			newWin.document.close();
+		//	setTimeout(function(){newWin.close();},10);
+		}
+	});
+}
+$(function() {
+	clearForms();
+});
+</script>

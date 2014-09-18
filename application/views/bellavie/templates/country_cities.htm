@@ -1,0 +1,334 @@
+<style>
+table.v3 {
+	color:#333333 !important;
+	border-width: 1px !important;
+	border-color: #DDD !important;
+	border-collapse: collapse !important;
+	width: 100%;
+}
+table.v3 th {
+	border-width: 1px !important;
+	padding: 8px !important;
+	border-style: solid !important;
+	border-color: #DDD !important;
+	background-color: #eee !important;
+}
+table.v3 td {
+	border-width: 1px !important;
+	padding: 8px !important;
+	border-style: solid !important;
+	border-color: #DDD !important;
+	background-color: #ffffff !important;
+}
+</style>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="misc/scripts/swfobject.js"></script>
+<script language="javascript">
+    var data_clients = [];
+    var header_first 	= ['City'];
+    var header_last 	= ['City'];
+    var columeb = null;
+    var sort_list = '';
+    var pager_number = 1;
+    var clients_select = 0;
+    var objGallery = [];
+   var uploadExcel = null;
+    var page = 1;
+    var maxlength;
+    function reset_headerAdminClient(){
+        for(var i = 0; i < header_last.length; i++){
+            header_last[i] = header_first[i];
+        }
+    }//end function reset_headerAdminClient
+
+    function filtList_adminclient(colum){
+        // Xac dinh Sort type
+        reset_headerAdminClient();
+        if(colum != columeb){
+            columeb = colum;
+            sort_list = 'asc';
+            header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+        }else{
+            if(sort_list == 'desc'){
+                sort_list = 'asc';
+                header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+            }
+            else if(sort_list == 'asc'){
+                sort_list = 'desc';
+                header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+            }
+        }
+        var row_sort = data_clients.length;
+
+        if(row_sort > 0){
+            var min_index = 0;
+            var max_index = row_sort;		
+	
+            if(colum == 0){
+                if(sort_list == 'desc'){
+                    for(var i = min_index; i < max_index-1; i++){
+                        for(var j = i+1; j < max_index; j++){
+                            if(data_clients[i].city < data_clients[j].city){
+                                var tam = data_clients[i];
+                                data_clients[i] = data_clients[j];
+                                data_clients[j] = tam;
+                            }
+                        }		
+                    }
+                }else if(sort_list == 'asc'){
+                    for(var i = min_index; i < max_index-1; i++){
+                        for(var j = i+1; j < max_index; j++){
+                            if(data_clients[i].city > data_clients[j].city){
+                                var tam = data_clients[i];
+                                data_clients[i] = data_clients[j];
+                                data_clients[j] = tam;
+                            }
+                        }		
+                    }
+                }	
+            }	
+        }
+        loadClients(page,maxlength);
+    }//end function filtList_adminclient
+
+
+    function pageObject(page){
+        window.location = returnURL(page);
+        return false;
+    }
+
+    function returnURL(page){
+        if(page == null || page == 0) page = 1;
+        var ckey = document.getElementById("ckey").value;
+        var url = 'index.php/admin/countries/cities/'+ckey+'/list/'+page;
+        var keyword = '';
+        if(document.getElementById("key_word") && trim(document.getElementById("key_word").value) != '')
+        {
+            keyword = trim(document.getElementById("key_word").value);
+        }
+        if(keyword == ''){
+            url;
+        }else{
+            url += '/'+encodeURIComponent(keyword);
+        }	
+        return url;
+    }
+	
+    function deleteItem(itm_key){
+		if(confirm('Delete this city?')){
+		{
+			ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+			var ckey = document.getElementById("ckey").value;
+			$.post('index.php/admin/countries/cities/'+itm_key+'/list/'+page, {
+				deleteCity:'yes',
+				ctkey:itm_key
+			},function(data){
+				alert(success_delete);
+				window.location.reload();
+			});
+		}
+    }
+	}
+   
+    function loadClients(page,maxlength){
+        if(page == 0 || page == null) page = 1;
+        var total_row = 20;
+        var str_content = '';
+        var length_data = data_clients.length;
+        if(length_data > 0){
+            for(var i = 0; i < length_data; i++){
+                var obj = data_clients[i];
+                var button = '';
+                button += '<a href="index.php/admin/countries/cities/'+obj.id+'/edit" >Edit</a>';
+                if(button != ''){
+                    button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+                }
+  
+                button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="deleteItem(\''+obj.id+'\')">x</a>';
+                str_content += '		<tr class="tr-row" id="'+obj.okey+'">';
+                str_content += '			<td align="left" valign="top" class="td-row">'+obj.city+'</td>';
+                str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+                str_content += '		</tr>';
+            }
+        }
+        pagerAjax(total_row,maxlength, page, 'pageObject', ['pager']);
+        $("#citiesContent").empty().append(str_content);
+        $("tbody").sortable({
+            handle: '.draggable',
+            update: function(e, ui){
+				
+                var image_thumb_children = $("tbody").children();
+                var dataImgProduct_tam = data_clients;
+                data_clients = [];
+                for(var j = 0; j < image_thumb_children.length; j++){
+                    for(var k = 0; k < dataImgProduct_tam.length; k++){
+                        if(dataImgProduct_tam[k].okey == image_thumb_children[j].id){
+                            data_clients[data_clients.length] = dataImgProduct_tam[k];	
+                            break;	
+                        }	
+                    }
+                }
+            }
+        }
+    );
+    }//end function loadClients
+    
+    function parseJson(string_object){
+        return JSON.parse(string_object);
+    }
+    
+    function _loadObject_(){
+        data_clients = [];
+        var object = '{cities}';
+        var strings = parseJson(object);
+        data_clients =  strings.data;
+        page = strings.page;
+        maxlength = strings.maxlength;
+        loadClients(page,maxlength);
+        return false;
+    }
+
+function loadUploadExcel(){
+	if(document.getElementById("upload_document")){
+		uploadExcel = new plupload.Uploader({
+			runtimes : 'gears,html5,flash,silverlight,browserplus',
+			browse_button : 'upload_document',
+			max_file_size : '2048mb',
+			chunk_size: "5mb",
+			unique_names:true,
+			url : 'plupload/server/uploadexcel.php',
+			multi_selection:false,
+			flash_swf_url : 'plupload/js/plupload.flash.swf',
+			silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+			filters :  [
+			{title : "CSV files", extensions : "csv,CSV,xls,xlsx"}
+			]
+		});
+		uploadExcel.bind('FilesAdded', function(up, files) {
+			var currentFile = files[0].name;
+			document.getElementById("Progress_bar").style.display = 'block';
+			document.getElementById("file_name").innerHTML = files[0].name;
+			document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+			document.getElementById("progress_bar_pecent").style.width = 0 + '%';
+			setTimeout(function () {
+				uploadExcel.start();
+			}, 50);
+		});
+		uploadExcel.bind('UploadProgress', function(up, file) {
+			document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+			var text = "Uploaded "+file.percent+"% &nbsp;("+plupload.formatSize(file.loaded)+" of "+plupload.formatSize(file.size)+")";
+			document.getElementById("progress_bar_size").innerHTML = text;
+		});
+		uploadExcel.bind('FileUploaded',function(up, file, dataJson) {
+		  setTimeout(function () {
+			  window.location.reload();
+			  $("#Progress_bar").hide();
+			  return false;
+		  }, 200);
+		  var obj = jQuery.parseJSON(dataJson.response);
+		  if(obj.error == ""){
+			  objGallery = obj;
+			  import_excel();
+		  }
+		}, 'json');
+		uploadExcel.bind('Error', function(up, err) {
+			CancelUploadExcel();
+			alert(err.message);
+		});
+		uploadExcel.init();
+	}
+}
+function CancelUploadExcel(){
+	uploadExcel.stop();
+	for(var i = 0; i < uploadExcel.files.length; i++){
+		uploadExcel.removeFile(uploadExcel.files[i]);			
+	}
+	$("#Progress_bar").hide();
+}
+
+    function import_excel(){
+        var ckey=document.getElementById("ckey").value;
+        var $postUrl = "index.php/admin/countries/cities/"+ckey+"/list";
+        $.post($postUrl,{
+            import_excel:'yes',
+            obj:objGallery,
+            ctkey: ckey
+        },function(data){
+            if(typeof(data) == 'object'){
+                if(data.error == ''){
+                    alert(success_saved);
+                }else{
+                    alert(fail_saved);	
+                }
+            }
+            loadClients();
+        },'json');
+        return false;
+    }//end function import_excel
+
+    $(function() {
+        _loadObject_(); 
+        loadUploadExcel();
+    });
+</script>
+<div class="box_solar">
+    <div style="clear:both; padding-bottom:20px; width:100%;">  
+        <a class="btn btn-primary" href="index.php/admin/countries/cities/{key}/add">+Add Cities</a> 
+        <button id="upload_document" class="btn btn-primary" name="upload_document" type="button" style="position: relative; z-index: 0;float: right">Import from Excel</button>
+    </div>
+    <form method="get" action="" name="form_filter" onsubmit="return pageObject()">
+        <div>
+            <span class="field-with-placeholder" style="clear:both; float:left">
+                <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{key_word}" style="width:200px">
+            </span>
+            <span style="float:left; padding-left:10px"><input type="submit" class="btn btn-primary" value="Filter" /></span>
+        </div>
+        <div id ="pager" style="float:right"></div> 
+    </form>
+
+    <div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list">
+        <table class="v3">
+            <thead>
+                <tr>
+                    <th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0)">Name</th>
+                    <th align="left" valign="middle" class="th-per">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody id="citiesContent"></tbody>
+        </table>
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+    <input type="hidden" id="ckey" name="ctkey" value="{key}" />
+    <input style="float:right; margin-top:10px" type="button" onclick="history.go(-1);" class="btn" value="Back">
+</div>
+<div id="Progress_bar" class="progress_bar" align="left" style="display:none">
+	<div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadExcel()" style="cursor:pointer" /></div>
+	<div class="progress_bar_top">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="file_name"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+    	<div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#7838b7; width:100%;"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="progress_bar_size"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal" id="del_product" style="display:none; overflow:hidden">
+    <div class="modal-hd" style="cursor: move" id="title_popup">Delete City <span title="Close" class="close" onclick="closeBox('del_product')"></span></div>
+    <div class="modal-bd">
+        <div style="overflow:hidden; width:350px; min-height:65px" id="content_popup"></div>
+    </div>
+</div>

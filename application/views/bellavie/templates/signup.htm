@@ -1,0 +1,386 @@
+<div class="divPageTitle">{title_page}</div>
+<div class="box_solar">
+<div style="clear:both; width:100%; position:relative" align="left">
+	<div style="float:left" align="left">
+    	<span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:68px">Your Profile</span>  
+        <div style="float:left; clear:both">
+            <span style="font-weight:bold; float:left; padding-top:3px; padding-right:5px; width:67px; text-align:right">First Name:</span>
+            <span class="field-with-placeholder" style="float:left">
+                <label id="primary_first_name_label" class="placeholder" for="primary_first_name"><span>Required</span></label>
+                <input tabindex="1" type="text" class="input-text" id="primary_first_name" size="10" maxlength="50" name="primary_first_name" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this);">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:67px; text-align:right; padding-right:5px">Last Name:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="primary_last_name_label" class="placeholder" for="primary_last_name"><span>Required</span></label>
+                <input tabindex="2" type="text" class="input-text" id="primary_last_name" size="10" maxlength="50" name="primary_last_name" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this);">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:67px; text-align:right; padding-right:5px">Address:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="address_label" class="placeholder" for="address"><span>Required</span></label>
+                <input tabindex="3" type="text" class="input-text" id="address" size="10" name="address" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this);">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:67px; text-align:right; padding-right:5px">City:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="city_label" class="placeholder" for="city"><span>Required</span></label>
+                <input tabindex="4" type="text" class="input-text" id="city" size="10" name="city" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this);">
+            </span>
+        </div>
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:67px; text-align:right; padding-right:5px">Country:</span>
+            <span class="field-with-placeholder" style="float:left;">
+              	<select name="slcountry" style="width:230px;" size="1" id="slcountry" onchange="showStates()" ></select>
+            </span>
+      	</div>
+		<div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:67px; text-align:right; padding-right:5px">State:</span>
+            <span class="field-with-placeholder" style="float:left;" id="states_show">
+                
+            </span>
+            <span style="font-weight:bold; float:left; padding-top:3px; width:65px; text-align:right; padding-right:5px">Zip Code:</span>
+            <span class="field-with-placeholder" style="float:left">
+                <label id="zipcode_label" class="placeholder" for="zipcode"><span></span></label>
+                <input tabindex="6" type="text" class="input-text" id="zipcode" size="10" name="zipcode" value="" style="width:70px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);  ">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:67px; text-align:right; padding-right:5px">Phone:</span>
+            <span class="field-with-placeholder" style="float:left">
+                <label id="primary_phone_label" class="placeholder" for="primary_phone"><span></span></label>
+                <input tabindex="7" type="text" class="input-text" id="primary_phone" size="10" name="primary_phone" value="" style="width:220px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);">
+            </span>
+        </div>
+    </div>
+    <div style="float:right">
+    	<span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:115px">Account Information</span>
+        <div style="float:left; clear:both">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:110px; text-align:right; padding-right:5px">User Name:</span>
+            <span class="field-with-placeholder" style="float:left">
+                <label id="user_name_label" class="placeholder" for="user_name"><span>Required</span></label>
+                <input tabindex="13" type="text" class="input-text" id="user_name" size="10" maxlength="50" name="user_name" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:110px; text-align:right; padding-right:5px">Email:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="email_label" class="placeholder" for="email"><span>Required</span></label>
+                <input tabindex="14" type="text" class="input-text" id="email" size="10" maxlength="50" name="email" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:110px; text-align:right; padding-right:5px">Password:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="password_label" class="placeholder" for="password"><span>Required</span></label>
+                <input tabindex="15" type="password" class="input-text" id="password" size="10" name="password" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+            </span>
+        </div>
+        
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:110px; text-align:right; padding-right:5px">Confirm Password:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="confirm_password_label" class="placeholder" for="confirm_password"><span>Required</span></label>
+                <input tabindex="16" type="password" class="input-text" id="confirm_password" size="10" name="confirm_password" value="" style="width:220px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+            </span>
+        </div>
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:110px; text-align:right; padding-right:5px">Referral Code:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <label id="referral_code_label" class="placeholder" for="referral_code"><span>Optional</span></label>
+                <input tabindex="17" type="text" class="input-text" id="referral_code" size="10" name="referral_code" value="" style="width:220px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+            </span>
+        </div>
+    </div>
+    <div style="clear:both; width:100%; padding-top:30px; height:30px" id="register_btn" align="center">
+    	<input tabindex="12" type="button" class="button" onclick="return check()" value="Register" />
+    </div>
+</div>		
+</div>
+<input type="hidden" id="referral_code_hide" name="referral_code_hide" value="" />
+<script language="javascript">
+var dataCountries = [];
+function loadDataCountries(){
+	{dataCountries}
+	showCountriesListing();
+	showStates();	
+}
+function showCountriesListing(){
+	var st = '';
+	var elSel = document.getElementById('slcountry');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != '')
+		elSel.value = ct;
+}
+function showStates(){
+	var st = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" style="width:80px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st +='<label id="state_label" class="placeholder" for="state"><span>Required</span></label>';
+				st += '<input tabindex="5" type="text" class="input-text" id="state" size="10" name="state" value="" style="width:70px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+}
+function check()
+{
+	var checkError = false;
+	if($('#primary_first_name').val() == ''){
+		$('#primary_first_name').css("background", '#ffffd5');
+		hidelabelfocus("primary_first_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("primary_first_name"));	
+			document.getElementById("primary_first_name").focus();	
+		}
+	}
+	if($('#primary_last_name').val() == ''){
+		$('#primary_last_name').css("background", '#ffffd5');
+		hidelabelfocus("primary_last_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("primary_last_name"));	
+			document.getElementById("primary_last_name").focus();	
+		}
+	}
+	if($('#address').val() == ''){
+		$('#address').css("background", '#ffffd5');
+		hidelabelfocus("address_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("address"));	
+			document.getElementById("address").focus();	
+		}
+	}
+	if($('#city').val() == ''){
+		$('#city').css("background", '#ffffd5');
+		hidelabelfocus("city_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("city"));	
+			document.getElementById("city").focus();	
+		}
+	}
+	if($('#state').val() == ''){
+		$('#state').css("background", '#ffffd5');
+		hidelabelfocus("state_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("state"));	
+			document.getElementById("state").focus();	
+		}
+	}
+	/*
+	if($('#zipcode').val() == ''){
+		$('#zipcode').css("background", '#ffffd5');
+		hidelabelfocus("zipcode_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("zipcode"));	
+			document.getElementById("zipcode").focus();	
+		}
+	}else{
+		var msg = isValidZip($('#zipcode').val(),'US');
+		if(msg != ""){
+			$('#zipcode').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("zipcode"));	
+				document.getElementById("zipcode").focus();	
+			}
+		}		
+	}*/
+	if($('#email').val() == ''){
+		$('#email').css("background", '#ffffd5');
+		hidelabelfocus("email_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("email"));	
+			document.getElementById("email").focus();	
+		}
+	}else{
+		var msg = isValidEmail($('#email').val());
+		if(msg != ""){
+			$('#email').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("email"));	
+				document.getElementById("email").focus();	
+			}
+		}		
+	}
+	if($('#user_name').val() == ''){
+		$('#user_name').css("background", '#ffffd5');
+		hidelabelfocus("user_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("user_name"));	
+			document.getElementById("user_name").focus();	
+		}
+	}else{
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			$('#user_name').css("background", '#ffffd5');
+			hidelabelfocus("user_name_label");
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("user_name"));	
+				document.getElementById("user_name").focus();	
+			}
+		}	
+	}
+	if(trim($('#password').val())==''){
+		$('#password').css("background", '#ffffd5');
+		hidelabelfocus("password_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("password"));	
+			document.getElementById("password").focus();	
+		}
+	}else{
+		if(!passwordStrength(document.getElementById("password"))){
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}
+		}else{
+			if(trim($('#confirm_password').val())!=''&&trim($('#password').val())!=trim($('#confirm_password').val())){
+				$('#password').css("background", '#ffffd5');
+				if(checkError == false){
+					checkError = true;
+					onfocusInputText(document.getElementById("password"));	
+					document.getElementById("password").focus();	
+				}
+			}
+		}
+	}
+	if(trim($('#confirm_password').val())==''){
+		$('#confirm_password').css("background", '#ffffd5');
+		hidelabelfocus("confirm_password_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("confirm_password"));	
+			document.getElementById("confirm_password").focus();	
+		}
+	}else{
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			$('#confirm_password').css("background", '#ffffd5');
+			hidelabelfocus("confirm_password_label");
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("confirm_password"));	
+				document.getElementById("confirm_password").focus();	
+			}
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	var referral_code = '';
+	if(document.getElementById("referral_code_hide").value != ''){
+		referral_code = document.getElementById("referral_code_hide").value;	
+	}else{
+		referral_code = document.getElementById("referral_code").value;	
+	}
+	
+	//register_btn
+	$("#register_btn").empty().append('<img src="../images/Loader-FloGradient16x16x.gif" border="0"/> Saving...');
+	$.post("index.php/signup",{
+		save_data:'yes',
+		address:$('#address').val(),
+		city:$('#city').val(),
+		state:document.getElementById('state').value,
+		zipcode:$('#zipcode').val(),
+		country:document.getElementById('slcountry').value,
+		industry_type:0,
+		primary_first_name:$('#primary_first_name').val(),
+		primary_last_name:$('#primary_last_name').val(),
+		primary_phone:$('#primary_phone').val(),
+		email:$('#email').val(),
+		password:$('#password').val(),
+		user_name:$('#user_name').val(),
+		referral_code:referral_code
+	} ,function(data){
+		$("#register_btn").empty().append('<input tabindex="12" type="button" class="button" onclick="return check()" value="Register" />');
+	  if(data=="saved"){
+		  alert(success_saved);
+	  	window.location.replace("index.php/regiscom");
+	  }else{		  
+		//alert(data);		
+		alert(fail_saved);	
+	  }
+	});
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+	switch(o.id){
+	case 'primary_phone':
+		validatePhone(document.getElementById("primary_phone"));			
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}			
+		break;
+	case 'email':
+		var msg = isValidEmail($('#email').val());	
+		if(msg != ""){
+			hidelabelfocus(o.id+"_label");
+			return false;		
+		}	
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			hidelabelfocus(o.id+"_label");
+			return false;
+		}
+		break;
+	}
+}
+$(function() {
+	clearForms();
+	loadDataCountries();
+});
+</script>

@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="row">
+        <div class="span12">
+
+            <div class="checkout-outer">
+                <div class="checkout-header">
+                    <a href="#" class="invarseColor pull-right" data-toggle="tooltip" data-placment="top" data-title="EDIT" style="margin-right:12px; color:#333; font-size:13px;"><i class="icon-pencil"></i></a>
+                    <h4><i class="icon-caret-down"></i> Checkout Options</h4>
+                </div><!--end checkout-header-->
+
+                <div class="checkout-content">
+                    <div class="login">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3>New Customer</h3>
+                                    <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
+                                    <a href="index.php/representatives/add" class="btn"> Registeration Account</a>
+                                </td>
+
+                                <td>
+                                    <h3>Returning Customer</h3>
+                                    <span id="msg_box">&nbsp;</span>
+                                    <form name="t_login" id="t_login" method="post"  onsubmit="return login_checkout('t_login','t_u','t_p','msg_box');">
+                                        <div class="controls">
+                                            <label>Member ID: <span class="text-error">*</span></label>
+                                            <input type="text" id="t_u" maxlength="50" name="t_u" value="" placeholder="Member ID">
+                                        </div>
+                                        <div class="controls">
+                                            <label>Password: <span class="text-error">*</span></label>
+                                            <input type="password" id="t_p" maxlength="50" name="t_p" value="" placeholder="**************">
+                                        </div>
+                                        <div class="controls">
+                                            <button type="submit" class="btn btn-primary">Login</button>
+                                        </div>
+                                    </form><!--end form-->
+                                </td>
+                            </tr>
+                        </table>
+                    </div><!--end login-->
+                </div><!--end checkout-content-->
+            </div><!--end checkout-outer-->
+        </div><!--end span12-->
+    </div><!--end row-->
+
+</div><!--end conatiner-->
+
+
+		

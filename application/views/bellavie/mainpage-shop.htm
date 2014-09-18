@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+    <meta http-equiv="expires" content="Mon, 26 Jul 1997 05:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache" />
+	<meta charset="utf-8">
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="{description_site}" />
+    <meta name="keywords" content="{keywords_site}" />
+    <title>{title_site}</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+    <link href="../main/css/css-2.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="../shop/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" href="../shop/css/jquery-ui-1.10.1.min.css">
+	<link rel="stylesheet" href="../shop/css/customize.css">
+	<link rel="stylesheet" href="../shop/css/font-awesome.css">
+	<link rel="stylesheet" href="../shop/css/style.css">
+	<link rel="stylesheet" href="../shop/css/Wide.css">
+	<link rel="stylesheet" href="../shop/css/orange.css">
+	<link rel="stylesheet" href="../shop/css/flexslider.css">
+	<link rel="stylesheet" href="../shop/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="../shop/css/override.css">
+    <link rel="stylesheet" href="../shop/css/new_menu.css">
+	<!--[if lt IE 9]>
+		<script src="../shop/js/html5.js"></script>
+	<![endif]-->
+    <!--<script src="../shop/js/IE9.js"></script>
+	<link rel="stylesheet" href="../shop/css/font-awesome-ie7.css">-->
+    <script src="../shop/js/jquery.min.js"></script>
+	<script src="../shop/js/jquery-ui.min.js"></script>
+    <script src="../shop/js/bootstrap.min.js"></script>
+    <script src="../shop/js/jquery.flexslider-min.js"></script>
+    <script src="../shop/js/jquery.cycle2.min.js"></script>
+    <script src="../shop/js/jquery.cycle2.carousel.min.js"></script>
+    <script src="../shop/js/jquery.mousewheel.pack.js"></script>
+    <script src="../shop/js/custom.js"></script>
+    <script src="misc/scripts/js.js"></script>
+    <script type="text/javascript" src="misc/scripts/constant.js"></script>
+    <script src="misc/scripts/payment.js"></script>
+    <script type="text/javascript">
+	var header_link= [];
+	var url_server__ = '{curPageURLServer}';
+	dir_theme = 'application/views/{dir_theme}/';
+	var url_base_path__ = '{url_base_path}';
+	$(function(){
+		getTimeGMT();
+		showcartAjax();	
+                chagePage();
+	})
+	function showClock() {
+		// Create two variable with the names of the months and days in an array
+		var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
+		var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+		
+		// Create a newDate() object
+		var newDate = new Date(objTime.nam,(parseInt(objTime.thang - 1)),objTime.ngay,objTime.gio,objTime.phut,objTime.giay);
+		// Extract the current date from Date object
+		newDate.setDate(newDate.getDate());
+		// Output the day, date, month and year   
+		$('#Date').html(dayNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + ', ' + newDate.getFullYear());
+		
+		var seconds = newDate.getSeconds();
+		var minutes = newDate.getMinutes();
+		var hours = newDate.getHours();
+		
+		$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+		$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+		$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+	
+		setInterval( function() {
+			// Create a newDate() object and extract the seconds of the current time on the visitor's
+			if(seconds == 59){
+				seconds = 0;
+				if(minutes == 59){
+					minutes = 0;
+					if(hours == 23){
+						hours = 0;	
+						newDate = new Date(objTime.nam,objTime.thang,parseInt(objTime.ngay) + 1);
+						newDate.setDate(newDate.getDate());
+						$('#Date').html(dayNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + ', ' + newDate.getFullYear());
+					}else{
+						hours++;	
+					}
+				}else{
+					minutes++;	
+				}
+			}else{
+				seconds++;
+			}
+			// Add a leading zero to seconds value
+			$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+			$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+			$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+		},997);
+	}
+	var objTime = [];
+	function getTimeGMT(){
+		objTime = [];
+		$.post("index.php/timegmt/index",{
+			getTimeGMT:'yes'	
+		},function(data){
+			if(typeof(data) == 'object'){
+				objTime = data;	
+				showClock();
+			}
+		},'json');	
+	}
+      
+        function chagePage(){
+            $('.mainpage').click(function(){
+                window.location = url_base_path__;//url_server__;
+                 return false;
+             });
+           
+        }
+	</script>
+    <style>
+	.navbar .nav .active a, .navbar .nav .active a:hover, .navbar .nav .active a:focus .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus, .navbar .nav > .active > a i, .navbar .nav > .active > a:focus i, .navbar .nav > .active > a:hover i, .navbar .nav > .active > a span, .navbar .nav > .active > a:focus span, .navbar .nav > .active > a:hover span{
+		cursor:pointer;
+		}
+	a.sitemap
+	{
+		color: #AAA;
+		text-decoration:none;
+	}
+	a.sitemap:hover
+	{
+		color: #FFF;
+		text-decoration: none;
+	}
+	</style>
+</head>
+<body>
+	<div id="mainContainer" class="clearfix">
+		<!--begain header-->
+		<header>
+			<div class="upperHeader">
+				<div class="container">
+					<ul class="pull-right inline">
+						<li><a class="invarseColor mainpage" href="">Main Page</a></li><!--javascript:goHome();-->
+						<li class="divider-vertical"></li>
+						<li><a class="invarseColor" href="index.php/shop/wishlist">My Wish List</a></li>
+						<li class="divider-vertical"></li>
+						<li><a class="invarseColor" id="shop_cart_url" href="index.php/shop/cart" >Shoping Cart</a></li>
+						<li class="divider-vertical"></li>
+						<li><a class="invarseColor" href="index.php/shop/cart/checkout">Checkout</a></li>
+					</ul>
+					<p>
+					{hello_text}
+					</p>
+				</div><!--end container-->
+			</div><!--end upperHeader-->
+			<div class="middleHeader">
+				<div class="container">
+
+					<div class="middleContainer clearfix">
+
+                        <div class="siteLogo pull-left">
+                            <h1><a href="index.php/shop/shome"></a></h1>
+                        </div>
+                        <div class="pull-right">
+                        	<div class="pull-right">
+                            	<div class="GMT-timer">
+                                    <span id="Date"></span>
+                                    <span class="timer-div">|</span>
+                                    <span id="hours"></span>:<span id="min"></span>:<span id="sec"></span>
+                                    <span class="timer-div">|</span> GMT
+                                </div>
+                            </div>
+                            <div class="clearfix_margin"></div>
+                            <div id="search_right" class="pull-right">
+                                <form class="siteSearch" onSubmit="return false;">
+                                    <div class="input-append">
+                                        <input type="text" class="span2" id="appendedInputButton" onKeyPress="searchPress(event)" placeholder="Search...">
+                                        <button class="btn btn-primary" id="mainbuttonsearch" type="submit" onClick="search_data_main()" name=""><i class="icon-search"></i></button>
+                                    </div>
+                                </form>
+
+                                <div class="btn-group" id="itemsNumber"></div>
+                                <div class="clearfix"></div>
+                            </div><!--end pull-right-->
+                        </div>
+					</div><!--end middleCoontainer-->
+
+				</div><!--end container-->
+			</div><!--end middleHeader-->
+
+			<div class="mainNav">
+				<div class="container">
+					<div class="navbar">
+                	<div id="see_menus" class="see_menus">
+                    	<a style="cursor:pointer; padding: 0px 10px"> All Departments&nbsp;<i class="icon-caret-down"></i> </a>
+                        <ul>
+            				{all_apartments}
+            			</ul>
+                    </div>
+                    	<div id="main_navbar" style="float:left; overflow: visible; z-index: 999; position:relative;">
+				      	<ul class="nav" style=" float:left; overflow:visible;">
+				      		{nav_bar}
+				      	</ul><!--end nav-->
+                        </div>
+					</div>
+				</div><!--end container-->
+			</div><!--end mainNav-->
+			
+		</header>
+		<!-- end header -->
+
+
+		<div class="container">
+			{content_site}
+		</div>
+		<!--end conatiner-->
+
+
+		<!--begain footer-->
+		<footer>
+		{usefull_links}
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<ul class="payments inline pull-right">
+						<li class="visia"></li>
+						<li class="paypal"></li>
+						<li class="electron"></li>
+						<li class="discover"></li>
+					</ul>
+					<p>Copyright © 2013 for Bella Vie Network Inc.&nbsp;&nbsp;| <a class="sitemap" href="index.php/sitemap/shop">Site map</a></p>
+				</div>
+			</div>
+		</div>
+		</footer>
+		<!--end footer-->
+
+	</div>
+    <!--end mainContainer-->
+</body>
+</html>

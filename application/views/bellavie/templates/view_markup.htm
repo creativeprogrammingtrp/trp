@@ -1,0 +1,180 @@
+<style type="text/css">
+.table-per .th-per {
+    background: none repeat scroll 0 0 #E1E2DC;
+    border: 1px solid #BEBFB9;
+    padding: 5px 3px;
+}
+.table-per {
+    border: 1px solid #BEBFB9;
+	border-collapse:collapse;
+	border-spacing:0;
+	width:auto;
+}
+.table-per .td-row{
+    border: 1px solid #BEBFB9;
+}
+</style>
+<div style="clear:both; overflow:hidden">
+    <div style="float:left; width:135px; padding-top:3px; font-weight:bold">Markup percentage:</div>
+    <div style="float:left"><input tabindex="0" type="text" class="input-text" id="markup_percentage" size="10" value="{markup_percentage}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)" onkeyup="Selling_price();" ></div>
+    <div style="float:left; padding-top:3px; padding-left:4px">%</div>
+</div>
+<div style="clear:both; overflow:hidden; padding-top:20px">
+	<table cellpadding="0" cellspacing="0" border="0" class="table-per">
+    	<thead>
+        	<tr>
+            	<th class="th-per">MultiLevel General</th>
+                <th class="th-per">Member</th>
+                <th class="th-per">Affiliate</th>
+                <th class="th-per">Trust Charity</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<td class="td-row">&nbsp;</td>
+                <td class="td-row">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" id="commission_member" onkeyup="updateTotalPayOut()" size="10" value="{commission_member}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+                <td class="td-row">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" id="commission_affiliate" onkeyup="updateTotalPayOut()" size="10" value="{commission_affiliate}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+                <td class="td-row">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" id="commission_trust_charity" onkeyup="updateTotalPayOut()" size="10" value="{commission_trust_charity}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+            </tr>
+            {datalevel}
+            <tr>
+            	<td class="td-row" style="background:#f0f1ea"><b>{level}</b></td>
+                <td class="td-row" style="background:#f0f1ea">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" name="level[]" onkeyup="updateTotalPayOut()" size="10" value="{level_value}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+                <td class="td-row">&nbsp;</td>
+                <td class="td-row">&nbsp;</td>
+            </tr>
+            {/datalevel}
+            <tr>
+            	<td class="td-row"><b>Charities</b></td>
+                <td class="td-row" colspan="3">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" id="commission_charities" onkeyup="updateTotalPayOut()" size="10" value="{commission_charities}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            	<td class="td-row"><b>Employees bonus</b></td>
+                <td class="td-row" colspan="3">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" id="commission_employees_bonus" onkeyup="updateTotalPayOut()" size="10" value="{commission_employees_bonus}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            	<td class="td-row"><b>Credit Merchant cost</b></td>
+                <td class="td-row" colspan="3">
+                	<div style="clear:both; width:80px">
+                        <span class="field-with-placeholder" style="float:left">
+                        	<input type="text" class="input-text" id="credit_merchant" onkeyup="updateTotalPayOut()" size="10" value="{credit_merchant}" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <span style="float:left; padding-top:3px; padding-left:2px">%</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            	<td class="td-row"><b>Total pay out</b></td>
+                <td class="td-row" id="Total_pay_out_member"></td>
+                <td class="td-row" id="Total_pay_out_affiliate">&nbsp;</td>
+                <td class="td-row" id="Total_pay_out_trust_Charity">&nbsp;</td>
+            </tr>
+            <tr>
+            	<td class="td-row"><b>Total</b></td>
+                <td class="td-row" id="Total_money_out_member"></td>
+                <td class="td-row" id="Total_money_out_affiliate">&nbsp;</td>
+                <td class="td-row" id="Total_money_out_trust_Charity">&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style="clear:both; overflow:hidden; padding-top:10px" id="commission_lever"></div>
+<input type="hidden" id="markup_key" name="markup_key" value="{key}" />
+<script language="javascript">
+function updateTotalPayOut(){
+	var selling_price = 0;
+	if(function_exists('cal_Selling_price')){
+		selling_price = cal_Selling_price();	
+	}
+	var Total_pay_out_member = 0;
+	var Total_pay_out_affiliate = 0;
+	var Total_pay_out_trust_Charity = 0;
+	
+	var commission_charities = 0;
+	if(document.getElementById("commission_charities") && document.getElementById("commission_charities").value != ''){
+		commission_charities = parseFloat(document.getElementById("commission_charities").value);
+	}
+	var commission_employees_bonus = 0;
+	if(document.getElementById("commission_employees_bonus") && document.getElementById("commission_employees_bonus").value != ''){
+		commission_employees_bonus = parseFloat(document.getElementById("commission_employees_bonus").value);
+	}
+	var credit_merchant = 0;
+	if(document.getElementById("credit_merchant") && document.getElementById("credit_merchant").value != ''){
+		credit_merchant = parseFloat(document.getElementById("credit_merchant").value);
+	}
+	
+	Total_pay_out_member += commission_charities;
+	Total_pay_out_member += commission_employees_bonus;
+	Total_pay_out_member += credit_merchant;
+	if(document.getElementById("commission_member") && document.getElementById("commission_member").value != ''){
+		Total_pay_out_member += parseFloat(document.getElementById("commission_member").value);
+	}
+	var level = document.getElementsByName("level[]");
+	for(var i = 0; i < level.length; i++){
+		if(level[i].value != ''){
+			Total_pay_out_member += parseFloat(level[i].value);	
+		}	
+	}
+	Total_pay_out_affiliate += commission_charities;
+	Total_pay_out_affiliate += commission_employees_bonus;
+	if(document.getElementById("commission_affiliate") && document.getElementById("commission_affiliate").value != ''){
+		Total_pay_out_affiliate += parseFloat(document.getElementById("commission_affiliate").value);
+	}
+	Total_pay_out_trust_Charity += commission_charities;
+	Total_pay_out_trust_Charity += commission_employees_bonus;
+	if(document.getElementById("commission_trust_charity") && document.getElementById("commission_trust_charity").value != ''){
+		Total_pay_out_trust_Charity += parseFloat(document.getElementById("commission_trust_charity").value);
+	}
+	
+	$("#Total_pay_out_member").empty().append(Total_pay_out_member+' %');
+	$("#Total_money_out_member").empty().append("$"+formatAsMoney(selling_price * Total_pay_out_member / 100));
+	
+	$("#Total_pay_out_affiliate").empty().append(Total_pay_out_affiliate+' %');
+	$("#Total_money_out_affiliate").empty().append("$"+formatAsMoney(selling_price * Total_pay_out_affiliate / 100));
+	
+	$("#Total_pay_out_trust_Charity").empty().append(Total_pay_out_trust_Charity+' %');
+	$("#Total_money_out_trust_Charity").empty().append("$"+formatAsMoney(selling_price * Total_pay_out_trust_Charity / 100));
+}
+</script>

@@ -1,0 +1,357 @@
+<script language="javascript">
+
+var data_clients = [];
+var header_first 	= ['Legal Business ID', 'Legal Business Name', 'Email', 'Created Date', 'Status'];
+var header_last 	= ['Legal Business ID', 'Legal Business Name', 'Email', 'Created Date', 'Status'];
+var columeb = null;
+var sort_list = '';
+
+var pager_number = 1;
+var clients_select = 0;
+var ukey_select = '';
+
+function delete_Client(ukey){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete manufacturer");
+	showbox('box_popup');
+	
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php?q=manufacturers/del&ajax=1&block=yes&ukey='+ukey,
+		cache: false,
+		success: function(message){
+			$("#content_popup").append(message);
+			HideLoadingObj(document.getElementById("content_popup"));
+			
+			if(document.getElementById("cancel")){
+				document.getElementById("cancel").onclick = function(){
+					closeBox("box_popup");
+				}	
+			}
+			return false;
+		}
+	});
+	return false;
+}
+function delete_acc(ukey){
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/manufacturers", {
+		delete_client:'yes',
+		cid:ukey
+	},function(data){
+		closeBox("box_popup");
+		data_clients = [];
+		HideLoadingObj(document.getElementById("content_popup"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		clients_select = 0;
+		loadClients();
+	}, "json");
+}
+
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+
+function loadClients(page){
+	if(page == 0 || page == null) page = pager_number;
+	if(page == 0) page = 1;
+	pager_number = page;
+	
+	var total_row = 20;
+	var str_content = '';
+	var length_data = data_clients.length;
+	var min_index = 0;
+	var max_index = 0;	
+	
+	str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per">#</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0, '+page+', '+total_row+')">'+header_last[0]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(1, '+page+', '+total_row+')">'+header_last[1]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(2, '+page+', '+total_row+')">'+header_last[2]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(3, '+page+', '+total_row+')">'+header_last[3]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(4, '+page+', '+total_row+')">'+header_last[4]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+
+	if(length_data > 0){
+		var num = page*total_row;
+		min_index = num - total_row;
+		max_index = num;		
+		if(length_data < num) max_index = length_data;
+
+		str_content += '	<tbody>';
+		for(var i = min_index; i < max_index; i++){
+			var obj = data_clients[i];
+			var status = 'Active';
+			if(obj.status == 0) status = 'Block';
+			
+			var button = '';
+			if(obj.view == 'yes'){
+				button += '<img src="../images/b_view.png" border="0" style="cursor:pointer" onclick="View_clients(\''+obj.ukey+'\')" />';	
+			}
+			if(obj.modify == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;';	
+				}
+				button += '<img src="../images/b_edit.png" border="0" style="cursor:pointer" onclick="Edit_clients(\''+obj.ukey+'\')" />';	
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;';	
+				}
+				button += '<img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="delete_Client(\''+obj.ukey+'\')" />';	
+			}
+			
+			
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="top" class="td-row">'+format_dem(99999, i+1)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.legal_business_id)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.legal_business_name)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.mail)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.created_str+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(status)+'</td>';
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			
+		}
+		str_content += '	</tbody>';
+		
+	}
+	str_content += '</table>';
+	pager_new(total_row, data_clients, page, 'loadClients', ['pager']);
+	$("#clients_list").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+	
+}
+
+function filtList_adminclient(colum, page, total_row){
+	// Xac dinh Sort type
+	reset_headerAdminClient();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = data_clients.length;
+	if(page == 0) page = 1;
+
+	if(row_sort > 0){
+		var num = page*total_row;
+		var min_index = num - total_row;
+		var max_index = num;		
+		if(row_sort < num) max_index = row_sort;
+	
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].legal_business_id < data_clients[j].legal_business_id){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].legal_business_id > data_clients[j].legal_business_id){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}	
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].legal_business_name < data_clients[j].legal_business_name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].legal_business_name > data_clients[j].legal_business_name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 2){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail < data_clients[j].mail){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail > data_clients[j].mail){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 3){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(data_clients[i].created, 10) < parseInt(data_clients[j].created, 10)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(data_clients[i].created, 10) > parseInt(data_clients[j].created, 10)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 4){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(data_clients[i].status, 10) < parseInt(data_clients[j].status, 10)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(data_clients[i].status, 10) > parseInt(data_clients[j].status, 10)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}
+	}
+	loadClients(page);
+	return;
+}
+
+function loadObjectClients(){
+	data_clients = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/manufacturers/employee", {
+		loadDataUsers:'yes',
+		ukey:$("#key").val(),
+		key_word:document.getElementById("key_word").value,
+		status_user:document.getElementById("status_user").value,
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		loadClients();
+	}, "json");
+	return false;
+}
+function Edit_clients(key){
+	window.location = 'index.php/manufacturers/edit/'+key;
+	return false;
+}
+function View_clients(key){
+	window.location = 'index.php/manufacturers/view/'+key;
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+$(function() {
+	loadObjectClients();  
+	
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+
+</script>
+<div class="titlepage-admin">manufacturer</div>
+<div class="box_solar">
+<div style="clear:both; width:100%; overflow:hidden; padding-bottom:20px">
+	<form method="post" name="form_filter" onsubmit="return loadObjectClients()">
+	<span class="field-with-placeholder" style="float:left">
+        <label id="key_word_label" class="placeholder" for="key_word"><span>Key Word</span></label>
+        <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+    </span>
+    <span style="float:left; padding-left:5px">
+    	<select id="status_user" style="width:80px; color:#AEAEAE">
+        	<option value="" style="color:#AEAEAE">Status</option>
+            <option value="1">Active</option>
+            <option value="0">Block</option>
+        </select>
+    </span>
+    <span style="float:left; padding-left:10px"><input type="submit" class="button" value="Filter" /></span>
+    </form>
+</div>
+<div id="pager" style="min-height:20px; width:100%" align="right"></div>
+<div style="clear:both; text-align:center; overflow:hidden; width:100%;" id="clients_list"></div>
+</div>
+<input type="hidden" id="key" value="{key}" />

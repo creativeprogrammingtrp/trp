@@ -1,0 +1,137 @@
+<style>
+.tr_order_details td{
+	text-transform:uppercase;
+	padding:10px 5px 10px 5px;
+}
+.table_invoice p{
+	margin:0px;
+	padding:0px;}
+.td_info{
+	padding-top:20px;}
+.td_info p{
+	margin:0px;
+	padding:0px;
+	line-height:1.7em;
+	}
+.td_title{
+	text-transform:uppercase;
+	font-size:16px;
+	font-weight:bold;
+	padding-top:20px;
+	padding-bottom:10px;}
+.td_order_title{
+	width:12%;
+	font-style:italic;}
+.td_order_des{
+	width:38%;
+	padding-right:5px;}
+</style>
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+<tr>
+	<td align="center" valign="top">
+        <table cellpadding="0" cellspacing="0" border="0" width="600px" style="margin:0px auto 0px auto;" class="table_invoice">
+            <tr>
+                <td width="60%">
+                    <img src="../images/logo.png" alt="Bellavie Network" title="Bellavie Network" width="300px"/>
+                </td>
+                <td width="40%" style="padding:30px 10px 30px 10px;" bgcolor="#ffab11">
+                    <p >Donate date: <span style="font-weight:bold;">{date}</span></p>
+                    <p >Donate #: <span style="font-weight:bold;">{order_number}</span></p>
+                    <p style="font-size:18px; font-weight:bold; margin-top:20px;">DONATION CONFIRMATION</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top:20px;">
+                    <p style="font-style:italic;">Dear {billingName},</p>
+                    <p style="line-height:1.9em;"> Thank you for donate at Bellavie Network. Listed below is your donate information.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table cellpadding="2" cellspacing="0" border="0" width="100%" class="table_order_details">
+                        <tr valign="top">
+                            <td colspan="2" class="td_title">BILLING & PAYMENT TYPE</td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Name:</td>
+                            <td class="td_order_des">{billingName}</td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Address:</td>
+                            <td class="td_order_des">
+                                {billingAddress}<br/> 
+                                {billingCity}
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Tel:</td>
+                            <td class="td_order_des">{billingPhone}</td>
+                        </tr>
+                        <tr valign="top">
+                            <td class="td_order_title">Card #:</td>
+                            <td class="td_order_des">{card_number}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            <td colspan="2" style="padding-top:20px;">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td colspan="5" class="td_title" style=" border-top:#000000 dotted 1px;">
+                            DONATION DETAILS
+                        </td>
+                    </tr>
+                    <tr class="tr_order_details" style=" font-size:12px; text-transform:capitalize; font-weight:bold;"  bgcolor="#ffab11">
+                        <td align="left" width="49%">product</td>
+                        <td width="13%" align="right">price</td>
+                        <td width="13%" align="center">qty</td>
+                        <td width="12%" align="right">return</td>
+                        <td width="13%" align="right">amount</td>
+                    </tr>
+                    {order_array}
+                    <tr class="tr_order_details">
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td align="left" valign="top" width="90px"><img border="0" src="{img}" /></td>
+                                    <td align="left" valign="top" style="padding-left:10px">{desc}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td align="right">${price}</td>
+                        <td align="center">{qty}</td>
+                        <td align="right">{qty_return}</td>
+                        <td align="right">${total}</td>
+                    </tr>
+                    {/order_array}
+                    <tr>
+                        <td colspan="5" align="right" style="border-top: 1px dotted #000000; margin-top:10px; padding-top:10px;">
+                            <table cellpadding="0" cellspacing="0" border="0" width="35%">
+                                <tr>
+                                    <td style="text-align:right; padding-right:5px;">TOTAL:</td>
+                                    <td style="text-align:right;">{Total}
+                                    </td>
+                                </tr> 
+                                {check_commission}
+                                <tr>
+                                    <td style="text-align:right; padding-right:5px;">MyWallet Account:</td>
+                                    <td style="text-align:right">{my_wallet}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:right; padding-top:10px; padding-right:10px; border-top:#000 solid 1px">TOTAL:</td>
+                                    <td style="text-align:right; padding-top:10px;border-top:#000 solid 1px">{total_last}
+                                    </td>
+                                </tr> 
+                                {/check_commission}
+                                {refund_row}
+                            </table>
+                        </td>
+                    </tr>
+                </table>	
+            </td>
+            </tr>
+        </table>
+     </td>
+  </tr>
+</table>

@@ -1,0 +1,245 @@
+<form class="form-horizontal form-box remove-margin" method="post" id="bankingFeesForm">
+    <!-- Form Header -->
+    
+    <div class="col-md-12" style="margin: 0 0 0 13px; padding-top: 25px; width: 98%;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Fees Info</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-dollar"></i></span>
+        </header>
+        <div class="panel-body">
+		<!-- Panel start --> 
+    <!-- Form Content -->
+    <div class="form-box-content">
+        <!-- First Step -->
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+            
+            <div class="form-group">
+            	<div class="col-md-3 form-group1">
+	                <label for="efin"
+	                       class="control-label col-md-12">Tax Preparation Fee <i class="icon-question4 toottip_product"data-toggle="tooltip"  data-original-title="Tax Preparation Fee "></i></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" value="" name="tax_preparation_fee1" id="tax_preparation_fee1">
+	                </div>
+	             </div>
+	             
+	             <div class="col-md-3 form-group1">
+		             <label for="p_efin"
+	                       class="control-label col-md-12">Bank Transmission Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" value="19.95 " name="bank_transmission_fee1" disabled="disabled" id="bank_transmission_fee1">
+	                </div>
+	             </div>
+	             
+	             <div class="col-md-3 form-group1">
+		             <label for="company_name"
+	                       class="control-label col-md-12">SB Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" name="sb_fee1" disabled="disabled" id="sb_fee1" value="">
+	                </div>
+	             </div>
+	             
+	             <div class="col-md-3 form-group1">
+	             	<label for="company_name"
+                       class="control-label col-md-12">Add On Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Add On Fee"></i></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" name="add_on_fee1" id="add_on_fee1" value="">
+	                </div>
+	             </div>
+            </div>
+            
+            
+            <!-- 
+            <div class="form-group">
+                <label for="company_name"
+                       class="control-label col-md-3">E-file Fee</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="e_file_fee1" id="e_file_fee1" value="">
+                </div>
+            </div>
+             -->
+           
+
+            
+                
+
+                    <div id="modal_success3" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                    
+
+            
+        </div>
+	</div>
+	</div>
+	</section>
+	</div>
+	<div class="col-md-12" id="feesSaveBtn" style="padding-left: 26px">
+		<button class="btn btn-success" id="save_p3" type="submit"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+		<!-- <input type="submit" value="Submit" id="save_p3" class="btn btn-success ui-wizard-content ui-formwizard-button"> -->
+	</div>
+	
+	<div class="col-md-12" id="feesSaveBtnLoad" style="display:none; padding-left: 30px">
+          <button  class=" btn btn-success" type="submit">
+                     <i class="glyphicon-refresh"></i> Saving... 
+                </button>
+      </div> 
+</form>
+
+
+<script type="text/javascript">
+
+var dataClient = [];
+
+function loadObject() {
+		{dataLoad}
+                loadClients();
+}
+
+
+function loadClients() {
+	$("#tax_preparation_fee1").val(dataClient.tax_preparation_fee);
+	//$("#bank_transmission_fee1").val(dataClient.bank_transmission_fee);
+	$("#sb_fee1").val(dataClient.sb_fee);
+	//$("#e_file_fee1").val(dataClient.e_file_fee);
+	$("#add_on_fee1").val(dataClient.add_on_fee);
+}
+/*
+function clickSaveBankingInfo() {
+	$("#save_p3").click(function() {
+
+		$.post("index.php/admin/settings/saveBankingFeesInfo", {
+			load_p : 'yes',
+			tax_preparation_fee : $("#tax_preparation_fee1").val(),
+			bank_transmission_fee : $("#bank_transmission_fee1").val(),
+			sb_fee : $("#sb_fee1").val(),
+			e_file_fee: $("#e_file_fee1").val(), 
+			add_on_fee : $("#add_on_fee1").val()
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+				$('#modal_success3').modal('show');
+                                $("#two").trigger('click');
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+}
+*/
+$(function(){
+	
+	loadObject();
+	
+	$(".toottip_product").tooltip(); 
+	//clickSaveBankingInfo();
+	
+	/* Initialize Form Validation */
+    $('#bankingFeesForm').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group1 > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+            //e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.form-group1').removeClass('has-success has-error');	
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	tax_preparation_fee1 : {
+                required: true,
+                number: true
+            },
+            bank_transmission_fee1 :{
+                required: true,
+                number: true
+            },
+            sb_fee1 :{
+                required: true,
+                number: true,
+                range: [1, 40]
+            },
+            /*e_file_fee1 :{
+                required: true,
+                number: true
+            },*/
+            add_on_fee1 :{
+                required: true,
+                number: true,
+                range: [1, 40]
+            }
+        },
+        messages: {
+        	    
+        	tax_preparation_fee1 :{
+                number: 'Please enter only number!'
+            },
+            bank_transmission_fee1 :{
+                number: 'Please enter only number!'
+            },
+            sb_fee1 :{
+                number: 'Please enter only number!',
+                val_range: 'Please enter amount between 1 and 40',
+            },
+            /*e_file_fee1 :{
+                number: 'Please enter only number!'
+            },*/
+            add_on_fee1 :{
+                number: 'Please enter only number!',
+                range: 'Please enter amount between 1 and 40',
+            }
+        },
+        submitHandler: function(form) {
+        	
+        	$('#feesSaveBtn').hide();
+			$('#feesSaveBtnLoad').show();
+			
+        	$.post("index.php/admin/settings/saveBankingFeesInfo", {
+    			load_p : 'yes',
+    			tax_preparation_fee : $("#tax_preparation_fee1").val(),
+    			bank_transmission_fee : $("#bank_transmission_fee1").val(),
+    			sb_fee : $("#sb_fee1").val(),
+    			//e_file_fee: $("#e_file_fee1").val(), 
+    			add_on_fee : $("#add_on_fee1").val()
+    		}, function(data) {
+    			if (typeof (data) == 'object') {
+    				dataClient = data;
+    				$('#feesSaveBtn').show();
+    				$('#feesSaveBtnLoad').hide();
+    				
+    					//$('#modal_success3').modal('show');
+                          //          $("#two").trigger('click');
+    			}
+    			loadClients();
+    		}, "json");
+
+    		return false;
+        }
+         
+    });
+	/*End Form validation*/
+	
+});
+
+</script>

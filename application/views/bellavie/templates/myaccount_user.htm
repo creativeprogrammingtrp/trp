@@ -1,0 +1,608 @@
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<link type="text/css" media="screen" rel="stylesheet" href="../shop/css/pages/progressbar.css" />
+<style>
+.personalInfoLeft {
+	width:160px;
+	}
+input[type=text]{
+    float: left;
+}
+.tdTitle {
+	color:#8dc73f;
+	font-size:16px;
+	font-weight:bold;
+	text-transform:capitalize;
+	}
+#image{
+	display:none;}
+.profile-content{
+	min-height:400px;}
+</style>
+<div class="profile">
+    <div class="clearfix">
+        <div class="profile-head clearfix">
+            <div class="profile-info pull-left">
+                <h1 class="profile-username">{firstname} {lastname}</h1>
+            </div>
+        </div>
+        <div class="profile-sidebar">
+            <div class="thumbnail">
+                <img alt="" src="{picture}">
+            </div>
+            <ul class="nav nav-tabs nav-stacked">
+                <li class="active"><a href="#" data-target="#profile" data-toggle="tab"><i class="icon-user"></i> Your profile</a></li>
+                <li><a href="#" data-target="#accountInfo" data-toggle="tab"><i class="icon-info-sign"></i> Account Informations</a></li>
+                <li><a href="#" data-target="#changeAvatar" onclick="uploadAvatar();" data-toggle="tab"><i class="icon-picture"></i> Change Avatar</a></li>
+            </ul>
+        </div>
+        <div class="profile-content">
+			<form method="post" name="form_filter" onsubmit="return check_accountInfo()">
+            <div class="tab-content">
+            	<div id="title" style="margin-bottom:10px;">
+                    <span style="color:#06C; font-size:14px; font-style:italic; margin-right:10px;">Please complete the required information accurately and in full</span>
+                    <span style="color:#F00; font-size:12px; font-style:italic;">(* = Required)</span>
+                </div>
+                <div id="profile" class="tab-pane active">
+                    <h4 class="sub"><span>Your profile</span></h4>
+                    <table cellpadding="5" cellspacing="0" border="0" style="padding:20px;" width="100%">
+                        <tbody>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">First Name (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                  <input tabindex="1" type="text" class="input-text" id="firstname" size="10" name="firstname" value="{firstname}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"  autocomplete="off">
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Last Name (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                  <input tabindex="2" type="text" class="input-text" id="lastname" size="10" name="lastname" value="{lastname}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" autocomplete="off">
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                              <td valign="top" class="personalInfoLeft">Phone (*)</td>
+        
+                              <td valign="top" class="personalInfoRight"> 
+                                <input tabindex="3" type="text" class="input-text" id="phone2" size="10" name="phone2" value="{phone}" style="width:200px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);" onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);" autocomplete="off" />
+                              </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Address (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                 <input tabindex="4" type="text" class="input-text" id="address" size="10" name="address" value="{address}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" autocomplete="off">
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">City (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                     <span class="field-with-placeholder" style="float:left;" id="cities_show"></span>  
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom"> 
+                                <td valign="top" class="personalInfoLeft">Country (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                 <select name="slcountry" style="width:210px;" id="slcountry" onchange="showStates();showCities();" ></select>                  
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">State (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                   <span class="field-with-placeholder" style="float:left;" id="states_show"></span>  
+                              </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Zip Code</td>
+                                <td valign="top" class="personalInfoRight">
+                                  <input tabindex="6" type="text" class="input-text" id="zipcode" size="10" name="zipcode" value="{zipcode}" style="width:120px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);" autocomplete="off">   
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="accountInfo" class="tab-pane">
+                    <h4 class="sub"><span>Account Informations</span></h4>
+                    <table cellpadding="5" cellspacing="0" border="0" style="padding:20px;"  width="100%">
+                        <tbody>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Username</td>
+                                <td valign="top" class="personalInfoRight">
+                                    {name}
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Email (*)</td>
+                                <td valign="top" class="personalInfoRight">
+                                 <input tabindex="9" type="text" class="input-text" id="email" size="10" name="email" value="{mail}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" autocomplete="off">
+                                </td>
+                            </tr> 
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Old Password</td>
+                                <td valign="top" class="personalInfoRight">
+                                   <input tabindex="10" type="password" class="input-text" id="old_password" size="10" name="old_password" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" autocomplete="off">
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">New Password</td>
+                                <td valign="top" class="personalInfoRight">
+                                   <input tabindex="10" type="password" class="input-text" id="password" size="10" name="password" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                                </td>
+                            </tr>
+                            <tr class="_borderBottom">
+                                <td valign="top" class="personalInfoLeft">Confirm New Password</td>
+                                <td valign="top" class="personalInfoRight">
+                                  <input tabindex="11" type="password" class="input-text" id="confirm_password" size="10" name="confirm_password" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" autocomplete="off">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="changeAvatar" class="tab-pane">
+                    <h4 class="sub"><span>Change Avatar</span></h4>
+                    <div class="row-fluid">
+                    	<div id="webcam" class="span6 hava-camera" >
+						<script type="text/javascript" src="misc/scriptcam/webcam.js"></script>
+                        <script language="JavaScript">
+                            webcam.set_api_url( 'index.php/user/myaccount/takephoto' );
+                            webcam.set_quality( 90 ); // JPEG quality (1 - 100)
+                            webcam.set_shutter_sound( true ); // play shutter click sound
+                            webcam.swf_url = 'misc/scriptcam/webcam.swf';
+                            webcam.shutter_url = 'misc/scriptcam/shutter.mp3';
+                        </script>
+                        <script type="text/javascript">
+                            document.write( webcam.get_html(320, 240, 160, 120) );
+                            webcam.set_hook( 'onComplete', 'my_completion_handler' );
+                            webcam.set_hook( 'onError', 'my_error_handler' );  
+                            function take_snapshot() {
+                                webcam.snap();
+                            }
+                            
+                            function my_completion_handler(msg) {		// extract URL out of PHP output
+                                if (msg.match(/(http\:\/\/\S+)/)) {
+                                    var image_url = RegExp.$1;
+                                    // show JPEG image in page
+                                    $("#image").attr("src",image_url).show();
+                                    
+                                    webcam.reset();
+                                }
+                                else alert("PHP Error: " + msg);
+                            }
+							function my_error_handler()
+							{
+								$(".hava-camera").remove();
+							}
+                        </script>
+                        </div>
+                        <div class="span6" id="loading_img">
+                            <img id="image" style="width:200px;height:153px;"/>
+                        </div>
+                    </div>
+                    <div class="row-fluid" style="padding-top:5px;">
+                        <div class="span6">
+                        	<span class="hava-camera">
+                                <input class="button" type="button" value="Configure..." onClick="webcam.configure()">
+                                <input class="button" type="button" value="Take photo" onclick="take_snapshot()" name="btn2" id="btn2">
+                            </span>
+                            <input class="button" type="button" value="Upload image"  name="upload_browser" id="upload_browser"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid" style="margin-top:20px;">
+            	<div class="span12" id="savebt">
+                    <input type="button" value="Back" class="btn" style="margin-right:5px" onclick="history.go(-1);" autocomplete="off"/>
+                    <input type="submit" value="Submit" class="btn btn-primary" autocomplete="off" />
+                </div>
+            	<div style="display:none" id="loadingbt" class="span12">
+                    <div class="button-loading">
+                        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                        <span style="float:left; padding-left:10px">Saving...</span>
+                    </div>
+                </div>
+            </div>
+        	</form>
+        </div>
+    </div>
+</div>
+
+<div id="Progress_bar" class="progress_bar" align="left" style="display:none">
+	<div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadProduct()" style="cursor:pointer" /></div>
+	<div class="progress_bar_top">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="file_name"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+    	<div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#FFAB11; width:100%;"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="progress_bar_size"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script language="javascript">
+var dataCountries = [];
+{varCountry}
+{varState}
+{varCity}
+function loadDataCountries(){
+	{dataCountries}
+	showCountriesListing();
+		
+}
+function showCountriesListing(){
+	var st = '';
+	var elSel = document.getElementById('slcountry');
+	var ct=country;
+	
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != '')
+		elSel.value = ct;
+}
+function showStates(){
+	var st = '';	
+	var country_value = document.getElementById("slcountry").value;
+	
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" style="width:130px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+				
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="state" size="10" name="state" value="" style="width:120px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+	 
+}
+function setstate()
+{
+	document.getElementById("state").value=state;
+}
+
+function showCities(){
+    var ct ='';
+    var country_value = document.getElementById("slcountry").value;
+    for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				var cities = dataCountries[i].cities;
+				ct += '<select id="city" name="city" style="width:210px">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input tabindex="5" type="text" class="input-text" id="city" size="10" name="city" value="" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';
+			}
+			break;	
+		}	
+	}
+        $("#cities_show").empty().append(ct);
+}
+
+function setCities()
+{
+    document.getElementById("city").value=city;
+}
+function check_accountInfo(){
+	var checkError = false;
+	if($('#firstname').val() == ''){
+		$('#firstname').css("background", '#ffffd5');
+		hidelabelfocus("firstname_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("firstname"));	
+			document.getElementById("firstname").focus();	
+		}
+	}
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#lastname').val() == ''){
+		$('#lastname').css("background", '#ffffd5');
+		hidelabelfocus("lastname_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("lastname"));	
+			document.getElementById("lastname").focus();	
+		}
+	}
+	if($('#phone').val() == ''){
+		$('#phone').css("background", '#ffffd5');
+		hidelabelfocus("phone_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("phone"));	
+			document.getElementById("phone").focus();	
+		}
+	}
+	if($('#address').val() == ''){
+		$('#address').css("background", '#ffffd5');
+		hidelabelfocus("address_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("address"));	
+			document.getElementById("address").focus();	
+		}
+	}
+	if($('#city').val() == ''){
+		$('#city').css("background", '#ffffd5');
+		hidelabelfocus("city_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("city"));	
+			document.getElementById("city").focus();	
+		}
+	}
+	if($('#state').val() == ''){
+		$('#state').css("background", '#ffffd5');
+		hidelabelfocus("state_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("state"));	
+			document.getElementById("state").focus();	
+		}
+	}
+	if($('#zipcode').val() == ''){
+		$('#zipcode').css("background", '#ffffd5');
+		hidelabelfocus("zipcode_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("zipcode"));	
+			document.getElementById("zipcode").focus();	
+		}
+	}else{
+		var msg = isValidZip($('#zipcode').val(),'US');
+		if(msg != ""){
+			$('#zipcode').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("zipcode"));	
+				document.getElementById("zipcode").focus();	
+			}
+		}		
+	}
+	if($('#user_name').val() == ''){
+		$('#user_name').css("background", '#ffffd5');
+		hidelabelfocus("user_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("user_name"));	
+			document.getElementById("user_name").focus();	
+		}
+	}
+	if($('#email').val() == ''){
+		$('#email').css("background", '#ffffd5');
+		hidelabelfocus("email_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("email"));	
+			document.getElementById("email").focus();	
+		}
+	}else{
+		var msg = isValidEmail($('#email').val());
+		if(msg != ""){
+			$('#email').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("email"));	
+				document.getElementById("email").focus();	
+			}
+		}		
+	}
+	if(trim($('#old_password').val()) != '')
+	{
+		if(trim($('#password').val()) == '')
+		{
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}	
+		}
+		else if(!passwordStrength(document.getElementById("password"))){
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}
+		}
+		else if(trim($('#password').val())!=trim($('#confirm_password').val())){
+			$('#confirm_password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("confirm_password"));	
+				document.getElementById("confirm_password").focus();	
+			}
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	var user_status_value = 1;
+	var user_status = document.getElementsByName("user_status[]");
+	for(var i = 0; i < user_status.length; i++){
+		if(user_status[i].checked == true){
+			user_status_value = user_status[i].value;
+			break;	
+		}	
+	}
+	var userole = 2;
+	var roles = document.getElementsByName("roles[]");
+	for(var i = 0; i < roles.length; i++){
+		if(roles[i].checked == true){
+			userole = roles[i].value;
+			break;
+		}
+	}
+	
+	//clients_select
+	var obj_user 		= new Object();
+	obj_user.firstname 	= $('#firstname').val();
+	obj_user.lastname	= $('#lastname').val();
+	obj_user.phone 		= $('#phone').val();
+	obj_user.address 	= $('#address').val();
+	obj_user.city 		= $('#city').val();
+	obj_user.country = document.getElementById("slcountry").value;
+	obj_user.state = document.getElementById("state").value;		
+	obj_user.zipcode 	= $('#zipcode').val();
+	obj_user.mail 		= $('#email').val();
+	obj_user.avatar 	= $('#image').attr("src");
+	if(trim($('#old_password').val()) != '')
+	{
+		obj_user.oldPassword 	= $('#old_password').val();
+		obj_user.pass 			= $('#password').val();		
+	}
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/user/myaccount", {
+		saveUser: obj_user
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);	
+			}else{
+				alert(success_saved);
+			 	window.location.reload();
+			}
+		}
+	}, "json");
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+	
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));			
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}		
+		break;
+	case 'email':
+		var msg = isValidEmail($('#email').val());	
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}	
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			hidelabelfocus(o.id+"_label");
+			return false;
+		}
+		break;
+	}
+}
+
+$(function() {
+	clearForms();
+	loadDataCountries();
+	showStates();
+	setstate();
+        showCities();
+        setCities();
+	//uploadAvatar();
+});
+
+</script>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<script language="javascript">
+var filename = '';
+var imgPath = 'temp/users/avatars/';
+var uploadImg;
+function uploadAvatar(){
+	uploadImg = new plupload.Uploader({
+		runtimes : 'gears,html5,flash,silverlight,browserplus',
+		browse_button : 'upload_browser',
+		max_file_size : '80mb',
+		url : 'plupload/server/uploadAvatar.php',
+		flash_swf_url : 'plupload/js/plupload.flash.swf',
+		silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+		filters : [
+			{title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+		]
+	});
+	uploadImg.bind('FilesAdded', function(up, files) {
+		filename = '';
+		currentFile = files[0];
+		document.getElementById("Progress_bar").style.display = 'block';
+		document.getElementById("file_name").innerHTML = files[0].name;
+		document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+		document.getElementById("progress_bar_pecent").style.width = 0 + '%';	
+		setTimeout(function () {	 
+			uploadImg.start();
+		}, 50);
+	});
+	uploadImg.bind('UploadProgress', function(up, file) {
+		document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+		var text = "Uploaded "+file.percent+"% &nbsp;("+plupload.formatSize(file.loaded)+" of "+plupload.formatSize(file.size)+")";
+		document.getElementById("progress_bar_size").innerHTML = text;
+	});
+	uploadImg.bind('FileUploaded', function(up, file, dataJson) {
+		setTimeout(function () {
+			$("#Progress_bar").hide();
+		}, 50);
+		var obj = jQuery.parseJSON(dataJson.response);
+		if(obj.error == ''){
+			filename = obj.file_id + '.'+obj.ext;
+			$("#image").attr("src",url_server__+imgPath+filename).show();
+		}
+	}, 'json');
+	uploadImg.bind('Error', function(up, err) {
+		CancelUploadProduct()
+		alert(err.message);
+	});
+	uploadImg.init();
+}
+function CancelUploadProduct(){	
+	uploadImg.stop();
+	 for(var i = 0; i < uploadImg.files.length; i++){
+	  uploadImg.removeFile(uploadImg.files[i]);   
+	 }
+	$("#Progress_bar").hide();
+	$("#upload_browser").show();
+}
+</script>

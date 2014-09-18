@@ -1,0 +1,293 @@
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>
+<div style="width:100%; overflow:hidden">
+	<div style="width:100%; clear:both; overflow:hidden" align="left">
+        <div style="clear:both; min-height:40px; overflow:hidden" align="left">
+            <div style="float:left" class="tab_active" id="tab_1" onclick="ChangeContent1(1);">View</div>
+            <div style="float:left; margin-left:10px" class="tab" id="tab_2" onclick="ChangeContent1(2);">Invoice</div>
+            <div style="float:left; margin-left:10px" class="tab" id="tab_3" onclick="ChangeContent1(3);">Packages</div>
+            <div style="float:left; margin-left:10px" class="tab" id="tab_4" onclick="ChangeContent1(4);">Shipments</div>
+        </div>
+    </div>
+    <div style="width:100%; clear:both; overflow:hidden" id="tab_1_content">
+    	<div style="width:100%; clear:both; overflow:hidden">
+            <table class="v3">
+            	<thead>
+                    <tr>
+                        <th align="left" valign="middle" class="th-per">Order/Date/Status</th>
+                        <th align="left" valign="middle" class="th-per">Ship To Address</th>
+                        <th align="left" valign="middle" class="th-per">Billing Address</th>
+                        <th align="right" valign="middle" class="th-per">Credit Card</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td align="left" valign="top">Order: {order_number}<br />Date: {date}<br />status: {order_status}</td>
+                    <td align="left" valign="top" style="padding-left:5px">{shippingName}<br>{shippingAddress}<br>{shippingCity}</td>
+                    <td align="left" valign="top" style="padding-left:5px">{billingName}<br>{billingAddress}<br>{billingCity}<br /><a href="mailto:<!--billingEmail-->">{billingEmail}</a></td>
+                    <td align="right" valign="top" style="padding-left:5px">{card_number}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="width:100%; clear:both; overflow:hidden; padding-top:20px" id="tableContainer">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" class="v3" id="items_detail_listing">
+                <thead>
+                    <tr>
+                        <th align="left" valign="middle" class="th-per" style="max-width: 500px;">Products</th>
+                        <th align="right" valign="middle" class="th-per">Price</th>
+                        <th align="center" valign="middle" class="th-per">Quantity</th>
+                        <th align="center" valign="middle" class="th-per">Return</th>
+                        <th align="right" valign="middle" class="th-per">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {order_array}
+                    <tr class="tr-row">
+                        <td align="left" valign="top" class="td-row-2">
+                            <table cellpadding="0" cellspacing="0" border="0" style="border: none !important;">
+                                <tr style="border: none !important;">
+                                    <td align="left" valign="top" width="100px" style="border: none !important;"><img src="{img}" border="0" /></td>
+                                    <td align="left" valign="top" style="border: none !important;">{desc}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td align="right" valign="middle" class="td-row-2">${price}</td>
+                        <td align="center" valign="middle" class="td-row-2">{qty_buy}</td>
+                        <td align="center" valign="middle" class="td-row-2">{qty_return}</td>
+                        <td align="right" valign="middle" class="td-row-2">${total}</td>
+                    </tr>
+                    {/order_array}
+                </tbody>
+            </table>
+        </div>
+        <div style="width:100%; clear:both; overflow:hidden; padding-top:20px" align="right">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td align="right" valign="middle"><b>Subtotal:</b></td>
+                    <td align="right" valign="middle" style="padding-left:20px">{suptotal}</td>
+                </tr>
+                <tr>
+                    <td align="right" valign="middle"><b>Tax:</b></td>
+                    <td align="right" valign="middle" style="padding-left:20px">{Tax}</td>
+                </tr>
+                <tr>
+                    <td align="right" valign="middle"><b>{ship_label}:</b></td>
+                    <td align="right" valign="middle" style="padding-left:20px">{shipping_fee}</td>
+                </tr>
+                <tr><td colspan="2" height="20px"></td></tr>	
+                <tr>
+                    <td align="right" valign="middle"><b>TOTAL:</b></td>
+                    <td align="right" valign="middle" style="padding-left:20px">{Total}</td>
+                </tr>
+               <!-- {check_commission}
+                <tr>
+                    <td style="text-align:right; padding-right:5px;">MyWallet Account:</td>
+                    <td style="text-align:right">{my_wallet}</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right; padding-top:10px; padding-right:10px; border-top:#000 solid 1px">TOTAL:</td>
+                    <td style="text-align:right; padding-top:10px;border-top:#000 solid 1px">{total_last}
+                    </td>
+                </tr> 
+                {/check_commission}-->
+                {refund_row}
+            </table>
+        </div>
+        <div style="width:100%; clear:both; overflow:hidden; padding-top:20px" align="left">
+            <div style="float:right; overflow:hidden;" align="right">
+            	<input type="button" value="Back" class="btn" onclick="history.go(-1);" style="margin-left:5px; margin-bottom:5px" />
+              	{refund_button}
+            </div>
+        </div>
+    </div>
+    <div style="width:100%; clear:both; overflow:hidden; display:none" id="tab_2_content">
+    	<div style="width:100%; clear:both" align="right">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td align="left" valign="middle"><a href="javascript:void(0)" onclick="ShowInvoiceTab()">View invoice</a></td>
+                    <td align="left" valign="middle" style="padding-left:20px"><a href="javascript:void(0)" onclick="printOrder()">Printable invoice</a></td>
+                    <td align="left" valign="middle" style="padding-left:20px"><a href="javascript:void(0)" onclick="mailInvoice()">Mail invoice</a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="clear:both; width:100%;" id="tab_2_content_show">
+        	
+        </div>
+    </div>
+    <div style="width:100%; clear:both; overflow:hidden; display:none" id="tab_3_content">
+    
+    </div>
+</div>
+<input type="hidden" id="okey" name="okey" value="{okey}" />
+<!--start_script-->
+<script type="text/javascript">
+function ChangeContent1(type){
+	tab_selected = type;
+	switch(parseInt(type, 10)){
+		case 1:
+			ShowOrderDetailTab();
+			break;
+		case 2:
+			ShowInvoiceTab();
+			break;
+		case 3:
+			ShowPackageTab();
+			break;
+		case 4:
+			ShowShipmentsTab();
+			break;			
+	}
+}
+function ShowShipmentsTab(){
+	var okey = document.getElementById("okey").value;
+	if(document.getElementById("tab_1")){
+		document.getElementById("tab_1").className = 'tab';
+		$("#tab_1_content").hide();
+	}
+	if(document.getElementById("tab_2")){
+		document.getElementById("tab_2").className = 'tab';
+		$("#tab_2_content").hide();
+	}
+	if(document.getElementById("tab_3")){
+		document.getElementById("tab_3").className = 'tab';
+	}
+	if(document.getElementById("tab_4")){
+		document.getElementById("tab_4").className = 'tab_active';
+		$("#tab_3_content").show();
+		ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+		$.ajax({
+			url: "index.php/store/shipments/?ajax=1&okey="+okey,
+			type: "GET",
+			success: function(html){
+				HideLoadingObj(document.getElementById("content_load"));
+				$("#tab_3_content").empty().append(html);
+			}
+		});
+	}
+}
+function ShowPackageTab(){
+	var okey = document.getElementById("okey").value;
+	if(document.getElementById("tab_1")){
+		document.getElementById("tab_1").className = 'tab';
+		$("#tab_1_content").hide();
+	}
+	if(document.getElementById("tab_2")){
+		document.getElementById("tab_2").className = 'tab';
+		$("#tab_2_content").hide();
+	}
+	if(document.getElementById("tab_3")){
+		document.getElementById("tab_3").className = 'tab_active';
+		$("#tab_3_content").show();
+		ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+		$.ajax({
+			url: "index.php/store/packages/?okey="+okey+"&ajax=1",
+			type: "GET",
+			success: function(html){
+				HideLoadingObj(document.getElementById("content_load"));
+				$("#tab_3_content").empty().append(html);
+			}
+		});
+	}
+	if(document.getElementById("tab_4")){
+		document.getElementById("tab_4").className = 'tab';
+	}
+}
+function ShowOrderDetailTab(){
+	if(document.getElementById("tab_1")){
+		document.getElementById("tab_1").className = 'tab_active';
+		$("#tab_1_content").show();
+	}
+	if(document.getElementById("tab_2")){
+		document.getElementById("tab_2").className = 'tab';
+		$("#tab_2_content").hide();
+	}
+	if(document.getElementById("tab_3")){
+		document.getElementById("tab_3").className = 'tab';
+	}
+	if(document.getElementById("tab_4")){
+		document.getElementById("tab_4").className = 'tab';
+	}
+	$("#tab_3_content").hide();
+}
+function ShowInvoiceTab(){
+	var okey = document.getElementById("okey").value;
+	if(document.getElementById("tab_1")){
+		document.getElementById("tab_1").className = 'tab';
+		$("#tab_1_content").hide();
+	}
+	if(document.getElementById("tab_2")){
+		document.getElementById("tab_2").className = 'tab_active';
+		$("#tab_2_content").show();
+		$("#tab_2_content_show").empty();
+		ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+		$.ajax({
+			url: "index.php/store/orders/print_odetails/"+okey+"/?ajax=1",
+			type: "GET",
+			success: function(html){
+				HideLoadingObj(document.getElementById("content_load"));
+				$("#tab_2_content_show").empty().append(html);
+			}
+		});
+	}
+	if(document.getElementById("tab_3")){
+		document.getElementById("tab_3").className = 'tab';
+	}
+	if(document.getElementById("tab_4")){
+		document.getElementById("tab_4").className = 'tab';
+	}
+	$("#tab_3_content").hide();
+}
+var orderDetails = [];
+function submitOrder(){
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/orders/odetails", {
+		submitOrder: 'yes',
+		okey:document.getElementById("okey").value,
+		order_status:document.getElementById("order_status").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_submitted);
+			}
+		}
+	}, "json");
+}
+function printOrder(){
+	var okey = document.getElementById("okey").value;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: "index.php/store/orders/print_odetails/"+okey+"/?ajax=1",
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			var newWin=window.open('', '', 'scrollbars=1,width=850,height=400', false);
+			newWin.document.open();
+			newWin.document.write('<html><body onload="window.print()">'+html+'</body></html>');
+			newWin.document.close();
+		}
+	});
+}
+function mailInvoice(){
+	var okey = document.getElementById("okey").value;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: "index.php/store/orders/mailinvoice/?ajax=1&block=yes&okey="+okey,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			$("#tab_2_content_show").empty().append(html);
+		}
+	});
+}
+$(function() {   
+	//datepicker
+	$('#items_detail_listing').fixedtableheader();
+});
+</script>
+<!--end_script-->

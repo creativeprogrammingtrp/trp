@@ -1,0 +1,50 @@
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="javascript:goHome();">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>
+
+<div class="main-container holder">	
+    <div class="grid-cols">
+    {content}
+    </div>
+    {charities}
+    <div class="grid-cols">
+    	 <article class="col">
+            <div class="boxes-section text-box">
+                <h3>{legal_business_name}</h3>
+                <div>
+                	{checks}
+                    <span>
+                        <a href="{checks_rel}" rel="check_img">
+                            <img src="{checks_file}" height="25px"/>
+                        </a>
+                    </span>
+                    {/checks}
+                </div>
+                <p>
+                    Raised: <span class="bold">${price}</span>&nbsp;&nbspDonated: <span class="bold">${paid}</span><br/>
+                    Website: <a href="{website}" target="_blank">{website}</a><br/>
+                    <span class="italic">{description}</span>
+                </p>
+            </div>
+        </article>
+    </div>				
+   	{/charities}              
+</div>
+<script language="javascript">
+$(function() {
+	$("a[rel='check_img']").colorbox({
+		initialWidth:70,
+		initialHeight:50,	
+		height:false,
+		opacity:0.2,
+		scrolling: false
+	});	
+});
+</script>

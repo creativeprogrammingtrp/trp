@@ -1,0 +1,125 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+    	<td align="center" valign="top" width="100%" style="font-size:12px">
+        	<table cellpadding="0" cellspacing="0" border="0" width="650px">
+            	<tr>
+                    <td width="60%">
+                        <img src="../images/logo.png" alt="Bellavie Network" title="Bellavie Network" height="120px"/>
+                    </td>
+                    <td width="40%" align="left" valign="top" style="padding:20px 10px 20px 10px; font-size:14px" bgcolor="#8DC73F">
+                        <p >Order date: <span style="font-weight:bold;"><!--date--></span></p>
+                        <p >Order #: <span style="font-weight:bold;"><!--order_number--></span></p>
+                        <p style="font-size:18px; font-weight:bold; margin-top:20px;">ORDER CONFIRMATION</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-top:20px; padding-bottom:30px; padding-left:5px; padding-right:5px; font-size:12px">{mail_content}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left" valign="top">
+                        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                            <tr valign="top">
+                                <td width="50%" style="font-size:14px"><b>BILLING & PAYMENT TYPE</b></td>
+                                <td width="50%" style="font-size:14px"><b>SHIP TO</b></td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Name: <!--billingName--></td>
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Name: <!--shippingName--></td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Address: <!--billingAddress--></td>
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Address: <!--shippingAddress--></td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Tel: <!--billingPhone--></td>
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Tel: <!--shippingPhone--></td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Card #: <!--card_number--></td>
+                                <td class="td_order_title" align="left" valign="top" style="font-size:12px">Email: <!--billingEmail--></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="2" align="left" valign="top" style="padding-top:20px; padding-bottom:10px; padding-left:5px; font-size:14px"><b>ORDER DETAILS</b></td>
+                </tr>
+                <tr>
+                	<td align="left" valign="top" colspan="2" style="padding-bottom:20px">
+                    	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+                        	<tr class="tr_order_details" bgcolor="#8DC73F" style="background: linear-gradient(to bottom, #A8E359 0%, #94CE46 100%) repeat scroll 0 0 transparent;">
+                                <td align="left" valign="middle" width="61%" height="25px" style="text-transform:uppercase; font-size:14px"><b>product</b></td>
+                                <td width="13%" align="right" valign="middle" style="text-transform:uppercase; font-size:14px"><b>price</b></td>
+                                <td width="13%" align="center" valign="middle" style="text-transform:uppercase; font-size:14px"><b>qty</b></td>
+                                <td width="13%" align="right" valign="middle" style="text-transform:uppercase; font-size:14px"><b>amount</b></td>
+                            </tr>
+                            {schedule}
+                            <tr>
+                            	<td align="left" valign="top" style="padding-top:20px; font-size:12px; border-bottom:3px solid #8DC73F"><b>Schedule {schedule_number}</b></td>
+                                <td align="right" valign="top" colspan="3" style="padding-top:20px; font-size:12px; border-bottom:3px solid #8DC73F"><b>Delivery Date: {Delivery_date}</b></td>
+                            </tr>
+                            <!--startRows-->
+                            <tr>
+                                <td align="left" valign="top" style="font-size:12px; border-bottom:1px solid #CCC">
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td align="left" valign="top" width="90px"><img border="0" src="<!--img-->" /></td>
+                                            <td align="left" valign="top" style="padding-left:10px"><!--desc--></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td align="right" valign="top" style="font-size:12px; border-bottom:1px solid #CCC">$<!--price--></td>
+                                <td align="center" valign="top" style="font-size:12px; border-bottom:1px solid #CCC"><!--Qty--></td>
+                                <td align="right" valign="top" style="font-size:12px; border-bottom:1px solid #CCC">$<!--total--></td>
+                            </tr>
+                            <!--endRows-->
+                            <tr>
+                                <td colspan="4" align="right" style="padding-top:5px;">
+                                    <table cellpadding="5" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="text-align:right; padding-right:5px; font-size:12px;"><b>Subtotal:</b></td>
+                                            <td style="text-align:right; font-size:12px;">$<!--suptotal--></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; padding-right:5px; font-size:12px;"><b>Tax:</b></td>
+                                            <td style="text-align:right; font-size:12px;">$<!--Tax--></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; padding-right:5px; font-size:12px;"><b><!--ship_label-->:</b></td>
+                                            <td style="text-align:right; font-size:12px;">$<!--shipping_fee--></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right; padding-right:5px; border-top:1px solid #CCC; padding-top:5px; font-size:12px;" valign="middle"><b>TOTAL:</b></td>
+                                            <td style="text-align:right; border-top:1px solid #CCC; padding-top:5px; font-size:12px;" valign="middle">${order_total}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            {/schedule}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                	<td align="right" valign="top" colspan="2" style="padding-top:20px; border-top:3px solid #8DC73F;">
+                    	<table cellpadding="0" cellspacing="0" border="0">
+                        	<tr>
+                                <td style="text-align:right; padding-right:5px; border-top:1px solid #666; padding-top:5px; padding-bottom:5px; font-size:14px" valign="middle"><b>TOTAL:</b></td>
+                                <td style="text-align:right; border-top:1px solid #666; padding-top:5px; padding-bottom:5px; padding-right:5px; font-size:14px" valign="middle">${order_total}</td>
+                            </tr>
+                            {myWalle_account}
+                            <tr>
+                                <td style="text-align:right; padding-right:5px; padding-bottom:5px; font-size:14px" valign="middle"><b>MyWallet Account:</b></td>
+                                <td style="text-align:right; padding-bottom:5px; padding-right:5px; font-size:14px" valign="middle">$({myWalle_account})</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right; padding-right:5px; border-top:1px solid #666; padding-top:5px; font-size:14px" valign="middle"><b>TOTAL:</b></td>
+                                <td style="text-align:right; border-top:1px solid #666; padding-top:5px; padding-right:5px; font-size:14px" valign="middle">${total_last}</td>
+                            </tr> 
+                            {/myWalle_account}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

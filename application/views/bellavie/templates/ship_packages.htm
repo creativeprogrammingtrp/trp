@@ -1,0 +1,121 @@
+<div class="box_solar">
+    <div style="clear:both; width:100%" id="product_list" align="left"></div>
+    <div style="clear:both; padding-top:20px; overflow:hidden">
+    	<div style="clear:both; font-weight:bold">Shipping method</div>
+        <div style="clear:both">
+        	<select id="Shipping_method">
+            	<option value="0">Ship Manually</option>
+                <option value="1">UPS</option>
+                <option value="2">USPS</option>
+            </select>
+        </div>
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px;" align="left" id="savebt_2">
+        <input type="button" value="Ship package" class="button" style="margin-left:5px" onclick="Ship_package()" />
+        <input type="button" value="Cancel" class="button" style="margin-left:5px" onclick="ShowPackageTab()" />
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px; display:none" id="loadingbt_2" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+function Ship_package(packages){
+	var okey = document.getElementById("okey").value;
+	var Shipping_method = document.getElementById("Shipping_method").value;
+	var url = '';
+	switch(parseInt(Shipping_method, 10)){
+		case 0:
+			url = "index.php/store/shipments/manually/";
+			break;
+		case 1:
+			url = "index.php/store/shipments/ups/";
+			break;
+		case 2:
+			url = "index.php/store/shipments/usps/";
+			break;	
+	}
+	var check_ = false;
+	var packages_ = document.getElementsByName("packages[]");
+	for(var i = 0; i < packages_.length; i++){
+		if(packages_[i].checked == true){
+			url += '?packages[]='+packages_[i].value;
+			check_ = true;
+		}
+	}
+	if(check_ == false) return false;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: url+"&ajax=1&block=yes&okey="+okey+"&shipping_method="+Shipping_method,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			$("#tab_3_content").empty().append(html);
+		}
+	});
+	return false;
+}
+var data_products = [];
+function loadObjProducts(){
+	{load_product};
+	loadProducts_list();
+}
+function CheckAllItems(obj){
+	var packages = document.getElementsByName("packages[]");
+	for(var i = 0; i < packages.length; i++){
+		packages[i].checked = obj.checked;	
+	}
+}
+function UnCheckAllItems(obj){
+	if(obj.checked == false){
+		document.getElementById("check_all_items").checked = false;	
+	}
+}
+function createSelectQty(id, number){
+	if(number <= 0) return  "";
+	var st = '';
+	st += '<select id="'+id+'">';
+	for(var i = 1; i < number+1; i++){
+		var check_ = '';
+		if(i == number) check_ = 'selected="selected"';
+		st += '	<option value="'+i+'" '+check_+'>'+i+'</option>';		
+	}
+	st += '</select>';
+	return st;
+}
+function loadProducts_list(){
+	var str_content = '';
+	var length_data = data_products.length;
+	str_content += '<table class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per"><input type="checkbox" id="check_all_items" onclick="CheckAllItems(this)" /></th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Package</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Products</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	if(length_data > 0){
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_products[i];
+			var check_ = '';
+			if(parseInt(obj.check_package, 10) == 1){
+				check_ = 'checked="checked"';	
+			}
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="middle" height="30px" class="td-row"><input type="checkbox" name="packages[]" value="'+obj.pkey+'" onclick="UnCheckAllItems(this)" '+check_+'/></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.pkey+'</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.Products+'</td>';
+			str_content += '		</tr>';
+		}
+		str_content += '</tbody>';
+	}
+	str_content += '</table>';
+	$("#product_list").empty().append(str_content);
+}
+$(function() {  
+	loadObjProducts();   
+});
+</script>

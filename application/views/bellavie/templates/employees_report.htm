@@ -1,0 +1,448 @@
+<style>
+thead tr .td-row{
+	background: #fdfdfd; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fdfdfd 0%, #efefef 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #fdfdfd 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #fdfdfd 0%,#efefef 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #fdfdfd 0%,#efefef 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #fdfdfd 0%,#efefef 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#f1f1f1',GradientType=0 ); /* IE6-9 */
+}
+.td-row {
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
+	border-bottom: 1px solid #d3d3d3;
+}
+</style>
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<script language="javascript" type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<div style="clear:both; width:100%; overflow:hidden">
+	<div style="clear:both; width:100%; overflow:hidden">
+        <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px;">1.&nbsp;&nbsp;Summary</span>
+        {show_export_button}
+        <div style="width:100%; clear:both; overflow:hidden">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td align="left" valign="middle"><img src="../images/Dashboard_hinhgi.jpg" border="0" /></td>
+                    <td align="left" valign="top" style="padding-left:30px">
+                        <div style="clear:both;">
+                            <span style="float:left; text-align:left; font-weight:bold">Total Earnings:</span>
+                            <span style="float:left; color:#6F13CC; padding-left:10px">${total_commission}</span>{payment_perm}
+                        </div>
+                        <div style="clear:both; padding-top:2px">
+                            <div style="float:left; text-align:left; font-weight:bold">Paid:</div>
+                            <div style="float:left; padding-left:10px; color:#00A651">$<span id="paid">{total_paid}</span></div>
+                        </div>
+                        <div style="clear:both; padding-top:2px">
+                            <div style="float:left; text-align:left; font-weight:bold">Balance:</div>
+                            <div style="float:left; padding-left:10px; color:#ad5a07">${balance}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="clear:both; width:100%; overflow:hidden; padding-top:30px">
+    	<span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px;">2.&nbsp;&nbsp;Chart</span>
+        <div style="clear:both; overflow:hidden; width:100%">
+        	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td align="left" valign="middle" id="selected_by_value" width="200px">
+                        
+                    </td>
+                    <td align="center" valign="middle">
+                    	<table cellpadding="0" cellspacing="0" border="0">
+                        	<tr>
+                            	<td align="left" valign="middle">
+                                	<div style="float:left; width:11px; height:11px; background:#6F13CC; margin-top:2px;"></div>
+                                    <div style="float:left; padding-left:5px">Total Earnings</div>
+                                    <div style="float:left; width:11px; height:11px; background:#00A651; margin-top:2px; margin-left:20px"></div>
+                                    <div style="float:left; padding-left:5px">Paid</div>
+                                    <div style="float:left; width:11px; height:11px; background:#ad5a07; margin-top:2px; margin-left:20px"></div>
+                                    <div style="float:left; padding-left:5px">Balance</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td align="right" valign="middle" width="200px">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td align="left" valign="middle" style="padding-right:10px"><b>Selected by:</b></td>
+                                <td align="left" valign="middle">
+                                    <select id="selected_by" style="width:80px;" onchange="loadSelectBy()">
+                                        <option value="0" selected="selected">Month</option>
+                                        <option value="1">Year</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="width:100%; min-height:210px; clear:both; padding-top:5px" id="sales_chart" align="left"></div>
+    </div>
+</div>
+<!--<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<script language="javascript" type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>-->
+<script type="text/javascript">
+var dataCharts = [];
+var arr_years = [];
+var year_selected = 0;
+function loadDataChart(){
+	arr_data_chart = [];
+	arr_years = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/report/employees/loadDataChart", {
+		loadDataChart:'yes'
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			arr_years = data.objYear;
+			dataCharts = data.chart;
+		}
+		loadSelectBy();
+	}, "json");
+	return false;
+}
+function Export_to_Excel(){
+	calculate_export();
+	$.post('index.php/report/employees/dataExcel',{
+		type:'xls',
+		year:year_selected,
+		month_report:month_report,
+		year_report:year_report
+	},function(data){
+		if(data.error == 'error'){
+			alert(data.error);	
+		}else{
+                        window.open('shopping/uploads/Employees_Report.xls');
+		}
+	},"json");
+	return false;	
+}
+var month_report = [];
+var year_report = [];
+function calculate_export(){
+	month_report = [];
+	year_report = [];
+	for(var i = 1; i < 13; i++){
+			var obj = new Object();
+			obj.year = year_selected;
+			obj.month = i;
+			obj.YTD_earnings = 0;
+			obj.paid = 0;
+			obj.balance = 0;
+			month_report[month_report.length] = obj;	
+		}
+		for(var i = 0; i < month_report.length; i++){
+			if(month_report[i].year > year_current) continue;
+			else if(month_report[i].year == year_current){
+				if(month_report[i].month > month_current) continue;	
+			}
+			var total_earning = 0;
+			var total_paid = 0;
+			for(var j = 0; j < dataCharts.length; j++){
+				if(dataCharts[j].year < month_report[i].year){
+					total_earning += dataCharts[j].YTD_earnings;
+					total_paid += dataCharts[j].paid;	
+				}else if(dataCharts[j].year == month_report[i].year && dataCharts[j].month <= month_report[i].month){
+					total_earning += dataCharts[j].YTD_earnings;
+					total_paid += dataCharts[j].paid;
+				}
+				if(dataCharts[j].year == month_report[i].year && dataCharts[j].month == month_report[i].month){
+					month_report[i].YTD_earnings += dataCharts[j].YTD_earnings;
+					month_report[i].paid += dataCharts[j].paid;
+				}
+			}
+			var Balance = total_earning - total_paid;
+			if(Balance < 0) Balance = 0;
+			month_report[i].balance = Balance;
+		}
+		for(var i = year_selected-11; i < year_selected+1; i++){
+			var obj = new Object();
+			obj.year = i;
+			obj.YTD_earnings = 0;
+			obj.paid = 0;
+			obj.balance = 0;
+			year_report[year_report.length] = obj;	
+		}
+		for(var i = 0; i < year_report.length; i++){
+			if(year_report[i].year > year_current) continue;
+			var total_earning = 0;
+			var total_paid = 0;
+			for(var j = 0; j < dataCharts.length; j++){
+				if(dataCharts[j].year <= year_report[i].year){
+					total_earning += dataCharts[j].YTD_earnings;
+					total_paid += dataCharts[j].paid;	
+				}
+				if(dataCharts[j].year == year_report[i].year){
+					year_report[i].YTD_earnings += dataCharts[j].YTD_earnings;
+					year_report[i].paid += dataCharts[j].paid;
+				}
+			}
+			var Balance = total_earning - total_paid;
+			if(Balance < 0) Balance = 0;
+			year_report[i].balance = Balance;
+		}	
+}
+function loadSelectBy(){
+	var str = '';
+	if(year_selected == 0){
+		if(arr_years.length > 0) year_selected = arr_years[arr_years.length-1];
+	}
+	var select_by_value = parseInt(document.getElementById("selected_by").value, 10);
+	if(year_selected > 0){
+		loadSelectedByValue(select_by_value);
+		LoadSalesChart(select_by_value);	
+	}
+}
+function nextYear(){
+	year_selected += 1;
+	loadSelectBy();
+}
+function previousYear(){
+	year_selected -= 1;
+	loadSelectBy();
+}
+function loadSelectedByValue(select_by_value){  
+	var str = '';
+	if(year_selected > 0){
+		if(select_by_value == 0){
+			var arrow_left = '<img src="../images/arrow-left.png" border="0" />';
+			var arrow_right = '<img src="../images/arrow-right.png" border="0" />';
+			if(arr_years.length > 0){
+				if(year_selected > arr_years[0]) arrow_left = '<img src="../images/arrow-left.png" border="0" style="cursor:pointer" onclick="previousYear()" />';
+				if(year_selected < arr_years[arr_years.length-1]) arrow_right = '<img src="../images/arrow-right.png" border="0" style="cursor:pointer" onclick="nextYear()" />';
+			}
+			str += '<table cellpadding="0" cellspacing="0" border="0">';
+			str += '<tr>';
+			str += '<td align="left" valign="middle" style="font-weight:bold; padding-right:12px">Year '+year_selected+'</td>';			
+			str += '<td align="left" valign="middle" style="padding-right:4px">'+arrow_left+'</td>';
+			str += '<td align="left" valign="middle">'+arrow_right+'</td>';
+			str += '</tr>';
+			str += '</table>';	
+		}else if(select_by_value == 1){
+			var arrow_left = '<img src="../images/arrow-left.png" border="0" />';
+			var arrow_right = '<img src="../images/arrow-right.png" border="0" />';
+			if(arr_years.length > 0){
+				if(year_selected-11 > arr_years[0]) arrow_left = '<img src="../images/arrow-left.png" border="0" style="cursor:pointer" onclick="previousYear()" />';
+				if(year_selected < arr_years[arr_years.length-1]) arrow_right = '<img src="../images/arrow-right.png" border="0" style="cursor:pointer" onclick="nextYear()" />';
+			}
+			str += '<table cellpadding="0" cellspacing="0" border="0">';
+			str += '<tr>';
+			str += '<td align="left" valign="middle" style="font-weight:bold; padding-right:12px">From '+(year_selected-11)+' To '+year_selected+'</td>';
+			str += '<td align="left" valign="middle" style="padding-right:4px">'+arrow_left+'</td>';
+			str += '<td align="left" valign="middle">'+arrow_right+'</td>';
+			str += '</tr>';
+			str += '</table>';		
+		}		
+	}
+	$("#selected_by_value").empty().append(str);
+}
+{if('load_month_current'=='yes');}	//month_current
+{if('load_year_current'=='yes');}		//year_current
+function LoadSalesChart(select_by_value){
+	var month_name = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	var arr_data_chart = [];
+	if(select_by_value == 0){
+		for(var i = 1; i < 13; i++){
+			var obj = new Object();
+			obj.year = year_selected;
+			obj.month = i;
+			obj.YTD_earnings = 0;
+			obj.paid = 0;
+			obj.balance = 0;
+			arr_data_chart[arr_data_chart.length] = obj;	
+		}
+		for(var i = 0; i < arr_data_chart.length; i++){
+			if(arr_data_chart[i].year > year_current) continue;
+			else if(arr_data_chart[i].year == year_current){
+				if(arr_data_chart[i].month > month_current) continue;	
+			}
+			var total_earning = 0;
+			var total_paid = 0;
+			for(var j = 0; j < dataCharts.length; j++){
+				if(dataCharts[j].year < arr_data_chart[i].year){
+					total_earning += dataCharts[j].YTD_earnings;
+					total_paid += dataCharts[j].paid;	
+				}else if(dataCharts[j].year == arr_data_chart[i].year && dataCharts[j].month <= arr_data_chart[i].month){
+					total_earning += dataCharts[j].YTD_earnings;
+					total_paid += dataCharts[j].paid;
+				}
+				if(dataCharts[j].year == arr_data_chart[i].year && dataCharts[j].month == arr_data_chart[i].month){
+					arr_data_chart[i].YTD_earnings += dataCharts[j].YTD_earnings;
+					arr_data_chart[i].paid += dataCharts[j].paid;
+				}
+			}
+			var Balance = total_earning - total_paid;
+			if(Balance < 0) Balance = 0;
+			arr_data_chart[i].balance = Balance;
+		}
+	}else{
+		for(var i = year_selected-11; i < year_selected+1; i++){
+			var obj = new Object();
+			obj.year = i;
+			obj.YTD_earnings = 0;
+			obj.paid = 0;
+			obj.balance = 0;
+			arr_data_chart[arr_data_chart.length] = obj;	
+		}
+		for(var i = 0; i < arr_data_chart.length; i++){
+			if(arr_data_chart[i].year > year_current) continue;
+			var total_earning = 0;
+			var total_paid = 0;
+			for(var j = 0; j < dataCharts.length; j++){
+				if(dataCharts[j].year <= arr_data_chart[i].year){
+					total_earning += dataCharts[j].YTD_earnings;
+					total_paid += dataCharts[j].paid;	
+				}
+				if(dataCharts[j].year == arr_data_chart[i].year){
+					arr_data_chart[i].YTD_earnings += dataCharts[j].YTD_earnings;
+					arr_data_chart[i].paid += dataCharts[j].paid;
+				}
+			}
+			var Balance = total_earning - total_paid;
+			if(Balance < 0) Balance = 0;
+			arr_data_chart[i].balance = Balance;
+		}	
+	}
+	
+	var str = '';
+
+	if(arr_data_chart.length > 0){
+		str += '<table cellpadding="0" cellspacing="0" border="0"  width="100%" class="table-per" style="border:1px solid #D3D3D3">';
+		if(select_by_value == 0){
+			str += '<thead><tr><td align="left" class="td-row" width="76px" style="border-right:1px solid #D3D3D3;">&nbsp;</td>';
+			for(var i = 0; i < 6; i++){
+				if(arr_data_chart[i].month == month_current){
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; color:#FFAF0F; font-weight:bold">'+month_name[i]+'</td>';		
+				}else{
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; font-weight:bold">'+month_name[i]+'</td>';	
+				}	
+			}
+			str += '</tr></thead>';
+			
+			var YTD_earnings_col = '';
+			var paid_col = '';
+			var balance_col = '';
+			for(var i = 0; i < 6; i++){
+				YTD_earnings_col += '<td align="center" class="td-row" style="border-bottom:1px solid #EDEDED; color:#6F13CC;">$'+formatAsMoney(arr_data_chart[i].YTD_earnings, 2)+'</td>';
+				paid_col += '<td align="center" class="td-row" style="border-bottom:1px solid #EDEDED;color:#00a651;">$'+formatAsMoney(arr_data_chart[i].paid, 2)+'</td>';
+				balance_col += '<td align="center" class="td-row" style="border-bottom:1px solid #EDEDED;color:#ad5a07;">$'+formatAsMoney(arr_data_chart[i].balance, 2)+'</td>';
+			}
+			str += '<tr><td class="td-row" align="left" style="color:#6F13CC;border-bottom:1px solid #EDEDED;font-weight:bold">Total Earnings</td>' + YTD_earnings_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#00a651;border-bottom:1px solid #EDEDED;font-weight:bold">Paid</td>' + paid_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#ad5a07;border-bottom:1px solid #EDEDED;font-weight:bold">Balance</td>' + balance_col + '</tr>';
+			
+			str += '<thead><tr><td align="left" class="td-row" style="border-right:1px solid #D3D3D3; background-color:#CD87FF; color:#6F13CC;">&nbsp;</td>';
+			for(var i = 6; i < 12; i++){
+				if(arr_data_chart[i].month == month_current){
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; color:#FFAF0F; font-weight:bold">'+month_name[i]+'</td>';	
+				}else{
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; font-weight:bold">'+month_name[i]+'</td>';	
+				}	
+			}
+			str += '</tr></thead>';
+			
+			var YTD_earnings_col = '';
+			var paid_col = '';
+			var balance_col = '';
+			for(var i = 6; i < 12; i++){
+				YTD_earnings_col += '<td align="center" class="td-row" style="color:#6F13CC;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].YTD_earnings, 2)+'</td>';
+				paid_col += '<td align="center" class="td-row" style="color:#00a651;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].paid, 2)+'</td>';
+				balance_col += '<td align="center" class="td-row" style="color:#ad5a07;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].balance, 2)+'</td>';
+			}
+			str += '<tr><td class="td-row" align="left" style="color:#6F13CC;border-bottom:1px solid #EDEDED; font-weight:bold">Total Earnings</td>' + YTD_earnings_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#00a651;border-bottom:1px solid #EDEDED;font-weight:bold">Paid</td>' + paid_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#ad5a07;border-bottom:1px solid #EDEDED;font-weight:bold">Balance</td>' + balance_col + '</tr>';
+			
+		}else if(select_by_value == 1){
+			str += '<thead><tr><td align="left" width="76px" class="td-row" style="border-right:1px solid #D3D3D3; background-color:#CD87FF; color:#6F13CC;">&nbsp;</td>';
+			for(var i = 0; i < 6; i++){
+				if(arr_data_chart[i].year == year_current){
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; color:#FFAF0F; font-weight:bold">'+arr_data_chart[i].year+'</td>';	
+				}else{
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; font-weight:bold">'+arr_data_chart[i].year+'</td>';	
+				}	
+			}
+			str += '</tr></thead>';	
+			var YTD_earnings_col = '';
+			var paid_col = '';
+			var balance_col = '';
+			for(var i = 0; i < 6; i++){
+				YTD_earnings_col += '<td align="center" style="color:#6F13CC;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].YTD_earnings, 2)+'</td>';
+				paid_col += '<td align="center" style="color:#00a651;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].paid, 2)+'</td>';
+				balance_col += '<td align="center" style="color:#ad5a07;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].balance, 2)+'</td>';
+			}
+			str += '<tr><td class="td-row" align="left" style="color:#6F13CC;border-bottom:1px solid #EDEDED; font-weight:bold">Total Earnings</td>' + YTD_earnings_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#00a651;border-bottom:1px solid #EDEDED;font-weight:bold">Paid</td>' + paid_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#ad5a07;border-bottom:1px solid #EDEDED;font-weight:bold">Balance</td>' + balance_col + '</tr>';
+			
+			str += '<thead><tr><td align="left" width="76px" class="td-row" style="border-right:1px solid #D3D3D3; background-color:#CD87FF; color:#6F13CC;">&nbsp;</td>';
+			for(var i = 6; i < 12; i++){
+				if(arr_data_chart[i].year == year_current){
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; color:#FFAF0F; font-weight:bold">'+arr_data_chart[i].year+'</td>';	
+				}else{
+					str += '<td width="76px"  align="center" class="td-row" valign="middle" style="border-right:1px solid #D3D3D3; font-weight:bold">'+arr_data_chart[i].year+'</td>';	
+				}	
+			}
+			str += '</tr></thead>';	
+			var YTD_earnings_col = '';
+			var paid_col = '';
+			var balance_col = '';
+			for(var i = 6; i < 12; i++){
+				YTD_earnings_col += '<td align="center" style="color:#6F13CC;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].YTD_earnings, 2)+'</td>';
+				paid_col += '<td align="center" style="color:#00a651;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].paid, 2)+'</td>';
+				balance_col += '<td align="center" style="color:#ad5a07;border-bottom:1px solid #EDEDED;">$'+formatAsMoney(arr_data_chart[i].balance, 2)+'</td>';
+			}
+			str += '<tr><td class="td-row" align="left" style="color:#6F13CC;border-bottom:1px solid #EDEDED; font-weight:bold">Total Earnings</td>' + YTD_earnings_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#00a651;border-bottom:1px solid #EDEDED;font-weight:bold">Paid</td>' + paid_col + '</tr>';
+			str += '<tr><td class="td-row" align="left" style="color:#ad5a07;border-bottom:1px solid #EDEDED;font-weight:bold">Balance</td>' + balance_col + '</tr>';
+			
+		}		
+		str += '</table>';
+	}	
+	$("#sales_chart").empty().append(str);
+}
+$(function() {
+	loadDataChart();
+	if(document.getElementById("payment_form")){
+		$("#payment_form").colorbox({
+			initialWidth:70,
+			initialHeight:50,		
+			height:false,
+			opacity:0.2,
+			scrolling: false
+		});
+	}
+	if(document.getElementById("raise_form")){
+		$("#raise_form").colorbox({
+			initialWidth:70,
+			initialHeight:50,		
+			height:false,
+			opacity:0.2,
+			scrolling: false
+		});			
+	}
+});
+/*function Export_to_Excel(){
+	calculate_export();
+	$.post("index.php/export/salerepresent_export&akey="+document.getElementById("akey").value,{
+		type:'xls',
+		year:year_selected,
+		month_report:month_report,
+		year_report:year_report
+	},function(data){
+		if(data.error == 'error'){
+			alert(data.error);	
+		}else{
+			window.open("index.php/download&f=uploads/SaleRepresent_Report.xls");
+		}
+	},"json");
+	return false;	
+}*/
+</script>

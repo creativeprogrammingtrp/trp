@@ -1,0 +1,73 @@
+<div class="col-md-12" style="padding-top:33px;margin-bottom:25px; padding-left:24px;"><h2 style="margin:0px; color:#54565F;"><i class="icon-users4"></i> &nbsp;Accounts</h2></div>
+
+<!-- <div class="col-md-12" style="padding-top:20px;margin-bottom:20px; padding-left:24px;"><h2 style="margin:0px; color:#54565F;"><i class="glyphicon-address_book"></i> Accounts</h2></div> -->
+
+
+<!-- <h2 style="color:#54565f;"><i class="glyphicon-address_book"></i> Accounts</h2> -->
+
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#all_ero" onclick="ChangeContent(18);">All Accounts</a></li>
+    <li class=""><a href="#pending_approval"  onclick="ChangeContent(19);">Pending Approval</a></li>
+    <li class=""><a href="#approval" onclick="ChangeContent(20);">Approved</a></li>
+    <li class=""><a href="#rejected" onclick="ChangeContent(21);">Rejected</a></li>
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="all_ero" class="tab-pane active tab-pane-width"></div>
+    <div id="pending_approval" class="tab-pane tab-pane-width" > </div>
+    <div id="pending_registration" class="tab-pane tab-pane-width" > </div>
+    <div id="approval" class="tab-pane tab-pane-width"></div>
+    <div id="rejected" class="tab-pane tab-pane-width"></div>
+</div>
+
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+
+       function ShowAllAccounts() {
+           $.ajax({
+               url: 'index.php/admin/accounts/ShowAllAccounts?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#all_ero").empty().append(message);
+                   return false;
+               }
+           });
+       }
+
+       function ShowPenddingApproveAccounts() {
+           $.ajax({
+               url: 'index.php/admin/accounts/ShowPenddingApproveAccounts?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#pending_approval").empty().append(message);
+                   return false;
+               }
+           });
+       }
+      
+       function ShowApprovedAccounts() {
+           $.ajax({
+               url: 'index.php/admin/accounts/ShowApprovedAccounts?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#approval").empty().append(message);
+                   return false;
+               }
+           });
+       }
+
+       function ShowRejectedAccounts() {
+           $.ajax({
+               url: 'index.php/admin/accounts/ShowRejectedAccounts?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#rejected").empty().append(message);
+                   return false;
+               }
+           });
+       }
+
+       $(function() {
+    	   ShowAllAccounts();
+           $('#appBtnArea').remove();
+       });
+</script>

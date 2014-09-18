@@ -1,0 +1,171 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Check</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<style type="text/css">
+html,body{width:100%;height:100%;margin:0px;padding:0px;}
+body {margin:0;padding:0;word-spacing:1px;letter-spacing:0.04em;font: 14pt Arial, Helvetica,"Lucida Grande", serif;color: #000;line-height:17pt;}
+h2 {color:#000; font-size:25px;}
+.post .entry h2 {font-size:20px;}
+a:link, a:visited {background: transparent; color:#333; text-decoration:none;}
+a:link[href^="http://"]:after, a[href^="http://"]:visited:after {content: " (" attr(href) ") "; font-size: 11px;}
+a[href^="http://"] {color:#000;}
+img, img a, .more-link a {border:none;}
+#logo, #catnavi, .topnavi, .more-link, .navigation, #sidebartop, #related, #social, #sponsors, .tabs, #allpost, .toolbar, .splitbox, #commentform, #commentabs .idTabs, .postmeta-content .comments, #respond h3, .tag, .footerlinks {display:none;}
+.post {border-bottom:1px solid #000;}
+.postmeta {font-size:10pt; margin-top:10px;}
+.postfooter {font-size:10pt; margin-bottom:20px;}
+.commentlist .avatar {float:left; margin-right:10px;}
+.commentlist .children {margin-top:10px;}
+#comments {page-break-before: always;}
+#footer {margin-top:10px;}
+.main{page-break-before:always;margin-left:auto;margin-right:auto;margin-top:0px;margin-bottom:0px;width:21.5cm;overflow:hidden;position:relative;height:26.7cm;clear:both;/*background:url(../images/CHK7001.jpg) no-repeat;*/}
+.date_check{position:absolute;z-index:10;right:35px;top:66px;}
+.pay_of_the_order{position:absolute;z-index:10;top:115px;left:98px;}
+.money{
+	position:absolute;
+	z-index:10;
+	top:149px;
+	left:28px;
+}
+.dolla{
+	position:absolute;
+	z-index:10;
+	left:675px;
+	top:117px;
+}
+.memo{
+	position:absolute;
+	z-index:10;
+	top:40px;
+	right:35px;
+}
+.midle_left{
+	position:absolute;
+	z-index:10;
+	top:385px;
+	left:20px;
+	font-size:12pt;
+	line-height:16pt;
+	width:400px;
+}
+.check_title{
+	position:absolute;
+	z-index:10;
+	top:357px;
+	right:117px;
+	font-weight:bold;
+}
+.check_title_2{
+	position:absolute;
+	z-index:10;
+	top:725px;
+	left:90px;
+	font-weight:bold;
+}
+.midle_right{
+	position:absolute;
+	z-index:10;
+	top:390px;
+	left:433px;
+	font-size:12pt;
+	line-height:16pt;
+	width:361px;
+}
+.pay_to_bottom{
+	position:absolute;
+	z-index:10;
+	top:765px;
+	left:30px;
+	font-size:12pt;
+	line-height:16pt;
+	width:700px;
+}
+.SIGNATURE{
+	position:absolute;
+	z-index:10;
+	top:180px;
+	right:35px;
+	width:9cm;
+}
+</style>
+</head>
+<body onload="window.print()">
+<!--{content_check}-->
+<div class="main">
+	<div class="date_check">{date}</div>
+    <div class="pay_of_the_order">{pay_to}</div>
+    <div class="money">{n2s}</div>
+    <div class="dolla">{Total}</div>
+    <div class="memo">{invoice_number}</div>
+    <div class="SIGNATURE"><!--{SIGNATURE}--></div>
+    <div class="midle_left">
+    	<table cellpadding="0" cellspacing="0" border="0">
+        	<tr><td align="right" valign="middle" style="padding-right:10px"><b>From:</b></td><td>&nbsp;</td></tr>
+            <tr>
+            	<td align="right" valign="top" style="padding-right:10px"><img src="../main/images/logo.png" border="0" width="60px" height="40px" /></td>
+                <td align="left" valign="top">
+                	113 Barksdale Professional Ctr<br />Newwark, DE 19711, United States
+                </td>
+            </tr>
+            <tr><td colspan="2" height="110px">&nbsp;</td></tr>
+            <tr>
+            	<td align="right" valign="top" style="padding-right:10px;"><b>To:</b></td>
+                <td align="left" valign="top">{pay_to}<br />{address}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="check_title">{title}</div>
+    <div class="check_title_2">{title}</div>
+    <div class="midle_right">
+    	<table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+            	<td align="left" valign="top" width="110px"><b>Pay to :</b></td>
+            	<td align="left" valign="top">{pay_to}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Address :</b></td>
+            	<td align="left" valign="top">{address}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Payment # :</b></td>
+            	<td align="left" valign="top">{invoice_number}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Amount :</b></td>
+            	<td align="left" valign="top">${Total}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Date :</b></td>
+            	<td align="left" valign="top">{date}</td>
+            </tr>
+            <!--@order_key@-->
+		</table>
+    </div>
+    <div class="pay_to_bottom">
+    	<table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+            	<td align="left" valign="top" width="110px"><b>Pay to :</b></td>
+            	<td align="left" valign="top">{pay_to}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Address :</b></td>
+            	<td align="left" valign="top">{address}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Payment # :</b></td>
+            	<td align="left" valign="top">{invoice_number}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Amount :</b></td>
+            	<td align="left" valign="top">${Total}</td>
+            </tr>
+            <tr>
+            	<td align="left" valign="top"><b>Date :</b></td>
+            	<td align="left" valign="top">{date}</td>
+            </tr>
+            <!--@order_key@-->
+		</table>
+    </div>
+</div><!--{/content_check}-->
+</body>

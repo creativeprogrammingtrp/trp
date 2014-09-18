@@ -1,0 +1,430 @@
+<!--<h3>{title_page}</h3>-->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="cell-small text-center" data-toggle="tooltip" title="Toggle all!"><input type="checkbox" id="check5-all" name="check5-all"></th>
+            <th>Filename</th>
+            <th class="cell-small text-center"><i class="icon-bolt"></i> Actions</th>
+        </tr>
+    </thead>
+    <tbody id="list_documents">
+       
+    </tbody>
+</table>
+<div class="row-fluid">
+    <button class="btn btn-success" id="btnDocUpload" type="button">Upload documents</button>
+</div>
+
+
+<form style="margin-top:15px" id="basic-wizard" action="#" method="post" class="form-horizontal form-box">
+  
+    <div class="form-box-content">
+
+        <!-- First Step -->
+        <div id="first" class="step">
+            <!-- Step Info -->
+            <div class="wizard-steps row">
+                <div class="col-md-4 text-center active">1. Page</div>
+               <!-- <div class="col-md-4 text-center">2. Personal</div>-->
+                <!--div class="col-md-4 text-center">3. Extras</div>-->
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 1.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 2.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="" name="radios1" id="radioy"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="" name="radios2" id="radion"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 3.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            
+            
+        </div>
+        <!-- END First Step -->
+
+        <!-- Second Step -->
+        <div id="second" class="step">
+            <!-- Step Info -->
+            <div class="wizard-steps row">
+                <div class="col-md-4 text-center active">2. Page <!--<i class="icon-ok"></i>--></div>
+               <!-- <div class="col-md-4 text-center active">2. Personal</div>-->
+                <!--<div class="col-md-4 text-center">3. Extras</div>-->
+            </div>
+        
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 4.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 5.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 6.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- END Second Step -->
+
+        <!-- Third Step -->
+        <div id="third" class="step">
+            <!-- Step Info -->
+            <div class="wizard-steps row">
+                <div class="col-md-4 text-center active">3. Page </div>
+                <!--<div class="col-md-4 text-center">2. Personal <i class="icon-ok"></i></div>-->
+                <!--<div class="col-md-4 text-center active">3. Extras</div>-->
+            </div>
+            <!-- END Step Info -->
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 7.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 8.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="example-username">Question 9.</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                      
+                       <span class="input-group-addon form-control ui-wizard-content">Is this interesting?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="control-label col-md-2" for="example-username"></label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="example-radio1">
+                            <input type="radio" value="option1" name="example-radios" id="example-radio1"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="example-radio2">
+                            <input type="radio" value="option2" name="example-radios" id="example-radio2"> No
+                        </label>
+                    </div>  
+                </div>
+            </div>
+            
+        </div>
+        <!-- END Third Step -->
+
+        <!-- Form Buttons -->
+        <div class="form-group form-actions">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="reset" class="btn btn-danger" id="back" value="Back">
+                <input type="submit" class="btn btn-success" id="next" value="Next">
+            </div>
+        </div>
+        <!-- END Form Buttons -->
+    </div>
+    <!-- END Form Content -->
+</form>
+
+
+<script type="text/javascript">
+    var dataClient = [];
+    var objUploaded = [];
+    var uploadDocument;
+    //var docPUpload = new documentPUpload();
+    /*docPUpload.initUpload();
+    function documentPUpload()
+    {
+        this.objUploaded = null;
+        this.objUpload = null;
+        this.initUpload = function()
+        {
+            this.objUpload = new plupload.Uploader({
+                runtimes: 'gears,html5,flash,silverlight,browserplus',
+                browse_button: 'btnDocUpload',
+                max_file_size: '10mb', // maximum 10MB
+                url: "index.php/admin/training/doupload",
+                flash_swf_url: 'plupload/js/plupload.flash.swf',
+                silverlight_xap_url: 'plupload/js/plupload.silverlight.xap',
+                filters: [
+                    {title: "Document files", extensions: "pdf,PDF,xsl,XSL,doc,DOC,docx,DOCX,txt,TXT"}
+                ]
+            });
+            this.objUpload.bind('FilesAdded', function(up, files) {
+                this.objUploaded = null;
+                setTimeout(function() {
+                    docPUpload.startUpload();
+                }, 100);
+            });
+            this.objUpload.bind('Error', function(up, ErrorObj) {
+                console.log(ErrorObj);
+            });
+
+            this.objUpload.bind('FileUploaded', function(up, file, dataJson) {
+                var obj = jQuery.parseJSON(dataJson.response);
+                if (obj.error == '') {
+                    this.objUploaded = obj;
+                    saveDocument(); 
+                }
+            }, 'json');
+            this.objUpload.init();
+        }
+        this.startUpload = function()
+        {
+            this.objUpload.start();
+        }
+        this.cancelUpload = function()
+        {
+            this.objUpload.stop();
+        }
+    }*/
+    function loadObject(){
+        {dataLoad}
+    }
+    function uploadDocuments(){
+        uploadDocument = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'btnDocUpload',
+            max_file_size : '10mb',
+            url : 'plupload/server/uploadresources.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "pdf,PDF,xsl,XSL,doc,DOC,docx,DOCX,txt,TXT"}
+            ]
+        });
+        uploadDocument.bind('FilesAdded', function(up, files) {
+            objUploaded = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadDocument.start();
+            }, 50);
+        });
+       
+        uploadDocument.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                objUploaded = obj;
+                saveDocument();
+            }
+        }, 'json');
+        uploadDocument.init();
+    }
+    function CancelUploadProduct2(){	
+        uploadDocument.stop(); 
+    }
+    
+
+    function saveDocument() {
+        $.post("index.php/admin/training/saveDocument", {
+            saveFile: 'yes',
+            data: objUploaded
+        }, function(data) {
+            documents = [];
+            if (typeof(data) == 'object') {
+                dataClient = data;
+                showDocuments();
+            }
+        }, 'json');
+    }
+    
+   function showDocuments(){
+    var htm = '';
+    
+    for(var o = 0 ; o < dataClient.length ; o++){
+        var obj = dataClient[o];
+         htm += '<tr>';
+             htm +='<td class="cell-small text-center"><input type="checkbox" id="check5-td1" name="check5-td1"></td>';
+             htm +='<td>'+obj.label+'</td>';
+             htm +='<td class="text-center">';
+                htm +=' <div class="btn-group">';
+                   htm += ' <a href="javascript:void(0)" data-toggle="tooltip" title="Review" class="btn btn-xs btn-info"><i class="icon-search"></i></a>';
+                    htm += '<a href="javascript:void(0)" data-toggle="tooltip" title="Remove" class="btn btn-xs btn-danger"><i class="icon-remove"></i></a>';
+               htm += ' </div>';
+            htm += '</td>';
+        htm += '</tr>';
+    }
+        $("#list_documents").empty().append(htm);
+    }
+
+
+    $(function() {
+        loadObject();
+        showDocuments();
+        uploadDocuments();
+         $('#basic-wizard').formwizard({
+            focusFirstInput: true,
+            disableUIStyles: true
+        });
+       
+    });
+</script>

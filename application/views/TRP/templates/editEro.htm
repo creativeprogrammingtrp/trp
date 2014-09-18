@@ -1,0 +1,687 @@
+<ul data-toggle="tabs" class="nav nav-tabs push">
+	<li class="active"><a href="#forum-forum">Company Settings</a></li>
+	<li class=""><a href="#forum-cat">ERO Profile</a></li>
+</ul>
+
+<div class="row">
+	<div class="tab-content tab-content-default">
+		<!-- Forum -->
+		<div id="forum-forum" class="tab-pane active">
+
+			<div class="col-sm-8">
+				<form class="form-horizontal form-box remove-margin ui-formwizard"
+					method="post" id="advanced-wizard" novalidate="novalidate">
+					<!-- Form Header -->
+					<h4 class="form-box-header">
+						<i class="glyphicon-settings"></i> Company Settings
+					</h4>
+
+					<!-- Form Content -->
+					<div class="form-box-content">
+						<!-- First Step -->
+						<div class="step ui-formwizard-content" id="advanced-first"
+							style="display: block;">
+							<div class="form-group">
+								<label for="example-advanced-efin"
+									class="control-label col-md-3">EFIN</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										value="" disabled="disabled" name="example-advanced-efin"
+										id="efin">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-companyname"
+									class="control-label col-md-3">Company Name</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-companyname" id="company_name" value="">
+								</div>
+							</div>
+
+							<div class="wizard-steps row">
+								<div class="col-md-4 text-center active">1. Business
+									Address</div>
+							</div>
+
+							<div class="form-group">
+								<label for="example-advanced-address1"
+									class="control-label col-md-3">Address Line 1</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-address1" id="address_1" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-address2"
+									class="control-label col-md-3">Address Line 2</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-address2" id="address_2"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-zipcode"
+									class="control-label col-md-3">Zip</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-zip" id="zipcode"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-city"
+									class="control-label col-md-3">City</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-city" id="city" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-state"
+									class="control-label col-md-3">State</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-state" id="state"
+										value="">
+								</div>
+							</div>
+
+							<div class="wizard-steps row">
+								<div class="col-md-4 text-center active">2. Mailing
+									Address</div>
+							</div>
+
+							<div class="checkbox same">
+								<label for="example-checkbox1"> <input type="checkbox"
+									value="option1" name="example-checkbox1" id="example-checkbox1">
+									Same as above </label>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-address1_m"
+									class="control-label col-md-3">Address Line 1</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-address1_m" id="address_1_m"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-address2_m"
+									class="control-label col-md-3">Address Line 2</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-address2_m" id="address_2_m"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-zipcode_m"
+									class="control-label col-md-3">Zip</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-zipcode_m" id="zipcode_m"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-city_m"
+									class="control-label col-md-3">City</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-city_m" id="city_m" value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-state_m"
+									class="control-label col-md-3">State</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-state_m" id="state_m"
+										value="">
+								</div>
+							</div>
+
+							<div class="wizard-steps row">
+								<div class="col-md-4 text-center active">3. Software</div>
+							</div>
+
+							<div class="form-group">
+								<label for="example-advanced-tax" class="control-label col-md-3">Tax
+									Software</label>
+								<div class="col-md-4">
+									<select class="form-control" name="tax" id="tax">
+										<option value="Taxwise">Taxwise</option>
+										<option value="Crosslink">Crosslink</option>
+										<option value="SimpleTax">SimpleTax</option>
+										<option value="ProSeries">ProSeries</option>
+										<option value="Lacerte">Lacerte</option>
+										<option value="ATX">ATX</option>
+										<option value="TurboTax">TurboTax</option>
+										<option value="Drake">Drake</option>
+										<option value="Ultra Tax">Ultra Tax</option>
+										<option value="Tax Act">Tax Act</option>
+										<option value="TaxSlayer">TaxSlayer</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="wizard-steps row">
+								<div class="col-md-4 text-center active">4. Bank</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="example-advanced-bankname"
+									class="control-label col-md-3">Bank Name</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-bankname" id="bank_name"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-routing"
+									class="control-label col-md-3">Routing</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-routing" id="bank_routing"
+										value="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-advanced-account"
+									class="control-label col-md-3">Account</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control ui-wizard-content"
+										name="example-advanced-account" id="bank_account"
+										value="">
+								</div>
+							</div>
+							<div class="form-group form-actions">
+								<div class="col-md-10 col-md-offset-2">
+                                                                    
+                                                                <div class="modal fade">
+                                                                  <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        <h4 class="modal-title">Warning</h4>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                        <p>Successfully Saved.</p>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+									 <input type="submit" value="Save" id="save"
+										class="btn btn-success ui-wizard-content ui-formwizard-button"    data-toggle="modal" data-target=".bs-modal-sm">
+								</div>
+							</div>
+													
+							<!-- END Form Buttons -->
+						</div>
+						<!-- END Form Content -->
+				</form>
+			</div>
+		</div>
+
+		<div class="col-sm-4 tab_left">
+			<form class="form-horizontal form-box remove-margin ui-formwizard"
+				method="post" action="page_form_wizard.html" id="advanced-wizard"
+				novalidate="novalidate">
+				<!-- Form Header -->
+				<h4 class="form-box-header">Controls</h4>
+				<!-- Form Content -->
+				<div class="form-box-content">
+					<!-- First Step -->
+					<div class="step ui-formwizard-content" id="advanced-first"
+						style="display: block;">
+						<div class="form-group row ">
+							<div class="col-md-2 button_control">
+								<div>
+									<a href="index.php/admin/mycompany/createUser"
+										class="btn btn-primary">New User</a>
+								</div>
+							</div>
+							<div class="col-md-2 button_control">
+								<div>
+									<a class="btn btn-success">View Users</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="col-sm-4 tab_left">
+		<form class="form-horizontal form-box remove-margin ui-formwizard"
+			method="post" action="page_form_wizard.html" id="advanced-wizard"
+			novalidate="novalidate">
+			<!-- Form Header -->
+			<h4 class="form-box-header">Add-on Fee</h4>
+			<div class="form-box-content">
+				<!-- First Step -->
+				<div class="step ui-formwizard-content" id="advanced-first"
+					style="display: block;">
+					<div class="form-group">
+						<label for="example-advanced-account"
+							class="control-label col-md-5">Add-on Fee</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control ui-wizard-content"
+								name="example-advanced-account" id="addon" value="">
+						</div>
+					</div>
+				</div>
+		</form>
+	</div>
+</div>
+
+<div class="col-sm-4 tab_left">
+	<form class="form-horizontal form-box remove-margin ui-formwizard"
+		method="post" id="advanced-wizard" novalidate="novalidate">
+		<h4 class="form-box-header">E-File</h4>
+		<div class="form-box-content">
+			<!-- First Step -->
+			<div class="step ui-formwizard-content" id="advanced-first"
+				style="display: block;">
+				<div class="form-group">
+					<label for="example-advanced-account"
+						class="control-label col-md-5">E-File Fee</label>
+					<div class="col-md-7">
+						<input type="text" class="form-control ui-wizard-content"
+							name="example-advanced-account" id="file" value="">
+					</div>
+				</div>
+			</div>
+	</form>
+</div>
+</div>
+
+<div class="col-sm-4 tab_left">
+	<form class="form-horizontal form-box remove-margin ui-formwizard"
+		method="post" id="advanced-wizard" novalidate="novalidate">
+		<h4 class="form-box-header">Audit Guard</h4>
+		<div class="form-box-content">
+			<!-- First Step -->
+			<div class="step ui-formwizard-content" id="advanced-first"
+				style="display: block;">
+				<div class="form-group">
+					<label for="example-advanced-account"
+						class="control-label col-md-5">AG Fee</label>
+					<div class="col-md-7">
+						<input type="text" class="form-control ui-wizard-content"
+							name="example-advanced-account" id="ag" value="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="example-advanced-account"
+						class="control-label col-md-5">AG Prep Fee</label>
+					<div class="col-md-7">
+						<input type="text" class="form-control ui-wizard-content"
+							name="example-advanced-account" id="agprep" value="">
+					</div>
+				</div>
+
+			</div>
+	</form>
+</div>
+</div>
+
+
+</div>
+
+<div id="forum-cat" class="tab-pane">
+
+	<div id="forum-forum" class="tab-pane active">
+
+		<div class="col-sm-8">
+			<form class="form-horizontal form-box remove-margin ui-formwizard"
+				method="post" id="advanced-wizard" novalidate="novalidate">
+				<!-- Form Header -->
+				<h4 class="form-box-header">
+					<i class="icon-user"></i> Your Account
+				</h4>
+
+				<!-- Form Content -->
+				<div class="form-box-content">
+					<!-- First Step -->
+					<div class="step ui-formwizard-content" id="advanced-first"
+						style="display: block;">
+						<div class="form-group">
+							<label for="example-advanced-username"
+								class="control-label col-md-3">Username</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-username" value="" disabled="disabled"
+									id="username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-role" class="control-label col-md-3">Role</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-role" id="role">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="example-advanced-firstname"
+								class="control-label col-md-3">First Name</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-firstname" id="first_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-middle"
+								class="control-label col-md-3">Middle Initial</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-middle" id="middle_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-lastname"
+								class="control-label col-md-3">Last Name</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-lastname" id="last_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-email"
+								class="control-label col-md-3">Email Address</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-email" id="email">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-phone"
+								class="control-label col-md-3">Phone</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-phone" id="phone">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="example-advanced-cellphone"
+								class="control-label col-md-3">Cell Phone</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-cellphone" id="cell_phone">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-address1_p"
+								class="control-label col-md-3">Address Line 1</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-address1_p" id="address_1_p">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-zipcode_p"
+								class="control-label col-md-3">Zip</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-zipcode_p" id="zipcode_p">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-city_p"
+								class="control-label col-md-3">City</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-city_p" id="city_p">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="example-advanced-state_p"
+								class="control-label col-md-3">State</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control ui-wizard-content"
+									name="example-advanced-state_p" id="state_p">
+							</div>
+						</div>
+
+						<div class="form-group form-actions">
+							<div class="col-md-10 col-md-offset-2">
+                                                            
+                                                             <div class="modal slide">
+                                                                  <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        <h4 class="modal-title">Warning</h4>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                        <p>Successfully Saved.</p>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                            
+                                                            
+								<input type="submit" value="Save" id="save_p"
+									class="btn btn-success ui-wizard-content ui-formwizard-button">
+								<input type="submit" value="Cancel" id="cancel"
+									class="btn btn-danger ui-wizard-content ui-formwizard-button">
+							</div>
+						</div>
+						<!-- END Form Buttons -->
+					</div>
+					<!-- END Form Content -->
+			</form>
+		</div>
+	</div>
+
+	<div class="col-sm-4 tab_left">
+		<form class="form-horizontal form-box remove-margin ui-formwizard"
+			method="post" action="page_form_wizard.html" id="advanced-wizard"
+			novalidate="novalidate">
+			<!-- Form Header -->
+			<h4 class="form-box-header">Password Info</h4>
+			<div class="form-box-content">
+				<!-- First Step -->
+				<div class="step ui-formwizard-content" id="advanced-first"
+					style="display: block;">
+					<div class="form-group">
+						<label for="example-advanced-account"
+							class="control-label col-md-5">Password</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control ui-wizard-content"
+								name="example-advanced-account" disabled="disabled" id="pass">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="example-advanced-account"
+							class="control-label col-md-5">New Password</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control ui-wizard-content"
+								name="example-advanced-account" id="new_pass">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="example-advanced-account"
+							class="control-label col-md-5">Confirm</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control ui-wizard-content"
+								name="example-advanced-account" id="re_new_pass">
+						</div>
+					</div>
+				</div>
+		</form>
+	</div>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+	var dataClient = [];
+        {dataLoad}
+	var url = 'index.php/admin/mycompany/edit/'+dataClient.uid;
+	function loadObject() {
+             loadClients();
+		/*$.post(url, {
+			load : 'yes'
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+			}
+			
+			loadClients();
+		}, "json");*/
+		//return false;
+	}
+
+	function loadClients() {
+		
+		$("#efin").val(dataClient.efin);
+		$("#company_name").val(dataClient.company_name);
+		$("#address_1").val(dataClient.business_addr_1);
+		$("#address_2").val(dataClient.business_addr_2);
+		$("#zipcode").val(dataClient.business_zip);
+		$("#city").val(dataClient.business_city);
+		$("#state").val(dataClient.business_state);
+                (dataClient.same_as === '1') ?  $("#example-checkbox1").attr("checked",true) : $("#example-checkbox1").attr("checked",false)  ;
+		$("#address_1_m").val(dataClient.mail_addr_1);
+		$("#address_2_m").val(dataClient.mail_addr_2);
+		$("#zipcode_m").val(dataClient.mail_zip);
+		$("#city_m").val(dataClient.mail_city);
+		$("#state_m").val(dataClient.mail_state);
+		$("#tax").val(dataClient.tax_software);
+		$("#bank_name").val(dataClient.bank_name);
+		$("#bank_routing").val(dataClient.bank_routing);
+		$("#bank_account").val(dataClient.bank_account);
+		$("#addon").val(dataClient.addon);
+		$("#file").val(dataClient.file);
+		$("#ag").val(dataClient.ag);
+		$("#agprep").val(dataClient.agprep);
+		
+		$("#username").val(dataClient.name);
+		$("#role").val(dataClient.role);
+		$("#first_name").val(dataClient.firstname);
+		$("#middle_name").val(dataClient.middlename);
+		$("#last_name").val(dataClient.lastname);
+		$("#email").val(dataClient.mail);
+		$("#phone").val(dataClient.phone);
+		$("#cell_phone").val(dataClient.mobile);
+		$("#address_1_p").val(dataClient.address);
+		$("#zipcode_p").val(dataClient.zipcode);
+		$("#city_p").val(dataClient.city);
+		$("#state_p").val(dataClient.state);
+                $("#pass").val(dataClient.pass);
+		
+		
+	}
+	function clickSave() {
+		$("#save").click(function() {
+
+			$.post(url, {
+				senddata : 'yes',
+                                uid:dataClient.uid,
+				company_name : $("#company_name").val(),
+				efin : $("#efin").val(),
+				address_1 : $("#address_1").val(),
+				address_2 : $("#address_2").val(),
+				zipcode : $("#zipcode").val(),
+				city : $("#city").val(),
+				state : $("#state").val(),
+				same_as : $("#example-checkbox1").is(':checked') ? 1 : 0,
+				address_1_m : $("#address_1_m").val(),
+				address_2_m : $("#address_2_m").val(),
+				zipcode_m : $("#zipcode_m").val(),
+				city_m : $("#city_m").val(),
+				state_m : $("#state_m").val(),
+				tax : $("#tax").val(),
+				bank_name : $("#bank_name").val(),
+				bank_routing : $("#bank_routing").val(),
+				bank_account : $("#bank_account").val(),
+				addon : $("#addon").val(),
+				file : $("#file").val(),
+				ag : $("#ag").val(),
+				agprep : $("#agprep").val()
+			}, function(data) {
+				if (typeof (data) == 'object') {
+					dataClient = data;
+                                        $('.fade').modal('show');
+				}
+				loadClients();
+			}, "json");
+
+			return false;
+		});
+	}
+	
+	function clickSaveProfile() {
+		$("#save_p").click(function() {
+
+			$.post(url, {
+				load_p : 'yes',
+				username : $("#username").val(),
+				role : $("#role").val(),
+				first_name : $("#first_name").val(),
+				middle_name : $("#middle_name").val(),
+				last_name : $("#last_name").val(),
+				email : $("#email").val(),
+				phone : $("#phone").val(),
+				cell_phone : $("#cell_phone").val(),
+				address : $("#address_1_p").val(),
+				zipcode : $("#zipcode_p").val(),
+				city : $("#city_p").val(),
+				state : $("#state_p").val(),
+                                pass : $("#new_pass").val() !== "" ? $("#new_pass").val() : $("#pass").val()
+			}, function(data) {
+				if (typeof (data) == 'object') {
+					dataClient = data;
+					$('.slide').modal('show');
+				}
+				loadClients();
+			}, "json");
+
+			return false;
+		});
+	}
+        
+        function same_check(){
+        
+            $('#example-checkbox1').change(function () {
+                 if($(this).is(":checked")){
+                    $("#address_1_m").val($("#address_1").val());
+                    $("#address_2_m").val($("#address_2").val());
+                    $("#zipcode_m").val($("#zipcode").val());
+                    $("#city_m").val($("#city").val());
+                    $("#state_m").val($("#state").val());
+                }else{
+                    $("#address_1_m").val("");
+                    $("#address_2_m").val("");
+                    $("#zipcode_m").val("");
+                    $("#city_m").val("");
+                    $("#state_m").val("");
+                }
+            });
+            
+        }
+
+	$(function() {
+		loadObject();
+		clickSave();
+		clickSaveProfile();
+                same_check();
+	});
+</script>

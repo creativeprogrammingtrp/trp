@@ -1,0 +1,16 @@
+<script language="javascript">
+$(function() {
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+});
+</script>
+<div style="clear:both; font-weight:bold">
+    Are you sure you want to delete this banner?
+</div>
+<div style="clear:both; padding-top:20px">
+	<input id="cancel" type="button" class="button" style="float:right; margin-left:10px; margin-right:5px" value="Cancel" align="center">
+    <input id="delete_acc" type="button" class="button" style="float:right;" align="center" value="Delete Banner" onclick="delete_banner({bid})">
+</div>

@@ -1,0 +1,523 @@
+<style>
+.personalInfoLeft {
+	width:30%;
+	}
+.personalInfoRight{
+	width:70%;
+	}
+.spRequired{
+        float :left;
+	}
+
+input[type=text]{
+    float: left;        
+     }
+input[type=password]{
+float: left;        
+}
+.tdTitle {
+	text-transform:capitalize;
+	}
+.spRequired
+{
+	line-height: 30px;
+	padding-left: 2px;
+}
+.personalInfoRight input
+{
+	float:left;
+}
+.personalInfoRight label
+{
+	float:left;
+	line-height: 22px;
+	padding-left: 3px;
+}
+</style>
+<div id="title" style="margin-bottom:10px;">
+    <span style="color:#06C; font-size:14px; font-style:italic; margin-right:10px;">Please complete the required information accurately and in full</span>
+    <span style="color:#F00; font-size:12px; font-style:italic;">(* = Required)</span>
+</div>
+<form method="post" name="form_filter" onsubmit="return check_accountInfo()">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tbody>
+    	<tr>
+          <td width="50%" valign="top" class="tdTitle" ><h4>Your profile</h4> </td>
+          <td width="50%" valign="top" class="tdTitle" ><h4>Account Informations</h4></td>
+        </tr> 
+    	<tr>
+          <td width="50%" valign="top" > 
+            <table cellpadding="5" cellspacing="0" border="0" style="padding:20px;" width="100%">
+                <tbody>
+                    <tr class="_borderBottom">
+                        <td valign="top" class="personalInfoLeft">First Name</td>
+                        <td valign="top" class="personalInfoRight">
+                          <input tabindex="1" type="text" class="input-text" id="firstname" size="10" name="firstname" value="{firstname}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" autocomplete="off">
+                            <span class="spRequired">*</span>  
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">
+                        <td valign="top" class="personalInfoLeft">Last Name</td>
+                        <td valign="top" class="personalInfoRight">
+                          <input tabindex="2" type="text" class="input-text" id="lastname" size="10" name="lastname" value="{lastname}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"  autocomplete="off">
+                            <span class="spRequired">*</span>  
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">
+                      <td valign="top" class="personalInfoLeft">Phone</td>
+                      <td valign="top" class="personalInfoRight"> 
+                        <input tabindex="3" type="text" class="input-text" id="phone" size="10" name="phone" value="{phone}" style="width:200px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);" onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);"  autocomplete="off" />
+                      <span class="spRequired">*</span>
+                      </td>
+                    </tr>
+                    <tr class="_borderBottom">
+                        <td valign="top" class="personalInfoLeft">Address</td>
+                        <td valign="top" class="personalInfoRight">
+                         <input tabindex="4" type="text" class="input-text" id="address" size="10" name="address" value="{address}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"  autocomplete="off">
+                            <span class="spRequired">*</span>   
+                        </td>
+                    </tr>
+                     <tr class="_borderBottom">
+                        <td valign="top" class="personalInfoLeft">City</td>
+                        <td valign="top" class="personalInfoRight">
+                           <span class="field-with-placeholder" style="float:left; width:80px" id="cities_show"></span>  
+                      </td>
+                    </tr>
+                    <tr class="_borderBottom"> 
+                        <td valign="top" class="personalInfoLeft">Country</td>
+                        <td valign="top" class="personalInfoRight">
+                         <select name="slcountry" style="width:210px;" id="slcountry" onchange="showStates();showCities();" ></select>                  
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">
+                        <td valign="top" class="personalInfoLeft">State</td>
+                        <td valign="top" class="personalInfoRight">
+                           <span class="field-with-placeholder" style="float:left; width:80px" id="states_show"></span>  
+                      </td>
+                    </tr>
+                    <tr class="_borderBottom">
+                        <td valign="top" class="personalInfoLeft">Zip Code</td>
+                        <td valign="top" class="personalInfoRight">
+                          <input tabindex="6" type="text" class="input-text" id="zipcode" size="10" name="zipcode" value="{zipcode}" style="width:120px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);"  autocomplete="off">   
+                        </td>
+                    </tr>
+                </tbody>
+            </table>       
+            </td>
+          <td width="50%" valign="top"> 
+                <table cellpadding="5" cellspacing="0" border="0" style="padding:20px;"  width="100%">
+                    <tbody>
+                        <tr class="_borderBottom">
+                            <td valign="top" class="personalInfoLeft">Status</td>
+                            <td valign="top" class="personalInfoRight">
+                              <input type="radio" name="user_status[]" id="active_status" value="1" {check_1} autocomplete="off" />&nbsp;&nbsp;<label>Active</label> 
+                              <input type="radio" name="user_status[]" id="block_status" value="0" style="margin-left:20px;" {check_0}  autocomplete="off"/>&nbsp;&nbsp;<label>Block</label> 
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td valign="top" class="personalInfoLeft">Role</td>
+                            <td valign="top" class="personalInfoRight">
+                            <div id="rolestemp" style="float:left"></div>     
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td valign="top" class="personalInfoLeft">Username</td>
+                            <td valign="top" class="personalInfoRight">
+                                <input tabindex="8" type="text" class="input-text" id="user_name" size="10" name="user_name" value="{user_name}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"  autocomplete="off">
+                                <span class="spRequired">*</span>
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td valign="top" class="personalInfoLeft">Email</td>
+                            <td valign="top" class="personalInfoRight">
+                             <input tabindex="9" type="text" class="input-text" id="email" size="10" name="email" value="{mail}" style="width:200px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" autocomplete="off">
+                                <span class="spRequired">*</span>    
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td valign="top" class="personalInfoLeft">Password</td>
+                            <td valign="top" class="personalInfoRight">
+                               <input tabindex="10" type="password" class="input-text" id="password" size="10" name="password" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" autocomplete="off">
+                                <span class="spRequired">*</span>  
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td valign="top" class="personalInfoLeft">Confirm Password</td>
+                            <td valign="top" class="personalInfoRight">
+                              <input tabindex="11" type="password" class="input-text" id="confirm_password" size="10" name="confirm_password" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" autocomplete="off">
+                                <span class="spRequired">*</span>   
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>       
+          </td>
+        </tr>
+        <tr>
+            <td colspan="2"  align="right" style=" padding-right:20px;">
+                <input type="button" value="Back" class="btn" style="margin-right:5px;" onclick="history.go(-1);" autocomplete="off"/>
+                <input type="submit" value="Submit" class="btn btn-primary" autocomplete="off" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<input type="hidden" id="ukey" name="ukey" value="{key}" autocomplete="off" />
+<div style="clear:both; padding-top:20px; width:100%; height:30px; display:none" id="loadingbt" align="right">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>
+</form>
+
+<script language="javascript">
+var dataCountries = [];
+{varCountry}
+{varState}
+{varcity}
+function loadDataCountries(){
+	{dataCountries}
+	showCountriesListing();
+		
+}
+function showCountriesListing(){
+	var st = '';
+	var elSel = document.getElementById('slcountry');
+	var ct=country;
+	
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != '')
+		elSel.value = ct;
+}
+function showStates(){
+	var st = '';	
+	var country_value = document.getElementById("slcountry").value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" style="width:130px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+                                
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="state" size="10" name="state" value="" style="width:120px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';	
+			}
+			break;	
+		}
+	}
+	$("#states_show").empty().append(st);
+}
+
+function setstate()
+{  
+        document.getElementById("state").value=state;
+}
+
+function showCities(){
+    var ct ='';
+    var country_value = document.getElementById("slcountry").value;
+    for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				var cities = dataCountries[i].cities;
+				ct += '<select id="city" name="city" style="width:130px">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input tabindex="5" type="text" class="input-text" id="city" size="10" name="city" value="" style="width:120px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';	
+			}
+			break;	
+		}	
+	}
+        $("#cities_show").empty().append(ct);
+}
+
+function setcity(){
+    $("#city").val(city);
+}
+
+function check_accountInfo(){
+	var checkError = false;
+	if($('#firstname').val() == ''){
+		$('#firstname').css("background", '#ffffd5');
+		hidelabelfocus("firstname_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("firstname"));	
+			document.getElementById("firstname").focus();	
+		}
+	}
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#lastname').val() == ''){
+		$('#lastname').css("background", '#ffffd5');
+		hidelabelfocus("lastname_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("lastname"));	
+			document.getElementById("lastname").focus();	
+		}
+	}
+	if($('#phone').val() == ''){
+		$('#phone').css("background", '#ffffd5');
+		hidelabelfocus("phone_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("phone"));	
+			document.getElementById("phone").focus();	
+		}
+	}
+	if($('#address').val() == ''){
+		$('#address').css("background", '#ffffd5');
+		hidelabelfocus("address_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("address"));	
+			document.getElementById("address").focus();	
+		}
+	}
+	if($('#city').val() == ''){
+		$('#city').css("background", '#ffffd5');
+		hidelabelfocus("city_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("city"));	
+			document.getElementById("city").focus();	
+		}
+	}
+	if($('#state').val() == ''){
+		$('#state').css("background", '#ffffd5');
+		hidelabelfocus("state_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("state"));	
+			document.getElementById("state").focus();	
+		}
+	}
+	if($('#zipcode').val() == ''){
+		$('#zipcode').css("background", '#ffffd5');
+		hidelabelfocus("zipcode_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("zipcode"));	
+			document.getElementById("zipcode").focus();	
+		}
+	}else{
+		var msg = isValidZip($('#zipcode').val(),'US');
+		if(msg != ""){
+			$('#zipcode').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("zipcode"));	
+				document.getElementById("zipcode").focus();	
+			}
+		}		
+	}
+	if($('#user_name').val() == ''){
+		$('#user_name').css("background", '#ffffd5');
+		hidelabelfocus("user_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("user_name"));	
+			document.getElementById("user_name").focus();	
+		}
+	}
+	if($('#email').val() == ''){
+		$('#email').css("background", '#ffffd5');
+		hidelabelfocus("email_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("email"));	
+			document.getElementById("email").focus();	
+		}
+	}else{
+		var msg = isValidEmail($('#email').val());
+		if(msg != ""){
+			$('#email').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("email"));	
+				document.getElementById("email").focus();	
+			}
+		}		
+	}
+	if($("#password").val() != '')
+	{
+		if(!passwordStrength(document.getElementById("password"))){
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}
+		}
+		else if(trim($('#password').val())!=trim($('#confirm_password').val())){
+			$('#confirm_password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("confirm_password"));	
+				document.getElementById("confirm_password").focus();	
+			}
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	var user_status_value = 1;
+	var user_status = document.getElementsByName("user_status[]");
+	for(var i = 0; i < user_status.length; i++){
+		if(user_status[i].checked == true){
+			user_status_value = user_status[i].value;
+			break;	
+		}	
+	}
+	var userole = 2;
+	var roles = document.getElementsByName("roles[]");
+	for(var i = 0; i < roles.length; i++){
+		if(roles[i].checked == true){
+			userole = roles[i].value;
+			break;
+		}
+	}
+	
+	//clients_select
+	var obj_user 		= new Object();
+	obj_user.ukey 		= document.getElementById("ukey").value;
+	obj_user.firstname 	= $('#firstname').val();
+	obj_user.lastname	= $('#lastname').val();
+	obj_user.phone 		= $('#phone').val();
+	obj_user.address 	= $('#address').val();
+	obj_user.city 		= document.getElementById("city").value;
+	obj_user.country = document.getElementById("slcountry").value;
+	obj_user.state = document.getElementById("state").value;		
+	obj_user.zipcode 	= $('#zipcode').val();
+	obj_user.name 		= $('#user_name').val();
+	obj_user.mail 		= $('#email').val();
+	obj_user.pass 		= $('#password').val();
+	obj_user.status 	= user_status_value;
+	obj_user.rid 		= userole;
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/user/administrators/edit", {
+		saveUser: obj_user
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				if(data.error == 'User name already exists! Please, choose another.')
+				{
+						document.getElementById("name").value ="";
+						document.getElementById("name").focus();
+				}
+				alert(data.error);	
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/user/administrators';
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+	
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));			
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}		
+		break;
+	case 'email':
+		var msg = isValidEmail($('#email').val());	
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}	
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			hidelabelfocus(o.id+"_label");
+			return false;
+		}
+		break;
+	}
+}
+
+var dataRoles = [];
+function loadDataRoles(){
+	$.post("index.php/user/administrators/loadDataRoles", {
+		loadDataRoels:'yes'
+	},function(data){
+		if(typeof(data) == 'object'){
+			dataRoles = data;
+		}
+		showDataRoles();
+	}, "json");
+	
+}
+
+function showDataRoles(){
+	var rid = 0;
+	{varRid}
+	var str = '';
+	if(dataRoles.length > 0){
+		str += '<table cellpadding="0" cellspacing="0" border="0">';
+		for(var i = 0; i < dataRoles.length; i++){
+			var check_ = '';
+			if(parseInt(dataRoles[i].rid, 10) == rid){
+				check_ = 'checked="checked"';	
+			}
+			str += '	<tr>';
+			str += '		<td align="left" valign="middle"><input type="radio" name="roles[]" '+check_+' class="input-checkbox" value="'+dataRoles[i].rid+'" /></td>';
+			str += '		<td align="left" valign="middle" style="padding-left:5px">'+dataRoles[i].name+'</td>';
+			str += '	</tr>';		
+		}
+		str += '</table>';		
+	}
+	$("#rolestemp").empty().append(str);
+}
+
+$(function() {
+	clearForms();
+	loadDataCountries();
+	loadDataRoles();
+	showStates();
+        showCities();
+        setstate();
+        setcity();
+});
+
+</script>

@@ -1,0 +1,246 @@
+<!-- <div style="padding-top:40px;margin-bottom:40px; padding-left:24px;" class="col-md-6"><img src="../backend/img/bank_products_title.png" alt="Bank Products"></div> -->
+<div class="col-md-6" style="padding-top:29px;margin-bottom:29px; padding-left:24px;"><h2 style="margin:0px; color:#54565F;"><i class="icon-library2"></i> &nbsp;Bank Products</h2></div>
+<div id="printcheckdiv" style="padding-top:24px; margin-bottom:26px; padding-left:24px;" class="col-md-6 text-right">
+
+<button class="btn btn-info btn-lg print_check" type="button" id="print" value="Print" style="margin-right:0px; display:none; float:right;">
+         <i class="icon-print"></i> Print Check
+</button>
+
+
+
+<!-- <button class="btn btn-success btn-lg" type="button" id="newapp" value="New App" onclick="top.location='index.php/admin/clientcenter/newapp'">
+        <i class="icon-plus-sign"></i> New App  
+</button>
+ -->
+
+</div>
+<div style="clear:both"></div>
+
+<div id="modal_check_for_print" class="modal slide" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="glyphicon-bank"></i> Print Check</h4>
+            </div>
+            <div class="modal-body" id="body_check_for_print" style="padding:0px; " >
+             Loading Applications ...
+            </div>
+        </div>
+     </div>
+</div>
+            
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#recent_application" onclick="ChangeContent(17);">Recent Application</a></li>
+    <li class=""><a href="#pending_funds"  onclick="ChangeContent(22);">Pending Funds</a></li>
+    <li class=""><a href="#ready_print"  onclick="ChangeContent(23);">Ready to Print</a></li>
+    <li class=""><a href="#printed_checks">Printed Checks</a></li>
+    <li class=""><a href="#all_applications" onclick="ChangeContent(24);" >All Applications</a></li>
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="recent_application" class="tab-pane active tab-pane-width">
+    
+    </div>
+    <div id="pending_funds" class="tab-pane tab-pane-width" >
+    <!-- New App tab -->
+    	
+                     <!-- End New App tab -->
+                     <div class="clear1"></div>
+     </div>
+<div id="ready_print" class="tab-pane tab-pane-width">
+    <!-- New App tab -->
+    <!-- End New App tab -->
+    <div class="clear1"></div>
+</div>
+<div id="printed_checks" class="tab-pane tab-pane-width">
+   <!-- New App tab -->
+    	<table id="example-datatables3" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="hidden-xs hidden-sm">Name</th>
+                                <th class="hidden-xs hidden-sm">Contact Info</th>
+                                <th class="hidden-xs hidden-sm">Products</th>
+                                <th class="hidden-xs hidden-sm">Net Refund</th>
+                                <th class="hidden-xs hidden-sm">Created Date</th>
+                                <th class="hidden-xs hidden-sm">Status</th>
+                                <th> Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            
+                           
+                           </tbody>
+                     </table>
+                     <!-- End New App tab -->
+                     <div class="clear1"></div>
+</div>
+<div id="all_applications" class="tab-pane tab-pane-width">
+    <!-- New App tab -->
+    	
+                     <!-- End New App tab -->
+                     <div class="clear1"></div>
+</div>
+
+<script>
+
+function showRecentApplication(){
+	$.ajax({
+                url: 'index.php/admin/clientcenter/showRecentApplication?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#recent_application").empty().append(message);
+                        $(".print_check").css('display','none');
+                        return false;
+                }
+	});	
+    }
+    
+function showPendingFundsApplication(){
+	$.ajax({
+                url: 'index.php/admin/clientcenter/showPendingFundsApplication?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#pending_funds").empty().append(message);
+                        $(".print_check").css('display','none');
+                        return false;
+                }
+	});	
+    }  
+    
+function showReadyToPrintApplication(){
+	$.ajax({
+                url: 'index.php/admin/clientcenter/showReadyToPrintApplication?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#ready_print").empty().append(message);
+                        $(".print_check").css('display','block');
+                        return false;
+                }
+	});	
+} 
+
+function showAllApplication(){
+	$.ajax({
+                url: 'index.php/admin/clientcenter/showAllApplication?ajax=1',
+                cache: false,
+                success: function(message){
+                        $("#all_applications").empty().append(message);
+                        $(".print_check").css('display','none');
+                        return false;
+                }
+	});	
+}
+
+
+    
+function printCheckModal(){
+    $(".print_check").click(function(){
+    	
+    	var arr = [];
+    	var i = 0;
+    	    $('.ready_to_print_check:checked').each(function(){        
+    	    	arr[i++] = $(this).val();	
+    	    });
+    	    
+    	    var ids = arr.join(","); 
+    	    
+    	    $.ajax({
+                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplication?ajax=1&ids='+ids+'',
+                cache: false,
+                success: function(message){
+                //	alert(message);
+                        $("#body_check_for_print").empty().append(message);
+                      //  $(".print_check").css('display','block');
+                        return false;
+                }
+			});	
+    	 
+    	
+    	$("#modal_check_for_print").modal('show');
+    });
+}
+
+
+
+
+
+            $(function() {
+            	printCheckModal();
+            	//printCheckModal1();
+            	showRecentApplication();
+                /* Initialize Datatables */
+               /* $('#example-datatables').dataTable(
+                		
+                		{"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]
+                		
+                		});*/
+                /*
+                		var oTable = $('#allapptable').dataTable();
+        				var oTableTools = new TableTools( oTable, {
+        					"buttons": [
+        						"copy",
+        						"csv",
+        						"xls",
+        						"pdf",
+        						{ "type": "print", "buttonText": "Print me!" }
+        					]
+        				});
+        				$('#new_application').before( oTableTools.dom.container );
+        				
+        				var oTable1 = $('#example-datatables1').dataTable();
+        				var oTableTools1 = new TableTools( oTable1, {
+        					"buttons": [
+        						"copy",
+        						"csv",
+        						"xls",
+        						"pdf",
+        						{ "type": "print", "buttonText": "Print me!" }
+        					]
+        				});
+        				$('#pending_funds').before( oTableTools1.dom.container );
+        				
+        				var oTable2 = $('#example-datatables2').dataTable();
+        				var oTableTools2 = new TableTools( oTable2, {
+        					"buttons": [
+        						"copy",
+        						"csv",
+        						"xls",
+        						"pdf",
+        						{ "type": "print", "buttonText": "Print me!" }
+        					]
+        				});
+        				$('#ready_print').before( oTableTools2.dom.container );
+        				*/
+               
+               		
+        				/*$('#example-datatables1').dataTable({
+                	"sDom": 'T<"clear">lfrtip',
+                	"oTableTools": {
+            			"aButtons": [ "xls", "pdf", "print" ]
+            		},
+            		"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]});
+                
+                $('#example-datatables2').dataTable({
+                	"sDom": 'T<"clear">lfrtip',
+                	"oTableTools": {
+            			"aButtons": [ "xls", "pdf", "print" ]
+            		},
+            		"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]});
+                */
+                $('#example-datatables3').dataTable({
+                	"sDom": 'T<"clear">lfrtip',
+                	"oTableTools": {
+            			"aButtons": [ "xls", "pdf", "print" ]
+            		},
+            		"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]});
+                
+               
+                
+             //   $('#print_check_list_table').dataTable();
+                    
+                
+                //$('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search App, Products ..');
+            });
+        </script> 
+</div>

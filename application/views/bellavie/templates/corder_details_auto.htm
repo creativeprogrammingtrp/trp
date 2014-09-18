@@ -1,0 +1,138 @@
+<style>
+.desc ul
+{
+	list-style-type: none;
+}
+</style>
+<div class="box_solar" style="clear:both">
+    <div style="width:100%; clear:both; overflow:hidden">
+        <table class="v3">
+        	 <thead>
+                <tr>
+                    <th align="left" valign="middle" class="th-per" >Order/Date/Status</th>
+                    <th align="left" valign="middle" class="th-per">Ship To Address</th>
+                    <th align="left" valign="middle" class="th-per">Billing Address</th>
+                    <th align="right" valign="middle" class="th-per">Credit Card</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td align="left" valign="top">Order #: {order_number}<br />Date: {order_date}<br />Status: {order_status}</td>
+                <td align="left" valign="top" style="padding-left:5px">{shippingName}<br>{shippingAddress}<br>{shippingCity}</td>
+                <td align="left" valign="top" style="padding-left:5px">{billingName}<br>{billingAddress}<br>{billingCity}<br /><a href="mailto:{billingEmail}">{billingEmail}</a></td>
+                <td align="right" valign="top" style="padding-left:5px"> {card_number}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="width:100%; clear:both; overflow:hidden; padding-top:20px" id="tableContainer">
+        <table  class="v3" id="items_detail_listing">
+            <thead>
+                <tr>
+                    <th align="left" valign="middle" class="th-per" style="width:35% !important; max-width: 500px;">Description</th>
+                    <th align="left" valign="middle" class="th-per">Price</th>
+                    <th align="center" valign="middle" class="th-per">Quantity</th>
+                    <th align="center" valign="middle" class="th-per">Return</th>
+                    <th align="right" valign="middle" class="th-per">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {ItemDetails}
+                <tr class="tr-row">
+                    <td align="left" valign="top" class="td-row">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border: none !important; max-width: 100%;">
+                            <tr style="border: none;">
+                                <td align="left" valign="top" width="100px" style="border:none !important;"><img src="{img}" border="0" /></td>
+                                <td align="left" valign="top" class="desc" style="border:none !important;">{desc}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td align="left" valign="middle" class="td-row">${price}</td>
+                    <td align="center" valign="middle" class="td-row">{qty_buy}</td>
+                    <td align="center" valign="middle" class="td-row">{qty_return}</td>
+                    <td align="right" valign="middle" class="td-row">${total}</td>
+                </tr>
+                {/ItemDetails}
+            </tbody>
+        </table>
+    </div>
+    <div style="clear:both; margin-top:5px; overflow:hidden" id="result_value"></div>
+    <div style="width:100%; clear:both; overflow:hidden; padding-top:20px" align="right">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="right" valign="middle"><b>Subtotal:</b></td>
+                <td align="right" valign="middle" style="padding-left:20px">${suptotal}</td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle"><b>Tax:</b></td>
+                <td align="right" valign="middle" style="padding-left:20px">${tax_item_total}</td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle"><b>{ship_label}:</b></td>
+                <td align="right" valign="middle" style="padding-left:20px">${shipping_fee}</td>
+            </tr>
+            <tr><td colspan="2" height="20px"></td></tr>	
+            <tr>
+                <td align="right" valign="middle"><b>TOTAL:</b></td>
+                <td align="right" valign="middle" style="padding-left:20px">${totalPrice}</td>
+            </tr>
+            
+            <!--insert more commission-->
+            <!--{mywallet}-->
+            {refund_row}
+        </table>
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px;" align="right" id="savebt">
+        <input type="button" value="Back" class="btn" onclick="history.go(-1);" style="margin-left:5px" />
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="okey" name="okey" value="@okey@" />
+<!--start_script-->
+<SCRIPT language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></SCRIPT>
+<script type="text/javascript">
+function showResult(){//Venues
+	var st = '';
+	for(var i = 0; i < Venues.length; i++){
+		st += '<div style="clear:both; padding-bottom:5px; margin-bottom:5px; overflow:hidden; border-bottom:1px dashed #CCC">';
+		st += '	<table cellpadding="0" cellspacing="0" border="0">';
+		st += '		<tr>';
+		st += '			<td align="left" valign="top" width="20px"><input type="checkbox" name="commission_arr[]" class="input-checkbox" value="'+Venues[i].value+'" onclick="check_obj_only(this)" style="margin-top:5px"/></td>';
+		st += '			<td align="left" valign="top">'+Venues[i].label+'</td>';
+		st += '		</tr>';
+		st += '	</table>';
+		st += '</div>';
+	}
+	if(Venues.length > 7){
+		st = '<div class="holder osX" style="overflow: auto; overflow-x: hidden; clear:both;"><div id="slides_result" class="scroll-pane" style="overflow-x: hidden; width:440px; height:298px; ">' + st + '</div></div>';	
+	}
+	$("#result_value").empty().append(st);
+	if(document.getElementById("slides_result")){
+		$("#slides_result").jScrollPane({showArrows:false, verticalGutter:0});
+	}
+}
+function printOrder(){
+	var okey = document.getElementById("okey").value;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: "index.php?q=print/odetails&ajax=1&block=yes&okey="+okey,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			var newWin=window.open('', '', 'width=1000,height=auto', false);
+			newWin.document.open();
+			newWin.document.write('<html><body onload="window.print()">'+html+'</body></html>');
+			newWin.document.close();
+		}
+	});
+}
+$(function() {   
+	$('#items_detail_listing').fixedtableheader();
+});
+</script>
+<!--end_script-->

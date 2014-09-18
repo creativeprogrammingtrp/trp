@@ -1,0 +1,162 @@
+<div class="box_solar">
+    <div style="clear:both; width:100%" id="shipments_list" align="left"></div>
+    <div style="clear:both; padding-top:30px; height:30px;" align="left">
+        {add_bt}
+    </div>
+</div>
+<script language="javascript">
+var data_packages = [];
+function loadObjPackages(){
+	data_packages = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/shipments", {
+		loadObj:'yes',
+		okey:document.getElementById("okey").value
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_packages = data;
+		}
+		loadPackages_list();
+	}, "json");
+	return false;
+}
+function loadPackages_list(){
+	var str_content = '';
+	var length_data = data_packages.length;
+	str_content += '<table class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Shipment ID</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Name</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Destination</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Ship /Estimated delivery date</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Tracking number</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">Label</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">Actions</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	str_content += '	<tbody>';
+	if(length_data > 0){
+		for(var i = 0; i < length_data; i++){
+			var obj = data_packages[i];
+			var button = '';
+			if(obj.edit == 'yes'){
+				button += '<a href="javascript:void(0)" onclick="editPackage(\''+obj.skey+'\','+obj.shipping_method+')">Edit</a>';	
+			}
+			if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+				}
+				button += '<a href="javascript:void(0)" onclick="delete_obj(\''+obj.skey+'\')">Delete</a>';	
+			}
+			var label = '';
+			if(obj.label != '' && obj.label != null){
+				var label = '<a href="javascript:void(0)" onclick="ViewLabel(\''+obj.skey+'\')">View</a>';
+			}
+			var Destination = '';
+			if(obj.destination_address != '' && obj.destination_address != null) Destination += obj.destination_address;
+			if(Destination != '') Destination += '<br>';
+			Destination += obj.destination_city + ', ' + obj.destination_state + ' ' + obj.destination_zipcode+', '+obj.destination_country+'<br>'+obj.desphone;
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="top" height="30px" class="td-row">'+obj.skey+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.destination_firstname + ' ' + obj.destination_lastname+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+Destination+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.ship_date+'<br>'+obj.expected_delivery+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.tracking_number+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+label+'</td>';
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+		}
+	}else{
+		str_content += '<tr class="tr-row">';
+		str_content += '<td align="left" valign="middle" height="30px" class="td-row" colspan="12">This order&acute;s products have not been organized into packages.</td>';
+		str_content += '</tr>';	
+	}
+	str_content += '</tbody>';
+	str_content += '</table>';
+	$("#shipments_list").empty().append(str_content);
+}
+function ViewLabel(skey){
+	window.open('index.php/print/label/print_label/'+skey);
+}
+function shipPackage(pkey){
+	$("#tab_3_content").empty();
+	var okey = document.getElementById("okey").value;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: "index.php/store/shipments/add/?ajax=1&okey="+okey+'&pkey='+pkey,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			$("#tab_3_content").append(html);
+		}
+	});
+	return false;
+}
+function editPackage(skey,Shipping_method){
+	var okey = document.getElementById("okey").value;
+	var url = '';
+	switch(parseInt(Shipping_method, 10)){
+		case 0:
+			url = "index.php/store/shipments/editmanually";
+			break;
+		case 1:
+			url = "index.php/store/shipments/editups";
+			break;
+		case 2:
+			url = "index.php/store/shipments/editusps";
+			break;		
+	}
+	
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: url+"/?ajax=1&okey="+okey+"&skey="+skey+"&shipping_method="+Shipping_method,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			$("#tab_3_content").empty().append(html);
+		}
+	});
+	return false;
+}
+function delete_obj(key){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete shipments");
+	showbox('box_popup');
+	var st = '<div style="clear:both; font-weight:bold">';
+	st += '	Are you sure you want to delete this shipment?';
+	st += '</div>';
+	st += '<div style="clear:both; padding-top:20px">';
+	st += '	<div id="cancel" class="button" style="float:right; margin-left:10px; margin-right:5px" align="center">Cancel</div>';
+	st += '	<div id="delete_acc" class="button" style="float:right;" align="center" onclick="delete_obj__(\''+key+'\')">Delete shipments</div>';
+	st += '</div>';
+	$("#content_popup").append(st);
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+	return false;
+}
+function delete_obj__(pkey){
+	var okey = document.getElementById("okey").value;
+	closeBox("box_popup");
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/shipments", {
+		delete_package:'yes',
+		pkey:pkey,
+		okey:document.getElementById("okey").value
+	},function(data){
+		ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+		ShowShipmentsTab();
+	}, "json");
+}
+$(function() {   
+	loadObjPackages();   
+});
+</script>

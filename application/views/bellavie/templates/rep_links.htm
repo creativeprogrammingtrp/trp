@@ -1,0 +1,66 @@
+<script type="text/javascript">
+var header_link  =  
+[
+	['home'],
+	['about'],
+	['businessResources'],
+	['charities'],
+	['events'],
+	['contact'],
+        ['support'],
+	['products_links','shopping','store/orders','store/autodelivery'],
+	['myaccount_links','user/myaccount','representatives/reports','user/hyperwallet']
+];
+function gotoOrder(){
+	window.location = 'index.php/store/orders';	
+}
+function gotoOrderDelivery(){
+	window.location = 'index.php/store/autodelivery';	
+}
+</script>
+<nav class="nav-box">
+    <!-- nav -->
+    <ul id="nav" class="nav">        
+        <li class="active"><a href="index.php/home">Home</a></li>
+        <li><a href="index.php/about">about</a></li>
+        <li>
+        	<a href="index.php/myaccount_links">my account</a>
+            <ul>
+            	<li><a href="index.php/user/myaccount" class = "submenu_title">My Profile</a></li>
+                <li> <a href="index.php/representatives/reports" class = "submenu_title">My Sponsor Tree & Commissions</a></li>
+                <li> <a href="index.php/user/hyperwallet" class = "submenu_title">My Wallet</a></li>
+            </ul>
+        </li>
+        <li><a href="index.php/businessResources">business resource</a></li>
+        <li><a href="index.php/events">events</a></li>
+        <li>
+        	<a href="index.php/products_links">products</a>
+            <ul>
+            	<li><a href="javascript:void(0)" onclick="gotoShopping()"  class = "submenu_title">Place an Order</a></li>
+                <li><a href="javascript:void(0)" onclick="gotoOrder()" class = "submenu_title">My Order</a></li>
+                <li><a href="javascript:void(0)" onclick="gotoOrderDelivery()" class = "submenu_title">Autoship</a></li>
+            </ul>
+        </li>
+        <li><a href="index.php/charities">charities</a></li>
+        <li><a href="index.php/contact">contacts</a></li>
+        <li><a href="index.php/support">supports</a></li>
+    </ul>
+    <select id="menu-select"  class="mobile-menu">
+        <option value="index.php/home">Home</option>
+        <option value="index.php/myaccount_links">My Account</option>
+        <option value="index.php/user/myaccount">- My Profile</option>
+        <option value="index.php/representatives/reports">- My Sponsor Tree & Commissions</option>
+        <option value="index.php/user/hyperwallet">- My HyperWallet (Paylution)</option>
+        <option value="index.php/businessResources">Business Resource</option>
+        <option value="index.php/events">Events</option>
+        <option value="index.php/products_links">Products</option>
+        <option value="javascript:void(0)" onclick="gotoShopping()" >- Place An Order</option>
+        <option value="javascript:void(0)" onclick="gotoOrder()" >- My Order</option>
+        <option value="javascript:void(0)" onclick="gotoOrderDelivery()" >- Autoship</option>
+        <option value="index.php/charities">Charities</option>
+        <option value="index.php/contact">Contacts</option>
+        <option value="index.php/support">Supports</option>
+    </select>
+</nav>
+
+		

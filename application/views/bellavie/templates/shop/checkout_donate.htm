@@ -1,0 +1,373 @@
+<div id="content_load">
+    <div class="row">
+        <div class="span12">
+            <div class="checkout-outer">
+                <div class="checkout-header">
+                    <h4><i class="icon-caret-right"></i> DONATE CHARITY</h4>
+                </div><!--end checkout-header-->
+                <div class="checkout-content">
+                	<div class="row-fluid">
+                        <div class="span2">
+            				{<!--img_source-->}
+                        </div>
+                        <div class="span9">	                	
+                            <h3><p class="product_title">{<!--product_name-->}</p></h3>
+                            <p>{<!--product_model-->}</p>		                     
+                            <p class="product_price">{<!--product_price-->}</p>		                     
+                            <p>{<!--product_origin-->}</p>
+                            <p>{<!--quatity-->}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <form method="post" id="payment" name="payment" class="form-horizontal">
+						<div class="row-fluid">
+                        	<div class="span6">
+                            	<h3>Informations</h3>
+                                <br><br>
+                            	<div class="control-group">
+                                    <label class="control-label" for="inputFirstName">First Name: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" id="cardholder_name" value="{<!--billing_Name-->}">
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputLastName">Last Name: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" id="last_name" value="{<!--billing_LastName-->}">
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputAdd">Address: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" id="address_street" value="{<!--billing_Address-->}">
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputCity">City: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" id="address_city" value="{<!--billing_City-->}" autocomplete="off" tabindex="" name="address_city"  dir="ltr" n="15">
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <div class="control-label">Country: <span class="text-error">*</span></div>
+                                    <div class="controls">
+                                      <select name="slcountry" id="slcountry" onchange="showStates();" ></select>
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <div class="control-label">State: <span class="text-error">*</span></div>
+                                    <div class="controls">
+                                      <div style="float:left" id="states_show"></div>
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPostCode">Zip Code: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" id="address_zip" value="{<!--billing_Zip-->}">
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputEmail">Email: </label>
+                                    <div class="controls">
+                                      <input type="text" id="email_address" value="{<!--billing_Email-->}">
+                                    </div>
+                                </div><!--end control-group-->
+                                
+                                <div class="control-group">
+                                    <label class="control-label" for="inputTel">Tel: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" id="phone" value="{<!--billing_Phone-->}" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);">
+                                    </div>
+                                </div><!--end control-group-->
+                            </div>
+                            <div class="span6">
+                            	<h3>Payment Information:</h3>
+                                <br><br>
+                                <div class="control-group chkbox">
+                                	<input type="checkbox" id="check_commission" onclick="showOrderValue()" class="input-checkbox" /> &nbsp;MyWallet Account: $<span id="MyWallet_value">0.00</span>
+                                </div><!--end control-group-->
+                                <div class = "control-group" id="loadVallet" style="margin-left:60px">
+                                	<h4 style="color:#F16325" >You save : ${total_commission} See MyWallet</h4>
+                                </div>
+                               <div id="creditCard">
+                                <div class="control-group">
+                                    <div class="control-label">
+                                      	<div class="divider-or" >OR</div>
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputFirstName">Card #: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      <input type="text" name="creditcard" value="" maxlength="16" autocomplete="off" id="creditcard">
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputFirstName">Exp: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      	<div style="float:left;">{<!--cc_Month-->}</div>
+                                        <div style="float:left; width:75px; text-align:center">&nbsp;/&nbsp;</div>
+                                        <div style="float:right;">{<!--cc_Year-->}</div>
+                                    </div>
+                                </div><!--end control-group-->
+                                <div class="control-group">
+                                    <label class="control-label" for="inputFirstName">CVC: <span class="text-error">*</span></label>
+                                    <div class="controls">
+                                      	<input type="text" style="width:70px; float:left" name="creditcard" value="" name="cc_Cvv" maxlength="4" id="cc_Cvv" autocomplete="off" type="text" onkeypress="return isNumberIntKey(event)">
+                                    	<div style="background:url(../images/cart_types.jpg); width:98px; height:19px; float:right; margin:3px 0px"></div>
+                                    </div>
+                                </div><!--end control-group-->
+                            </div>
+                                <hr>
+                                <h3><div style="clear:both; float:right; padding:6px 10px; font-weight:bold; color:#F16325" id="last_total">{<!--total-->}</div></h3>
+                            </div>
+                        </div>
+                        <input type="hidden" id="billing_country" name="billing_country" value="{@billing_country@}" />
+                        <input type="hidden" id="billing_state" name="billing_state" value="{@billing_state@}" />
+                        <input type="hidden" id="pkey" name="pkey" value="{@pkey@}" />
+                        <input type="hidden" id="qtt" name="qtt" value="{@qtt@}" />
+                        
+                        <!--insert code here  -->
+                        
+                        <input type="hidden" id="shipping_Name" name="shipping_Name" value="" />
+						<input type="hidden" id="shipping_Address" name="shipping_Address" value="" />
+						<input type="hidden" id="shipping_City" name="shipping_City" value="" />
+						<input type="hidden" id="shipping_State" name="shipping_State" value="" />
+						<input type="hidden" id="shipping_Country" name="shipping_Country" value="" />
+						<input type="hidden" id="shipping_Zip" name="shipping_Zip" value="" />
+						<input type="hidden" id="shipping_Phone" name="shipping_Phone" value="" />
+                        
+                        <!-- end insert code here -->
+                        
+                    </form><!--end form-->
+                </div><!--end checkout-content-->
+            </div><!--end checkout-outer-->
+        </div>
+    </div><!--end row-->
+    <div class="row">
+    	<div class="span12">
+        	<div class="control-group pull-right">
+                <div class="controls">
+	                <button type="submit" class="btn" onclick="window.history.back()">Back</button>
+                    <button type="submit" class="btn btn-primary" onclick="return check_submit();">Submit Donate</button>
+                </div>
+            </div><!--end control-group-->
+        </div>
+    </div>
+</div>
+<script language="javascript">
+function check_submit(){
+	var frm = document.payment;
+	if( trim(frm.cardholder_name.value)=="" || trim(frm.cardholder_name.value)=="First Name"){
+		alert("Please enter first name!");
+		frm.cardholder_name.focus();
+		return false;
+	}
+	if( trim(frm.last_name.value)=="" || trim(frm.last_name.value)=="Last Name"){
+		alert("Please enter last name!");
+		frm.last_name.focus();
+		return false;
+	}	
+	if( trim(frm.address_street.value)=="" || trim(frm.address_street.value)=="Billing Address"){
+		alert("Please enter billing address!");
+		frm.address_street.focus();
+		return false;
+	}
+	if( trim(frm.address_city.value)=="" || trim(frm.address_city.value)=="City / Town"){
+		alert("Please enter billing city!");
+		frm.address_city.focus();
+		return false;
+	}
+	if( trim(frm.states.value)==""){
+		alert("Please select billing state!");
+		frm.states.focus();
+		return false;
+	}
+	if( trim(frm.address_zip.value)=="" || trim(frm.address_zip.value)=="Zip Code"){
+		alert("Please enter billing zip code!");
+		frm.address_zip.focus();
+		return false;
+	}
+	if( trim(frm.phone.value)==""||trim(frm.phone.value)=="Phone Number"){
+		alert("Please enter billing phone number!");
+		frm.phone.focus();
+		return false;
+	}
+	if( trim(frm.email_address.value)==""||trim(frm.email_address.value)=="Email Address"){
+		alert("Please enter email address!");
+		frm.email_address.focus();
+		return false;
+	}
+	msg = isValidEmail(trim(frm.email_address.value));
+	if(msg != ""){
+		alert(invalid_email);
+		frm.email_address.focus();
+		return false;
+	}
+	loadOrderConfirm();
+	return false;
+}
+
+function loadOrderConfirm(){
+	var check_com = document.getElementById("check_commission").checked;
+	var check_commission = 0;
+	if(check_com) check_commission = 1;
+	
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/shop/cart/submitdonate",{
+		submit_donate:'yes',
+		billing_Name:$('#cardholder_name').val(),
+		billing_LastName:$('#last_name').val(),
+		billing_Address:$('#address_street').val(),
+		billing_City:$('#address_city').val(),
+		billing_State:$('#states').val(),
+		billing_Zip:$('#address_zip').val(),
+		billing_Country:$('#slcountry').val(),
+		billing_Phone:$('#phone').val(),
+		billing_Email:$('#email_address').val(),
+		cc_Card_Number:$('#creditcard').val(),
+		cc_Card_Month:$('#cc_month').val(),
+		cc_Card_Year:$('#cc_year').val(),
+		cc_Card_Cvc:$('#cc_Cvv').val(),
+		pkey:$("#pkey").val(),
+		qtt:$("#qtt").val(),
+		check_commission:check_commission,
+
+		shipping_Name:$('#shipping_Name').val(),
+		shipping_Address:$('#shipping_Address').val(),
+		shipping_City:$('#shipping_City').val(),
+		shipping_State:$('#shipping_State').val(),
+		shipping_Country:$('#shipping_Country').val(),
+		shipping_Zip:$('#shipping_Zip').val(),
+		shipping_Phone:$('#shipping_Phone').val()
+
+		
+	} ,function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(data != ''){
+			var _arrres	 = data.split('^');
+			if(_arrres[0] != 'incorrect'){
+				$("#content_load").empty().append(data);
+			}else{
+				if(_arrres[1]=='')
+					alert('Cannot connect to payment gateway.');
+				else
+					alert(_arrres[1]);
+			}
+		}
+	});
+	return false;
+}
+
+var dataCountries = [];
+function loadDataCountries(){
+	{if('load_countries'=='yes');}
+	showCountriesListing('slcountry');
+	$("#slcountry").val(document.getElementById("billing_country").value);
+	showStates();
+	$("#states").val(document.getElementById("billing_state").value);
+}
+function showCountriesListing(div){
+	var st = '';
+	var elSel = document.getElementById(div);
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null);
+		}catch(ex) {
+			elSel.add(elOptNew);
+		}		
+	}
+	$(elSel).val(ct);
+}
+function showStates(){
+	var st = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="states" name="states" style="width:120px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="states" size="10" name="states" value="" style="width:110px">';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+}
+/*function showOrderValue(){ 
+	var last_total = 0;
+	if(commission >0){
+		if(document.getElementById("check_commission").checked){
+			if(commission >= subtotal){
+				last_total = 0; 
+			}else{
+				last_total = parseFloat(subtotal - commission);
+				var str_note = 'Still short of $'+formatAsMoney(last_total)+' for your order and use credit card for the balance';
+				alert(str_note);
+			}
+			var str = '<div style="float:left; text-align:right; width:200px">Total: </div><div style="float:right; width:120px; text-align:right">$'+formatAsMoney(subtotal)+'</div>';
+			str += '<div style="padding-bottom:5px; float:left; clear:both; width:200px; border-bottom:1px solid #999; text-align:right">MyWallet Account: </div><div style="float:right; border-bottom:1px solid #999; width:120px; padding-bottom:5px; text-align:right">$'+formatAsMoney(commission)+'</div>';
+			str += '<div style="float:left; clear:both; padding-top:5px; width:200px; text-align:right">Total: </div><div style="float:right; width:120px; text-align:right; padding-top:5px;">$'+formatAsMoney(last_total)+'</div>';
+			$("#last_total").empty().append(str);
+		}else{
+			$("#last_total").empty().append('Total: $'+formatAsMoney(subtotal));	
+		}
+	}else{
+		if(document.getElementById("check_commission").checked){
+			var str_note = 'Still short of $'+formatAsMoney(subtotal)+' for your order and use credit card for the balance';
+			alert(str_note);	
+		}
+		$("#last_total").empty().append('Total: $'+formatAsMoney(subtotal));	
+	}
+}*/
+    
+{if('commission' == 'yes');}
+{if('subtotal' == 'yes');}    
+    
+function getCheckCommission(){
+	var check_commission = 0;
+	if(document.getElementById("check_commission")){
+		if(document.getElementById("check_commission").checked == true){
+			check_commission = 1;	
+		}	
+	}
+	return check_commission;
+}
+ 
+ function showOrderValue(){ 
+
+	var check_commission = getCheckCommission();
+	if(check_commission == 0){
+            $("#creditCard").show();
+	}else{
+                var commissions_2 = commission;
+		if(commissions_2 >= subtotal || subtotal == 0){
+                   $("#creditCard").hide();
+                }	
+		else{
+			 var str = 'Not enough funds.Please use Credit card';
+                         alert(str);
+                         document.getElementById("check_commission").checked = false;
+                         $("#creditCard").show();
+		}
+            }
+}
+
+$(function() {
+	if(commission > 0){
+		$("#MyWallet_value").empty().append(formatAsMoney(commission));	
+	}
+        showOrderValue();
+	loadDataCountries();
+	HideLoadingObj(document.getElementById("content_load"));
+});
+</script>

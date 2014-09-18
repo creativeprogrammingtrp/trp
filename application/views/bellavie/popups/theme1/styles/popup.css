@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* CSS Document  60205A */
+
+div.modal {
+    background-color: #7E7E7E;
+    border-color: #ca6597;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	
+	-moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=135, Strength=3, ShadowOpacity='0.60');
+    padding-bottom: 4px;
+    z-index: 32;
+	position: fixed;
+	left:50%;
+	top:50%;
+}
+.dialog, .modal, .iowa_window_div {
+    background-color: #7E7E7E !important;
+    border-color: #ca6597 !important;
+}
+div.modal-hd {
+    background-image: -moz-linear-gradient(center top , #494949, #7E7E7E) !important;
+	background-image: -webkit-gradient(linear, center bottom, center top, from(#7E7E7E), to(#494949)) !important;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFA46FDB, endColorstr=#FF4A0B8A, gradientType='0');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFA46FDB, endColorstr=#FF4A0B8A, gradientType='0')";
+    -webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+    color: #FFFFFF;
+    font-size: 12px;
+    padding: 8px 20px;
+    position: relative;
+	font-weight:bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+div.modal div.modal-hd span.close {
+    background: url(../images/common-leftrail-26061.png) no-repeat scroll 50% -358px transparent;
+    cursor: pointer;
+    height: 16px;
+    position: absolute;
+    right: 7px;
+    top: 5px;
+    width: 16px;
+}
+div.modal div.modal-bd {
+    border-radius: 4px 4px 4px 4px;
+    overflow: hidden;
+    padding: 10px;
+}
+span.default *, span.default, div.modal div.modal-bd {
+    -moz-user-focus: normal;
+    -moz-user-input: enabled;
+    -moz-user-select: text;
+}
+div.modal div.modal-bd, div.modal div.modal-ft {
+    background-color: #FFFFFF;
+    margin: 0px 4px;
+    position: relative;
+}
+div.modal div.modal-ft {
+    border-radius: 0px 0px 3px 3px;
+    padding: 16px;
+    text-align: right;
+}
+div.modal div.modal-bd, div.modal div.modal-ft {
+    background-color: #ffffff;
+    margin: 0px 4px;
+    position: relative;
+}

@@ -1,0 +1,424 @@
+<style>
+.table thead > tr > th {
+    /*background: none;*/
+}
+</style>
+<form class="form-horizontal remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+  
+            
+
+            
+                <div class="col-md-10 col-md-offset-2">
+
+                    <div id="modal_success" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            
+    <div class="col-md-12" style="margin: 0 0 0 13px; padding-top: 25px; width: 98%;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Employee</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-user"></i></span>
+        </header>
+        <div class="panel-body">
+		<!-- Panel start --> 
+        <table class="table table-striped" id="lists">
+
+       </table>
+       <br>
+       <!-- 
+        <div class="col-md-12">
+        
+                    <button class="btn btn-success" id="add_new_user" type="button" > &nbsp; &nbsp;  <i class="icon-plus-sign"></i> &nbsp; Add User &nbsp; &nbsp; </button>                      
+                </div>
+                 -->
+       </div>
+       </section>
+       </div>
+       
+       
+                            
+               
+       
+</form>
+<div id="modal_adduser" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Employee</h4>
+            </div>
+            <div class="modal-body">
+            	<form class="form-horizontal form-box remove-margin" method="post" id="addUserForm" >
+                    <div class="form-box-content">   
+                        <div class="step ui-formwizard-content">
+                        <div id="warninglogin" ></div>
+                            <div class="form-group">
+                                <label for="ptin" class="control-label col-md-4">PTIN #</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="add_ptin" value="" id="add_ptin">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name" class="control-label col-md-4">First Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="add_first_name" value="" id="add_first_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name" class="control-label col-md-4">Last Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="add_last_name" value="" id="add_last_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label col-md-4">Email Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="add_email" value="" id="add_email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_name" class="control-label col-md-4">User Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="add_user_name" value="" id="add_user_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label col-md-4">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="add_password" value="" id="add_password">
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="role" class="control-label col-md-4">Role</label>
+                                <div class="col-md-6">
+                                    <select id="add_role" name="state" class="form-control">
+                                        <option value="5">Employee</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-md-7"></div>
+                                <div class="col-md-offset-2">
+                                    <input type="submit" value="Save" id="save_user"
+                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                    <input type="button" value="Cancel" id="cancel_user"
+                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                </div>
+                            </div>
+                            <input type="hidden" name="cid" id="cid" value="" />
+                            <input type="hidden" name="author" id="author" />
+                        </div>
+                    </div>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	var dataClient = [];
+        var heads = ["#","PTIN #","Name","Email Address","Role","User Name","Status","Actions"];
+	var url = 'index.php/admin/mycompany';
+	function loadObject() {
+		{dataLoad}
+         loadClients();
+	}
+
+	function loadClients() {
+            var htm = ''; 
+            htm +='<thead>';
+                        htm +='<tr>';
+                            htm +='<th class="cell-small text-center">'+heads[0]+'</th>';
+                            htm +='<th>'+heads[1]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+ heads[3]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[5]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[6]+'</th>';
+                            htm +='<th class="cell-small text-center">'+heads[7]+'</th>';
+                        htm +='</tr>';
+            htm +='</thead>';
+            htm +='<tbody>';
+            
+            for(var i = 0 ; i < dataClient.length ; i++){
+                    var obj = dataClient[i];
+                    var role = (obj.rid == 5) ? "Employee" : "";
+                    var uid_ = obj.user_id;
+                    var cid = obj.cid
+                    var author = obj.author;
+                    var status = '' ;
+
+                    if(obj.status_ero == 0){    
+                   		status = 'Training';
+                   }else if(obj.status_ero == 1){
+                        status = 'Active';
+                   }else if(obj.status_ero == 2){
+                        status = 'Inactive';
+                   }
+
+                     htm +='<tr>';
+                     htm +='<td class="cell-small text-center">'+(i+1)+'</td>';
+                     htm +='<td class="cell-small text-center">'+obj.ptin+'</td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.legal_business_fname+' '+ obj.legal_business_lname +'</a></td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.email+'</a></td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+role+'</td>'
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.legal_business_name+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+status+'</td>';
+                     htm +='<td class="text-center">';
+                               
+                                  htm += '<a class="btn btn-xs btn-success edit_user" rel="tooltip" title="Edit" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+cid+'" onclick="editUser(\''+cid+'\',\''+author+'\')" value=""><i class="icon-pencil"></i></a> &nbsp; ';
+                                   htm += '<a class="btn btn-xs btn-danger" rel="tooltip" title="Delete" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Delete" id="delete_user" onclick="delete_user(\''+cid+'\',\''+author+'\')" ><i class="icon-trash"></i></a>';
+                               
+                        htm += '</td>'
+                   
+                   htm +='</tr>';
+            }
+           htm +=' </tbody>';
+   
+            $("#lists").empty().append(htm);
+	}
+    /*    
+        function add_new_user(){
+            $("#save_user").click(function(){
+                $.post("index.php/admin/settings/addUser", {
+			add : 'yes',
+                        ptin : $("#add_ptin").val(),
+                        first_name : $("#add_first_name").val(),
+						last_name : $("#add_last_name").val(),
+                        username : $("#add_user_name").val(),
+                        pass : $("#add_password").val(),
+                        add_email : $("#add_email").val(),
+						role : $("#add_role").val(),
+                        cid : $("#cid").val(),
+                        author:$("#author").val()
+   
+		}, function(data) {
+			if (typeof(data) == 'object') {
+				dataClient = data;
+                                $("#modal_adduser").modal('hide');
+				                $('#modal_success').modal('show');
+                                $(":input:not(input[type='button'])").val("");    
+			}
+			loadClients();
+		}, "json");
+
+            });
+             
+        }
+    */    
+        function delete_user(cid,uid){ 
+			if(confirm('Inactivate this account?')){
+				$.post("index.php/admin/settings/deleteUser", {
+						delete : 'yes',
+						author : uid,
+						cid : cid
+				}, function(data) {
+						if (typeof(data) == 'object') {
+								dataClient = data;      
+						}
+						loadClients();
+				}, "json");            
+				return false;
+			}
+        }
+        function editUser(cid,author){
+                for(var j = 0 ; j < dataClient.length ;  j++){
+                    var obj_edit = dataClient[j];
+                    if(cid == obj_edit.cid){
+                        $("#add_ptin").val(obj_edit.ptin);
+                        $("#add_user_name").val(obj_edit.legal_business_name);
+                        $("#add_first_name").val(obj_edit.legal_business_fname);
+                        $("#add_last_name").val(obj_edit.legal_business_lname);
+                        $("#add_email").val(obj_edit.email);
+                        $("#add_password").val(obj_edit.pass);
+                        $("#add_role").val(obj_edit.rid);
+                        $("#cid").val(cid);
+                        $("#author").val(author);
+                        $("#add_ptin").attr('disabled','disabled');
+                        $("#add_user_name").attr('disabled','disabled');
+                    }
+                }
+                $("#modal_adduser").modal('show');       
+           
+        }
+   
+        function getScriptBoostrap(){
+            $("[rel='tooltip']").tooltip();
+            $("#add_new_user").click(function(){
+		$("#modal_adduser").modal('show');	
+            });
+         $("#cancel_user").click(function(){
+			$("#modal_adduser").modal('hide');
+            });
+        }
+        
+	$(function() {
+		loadObject();
+        //add_new_user();
+        getScriptBoostrap();
+
+        /* Initialize Form Validation */
+    $('#addUserForm').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+            e.closest('.form-group').removeClass('has-success has-error').addClass('');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	add_ptin :{
+        		required: true,
+        		number: true
+        	},
+        	add_first_name : {
+                required: true,
+            },
+            add_last_name :{
+                required: true,
+            },
+            add_user_name :{
+                required: true,
+            },
+            add_password :{
+                required: true,
+            },
+            add_on_fee1 :{
+                required: true,
+                
+            },
+            add_email: {
+                required: true,
+                email: true
+            },
+        },
+        messages: {
+              
+        	add_ptin :{
+        		required: 'Please enter valid PTIN #.'
+            },
+            
+        	add_first_name :{
+        		required: 'Please enter your first name.'
+            },
+            add_last_name :{
+            	required: 'Please enter your last name.'
+            },
+            add_user_name :{
+            	required: 'Please enter your username.'
+            },
+            add_password :{
+            	required: 'Please enter only number!'
+            },
+            add_email: 'Please enter a valid email address',
+            
+        },
+        submitHandler: function(form) {
+            $.post("index.php/admin/settings/addUser", {
+            add : 'yes',
+            ptin : $("#add_ptin").val(),
+            first_name : $("#add_first_name").val(),
+            last_name : $("#add_last_name").val(),
+            username : $("#add_user_name").val(),
+            pass : $("#add_password").val(),
+            add_email : $("#add_email").val(),
+            role : $("#add_role").val(),
+            cid : $("#cid").val(),
+            author:$("#author").val()
+   
+        }, function(data) {
+            if (typeof(data) == 'object') {
+                dataClient = data;
+                $("#modal_adduser").modal('hide');
+               // $('#modal_success').modal('show');
+               // $(":input:not(input[type='button'])").val("");
+                loadClients();
+                
+                $("#add_ptin").val('');
+                $("#add_first_name").val('');
+                $("#add_last_name").val('');
+                $("#add_user_name").val('');
+                $("#add_password").val('');
+                $("#add_email").val('');
+                $("#warninglogin").empty().append();
+            }else{
+            	$("#warninglogin").empty().append($('<div class="alert alert-danger" style="padding-top:10px;margin-top:10px;border-radius:0px;border-right:0px;border-left:0px;" >Username is already in use.</div>'));
+            }
+            
+        }, "json");
+
+            return false;
+        }
+         
+    });
+        
+    //$('#lists').dataTable();  
+    $('#lists').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+     	"oTableTools": {
+ 			//"aButtons": [ "xls", "pdf","copy", "print" ]
+     		"aButtons": [
+						{
+						    "sExtends":     "xls",
+						    "sButtonText": "Excel	",
+                            "sFileName": "recentApplication-*.pdf",
+						    "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+						    
+						},
+                 		{
+                             "sExtends":     "pdf",
+                            // "sButtonClass": "btn btn-primary",
+                             "sButtonText": "PDF",
+                             "sFileName": "recentApplication-*.pdf",
+                             "sPdfOrientation": "landscape",
+                             "mColumns": [ 0, 1, 2, 3, 4, 5],
+                             
+                         },
+                         {
+                             "sExtends":     "print",
+                            // "sButtonClass": "btn btn-info",
+                             "sButtonText": "Print",
+                             "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+                             
+                         },
+                         
+                 		]
+ 		},
+ 		"aoColumnDefs": [
+ 		                { 'bSortable': false, 'aTargets': [0,6,7 ] }
+ 		             ]
+ 		/*"aaSorting": [],
+ 		"aoColumns": [
+ 		             { "bSortable": false },
+ 		            null,
+ 		             null,
+ 		             null,
+ 		             null,
+ 		            null,
+ 		           { "bSortable": false },
+ 		          { "bSortable": false }
+ 		           ]*/
+		//"aoColumns": [{ "bSortable": false },null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }]
+     } );
+    $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search Users');
+	});
+</script>

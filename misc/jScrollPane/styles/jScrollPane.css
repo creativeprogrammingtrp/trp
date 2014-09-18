@@ -1,0 +1,148 @@
+
+.jScrollPaneContainer {
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.jScrollPaneTrack {
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	height: 100%;
+	background: #aaa;
+}
+.jScrollPaneDrag {
+	position: absolute;
+	background: #666;
+	cursor: pointer;
+	overflow: hidden;
+}
+.jScrollPaneDragTop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.jScrollPaneDragBottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+a.jScrollArrowUp {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	/*background-color: #666;*/
+	height: 9px;
+}
+a.jScrollArrowUp:hover {
+	/*background-color: #f60;*/
+}
+
+a.jScrollArrowDown {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	/*background-color: #666;*/
+	height: 9px;
+}
+a.jScrollArrowDown:hover {
+	/*background-color: #f60;*/
+}
+a.jScrollActiveArrowButton, a.jScrollActiveArrowButton:hover {
+	/*background-color: #f00;*/
+}
+
+
+/* Stylesheet for my demo pages for jScrollPane - these styles aren't necessary for using jScrollPane and aren't specific to any particular example */
+a.jScrollArrowUp {
+	background: url(../images/arrow_up.png) no-repeat 0 0;
+	width:8px;
+	height:5px;
+}
+a.jScrollArrowUp:hover {
+	background: url(../images/arrow_up.png) no-repeat 0 0;
+}
+a.jScrollArrowDown {
+	background: url(../images/arrow_down.png) no-repeat 0 0;
+	width:8px;
+	height:5px;
+}
+a.jScrollArrowDown:hover {
+	background: url(../images/arrow_down.png) no-repeat 0 0;
+}
+
+.orange-bar .jScrollPaneTrack {
+	background: #f60;
+}
+.orange-bar .jScrollPaneDrag {
+	background: #00f url(../images/drag_grab.gif) no-repeat 50% 50%;
+}
+.orange-bar {
+	background: #ffffff;
+}			
+.holder {
+	float: left;
+}
+.scroll-pane {
+	overflow: auto;
+	float: left;
+}
+.tall {
+	height: 400px;
+}
+.osX .jScrollPaneTrack {
+	background: none;
+}
+.osX .jScrollPaneDrag {
+	background:url(../images/osx_drag_middle.png) transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/osx_drag_middle.png, sizingMethod='scale');
+	background-repeat:repeat-y;
+}
+.osX .jScrollPaneDragTop {
+}
+.osX .jScrollPaneDragBottom {
+}		
+.osX a.jScrollArrowUp {
+/*	height: 8px;
+	background:url(../images/osx_arrow_up.png) transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/osx_arrow_up.png, sizingMethod='scale');
+	background-repeat: no-repeat; */
+}
+.osX a.jScrollArrowUp:hover {
+	background-position: 0 0;
+}	
+.osX a.jScrollArrowDown {
+/*	height: 8px;
+	background:url(../images/osx_arrow_down.png) transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/osx_arrow_down.png, sizingMethod='scale');
+	background-repeat: no-repeat; */
+}		
+.osX a.jScrollArrowDown:hover {
+	background-position: 0 0;
+}
+
+.left .jScrollPaneTrack {
+	left: 0;
+	right: auto;
+}
+.left a.jScrollArrowUp {
+	left: 0;
+	right: auto;
+}
+.left a.jScrollArrowDown {
+	left: 0;
+	right: auto;
+}	
+/* IE SPECIFIC HACKED STYLES */
+* html .osX .jScrollPaneDragBottom {
+	bottom: -1px;
+}

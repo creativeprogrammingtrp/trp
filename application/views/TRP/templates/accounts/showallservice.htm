@@ -1,0 +1,118 @@
+<table class="table table-bordered" id="list_services">
+
+</table>
+<div id="modal_adduser" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add User</h4>
+            </div>
+            <div class="modal-body">
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                    <div class="form-box-content">   
+                        <div class="step ui-formwizard-content">
+                            <div class="form-group">
+                                <label for="ptin" class="control-label col-md-4">Logo</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-ptin" value="" id="add_ptin">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name" class="control-label col-md-4">Name Services</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-first_name" value="" id="add_first_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name" class="control-label col-md-4">Cost</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-last_name" value="" id="add_last_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label col-md-4">SB Sale Price</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-email" value="" id="add_email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_name" class="control-label col-md-4">ERO Sale Price</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ui-wizard-content" name="example-advanced-add_user_name" value="" id="add_user_name">
+                                </div>
+                            </div>
+      
+                            <div class="form-group form-actions">
+                                <div class="col-md-7"></div>
+                                <div class="col-md-offset-2">
+                                    <input type="button" value="Save" id="save_user"
+                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                    <input type="button" value="Cancel" id="cancel_user"
+                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	var dataClient = [];
+        var heads = ["#","Logo","Name","Cost","SB Price","ERO Price"];
+	function loadObject() {
+		{dataLoad}
+                loadClients();
+	}
+
+	function loadClients() {
+            var htm = ''; 
+            htm +='<thead>';
+                        htm +='<tr>';
+                            htm +='<th class="text-center">'+heads[0]+'</th>';
+                            htm +='<th>'+heads[1]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+ heads[3]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[5]+'</th>';
+                           
+                        htm +='</tr>';
+            htm +='</thead>';
+            htm +='<tbody>';
+            
+            for(var i = 0 ; i < dataClient.length ; i++){
+                   var obj = dataClient[i];
+                   
+                     htm +='<tr>';
+                     htm +='<td class="cell-small text-center">'+(i+1)+'</td>';
+                     htm +='<td class="cell-small text-center">'+obj.logo+'</td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.name+'</a></td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.cost+'</a></td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.sb_saleprice+'</td>'
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.ero_saleprice+'</td>';
+                   htm +='</tr>';
+            }
+           htm +=' </tbody>';
+ 
+            $("#list_services").empty().append(htm);
+	}
+
+        function getScriptBoostrap(){
+            $("[rel='tooltip']").tooltip();
+            $("#add_new_user").click(function(){
+		$("#modal_adduser").modal('show');	
+            });
+            $("#cancel_user").click(function(){
+		$("#modal_adduser").modal('hide');
+            });
+        }
+        
+	$(function() {
+		loadObject();
+                getScriptBoostrap();
+                
+	});
+</script>

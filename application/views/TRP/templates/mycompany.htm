@@ -1,0 +1,96 @@
+<div class="row">
+    <table class="table table-bordered" id="lists">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Username</th>
+                                <th class="hidden-xs hidden-sm"><i class="icon-envelope-alt"></i> Email</th>
+                                <th class="hidden-xs hidden-sm">Firstname</th>
+                                <th class="hidden-xs hidden-sm">Lastname</th>
+                                <th class="cell-small text-center"><i class="icon-bolt"></i> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--<tr>
+                               
+                                <td class="cell-small text-center">1</td>
+                                <td><a href="javascript:void(0)">username1</a></td>
+                                <td class="hidden-xs hidden-sm">user1@example.com</td>
+                                <td class="hidden-xs hidden-sm">Name</td>
+                                <td class="hidden-xs hidden-sm">Last</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn btn-xs btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Details"><i class="icon-info-sign"></i></a>
+                                        <a class="btn btn-xs btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Edit"><i class="icon-pencil"></i></a>
+                                        <a class="btn btn-xs btn-danger" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Delete"><i class="icon-remove"></i></a>
+                                    </div>
+                                </td>
+                            </tr>-->
+                           
+                           
+                        </tbody>
+                    </table>
+</div>
+
+
+
+<script type="text/javascript">
+	var dataClient = [];
+        var heads = ["#","Username","Email","Created Date","Status","Actions"];
+	var url = 'index.php/admin/mycompany';
+	function loadObject() {
+		$.post(url, {
+			load : 'yes'
+		}, function(data) {
+			if (typeof(data) == 'object') {
+				dataClient = data;
+			}			
+			loadClients();
+		}, "json");
+		return false;
+	}
+
+	function loadClients() {
+            var htm = ''; 
+            htm +='<thead>';
+                        htm +='<tr>';
+                            htm +='<th class="text-center">'+heads[0]+'</th>';
+                            htm +='<th>'+heads[1]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm"><i class="icon-envelope-alt"></i> '+heads[2]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[3]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                            htm +='<th class="cell-small text-center"><i class="icon-bolt"></i> '+heads[5]+'</th>';
+                        htm +='</tr>';
+            htm +='</thead>';
+            htm +='<tbody>';
+            
+            for(var i = 0 ; i < dataClient.length ; i++){
+                   var obj = dataClient[i];
+                   var status = (obj.status === '1') ? 'Active' : 'Block';
+                   var link = "index.php/admin/mycompany/edit/"+obj.uid;
+                   htm +='<tr>';
+                     htm +='<td class="cell-small text-center">'+(i+1)+'</td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.name+'</a></td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.mail+'</td>'
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.date_format+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+status+'</td>';
+                     
+                        htm +='<td class="text-center">';
+                                htm +='<div class="btn-group">';
+                                   htm += '<a class="btn btn-xs btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Details"><i class="icon-info-sign"></i></a>';
+                                  htm += '<a class="btn btn-xs btn-success" title="" data-toggle="tooltip" href="'+link+'" data-original-title="Edit" id="edit" value=""><i class="icon-pencil"></i></a>';
+                                   htm += '<a class="btn btn-xs btn-danger" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Delete"><i class="icon-remove"></i></a>';
+                               htm += '</div>';
+                        htm += '</td>'
+                   
+                   htm +='</tr>';
+            }
+           htm +=' </tbody>';
+           
+            $("#lists").empty().append(htm);
+	}
+	$(function() {
+		loadObject();
+   
+	});
+</script>

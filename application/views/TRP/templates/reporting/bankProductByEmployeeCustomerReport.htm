@@ -1,0 +1,158 @@
+<!-- New App tab -->
+<table id="bank_products_employee_customer_report_result" class="table table-striped"></table>
+<!-- End New App tab -->
+<div class="clear1"></div>
+<!-- For Edit Application -->
+
+<!-- End of Edit Application -->
+
+<!-- Javascript code only for this page -->            
+<script type="text/javascript">
+var dataClient = [];
+//var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","Action"];
+
+function loadObject() {
+    {dataLoad}
+    loadClients();
+}
+
+function loadClients() {
+    var htm = ''; 
+    htm +='<thead>';
+    	htm +='<tr>';
+    		htm +='<th rowspan="2" class="text-left">Name</th>';
+    		htm +='<th rowspan="2" class="text-left">Date Created</th>';
+    		htm +='<th rowspan="2" class="text-left">Deposit amount</th>';
+    		htm +='<th colspan="3"  class="text-center">Expected</th>';
+    		htm +='<th colspan="3"  class="text-center">Actual</th>';
+    		htm +='<th rowspan="2" class="text-left">Action</th>';
+    		//htm +='<th rowspan="2" class="text-left">Payment</th>';
+    		htm +='</tr>';
+    		htm +='<tr>';
+    		
+    		htm +='<th class="">Tax Prep</th>';
+    		htm +='<th  >Add Ons</th>';
+    		htm +='<th class="">Audit Guard</th>';
+    		
+    		htm +='<th class=" text-left">Tax Prep</th>';
+    		htm +='<th class=" text-left">Add Ons</th>';
+    		htm +='<th class=" text-left">Audit Guard</th>';
+    		
+    	htm +='</tr>';
+   
+    htm +='</thead>';
+    
+    
+    htm +='<tbody>';
+    
+    var totalapp_tax_preparation_fee = 0;
+    var totalapp_add_on_fee = 0;
+    var totalaudit_guard_fee = 0;
+    var totalapp_actual_tax_preparation_fee = 0;
+    var totalapp_actual_sb_fee = 0;  
+    var totalactual_audit_guard_fee = 0;
+    var totaldeposit_amount = 0;
+    
+    for(var i = 0 ; i < dataClient.length ; i++){
+           var obj = dataClient[i];
+           var uid = obj.uid;
+           var count = 0;
+           //var actuallTotal = 0;
+           //var expetTotal = 0;
+          
+           totalapp_tax_preparation_fee += parseFloat(obj.app_tax_preparation_fee);
+           totalapp_add_on_fee += parseFloat(obj.app_add_on_fee);
+           totalaudit_guard_fee += parseFloat(obj.audit_guard_fee);
+           totalapp_actual_tax_preparation_fee += parseFloat(obj.app_actual_tax_preparation_fee);
+           totalapp_actual_sb_fee += parseFloat(obj.app_actual_sb_fee);
+           totalactual_audit_guard_fee += parseFloat(obj.actual_audit_guard_fee);
+           totaldeposit_amount += parseFloat(obj.deposit_amount);
+            
+           var parent = 'body_edit_application_printed';
+           
+           var appststus = '';
+           if(obj.payment_status == '0')
+          	 appststus = 'Pending';
+           else if(obj.payment_status == '1')
+          	 appststus = 'Partial';
+           else if(obj.payment_status == '2')
+          	 appststus = 'Full';
+          
+           	//expetTotal = parseFloat(obj.app_bank_transmission_fee)+parseFloat(obj.app_tax_preparation_fee)+parseFloat(obj.app_sb_fee);
+           	//totalExptTotal += parseFloat(actuallTotal);
+           	
+            htm +='<tr>';
+           	
+            htm +='<td class="text-left"><strong>'+obj.first_name+' '+obj.last_name+'</strong><br>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';
+            htm +='<td class=" text-center ">'+obj.app_create_date+'</td>';
+            htm +='<td class="text-center border-right">'+toUSD(check_is_nan(obj.deposit_amount))+'</td>';
+        	
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+toUSD(check_is_nan(obj.app_tax_preparation_fee))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm  text-center">'+toUSD(check_is_nan(obj.app_add_on_fee))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center border-right">'+toUSD(check_is_nan(obj.audit_guard_fee))+'</td>';
+    		
+        	htm +='<td class="text-center">'+toUSD(check_is_nan(obj.app_actual_tax_preparation_fee))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+toUSD(check_is_nan(obj.app_actual_sb_fee))+'</td>';
+        	htm +='<td class="text-right text-center">'+toUSD(check_is_nan(obj.actual_audit_guard_fee))+'</td>';
+        	//htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+appststus+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
+        	htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editApplication(\''+obj.app_id+'\',\''+parent+'\')" >View</a>';
+        	htm +='</td>';
+            htm +='</tr>';
+   } 		
+   htm +=' </tbody>';
+   
+   htm +='<tfoot>';
+	htm +='<tr>';
+		htm +='<td class=" text-center" >Total</td>';
+		htm +='<td class=" text-right" ><span></span></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totaldeposit_amount))+'</span></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalapp_tax_preparation_fee))+'</span></td>';
+		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalapp_add_on_fee))+'</span></td>';
+		htm +='<td class="hidden-xs hidden-sm text-center"><span>'+toUSD(check_is_nan(totalaudit_guard_fee))+'</span></td>';
+		htm +='<td class="hidden-xs hidden-sm text-center"><span>'+toUSD(check_is_nan(totalapp_actual_tax_preparation_fee))+'</span></td>';
+		htm +='<td class="hidden-xs hidden-sm text-center"><span>'+toUSD(check_is_nan(totalapp_actual_sb_fee))+'</span></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalactual_audit_guard_fee))+'</span></td>';
+		htm +='<td class="text-center"></td>';
+	htm +='</tr>  ';
+htm +='</tfoot>';
+     
+    $("#bank_products_employee_customer_report_result").empty().append(htm);	
+    $("#state").empty().append('{states}');
+}
+
+$(function(){
+	loadObject();
+	
+
+    $('#bank_products_employee_customer_report_result').dataTable( {
+         	"sDom": 'T<"clear">lfrtip',
+         	"oTableTools": {
+     			//"aButtons": [ "xls", "pdf","copy", "print" ]
+         		"aButtons": [
+    						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                             { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		]
+     		},
+     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0 ] }],
+     		"bLengthChange": false,
+       		"bAutoWidth": false,  
+       		"aoColumns": [
+       		            { sWidth: '12%' },
+       		            { sWidth: '8%' },
+       		            { sWidth: '12%' },
+       		            { sWidth: '10%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '11%' },
+       		            { sWidth: '10%' },
+       		            { sWidth: '9%' },
+       		            { sWidth: '11%' },
+       		            { sWidth: '7%' }]
+         });
+
+	 
+	 $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	 
+});
+</script>

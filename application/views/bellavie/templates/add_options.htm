@@ -1,0 +1,140 @@
+<script language="javascript">
+function submitFormPopup(){
+	var checkError = false;
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	
+	if(checkError == true){
+		return false;	
+	}
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/attributes/saveOption", {
+		saveForm: 'yes',
+		akey:document.getElementById("akey").value,
+		name:$("#name").val(),
+		cost:$("#cost").val(),
+		price:$("#price").val(),
+		weight:document.getElementById("weight").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_saved);
+				clearForm();
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+function clearForm(){
+	if(document.getElementById("name")){
+		document.getElementById("name").value = '';
+	}
+	if(document.getElementById("weight")){
+		document.getElementById("weight").value = '0';
+	}
+	if(document.getElementById("cost")){
+		document.getElementById("cost").value = '0.00';
+	}
+	if(document.getElementById("price")){
+		document.getElementById("price").value = '0.00';
+	}
+}
+
+function clearDataForm(){
+	var check = true;
+	if(document.getElementById("name")){
+		if(document.getElementById("name").value != ''){
+			onkeydownInputText(document.getElementById("name"));	
+		}
+	}else check = false;
+	
+	if(check == true){
+		setTimeout(function () {
+			clearDataForm();
+		}, 70);
+	}
+}
+$(function() {
+	clearDataForm();
+});
+
+</script>
+<form method="post" name="tax_form" onsubmit="return submitFormPopup();">
+<div style="overflow:hidden">
+    <div class="box_solar">
+        <div style="clear:both; float:left">
+            <div style="font-weight:bold;">Name:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <!--<label id="name_label" class="placeholder" for="name"><span>Required</span></label>-->
+                <input tabindex="1" type="text" class="input-text" id="name" size="10" name="name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="Required">
+            </span>
+            <span style="clear:both; float:left;" class="note_text">This name will appear to customers on product add to cart forms.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">List position:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                {@weight@}
+            </span>
+            <span style="clear:both; float:left;" class="note_text">Options will be listed sorted by this value and then by their name. May be overridden at the product level.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">Default adjustments</div>
+            <span style="clear:both; float:left;" class="note_text">Enter a positive or negative value for each adjustment applied when this option is selected. Any of these may be overriden at the product level.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">Cost ($):</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <label id="cost_label" class="placeholder" for="cost"><span></span></label>
+                <input tabindex="2" type="text" class="input-text" id="cost" size="10" name="cost" value="0.00" style="width:150px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" onkeypress="return isNumberFloatKey(event)">
+            </span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">Price ($):</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <label id="price_label" class="placeholder" for="price"><span></span></label>
+                <input tabindex="2" type="text" class="input-text" id="price" size="10" name="price" value="0.00" style="width:150px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" onkeypress="return isNumberFloatKey(event)">
+            </span>
+        </div>
+        
+        <div style="float: right; clear:both; padding-top:30px; height:30px; margin-right:5px" align="right" id="savebt">
+            <input type="button" value="Back" class="btn" onclick="history.go(-1);" style="margin-left:5px" />
+            <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="margin-left:5px" />
+        </div>
+        <div style="float: right; clear:both; padding-top:30px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+   	</div>
+</div>
+<input type="hidden" id="akey" value="{@akey@}" />
+</form>
+
+
+
+
+

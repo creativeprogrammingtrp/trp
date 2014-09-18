@@ -1,0 +1,125 @@
+/* CSS Document */
+/*Change CSS*/
+.navbar
+{
+	overflow: visible;
+	position: relative;
+}
+.navbar .nav > li:first-child a
+{
+	font-size:12px;
+}
+.navbar .nav > li:first-child
+{
+	border-left: none;
+}
+/*Make menu*/
+.see_menus
+{
+	float: left;
+    position: relative;
+    width: 145px;
+    z-index: 997;
+	line-height:40px;
+	font-size:12px;
+	text-transform:uppercase;
+	background-color: #FE8F01;
+	margin: auto;
+	padding:auto;
+	overflow: visible;
+	height: 40px;
+}
+
+.see_menus a
+{
+	color: #848484;
+	display: block;
+	padding: 12px 22px 13px;
+}
+
+.see_menus > a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+
+.see_menus  a:hover
+{
+	text-decoration: none;
+}
+
+.see_menus li
+{
+	list-style: none;
+	position:relative;
+}
+
+.see_menus li  a
+{
+	color: #848484;
+	display: block;
+	padding: 12px 22px 13px;
+}
+
+.see_menus li:hover
+{
+	background-color: #fe8f01; 
+}
+.see_menus li:hover > a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+.see_menus ul
+{
+	color:#FFF;
+	display: none;
+	left: 250px;
+	margin: 0px;
+	width: 250px;
+	position: absolute;
+	top: 0px;
+	box-shadow: 0px 5px 20px 10px rgba(0,0,0,0.1);
+}
+
+.see_menus > ul
+{
+	top: 40px;
+	color:#FFF;
+	display: none;
+	left: 0px;
+	margin: 0px;
+	width: 250px;
+	box-shadow: 0px 5px 20px 10px rgba(0,0,0,0.1);
+}
+
+.see_menus:hover > ul
+{
+	display: block;
+}
+.see_menus ul > li
+{
+	border-top: 1px solid #e5e5e5;
+	height: 40px;
+	background-color: #FFF; 
+}
+.see_menus ul > li:first-child
+{
+	border: 0 none;
+}
+
+.see_menus li:hover > ul
+{
+	display: block;
+}
+.see_menus
+{
+	border-right: 1px solid #343434;
+}
+
+@media (max-width: 768px) {
+	#see_menus{
+		display: none;
+		}
+}

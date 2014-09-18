@@ -1,0 +1,219 @@
+<form method="post" name="tax_form" onsubmit="return submitFormPopup();">
+<div style="float:left; width:48%; overflow:hidden" align="left">
+	<div style="clear:both; overflow:hidden">
+        <div style="float:left; font-weight:bold; width:100px">Enabled :</div>
+        <div style="float:left"><input type="checkbox" id="status" value="1" checked="checked" /></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="float:left; font-weight:bold; width:100px; padding-top:3px">Name :</div>
+        <div style="float:left"><input type="text" id="label" value="" class="input-text" style="width:250px" /></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="float:left; font-weight:bold; width:100px; padding-top:3px">Handling fee :</div>
+        <div style="float:left; width:10px; padding-top:3px">$</div>
+        <div style="float:left"><input type="text" id="handling_fee" value="0" class="input-text" style="width:70px; text-align:right" onkeypress="return isNumberFloatKey(event)"/></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="clear:both; font-weight:bold">Description :</div>
+        <div style="clear:both">
+            <textarea id="description" style=" width:380px; height:60px; resize:none" class="input-text"></textarea>
+        </div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="clear:both; font-weight:bold">Shipping info (sent to customer with the order notification email) :</div>
+        <div style="clear:both">
+            <textarea id="shipping_info" style=" width:380px; height:60px; resize:none" class="input-text"></textarea>
+        </div>
+    </div>
+</div>
+<div style="float:right; width:52%; overflow:hidden" align="left">
+	<div style="clear:both; font-weight:bold">Shipping rate calculation settings - By countries/states module (fixed rates)</div>
+    <div style="clear:both; padding-top:5px" class="description_class">Allows to define unique shipping rates for countries and states.</div>
+    <div style="clear:both; padding-top:10px; overflow:hidden; border-bottom:1px solid #666; padding-bottom:10px">
+    	<div style="float:left; font-weight:bold; padding-top:3px">Please select a country :</div>
+        <div style="float:left; padding-left:10px">
+        	<select id="slcountry" onchange="changeCountry()"></select>
+        </div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+    	<div style="float:left; width:25px"><input type="radio" value="1" name="country_rate[]" checked="checked" /></div>
+        <div style="float:left; overflow:hidden">
+        	<div style="clear:both">Shipping rate is fixed for this country (input a value in your default currency) :</div>
+            <div style="clear:both; float:left; padding-top:3px; width:10px">$</div>	
+            <div style="float:left"><input type="text" id="country_rate_value" value="-1" class="input-text" style="width:70px; text-align:right" onkeypress="return isNumberFloatKey(event)"/></div>
+            <div style="clear:both" class="description_class">(please specify negative number to restrict shipping to this country, e.g. -1)</div>	
+        </div>
+    </div>
+    <div style="clear:both; padding-top:15px; overflow:hidden">
+    	<div style="float:left; width:25px"><input type="radio" value="0" name="country_rate[]" /></div>
+        <div style="float:left; overflow:hidden">
+        	<div style="clear:both">Shipping rates are defined by states :</div>
+            <div style="clear:both" class="description_class">(please specify negative shipping rate for a certain state to restrict shipping to it, e.g. -1)</div>
+            <div id="states_show" style="clear:both; overflow:hidden; padding-top:10px"></div>	
+        </div>
+    </div>
+</div>
+<div style="clear:both; padding-top:20px; height:30px;" id="savebt">
+	<input type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back">
+	<input type="submit" value="Save" name="submit" class="btn" style="margin-left:5px"/>
+</div>
+<div style="clear:both; padding-top:20px; width:100%; height:30px; display:none" id="loadingbt">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>
+</form>
+<script language="javascript">
+var dataCountries = [];
+var country_select = '';
+function loadDataCountries(){
+	{load_countries}
+	showCountriesListing();
+	showStates();	
+}
+function updateValue(){
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_select){
+			var country_rate = document.getElementsByName("country_rate[]");
+			for(var c = 0; c < country_rate.length; c++){
+				if(country_rate[c].checked == true){
+					dataCountries[i].rate_type = country_rate[c].value;
+					break;	
+				}	
+			}
+			dataCountries[i].rate = document.getElementById("country_rate_value").value;
+			if(dataCountries[i].states.length > 0){
+				for(var j = 0; j < dataCountries[i].states.length; j++){
+					var rate = 0;
+					if(document.getElementById(dataCountries[i].states[j].code)){
+						dataCountries[i].states[j].rate = document.getElementById(dataCountries[i].states[j].code).value;	
+					}	
+				}
+			}
+			break;
+		}
+	}
+}
+function changeCountry(){
+	updateValue();
+	var country_rate_value = -1;
+	var rate_type = 1;
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(typeof(dataCountries[i].rate) != 'undefined'){
+				country_rate_value = dataCountries[i].rate;	
+			}
+			if(typeof(dataCountries[i].rate_type) != 'undefined'){
+				rate_type = dataCountries[i].rate_type;	
+			}
+			break;
+		}
+	}
+	document.getElementById("country_rate_value").value = country_rate_value;
+	var country_rate = document.getElementsByName("country_rate[]");
+	for(var c = 0; c < country_rate.length; c++){
+		if(country_rate[c].value == rate_type){
+			country_rate[c].checked = true;	
+		}else{
+			country_rate[c].checked = false;		
+		}	
+	}
+	showStates();	
+}
+function showCountriesListing(){
+	var st = '';
+	var elSel = document.getElementById('slcountry');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != '')
+		elSel.value = ct;
+}
+function showStates(){
+	var st = '';
+	country_select = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_select){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<table cellpadding="0" cellspacing="0" border="0">';
+				for(var j = 0; j < states.length; j++){
+					var rate = -1;
+					if(typeof(states[j].rate) != 'undefined'){
+						rate = states[j].rate;	
+					}
+					st += '<tr>';
+					st += '    	<td align="left" valign="middle" style="padding-top:3px">'+states[j].name+' :</td>';
+					st += '    	<td align="left" valign="middle" style="padding-left:10px; padding-top:3px">$</td>';
+					st += '     <td align="left" valign="middle" style="padding-left:3px; padding-top:3px"><input type="text" value="'+rate+'" class="input-text" id="'+states[j].code+'" onkeypress="return isNumberFloatKey(event)" style="width:70px; text-align:right"/></td>';
+					st += '</tr>';
+				}
+                st += '</table>';
+			}else{
+				st +='< no states are defined for selected country >';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+}
+function submitFormPopup(){
+	var status = 1;
+	if(document.getElementById("status").checked == false) status = 0;
+	updateValue();
+	
+	var countries_post = [];
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].rate >= 0){
+			countries_post[countries_post.length] = dataCountries[i];	
+		}	
+	}
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/shipping/add/manually", {
+		saveShippingmethod: 'yes',
+		status:status,
+		label:$("#label").val(),
+		description:$("#description").val(),
+		shipping_info:$("#shipping_info").val(),
+		handling_fee:$("#handling_fee").val(),
+		dataCountries:countries_post
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(data == 'ok'){
+			alert(success_saved);
+			window.location = 'index.php/store/shipping';	
+		}
+	});
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+$(function() {
+	clearForms();
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+	loadDataCountries();
+});
+
+</script>

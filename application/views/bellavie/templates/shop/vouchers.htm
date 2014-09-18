@@ -1,0 +1,90 @@
+
+<style>
+.tr_order_details td{
+	padding:10px 5px 10px 5px;
+}
+.table_invoice p{
+	margin:0px;
+	padding:0px;}
+.td_info{
+	padding-top:20px;}
+.td_info p{
+	margin:0px;
+	padding:0px;
+	line-height:1.7em;
+	}
+.td_title{
+	color:#FFAB11;
+	text-transform:uppercase;
+	font-size:16px;
+	font-weight:bold;
+	padding-top:20px;
+	padding-bottom:10px;}
+.td_order_title{
+	width:12%;
+	font-style:italic;}
+.td_order_des{
+	width:38%;
+	padding-right:5px;}
+</style>
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+<tr>
+	<td align="center" valign="top">
+        <table cellpadding="0" cellspacing="0" border="0" width="600px" style="margin:0px auto 0px auto; border:1px solid #DDD" class="table_invoice">
+            <tr>
+                <td width="60%">
+                    <img src="../images/logo.png" alt="Bellavie Network" title="Bellavie Network" width="300px"/>
+                </td>
+                <td width="40%" style="padding:30px 10px 30px 10px;" bgcolor="#ffab11">
+                    <p >Order date: <span style="font-weight:bold;"><!--date--></span></p>
+                    <p >Expired date: <span style="font-weight:bold;"><!--voucher_expire--></span></p>
+                    <p >Voucher #: <span style="font-weight:bold;"><!--voucher_id--></span></p>
+                    <p >Member #: <span style="font-weight:bold;"><!--member_id--></span></p>
+                    <p style="font-size:18px; font-weight:bold; margin-top:20px;">VOUCHER INFORMATIONS</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top:1px solid #DDD">
+                    <table cellpadding="2" cellspacing="0" border="0" width="100%" class="table_order_details">
+                        <tr valign="top">
+                            <td class="td_title" align="right"><div style="font-size:60px; font-weight:100; padding-right:20px; color:#FFAB11;"><span style="font-size:60px; color:#FFAB11;">$</span><!--main_number--><span style="font-size:60px; color:#FFAB11;"><!--sub_number--></span></div></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            <td colspan="2" style="padding-top:20px;">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td colspan="5" class="td_title" style=" border-top:#000000 dotted 1px;">
+                           <!--voucher_title-->
+                           <br ><span style="font-size:11px; color:#666;"><!--voucher_origin--></span>
+                       </td>
+                    </tr>
+                    <tr class="tr_order_details" style=" font-size:12px; text-transform:capitalize; font-weight:bold;"  bgcolor="#ffab11">
+                        <td align="left" width="40%">Voucher</td>
+                        <td width="55%" align="left">Informations</td>
+                    </tr>
+                    <tr class="tr_order_details">
+                        <td valign="top">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td align="left" valign="top"><img width="200px" border="0" src="<!--url_img-->" /></td>
+                                    <td align="left" valign="top" style="padding-left:10px"><!--desc--></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td align="left" valign="top">
+                        	<div style="font-weight:100;">
+                                <!--voucher_content-->
+                            </div>
+                        </td>
+                    </tr>
+                </table>	
+            </td>
+            </tr>
+        </table>
+     </td>
+  </tr>
+</table>
+

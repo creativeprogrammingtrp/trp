@@ -1,0 +1,647 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Clientcenter_model extends CI_Model {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function loadBankingData() {
+        $data = array();
+        $query = $this->db->query("select * from master_ero  where uid = '" . $this->author->objlogin->uid . "'");
+        
+        if($query->num_rows() > 0){
+        	$data_load = $query->row_array();
+        }else{
+        	$data_load = array();
+        }
+        
+       
+        return $data_load;
+    }
+
+ function saveNewApplicationInfo() {
+
+ 	if($this->objlogin->parentUid != ""){
+ 		$parrentUid = $this->objlogin->parentUid;
+ 	}
+ 	else{
+ 		$parrentUid =$this->author->objlogin->uid;
+ 	}
+ 	
+ 	
+ 	
+ 	$data = array(
+ 			'uid' => $parrentUid,
+ 			'first_name' => $this->lib->escape($_POST['first_name']),
+ 			'last_name' => $this->lib->escape($_POST['last_name']),
+ 			'ss_number' => $this->lib->escape($_POST['ss_number']),
+ 			'dob' => $this->lib->escape($_POST['dob']),
+ 			'add_spouse' => $this->lib->escape($_POST['add_spouse']),
+ 			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+ 			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+ 			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+ 			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+ 			 
+ 			'street_address_1' => $this->lib->escape($_POST['street_address']),
+ 			/*'street_address_2' => $this->lib->escape($_POST['street_address2']),*/
+ 			 
+ 			'city' => $this->lib->escape($_POST['city']),
+ 			'state' => $this->lib->escape($_POST['state']),
+ 			'zip_code' => $this->lib->escape($_POST['zip_code']),
+ 			/*'country' => $this->lib->escape($_POST['country']),*/
+ 			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+ 			'email_add' => $this->lib->escape($_POST['email_add']),
+ 			'create_date' => $this->lib->getTimeGMT(),
+ 			'author_id' => $this->author->objlogin->uid,
+ 			);
+    
+	 	$this->db->insert("new_applicent", $data);
+	 	$lastApplicentId = $this->db->insert_id();
+ 	 
+	 	// get audit guard item if selected
+	 	$inputAuditgurdSeletecItems = $this->input->post('inputAuditgurdSeletecItems'); 
+	 	
+	 	if($inputAuditgurdSeletecItems != ''){
+	 		$auditItm = explode("~",$inputAuditgurdSeletecItems);
+	 		$auditprice = $auditItm[3];
+	 	}else{$auditprice = 0;}
+	 	
+	 	// Get Benefits item if selected
+	 	$inputSeletecItems1 = $this->input->post('inputSeletecItems'); //$this->lib->escape($_POST['inputSeletecItems']);
+	 	$indItm = explode("~",$inputSeletecItems1);
+	 	
+	 	// Get Insurance Item if selected
+	 	$Insitems = $this->lib->escape($_POST['inputInsurenceSeletecItems']);
+	 	$individualitems = explode('~',$Insitems);
+	 	
+    	$dataApp = array(
+    			'uid' => $parrentUid,
+    			'applicent_id' => $lastApplicentId,
+    			
+    			'app_total_refund_amt' => $this->lib->escape($_POST['total_refund_amt_3']),
+    			'app_tax_preparation_fee' => $this->lib->escape($_POST['tax_preparation_fee_3']),
+    			'app_bank_transmission_fee' => $this->lib->escape($_POST['bank_transmission_fee_3']),
+    			'app_sb_fee' => $this->lib->escape($_POST['sb_fee_3']),
+    			//'app_e_file_fee' => $this->lib->escape($_POST['e_file_fee_3']),
+    			'app_add_on_fee' => $this->lib->escape($_POST['add_on_fee_3']),
+    			
+    			'audit_guard_item' => $auditItm[0],
+    			'audit_guard_item_desc' => $auditItm[1],
+    			'audit_guard_img_source' => $auditItm[2],
+    			'audit_guard_fee' => $auditprice,
+    			
+    			'app_total_fees'  => $this->lib->escape($_POST['total_fees']),
+    			'app_refund_amt' => $this->lib->escape($_POST['net_refund_amt_3']),
+    			'app_benefit' => $this->lib->escape($_POST['total_benefit']),
+    			'app_net_refund_amt' => $this->lib->escape($_POST['final_net_refund']),
+    				
+    			'payment_method' => $this->lib->escape($_POST['payment_method']),
+    			'create_date' => $this->lib->getTimeGMT(),
+    			
+    			'card_number' => $this->lib->escape($_POST['card_number']),
+    			'app_bank_name' => $this->lib->escape($_POST['bank_name']),
+    			'app_account_no' => $this->lib->escape($_POST['acount_number']),
+    			'app_routing_no' => $this->lib->escape($_POST['routing_number']),
+    			
+    			'assign_acc_no' => '4234432342334534',
+    			'assign_routing_no' => '4232343433',
+    			'status' => '0',
+    			'payment_status' => '0',
+    			'author_id' => $this->author->objlogin->uid,
+    			
+    			'benefits_item' => $indItm[0],
+    			'benefits_item_desc' => $indItm[1],
+    			'benefits_img_source' => $indItm[2],
+    			'benefits_price' => $indItm[3],
+    			 
+    			'insurance_item' => $individualitems[0],
+    			//'insurance_item_desc' => $individualitems[1],
+    			'insurance_img_source' => $individualitems[1],
+    			//'insurance_price' => $individualitems[3],
+    			
+    			'app_from' => 'newApplication',
+    			
+    			
+    			
+    	);
+    	$this->db->insert("new_app", $dataApp);
+    	$lastAppId = $this->db->insert_id();
+    	
+    	$inputSeletecItems1 = $this->input->post('inputSeletecItems'); //$this->lib->escape($_POST['inputSeletecItems']);
+    	//echo $inputSeletecItems;
+    	//$inputSeletecItems = substr($inputSeletecItems1,1);
+    	//echo $inputSeletecItems;
+    	//echo "<br>";
+    	//$items = explode(",",$inputSeletecItems);
+    	//print_r($items);
+    	//exit;
+    	//foreach ($items as $itm){
+    		//$indItm = explode("~",$itm);
+    		$indItm = explode("~",$inputSeletecItems1);
+    		/*if($indItm[0] != 'Banking'){
+    		$data1 = array(
+	    			'app_id' => $lastAppId,
+	    			'uid' => $this->author->objlogin->uid,
+    				'prodcut_name' => $indItm[0],
+    				'short_desc' => $indItm[1],
+    				'img_source' => $indItm[2],
+    				'price' => $indItm[3],
+    		);
+    		}else{*/
+    			$data1 = array(
+    					'app_id' => $lastAppId,
+    					'uid' => $this->author->objlogin->uid,
+    					'prodcut_name' => $indItm[0],
+    					'short_desc' => $indItm[1],
+    					'img_source' => $indItm[2],
+    					'price' => $indItm[3],
+    					'create_date' => $this->lib->getTimeGMT()
+    			);
+    //	}
+    		
+    		$this->db->insert("new_app_product", $data1);
+    	//}
+    	
+    		
+    	//$inputAuditgurdSeletecItems = $this->input->post('inputAuditgurdSeletecItems');
+    	if($inputAuditgurdSeletecItems != ''){
+    	$auditItm = explode("~",$inputAuditgurdSeletecItems);
+    	$data2 = array(
+    			'app_id' => $lastAppId,
+    			'uid' => $this->author->objlogin->uid,
+    			'prodcut_name' => $auditItm[0],
+    			'short_desc' => $auditItm[1],
+    			'img_source' => $auditItm[2],
+    			'price' => $auditItm[3],
+    			'create_date' => $this->lib->getTimeGMT()
+    	);
+    	//	}
+    	$this->db->insert("new_app_product", $data2);
+    	}
+    	// add insurance Info 
+    	
+    	$Insitems = $this->lib->escape($_POST['inputInsurenceSeletecItems']);
+    	if($Insitems != ''){	
+	    	$individualitems = explode('~',$Insitems);
+	    	
+	    	$data3 = array(
+	    			 
+	    			'item' => $individualitems[0],  //$this->lib->escape($_POST['selectedItem']),
+	    			 
+	    			'create_date' => $this->lib->getTimeGMT(),
+	    			 
+	    			'status' => '0',
+	    			'payment_status' => '2',
+	    			'author_id' =>  $this->author->objlogin->uid
+	    			 
+	    	);
+	    	$this->db->insert("insurance", $data3);
+	    	 
+	    	$lastId = $this->db->insert_id();
+    	
+    	// 
+	    	$data4 = array(
+	    			'insurance_id' => $lastId,
+	    			'uid' => $lastApplicentId,
+	    	);
+	    	$this->db->insert("insurance_applicent", $data4);
+    	}
+    	
+    	
+    	
+    	// Send email to the customer
+    	
+    	//$to = 'zishanmomin@gmail.com';
+    	$to = $this->lib->escape($_POST['email_add']);
+    	$fromName = "ScaleFinancial.com";
+    	$fromEmail = "info@scalefinancial.com";
+    	$subject = 'New Application at scalefinancial.com';
+    	
+    	
+    	$headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    	$headers .= 'From: '.$fromName.'<'.$fromEmail.'>' . "\r\n";
+    	
+    	$first_name = $this->lib->escape($_POST['first_name']);
+    	$last_name = $this->lib->escape($_POST['last_name']);
+    	$app_total_refund_amt = $this->lib->escape($_POST['total_refund_amt_3']);
+    	$app_total_fees  = $this->lib->escape($_POST['total_fees']);
+    	$app_refund_amt = $this->lib->escape($_POST['net_refund_amt_3']);
+    	$app_benefit = $this->lib->escape($_POST['total_benefit']);
+    	$app_net_refund_amt = $this->lib->escape($_POST['final_net_refund']);
+    	 
+    	
+    	$html = "Dear {$first_name} {$last_name},<br><br>";
+    	$html .= "New application info submitted at scalefinancial.com.<br><br>";
+    	$html .= "<strong>Refund amount:</strong> ".$app_total_refund_amt. "<br>";
+    	$html .= "<strong>Total fees:</strong> ".$app_total_fees. "<br>";
+    	$html .= "<strong>Total Benefits:</strong> ".$app_benefit. "<br>";
+    	$html .= "<strong>Net Refund:</strong> ".$app_net_refund_amt. "<br>";
+    	
+    	$body = "<html><head><title>$subject</title></head><body> {$html} <br> <br> <br>Regards,<br><b>Azfar</b></body></html>";
+    	if(mail($to, $subject,$body, $headers)){
+    		//echo "ok";
+    		return true;
+    	}else{
+    		//echo "error";
+    		return false;
+    	}
+    	
+    	// End send email to the customer
+    	
+    	
+    }
+    
+    function loadRecentApplication(){
+    	$data = array();
+    	//$todate = $this->lib->getTimeGMT();
+    	$todate = date('Y-m-d');
+    	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
+    	
+    	//AND create_date = '".$todate."'
+    	 $sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND  na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date = '".$todate_date."'  AND na.status = '0' ORDER BY na.app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+            
+            $sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+            
+            //$row['prodcuts'] = $res_1->result_array();
+            foreach ($res_1->result_array() as $row1) { 
+	            /*if ($row1['img_source'] !== '') {
+	            	$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+	            } else {
+	            	$row1['img_source'] = '';
+	            }*/
+	            $row['prodcuts'][] =  $row1;
+            }
+          //  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+            $data[] = $row;
+        }
+        return $data;
+    	
+    	
+    }
+    
+    function loadLastFiveRecentApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	//AND create_date = '".$todate."'
+    	$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '0' ORDER BY n.app_id DESC Limit 5";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    	 
+    	 
+    }
+    
+    function loadPendingFundsApplication(){
+    	$data = array();
+    	$todate = date('Y-m-d');
+    	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
+    	
+    	$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date > '".$todate_date."'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    	 
+    	 
+    }
+	
+	function loadVoidCheckApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select * from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '3' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    	 
+    	 
+    }
+    
+    function loadReadyToPrintApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    
+    function loadPrintedApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."' AND na.status = '2' AND u.uid = na.author_id ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function loadVoidedApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."' AND na.status = '3' AND u.uid = na.author_id ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function countReadyToPrintApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '1'";
+    	$res = $this->db->query($sql);
+    	
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    	
+    }
+    
+    function countRecentApplication(){
+    	$data = array();
+    	//$todate = $this->lib->getTimeGMT();
+    	//$todate = date('Y-m-d');
+    	//AND create_date = '".$todate."'
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'  AND status = '0' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    }
+    
+    function countPendingFundsApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '0' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    }
+    
+    function countPrintedCheckApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '2' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	 
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    }
+    
+    function countVoidCheckApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '3' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    }
+    
+    function countAllApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    }
+    
+    
+    
+    function loadLastFiveReadyToPrintApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.create_date < '".$todate."' AND n.status = '1' ORDER BY n.app_id DESC Limit 5";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function loadAllApplication(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND u.uid = na.author_id  ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    
+    
+    function loadSelectedReadyToPrintApplication($ids){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+    	$res = $this->db->query($sql);
+    
+    	//$data[] = $res->result_array();
+    	
+    	foreach ($res->result_array() as $row) {
+    		$data[] = $row;
+    	}
+   // print_r($data);
+    
+    	return $data;
+    
+    
+    }
+    
+   
+    public function updateApplicationInfo() {
+    	
+    	$data = array(
+    			'first_name' => $this->lib->escape($_POST['first_name']),
+    			'last_name' => $this->lib->escape($_POST['last_name']),
+    			'ss_number' => $this->lib->escape($_POST['ss_number']),
+    			'dob' => $this->lib->escape($_POST['dob']),
+    			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+    			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+    			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+    			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+    			
+    			'street_address_1' => $this->lib->escape($_POST['street_address']),
+    			'city' => $this->lib->escape($_POST['city']),
+    			'state' => $this->lib->escape($_POST['state']),
+    			'zip_code' => $this->lib->escape($_POST['zip_code']),
+    			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+    			'email_add' => $this->lib->escape($_POST['email_add']),
+    	);
+    	$this->db->where('applicent_id', $this->lib->escape($_POST['application_id']));
+    	$this->db->update('new_applicent', $data);
+    	
+    	/*if ($_POST['option'] == 'allero') {
+    		return $this->loadAllEros();
+    	} else if ($_POST['option'] == 'pendingero') {
+    		return $this->loadEro();
+    	} else {
+    		return $this->loadApprovedEro();
+    	}*/
+    	$app_type = $this->lib->escape($_POST['app_type']);
+    	$app_type_d= $this->lib->escape($_POST['app_type_d']);
+    	if ($app_type_d == 'dashboard'){return $this->loadLastFiveRecentApplication();}
+    	elseif($app_type == 0){
+    		return $this->loadPendingFundsApplication();
+    	}
+    	elseif ($app_type == 1){return $this->loadReadyToPrintApplication();}
+    	elseif ($app_type == 2){return $this->loadPrintedApplication();}
+    	elseif ($app_type == 3){return $this->loadVoidedApplication();}
+    	//elseif ($app_type == 4){return $this->loadAllApplication();}
+    	else{
+    		return $this->loadAllApplication();
+    	}
+    	
+    	
+    	//return $this->loadRecentApplication();
+    }
+    
+   
+    
+    
+       
+}
+
+?>

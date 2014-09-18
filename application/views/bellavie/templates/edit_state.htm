@@ -1,0 +1,125 @@
+<style>
+.input-text
+{
+	background-color: #FFF;
+}
+</style>
+<script language="javascript">
+function submitFormPopup(){
+	var checkError = false;
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#code').val() == ''){
+		$('#code').css("background", '#ffffd5');
+		hidelabelfocus("code_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("code"));	
+			document.getElementById("code").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post(window.location.href, {
+		updateState: 'yes',
+		name:$("#name").val(),
+		code:$("#code").val()	
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_saved);
+				history.go(-1);
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+function clearForm(){
+	if(document.getElementById("name")){
+		document.getElementById("name").value = '';
+		$('#name').css("background", '#ffffff');
+	}
+
+	if(document.getElementById("code")){
+		document.getElementById("code").value = '';
+		$('#code').css("background", '#ffffff');
+	}
+
+}
+
+function clearDataForm(){
+	if(document.getElementById("name")){
+		$('#name').css("background", '#ffffff');
+	}	
+	if(document.getElementById("code")){
+		$('#code').css("background", '#ffffff');
+	}
+}
+$(function() {
+	clearDataForm();
+});
+</script>
+<form method="post" name="tax_form" onsubmit="return submitFormPopup();">
+<div style="overflow:hidden">
+    <div class="box_solar">
+        <div style="clear:both; float:left;">
+            <div style="font-weight:bold;">Name:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <input tabindex="1" type="text" class="input-text" id="name" size="10" name="name" value="{name}" style="width:250px">
+            </span>
+            
+        </div>
+        
+       
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">Code:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <input tabindex="2" type="text" class="input-text" id="code" size="10" name="code" value="{code}" style="width:250px">
+            </span>
+        </div>
+        
+        
+        <div style="float: right; clear:both; padding-top:30px; height:30px; margin-right:5px" align="right" id="savebt">
+            <input type="button" value="Back" class="btn" onclick="history.go(-1);" style="margin-left:5px" />
+            <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="margin-left:5px" />
+        </div>
+        <div style="float: right; clear:both; padding-top:30px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="skey" value="{skey}" />
+</form>
+
+
+
+
+

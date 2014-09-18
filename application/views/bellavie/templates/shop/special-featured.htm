@@ -1,0 +1,35 @@
+{notemptyHeader}
+<div class="special">
+    <div class="titleHeader clearfix">
+        <h3>{productType}</h3>
+        <div class="pagers">
+            <div class="btn-toolbar">
+                <a class="btn btn-mini" href="index.php/shop/{pageLink}">View All</a>
+            </div>
+        </div>
+    </div><!--end titleHeader-->
+
+    <ul class="vProductItemsTiny">
+{/notemptyHeader}
+		{items}
+        <li class="span4 clearfix">
+            <div class="thumbImage">
+                <a href="index.php/shop/item_details?itemid={itm_key}"><img alt="" src="{file}" style="width:92px; height:92px;"></a>
+            </div>
+            <div class="thumbSetting">
+                <div class="thumbTitle">
+                    <a href="index.php/shop/item_details?itemid={itm_key}" class="invarseColor">
+                       {itm_name}
+                    </a>
+                </div>
+                <div class="thumbPrice">
+                    <span>${itm_price}</span>
+                </div>
+                {stars}
+            </div>
+        </li>
+        {/items}
+{notemptyFooter}
+    </ul>
+</div>
+{/notemptyFooter}

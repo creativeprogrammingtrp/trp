@@ -1,0 +1,348 @@
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list"></div>
+<div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="submitproductbt" align="left">
+    {addnewbt}<input type="button" value="Save" class="btn btn-primary" onclick="saveForms()" style="margin-left:5px" />
+</div>
+<div id="Progress_bar" class="progress_bar" align="left" style="display:none">
+	<div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadProduct()" style="cursor:pointer" /></div>
+	<div class="progress_bar_top">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="file_name"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+    	<div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#7838b7; width:100%;"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="progress_bar_size"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<script type="text/javascript">
+var arr_img = ['jpg','JPG','jpeg','JPEG','gif','GIF','png','PNG','MP4','MP3','AVI','FLV','WMV'];
+var objGallery = [];
+var uploadImgProduct;
+function uploadGallery(){
+	uploadImgProduct = new plupload.Uploader({
+		runtimes : 'gears,html5,flash,silverlight,browserplus',
+		browse_button : 'upload_browser',
+		max_file_size : '80mb',
+		url : 'plupload/server/uploadbanner.php',
+		flash_swf_url : 'plupload/js/plupload.flash.swf',
+		silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+		filters : [
+			{title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG,mp4,MP4,MP3,mp3,AVI,avi,flv,FLV,wmv,WMV"}
+		]
+	});
+	uploadImgProduct.bind('FilesAdded', function(up, files) {
+		objGallery = [];
+		currentFile = files[0];
+		document.getElementById("Progress_bar").style.display = 'block';
+		document.getElementById("file_name").innerHTML = files[0].name;
+		document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+		document.getElementById("progress_bar_pecent").style.width = 0 + '%';	
+		setTimeout(function () {	 
+			uploadImgProduct.start();
+		}, 50);
+	});
+	uploadImgProduct.bind('UploadProgress', function(up, file) {
+		document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+		var text = "Uploaded "+file.percent+"% &nbsp;("+plupload.formatSize(file.loaded)+" of "+plupload.formatSize(file.size)+")";
+		document.getElementById("progress_bar_size").innerHTML = text;
+	});
+	uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+		setTimeout(function () {
+			$("#Progress_bar").hide();
+		}, 200);
+		var obj = jQuery.parseJSON(dataJson.response);
+		if(obj.error == ''){
+			objGallery = obj;
+			saveData();
+		}
+	}, 'json');
+	uploadImgProduct.bind('Error', function(up, err) {
+		CancelUploadProduct()
+		alert(err.message);
+	});
+	uploadImgProduct.init();
+}
+function CancelUploadProduct(){	
+	uploadImgProduct.stop();
+	$("#Progress_bar").hide();
+	$("#upload_browser").show();
+}
+function saveData(){
+	$.post("index.php/admin/banner/savedata",{
+		saveData:'yes',
+		data:objGallery
+	},function(data){
+		if(typeof(data) == 'object'){
+			if(data.error == ''){
+             	window.location.reload();   
+			}
+		}
+	},'json');	
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+var tab_selected = 1;
+function ChangeContent(type){
+	tab_selected = type;
+	switch(parseInt(type, 10)){
+		case 1:
+			ShowFlatrateTab();
+			break;
+		case 2:
+			ShowUPSTab();
+			break;		
+	}
+}
+
+var data_clients = [];
+var header_first 	= ['Enabled', 'Advertising Banner','Side','Url'];
+var header_last 	= ['Enabled', 'Advertising Banner','Side','Url'];
+var clients_select = 0;
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+function loadClients(){
+	var str_content = '';
+	var length_data = data_clients.length;
+	
+	str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per" width="20"></th>';
+	str_content += '			<th align="center" valign="middle" class="th-per" width="50">'+header_last[0]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">'+header_last[1]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">'+header_last[2]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">'+header_last[3]+'</th>';
+	str_content += '			<th width="50" align="left"  valign="middle" class="th-per">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	if(length_data > 0){
+		str_content += '	<tbody id="sortable_body">';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_clients[i];
+			var button = '';
+			var check_left = '';
+			var check_right = '';
+			if(obj.side == 1){
+				check_right = 'checked="checked"';
+			}else{
+				check_left = 'checked="checked"';
+			}
+			
+                       var Enabled = '';
+                       var fileType = obj.link;
+                       var parts = fileType.split(".");
+                       var fielType = $.trim(parts[1].toLowerCase());
+                       if(fielType =='mp4'||fielType =='mp3'||fielType =='avi'|| fielType =='flv' ||fielType =='wmv'){
+                          if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;';	
+				}
+				button += '<img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="delete_Client(\''+obj.bid+'\')" />';   	
+			}
+                        if(parseInt(obj.status, 10) == 1) Enabled = 'checked="checked"';
+			str_content += '		<tr class="tr-row" id="'+obj.bid+'">';
+			str_content += '			<td align="left" valign="middle" class="td-row"><div class="draggable"></div></td>';
+			str_content += '			<td align="center" valign="middle" class="td-row"><input type="checkbox" value="'+obj.bid+'" '+Enabled+' name="Enabled[]"/></td>';
+			str_content += '			<td align="left" valign="top" class="td-row"><a href = "'+obj.link+'" class="video"><img src="shopping/themes/bellaVie/images/icon_play.png" style="width:50px !important;height:50px !important;"/></a></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row"><input style="float:left; margin-right:5px;" type="radio" name="side_'+obj.bid+'" value="0" '+check_left+' onchange="set_side(0,'+obj.bid+')"/><span style="line-height:23px; float:left;"> Left &nbsp;&nbsp;&nbsp;&nbsp;</span><input style="float:left;margin-right:5px;" type="radio" name="side_'+obj.bid+'" value="1" '+check_right+' onchange="set_side(1,'+obj.bid+')"/><span style="line-height:23px; float:left;"> Right</span></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row"><input type="text" style="width:95%" id="url_'+obj.bid+'" value="'+obj.url+'"/></td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+                       }
+                       else{
+                           if(obj.del == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;';	
+				}
+				button += '<img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="delete_Client(\''+obj.bid+'\')" />';   	
+			}  
+			if(parseInt(obj.status, 10) == 1) Enabled = 'checked="checked"';
+			str_content += '		<tr class="tr-row" id="'+obj.bid+'">';
+			str_content += '			<td align="left" valign="middle" class="td-row"><div class="draggable"></div></td>';
+			str_content += '			<td align="center" valign="middle" class="td-row"><input type="checkbox" value="'+obj.bid+'" '+Enabled+' name="Enabled[]"/></td>';
+			str_content += '			<td align="left" valign="top" class="td-row"><img  style="width:50px !important;height:50px !important;" src="'+(obj.link)+'" width="100"/></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row"><input style="float:left;margin-right:5px;" type="radio" name="side_'+obj.bid+'" value="0" '+check_left+' onchange="set_side(0,'+obj.bid+')"/><span style="line-height:23px; float:left;"> Left &nbsp;&nbsp;&nbsp;&nbsp;</span><input style="float:left;margin-right:5px;" type="radio" name="side_'+obj.bid+'" value="1" '+check_right+' onchange="set_side(1,'+obj.bid+')"/><span style="line-height:23px; float:left;"> Right</span></td>';
+			str_content += '			<td align="left" valign="middle" class="td-row"><input type="text" style="width:95%" id="url_'+obj.bid+'" value="'+obj.url+'"/></td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			
+                    }
+                }
+		str_content += '	</tbody>';
+		
+	}
+	str_content += '</table>';
+	$("#clients_list").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+	
+	$("tbody").sortable({
+			handle: '.draggable',
+			update: function(e, ui){
+				
+				var image_thumb_children = $("tbody").children();
+				var dataImgProduct_tam = data_clients;
+				data_clients = [];
+				for(var j = 0; j < image_thumb_children.length; j++){
+					for(var k = 0; k < dataImgProduct_tam.length; k++){
+						if(dataImgProduct_tam[k].bid == image_thumb_children[j].id){
+							data_clients[data_clients.length] = dataImgProduct_tam[k];	
+							break;	
+						}	
+					}
+				}
+			}
+		}
+	);
+	//$("tbody").disableSelection();
+}
+
+function showVideoPopup(){
+     $("td a.video").colorbox({
+            iframe:true,
+            innerWidth:650,
+            innerHeight:509,
+            height:false,
+            opacity:0.2,
+            scrolling: false
+        });
+}
+function loadObjectClients(){
+	data_clients = [];
+	//ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/banner/lists", {
+		loadAdvertise:'yes'
+	},function(data){
+		//HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		loadClients(1);
+         showVideoPopup();
+	}, "json");
+	return false;
+}
+function delete_Client(ukey){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete Banner");
+	showbox('box_popup');
+	
+	//ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: 'index.php/admin/banner/delete/',
+		cache: false,
+		type:'POST',
+		data:{ajax:1, bid:ukey},
+		success: function(message){
+			$("#content_popup").append(message);
+			//HideLoadingObj(document.getElementById("content_popup"));
+			return false;
+		}
+	});
+	return false;
+}
+
+function delete_banner(ukey){
+	//ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/banner/del", {
+		delete_banner:'yes',
+		bid:ukey
+	},function(data){
+		closeBox('box_popup');
+		data_clients = [];
+		//HideLoadingObj(document.getElementById("content_popup"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		clients_select = 0;
+		loadClients(1);
+	}, "json");
+}
+function set_side(side,bid){
+	if(side == 0){
+		for(var i = 0; i < data_clients.length; i++){
+			if(data_clients[i].bid == bid){
+				data_clients[i].side = 0;
+				break;
+			}
+		}
+	}else{
+		for(var i = 0; i < data_clients.length; i++){
+			if(data_clients[i].bid == bid){
+				data_clients[i].side = 1;
+				break;
+			}
+		}	
+	}
+}
+
+function saveForms(){
+	var Enabled = [];
+	if(document.getElementsByName("Enabled[]")){
+		var ship_method_ = document.getElementsByName("Enabled[]");
+		for(var i = 0; i < ship_method_.length; i++){
+			if(ship_method_[i].checked == true){
+				Enabled[Enabled.length] = ship_method_[i].value;
+			}	
+		}	
+	}
+	for(var i = 0; i < data_clients.length; i ++){
+		if(document.getElementById("url_"+data_clients[i].bid)){
+			data_clients[i].url = document.getElementById("url_"+data_clients[i].bid).value;
+		}
+                if(document.getElementById("url_"+data_clients[i].vid)){
+                    data_clients[i].url = document.getElementById("url_"+data_clients[i].vid).value;
+                }
+	}
+	
+	//ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/banner/saveform", {
+		saveDatas:'yes',
+		datas:data_clients,
+		Enabled:Enabled
+	},function(data){
+		data_clients = [];
+		//HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;   
+		}
+		return false;
+		loadClients();
+	}, "json");
+}
+$(function() {
+//	clearDataForm();
+	uploadGallery();
+	loadObjectClients(); 
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+	clearForms(); 
+       
+});
+</script>

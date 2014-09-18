@@ -1,0 +1,146 @@
+@charset "utf-8";
+/* CSS Document */
+div.main {
+	width:100%;
+	min-height:100%;
+}
+.main-header {
+	width:100%;
+	height:230px;
+}
+.header-top {
+	width:1024px;
+	height:185px;
+	margin:0px auto;
+}
+.logo-img {
+	cursor:pointer;
+	padding-top:5px;
+}
+.header-colum {
+	width:50%;
+	height:100%;
+	float:left;
+}
+.header-timer {
+	color:#8cc642;
+	font-weight:bold;
+	font-size:16px;
+	text-align:right;
+	width:100%;
+	height:40%;
+}
+.header-timer p {
+	padding:20px 0 0;
+	margin:0px;
+}
+.timer-div {
+	color:#d9d6d9;
+}
+#hours, #min, #sec {
+	width:20px;
+	display:inline-block;
+	text-align:center;
+}
+.header-account {
+	text-align:right;
+	width:100%;
+}
+#msg_box {
+	width:100%;
+	height:15px;
+	text-align:right;
+	color:#FFAB11;
+	font-style:italic;
+	padding:5px 0;
+}
+.header-forgot {
+	padding-top:10px;
+	text-align:right;
+	width:100%;
+}
+.header-forgot a {
+	letter-spacing:1px;
+	color:#8cc642;
+	margin-right:95px;
+}
+.header-account input[type='text'], .header-account input[type='password'] {
+	font-size:12px;
+	color:#fff;
+	width:120px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background:#8dc73f;
+	border:none;
+	padding:4px 15px;
+}
+ .header-account input::-webkit-input-placeholder {
+ font-size:12px;
+ color:#fff !important;
+}
+.header-account input:-moz-placeholder {
+ font-size:12px;
+ color:#fff !important;
+}
+.header-account input:placeholder {
+ font-size:12px;
+ color:#fff !important;
+}
+.header-menu {
+	width:100%;
+	height:45px;
+}
+.main-content {
+	overflow:hidden;
+	width:1024px;
+	padding:40px 0 50px;
+	margin:0 auto;
+}
+.content-banner {
+	padding-top:5px;
+	width:170px;
+	float:left;
+}
+.middle-content {
+	width:644px;
+	padding:5px 0;
+	margin:0 20px;
+	float:left;
+	min-height:400px;
+}
+.img-home {
+	width:602px;
+	height:394px;
+	margin:0 auto;
+	background:url(../images/home.png) no-repeat center center;
+}
+.banner-img {
+	width:160px;
+	margin:0 auto 25px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
+	position:relative;
+}
+.main-footer {
+	width:100%;
+	height:50px;
+	position:relative;
+	left:0px;
+	bottom:0px;
+}
+.copyright {
+	padding-top:5px;
+	text-align:center;
+	width:1024px;
+	margin:0px auto;
+}
+.copyright p {
+	font-size:12px;
+	color:#fff;
+	margin:0px;
+}
+.copyright p a {
+	color:#fff;
+}

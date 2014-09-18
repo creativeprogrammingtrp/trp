@@ -1,0 +1,482 @@
+<style type="text/css">
+span.cke_skin_kama {
+    border: 0px solid #D3D3D3;
+    border-radius: 5px 5px 5px 5px;
+    padding: 0px;
+}
+._available_User{
+	background:#ffffff;
+	padding:5px;
+	cursor:pointer;
+	border-bottom:1px solid #d2d2d2;
+}
+._available_User:hover{
+	background:#d2d2d2;
+	padding:5px;
+	cursor:pointer;
+	border-bottom:1px solid #ffffff;
+}
+._selected_User{
+	background:#d2d2d2;
+	padding:5px;
+	cursor:pointer;
+	border-bottom:1px solid #ffffff;
+}
+</style>
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<div class="box_solar" style="overflow:hidden">
+	<div style="clear:both; min-height:300px; overflow:hidden" id="accountdetail_content">
+   		<div style="float:left; clear:both;">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:left; padding-right:5px">Template name:</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <input tabindex="1" type="text" class="input-text" id="name" size="10" maxlength="250" name="name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder='Required'>
+            </span>
+        </div>
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:left; padding-right:5px">From (e-mail):</span>
+            <span class="field-with-placeholder" style="float:left;">
+                <input tabindex="2" type="text" class="input-text" id="mail_from" size="10" maxlength="250" name="mail_from" value="{from_mail}" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder='Required'>
+            </span>
+        </div>
+        <div style="float:left; clear:both; padding-top:4px">
+            <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:left; padding-right:5px">To:</span>
+            <span class="field-with-placeholder" style="float:left;" id="datas_roles">
+                <table cellpadding="0" cellspacing="0" border="0">
+                	<tr>
+                    	<td align="left" valign="middle" width="20px"><input type="checkbox" class="input-checkbox" name="roles[]" value="" ></td>
+                        <td align="left" valign="middle">sadfsd</td>
+                        <td align="left" valign="middle" style="padding-left:30px">
+                        	<select onchange="to_oC();" id="to_clients_mode" name="to_clients_mode">
+                            	<option value="all">All</option>
+                                <option selected="" value="select">Selected only</option>
+                                <option value="except">All except selected</option>
+                            </select>
+                        </td>
+                        <td align="left" valign="middle" style="padding-left:20px"><a href="javascript:void(0)">Select addresses</a></td>
+                    </tr>
+                </table>
+            </span>
+        </div>
+        <div style="float:left; clear:both; padding-top:4px; width:100%">
+        	<span style="font-weight:bold; clear:both; width:100%;margin-bottom:5px;">Subject:</span>
+            <span class="field-with-placeholder" style="clear:both; width:100%">
+                <input tabindex="4" type="text" class="input-text" id="mail_subject" size="10" maxlength="250" name="mail_subject" value="" style="width:99%" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder='Required'>
+            </span>
+        </div> 
+        <div style="float:left; clear:both; padding-top:4px; width:100%;">
+        	<span style="font-weight:bold; clear:both">Message text:</span>
+            <span class="field-with-placeholder" style="clear:both">
+                <textarea id="mail_body" name="mail_body"></textarea>
+            </span>
+        </div>   	
+    </div>
+   	<div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="savebt" align="right">
+    	<input type="button" value="Back" id="clear_bt" class="button" onclick="history.go(-1);" />
+    	<input type="button" value="Save" id="clear_bt" class="button" onclick="save_mail();" style="margin-left:5px" />
+        <input type="button" value="Save and Send Mail" id="submit_bt" class="button" onclick="send_mail()" style="margin-left:5px" />
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<div style="overflow:hidden; display:none">
+    <div id="box_addresses" style="background:#ffffff; overflow:hidden;">
+    	<div style="float:left; width:390px; overflow:hidden">
+        	<div style="clear:both; overflow:hidden; width:100%">
+            	<div style="float:left">Available users</div>
+                <div style="float:right"><span style="cursor:pointer; display:inline-block;" onclick="no_select_all()">Select All&nbsp;</span>/<span style="cursor:pointer; display:inline-block;"  onclick="no_deselect_all()">&nbsp;Deselect All</span></div>
+            </div>
+            <div style="clear:both; width:388px; height:450px; overflow:auto; border:1px solid #d2d2d2" id="Available_User">
+            	<div style="clear:both; padding:5px" id="user_" class="" >User name ( mail@yahoo.com )</div>
+            </div>
+        </div>
+        <div style="float:left; width:130px; height:470px; overflow:hidden;">
+        	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+            	<tr><td align="center" valign="middle" height="420px">
+                	<div style="clear:both"><input type="button" value="Add >>" class="button" style="width:110px" onclick="addAddress()" /></div>
+                    <div style="clear:both; margin-top:5px"><input type="button" value="<< Remove" class="button" style="width:110px" onclick="removeAddress()" /></div>
+                </td></tr>
+            </table>
+        </div>
+        <div style="float:left; width:390px; overflow:hidden">
+        	<div style="clear:both; overflow:hidden; width:100%">
+            	<div style="float:left">Selected users</div>
+                <div style="float:right"><span style="cursor:pointer; display:inline-block;" onclick="has_select_all()">Select All&nbsp;</span>/<span style="cursor:pointer; display:inline-block;"  onclick="has_deselect_all()">&nbsp;Deselect All</span></div>
+            </div>
+            <div style="clear:both; width:width:388px; height:450px; overflow:auto; border:1px solid #d2d2d2" id="Selected_User"></div>
+        </div>
+   	</div>
+</div>
+<script language="javascript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<script>
+var data_roles = [];
+var role_select = 0;
+var sendmail = 0;
+function check_Form(){
+	var checkError = false;
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#mail_from').val() == ''){
+		$('#mail_from').css("background", '#ffffd5');
+		hidelabelfocus("mail_from_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("mail_from"));	
+			document.getElementById("mail_from").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	var obj_submit = new Object();
+	obj_submit.name = document.getElementById("name").value;
+	obj_submit.mail_from = document.getElementById("mail_from").value;
+	obj_submit.mail_subject = document.getElementById("mail_subject").value;
+	obj_submit.mail_body = editor_obj.getData();
+	var mail_roles = [];
+	if(document.getElementsByName("roles[]")){
+		var roles_ = document.getElementsByName("roles[]");
+		for(var i = 0; i < roles_.length; i++){
+			if(roles_[i].checked == true){
+				var obj_role = new Object();
+				obj_role.rid = roles_[i].value;
+				var role_type = 'all';
+				if(document.getElementById("to_clients_"+roles_[i].value)){
+					role_type = document.getElementById("to_clients_"+roles_[i].value).value;	
+				}
+				obj_role.role_type = role_type;
+				var mail_users = [];
+				for(var j = 0; j < data_roles.length; j++){
+					if(parseInt(data_roles[j].rid, 10) == parseInt(obj_role.rid, 10)){
+						for(var k = 0; k < data_roles[j].users_select.length; k++){
+							var obj_user_ = data_roles[j].users_select[k];
+							mail_users[mail_users.length] = obj_user_;				
+						}
+						break;	
+					}
+				}
+				obj_role.mail_users = mail_users;
+				mail_roles[mail_roles.length] = obj_role;
+			}	
+		}	
+	}
+	obj_submit.mail_roles = mail_roles;
+	obj_submit.sendmail = sendmail;
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post(url_base_path__+"admin/massmail/add", {
+		add:'yes',
+		obj_submit: obj_submit
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+			}else{
+				alert(success_saved);
+				window.location = url_base_path__+"admin/massmail";
+			}
+		}
+	}, "json");
+	return false;
+}
+function send_mail(){
+	sendmail = 1;
+	check_Form();
+}
+function save_mail(){
+	sendmail = 0;
+	check_Form();
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+var editor_obj;
+function CreateEditor(id, width_){
+	editor_obj = CKEDITOR.replace( id, {
+		uiColor: '#7E7E7E',
+		enterMode : CKEDITOR.ENTER_BR,	
+        filebrowserBrowseUrl : 'misc/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Flash',
+        filebrowserUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		toolbar : [
+			[ 'Source'],
+			[ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+			[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+			[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+			[ 'Link','Unlink','Anchor' ],
+			[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		//	'/',
+			[ 'Styles','Format','Font','FontSize' ],
+			[ 'TextColor','BGColor' ],
+			[ 'Maximize', 'ShowBlocks']
+		]
+    });
+}
+function showObjectRoles(){
+	var str = '';
+	if(data_roles.length > 0){
+		str += '<table cellpadding="0" cellspacing="0" border="0">';
+		for(var i = 0; i < data_roles.length; i++){
+			str += '<tr>';
+			str += '	<td align="left" valign="middle" width="20px" style="padding-bottom:4px;"><input type="checkbox" class="input-checkbox" name="roles[]" id="role_'+data_roles[i].rid+'" value="'+data_roles[i].rid+'" onclick="showSelectClient(this,'+data_roles[i].rid+')"></td>';
+			str += '	<td align="left" valign="middle" style="padding-bottom:4px;">'+data_roles[i].name+'</td>';
+			str += '	<td align="left" valign="middle" style="padding-left:30px; padding-bottom:4px;">';
+			str += '		<select onchange="to_oC('+data_roles[i].rid+');" id="to_clients_'+data_roles[i].rid+'" name="to_clients_'+data_roles[i].rid+'" disabled="disabled">';
+			str += '			<option value="all">All</option>';
+			str += '			<option value="select">Selected only</option>';
+			str += '			<option value="except">All except selected</option>';
+			str += '		</select>';
+			str += '	</td>';
+			str += '	<td align="left" valign="middle" style="padding-left:20px; padding-bottom:4px;" id="select_address_'+data_roles[i].rid+'">Select addresses</td>';
+			str += '</tr>';		
+		}
+		str += '</table>';	
+	}
+	$("#datas_roles").empty().append(str);	
+}
+function to_oC(rid){
+	if(document.getElementById("to_clients_"+rid)){
+		var selection = document.getElementById("to_clients_"+rid).value;
+		if(selection != 'all'){
+			$("#select_address_"+rid).empty().append('<a href="javascript:void(0)" id="view_address_'+rid+'">Select addresses</a>');
+			$("#view_address_"+rid).colorbox({
+				initialWidth:70,
+				initialHeight:50,
+				inline:true,
+				href:"#box_addresses",		
+				height:false,
+				onComplete:function(){
+					role_select = rid;
+					loadUsers();
+				},
+				opacity:0.2,
+				scrolling: false
+			});	
+		}else{
+			$("#select_address_"+rid).empty().append('Select addresses');	
+		}	
+	}
+}
+function loadUsers(){
+	var str_Available_User = '';
+	var str_Selected_User = '';
+	for(var i = 0; i < data_roles.length; i++){
+		if(parseInt(data_roles[i].rid, 10) == role_select){
+			for(var j = 0; j < data_roles[i].users.length; j++){
+				var obj_user_ = data_roles[i].users[j];
+				var class_name = '_available_User';
+				if(typeof(obj_user_.check) != 'undefined' && obj_user_.check == 1) class_name = '_selected_User';
+				str_Available_User += '<div id="'+obj_user_.ukey+'" class="'+class_name+'" onclick="selectUser(\''+obj_user_.ukey+'\')">'+obj_user_.name+' ( '+obj_user_.mail+' )</div>';				
+			}
+			for(var j = 0; j < data_roles[i].users_select.length; j++){
+				var obj_user_ = data_roles[i].users_select[j];
+				var class_name = '_available_User';
+				if(typeof(obj_user_.check) != 'undefined' && obj_user_.check == 1) class_name = '_selected_User';
+				str_Selected_User += '<div id="'+obj_user_.ukey+'" class="'+class_name+'" onclick="selectUser(\''+obj_user_.ukey+'\')">'+obj_user_.name+' ( '+obj_user_.mail+' )</div>';				
+			}
+			break;	
+		}
+	}
+	$("#Available_User").empty().append(str_Available_User);
+	$("#Selected_User").empty().append(str_Selected_User);
+}
+function selectUser(ukey){
+	for(var i = 0; i < data_roles.length; i++){
+		if(parseInt(data_roles[i].rid, 10) == role_select){
+			var check_exit = false;
+			for(var j = 0; j < data_roles[i].users.length; j++){
+				var obj_user_ = data_roles[i].users[j];
+				if(obj_user_.ukey == ukey){
+					check_exit = true;
+					if(typeof(data_roles[i].users[j].check) == 'undefined' || data_roles[i].users[j].check == 0){
+						data_roles[i].users[j].check = 1;
+						if(document.getElementById(ukey)) document.getElementById(ukey).className = '_selected_User';
+					}else{
+						data_roles[i].users[j].check = 0;
+						if(document.getElementById(ukey)) document.getElementById(ukey).className = '_available_User';	
+					}
+					break;	
+				}				
+			}
+			if(check_exit == false){
+				for(var j = 0; j < data_roles[i].users_select.length; j++){
+					var obj_user_ = data_roles[i].users_select[j];
+					if(obj_user_.ukey == ukey){
+						if(typeof(data_roles[i].users_select[j].check) == 'undefined' || data_roles[i].users_select[j].check == 0){
+							data_roles[i].users_select[j].check = 1;
+							if(document.getElementById(ukey)) document.getElementById(ukey).className = '_selected_User';
+						}else{
+							data_roles[i].users_select[j].check = 0;
+							if(document.getElementById(ukey)) document.getElementById(ukey).className = '_available_User';	
+						}
+						break;	
+					}				
+				}
+			}
+			break;	
+		}
+	}
+}
+function no_select_all()
+{
+	for (i=0;i<data_roles.length;i++)
+	{
+		if (data_roles[i].rid == role_select)
+		{
+			for (j=0;j<data_roles[i].users.length;j++)
+			{
+				data_roles[i].users[j].check = 1;
+				if(document.getElementById(data_roles[i].users[j].ukey)) document.getElementById(data_roles[i].users[j].ukey).className = '_selected_User';
+			}
+		}
+	}
+}
+function no_deselect_all()
+{
+	for (i=0;i<data_roles.length;i++)
+	{
+		if (data_roles[i].rid == role_select)
+		{
+			for (j=0;j<data_roles[i].users.length;j++)
+			{
+				data_roles[i].users[j].check = 0;
+				if(document.getElementById(data_roles[i].users[j].ukey)) document.getElementById(data_roles[i].users[j].ukey).className = '_available_User';
+			}
+		}
+	}
+}
+function has_select_all()
+{
+	for (i=0;i<data_roles.length;i++)
+	{
+		if (data_roles[i].rid == role_select)
+		{
+			for (j=0;j<data_roles[i].users_select.length;j++)
+			{
+				data_roles[i].users_select[j].check = 1;
+				if(document.getElementById(data_roles[i].users_select[j].ukey)) document.getElementById(data_roles[i].users_select[j].ukey).className = '_selected_User';	
+			}
+		}
+	}
+}
+function has_deselect_all()
+{
+	for (i=0;i<data_roles.length;i++)
+	{
+		if (data_roles[i].rid == role_select)
+		{
+			for (j=0;j<data_roles[i].users_select.length;j++)
+			{
+				data_roles[i].users_select[j].check = 0;
+				if(document.getElementById(data_roles[i].users_select[j].ukey)) document.getElementById(data_roles[i].users_select[j].ukey).className = '_available_User';	
+			}
+		}
+	}
+}
+function addAddress(){
+	for(var i = 0; i < data_roles.length; i++){
+		if(parseInt(data_roles[i].rid, 10) == role_select){
+			var user_tam = [];
+			for(var j = 0; j < data_roles[i].users.length; j++){
+				var obj_user_ = data_roles[i].users[j];
+				if(data_roles[i].users[j].check == 1){
+					data_roles[i].users[j].check = 0;
+					data_roles[i].users_select[data_roles[i].users_select.length] = data_roles[i].users[j];
+					user_tam[user_tam.length] = data_roles[i].users[j].ukey;
+				}				
+			}
+			var users_tam_loa = data_roles[i].users;
+			data_roles[i].users = [];
+			for(var j = 0; j < users_tam_loa.length; j++){
+				var cehck_exit = false;
+				for(var k = 0; k < user_tam.length; k++){
+					if(user_tam[k] == users_tam_loa[j].ukey){
+						cehck_exit = true;
+						break;	
+					}	
+				}
+				if(cehck_exit == false){
+					data_roles[i].users[data_roles[i].users.length] = users_tam_loa[j];	
+				}
+			}
+			loadUsers();
+			break;	
+		}
+	}
+}
+function removeAddress(){
+	for(var i = 0; i < data_roles.length; i++){
+		if(parseInt(data_roles[i].rid, 10) == role_select){
+			var user_tam = [];
+			for(var j = 0; j < data_roles[i].users_select.length; j++){
+				var obj_user_ = data_roles[i].users_select[j];
+				if(data_roles[i].users_select[j].check == 1){
+					data_roles[i].users_select[j].check = 0;
+					data_roles[i].users[data_roles[i].users.length] = data_roles[i].users_select[j];
+					user_tam[user_tam.length] = data_roles[i].users_select[j].ukey;
+				}				
+			}
+			var users_tam_loa = data_roles[i].users_select;
+			data_roles[i].users_select = [];
+			for(var j = 0; j < users_tam_loa.length; j++){
+				var cehck_exit = false;
+				for(var k = 0; k < user_tam.length; k++){
+					if(user_tam[k] == users_tam_loa[j].ukey){
+						cehck_exit = true;
+						break;	
+					}	
+				}
+				if(cehck_exit == false){
+					data_roles[i].users_select[data_roles[i].users_select.length] = users_tam_loa[j];	
+				}
+			}
+			loadUsers();
+			break;	
+		}
+	}
+}
+function showSelectClient(obj, rid){
+	if(obj.checked == true){
+		if(document.getElementById("to_clients_"+rid)){
+			document.getElementById("to_clients_"+rid).disabled = false;	
+		}	
+	}else{
+		if(document.getElementById("to_clients_"+rid)){
+			document.getElementById("to_clients_"+rid).value = 'all'
+			document.getElementById("to_clients_"+rid).disabled = true;
+			$("#select_address_"+rid).empty().append('Select addresses');	
+		}		
+	}
+}
+$(function() {
+	loadObjectRoles();
+	CreateEditor('mail_body', 700);
+	clearForms();	 
+});
+</script>
+<script language="javascript">
+var data_roles = {roles};
+function loadObjectRoles(){
+	showObjectRoles();
+}
+</script>

@@ -1,0 +1,56 @@
+*+html .w1 { min-height:100%; }
+*+html .w2 {padding-bottom:expression(document.getElementById("footer").offsetHeight + "px");}
+*+html #footer{
+	position:relative;
+	margin-top:expression(- this.offsetHeight + "px");
+}
+.comment-form .submit,
+.feedback .submit,
+.quote-box .btn-get,
+.gallery .btn,.slide_button.tp-caption a.btn {background: #FE8F01;}
+.comment-form .submit:hover,
+.feedback .submit:hover,
+.quote-box .btn-get:hover,
+.gallery .btn:hover,.slide_button.tp-caption a.btn:hover {background: #ff5f42;}
+.btn {background: #f5f5f5;}
+.btn:hover {background: #f8f8f8;}
+.btn.green {background: #8dc03d;}
+.btn.green:hover {background: #8dc03d;}
+.btn.black {background:#444;}
+.btn.black:hover {background: #434343;}
+.btn.orange {background: #fe8f01;}
+.btn.orange:hover {background: #fe8f01;}
+.btn.blue {background: #4d91fe;}
+.btn.blue:hover {background: #4c90fd;}
+.btn.red {background: #FE8F01;}
+.btn.red:hover {background: #ff5e41;}
+.sponsors li a {
+	display:block;
+}
+.sponsors li a span {
+	display:block;
+	margin-top: expression(this.parentNode.offsetHeight > this.offsetHeight ? ((this.parentNode.offsetHeight-this.offsetHeight)/2 + "px") : "0");
+}
+*+html .num li {
+	behavior: expression(
+	(this.pngSet!=null ? this.pngSet=true : (
+		function(t){
+			document.createElement('before');
+			t.Num = (++t.parentNode.IEcounter || (t.parentNode.IEcounter = 1));
+			t.lis = '';
+			var _x = t;
+			while (1) {
+				_x = _x.parentNode.parentNode;
+				if (_x.Num) {
+						t.lis = _x.Num + '.' + t.lis;
+				} else {
+					break;
+				}
+			}
+			t.lis += t.Num;
+			t.runtimeStyle.listStyleType = 'none';
+			t.insertAdjacentHTML('afterBegin','<before>' + t.lis  + ' </before>');
+		}(this)
+	),this.pngSet=true)
+);
+}

@@ -1,0 +1,489 @@
+<script language="javascript">
+function check_Legal_Business_Contact(checkError){
+	
+	getValue_legalbusitact();
+	
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(legalbusitact[i].first_name == '' && legalbusitact[i].last_name == '' && legalbusitact[i].middle_name == ''){
+			$('#first_name_'+legalbusitact[i].id).css("background", '#ffffd5');
+			hidelabelfocus("first_name_"+legalbusitact[i].id+"_label");
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("first_name_"+legalbusitact[i].id));	
+				document.getElementById("first_name_"+legalbusitact[i].id).focus();	
+			}	
+		}
+		if(legalbusitact[i].email == ''){
+			$('#legal_email_'+legalbusitact[i].id).css("background", '#ffffd5');
+			hidelabelfocus("legal_email_"+legalbusitact[i].id+"_label");
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("legal_email_"+legalbusitact[i].id));	
+				document.getElementById("legal_email_"+legalbusitact[i].id).focus();	
+			}	
+		}else{
+			var msg = isValidEmail(legalbusitact[i].email);
+			if(msg != ""){
+				$('#legal_email_'+legalbusitact[i].id).css("background", '#ffffd5');
+				if(checkError == false){
+					checkError = true;
+					showTooltipRequi(document.getElementById('legal_email_'+legalbusitact[i].id));	
+					document.getElementById('legal_email_'+legalbusitact[i].id).focus();	
+				}
+			}		
+		}
+	}
+	
+	return checkError;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));		
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}		
+		break;
+	case 'mail':
+		var msg = isValidEmail($('#mail').val());
+		if(msg != ""){
+			hidelabelfocus(o.id+"_label");
+			return false;		
+		}
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			hidelabelfocus(o.id+"_label");
+			return false;
+		}
+		break;
+	case 'billing_phone':
+		validatePhone(document.getElementById("billing_phone"));
+		break;
+	}
+}
+
+
+function ClearBox(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			input_text[i].value = '';
+			onkeydownInputText(input_text[i]);	
+			hidelabelfocus(input_text[i].id+"_label");	
+		}	
+	}
+	
+	var textarea = document.getElementsByTagName('textarea');
+	for(var i = 0; i < textarea.length; i++){
+		textarea[i].value = '';
+	}
+}
+
+////////////////////////////////////// Legal Business Contact ////////////////////////////
+var legalbusitact = [];
+var dem_legalbusitact = 0;
+
+function add_legalbusitact(){
+	getValue_legalbusitact();
+	
+	var obj = new Object();
+	obj.id = dem_legalbusitact;
+	obj.gender = 'Mr';
+	obj.title = 0;
+	obj.first_name = '';
+	obj.last_name = '';
+	obj.middle_name = '';
+	obj.email = '';
+	obj.mobile = '';
+	obj.note = '';
+	obj.last_update_date = '';
+	legalbusitact[legalbusitact.length] = obj;
+	
+	dem_legalbusitact ++;
+	
+	show_Legal_business_contact();
+}
+
+function remove_legalbusitact(id){
+	getValue_legalbusitact();
+	
+	var legalbusitact_tam = legalbusitact;
+	legalbusitact = [];
+	for(var i = 0; i < legalbusitact_tam.length; i++){
+		if(legalbusitact_tam[i].id != parseInt(id, 10)){
+			legalbusitact[legalbusitact.length] = legalbusitact_tam[i];	
+		}	
+	}
+	show_Legal_business_contact();
+}
+
+function getValue_legalbusitact(){
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(document.getElementsByName("gender_"+legalbusitact[i].id+'[]')){
+			var gender_ = document.getElementsByName("gender_"+legalbusitact[i].id+'[]');
+			for(var j = 0; j < gender_.length; j++){
+				if(gender_[j].checked == true){
+					legalbusitact[i].gender = gender_[j].value;
+					break;	
+				}	
+			}		
+		}
+		if(document.getElementById('legal_title_'+legalbusitact[i].id)){
+			legalbusitact[i].title = document.getElementById('legal_title_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('first_name_'+legalbusitact[i].id)){
+			legalbusitact[i].first_name = document.getElementById('first_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('last_name_'+legalbusitact[i].id)){
+			legalbusitact[i].last_name = document.getElementById('last_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('middle_name_'+legalbusitact[i].id)){
+			legalbusitact[i].middle_name = document.getElementById('middle_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_email_'+legalbusitact[i].id)){
+			legalbusitact[i].email = document.getElementById('legal_email_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_mobile_'+legalbusitact[i].id)){
+			legalbusitact[i].mobile = document.getElementById('legal_mobile_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_note_'+legalbusitact[i].id)){
+			legalbusitact[i].note = document.getElementById('legal_note_'+legalbusitact[i].id).value;	
+		}
+		
+	}
+}
+
+function updateValue_legalbusitact(){
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(document.getElementsByName("gender_"+legalbusitact[i].id+'[]')){
+			var gender_ = document.getElementsByName("gender_"+legalbusitact[i].id+'[]');
+			for(var j = 0; j < gender_.length; j++){
+				if(gender_[j].value == legalbusitact[i].gender){
+					gender_[j].checked = true;
+					break;	
+				}	
+			}		
+		}
+		if(document.getElementById('legal_title_'+legalbusitact[i].id)){
+			 $("#legal_title_"+legalbusitact[i].id).empty().append(ConvertToTest(legalbusitact[i].nameTittle));			 	
+		}
+		if(document.getElementById('gender_'+legalbusitact[i].id)){
+			 $("#gender_"+legalbusitact[i].id).empty().append(ConvertToTest(legalbusitact[i].gender));	
+		 	
+		}
+		if(document.getElementById('first_name_'+legalbusitact[i].id)){		
+		
+			 $("#first_name_"+legalbusitact[i].id).empty().append(legalbusitact[i].first_name);	
+		}
+		if(document.getElementById('last_name_'+legalbusitact[i].id)){
+			 $("#last_name_"+legalbusitact[i].id).empty().append(legalbusitact[i].last_name);	
+			
+		}
+		if(document.getElementById('middle_name_'+legalbusitact[i].id)){
+			 $("#middle_name_"+legalbusitact[i].id).empty().append(legalbusitact[i].middle_name);	
+		
+		}
+		if(document.getElementById('legal_email_'+legalbusitact[i].id)){
+			 $("#legal_email_"+legalbusitact[i].id).empty().append(legalbusitact[i].email);	
+				
+		}
+		if(document.getElementById('legal_mobile_'+legalbusitact[i].id)){
+		 $("#legal_mobile_"+legalbusitact[i].id).empty().append(legalbusitact[i].mobile);	
+				
+		}
+		if(document.getElementById('legal_note_'+legalbusitact[i].id)){
+			 $("#legal_note_"+legalbusitact[i].id).empty().append(legalbusitact[i].note);	
+		
+		}	
+	}
+}
+
+function show_Legal_business_contact(){
+	
+	var st = '';
+	for(var i = legalbusitact.length-1; i >= 0; i--){
+		
+		st += '<div style="float:left; clear:both">';
+		st += '	<span style="font-weight:bold; float:left; padding-right:5px; width:120px; text-align:right">Gender:</span>';
+		st += '	<div style="float:left;padding-left:3px" id="gender_'+legalbusitact[i].id+'">';
+		
+		st += '	</div>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Title:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;padding-top:3px" id="legal_title_'+legalbusitact[i].id+'">';
+		
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">First Name:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;padding-top:3px" id="first_name_'+legalbusitact[i].id+'">';		
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Last Name:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;padding-top:3px"id="last_name_'+legalbusitact[i].id+'">';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Middle Name:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;padding-top:3px"id="middle_name_'+legalbusitact[i].id+'">';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Email:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;padding-top:3px"id="legal_email_'+legalbusitact[i].id+'">';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Mobile:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;padding-top:3px" id="legal_mobile_'+legalbusitact[i].id+'">';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+        st += '    <span style="font-weight:bold; float:left; width:120px; text-align:right; padding-right:5px">Status:</span>';
+        st += '    <span class="field-with-placeholder" style="float:left" id="date_create_'+legalbusitact[i].id+'">';
+        st += legalbusitact[i].last_update_date;        
+        st += '    </span>';
+        st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Note:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left; padding-top:3px; width:250px" id="legal_note_'+legalbusitact[i].id+'">';
+		st += '	</span>';
+		st += '</div>';
+		
+		
+	}
+	
+	$("#Legal_business_contact_content").empty().append(st);
+	updateValue_legalbusitact();
+	
+}
+
+var dataObject;
+
+function loadDataObject(){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/charityManage/view", {
+		loadData: 'yes',
+		key:document.getElementById('key').value
+	}, function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			dataObject = data;
+		}
+		showData();
+	}, "json");
+}
+
+function showData(){
+	if(typeof(dataObject[0]) == 'object'){
+		$("#legal_business_id").empty().append(dataObject[0].legal_business_id);
+		$("#current_password").empty().append(dataObject[0].current_password);
+		$("#legal_business_id").empty().append(dataObject[0].legal_business_id);
+		$("#legal_business_name").empty().append(ConvertToTest(dataObject[0].legal_business_name));
+		$("#address").empty().append(ConvertToTest(dataObject[0].address));
+		$("#city").empty().append(ConvertToTest(dataObject[0].city));
+		$("#country").empty().append(dataObject[0].countryname.name);
+		$("#state").empty().append(ConvertToTest(dataObject[0].state));
+		$("#zipcode").empty().append(ConvertToTest(dataObject[0].zipcode));
+		$("#phone").empty().append(ConvertToTest(dataObject[0].phone));
+		$("#fax").empty().append(ConvertToTest(dataObject[0].fax));
+		$("#website").empty().append(ConvertToTest(dataObject[0].website));
+		$("#tax").empty().append(ConvertToTest(dataObject[0].tax));
+		$("#contract_start_date").empty().append(ConvertToTest(dataObject[0].contract_start_date_str));
+		$("#contract_end_date").empty().append(ConvertToTest(dataObject[0].contract_end_date_str));
+		legalbusitact = dataObject[0].legalbusitact;
+		
+		for(var i = 0; i < legalbusitact.length; i++){
+			if(dem_legalbusitact < parseInt(legalbusitact[i].id, 10)) dem_legalbusitact = parseInt(legalbusitact[i].id, 10);	
+		}
+		dem_legalbusitact ++;	
+		show_Legal_business_contact();
+		$("#payment_type").empty().append(ConvertToTest(dataObject[0].payment_type));
+		$("#beneficiary_bank").empty().append(ConvertToTest(dataObject[0].beneficiary_bank));
+		$("#beneficiary_name").empty().append(ConvertToTest(dataObject[0].beneficiary_name));
+		$("#account_NO").empty().append(ConvertToTest(dataObject[0].account_NO));
+		$("#SWIFT_CODE").empty().append(ConvertToTest(dataObject[0].SWIFT_CODE));
+	
+		$("#name").empty().append(dataObject[0].name);	
+		$("#mail").empty().append(ConvertToTest(dataObject[0].mail));
+		$("#ustatus").empty().append(dataObject[0].status);
+		
+		
+	}
+}
+$(function() {
+	loadDataObject();
+	clearForms();
+	
+});
+
+</script>
+<div class="box_solar">
+<div style="overflow:hidden; width:100%">
+    <div style="clear:both; width:100%; overflow:hidden; padding-top:20px" align="left">
+    	<div style="clear:both; min-height:300px; overflow:hidden" id="accountdetail_content">
+            <div style="float:left; overflow:hidden;" align="left">
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:135px">Your Profile</span>
+            	<div style="float:left; clear:both;">
+                    <span style="font-weight:bold; float:left; width:130px; text-align:right; padding-right:5px">Legal Business ID:</span>
+                    <span class="field-with-placeholder" style="float:left;" id="legal_business_id">
+                        
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Legal Business Name:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px;" id="legal_business_name">
+                    
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Address:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px" id="address">
+                      </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">City:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="city">
+                      </span>
+                </div>
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Country:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="country">
+                      </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">State:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="state">
+                      </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:115px; text-align:right; padding-right:5px">Zip Code:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="zipcode">
+                      </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Phone:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px" id="phone">
+                      </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Fax:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px" id="fax">
+                     </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Website:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px" id="website">
+                      </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Tax ID/SSN:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="tax">
+                       </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Contract Start Date:</span>
+                    <span class="field-with-placeholder" style="float:left; padding-top:3px"id="contract_start_date">
+                       </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:62px; text-align:right; padding-right:5px">End Date:</span>
+                    <span class="field-with-placeholder" style="float:left; padding-top:3px" id="contract_end_date">
+                       </span>
+                   
+                </div>
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:135px">Banking Information</span>
+                <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Payment Type:</span>
+                    <span class="field-with-placeholder" style="float:left; padding-top:3px" id="payment_type">
+                      </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Beneficiary Bank:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px" id="beneficiary_bank">
+                      </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Beneficiary Name:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="beneficiary_name">
+                     </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">Account NO:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="account_NO">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:130px; text-align:right; padding-right:5px">SWIFT CODE:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px" id="SWIFT_CODE">
+                      </span>
+                </div>
+            </div>
+            <div style="float:right; overflow:hidden">     
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:125px">Account Information</span>
+                <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; width:120px; text-align:right; padding-right:5px">Status:</span>
+                    <span class="field-with-placeholder" style="float:left;" id="ustatus">
+                       
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">User Name:</span>
+                    <span class="field-with-placeholder" style="float:left; padding-top:3px;" id="name">
+                        
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Password:</span>
+                    <span class="field-with-placeholder" style="float:left; padding-top:3px;" id="current_password">
+                        
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Email:</span>
+                    <span class="field-with-placeholder" style="float:left;padding-top:3px"id="mail">
+                     </span>
+                </div>
+                
+              
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:125px">Contact Information</span>
+                <div style="overflow:hidden; float:left; clear:both;" id="Legal_business_contact_content">
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+     <div style="float:right; clear:both; padding-top:5px; height:30px">
+        <input type="button" style="float:right" value="Back" id="" class="btn" onclick="history.go(-1);" />
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="key" name="key" value="{key}" />
+</div>

@@ -1,0 +1,237 @@
+<script language="javascript">
+ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+</script>
+<style type="text/css">
+#ui-datepicker-div{
+	z-index:3;
+}
+span.cke_skin_kama {
+    border: 0px solid #D3D3D3;
+   -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+    padding: 0px;
+}
+</style>
+<div style="clear:both">
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+    	<div style="clear:both;">Documents:</div>
+        <div style="clear:both" id="document_list"></div>
+        <div style="clear:both; float:left; padding-top:20px; width:120px; height:30px;">
+            <input type="button" value="Upload" class="btn btn-primary" id="upload_document"/>
+        </div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+    	<div style="clear:both;">Content:</div>
+        <div style="clear:both">
+        	<textarea id="body">{content}</textarea>
+        </div>
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="submitproductbt" align="left">
+        <input type="button" value="Back" class="btn" onclick="history.go(-1);" />
+        <input type="button" value="Submit" class="btn btn-primary" onclick="check_addForm()" style="margin-left:5px;" />
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<div id="Progress_bar" class="progress_bar" align="left" style="display:none">
+	<div style="width:100%; clear:both; position:relative" align="right"><img src="../images/del_icon.gif" border="0" onclick="CancelUploadProduct()" style="cursor:pointer" /></div>
+	<div class="progress_bar_top">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="file_name"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="progress_bar_midle" align="left">
+    	<div id="progress_bar_pecent" style="position:absolute; height:2px; left:0px; top:0px; background-color:#7838b7; width:100%;"></div>
+    </div>
+    <div class="progress_bar_bottom" align="left">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+        	<tr>
+            	<td align="left" valign="middle" height="20px" id="progress_bar_size"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<input type="hidden" id="key" name="key" value="{key}" />
+<script language="JavaScript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+var arr_img = ['jpg','JPG','jpeg','JPEG','gif','GIF','png','PNG','pdf','PDF','xsl','XSL','doc','DOC','docx','DOCX','txt','TXT'];
+var objGallery = [];
+var uploadImgProduct;
+function uploadGallery(){
+	uploadImgProduct = new plupload.Uploader({
+		runtimes : 'gears,html5,flash,silverlight,browserplus',
+		browse_button : 'upload_document',
+		max_file_size : '10mb',
+		url : 'plupload/server/uploadresources.php',
+		flash_swf_url : 'plupload/js/plupload.flash.swf',
+		silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+		filters : [
+			{title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG,pdf,PDF,xsl,XSL,doc,DOC,docx,DOCX,txt,TXT"}
+		]
+	});
+	uploadImgProduct.bind('FilesAdded', function(up, files) {
+		objGallery = [];
+		currentFile = files[0];
+		document.getElementById("Progress_bar").style.display = 'block';
+		document.getElementById("file_name").innerHTML = files[0].name;
+		document.getElementById("progress_bar_size").innerHTML = 'Uploading..';
+		document.getElementById("progress_bar_pecent").style.width = 0 + '%';	
+		setTimeout(function () {	 
+			uploadImgProduct.start();
+		}, 50);
+	});
+	uploadImgProduct.bind('UploadProgress', function(up, file) {
+		document.getElementById("progress_bar_pecent").style.width = file.percent + '%';
+		var text = "Uploaded "+file.percent+"% &nbsp;("+plupload.formatSize(file.loaded)+" of "+plupload.formatSize(file.size)+")";
+		document.getElementById("progress_bar_size").innerHTML = text;
+	});
+	uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+		setTimeout(function () {
+			$("#Progress_bar").hide();
+		}, 200);
+		var obj = jQuery.parseJSON(dataJson.response);
+		if(obj.error == ''){
+			objGallery = obj;
+			saveData();
+		}
+	}, 'json');
+	uploadImgProduct.init();
+}
+function saveData(){
+	$.post("index.php/businessResources/savedata",{
+		saveData:'yes',
+		data:objGallery
+	},function(data){
+		documents = [];
+		if(typeof(data) == 'object'){
+			documents = data;
+			show_documents();
+		}
+	},'json');	
+}
+function CancelUploadProduct(){	
+	uploadImgProduct.stop();
+	$("#Progress_bar").hide();
+	$("#upload_browser").show();
+}
+function check_addForm(){
+	var body_ = editor_obj.getData();
+	$("#submitproductbt").hide();
+	$("#loadingbt").show();
+	$.post("index.php/businessResources/update",{
+		business_resource_settings:'yes',
+		title:$("#title").val(),
+		content:body_
+	} ,function(data){
+		$("#submitproductbt").show();
+		$("#loadingbt").hide();
+		if(data == ''){
+			alert(success_saved);
+		}else{
+			//alert(data);
+			alert(fail_saved);
+		}
+	});
+}
+var editor_obj;
+function CreateEditor(id){
+	editor_obj = CKEDITOR.replace( id, {
+		uiColor: '#7E7E7E',
+		height:300,
+		enterMode : CKEDITOR.ENTER_BR,	
+        filebrowserBrowseUrl : 'misc/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Flash',
+        filebrowserUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		toolbar : [
+			[ 'Source'],
+			[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+			[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+			[ 'Link','Unlink','Anchor' ],
+			[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		//	'/',
+			[ 'Styles','Format','Font','FontSize' ],
+			[ 'TextColor','BGColor' ],
+			[ 'Maximize', 'ShowBlocks']
+		]
+    });
+}
+var documents = [];
+function load_documents(){
+	$.post("index.php/businessResources/load_documents",{
+		loadDocuments:'yes'
+	},function(data){
+		documents = [];
+		if(typeof(data) == 'object'){
+			documents = data;
+			show_documents();
+		}
+	},'json');
+}
+function show_documents(){
+	var str_documents = '<ul style="list-style:decimal">';
+	if(documents.length > 0)
+		for(var i = 0; i < documents.length; i++){
+			var label = '';
+			if(documents[i].label == null || documents[i].label == '') label = documents[i].file_name;
+			else label = documents[i].label;
+			
+			str_documents += '<li style="padding-top:5px; clear:both; float:left"><div style="border:1px solid #EEE; padding:3px 4px; margin-top:-3px; width:400px; overflow:hidden; float:left" id="label_'+documents[i].id+'" title="Edit title of file" onclick="edit_label('+documents[i].id+')">'+label+'</div><div style="float:left;"><input id="label_input_'+documents[i].id+'" onblur="save_change_label('+documents[i].id+')" style="display:none; width:400px" type="text" value="'+label+'" /> &nbsp;&nbsp;&nbsp;<a href="index.php/download/get_file/'+documents[i].file_name+'"><img src="../images/icon_pdf.gif" border="0" title="download" align="absmiddle" width="20px" /></a>&nbsp;&nbsp;&nbsp;&nbsp;</div><div style="float:left;"><a href="javascript:void(0)" style="color:#F00;" onclick="delete_file('+documents[i].id+')">remove</a></div></li>';					
+		}
+	str_documents += '</ul>';	
+	$("#document_list").empty().append(str_documents);
+}
+function save_change_label(fid){
+	var label = $("#label_input_"+fid).val();
+	$.post("index.php/businessResources/edit_label",{
+		editLabel:'yes',
+		fid:fid,
+		label:label
+	},function(data){
+		documents = [];
+		if(typeof(data) == 'object'){
+			documents = data;
+			show_documents();
+		}
+	},'json');
+}
+function delete_file(fid){
+	if(confirm("Remove this file?")){
+		ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+		$.post("index.php/businessResources/del", {
+			delete_file:'yes',
+			fid:fid
+		},function(data){
+			closeBox('box_popup');
+			documents = [];
+			HideLoadingObj(document.getElementById("content_popup"));
+			if(typeof(data) == 'object'){
+				documents = data;
+				show_documents();
+			}
+		}, "json");
+	}
+	return false;
+}
+function edit_label(id){
+	$("#label_"+id).hide();
+	$("#label_input_"+id).show();
+}
+$(function() {
+	uploadGallery();
+	CreateEditor('body');
+	clearForms();
+	load_documents();
+	HideLoadingObj(document.getElementById("content_load"));
+});
+</script>

@@ -1,0 +1,80 @@
+.block_slider_accordion{
+    width:940px;
+	height:398px; 
+	padding:20px 0 36px;
+	margin:0 0 0 -1px;
+    overflow: hidden;
+	position:relative;
+	background:none;
+
+}
+.block_slider_accordion .slider_wrapper {
+	width:924px; 
+	overflow: hidden;
+	position:relative;
+	border:1px solid #e5e5e5;
+	padding:7px;
+	background: #fff;
+}
+#slider_accordion_ul {
+	list-style: none;
+	padding: 0;
+	height:398px;
+	overflow: hidden; 
+	margin:0; 
+	padding:0; 
+	width:20000px;
+}
+#slider_accordion_ul li {
+	float: left;
+	display: block;
+	height:398px;
+	width:187px;
+	overflow: hidden; 
+	position:relative;
+	background:url(shadow.png) repeat-y 0 0; 
+	padding:0 0 0 6px; 
+	margin:0 0 0 -6px;
+}  
+#slider_accordion_ul li:first-child{}
+#slider_accordion_ul li:last-child{padding-right:20px;}
+#slider_accordion_ul li.active{width: 450px;}
+.slider_image{
+	position:absolute;
+	min-height:398px; 
+	left:6px; 
+	top:0;
+}
+.accordion_text{
+	position:absolute;
+	bottom:0; 
+	width:100%; 
+	left:6px; 
+	padding-bottom:10px; 
+	min-height:0;
+	background:rgba(254,143,1,0.9);
+	-pie-background:rgba(254,143,1,0.9); behavior: url(http://smartbusiness-html.atixscripts.info/js/accordion/PIE.htc);
+}
+.accordion_text a { color:#fff; text-decoration:none; }
+.accordion_text a:hover { text-decoration:underline; }
+.short_text{
+	max-height:95px; 
+	overflow:hidden; 
+	margin:12px 30px 0 10px; 
+	min-width:180px;
+	color:#fff; 
+	font:300 18px/26px "Oswald", Arial, Helvetica, sans-serif;
+	text-shadow:1px 1px 0 rgba(0, 0, 0, .1);	
+}
+.detail_text{
+	margin:0 30px 0 10px; 
+	display:none;
+	color:#fff; 
+	font:13px/16px Arial, Helvetica, sans-serif;
+}
+.slider_act .more_text{
+	display:none;
+}
+.slider_act .detail_text{
+	display:block;
+}

@@ -1,0 +1,209 @@
+<form class="form-horizontal form-box remove-margin " method="post" id="bankingForm">
+    <!-- Form Header -->
+    
+    <div class="col-md-5" style="margin: 0 0 0 13px; padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Banking Info</span>
+	       <span class="tools pull-right icons" style=""><i class="glyphicon-bank"></i></span>
+        </header>
+        <div class="panel-body">
+		<!-- Panel start --> 
+    <!-- Form Content -->
+    <div class="form-box-content">
+        <!-- First Step -->
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+            
+          
+	            <div class="form-group1">
+	                <label for="bank_name1" class="control-label col-md-12">Bank Name<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text"  class="form-control ui-wizard-content" value="" name="bank_name1" id="bank_name1">
+	                </div>
+                </div>
+                
+                <div class="form-group1">
+                	<label for="bank_routing1" class="control-label col-md-12">Routing Number<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" value="" name="bank_routing1" id="bank_routing1">
+	                </div>
+                </div>
+                
+                <div class="form-group1">
+                	<label for="b_account_no1"
+                       class="control-label col-md-12">Account Number<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" name="b_account_no1" id="b_account_no1" value="">
+	                </div>
+                </div>
+            
+
+            
+            
+            <div id="modal_success2" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+	</div>
+	</div>
+	</section>
+	</div>
+	
+	<div class="col-md-1" style="padding-top: 25px;">&nbsp;
+	</div>
+	<div class="col-md-6" style="padding-top: 25px; width: 43%">
+	<section class="panel">
+    	
+        <div class="panel-body">
+            <img alt="" style="margin:26px 0px 19px 7px;" src="../backend/img/check_sample.jpg">
+         </div>
+         </section>       
+            </div>
+	<div style="clear: both;"></div>
+	<div class="col-md-12 text-left" id="bankingSaveBtn" style ="padding-left:25px;">
+
+                  <button class="btn btn-success" id="save_p2" type="submit" > &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>   
+
+<!-- 
+                    <input type="submit" value="Submit" id="save_p2"
+                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                    -->
+                </div>
+                
+         <div class="col-md-12" id="bankingSaveBtnLoad" style="display:none; padding-left: 30px">
+          <button  class=" btn btn-success" type="submit">
+                     <i class="glyphicon-refresh"></i> Saving... 
+                </button>
+      </div>       
+</form>
+
+
+<script type="text/javascript">
+
+var dataClient = [];
+
+function loadObject() {
+		{dataLoad}
+                loadClients();
+}
+
+
+function loadClients() {
+	$("#bank_name1").val(dataClient.bank_name);
+	$("#bank_routing1").val(dataClient.bank_routing);
+	$("#b_account_no1").val(dataClient.bank_account);
+}
+/*
+function clickSavePaymentInfo() {
+	$("#save_p2").click(function() {
+
+		$.post("index.php/admin/settings/savePaymentInfo", {
+			load_p : 'yes',
+			bank_name : $("#bank_name1").val(),
+			bank_routing: $("#bank_routing1").val(),
+			b_account_name : $("#b_account_no1").val()
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+				$('#modal_success2').modal('show');
+                                $("#two").trigger('click');
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+}
+*/
+$(function(){
+	
+	loadObject();
+	//clickSavePaymentInfo();
+	
+	
+	/* Initialize Form Validation */
+    $('#bankingForm').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group1 > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+            //e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.form-group1').removeClass('has-success has-error');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	b_account_no1 : {
+                required: true,
+                minlength: 5,
+                number: true
+            },
+            bank_routing1 :{
+                required: true,
+                minlength: 9,
+                maxlength: 9,
+                number: true
+            },
+            bank_name1 :{
+                required: true
+            }
+        },
+        messages: {
+        	b_account_no1 :{
+                required: 'Please enter a bank account number',
+                minlength: 'Your account number must be at least 5 characters long',
+                number: 'Please enter only number!'
+            },
+            bank_routing1 :{
+                required: 'Please enter valid bank routing number.',
+                minlength: 'Your bank routing number must be at least 9 characters long',
+                maxlength: 'Your bank routing number should not more then 9 characters long',
+                number: 'Please enter only number!'
+            },
+            bank_name1 : 'Please enter bank name.'
+        },
+        submitHandler: function(form) {
+        	
+        	$('#bankingSaveBtn').hide();
+			$('#bankingSaveBtnLoad').show();
+			
+        	$.post("index.php/admin/settings/savePaymentInfo", {
+    			load_p : 'yes',
+    			bank_name : $("#bank_name1").val(),
+    			bank_routing: $("#bank_routing1").val(),
+    			b_account_name : $("#b_account_no1").val()
+    		}, function(data) {
+    			if (typeof (data) == 'object') {
+    				dataClient = data;
+    				$('#bankingSaveBtn').show();
+    				$('#bankingSaveBtnLoad').hide();
+    							//$('#modal_success2').modal('show');
+                                //    $("#two").trigger('click');
+    			}
+    			loadClients();
+    		}, "json");
+
+    		return false;
+        }
+         
+    });
+	
+});
+
+</script>

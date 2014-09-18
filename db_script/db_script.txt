@@ -1,0 +1,45 @@
+3rd September 2014 (Done)
+
+ALTER TABLE `benefits`  ADD `item_desc` VARCHAR(100) NOT NULL AFTER `prices`,  ADD `item_img` VARCHAR(20) NOT NULL AFTER `item_desc`
+
+ALTER TABLE `benefits` CHANGE `item` `benefits_item` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `prices` `benefits_price` DOUBLE(10,2) NOT NULL, CHANGE `item_desc` `benefits_item_desc` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `item_img` `benefits_img_source` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `status` `benefits_status` INT(2) NOT NULL COMMENT '0=Pending,1=active, 2=canceled'
+
+ALTER TABLE `benefits` ADD `uid` INT( 11 ) NOT NULL COMMENT 'this is the primary applicent id' AFTER `benefits_id` 
+
+ALTER TABLE `benefits_applicent` DROP `app_id` 
+
+ALTER TABLE `insurance` CHANGE `item` `insurance_item` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `status` `insurance_status` INT(2) NOT NULL COMMENT '0=Pending,1=active, 2=canceled'
+
+ALTER TABLE `insurance` ADD `uid` INT( 11 ) NOT NULL COMMENT 'this is the primary applicent id' AFTER `insurance_id` 
+
+ALTER TABLE `insurance_applicent` CHANGE `app_id` `app_id` INT( 11 ) NOT NULL 
+
+ALTER TABLE `benefits` ADD `app_id` INT( 11 ) NULL COMMENT 'this app id related with bank product new applciation table' AFTER `benefits_id` 
+
+ALTER TABLE `insurance` ADD `app_id` INT( 11 ) NULL COMMENT 'this app id related with bank product new applciation table' AFTER `insurance_id` 
+
+ALTER TABLE `insurance_applicent` DROP `app_id` 
+
+ALTER TABLE `insurance_application_additional_info` DROP `product_id`, DROP `prodcut_name`, DROP `img_source`, DROP `insurance_status`;
+
+ALTER TABLE `new_app` DROP `benefits_item`, DROP `benefits_item_desc`, DROP `benefits_img_source`, DROP `benefits_price`, DROP `benefits_status`, DROP `insurance_item`, DROP `insurance_item_desc`, DROP `insurance_img_source`, DROP `insurance_price`, DROP `insurance_status`, DROP `app_from`;
+
+ALTER TABLE `insurance_application_additional_info` ADD `insurance_title` VARCHAR( 30 ) NOT NULL AFTER `aplicent_id` 
+
+ALTER TABLE `insurance` CHANGE `uid` `applicent_id` INT( 11 ) NOT NULL COMMENT 'this is the primary applicent id'
+
+ALTER TABLE `insurance` ADD `uid` INT( 11 ) NOT NULL COMMENT 'this is the ID of the parent ERO'
+
+ALTER TABLE `insurance_applicent` CHANGE `uid` `applicent_id` INT( 11 ) NOT NULL COMMENT 'applicent id'
+
+ALTER TABLE `insurance_applicent` ADD `insurance_id` INT( 11 ) NOT NULL AFTER `applicent_id` 
+
+ALTER TABLE `benefits` ADD `applicent_id` INT( 11 ) NOT NULL AFTER `app_id` 
+
+ALTER TABLE `benefits_applicent` ADD `benefits_id` INT( 11 ) NOT NULL AFTER `ben_id` 
+
+ALTER TABLE `benefits_applicent` CHANGE `uid` `applicent_id` INT( 11 ) NOT NULL COMMENT 'applicent id'
+
+ALTER TABLE `insurance` ADD `insurance_img_source` VARCHAR(30) NOT NULL AFTER `insurance_item`;
+
+ALTER TABLE `insurance_application_additional_info` CHANGE `app_id` `insurance_id` INT(11) NOT NULL COMMENT 'this is the referance id of application';

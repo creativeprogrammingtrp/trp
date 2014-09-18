@@ -1,0 +1,970 @@
+<style>
+.table thead > tr > th{
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+ul li {
+    list-style: none outside none;
+}
+
+.nav-tabs > li > a
+{
+	width:168px;
+}
+
+p{
+	margin:0px;
+}
+
+.table thead > tr > th{
+	background: none !important;
+}
+.stepy-tab {
+    text-align: center;
+	margin-bottom: 28px;
+}
+
+.stepy-tab ul {
+    display: inline-block;
+}
+
+.stepy-tab ul li {
+    float: left;
+}
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+    float: left;
+    margin: 10px 15px;
+}
+
+.stepy-titles li.current-step div {
+    background: none repeat scroll 0 0 #A9D86E;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: auto;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li div {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 300;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+}
+
+.stepy-titles li span {
+    display: block;
+}
+
+
+.form-box-header {
+    padding: 15px 0 10px;
+	color:#0097CF;
+	border-bottom: 1px dotted #ddd;
+}
+
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td{
+	vertical-align: middle;
+}
+
+hr{
+	
+}
+
+</style>
+<div style="padding-top:29px;margin-bottom:29px; padding-left:24px;" class="col-md-12"><h2 style="margin:0px; color:#54565F;"><i class="icon-umbrella"></i> &nbsp;{title_page}</h2></div>
+
+<div style="clear:both"></div>
+
+<ul data-toggle="tabs" class="nav nav-tabs push">
+   <!--  <li class="active"><a href="#insurance">Insurance</a></li> -->
+    <li class="active"><a href="#pendingInsurance" onclick="ChangeContent(27);">Pending</a></li>
+    <li class=""><a href="#activeInsurance"  onclick="ChangeContent(29);">Active</a></li>
+    <li class=""><a href="#canceledInsurance"  onclick="ChangeContent(30);">Cancelled</a></li>
+</ul>
+
+<div class="tab-content tab-content-default">
+<div id="pendingInsurance" class="tab-pane tab-pane-width active"> </div>
+<div id="activeInsurance" class="tab-pane tab-pane-width" ></div>
+<div id="canceledInsurance" class="tab-pane tab-pane-width" ></div>
+</div>
+
+<!--  Modal box for add  insurance product  -->
+<div id="modal_add_insuracne_product" class="modal slide modal_add_insurance">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-umbrella"></i> Insurance </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+            
+            <form id="insurance_info_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+            
+            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+						         
+						         <div class="col-md-6" style=" width:48%; margin:0px 0 5px 8px;" >
+						         
+						         <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							       Customer Info
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-user"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						         
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						           
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6 form-group1">
+							                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+							                    <div class="input-group1 nopadding col-md-12">
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                    </div>
+							                </div>
+						                	<div class="col-md-6 form-group1">
+						                		<label for="dob" class="control-label col-md-12">Birth Date</label>
+						                    	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="" placeholder="MM/DD/YYYY">
+						                    	</div>
+						                	</div>
+						                
+						            </div>
+						            
+						           <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="add_spouse" class="control-label col-md-12"><input type="checkbox"   name="add_spouse" id="add_spouse"> Add Spouse</label>
+							                </div>
+						            </div>
+						            
+						            <div id="dependent-box">
+							            <h4 class="form-box-header">
+								        <i class="glyphicon-girl"></i> Spouse's Info
+								    	</h4> 
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Spouse's First Name</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_first_name" id="sp_first_name" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Spouse's Last Name</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="sp_last_name" id="sp_last_name" value="">
+							                	</div>
+							                
+							            </div>
+							            
+							            <div class="form-group">
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_ss_number" id="sp_ss_number" value="">
+								                </div>
+							            
+							            
+								                <div class="col-md-6">
+								                	<label for="sp_dob" class="control-label col-md-9">Birth Date</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_dob" id="sp_dob" value="" placeholder="MM/DD/YYYY">
+								                </div>
+							            </div>
+						            </div>
+						            
+						            
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-12 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Address</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="form-group">
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	{states}
+						                    </select>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                		<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                	</div>	
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+								            </div>        	
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="email_add" class="control-label col-md-12">Email Address</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content"  name="email_add" id="email_add" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						          <!-- Panel End -->
+						          </div>
+						          </section>  
+						</div>
+						<div class="col-md-6" style="margin-top:0px" >
+						
+					        <div class="col-md-12" style=" margin:0px 5px;" >  
+					          
+					          <section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Refund Information
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-undo"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body">
+							        <!-- Panel start -->
+							        
+							        <!--  Content will be add here -->
+							        
+								    <!-- End panel -->
+					            </div>
+					            </section>
+				           	</div>
+				           
+				            
+						</div>
+						<div style="clear:both;"></div>
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+				                            <button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Save &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+				                            
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            </div>
+						        
+						    </div> 
+						    
+						    <input type="hidden" name="selectedItem" id="selectedItem"  value="" >
+						    
+						   </form> 
+            </div>
+        </div>
+    </div>
+</div>       
+<!-- End  Modal box for Edit insurance product-->
+
+<!--  Modal box for edit  insurance product  -->
+<div id="modal_edit_insuracne_product" class="modal slide modal_edit_insurance">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-umbrella"></i> Insurance </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+            
+            <form id="insurance_info_edit_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+            
+            
+            
+            	<div id="body_insurance_info_edit" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+						    <input type="hidden" value="" id="insurance_app_id" name="insurance_app_id">
+						    <input type="hidden" value="" id="insurance_applicent_id" name="insurance_applicent_id">
+						         
+						         <div class="col-md-6" style=" width:48%; margin:0px 0 5px 8px;" >
+						         
+						         <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							       Customer Info
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-user"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						         
+						         	<hr class="dottline" style="border-top:1px solid #eee; margin: 11px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/customer_info_icon.png">
+						            </div>
+						            <div class="form-group">
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                	<span  class="control-label col-md-12  text_300" id="first_name_lab">John</span>
+						                    <div class="input-group1 nopadding col-md-12" id="first_name_div"  style="display:none;">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						               	 	<span  class="control-label col-md-12  text_300" id="last_name_lab">Dev</span>
+						                    <div class="input-group1 nopadding col-md-12" id="last_name_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						           <hr class="dottline info_hr"  style=" margin: 8px 5px;" />
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6 form-group1">
+							                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+							                	<span  class="control-label col-md-12  text_300" id="ss_number_lab">312-21-1232</span>
+							                    <div class="input-group1 nopadding col-md-12" id="ss_number_div"  style="display:none;">
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                    </div>
+							                </div>
+						                	<div class="col-md-6 form-group1">
+						                		<label for="dob" class="control-label col-md-12">Birth Date</label>
+						                		<span  class="control-label col-md-12  text_300" id="dob_lab">12/12/1979</span>
+						                    	<div class="input-group1 nopadding col-md-12" id="dob_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="" placeholder="MM/DD/YYYY">
+						                    	</div>
+						                	</div>
+						                
+						            </div>
+						            
+						            <div id="dependent-box" style="margin-top: 45px;">
+							            <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+								            <div class="col-md-12 text-center" style="margin-top:-30px;">
+								            	<img alt="" src="../backend/img/spouse_info_icon.png">
+								            </div>
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-12">Spouse's First Name</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_first_name_lab">yasmin</span>
+								                    <input type="text" class="form-control ui-wizard-content"  style="display:none;" name="sp_first_name" id="sp_first_name" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-12">Spouse's Last Name</label>
+							                		<span  class="control-label col-md-12  text_300" id="sp_last_name_lab">Akter</span>
+							                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_last_name" id="sp_last_name" value="">
+							                	</div>
+							                
+							            </div>
+							            <hr class="dottline info_hr" style=" margin: 8px 5px;" />
+							            <div class="form-group">
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_ss_number_lab">232-22-2323</span>
+								                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_ss_number" id="sp_ss_number" value="">
+								                </div>
+							            
+							            
+								                <div class="col-md-6">
+								                	<label for="sp_dob" class="control-label col-md-12">Birth Date</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_dob_lab">12/12/1981</span>
+								                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_dob" id="sp_dob" value="" placeholder="MM/DD/YYYY">
+								                </div>
+							            </div>
+						            </div>
+						            
+						            
+						            
+						            <div class="form-group" style="margin-top: 15px">
+						                <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/address_info_icon.png">
+						            </div>
+						                <div class="col-md-12 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Address</label>
+						                	<span  class="control-label col-md-12  text_300" id="street_address_lab">this is address</span>
+						                    <div class="input-group1 nopadding col-md-12" id="street_address_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                    </div>
+						                </div>
+						            </div>
+						           
+						             <hr class="dottline info_hr" style=" margin: 8px 5px;" />
+						            <div class="form-group">
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                	<span  class="control-label col-md-12  text_300" id="city_lab">Dhaka</span>
+						                    <div class="input-group1 nopadding col-md-12" id="city_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	<span  class="control-label col-md-12  text_300" id="state_lab">NK</span>
+						                	<div class="input-group1 nopadding col-md-12" id="state_div" style="display:none;">
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	{states}
+						                    </select>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<span  class="control-label col-md-12  text_300" id="zip_code_lab">12123</span>
+						                	<div class="input-group1 nopadding col-md-12" id="zip_code_div" style="display:none;">
+						                		<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                	</div>	
+						                </div>
+						            </div>
+						            
+						           
+						            <div class="form-group" style="margin-top: 15px">
+						                <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/contact_info_icon.png">
+						            </div>
+						               
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                	<span  class="control-label col-md-12  text_300" id="cell_phone_lab">()232) 231 - 2232</span>
+						                    <div class="input-group1 nopadding col-md-12" id="cell_phone_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+								            </div>        	
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Email Address</label>
+						                	<span  class="control-label col-md-12  text_300" id="email_add_lab">shuvro@osourcebd.com</span>
+						                	<div class="input-group1 nopadding col-md-12" id="email_add_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content"  name="email_add" id="email_add" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						          <!-- Panel End -->
+						          </div>
+						          
+						          <div style="background-color: #F5F9FB; padding:20px 22px;">
+			                            <button value="Downlaod" style="float: left; margin-right: 10px;" id="edit_cust_info_btn" type="button" onclick="editEnableInsurance('body_insurance_info_edit');" class="edit_cust_info_btn btn btn-white-red">
+				                              <i class="icon-pencil6"></i> Edit
+				                         </button>
+				                         <button style="display:none;" class=" btn btn-success" type="submit" id="saveData" value="Next">
+				                                <i class="icon-ok"></i> Save
+				                            </button>
+				                        <div style="clear:both;"></div>
+				                        </div>
+				                       
+						          </section>   
+						</div>
+						<div class="col-md-6" style="margin-top:0px" >
+						
+					        <div class="col-md-12" style=" margin:0px 0px; padding: 0" >  
+					          
+					          <section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Insurance
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-undo"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body">
+							        <!-- Panel start -->
+							         <div class="col-md-12 text-left" id="selected_insurance" style="padding:0px;">
+									 	
+			                              
+									 </div>
+							        <!--  Content will be add here -->
+							        
+								    <!-- End panel -->
+					            </div>
+					            </section>
+				           	</div>
+				           	
+				           <div class="col-md-12 text-left"  style="padding:0px; margin-top:30px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Additioanl Information
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-user"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:10px 0px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" id="insurance_additional_info" style="padding:0px;">
+									 	
+			                              
+									 </div>
+							  </div>
+							</section>
+						</div>	
+				           	
+				           	<div class="col-md-12 text-left"  style="padding:0px; margin-top:30px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Selected Applicent
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-user"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:10px 0px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" id="selected_appl_sum" style="padding:0px;">
+									 	
+			                              
+									 </div>
+							  </div>
+							</section>
+						</div>
+						
+						
+				           
+				           
+				            <div class="col-md-12 text-left"  style="padding:0px; margin-top:30px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Note
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-pencil6"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:10px 20px;" id="insurance_note_div">
+							         <!-- Panel start -->
+							         
+							  </div>
+							</section>
+						</div>
+				            
+						</div>
+						<div style="clear:both;"></div>
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_edit_insurance" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Close &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            
+				                            
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            </div>
+						        
+						    </div> 
+						    
+						    
+						    
+						   </form> 
+            </div>
+        </div>
+    </div>
+</div>       
+<!-- End  Modal box for Edit insurance product-->
+
+<!--  Modal box for edit  benefits status  -->
+<div id="modal_edit_insurance_status" class="modal slide modal_edit_insurance">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-umbrella"></i> Change Insurance Status</h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+            
+            <form id="insurance_status_edit_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+            
+            <input type="hidden" name="in_product_id" id="in_product_id"  >
+            
+            	<div id="body_insurance_status_edit" class="step" style="background-color: #ebf1f5; padding-top:22px;  padding-bottom: 22px;">
+						    <input type="hidden" value="" id="benefits_app_id" name="benefits_app_id">
+						         
+					<div class="col-md-12" style=" width:97%;  margin:0px 0 5px 8px;" >
+						         
+						<section class="panel">
+                          
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-12 form-group1">
+						               	 	<input type="radio" name="istatus" id="istatus" value="0"> Pending <br>
+						               	 	<input type="radio" name="istatus" id="istatus" value="1"> Active<br>
+						               	 	<input type="radio" name="istatus" id="istatus" value="2"> Canceled<br>
+						                </div>
+						            </div>
+						           
+						           
+						           		<div class="form-group">
+						           			<div class="col-md-12 >
+						                	<label for="street_address" class="control-label col-md-12">Note</label>
+						                    <div class="input-group1 nopadding col-md-12" id="street_address_div">
+						                    	<textarea rows="5" cols="" name="insurance_note" id="insurance_note" class="form-control ui-wizard-content"></textarea>
+						                    </div>
+						                    </div>
+						                </div>
+						   </div>
+					</section>
+					<div class="clear:both"></div>
+				</div>
+				
+				<div style="clear:both;"></div>
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger" type="button" id="cancel_edit_insurance_status" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Close &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                          <button  class=" btn btn-success" type="submit" id="step1btn" value="Next">
+				                                <i class="icon-ok"></i> Save
+				                            </button>
+				                            
+				                            <button style="display:none;"  class=" btn btn-danger btn-lg" type="submit" id="step1load" value="Next">
+				                                 <i class="glyphicon-refresh"></i> Saving... 
+				                            </button>
+				                        <div style="clear:both;"></div>  
+				                            
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            </div>
+			</div>
+		</form>
+		
+		</div>
+	</div>
+</div>
+</div>			
+<!-- End of edit Insurance status -->
+
+
+<!--script for this page only-->
+   <!-- <script src="../backend/js/flot-chart.js"></script> -->
+   
+   <script>
+   
+   	function showPendingInsurance(){
+		$.ajax({
+             url: 'index.php/admin/services/showPendingInsurance?ajax=1',
+             cache: false,
+             success: function(message){
+            	 //alert(message);
+                     $("#pendingInsurance").empty().append(message);
+                     return false;
+             }
+		});	
+	}
+   	
+   	function showActiveInsurance(){
+		$.ajax({
+             url: 'index.php/admin/services/showActiveInsurance?ajax=1',
+             cache: false,
+             success: function(message){
+            	 //alert(message);
+                     $("#activeInsurance").empty().append(message);
+                     return false;
+             }
+		});	
+	}
+   	
+   	function showCancelledInsurance(){
+		$.ajax({
+             url: 'index.php/admin/services/showCancelledInsurance?ajax=1',
+             cache: false,
+             success: function(message){
+            	 //alert(message);
+                     $("#canceledInsurance").empty().append(message);
+                     return false;
+             }
+		});	
+	}
+	    
+   
+  $(function(){
+	  
+	  showPendingInsurance();
+	  
+	  $(".showaddForm").click(function() {
+		  
+		  var item = $(this).attr('id');
+		  //console.log(item);
+		  $('#selectedItem').val(item);
+		  $("#modal_add_insuracne_product").modal('show');	
+	  });
+	  
+	  $("#cancel_add_insurance").click(function() {
+			$("#modal_add_insuracne_product").modal('hide');	
+	  });
+
+	 
+
+	  $("#cancel_edit_insurance_status").click(function() {
+			$("#modal_edit_insurance_status").modal('hide');	
+	  });
+
+
+	  
+	  
+	  
+	  // For spouse show / hide
+	  var checkbox = $('#add_spouse'); 
+      var dependent = $('#dependent-box');
+      if (checkbox.attr('checked') !== undefined){
+         dependent.show();
+      } else {
+          dependent.hide();
+      }
+      
+      checkbox.change(function(e){
+         dependent.toggle(); 
+      });
+      
+      // End for spouse show / hide
+      
+      // for field masking 
+      	$("#ss_number").mask("999-99-9999");
+        $("#cell_phone").mask("(999) 999-9999");
+        $("#dob").mask("99/99/9999");
+        $("#sp_ss_number").mask("999-99-9999");
+        $("#sp_dob").mask("99/99/9999");
+        
+     // End for field masking   
+        
+      // For form submit with validation
+      
+           /* Initialize Form Validation */
+                $('#insurance_info_add_form').validate({
+                    errorClass: 'help-block',
+                    errorElement: 'span',
+                    errorPlacement: function(error, e) {
+                        e.parents('.form-group1 > div').append(error);
+                    },
+                    highlight: function(e) {
+                        $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+                        $(e).closest('.help-block').remove();
+                    },
+                    success: function(e) {
+                        // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                        e.closest('.form-group1').removeClass('has-success has-error');
+                        e.closest('.help-block').remove();
+                    },
+                    rules: {
+                    	first_name: { required: true },
+                        last_name: { required: true},
+                        ss_number: { required: true},
+                        dob: { required: true},
+                        street_address: { required: true},
+                        city: { required: true},
+                        state: { required: true},
+                        zip_code: { required: true, maxlength: 5,  minlength: 5, number: true},
+                        cell_phone: { required: true},
+                        email_add: { required: true, email: true}
+                        
+                    },
+                    messages: {
+                    	first_name: { required: 'Please enter a first name'},
+                        last_name: { required: 'Please enter a last name'},
+                        ss_number: { required: 'Please enter SSN number '},
+                        dob: { required: 'Please enter your DOB'},
+                        street_address: { required: 'Please enter Address'},
+                        city: { required: 'Please enter city'},
+                        state: { required: 'Please select state'},
+                        zip_code: { required: 'Please enter zip code',
+                        			maxlength: 'Please enter no more then 5 digit.',
+                        			minlength: 'Please enter at least 5 digit.'},
+                        cell_phone: { required: 'Please enter phone number'},
+                        email_add: { required: 'Please enter a email address',
+                        	 		email: 'Please enter a valid email address'},
+                       
+                        
+                    },
+                    submitHandler: function(form) {
+                    	$('.step1btn').hide();
+						$('.step1load').show();
+               		 	$.post("index.php/admin/services/addinsurance", {
+	               		 	senddata : 'yes',
+	        				 
+	         				first_name : $("#first_name").val(),
+	         				last_name : $("#last_name").val(),
+	         				ss_number : $("#ss_number").val(),
+	         				dob : $("#dob").val(),
+	         				
+	         				add_spouse :  $("#add_spouse").is(':checked') ? 1 : 0,
+	         				sp_first_name : $("#sp_first_name").val(),
+	         				sp_last_name : $("#sp_last_name").val(),
+	         				sp_ss_number : $("#sp_ss_number").val(),
+	         				sp_dob : $("#sp_dob").val(),
+	         				
+	         				street_address : $("#street_address").val(),
+	         				/*street_address2 : $("#street_address2").val(),*/
+	         				
+	         				city : $("#city").val(),
+	         				state : $("#state").val(),
+	         				zip_code : $("#zip_code").val(),
+	         				/*country : $("#country").val(),*/
+	         				cell_phone : $("#cell_phone").val(),
+	         				email_add : $("#email_add").val(),
+	         				selectedItem : $("#selectedItem").val()
+	             		}, function(data) {
+	             			if (data) {
+	             				
+	             				//var hash = window.location.hash;
+	             				
+	             				//$('.nav-tabs > .active').next('li').find('a').trigger('click');
+	             				//$("#page-container").trigger('click');
+								
+								$('.step1btn').show();
+								$('.step1load').hide();
+								
+								//var selectedItem =  $("#selectedItem").val();
+								//console.log(selectedItem);
+								//console.log($('#'+selectedItem).text());
+								
+								//$('#'+selectedItem).text('<i class=" next_tab icon-ok"></i> Added');
+								
+								$("#modal_add_insuracne_product").modal('hide');	
+								//$('#applicant_info').hide();
+								//$('.tab-pane').removeClass('active');
+ 								//$('#additional_services').show().addClass('active');	
+								
+	             				// For send to the next step  
+	                        	/*var target = $(".nav-tabs li.active");
+	                   		    var sibbling;
+								sibbling = target.next();
+	                   		    if (sibbling.is("li"))
+	                   		    {sibbling.children("a").tab("show");}*/
+	                   		 	// End For send to the next step 
+	             			}
+	             		}, "json");
+	
+	             		return false;
+                    }
+                });
+        /**/
+        
+        $('#insurance_status_edit_form').validate({
+                    errorClass: 'help-block',
+                    errorElement: 'span',
+                    errorPlacement: function(error, e) {
+                        e.parents('.form-group > div').append(error);
+                    },
+                    highlight: function(e) {
+                        $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                        $(e).closest('.help-block').remove();
+                    },
+                    success: function(e) {
+                        // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                        e.closest('.form-group').removeClass('has-success has-error');
+                        e.closest('.help-block').remove();
+                    },
+                    rules: {
+                    	istatus: { required: true },
+                    	insurance_note: { required: true },
+                    },
+                    messages: {
+                    	istatus: { required: 'Please Select any one Status.'},
+                    	insurance_note: { required: 'Please add some notes.'},
+                    },
+                    submitHandler: function(form) {
+                    	$('.step1btn').hide();
+						$('.step1load').show();
+               		 	$.post("index.php/admin/services/changeStatusAndAddInsuranceNote", {
+	               			senddata : 'yes',
+	               			istatus : $('input[name=istatus]:checked').val(),
+               		 		insurance_note : $('#insurance_note').val() ,
+               		 		appId : $("#insurance_app_id").val(),
+               		 		in_product_id : $("#in_product_id").val(),
+               		 	
+	             		}, function(data) {
+	             			if (data) {
+	             				
+								$('.step1btn').show();
+								$('.step1load').hide();
+								$('#insurance_note').val('');
+								$("#modal_edit_insurance_status").modal('hide');
+								
+								
+								//$('#insurance_applicent').hide();
+								//$('.tab-pane').removeClass('active');
+ 								//$('#insurance').show().addClass('active');	
+ 								//$("html, body").animate({ scrollTop: 0 }, 300);
+	             			}
+	             		}, "json");
+	
+	             		return false;
+                    }
+                });
+      // End for form submit with validation
+    
+	  
+  });
+</script>	   

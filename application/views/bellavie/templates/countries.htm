@@ -1,0 +1,251 @@
+<script language="javascript">
+var data_clients = [];
+var header_first 	= ['Name', 'Code', 'Number of states','Number of cities'];
+var header_last 	= [ 'Name', 'Code', 'Number of states','Number of cities'];
+var columeb = null;
+var sort_list = '';
+
+var pager_number = 1;
+var clients_select = 0;
+
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}//end function reset_headerAdminClient 
+
+function filtList_adminclient(colum){
+	// Xac dinh Sort type
+	reset_headerAdminClient();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = data_clients.length;
+
+	if(row_sort > 0){
+		var min_index = 0;
+		var max_index = row_sort;		
+	
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name < data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name > data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}	
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].code < data_clients[j].code){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].code > data_clients[j].code){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 2){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].numOfSates) < parseFloat(data_clients[j].numOfSates)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].numOfSates) > parseFloat(data_clients[j].numOfSates)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}
+		}else if(colum == 3){
+                    if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].numOfCities) < parseFloat(data_clients[j].numOfCities)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].numOfCities) > parseFloat(data_clients[j].numOfCities)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}
+                }
+	}
+	loadClients();
+} //end function filtList_adminclient
+function loadClients(){
+	var str_content = '';
+	var length_data = data_clients.length;
+	if(length_data > 0){
+		for(var i = 0; i < length_data; i++){
+			var obj = data_clients[i];
+			var button = '';
+			if(button != '')
+			{
+				button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+			}
+			button += '<a href="javascript:void(0)" onclick="delete_country(\''+obj.id+'\')">Delete</a>';
+			if(button != '')
+			{
+				button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+			}
+			button += '<a href="index.php/admin/countries/states/'+obj.id+'/list" >States</a>';
+                        if(button != '')
+			{
+				button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+			}
+                        button += '<a href="index.php/admin/countries/cities/'+obj.id+'/list" >Cities</a>';
+			str_content += '		<tr class="tr-row" id="'+obj.id+'">';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.name+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.code+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.numOfSates+'</td>';
+            str_content += '			<td align="left" valign="top" class="td-row">'+obj.numOfCities+'</td>';
+	
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';	
+		}
+	}
+	$("#shippingContent").empty().append(str_content);
+	$("tbody").sortable({
+			handle: '.draggable',
+			update: function(e, ui){
+				var image_thumb_children = $("tbody").children();
+				var dataImgProduct_tam = data_clients;
+				data_clients = [];
+				for(var j = 0; j < image_thumb_children.length; j++){
+					for(var k = 0; k < dataImgProduct_tam.length; k++){
+						if(dataImgProduct_tam[k].akey == image_thumb_children[j].id){
+							data_clients[data_clients.length] = dataImgProduct_tam[k];	
+							break;	
+						}	
+					}
+				}
+			}
+		}
+	);
+	$("tbody").disableSelection();
+}//end function loadClients()
+
+function loadObjectClients()
+{
+	data_clients = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/countries",{loadShipping:'yes'},function(data)
+		{
+			HideLoadingObj(document.getElementById("content_load"));
+			if(typeof(data) == 'object'){
+				data_clients = data;
+			}
+			loadClients();
+		}, "json");
+	return false;
+}//end function loadObjectClients()
+
+function delete_country(ukey){
+    if(confirm('Delete this country?')){
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/countries", {
+		delete_country:'yes',
+		countryKey:ukey
+	},function(data){
+		closeBox('box_popup');
+		alert(success_delete);
+		window.location = '';
+	});
+    }
+    return false;
+}//end function delete_country
+
+$(function() {
+	loadObjectClients(); 
+});
+
+</script>
+<div style="clear:both; padding-bottom:20px; width:100%; overflow:hidden">
+    <form id="form1" name="form1" method="post" action="">
+        
+        <select name="selectcountry[]" multiple="multiple" style="height:100px">  
+            {countries}
+                <option value="{id}">{name}</option>
+            {/countries}
+        </select>
+        <input class="btn btn-primary" type="submit" style="margin-left:10px" name="addcountry" id="addcountry" value="Add Country" />
+    </form>
+</div>
+<div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list">
+	<table class="v3">
+		<thead>
+			<tr>
+				<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0)">Name</th>
+				<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(1)">Code</th>
+				<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(2)">Number of States</th>
+                                <th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(3)">Number of Cities</th>
+                                <th align="left" valign="middle" class="th-per">&nbsp;</th>
+			</tr>
+		</thead>
+        <tbody id="shippingContent"></tbody>
+    </table>
+</div>
+
+<div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>

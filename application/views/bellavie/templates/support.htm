@@ -1,0 +1,186 @@
+<style>
+.post-box{
+	padding-top:20px;}
+.new-msg{
+	position:relative;
+	float:right;
+	top:3px;}
+.posts-list{
+	padding:1px 0 0 20px;}
+.posts-list li.comment p {
+	margin:0 0 2px;} 
+.showHide{
+    display: none;
+}
+.comment p{
+	margin:0 0 5px;}
+#subject-error, #msg-error{
+	display:none;}
+</style>			
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="javascript:goHome();">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>			
+<div class="main-container holder">
+    <div class="grid-cols">
+        <div class="same-height-left col50">
+        	<div class="col-holder">
+            	<article class="post-box">
+                    <!-- comment-form -->
+                    <form class="comment-form">
+                        <fieldset>
+                            <div class="row">
+                                <label for="subject">Your Subject  (*)</label>
+                                <span class="text">
+                                    <input type="text" value="" name="subject" id="subject" maxlength="50" autocomplete="off"/>
+                                </span>
+                                <label></label>
+                                <span id="subject-error" class="text-error italic">Please enter subject</span>
+                            </div>
+                            <div class="row">
+                                <label for="message">Your Message  (*)</label>
+                                <span class="textarea">
+                                    <textarea rows="10" cols="30" value="" name="comment_body" id="comment_body" class="w_focus"></textarea>
+                                </span>
+                                <label></label>
+                                <span id="msg-error" class="text-error italic">Please enter your message</span>
+                            </div>
+                            <input type='hidden' name='parent_id' id='parent_id' value='0'/>
+                            <div class="row">
+                                <span class="submit">
+                                    Post comment
+                                    <input type="button" value="Post comment" onclick="return saveData();" autocomplete="off" >
+                                </span>
+                            </div>
+                        </fieldset>
+                    </form>
+                </article>
+            </div>
+        </div>
+        <div class="same-height-right col50">
+            <div class="col-holder" id="parent">
+            	
+            </div>	
+        </div>
+    </div>
+</div>
+<script language="javascript">
+var arr_object = [];
+var arr_object_reply = [];
+function loadPage(){
+    $(".parent_comment").addClass('showHide');
+    $(".parent_comment").closest(".comment").find(".child_comment").addClass('showHide');
+    $(".subj").bind("click",function(){
+       $(this).closest(".comment").find(".parent_comment").toggleClass('showHide').end().find(".child_comment").toggleClass('showHide');
+       if($(this).closest(".comment").find(".parent_comment,.child_comment").hasClass("showHide")){
+          $(this).closest(".comment").find("div.linestyle").hide().css("display","none");
+       }else{
+           $(this).closest(".comment").find("div.linestyle").show().css("display","block");
+           $(this).closest(".comment").find("div.linestyle").first().css("margin-top","4px");
+       }  
+    });
+}
+
+function saveData()
+{
+	var txt_subject = $("#subject").val();
+	var txt_msg = $("#comment_body").val();
+	$("#subject-error").hide();
+	$("#msg-error").hide();
+	if($("#parent_id").val()<=0 &&(!txt_subject || txt_subject==""))
+	{
+		$("#subject-error").show();
+		$("#subject").focus();
+		return false;	
+	}
+	if(!txt_msg || txt_msg=="")
+	{
+		$("#msg-error").show();
+		$("#comment_body").focus();	
+		return false;	
+	}
+	$.post("index.php/support",
+	{
+	   save:'yes',
+	   subj:txt_subject,
+	   com:txt_msg,
+	   parent_id:$("#parent_id").val()
+	},function(data){
+		alert("Send comment successfully!");
+		window.location.reload();
+	   }
+	)
+	return;     
+}
+ 
+function getComment()
+{
+    var html = '';
+    var length_data = arr_object_reply.length;
+    var length_datas = arr_object.length;
+    for(var i = 0; i < length_data; i++)
+	{
+		html += '<article class="post-box comment">';
+		html += '	<div class="text-box">';
+		if(arr_object_reply[i].status =='1')
+			html += '	<img class="new-msg subj" src="../images/new_message.png">';
+		html += '		<div class="meta">';
+		html += '			<h3 class="subj">'+arr_object_reply[i].subject+'</h3>';
+		html += '			<p>by <span class="color-orange aut">'+arr_object_reply[i].firstname+' '+arr_object_reply[i].lastname+'</span class="timestamp"> - '+arr_object_reply[i].start_date+'</p>';		
+		html += '		</div>';
+		html += '		<p class="comment-body parent_comment">'+arr_object_reply[i].comment+'</p>';
+		
+		html +='<ul class="child_comment showHide posts-list">';
+		for(var j = 0; j < length_datas; j++)
+		{
+			if(arr_object[j].idparent==arr_object_reply[i].id)
+			{									
+				html +='	<li class="comment child">';
+				html +='	<div class="text-box">';
+				html +='		<p class="comment-body italic">→ '+arr_object[j].comment+'</p>';
+				html +='		<p style="font-size:11px; text-transform:uppercase">by <span class="color-orange aut" >'+arr_object[j].firstname+' '+arr_object[j].lastname+'</span class="timestamp1"> - '+arr_object[i].start_date+'</p>';
+				html +='	</div>';
+				html +='	</li>';	
+			} 
+		}
+		html +='</ul>';
+		html += '		<p><a href="javascript:void(0);" class="reply" id="'+arr_object_reply[i].id+'" onclick="javascript:getSubComment('+arr_object_reply[i].id+')">Reply</a></p>';
+		html += '	</div>';
+		html += '</article>';
+	}
+	$("#parent").empty().append(html);
+}
+
+function getSubComment(id)
+{
+	$("#parent_id").attr("value", id);
+	$("#subject").closest(".row").hide();
+	$("#back_button").css("display","block");
+	$("#comment_body").focus();  
+	return false;
+}
+
+function parseJson(string_object){
+    return JSON.parse(string_object);
+}
+ function loadObjectItems(){
+    delPerm = '{delPerm}';
+	var data_obj_string = '{loadComment}';
+    var data_object_comment = parseJson(data_obj_string);
+	arr_object = data_object_comment.data;
+	var data_obj_reply_string = '{loadReply}';
+	var data_obj_reply_reply = parseJson(data_obj_reply_string);
+	arr_object_reply=data_obj_reply_reply.data;
+	getComment();
+	loadPage();
+}
+$(function() { 
+     loadObjectItems();  
+});
+</script>

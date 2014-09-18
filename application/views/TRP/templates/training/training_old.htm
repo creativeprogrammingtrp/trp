@@ -1,0 +1,29 @@
+<h3>{title_page}</h3>
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#test" onclick="ChangeContent(11)">Compliance Test</a></li>
+    <li class=""><a href="#tutorial"  onclick="">Tutorials</a></li>
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="test" class="tab-pane active"></div>
+    <div id="tutorial" class="tab-pane" > </div>
+</div>
+
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript" >
+    
+     function showCompliance() {
+           $.ajax({
+               url: 'index.php/admin/training/showCompliance?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#test").empty().append(message);
+                   return false;
+               }
+           });
+       }
+       
+       
+       $(function(){
+            showCompliance();
+       });
+</script>

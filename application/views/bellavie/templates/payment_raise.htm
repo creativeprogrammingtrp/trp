@@ -1,0 +1,94 @@
+<form onsubmit="return submitForms();">
+<fieldset style="text-align:left; padding:10px">
+	<legend style="padding-left:5px; padding-right:5px;font-size:18px; color:#4A0B8A">Raise</legend>
+    <div style="overflow:hidden; width:450px">
+    	<div style="clear:both; overflow:hidden">
+        	<div style="float:left; overflow:hidden">
+            	<div style="clear:both; font-weight:bold; color:#999">DATE</div>
+        		<div style="clear:both; color:#000;">{date}</div>
+            </div>
+        </div>
+        <div style="clear:both; font-weight:bold; color:#999; padding-top:20px">RAISE TO</div>
+        <div style="clear:both; color:#000;">{legal_business_name}</div>
+        <div style="clear:both; width:100%; padding-top:5px" align="right">
+        	<table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                	<td align="right" style="font-weight:bold">Raise:</td>
+                    <td align="right" style="padding-left:10px">$</td>
+                    <td align="right" style="padding-left:2px;"><input type="text" class="input-text" id="pay_money" style="width:80px; text-align:right" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberFloatKey(event)"/></td>
+                </tr>
+            </table>
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px" align="right" id="savebt">
+            <input type="button" value="Cancel" class="button" onclick="closebox()" />
+            <input type="submit" value="Submit" name="submit" class="button" style="margin-left:5px" />
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px; display:none" align="right" id="loadingbt">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px; display:none" align="right" id="showExport">
+        	<img src="../images/excel_icon.png" border="0" style="cursor:pointer" onclick="export_invoice('xls');" align="absmiddle" />&nbsp;&nbsp;<img src="../images/64px-PDF.png" border="0" style="cursor:pointer" onclick="export_invoice('pdf');" align="absmiddle"/>&nbsp;&nbsp;<img src="../images/print-icon.png" border="0" style="cursor:pointer" onclick="printDiv();" align="absmiddle"/>
+        </div>
+    </div>
+</fieldset>
+<input type="hidden" id="key" name="key" value="{key}" />
+<input type="hidden" id="role" name="role" value="{role}" />
+</form>
+<script language="javascript">
+var pay_key = '';
+var error_ = '';
+function submitForms(){
+	var checkError = false;
+	if($('#pay_money').val() == ''){
+		$('#pay_money').css("background", '#ffffd5');
+		hidelabelfocus("pay_money_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("pay_money"));	
+			document.getElementById("pay_money").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/report/charities_report/raise", {
+		saveObj: 'yes',
+		pay_money:$('#pay_money').val(),
+		key:document.getElementById("key").value,
+		role:document.getElementById("role").value
+	}, function(data){
+		if(typeof(data) == 'object'){
+			$("#loadingbt").hide();
+			window.location.reload();
+		}
+	}, "json");
+	return false;	
+}
+function clearAll(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			input_text[i].value = '';
+		}	
+	}
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function closebox(){
+	$("#cboxClose").click();
+	return false;
+}
+$(function() {
+	clearForms();
+});
+</script>

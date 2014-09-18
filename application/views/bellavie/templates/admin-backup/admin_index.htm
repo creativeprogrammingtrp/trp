@@ -1,0 +1,413 @@
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>
+<style>
+.btnFilter{
+	float:left; 
+	padding-right:20px;
+	}
+</style>
+<div class="divPageTitle">{title_page}</div>
+<div class="box_solar">
+    <div style="clear:both; padding-bottom:20px; width:100%; overflow:hidden">
+        <form method="get" name="form_filter">
+        	{add_account}
+        <span class="field-with-placeholder" style="float:left">
+            <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{keyword}" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" placeholder="Key Word">
+        </span>
+        <span style="float:left; padding-left:5px">
+            <select id="status" name="status" style="width:120px;">
+                <option value="">All Status</option>
+                <option value="1" {status1}>Active</option>
+                <option value="2" {status0}>Block</option>
+            </select>
+        </span>
+        <span style="float:left; padding-left:10px"><input type="button" class="pinkButton" value="Filter" onclick="searchAccount();" /></span>
+        </form>
+    </div>
+    <div id="pager" style="min-height:20px; width:100%" align="right"></div>
+    <div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list"></div>
+</div>
+<div class="modal" id="del_account" style="display:none; overflow:hidden">
+    <div class="modal-hd" style="cursor: move">Delete account <span title="Close" class="close" onclick="closeBox('del_account')"></span></div>
+    <div class="modal-bd">
+    	<div style="overflow:hidden; width:350px; min-height:65px" id="account_content">
+        	
+        </div>
+    </div>
+</div>
+
+<script language="javascript">
+var data_clients = [];
+var header_first 	= ['User name', 'Email', 'Type', 'Status'];
+var header_last 	= ['User name', 'Email', 'Type', 'Status'];
+var columeb = null;
+var sort_list = '';
+
+var pager_number = 1;
+var clients_select = 0;
+
+
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}//end function reset_headerAdminClient
+
+function filtList_adminclient(colum, page, total_row){
+	// Xac dinh Sort type
+	reset_headerAdminClient();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = data_clients.length;
+	if(page == 0) page = 1;
+
+	if(row_sort > 0){
+		var num = page*total_row;
+		var min_index = num - total_row;
+		var max_index = num;		
+		if(row_sort < num) max_index = row_sort;
+	
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name < data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name > data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}	
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail < data_clients[j].mail){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail > data_clients[j].mail){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 2){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].type < data_clients[j].type){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].type > data_clients[j].type){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 3){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].status < data_clients[j].status){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].status > data_clients[j].status){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}
+	}
+	loadClients(page);
+}//end function  filtList_adminclient
+
+function delete_Client(ukey){
+	if(ukey != ''){
+		$("#account_content").empty();
+		showbox('del_account');	
+		ShowLoadingObj({obj:document.getElementById("account_content"), image:"Loader-FloGradient16x16x.gif"});
+		$.ajax({
+			url: 'index.php/user/administrators/preDeleteAccount',
+			type: 'POST',
+			data: {accountKey:ukey},
+			cache: false,
+			success: function(message){
+				$("#account_content").append(message);
+				HideLoadingObj(document.getElementById("account_content"));
+				return false;
+			}
+		});
+	}
+}//end function delete_Client
+
+function delete_acc(ukey){
+	ShowLoadingObj({obj:document.getElementById("account_content"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/user/administrators/deleteAccount", {
+		accountKey:ukey
+	},function(data){
+		closeBox('del_account');
+		data_clients = [];
+		HideLoadingObj(document.getElementById("account_content"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		clients_select = 0;
+		loadClients(1);
+	}, "json");
+}//end function delete_acc
+
+function loadClients(page)
+{
+	if(page == 0) page = 1;
+	
+	var total_row = 20;
+	var str_content = '';
+	var length_data = data_clients.length;
+	var min_index = 0;
+	var max_index = 0;	
+	
+	str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per">#</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0, '+page+', '+total_row+')">'+header_last[0]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(1, '+page+', '+total_row+')">'+header_last[1]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(2, '+page+', '+total_row+')">'+header_last[2]+'</th>';
+	str_content += '			<th width="10" class="th-per" align="center" valign="middle">|</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(3, '+page+', '+total_row+')">'+header_last[3]+'</th>';
+	str_content += '			<th width="40" align="left" valign="middle" class="th-per">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+
+	if(length_data > 0){
+		var num = page*total_row;
+		min_index = num - total_row;
+		max_index = num;		
+		if(length_data < num) max_index = length_data;
+
+		str_content += '	<tbody>';
+		for(var i = min_index; i < max_index; i++){
+			var obj = data_clients[i];
+			var role_name = '';
+			for(var j = 0; j < dataRoles.length; j++){
+				if(dataRoles[j].rid == obj.rid){
+					role_name = dataRoles[j].name;
+					break;
+				}
+			}
+			var status = 'Active';
+			if(obj.status == 0) status = 'Block';
+			
+			var button = '';
+			button += '<a href="javascript:void(0)" onclick="Edit_clients(\''+obj.ukey+'\')">Edit</a>';	
+			if(obj.type == 0){
+				if(button != ''){
+					button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+				}
+				button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="delete_Client(\''+obj.ukey+'\')">x</a>';	
+			}
+			
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="top" class="td-row">'+format_dem(9999, i+1)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.name)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(obj.mail)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(role_name)+'</td>';
+			str_content += '			<td class="td-row"></td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+ConvertToHTML(status)+'</td>';
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			
+		}
+		str_content += '	</tbody>';
+		
+	}
+	str_content += '</table>';
+	pager_new(total_row, data_clients, page, 'loadClients', ['pager']);
+	$("#clients_list").empty().append(str_content);
+	$('.table-per').fixedtableheader();  
+	
+}//end function loadClients
+
+function pageObject(){
+	window.location = returnURL();
+	return false;
+}
+function returnURL(){
+	var url = 'index.php/user/administrators'
+	var keyword = '';
+	var status = '';
+	if(document.getElementById("key_word") && trim(document.getElementById("key_word").value) != '')
+	{
+		keyword = trim(document.getElementById("key_word").value);
+	}
+	if(document.getElementById("status"))
+	{
+		status =document.getElementById("status").value;
+	}
+		url += '/?keyword='+encodeURIComponent(keyword)+'&status='+encodeURIComponent(status);	
+	return url;
+}
+function searchAccount()
+{
+	window.location = returnURL();	
+}
+function loadObjectClients(){
+	var keyword = '';
+	var status = '';
+	data_clients = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	if(document.getElementById("key_word") && trim(document.getElementById("key_word").value) != '')
+	{
+		keyword = trim(document.getElementById("key_word").value);
+	}
+	if(document.getElementById("status"))
+	{
+		status =document.getElementById("status").value;
+	}
+	$.post("index.php/user/administrators/loadDataAccounts",
+	{
+		keyword:encodeURIComponent(keyword),
+		status:encodeURIComponent(status)
+	},
+	function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		loadClients(1);
+		}, "json");
+	return false;
+}//end function loadObjectClients
+
+function Edit_clients(key){
+	window.location = 'index.php/user/administrators/edit/'+key;
+	return false;
+}//end function Edit_clients
+
+function AddNewAccount(){
+	window.location = 'index.php/user/administrators/add';
+	return false;
+}//end function AddNewAccount
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));			
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}		
+		break;
+	case 'email':
+		var msg = isValidEmail($('#email').val());	
+		if(msg != ''){
+			hidelabelfocus(o.id+"_label");
+			return false;	
+		}	
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			hidelabelfocus(o.id+"_label");
+			return false;
+		}
+		break;
+	}
+}//end function onblurInputText
+
+var dataRoles = [];
+
+function loadDataRoles(){
+	$.post("index.php/user/administrators/loadDataRoles",function(data){
+		if(typeof(data) == 'object'){
+			dataRoles = data;
+		}
+		showDataRoles();
+		loadObjectClients(); 
+	},'json');	
+}//end function loadDataRoles
+
+function showDataRoles(){
+	var str = '';
+	if(dataRoles.length > 0){
+		str += '<table cellpadding="0" cellspacing="0" border="0">';
+		for(var i = 0; i < dataRoles.length; i++){
+			str += '	<tr>';
+			str += '		<td align="left" valign="middle"><input type="radio" name="roles[]" class="input-checkbox" value="'+dataRoles[i].rid+'" /></td>';
+			str += '		<td align="left" valign="middle" style="padding-left:5px">'+dataRoles[i].name+'</td>';
+			str += '	</tr>';		
+		}
+		str += '</table>';		
+	}
+	$("#rolestemp").empty().append(str);
+}//end function showDataRoles
+
+$(function() {
+	loadDataRoles();
+	$( "#account_details" ).draggable({ handle: ".modal-hd" }); 
+});
+</script>

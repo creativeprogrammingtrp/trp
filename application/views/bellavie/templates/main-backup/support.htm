@@ -1,0 +1,258 @@
+<style type='text/css'>
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,
+pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
+
+body {
+font-size: 14px;
+line-height:1.3em;
+color:#999999;
+}
+
+a, a:visited {
+outline:none;
+color:#7d5f1e;
+}
+
+.clear {
+clear:both;
+}
+
+#wrapper {
+	width:600px;
+	margin:0px auto;
+	padding:15px 0px;
+}
+
+.comment {
+	padding:5px;
+	border:1px solid #93AED3;
+	margin-top:15px;
+        margin-bottom: 15px;
+	list-style:none;
+}
+
+.child{
+    border:none;
+}
+
+.linestyle{
+   border-bottom:1px solid #eee;
+}
+
+li.linestyle:last-child{
+    border-bottom:none;
+}
+.aut {
+	font-weight:normal;
+        color:#8DC73F;
+        text-decoration: underline;
+}
+
+.timestamp {
+	font-size:90%;
+	float:right;
+}
+
+#comment_form {
+	margin-top:15px;
+}
+
+#comment_form input {
+	font-size:1.2em;
+	margin:0 0 10px;
+	padding:3px;
+	display:block;
+	width:90%;
+}
+
+#comment_body {
+	display:block;
+	width:100%;
+	height:150px;
+        margin-top:5px;
+}
+div.parent_comment{
+    padding-top:20px
+}
+
+div.comment-body{
+    margin-top:-15px
+}
+#submit_button {
+	text-align:center; 
+        float:right;
+        padding-top: 20px;
+}
+.reply:hover{
+    cursor: pointer;
+    text-decoration:underline;
+}
+.timestamp1{
+    margin-top: -2px;
+    float: right;
+}
+#subject{
+  width:100%;
+}
+.subject{
+    padding-top:20px;
+}
+.subj{
+    padding-top:5px;
+    font-weight: bold;
+}
+.subj:hover{
+    cursor: pointer;
+    text-decoration:underline;
+}
+.showHide{
+    display: none;
+}
+#back_button{
+    display: none;
+    margin-right: 5px;
+    float:right;
+   padding-top: 20px;
+}
+</style>
+ 
+<div id='wrapper'>
+<ul id ="parent">
+</ul>
+	<label for="comment_body" class="divPageTitle">{title_page}</label>
+        <div class="subject"><label for="subject" >Subject</label>
+	<input type="text" name="subject" id='subject' onkeyup="onfocusInputText(this)" onkeydown="onkeydownInputText(this)" onblur="onblurInputText(this)" onfocus="onfocusInputText(this)"/></div>
+	<textarea name="comment_body" id='comment_body' onkeyup="onfocusInputText(this)" onkeydown="onkeydownInputText(this)" onblur="onblurInputText(this)" onfocus="onfocusInputText(this)"></textarea>
+	<input type='hidden' name='parent_id' id='parent_id' value='0'/>
+	<div id='submit_button'>
+		<input type="submit" value="Post comment"/>
+	</div>
+        <div id='back_button'>
+		<input type="submit" value="Back" onclick="window.location.reload();"/>
+	</div>
+</div>
+
+<script language="javascript">
+    var arr_object = [];
+    var arr_object_reply = [];
+    function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function loadPage(){
+    $(".parent_comment").addClass('showHide');
+    $(".parent_comment").closest(".comment").find(".child_comment").addClass('showHide');
+    $(".subj").bind("click",function(){
+       $(this).closest(".comment").find(".parent_comment").toggleClass('showHide').end().find(".child_comment").toggleClass('showHide');
+       if($(this).closest(".comment").find(".parent_comment,.child_comment").hasClass("showHide")){
+          $(this).closest(".comment").find("div.linestyle").hide().css("display","none");
+       }else{
+           $(this).closest(".comment").find("div.linestyle").show().css("display","block");
+           $(this).closest(".comment").find("div.linestyle").first().css("margin-top","4px");
+       }  
+    });
+}
+
+function saveData()
+{
+     $("#submit_button").click(function(){
+         $.post("index.php/support",
+            {
+               save:'yes',
+               subj:$("#subject").val(),
+               com:$("#comment_body").val(),
+               parent_id:$("#parent_id").val()
+            },function(data){
+                window.location.reload();
+               }
+            )
+     });
+     return false;
+     
+}
+ 
+ function getComment()
+{
+    var html = '';
+    var length_data = arr_object_reply.length;
+     var length_datas = arr_object.length;
+    for(var i = 0; i < length_data; i++){
+        
+        html +="<li class='comment'>";
+        if(arr_object_reply[i].status =='1'){
+            html += "<div class='subj'>"+arr_object_reply[i].subject+"<span class='new' style='float:right;color:#7D5F1E;font-style:oblique'><img src='../images/new_message.png'><span></div>";
+        }else{
+             html += "<div class='subj'>"+arr_object_reply[i].subject+"<span class='new' style='float:right;color:red'><span></div>";
+        }
+        //html +="<li class='comment'>";
+        //html += "<div class='subj'>"+arr_object_reply[i].subject+"</div>";
+        html +="<div class='aut'>"+arr_object_reply[i].firstname+" "+arr_object_reply[i].lastname+"</div>";
+        html +="<div class='comment-body parent_comment'>"+arr_object_reply[i].comment+"</div>";
+        html +="<div class='timestamp'>"+arr_object_reply[i].start_date+"</div>";
+        html += "<div class='reply' id="+arr_object_reply[i].id+" style='margin-left:430px;'>Reply</div>";
+        html += "<div class ='linestyle'></div>";
+		for(var j = 0; j < length_datas; j++){
+			if(arr_object[j].idparent==arr_object_reply[i].id){
+			html += "<ul class='child_comment'>";
+			html +="<li class='comment child'>";
+			html +="<div class='aut' style='margin-top:-18px'>"+arr_object[j].firstname+" "+arr_object[j].lastname+"</div>";
+			html +="<div class='comment-body' style='padding-top:20px'>"+arr_object[j].comment+"</div>";
+			html +="<div class='timestamp1'>"+arr_object[j].start_date+"</div>";
+			html += "</li>";
+			html += "</ul>";
+			html += "<div class ='linestyle'></div>";
+			
+			}   
+		}
+		html +="</li >";  
+    }
+   
+    $("#parent").empty().append(html);
+
+}
+
+function removeLastLine()
+{
+    $("div.linestyle").hide().css("display","none");
+    $("div.linestyle:last-child").css("border","none");
+}
+function getSubComment()
+{
+      $(".reply").click(function() 
+	  {
+		var id = $(this).attr("id");
+		$("#parent_id").attr("value", id);
+		$(".subject").hide();
+		$("#back_button").css("display","block");
+		$("html,body").animate({ scrollTop: $(document).height() }, 1500);
+		$("#comment_body").focus();  
+		return false;
+	});
+}
+
+function parseJson(string_object){
+    return JSON.parse(string_object);
+}
+ function loadObjectItems()
+ {
+	delPerm = '{delPerm}'
+	var data_obj_string = '{loadComment}';
+	var data_object_comment = parseJson(data_obj_string);
+	arr_object = data_object_comment.data;
+	var data_obj_reply_string = '{loadReply}';
+	var data_obj_reply_reply = parseJson(data_obj_reply_string);
+	arr_object_reply=data_obj_reply_reply.data;
+	getComment();
+	loadPage();
+	removeLastLine();
+}
+
+$(function() { 
+     loadObjectItems();    
+      saveData();
+     getSubComment();
+});
+</script>

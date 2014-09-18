@@ -1,0 +1,149 @@
+/* CSS Document */
+a:active {
+	outline: none;
+}
+ul.tabs { margin:0px; padding:0px;}
+#tabs_container {
+	width: 100%;
+	font-size: 12px;
+}
+#tabs_container ul.tabs {
+	list-style: none;
+	border-bottom: 1px solid #fff;
+	height: 21px;
+	margin: 0;
+}
+#tabs_container ul.tabs li {
+	float: left;
+}
+#tabs_container ul.tabs li a.tab {
+	padding: 2px 10px;
+	display: block;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	margin-right: 2px;
+	text-decoration: none;
+	border-radius:0px;
+	color:#000;
+}
+#tabs_container ul.tabs li.active a.tab {
+	padding-top: 3px;
+	color:#fff ;
+}
+div.tab_contents_container {
+	padding-top:10px;
+}
+#tabs_container ul.tabs li a.tab:hover,#tabs_container ul.tabs li.active a.tab {
+	background: #a8e359; /* Old browsers */
+	background: -moz-linear-gradient(top, #a8e359 0%, #94ce46 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8e359), color-stop(100%,#94ce46)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #a8e359 0%,#94ce46 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #a8e359 0%,#94ce46 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #a8e359 0%,#94ce46 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #a8e359 0%,#94ce46 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8e359', endColorstr='#94ce46',GradientType=0 ); /* IE6-9 */
+}
+div.tab_contents {
+	display: none;
+}
+div.tab_contents_active {
+	display: block;
+}
+div.clear {
+	clear: both;
+}
+.title{
+	font-weight:bold;
+	clear:both;
+	text-transform:capitalize;
+	color:#F7961E;
+}
+.date_event{
+	clear:both;
+	color:#7E7E7E;
+	padding-left:15px;
+	font-style:italic;
+}
+.event_content{
+	clear:both;
+	padding-top:5px;
+	line-height:1.7em;
+}
+.fc-button-content {
+    float: left;
+    height: 1.6em;
+    line-height: 1.9em;
+    padding: 1px 0.6em 0;
+    position: relative;
+    white-space: nowrap;
+	color:#F7961E;
+}
+.fc-grid .fc-day-number {
+    float: right;
+    padding: 2px 2px 0;
+}
+.boxmap{
+	overflow:hidden; width:600px; height:400px; position:fixed; left:50%; top:50%; margin-left:-300px; margin-top:-200px; background:#FFF; border:1px solid #767676;
+	-moz-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
+	-webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
+	z-index:10;
+}
+#closeboxmap{
+	background:url(../images/del_icon.gif) no-repeat;
+	width:12px;
+	height:12px;
+	z-index:10;
+	position:absolute;
+	top:5px;
+	right:5px;
+	cursor:pointer;
+}
+.banner_event{
+	background:#000000;
+	color:#ffffff;
+	width:100%;
+	min-height:200px;
+	margin-bottom:10px;
+	text-transform:uppercase;
+	font-size:30px;
+	letter-spacing:0.1em;
+}
+.event_date{
+	color:#999;
+	text-align:center;
+	width: 70px;
+	height: 70px;
+	background: #FFD601;
+	-moz-border-radius: 37px;
+	-webkit-border-radius: 37px;
+	border-radius:37px;
+	border:solid 2px #FFAB11;
+	}
+.event_month{
+	margin-top:5px;
+	font-size:12px;
+	text-transform:uppercase;
+	font-weight:bold;}
+.event_day{
+	font-size:18px;
+	font-weight:bold;
+	padding:2px;}
+.event_year{
+	margin:3px;
+	border-top:#999 dotted 1px;}
+.event_title{
+	text-transform:capitalize;
+	font-size:16px;
+	margin-bottom:10px;
+	color:#F8961D;}
+.table_event{
+	margin-bottom:20px; 
+	border:#AEAEAE solid 1px;
+	padding:20px;
+	background:#fff;	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius:10px;}
+

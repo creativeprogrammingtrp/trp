@@ -1,0 +1,318 @@
+<style>
+#key_word_label
+{
+	float:left;
+	line-height: 30px;
+}
+#key_word
+{
+	float:left;
+}
+</style>
+<div class="box_solar" style="overflow:hidden">
+    <div style="clear:both; width:100%; overflow:hidden; padding-bottom:20px">
+        {addnew}
+        <!--@sendmail@-->
+        <span class="field-with-placeholder" style="float:left">
+            <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+        </span>
+        <span style="float:left; padding-left:10px"><input type="button" class="button" onclick="loadObjectClients()" value="Filter" /></span>
+    </div>
+    <div id="pager" style="min-height:20px; width:100%" align="right"></div>
+    <div style="clear:both; text-align:center; overflow:hidden; width:100%;" id="clients_list"></div>
+</div>
+<script language="javascript">
+var data_clients = {data};
+var header_first 	= ['Name', 'From', 'To', 'Subject', 'Created'];
+var header_last 	= ['Name', 'From', 'To', 'Subject', 'Created'];
+var columeb = {col};
+var sort_list = '{direction}';
+
+var pager_number = {page};
+var clients_select = 0;
+var ukey_select = '';
+
+function delete_Client(ukey){
+	if(confirm('Are you sure you want to delete this mass e-mail?')){
+		ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+		$.post("index.php/admin/massmail/delete", {
+			cid:ukey
+		},function(data){
+			closeBox("box_popup");
+			data_clients = [];
+			HideLoadingObj(document.getElementById("content_popup"));
+			if(typeof(data) == 'object'){
+				alert(success_delete);
+				data_clients = data;
+				clients_select = 0;
+				loadClients(1);
+			}
+			else
+			{
+				alert(unuccess_delete);
+			}
+			
+		}, "json");
+	}
+}
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+function loadClients(page){
+	if(page == 0 || page == null) page = pager_number;
+	if(page == 0) page = 1;
+	pager_number = page;
+	
+	var total_row = 20;
+	var str_content = '';
+	var length_data = data_clients.length;
+	var min_index = 0;
+	var max_index = 0;	
+	
+	str_content += '<table class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per">#</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0, '+page+', '+total_row+')">'+header_last[0]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(1, '+page+', '+total_row+')">'+header_last[1]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per">'+header_last[2]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(3, '+page+', '+total_row+')">'+header_last[3]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(4, '+page+', '+total_row+')">'+header_last[4]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="width:40px;">&nbsp;</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+
+	if(length_data > 0){
+		var num = page*total_row;
+		min_index = num - total_row;
+		max_index = num;		
+		if(length_data < num) max_index = length_data;
+
+		str_content += '	<tbody>';
+		for(var i = min_index; i < max_index; i++){
+			var obj = data_clients[i];
+			var status = 'Active';
+			if(obj.status == 0) status = 'Block';
+			
+			var button = '';
+			if("{edit}" == 'yes'){
+				button += '<img src="../images/b_edit.png" border="0" style="cursor:pointer" onclick="Edit_clients(\''+obj.mkey+'\')" />';	
+			}
+			if("{delete}" == 'yes'){
+				if(button != ''){
+					button += '&nbsp;&nbsp;';	
+				}
+				button += '<img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="delete_Client(\''+obj.mkey+'\')" />';	
+			}
+			var mailto = '';
+			var mail_roles = obj.mail_roles;
+			for(var m = 0; m < mail_roles.length; m++){
+				switch(mail_roles[m].role_type){
+					case 'all':
+						mailto += 'All ' + mail_roles[m].name + '<br>';
+						break;
+					case 'select':
+						mailto += 'Some selected ' + mail_roles[m].name + '<br>';
+						break;
+					case 'except':
+						mailto += 'All '+mail_roles[m].name+' except of some selected' + '<br>';
+						break;	
+				}	
+			}
+			if(mailto != ''){
+				mailto = mailto.substring(0, mailto.length - 4);	
+			}
+			
+			str_content += '		<tr class="tr-row">';
+			str_content += '			<td align="left" valign="top" class="td-row">'+format_dem(999, i+1)+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.name+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.mail_from+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+mailto+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.mail_subject+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.create_str+'</td>';
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+			
+		}
+		str_content += '	</tbody>';
+		
+	}
+	str_content += '</table>';
+	pager_new(total_row, data_clients, page, 'loadClients', ['pager']);
+	$("#clients_list").empty().append(str_content);  
+}
+
+function filtList_adminclient(colum, page, total_row){
+	// Xac dinh Sort type
+	reset_headerAdminClient();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = data_clients.length;
+	if(page == 0) page = 1;
+
+	if(row_sort > 0){
+		var num = page*total_row;
+		var min_index = num - total_row;
+		var max_index = num;		
+		if(row_sort < num) max_index = row_sort;
+	
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name < data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name > data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}	
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail_from < data_clients[j].mail_from){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail_from > data_clients[j].mail_from){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 3){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail_subject < data_clients[j].mail_subject){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].mail_subject > data_clients[j].mail_subject){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}else if(colum == 4){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(data_clients[i].created, 10) < parseInt(data_clients[j].created, 10)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseInt(data_clients[i].created, 10) > parseInt(data_clients[j].created, 10)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}
+	}
+	loadClients(page);
+	return;
+}
+function loadObjectClients(){
+	data_clients = [];
+	var key_word = '';
+	if (document.getElementById('key_word')) key_word = document.getElementById('key_word').value;
+	key_word = encodeURIComponent(key_word);
+	var url ="index.php/admin/massmail?key="+key_word+"&page="+pager_number+"&col="+columeb+"&direction="+sort_list; 
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post(url, {
+		getdata:'yes'
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		loadClients();
+	}, "json");
+	return false;
+}
+function Edit_clients(key){
+	window.location = 'index.php/admin/massmail/edit?key='+key;
+	return false;
+}
+function View_clients(key){
+	window.location = 'index.php?q=admin/massmail/view&key='+key;
+	return false;
+}
+function AddNewAccount(){
+	window.location = 'index.php/admin/massmail/add';
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+$(function() {
+	//loadObjectClients();  
+	loadClients();
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+	document.getElementById("key_word").addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    if (e.keyCode == 13) { loadObjectClients(); }
+}, false);
+});
+
+</script>

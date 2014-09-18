@@ -1,0 +1,88 @@
+<style type="text/css">
+.table-per .th-per {
+    background: none repeat scroll 0 0 #E1E2DC;
+    border: 1px solid #BEBFB9;
+    font-weight: normal;
+    padding: 3px 5px;
+}
+.table-per {
+    border: 1px solid #BEBFB9;
+    width: 100%;
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.row_perm{
+	background-color:#e2e2e2;
+}
+</style>
+<div class="box_solar">
+    <div style="clear:both; width:100%; overflow:auto" id="showPermissionTable">
+    	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per">
+        	<thead>
+            	<tr>
+                	<th class="th-per" align="left" valign="middle"><div style="width:200px">Permission</div></th>
+                    {th_role}
+                    <th class="th-per" align="center" valign="middle">{role_name}</th>
+                    {/th_role}
+                </tr>
+            </thead>
+            <tbody>
+            {tbody}
+            	<tr>
+                	<td colspan="{colspan}" align="left" valign="middle" style="padding:15px 5px 3px; border-bottom:1px solid #BEBFB9"><h2>{module} module</h2></td>
+                </tr>
+                {tbody_role}
+                <tr {background}>
+                	<td align="left" valign="middle" style="padding:3px 5px"><b>{perm}</b></td>
+                    {td_role_access}
+                    <td align="center" valign="middle" style="padding:3px 5px"><input type="checkbox" value="{value}" name="role_{rid}[]" {check} {disabled} style="background:transparent; border:0px #ffffff solid"/></td>
+                    {/td_role_access}
+                </tr>
+                {/tbody_role}
+           	{/tbody}
+            </tbody>
+        </table>
+    </div>
+    <div id="savebt" style="clear:both; padding-top:20px; height:30px" align="right">
+        <input type="button" class="btn btn-primary" value="Save" onclick="PostPermission()" />
+    </div>
+</div>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>
+<script language="javascript">
+var dataRoles = [];
+$(function() {
+	$('.table-per').fixedtableheader();  
+	{dataRoles}
+	//$( ":checkbox" ).attr('checked','true');
+});
+function PostPermission(){
+	if(dataRoles.length > 0){
+		$("#savebt").empty().append('<table cellpadding="0" cellspacing="0" border="0"><tr><td valign="middle"><img src="../images/Loader-FloGradient16x16x.gif" border="0" /></td><td align="left" valign="middle" style="padding-left:3px">Saving...</td></tr></table>');
+		var dataPost = [];
+		for(var i = 0; i < dataRoles.length; i++){
+			var perm = [];
+			if(document.getElementsByName("role_"+dataRoles[i].rid+"[]")){
+				
+				var role_arr = document.getElementsByName("role_"+dataRoles[i].rid+"[]");
+				for(var j = 0; j < role_arr.length; j++){
+					if(role_arr[j].checked == true){
+						perm[perm.length] = role_arr[j].value;	
+					}	
+				}
+					
+			}
+			var obj_role = new Object();
+			obj_role.rid = dataRoles[i].rid;
+			obj_role.perm = perm;
+			dataPost[dataPost.length] = obj_role;	
+		}
+		$.post("index.php/user/rolepermission/saveperm?key={key}", {dataPost: dataPost}, function(data){
+			alert(success_saved);
+			window.location.reload();
+		});
+	}else{
+		alert("Please create role.");
+		return;	
+	}
+}
+</script>

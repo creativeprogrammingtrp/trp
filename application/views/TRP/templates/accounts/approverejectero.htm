@@ -1,0 +1,96 @@
+<table class="table table-striped" id="lists">
+
+</table>
+
+<script type="text/javascript">
+	var dataClient = [];
+        var heads = ["#","EFIN #","Email Address","User Name","Created Date","Actions"];
+	function loadObject() {
+		{dataLoad}
+                loadClients();
+	}
+
+	function loadClients() {
+            var htm = ''; 
+            htm +='<thead>';
+                        htm +='<tr>';
+                            htm +='<th class="text-center">'+heads[0]+'</th>';
+                            htm +='<th>'+heads[1]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm"><i class="icon-envelope-alt"></i> '+heads[2]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[3]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                            htm +='<th class="cell-small text-center"><i class="icon-bolt"></i> '+heads[5]+'</th>';
+                               
+                        htm +='</tr>';
+            htm +='</thead>';
+            htm +='<tbody>';
+            
+            for(var i = 0 ; i < dataClient.length ; i++){
+                   var obj = dataClient[i];
+                   var id_efin = obj.efin; 
+                     htm +='<tr>';
+                     htm +='<td class="cell-small text-center">'+(i+1)+'</td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.efin+'</a></td>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.mail+'</a></td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.name+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.format_date+'</td>';
+                     
+                      htm +='<td class="text-center">';
+                                htm +='<div class="btn-group">';
+                                 htm += '<a class="btn btn-xs btn-success approve" rel="tooltip" title="Approve" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+id_efin+'" ><i class="icon-pencil"></i></a>';
+                                 htm += '<a class="btn btn-xs btn-danger reject" rel="tooltip" title="Reject" data-toggle="tooltip" href="#"  data-original-title="Delete" id ="'+id_efin+'" ><i class="icon-remove"></i></a>';
+                               htm += '</div>';
+                        htm += '</td>'
+                     
+                     
+                   htm +='</tr>';
+            }
+           htm +=' </tbody>';
+
+            $("#lists").empty().append(htm);
+	}
+        
+        function approve(){
+            $(".approve").click(function(){
+                var id = $(this).attr("id");
+                $.ajax({
+                url: 'index.php/admin/ero/approveEro?ajax=1&id_efin='+id,
+                cache: false,
+                success: function(data){
+                    $("#lists").empty().append(data); 
+                    }
+                });
+                return false;
+           });
+          
+        }
+        function reject(){
+            $(".reject").click(function(){
+                var id = $(this).attr("id");
+                $.ajax({
+                url: 'index.php/admin/ero/rejectEro?ajax=1&id_efin='+id,
+                cache: false,
+                success: function(data){
+                    $("#lists").empty().append(data); 
+                    }
+                });
+                return false;
+           });
+          
+        }
+        
+	$(function() {
+		loadObject();
+                approve();
+                reject();
+                $("[rel='tooltip']").tooltip();
+                
+                $('#lists').dataTable({
+                	"sDom": 'T<"clear">lfrtip',
+                	"oTableTools": {
+            			"aButtons": [ "xls", "pdf","copy", "print" ]
+            		},
+            		"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]});
+                $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	});
+</script>

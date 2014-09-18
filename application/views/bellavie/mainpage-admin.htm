@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]--><head>
+<meta http-equiv="expires" content="Mon, 26 Jul 1997 05:00:00 GMT"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<meta name="robots" content="INDEX,FOLLOW" />
+<meta name="description" content="{description_site}" />
+<meta name="keywords" content="{keywords_site}" />
+<title>{title_site}</title>
+
+
+<link rel="icon" href="favicon.ico" type="image/x-icon"> 
+
+<link rel="stylesheet" href="../admin/bootstrap/css/bootstrap.min.css" media="all">
+
+<!-- jquery-ui Stylesheets -->
+<link rel="stylesheet" href="../admin/assets/jui/css/jquery-ui.css" media="screen">
+<link rel="stylesheet" href="../admin/assets/jui/jquery-ui.custom.css" media="screen">
+
+<!-- Uniform Stylesheet -->
+<link rel="stylesheet" href="../admin/plugins/uniform/css/uniform.default.css" media="screen">
+
+
+<!-- Main Layout Stylesheet -->
+<link rel="stylesheet" href="../admin/assets/css/fonts/icomoon/style.css" media="screen">
+<link rel="stylesheet" href="../admin/assets/css/mooncake.min.css" media="screen">
+<link rel="stylesheet" href="../admin/assets/css/customizer.css" media="screen">
+<link rel="stylesheet" href="../admin/assets/css/customizer_v3.css" media="screen">
+<link rel="stylesheet" href="../admin/assets/css/demo.css" media="screen">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="../admin/custom-plugins/html5.js"></script>
+<![endif]-->
+
+<!-- Core Scripts -->
+<script src="../admin/assets/js/libs/jquery-1.8.3.min.js"></script>
+<script src="../admin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../admin/assets/js/libs/jquery.placeholder.min.js"></script>
+<script src="../admin/assets/js/libs/jquery.mousewheel.min.js"></script>
+
+<!-- Template Script -->
+<script src="../admin/assets/js/template.js"></script>
+<script src="../admin/assets/js/setup.js"></script>
+<script src="../admin/assets/js/customizer_v3.js"></script>
+
+
+<!-- Uniform Script -->
+<script src="../admin/plugins/uniform/jquery.uniform.min.js"></script>
+
+<!-- jquery-ui Scripts -->
+<script src="../admin/assets/jui/js/jquery-ui-1.9.2.min.js"></script>
+<script src="../admin/assets/jui/jquery-ui.custom.min.js"></script>
+<script src="../admin/assets/jui/jquery.ui.touch-punch.min.js"></script>
+
+<script type="text/javascript" src="misc/scripts/constant.js"></script>
+<SCRIPT language="javascript" type="text/javascript" src="misc/scripts/js.js"></SCRIPT>
+<link rel="stylesheet" type="text/css" href="../popups/theme1/styles/popup.css" />
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.tooltip.min.js"></script>
+</head>
+<script type="text/javascript">
+var url_server__ = '{curPageURLServer}';
+dir_theme = 'application/views/{dir_theme}/';
+var url_base_path__ = '{url_base_path}';
+</script>
+<body>
+  <div id="wrapper" class="full">
+        <header id="header" class="navbar navbar-inverse">
+            {account_content}
+        </header>
+        <div id="content-wrap">
+        	<div id="content">
+            	<div id="content-outer">
+                	<div id="content-inner">
+                    	<div id="sidebar">
+                        	<nav id="navigation" class="collapse">
+                            	<ul>
+                    				{menu_system}
+                        		</ul>
+                             </nav>
+                        </div>
+                        <div id="sidebar-separator"></div>
+                            <section id="main" class="clearfix">
+                            <div id="content_load">
+                                <div id="main-header" class="page-header">
+                                    <ul class="breadcrumb">
+                                        <li style="cursor:pointer" onClick="javascript:goHome();">
+                                            <i class="icon-home"></i>Home
+                                            <span class="divider">&raquo;</span>
+                                        </li>
+                                        <li>
+                                            <a href="#">{title_page}</a>
+                                        </li>
+                                    </ul>
+                                    <h1 id="main-heading">
+                                        {title_page}
+                                    </h1>
+                                </div>
+                                
+                                <div id="main-content">{content_site}</div>
+                                </div>
+                            </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer id="footer">
+            <div class="footer-left"></div>
+            <div class="footer-right"><p>Copyright © 2014 TRP Project.</p></div>
+        </footer>
+        
+    </div>
+    <div id="fancy_box"></div>
+   <!-- <div id="coherent_bubble_node" style="left: 0px; top: 0px; width: 203px; display:none !important;" class="bubble">
+        <span class="chrome tl"></span>
+        <span class="chrome tr"></span>
+        <span class="chrome top"></span>
+        <span class="chrome left"></span>
+        <span class="chrome right"></span>
+        <span class="chrome bottom"></span>
+        <span class="chrome bl"></span>
+        <span class="chrome br"></span>
+        <span class="chrome center"></span>
+        <div class="spinner" __parametersid="parameters_7" id="coherent_id_30" style="display: none;"></div>
+        <div class="container" id="coherent_id_35">
+            <div class="content" id="coherent_id_34"><span></span></div>
+            <ul class="buttons" __parametersid="parameters_10" id="coherent_id_31" style="display: none;"></ul>
+        </div>
+        <span class="chrome arrow" id="coherent_id_36" style="left: 101px;"></span>
+    </div>-->
+    <div class="modal" id="box_popup" style="display:none; overflow:hidden">
+        <div class="modal-hd" style="cursor: move"><span id="title_popup">Empty the Spam folder</span> <span title="Close" class="close" id="closebox"></span> </div>
+        <div class="modal-bd">
+            <div id="content_popup" style="overflow:hidden"></div>
+        </div>
+    </div>  
+</body>
+</html>

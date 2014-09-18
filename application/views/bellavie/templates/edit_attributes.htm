@@ -1,0 +1,143 @@
+<script language="javascript">
+function submitFormPopup(){
+	var checkError = false;
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#label').val() == ''){
+		$('#label').css("background", '#ffffd5');
+		hidelabelfocus("label_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("label"));	
+			document.getElementById("label").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	var required = 0;
+	if(document.getElementById("required").checked == true) required = 1;
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/attributes/editsave", {
+		updateAttributes: 'yes',
+		akey:document.getElementById("akey").value,
+		name:$("#name").val(),
+		label:$("#label").val(),
+		required:required,
+		display_type:document.getElementById("display_type").value,
+		weight:document.getElementById("weight").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/store/attributes';
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+function clearDataForm(){
+	var check = true;
+	if(document.getElementById("name")){
+		if(document.getElementById("name").value != ''){
+			onkeydownInputText(document.getElementById("name"));	
+		}
+	}else check = false;
+	
+	if(document.getElementById("label")){
+		if(document.getElementById("label").value != ''){
+			onkeydownInputText(document.getElementById("label"));	
+		}
+	}else check = false;
+	
+	if(check == true){
+		setTimeout(function () {
+			clearDataForm();
+		}, 70);
+	}
+}
+$(function() {
+	clearDataForm();
+});
+
+</script>
+<form method="post" name="tax_form" onsubmit="return submitFormPopup();">
+<div style="overflow:hidden">
+    <div class="box_solar">
+        <div style="clear:both; float:left;">
+            <div style="font-weight:bold;">Name:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <label id="name_label" class="placeholder" for="name"><span>Required</span></label>
+                <input tabindex="1" type="text" class="input-text" id="name" size="10" name="name" value="{@name@}" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+            </span>
+            <span style="clear:both; float:left;" class="note_text">The name of the attribute used in administrative forms.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">Label:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <label id="label_label" class="placeholder" for="label"><span>Required</span></label>
+                <input tabindex="2" type="text" class="input-text" id="label" size="10" name="label" value="{@label@}" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+            </span>
+            <span style="clear:both; float:left;" class="note_text">Enter a label that customers will see instead of the attribute name.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="float:left; width:20px"><input type="checkbox" value="1" id="required" class="input-checkbox" {@required@} /></div>
+            <div style="float:left; font-weight:bold" align="left">Make this attribute required, forcing the customer to choose an option.</div>
+            <span style="clear:both; float:left; padding-left:20px" class="note_text">Selecting this for an attribute will disregard any default option you specify. May be overridden at the product level.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">Display type:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                {@display_type@}
+            </span>
+            <span style="clear:both; float:left;" class="note_text">This specifies how the options for this attribute will be presented. May be overridden at the product level.</span>
+        </div>
+        <div style="float:left; clear:both; padding-top:10px;">
+            <div style="font-weight:bold;">List position:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                {@weight@}
+            </span>
+            <span style="clear:both; float:left;" class="note_text">Multiple attributes on an add to cart form are sorted by this value and then by their name. May be overridden at the product level.</span>
+        </div>
+        <div style="float: right; clear:both; padding-top:30px; height:30px; margin-right:5px" align="right" id="savebt">
+            <input type="button" value="Back" class="btn" onclick="history.go(-1);" style="margin-left:5px" />
+            <input type="submit" value="Submit" name="submit" class="btn  btn-primary" style="margin-left:5px" />
+        </div>
+        <div style="float: right; clear:both; padding-top:30px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="akey" value="{@akey@}" />
+</form>
+
+
+
+
+

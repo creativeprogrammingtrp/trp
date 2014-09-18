@@ -1,0 +1,181 @@
+<style>
+.comment-form .col33 label{
+	text-align:left;
+	width:200px;}
+.comment-form .col33 input[type="radio"]{
+	vertical-align:top;}	
+.border-left{
+	padding-left:20px;
+	border-left:1px #ccc solid;
+	overflow:hidden
+	}
+</style>
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="javascript:goHome();">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>
+
+<div class="main-container holder">
+    <div class="grid-cols">
+    <form name="formSponsor" id="formSponsor" method="post" action="" onsubmit="return checkSponsor();" class="comment-form" >
+    <div class="col-holder">
+        <div class="col33">
+            {first_level_view}
+            <label><input type="radio" name="rdoSponsor" value="0" id="rdoSponsor_1"  checked="checked" onclick="sponsorType()"/> I have a Sponsor ID#:</label>
+            <label><input type="radio" name="rdoSponsor" value="-1" id="rdoSponsor_no"  onclick="sponsorType()" autocomplete="off"/> I do not have Sponsor ID#:</label>
+        </div>
+        <div class="col67">
+            <div class="sponsor-number border-left">            
+                <div class="heading">
+                    <h3>Please enter Sponsor's representative ID#</h3>
+                </div>
+                <span class="text ">
+                    <input type="text" id="sponsorNumber" name="sponsorNumber" autocomplete="off" value="{sponsor_id}" maxlength="8" />
+                </span>
+            	<p class="color-orange" style="text-transform:uppercase;margin:10px 0 0">{error}</p>
+            </div>
+            <div id="no_sponsor" class="border-left" style="display:none;">
+                <fieldset>
+                    <div class="heading">
+                        <h3>Please provide</h3>
+                    </div>
+                    <div class="row">
+                        <label for="name">Your Name: </label>
+                        <span class="text">
+                            <input type="text" value="" name="txtname" id="txtname" maxlength="50" autocomplete="off">
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label for="email">Your Email: </label>
+                        <span class="text">
+                            <input type="text" value="" name="txtemail" id="txtemail" maxlength="50" autocomplete="off">
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label for="phone">Your Phone Number: </label>
+                        <span class="text">
+                            <input type="text" value="" name="txtphone" id="txtphone" maxlength="20" autocomplete="off" onkeypress="return validatePhone(this, event)">
+                        </span>
+                    </div>                    
+                    <p class="color-orange" style="text-transform:uppercase; display:none;" id="enroll-msg">Someone will contact you. Thank you!<p>
+                </fieldset>      
+            </div>
+            <div class="border-left">  
+                <span class="submit" style="margin:10px 0;">
+                    Enroll
+                    <input type="submit" value="Enroll" name="btnSubmit" id="btnSubmit" autocomplete="off">
+                </span>
+            </div>
+        </div>
+    </div>
+    </form>	
+    </div>		
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#rdoSponsor_1").attr('checked','checked');
+	sponsorType();
+})
+function checkSponsor(){
+	var sponsorType = $("[name='rdoSponsor']:checked").val();
+	var sponsor = '';
+	if(sponsorType ==1)
+	{
+		sponsor = 'first_level';	
+	}
+	else if(sponsorType == -1)
+	{
+		sponsor = 'no_sponsor';
+		if(trim($("#txtname").val()).length < 5)
+		{
+			alert("Your name must be between 5 and 50 characters!");
+			document.getElementById("txtname").focus();
+			return false;	
+		}
+		if(trim($("#txtemail").val())=='')
+		{
+			alert("Please enter email");
+			document.getElementById("txtemail").focus();
+			return false;	
+		}
+		if(trim($("#txtphone").val())=='')
+		{
+			alert("Please enter phone number");
+			document.getElementById("txtphone").focus();
+			return false;	
+		}
+		else if(validateMail('txtemail')!='')
+		{
+			alert(invalid_email);
+			return false;
+		};
+		var obj_ = new Object();
+		obj_.name = document.getElementById("txtname").value;
+		obj_.email = document.getElementById("txtemail").value;
+		obj_.phone = document.getElementById("txtphone").value;
+		$.post("index.php/representatives/add/"+sponsor, {
+			send_email: obj_
+		});
+		$("#enroll-msg").show();
+		return false;
+	}
+	else
+	{
+		sponsor = $("#sponsorNumber").val();
+	}
+	var patt1=/^\w*$/g; 
+	if(patt1.test(sponsor)==false) {alert("Invalid sponsor ID#!"); return false;}
+	window.location = 'index.php/representatives/add/'+sponsor;
+	return false;
+}
+function sponsorType()
+{
+	var sponsorType = $("[name='rdoSponsor']:checked").val();
+	if(sponsorType == 0) 
+	{
+		$("#divError").show();
+		$(".sponsor-number").show();
+		$("#no_sponsor").hide();	
+	}
+	else if(sponsorType == -1)
+	{
+		$("#divError").hide()
+		$(".sponsor-number").hide();
+		$("#no_sponsor").show();		
+	}
+	else
+	{
+		$("#divError").hide();
+		$("#sponsorNumber,#no_sponsor").hide();
+	}
+}
+
+
+function validateMail(email) {  
+   var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   var address = document.getElementById(email).value;
+   if(reg.test(address) == false) { return 'Invalid Email Address';
+   } else { return '';}
+}
+function isLetters(event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode > 32 && (charcode < 65 || charcode > 90) && (charcode < 97 || charcode > 122))
+		return false;
+	return true;
+}
+function validatePhone(phoneField,event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode==8 || charcode==0) return;
+	if(charcode > 31 && (charcode < 48 || charcode > 57 )) 
+		{ return false; }
+	else {
+		var num = phoneField.value.replace(/[^\d]/g,'');
+		phoneField.value = '('+num.substring(0,3) + ") " + num.substring(3, 6) + "-" + num.substring(6); }
+}
+</script>

@@ -1,0 +1,47 @@
+<div style="width:100%; clear:both; font-weight:bold">
+	{title_page}
+</div>
+<div style="clear:both; overflow:hidden; padding-top:10px" id="categories_list"></div>
+<div style="clear:both; padding-top:10px"><input type="button" class="btn btn-primary" value="Submit" onclick="SubmitCategories()" /></div>
+<script language="javascript">
+var categories = [];
+function loadObjCategories(){
+	{if('load_categories'=='yes');}
+	showCategories();
+}
+function showCategories(){
+	var st = '';
+	if(categories.length > 0){
+		st += '<table cellpadding="0" cellspacing="0" border="0">';
+		for(var i = 0; i < categories.length; i++){
+			var select_ = '';
+			if(categories[i].select_ == 1) select_ = 'checked="checked"';
+			st += '	<tr>';
+			st += '		<td align="left" valign="middle" height="23px"><input type="checkbox" class="input-checkbox" value="'+categories[i].id+'" name="categories[]" '+select_+' /></td>';
+			st += '		<td align="left" valign="middle" style="padding-left:7px">'+categories[i].name+'</td>';
+			st += '	</tr>';		
+		}
+		st += '</table>';	
+	}
+	$("#categories_list").empty().append(st);
+}
+function SubmitCategories(){
+	var categories_select = [];
+	var categories__ = document.getElementsByName("categories[]");
+	for(var i = 0; i < categories__.length; i++){
+		if(categories__[i].checked == true){
+			categories_select[categories_select.length] = categories__[i].value;	
+		}	
+	}
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/dressingroom/subbtn", {
+		submit_category_dressing:'yes',
+		categories_select:categories_select
+	},function(data){
+		window.location.reload();
+	}, "json");	
+}
+$(function() {
+	loadObjCategories();
+});
+</script>

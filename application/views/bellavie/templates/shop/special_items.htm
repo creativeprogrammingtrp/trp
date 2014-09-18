@@ -1,0 +1,65 @@
+        <div class="row">
+				<div class="span12">
+					<div class="titleHeader clearfix">
+						<h3>Special Products</h3>
+					</div><!--end titleHeader-->
+
+					<div class="productFilter clearfix">
+
+						<div class="sortBy inline pull-left">
+							Sort By
+							<select id="sort_direction" onChange="change_sort(this)" name="">
+								<option value="itm_date|desc">Default</option>
+								<option value="itm_name|asc">Name (A-Z)</option>
+								<option value="itm_name|desc">Name (Z-A)</option>
+								<option value="itm_price|asc">Price (Low-Hight)</option>
+								<option value="itm_price|desc">Price (Height-Low)</option>
+								<option value="stars|desc">Highest Rating</option>
+								<option value="stars|asc">Lowest Rating</option>
+							</select>
+						</div>
+
+						<div class="showItem inline pull-left">
+							Show
+							<select id="numberdisplay" onChange="change_display(this.value)">
+								<option value="8">8</option>
+								<option value="16">16</option>
+								<option value="24">24</option>
+								<option value="32">32</option>
+							</select>
+						</div><!--end sortBy-->
+
+						<!--<div class="compareItem inline pull-left">
+							<button class="btn">Product Compare (4)</button>
+						</div>--><!--end compareItem-->
+
+						<div class="displaytBy inline pull-right">
+							Display
+							<div class="btn-group">
+								<button id="grid_display" class="btn btn-primary active" type_display="0" onClick="change_layout(this)"><i class="icon-th"></i></button>
+								<button id="list_display" class="btn" type_display="1" onClick="change_layout(this)"><i class="icon-list"></i></button>
+							</div>
+						</div><!--end displaytBy-->
+
+					</div><!--end productFilter-->
+
+
+					<div class="row">
+						<ul id="item_list" class="hProductItems clearfix">
+                        
+							
+                            
+						</ul>
+					</div><!--end row-->
+
+					<div class="pagination pagination-right">
+						<span class="pull-left" id="number_display"></span>
+                        <div id="pagination">
+                        </div>
+					</div><!--end pagination-->
+
+				</div><!--end span9-->
+
+			</div><!--end row-->
+   <script src="misc/scripts/shop/common.js"></script>
+   <script src="../shop/js/pages/specialitems.js"></script>

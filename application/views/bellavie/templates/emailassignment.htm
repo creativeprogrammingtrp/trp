@@ -1,0 +1,193 @@
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>
+<script language="javascript">
+$(document).ready(function() {
+	$('.table-per').fixedtableheader();
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup"); } } 
+
+});
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+function addRole(){
+	var checkError = false;
+	if($('#mail_new').val() == ''){
+		$('#mail_new').css("background", '#ffffd5');
+		hidelabelfocus("mail_new_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("mail_new"));	
+			document.getElementById("mail_new").focus();	
+		}
+	}else{
+		var msg = isValidEmail($('#mail_new').val());
+		if(msg != ""){
+			$('#mail_new').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("mail_new"));	
+				document.getElementById("mail_new").focus();	
+			}
+		}		
+	}
+	var affiliates = 0;
+	if(document.getElementById("affiliates_new").checked == true) affiliates = 1;
+	var manufacturer = 0;
+	if(document.getElementById("manufacturer_new").checked == true) manufacturer = 1;
+	
+	if(checkError == true){
+		return false;	
+	}
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/assiemail/addnew", {
+		id: '',
+		email: $('#mail_new').val(),
+		affiliates: affiliates,
+		manufacturer: manufacturer
+	},function(data){
+		HideLoadingObj(document.getElementById("content_popup"));
+		if(data){ window.location = 'index.php/admin/assiemail'; return false;			
+		} else { alert('Can not add new mail'); return false; }
+	});
+}
+
+function delete_obj(key){
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/admin/assiemail/deletemail", {
+		key:key
+	},function(data){
+		closeBox('box_popup');
+		HideLoadingObj(document.getElementById("content_popup"));
+		if(data){ window.location = 'index.php/admin/assiemail'; return false; 
+		} else { alert('Can not delete this email'); return false; }
+	});
+}
+
+
+function saveMail(){
+	//var mail = new Object();
+	var aff = 0, manu = 0, email = ''; id = '';
+	$('.tr-body').each(function(i) {
+		id = $('tr:eq(' + (i+1) + ')').find('input[type="hidden"]').val();
+		email = $('tr:eq(' + (i+1) + ') td:eq(0)').find('input[type="mail"]').val();
+		aff = $('tr:eq(' + (i+1) + ') td:eq(1)').find('input[type="checkbox"]:checked').val();
+		if(typeof(aff) == 'undefined') aff = 0;
+		manu = $('tr:eq(' + (i+1) + ') td:eq(2)').find('input[type="checkbox"]:checked').val();
+		if(typeof(manu) == 'undefined') manu = 0;
+		// post data to save database
+		//alert('id: ' + id + '  mail:' + email + '  aff: ' + aff + '  manu:' + manu);
+		$('#loadingbt').show();
+		$('#savebt').hide();
+		$.post("index.php/admin/assiemail/addnew", {
+			id: id,
+			email: email,
+			affiliates: aff,
+			manufacturer: manu
+		}, function(data){
+			$('#loadingbt').hide();
+			$('#savebt').show();
+			if(data){ window.location = 'index.php/admin/assiemail'; return false;
+			} else { alert('Can not save emails change'); return false; }
+		});
+		
+	});
+
+
+		
+		
+}
+
+function showLoad() {
+	var wHeight = $(window).height() / 3;
+	var wWidth = $(window).width() / 2;
+	var top = wHeight - ($('#loadingbt').height() / 3);
+	var left = wWidth- ($('#loadingbt').width() / 2);
+	$('#loadingbt').css({'top': top, 'left': left, 'display': 'block', 'position': 'fixed'});
+}
+function hideLoad(){
+	var divload = document.getElementById('loadingbt');
+	divload.style.display = "none";
+}
+</script>
+<div class="titlepage-admin">Email assignment</div>
+<div class="box_solar" id="showPermissionTable">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per">
+	<thead>	<tr>
+			<th class="th-per" align="left" valign="middle">Email</th>
+			<th class="th-per" align="center" valign="middle">Assignment to Affiliates</th>
+			<th class="th-per" align="center" valign="middle">Assignment to Manufacturer</th>
+			<th class="th-per" align="right" valign="middle">Action</th>
+		</tr> </thead>
+	<tbody>
+{mails}
+		<tr class="tr-row tr-body">
+		<input type="hidden" value="{id}" />
+		<td align="left" valign="middle" class="td-row">
+		<span class="field-with-placeholder">
+		<input tabindex="10" type="mail" class="input-text" id="mail_{id}" size="10" name="mail_{id}" value="{email}" style="width:270px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+		</span> </td>
+		<td align="center" valign="middle" class="td-row"><input type="checkbox" class="input-checkbox" value="1" id="affiliates_{id}" {affiliates} /></td>
+		<td align="center" valign="middle" class="td-row"><input type="checkbox" class="input-checkbox" value="1" id="manufacturer_{id}" {manufacturer} /></td>
+		<td align="right" valign="middle" class="td-row">
+			<!-- <a href="javascript:void(0)" style="color:#ff0000; text-decoration:none;" onclick="saveMail('{id}')" id="savebt">Save</a>&nbsp;/&nbsp; -->
+			<a href="javascript:void(0)" style="color:#ff0000; text-decoration:none;" onclick="delete_obj('{id}')">X</a>
+		</td>
+		</tr> 
+{/mails}</tbody>
+	<tfoot>
+		<tr class="tr-row">
+			<td align="left" valign="middle" class="td-row">
+			<span class="field-with-placeholder">
+			<label id="mail_new_label" class="placeholder" for="mail_new"><span>E-mail</span></label>
+			<input tabindex="10" type="text" class="input-text" id="mail_new" size="10" name="mail_new" value="" style="width:270px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+			</span> </td>
+			<td align="center" valign="middle" class="td-row"><input type="checkbox" class="input-checkbox" value="1" id="affiliates_new"/></td>
+			<td align="center" valign="middle" class="td-row"><input type="checkbox" class="input-checkbox" value="1" id="manufacturer_new"/></td>
+			<td align="right" valign="middle" class="td-row" id="savenew"><a href="javascript:void(0)" onclick="addRole()">Add</a></td>
+		</tr>
+	</tfoot>
+</table> </div>
+
+<div style="clear:both; padding-top:20px; height:30px;" align="left" id="savebt">
+    <input type="button" value="Save" name="submit" class="button" style="margin-left:5px" onclick="saveMail()" />
+</div>
+<div style="clear:both; padding-top:20px; height:100px; width:100px; margin-right:5px; display:none" id="loadingbt">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

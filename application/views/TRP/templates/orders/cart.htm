@@ -1,0 +1,83 @@
+<h3>Order Info</h3>
+<table class="table table-borderless table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Product</th>
+                                                    <th class="hidden-xs hidden-sm text-center">Unit Price</th>
+                                                    <th class="hidden-xs hidden-sm text-center">Quantity</th>
+                                                    <th class="text-right">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="success">
+                                                    <td>1</td>
+                                                    <td>{itemname}</td>
+                                                    <td class="hidden-xs hidden-sm text-center">${itemprice}</td>
+                                                    <td class="hidden-xs hidden-sm text-center">1</td>
+                                                    <td class="text-right">${itemprice}</td>
+                                                </tr>
+                                              
+                                                <tr class="warning">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="hidden-xs hidden-sm"></td>
+                                                    <td class="text-right"><strong>Subtotal</strong></td>
+                                                    <td class="text-right">${itemprice}</td>
+                                                </tr>
+                                               
+                                                <tr class="warning">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="hidden-xs hidden-sm"></td>
+                                                    <td class="text-right"><strong>Discount</strong></td>
+                                                    <td class="text-right">$0.00</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="hidden-xs hidden-sm"></td>
+                                                    <td class="text-right"><strong>Total Due</strong></td>
+                                                    <td class="text-right"><span class="text-danger"><strong>${itemprice}</strong></span></td>
+                                                </tr>
+                                                 <tr class="">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="hidden-xs hidden-sm"></td>
+                                                    <td class="text-right"></td>
+                                                    <td class="text-right"> 
+                                                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+                                                    <input type="hidden" name="cmd" value="_cart" />
+													<input type="hidden" name="upload" value="1" />
+													<input type="hidden" name="custom" value="1" />
+                                                    <input type="hidden" name="business" value="zishanmomin@gmail.com">
+                                                    
+                                                    
+                                                    <input type="hidden" name="item_name_1"  value="{itemname}">
+
+													<input type="hidden" name="amount_1" value="{itemprice}">
+													
+													<input type="hidden" name="quantity_1" value="1">
+													
+													<input type="hidden" name="no_note" value="1">  
+													<input type="hidden" name="currency_code" value="USD"> 
+													
+													<input type="hidden" name="return" value="http://trpplus.com" />  
+													<input type="hidden" name="cancel_return" value="http://trpplus.com" />  
+													<input type="hidden" name="notify_url" value="http://trpplus.com" />                                                    
+                                                    <a class="btn  btn-info EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="index.php/admin/orders"  data-original-title="Certificate" id ="'+uid+'" >Back</a>
+                                                    <input type="submit" class="btn  btn-success EditEro" rel="tooltip" data-toggle="tooltip" name="submit" value="Checkout"  />
+                                                    
+                                                    </form>
+                                                    </td>
+                                                </tr>
+                                                
+                                               
+                                            </tbody>
+                                        </table>
+                                        
+                                        <script type="text/javascript">
+$(function(){
+	//$('#toppart').remove();
+});
+</script>

@@ -1,0 +1,781 @@
+<div id="content_load">
+    <form name="order_confirm_form" id="order_confirm_form" method="post" action="">
+    <div class="row">
+        <div class="span12">
+                <div class="checkout-content">
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <h3>Order Date:</h3>
+                            <p>{order_date}</p>
+                        </div>
+                        <div class="span4">
+                            <h3>Billing Address:</h3>
+                            <p>{billing_Name} {billing_LastName}<br />{billing_Address}<br />{billing_City}<br />{billing_Phone}<br /><a href="mailto:{billingEmail}">{billing_Email}</a></p>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12" id="shopping_listings"></div><!--end span12-->
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="checkout-outer">
+                                <div class="checkout-header">
+                                    <h4><i class="icon-caret-right"></i> Payment Information</h4>
+                                </div><!--end checkout-header-->
+                                <div class="checkout-content">
+                                    <div style="clear:both;">
+                                        <div style="clear:both; padding-top:10px; font-weight:bold">
+                                            <input type="checkbox" id="check_commission" class="input-checkbox" onclick="showOrderValue()"/> &nbsp;MyWallet Account: $<span id="MyWallet_value">0.00</span>
+                                        </div>
+                                    </div>
+                                    <div style="clear:both; padding-top:10px; font-weight:bold">
+                                        <div style="padding:3px 5px; background-color:#F16325; color:#FFF; width:40px; text-align:center; font-size:12px" >OR</div>
+                                    </div>
+                                    <div style="clear:both; padding-top:10px; display:block" id="credit_card_payment">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td align="left" valign="middle" style="font-weight:bold" colspan="2">Credit card payment</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="middle" style="padding-right:5px; font-weight:bold">Card #:</td>
+                                                <td height="27px" align="left" valign="middle">
+                                                    <input class="input-text" name="creditcard" value=""  style="width:225px;" maxlength="16" autocomplete="off" id="creditcard" type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="middle" style="padding-right:5px; font-weight:bold">Exp:</td>
+                                                <td height="27px" align="left" valign="middle"> 
+                                                    <div style="float:left;">{<!--cc_Month-->}</div>
+                                                    <div style="float:left; width:75px; text-align:center">&nbsp;/&nbsp;</div>
+                                                    <div style="float:right;">{<!--cc_Year-->}</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="middle" style="padding-right:5px; font-weight:bold">CVC:</td>
+                                                <td height="27px" align="left" valign="middle">
+                                                    <div style="float:left; width: 20px"><input class="input-text" n="5" style="width:70px;" name="cc_Cvv" maxlength="4" id="cc_Cvv" autocomplete="off" type="text" value="" onkeypress="return isNumberIntKey(event)" ></div>
+                                                    <div style="background:url(../images/cart_types.jpg); width:98px; height:19px; float:right; margin:3px 0px"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end span6-->
+                    
+                    
+                        <div class="span6">
+                             <!--insert code here -->
+                            <div id="loadVallet" ></div>
+                       <!--end code here -->
+                            <div class="cart-receipt" id="order_info">
+                                <table class="table table-receipt">
+                                    <tr>
+                                        <td class="alignRight"><h2>Total</h2></td>
+                                        <td class="alignRight"><h2>$0.00</h2></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="alignRight"></td>
+                                        <td class="alignRight"><button style="margin-left:4px; margin-top:20px;" class="btn btn-primary pull-right" onclick="">Submit Order</button><button class="btn pull-right" style="margin-top:20px;" onclick="">Back</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div><!--end span6-->
+                    </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </div><!--end row-->
+    
+    <input type="hidden" id="shipping_Name" name="shipping_Name" value="" />
+    <input type="hidden" id="shipping_Address" name="shipping_Address" value="" />
+    <input type="hidden" id="shipping_City" name="shipping_City" value="" />
+    <input type="hidden" id="shipping_State" name="shipping_State" value="" />
+    <input type="hidden" id="shipping_Country" name="shipping_Country" value="" />
+    <input type="hidden" id="shipping_Zip" name="shipping_Zip" value="" />
+    <input type="hidden" id="shipping_Phone" name="shipping_Phone" value="" />
+    <input type="hidden" id="billing_Name" name="billing_Name" value="{billing_Name}" />
+    <input type="hidden" id="billing_LastName" name="billing_LastName" value="{billing_LastName}" />
+    <input type="hidden" id="billing_Address" name="billing_Address" value="{billing_Address}" />
+    <input type="hidden" id="billing_City" name="billing_City" value="{billing_City}" />
+    <input type="hidden" id="billing_State" name="billing_State" value="{billing_state}" />
+    <input type="hidden" id="billing_Country" name="billing_Country" value="{billing_city}" />
+    <input type="hidden" id="billing_Zip" name="billing_Zip" value="{billing_Zip}" />
+    <input type="hidden" id="billing_Phone" name="billing_Phone" value="{billing_Phone}" />
+    <input type="hidden" id="billing_Email" name="billing_Email" value="{billing_Email}" />
+    <input type="hidden" id="shipping_Check" name="shipping_Check" value="" />
+    <input type="hidden" id="discount_type" name="discount_type" value="0" />
+    <input type="hidden" id="discount_value" name="discount_value" value="@discount@" />
+    <input type="hidden" id="ship_state" value="@ship_state@" />
+    <input type="hidden" id="venue_value" name="venue_value" value="" />
+    </form>
+</div>
+<script language="javascript">
+var suptotal = 0, suptotal_tax = 0, total_Tax = 0,total_commission = 0, shipping = [], tax_rates = [], Venues = [], dataCarts = [], dataPromotions = [], dataSales = [], data_StoreName = [];
+var data_SalesRep = [], data_Charity = [], check_com = '', rid = 1, commissions = 0, count = 1;
+var dataLocations = [];
+function loadObjectOrders(){
+	$.post("index.php/shop/cart/order_confirm", {
+		loadObjectOrders:'yes',
+		shipping_State:document.getElementById("ship_state").value,
+		shipping_Country:document.getElementById("billing_Country").value,
+		shipping_Zip:document.getElementById("billing_Zip").value,
+		shipping_City:document.getElementById("billing_City").value,
+		shipping_Address:document.getElementById("billing_Address").value,
+		shipping_Name:document.getElementById("billing_Name").value,
+		shipping_Phone:document.getElementById("billing_Phone").value
+	},function(data){
+	
+		if(typeof(data) == 'object'){
+			shipping = data.shippings;
+			tax_rates = data.taxs;
+			dataCarts = data.shopping;
+			dataPromotions = data.promotions;
+			commissions = data.commissions;
+			dataLocations = data.locations;
+		}
+		loadShoppingList();
+		showOrderInfo();
+		showOrderValue();
+                showMyvallet();
+	}, "json");
+}
+function loadShoppingList(){
+	var str_next = '';
+	var str_content = '';
+	str_content += '<table class="table table-per table-custom">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th class="desc" colspan="2">Description</th>';
+	str_content += '			<th>Quantity</th>';
+	str_content += '			<th class="text-right">Price</th>';
+	str_content += '			<th class="text-right">Total</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	
+	if(dataCarts.length > 0){
+		str_content += '	<tbody>';
+		for(var i = 0; i < dataCarts.length; i++){
+			var obj = dataCarts[i];
+			
+			var price = parseFloat(obj.itm_price);
+			var attributes__ = '';
+			if(typeof(obj.attributes) == 'object'){
+				for(var j = 0; j < obj.attributes.length; j++){
+					var at_price = Math.round(parseFloat(obj.attributes[j].price)*100)/100;
+					price += at_price;
+					attributes__ += '<br><b>' + obj.attributes[j].label + ': </b>' + obj.attributes[j].name;
+					if(at_price > 0){
+						attributes__ += '&nbsp;&nbsp;(+$'+formatAsMoney(at_price)+')';	
+					}	
+				}	
+			}
+			var qty = parseInt(obj.qty, 10);
+			if(qty <= 0) continue;
+			
+			price = Math.round(price*100)/100;
+			var new_price = price;
+			
+			var promotions_row = '';
+			var arr_show_promotions = [];
+			for(var k = 0; k < dataPromotions.length; k++){
+				if(parseInt(dataPromotions[k].promo_type, 10) == 2 && dataPromotions[k].product_key == obj.itm_key){
+					var bac_qty = parseInt(qty / parseInt(dataPromotions[k].minqty, 10), 10);
+					var qty_free = bac_qty * parseFloat(dataPromotions[k].freeqty);
+					
+					promotions_row += '		<tr class="tr-row">';
+					promotions_row += '			<td width="90px" align="left" valign="top" class="td-row" style="padding-top:5px; padding-bottom:5px"><img src="shopping/data/img/thumb/'+dataPromotions[k].file+'" border="0" /></td>';
+					promotions_row += '			<td align="left" valign="top" class="td-row" style="padding-top:5px; padding-bottom:5px">';
+					
+					promotions_row += '			<div style="clear:both"><a href="index.php/shop/item_details?itemid='+dataPromotions[k].itm_key+'" style="font-weight:bold">'+ConvertToHTML(dataPromotions[k].itm_name)+'</a><br><b>Model: </b>'+ConvertToHTML(dataPromotions[k].itm_model) + '</div>';
+					
+					promotions_row += '<div style="clear:both; padding-top:10px">';
+					promotions_row += '<table cellpadding="0" cellspacing="0" border="0">';
+					promotions_row += '	<tr>';
+					promotions_row += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+					promotions_row += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Free Products</td>';
+					promotions_row += '	</tr>';
+					promotions_row += '</table>';
+					promotions_row +='</div>';
+					
+					promotions_row += '			</td>';
+					promotions_row += '			<td align="right" valign="top" class="td-row" style="padding-top:5px; padding-bottom:5px">'+number_format(qty_free)+'</td>';
+					promotions_row += '			<td align="center" valign="top" class="td-row" style="padding-top:5px; padding-bottom:5px">$0.00</td>';
+					promotions_row += '			<td align="right" valign="top" class="td-row" style="padding-top:5px; padding-bottom:5px">$0.00</td>';
+					promotions_row += '		</tr>';
+				}
+				if(obj.itm_key == dataPromotions[k].itm_key){
+					var discount_type = parseInt(dataPromotions[k].discount_type, 10);
+					var discount = parseFloat(dataPromotions[k].discount);
+					var promo_type = parseInt(dataPromotions[k].promo_type, 10);
+					if(promo_type == 1){
+						if(discount_type == 0){
+							new_price -= price * discount / 100;
+						}else{
+							new_price -= discount;	
+						}	
+					}
+					var arr_show_promotions_step = new Object();
+					arr_show_promotions_step.promo_type = promo_type;
+					arr_show_promotions_step.discount_type = discount_type;
+					arr_show_promotions_step.discount = discount;
+					
+					var check_exist_pro = false;
+					for(var p = 0; p < arr_show_promotions.length; p++){
+						if(arr_show_promotions[p].promo_type == promo_type && arr_show_promotions[p].discount_type == discount_type){
+							arr_show_promotions[p].discount += discount;
+							check_exist_pro = true;
+							break;	
+						}	
+					}
+					if(check_exist_pro == false) arr_show_promotions[arr_show_promotions.length] = arr_show_promotions_step;
+				}	
+			}
+			var promotions_ = '';
+			for(var p = 0; p < arr_show_promotions.length; p++){
+				switch(arr_show_promotions[p].promo_type){
+					case 1:
+						var discount = '';
+						if(discount_type == 0){
+							discount = number_format(arr_show_promotions[p].discount) + '%';	
+						}else{
+							discount = '$' + formatAsMoney(arr_show_promotions[p].discount);	
+						}
+						promotions_ += '<div style="clear:both; padding-top:10px">';
+						promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+						promotions_ += '	<tr>';
+						promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+						promotions_ += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Product Discounts: '+discount+'</td>';
+						promotions_ += '	</tr>';
+						promotions_ += '</table>';
+						promotions_ +='</div>';
+						break;
+					case 3:
+						var discount = '';
+						if(arr_show_promotions[p].discount_type == 0){
+							discount = number_format(arr_show_promotions[p].discount) + '%';	
+						}else{
+							discount = '$' + formatAsMoney(arr_show_promotions[p].discount);	
+						}
+						promotions_ += '<div style="clear:both; padding-top:10px">';
+						promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+						promotions_ += '	<tr>';
+						promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+						promotions_ += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Shipping Discounts: '+discount+'</td>';
+						promotions_ += '	</tr>';
+						promotions_ += '</table>';
+						promotions_ +='</div>';
+						break;
+					case 4:
+						promotions_ += '<div style="clear:both; padding-top:10px">';
+						promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+						promotions_ += '	<tr>';
+						promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+						promotions_ += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Free Shippings</td>';
+						promotions_ += '	</tr>';
+						promotions_ += '</table>';
+						promotions_ +='</div>';
+						break;
+				}
+			}
+			
+			if(new_price < 0) new_price = 0;
+			new_price = Math.round(new_price*100)/100;
+			var total = new_price * qty;
+			total = Math.round(total*100)/100;
+			suptotal += total;
+    
+                        total_commission += (obj.total_commission * qty);//insert code here
+			if(parseInt(obj.product_type, 10) == 0){
+				suptotal_tax += total;	
+			}
+			
+			var price_show = formatAsMoney(price);
+			if(new_price != price) price_show = formatAsMoney(new_price) + '<br><span style="text-decoration:line-through">$'+formatAsMoney(price)+'</span>';
+			
+			var origin = '';
+			if(obj.origin != ''){
+				origin = ConvertToHTML(obj.origin);	
+			}
+			
+			var check_service_product = false;
+			var str_location = '<div style="clear:both">';
+			if(dataLocations.length > 0){
+				for(var k = 0; k < dataLocations.length; k++){		
+					data_loc = dataLocations[k];
+					for(var hm = 0 ; hm < data_loc.length; hm++){
+						if(data_loc[hm].attributes == obj.attributes_key){
+							if(check_service_product == false) check_service_product = true;
+							str_location += '<div style="clear:both; font-style:italic; color:#666">'+data_loc[hm].location+' (x'+data_loc[hm].quantity+')</div>';	
+						}
+					}
+				}
+			}
+			str_location += '</div>';
+			str_content += '		<tr>';
+			str_content += '			<td class="product-img"><img src="shopping/data/img/thumb/'+obj.file+'" border="0" /></td>';
+			
+			str_content += '			<td class="desc">';
+			str_content += '				<h4><a href="index.php/shop/item_details?itemid='+obj.itm_key+'" class="invarseColor">';
+			str_content += 					ConvertToHTML(obj.itm_name);
+			str_content += '				</a></h4>';
+			str_content += '				<ul class="unstyled">';
+			str_content += '					<li>Model: '+ConvertToHTML(obj.itm_model)+'</li>';
+			str_content += '					<li>'+origin+attributes__+'</li>';
+			str_content += '				</ul>';
+			str_content += 					str_location;
+			str_content += 					promotions_;
+			str_content += '			</td>';
+			
+			str_content += '			<td valign="top"><h3>'+number_format(qty)+'</h3></td>';
+			str_content += '			<td valign="top" class="text-right"><h3>$'+price_show+'</h3></td>';
+			str_content += '			<td valign="top" class="text-right"><h3>$'+formatAsMoney(total)+'</h3></td>';
+			str_content += '		</tr>';
+			
+			str_content += promotions_row;
+		}
+		str_content += '	</tbody>';
+	}
+	str_content += '</table>';
+	$("#shopping_listings").empty().append(str_content);
+//	$('.table-per').fixedtableheader();  
+}
+function loadVenueLocations(){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/shop/cart/order_confirm", {
+		loadVenues:'yes'
+	},function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(typeof(data) == 'object'){
+			data_StoreName = data.StoreName;
+			data_SalesRep = data.SalesRep;
+			data_Charity = data.Charity;
+		}
+	}, "json");
+}
+function show_card(){
+	var str = '';
+	str += '<table cellpadding="0" cellspacing="0" border="0">';
+	str += '	<tr>';
+	str += '		<td align="left" valign="middle" style="padding-right:5px; padding-top:5px; font-weight:bold">Card #:</td>';
+	str += '		<td height="27" >';
+	str += '			<input class="input-text" name="creditcard" value=""  style="width:225px; margin-top:5px" maxlength="16" autocomplete="off" id="creditcard" type="text">';
+	str += '		</td>';
+	str += '	</tr>';
+	str += '	<tr>';
+	str += '		<td align="left" valign="middle" style="padding-right:5px; font-weight:bold">Exp:</td>';
+	str += '		<td height="27" align="center"> ';
+	str += '			<div style="float:left;">{<!--cc_Month-->}</div>';
+	str += '			<div style="float:left; width:75px; text-align:center">&nbsp;/&nbsp;</div>';
+	str += '			<div style="float:right;">{<!--cc_Year-->}</div>';
+	str += '		</td>';
+	str += '	</tr>';
+	str += '	<tr>';
+	str += '		<td align="left" valign="middle" style="padding-right:5px; font-weight:bold">CVC:</td>';
+	str += '		<td height="27" >';
+	str += '			<div style="float:left; width: 20px"><input class="input-text" n="5" style="width:70px;" name="cc_Cvv" maxlength="4" id="cc_Cvv" autocomplete="off" type="text" value="" onkeypress="return isNumberIntKey(event)" ></div>';
+	str += '			<div style="background:url(../images/cart_types.jpg); width:98px; height:19px; float:right; margin:3px 0px"></div>';
+	str += '		</td>';
+	str += '	</tr>';
+	str += '</table>';
+	return str;	
+}
+function checkOnly(obj){
+	document.getElementById("Store").src = '../images/check02.png';
+//	document.getElementById("saleRep").src = '../images/check02.png';
+	document.getElementById("charity").src = '../images/check02.png';
+	switch(obj.id){
+		case 'Store':
+			if(check_com != 'Store'){
+				check_com = 'Store';
+				document.getElementById("Store").src = '../images/check01.png';
+				Venues = data_StoreName;
+			}else{
+				check_com = '';
+				Venues = [];	
+			}
+			break;
+		case 'saleRep':
+			if(check_com != 'saleRep'){
+				check_com = 'saleRep';
+				document.getElementById("saleRep").src = '../images/check01.png';
+				Venues = data_SalesRep;
+			}else{
+				check_com = '';
+				Venues = [];
+			}
+			break;
+		case 'charity':
+			if(check_com != 'charity'){
+				check_com = 'charity';
+				document.getElementById("charity").src = '../images/check01.png';
+				Venues = data_Charity;
+			}else{
+				check_com = '';
+				Venues = [];	
+			}
+			break;	
+	}
+	showResult();
+	showAutoCompleted();
+}
+function showResult(){//Venues
+	var st = '';
+	for(var i = 0; i < Venues.length; i++){
+		st += '<div style="clear:both; padding-bottom:5px; margin-bottom:5px; overflow:hidden; border-bottom:1px dashed #CCC">';
+		st += '	<table cellpadding="0" cellspacing="0" border="0">';
+		st += '		<tr>';
+		st += '			<td align="left" valign="top" width="20px"><input type="checkbox" name="commission_arr[]" class="input-checkbox" value="'+Venues[i].value+'" onclick="check_obj_only(this)" style="margin-top:5px"/></td>';
+		st += '			<td align="left" valign="top">'+Venues[i].label+'</td>';
+		st += '		</tr>';
+		st += '	</table>';
+		st += '</div>';
+	}
+	if(Venues.length > 7){
+		st = '<div class="holder osX" style="overflow: auto; overflow-x: hidden; clear:both;"><div id="slides_result" class="scroll-pane" style="overflow-x: hidden; width:440px; height:298px; ">' + st + '</div></div>';	
+	}
+	$("#result_value").empty().append(st);
+	if(document.getElementById("slides_result")){
+		$("#slides_result").jScrollPane({showArrows:false, verticalGutter:0});
+	}
+}
+function check_obj_only(obj){
+	var commission_arr = document.getElementsByName("commission_arr[]");
+	for(var i = 0; i < commission_arr.length; i++){
+		if(obj.value != commission_arr[i].value)
+			commission_arr[i].checked = false;
+	}	
+}
+function showAutoCompleted(){
+	var data_auto = [];
+	switch(check_com){
+		case 'Store':
+			data_auto = data_StoreName;
+			break;
+		case 'saleRep':
+			data_auto = data_SalesRep;
+			break;
+		case 'charity':
+			data_auto = data_Charity;
+			break;	
+	}
+	var revenue_auto = $( "#revenue" ).autocomplete({
+		delay: 0,
+		minLength: 0,
+		source: data_auto,
+		search: function(event, ui) {
+			Venues = [];
+			$("#result_value").empty();
+		},
+		open: function(event, ui) {
+			$("body").find( "ul.ui-autocomplete" ).css( "display", "none");
+			showResult();
+			return false;	
+		}
+	});
+	revenue_auto.data( "autocomplete" )._renderItem = function( ul, item ) {
+		Venues[Venues.length] = item;
+		return false;
+	};
+}
+function showOrderInfo(){
+	var str = '';
+	str += '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
+	str += '	<tr>';
+	str += '		<td align="right" valign="middle"><h3><strong>Subtotal :</strong></h3></td>';
+	str += '		<td align="right" valign="middle" width="70px" style="padding-left:20px"><h3><strong>$<span id="suptotal"></span></strong></h3></td>';
+	str += '	</tr>';
+	if(suptotal < 0) suptotal = 0;
+	total_Tax = 0;
+	if(tax_rates.length > 0){
+		str += '	<tr><td colspan="2" height="10px"></td></tr>';
+		for(var i = 0; i < tax_rates.length; i++){
+			var rate_value = 0;
+			if(parseFloat(tax_rates[i].tax_item_total) > 0){
+				rate_value = parseFloat(tax_rates[i].tax_item_total);
+				rate_value = Math.round(rate_value*100)/100;
+				total_Tax += rate_value;
+			}
+			str += '	<tr>';
+			str += '		<td align="right" valign="middle">'+ConvertToHTML(tax_rates[i].name)+' :</td>';
+			str += '		<td align="right" valign="middle" style="padding-left:20px"><h3>$'+formatAsMoney(rate_value)+'</h3></td>';
+			str += '	</tr>';		
+		}
+	}
+	str += '	<tr><td colspan="2" height="10px"></td></tr>';   
+	str += '	<tr>';
+	str += '		<td align="right" valign="middle" style="border-top:1px solid #ffffff; padding-top:10px"><h2><strong>Total:</strong></h2></td>';
+	str += '		<td align="right" valign="middle" style="padding-left:20px; border-top:1px solid #ffffff; padding-top:10px"><h2><strong>$<span id="Total"></span></strong></h2></td>';
+	str += '	</tr>';                                           
+	str += '	<tr style="display:none" id="showMyWalletAccount">';
+	str += '		<td align="right" valign="middle" style="padding-top:5px; padding-bottom:10px; border-bottom:1px solid #DDD"><h3><strong>MyWallet Account:</strong></h3></td>';
+	str += '		<td align="right" valign="middle" style="padding-left:20px; padding-top:5px; padding-bottom:10px; border-bottom:1px solid #DDD"><h3><strong>$<span id="MyWalletAccountValue">0.00</span></strong></h3></td>';
+	str += '	</tr>';
+	str += '	<tr id="showTotal2" style="display:none">';
+	str += '		<td align="right" valign="middle" style="border-top:1px solid #ffffff; padding-top:10px"><h2><strong>Total:</strong></h2></td>';
+	str += '		<td align="right" valign="middle" style="padding-left:20px; border-top:1px solid #ffffff; padding-top:10px"><h2><strong>$<span id="Total2"></span></strong></h2></td>';
+	str += '	</tr>';  
+	str += '	<tr>';
+	str += '		<td colspan="2" class="alignRight"><button style="margin-left:4px; margin-top:20px;" class="btn btn-primary pull-right" onclick="return submitOrder();">Submit Order</button><button class="btn pull-right" style="margin-top:20px;" onclick="backToCcInfo();">Back</button></td>';
+	str += '	</tr>';                         
+	str += '</table>';
+	$("#order_info").empty().append(str);//340
+        $("#MyWallet_value").empty().append(formatAsMoney(commissions));
+	/*if(rid == 6 || rid == 9){
+		$("#MyWallet_value").empty().append(formatAsMoney(commissions));
+
+	} */
+}
+function backToCcInfo(){
+	var order_confirm_form = document.order_confirm_form;
+	order_confirm_form.action = 'index.php/shop/cart';
+	order_confirm_form.submit();
+	return false;
+}
+function submitOrder(){
+	var check_commission = getCheckCommission();
+	if(check_commission == 1){
+		var o_total = getOrderTotals();
+		var commissions_2 = commissions;
+		if(commissions_2 > o_total) commissions_2 = o_total;
+		o_total -= 	commissions_2;
+		if(o_total > 0){
+			if( trim($('#creditcard').val()) == ""){
+				alert("Please enter card number!");
+				document.getElementById("creditcard").focus();
+				return false;
+			}
+			if( trim($('#cc_month').val())==""){
+				alert("Please enter expiration month!");
+				document.getElementById("cc_month").focus();
+				return false;
+			}
+			if( trim($('#cc_year').val())==""){
+				alert("Please enter expiration year!");
+				document.getElementById("cc_year").focus();
+				return false;
+			}
+			if( trim($('#cc_Cvv').val()) == ""){
+				alert("Please enter security code!");
+				document.getElementById("cc_Cvv").focus();
+				return false;
+			}
+		}		
+	}else{
+		if( trim($('#creditcard').val()) == ""){
+			alert("Please enter card number!");
+			document.getElementById("creditcard").focus();
+			return false;
+		}
+		if( trim($('#cc_month').val())==""){
+			alert("Please enter expiration month!");
+			document.getElementById("cc_month").focus();
+			return false;
+		}
+		if( trim($('#cc_year').val())==""){
+			alert("Please enter expiration year!");
+			document.getElementById("cc_year").focus();
+			return false;
+		}
+		if( trim($('#cc_Cvv').val()) == ""){
+			alert("Please enter security code!");
+			document.getElementById("cc_Cvv").focus();
+			return false;
+		}	
+	}
+	
+	var shipping_fee = 0;
+	var shipping_key = '';
+	var sipping = document.getElementsByName("sipping[]");
+	for(var i = 0; i < sipping.length; i++){
+		if(sipping[i].checked == true){//<|>
+			if(sipping[i].value != ''){
+				var arr_ship_va_key = sipping[i].value.split("<|>");
+				shipping_fee = parseFloat(arr_ship_va_key[0]);
+				shipping_key = arr_ship_va_key[1];
+			} 
+			break;	
+		}	
+	}
+	var rate_value = 0;
+	for(var i = 0; i < tax_rates.length; i++){
+		if(parseFloat(tax_rates[i].rate) > 0){
+			rate_value += parseFloat(tax_rates[i].rate);	
+		}	
+	}
+	var obj_commission = '';
+	var commission_arr = document.getElementsByName("commission_arr[]");
+	for(var i = 0; i < commission_arr.length; i++){
+		if(commission_arr[i].checked == true){
+			obj_commission = commission_arr[i].value + '|' + check_com;
+			break;	
+		}	
+	}
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/shop/cart/submitorder",{
+		submitOrder:'yes',
+		shipping_Name:$('#shipping_Name').val(),
+		shipping_Address:$('#shipping_Address').val(),
+		shipping_City:$('#shipping_City').val(),
+		shipping_State:$('#shipping_State').val(),
+		shipping_Country:$('#shipping_Country').val(),
+		shipping_Zip:$('#shipping_Zip').val(),
+		shipping_Phone:$('#shipping_Phone').val(),
+		billing_Name:$('#billing_Name').val(),
+		billing_LastName:$('#billing_LastName').val(),
+		billing_Address:$('#billing_Address').val(),
+		billing_City:$('#billing_City').val(),
+		billing_State:$('#billing_State').val(),
+		billing_Country:$('#billing_Country').val(),
+		billing_Zip:$('#billing_Zip').val(),
+		billing_Phone:$('#billing_Phone').val(),
+		billing_Email:$('#billing_Email').val(),
+		shipping_Check:$('#shipping_Check').val(),
+		cc_Card_Number:$('#creditcard').val(),
+		cc_Card_Month:$('#cc_month').val(),
+		cc_Card_Year:$('#cc_year').val(),
+		cc_Card_Cvc:$('#cc_Cvv').val(),
+		shipping_fee:shipping_fee,
+		shipping_key:shipping_key,
+		venue_location:obj_commission,
+		check_commission:check_commission
+	} ,function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(data != ''){
+			var _arrres	 = data.split('^');
+			if(_arrres[0] != 'incorrect'){
+				$("#content_load").empty().append(data);
+				document.getElementById('itemsNumber').innerHTML = '';
+			}else{
+				if(_arrres[1]=='')
+					alert('Cannot connect to payment gateway.');
+				else
+					alert(_arrres[1]);
+			}
+		}
+	});
+	return false;
+}
+
+function getOrderTotals(){
+	if(suptotal < 0) suptotal = 0;
+	var sipping_value = 0;
+	var sipping = document.getElementsByName("sipping[]");
+	for(var i = 0; i < sipping.length; i++){
+		if(sipping[i].checked == true){
+			if(sipping[i].value != ''){
+				var arr_ship_va_key = sipping[i].value.split("<|>");
+				sipping_value = parseFloat(arr_ship_va_key[0]);
+			} 	
+			break;	
+		}	
+	}
+	var o_total = suptotal + total_Tax + sipping_value;
+	return o_total;
+}
+
+function showMyvallet (){
+    var o_total = getOrderTotals();
+    var commissions_2 = commissions;  
+    if(commissions_2 > o_total) commissions_2 = o_total;
+    o_total -= 	commissions_2;
+    var str = '<h4 style="color:#F16325" >You save : $'+formatAsMoney(total_commission)+' See MyWallet</h4>';
+    $("#loadVallet").empty().append(str);
+}
+
+/*function showOrderValue(){ 
+	var o_total = getOrderTotals();
+	
+	$("#each_order_total").empty().append('$'+formatAsMoney(suptotal));
+	$("#sub_total").empty().append(formatAsMoney(suptotal));
+	$("#suptotal").empty().append(formatAsMoney(suptotal*count));
+	$("#Total").empty().append(formatAsMoney(o_total));
+	
+	var check_commission = getCheckCommission();
+       
+	if(check_commission == 0){
+		$("#credit_card_payment").show();
+		$("#showMyWalletAccount").hide();
+		$("#showTotal2").hide();
+	}else{
+		var commissions_2 = commissions;
+               
+                if(commissions_2 == 0){
+                        var str = 'Not enough funds.Please use Credit card';
+                  alert(str);
+                  document.getElementById("check_commission").checked = false;
+                }else{
+		if(commissions_2 > o_total) commissions_2 = o_total;
+		o_total -= 	commissions_2;
+		if(o_total == 0){
+			$("#credit_card_payment").hide();	
+		}else{
+			var str_note = 'Still short of $'+formatAsMoney(o_total)+' for your order and use credit card for the balance';
+			alert(str_note);
+			$("#credit_card_payment").show();		
+		}
+		$("#MyWalletAccountValue").empty().append('('+formatAsMoney(commissions_2)+')');
+		$("#Total2").empty().append(formatAsMoney(o_total));
+		$("#showMyWalletAccount").show();
+		$("#showTotal2").show();
+            }
+        }
+}*/
+    
+  
+
+function showOrderValue(){ 
+	var o_total = getOrderTotals();
+	
+	$("#each_order_total").empty().append('$'+formatAsMoney(suptotal));
+	$("#sub_total").empty().append(formatAsMoney(suptotal));
+	$("#suptotal").empty().append(formatAsMoney(suptotal*count));
+	$("#Total").empty().append(formatAsMoney(o_total));
+	
+	var check_commission = getCheckCommission();
+       
+	if(check_commission == 0){
+		$("#credit_card_payment").show();
+		$("#showMyWalletAccount").hide();
+		$("#showTotal2").hide();
+	}else{
+                var commissions_2 = commissions;
+		if(commissions_2 >= o_total || o_total == 0){
+                   $("#credit_card_payment").hide();
+                  //o_total = Math.abs(o_total - commissions_2);
+                   //$("#MyWalletAccountValue").empty().append('('+formatAsMoney(commissions_2)+')');
+                  // $("#Total2").empty().append(formatAsMoney(o_total));
+                   //$("#showMyWalletAccount").show();
+                  // $("#showTotal2").show();
+                }	
+		else{
+			 var str = 'Not enough funds.Please use Credit card';
+                         alert(str);
+                         document.getElementById("check_commission").checked = false;
+                         $("#credit_card_payment").show();
+                         $("#showMyWalletAccount").hide();
+                         $("#showTotal2").hide();
+		}
+            }
+}
+
+    
+
+function getCheckCommission(){
+	var check_commission = 0;
+	if(document.getElementById("check_commission")){
+		if(document.getElementById("check_commission").checked == true){
+			check_commission = 1;	
+		}	
+	}
+	return check_commission;
+}
+
+$(function() {
+	{if('loadrid'=='yes');}
+	loadObjectOrders();
+	if(rid != 6 && rid != 9){
+		$("#showCommissionAC").show();
+	}
+}); 
+</script>

@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="expires" content="Mon, 26 Jul 1997 05:00:00 GMT"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="INDEX,FOLLOW" />
+<meta name="description" content="{description_site}" />
+<meta name="keywords" content="{keywords_site}" />
+<title>{title_site}</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon"/> 
+<link media="all" rel="stylesheet" type="text/css" href="../main/css/all.css" />
+<link href="../main/css/css.css" rel="stylesheet" type="text/css"/>
+<link href="../main/css/css-2.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="../main/customizer/ct_style.css" type="text/css"/>
+<!--<link rel="stylesheet" class="styleswitcher" href="#" media="screen" />-->
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<link rel="stylesheet" type="text/css" href="../css/base/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" href="../popups/theme1/styles/popup.css" />
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-ui-1.8.20.custom.min.js"></script>
+<script type="text/javascript" src="../main/js/jquery.main.js"></script>
+<script type="text/javascript" src="misc/scripts/swfobject.js"></script>
+<script type="text/javascript" src="misc/scripts/constant.js"></script>
+<script type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<SCRIPT language="javascript" type="text/javascript" src="misc/scripts/js.js"></SCRIPT>
+<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="../main/css/ie.css" /><![endif]-->
+<script type="text/javascript">
+var header_link= [];
+var url_server__ = '{curPageURLServer}';
+dir_theme = 'application/views/{dir_theme}/';
+var url_base_path__ = '{url_base_path}';
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="w1">
+			<div class="w2">
+            	<h1 align="center" style="margin:30px 0;">TRP PROJECT</h1>
+                <header id="header">
+                    <!--<div class="section">
+                        <h1 class="logo" onclick="javascript:goHome();"></h1>
+                        <div class="contact-box">
+                        	<div class="GMT-timer">
+                                <span id="Date"></span>
+                                <span class="timer-div">|</span>
+                                <span id="hours"></span>:<span id="min"></span>:<span id="sec"></span>
+                                <span class="timer-div">|</span> GMT
+                            </div>
+                            <div> {account_content}</div>
+                        </div>
+                    </div>-->
+                                           
+                </header>
+				<div id="content_load">{content_site}</div>
+			</div>
+		</div>
+		<!--<div id="footer">
+			<div class="footer-holder">
+				<div class="footer-frame">
+					<footer>
+						<div class="case" style="padding-left:15px; padding-right: 15px;">
+							<div class="grid-cols">
+								<div class="col67">
+									<div class="col-holder">		
+										<h4>Useful Links</h4>
+                                        {nav_bar_bottom}
+									</div>
+								</div>
+								<div class="col33">
+									<div class="col-holder">
+                                    	<br><br><br><br><br><br>
+										<h4>Contact info</h4>
+										<dl>
+											<dt>E-mail:</dt>
+											<dd><a href="mailto:support@bellavienetwork.com">support@bellavienetwork.com</a></dd>
+										</dl>
+										<address>
+                                            500 N. Rainbow Blvd, Suite A<br />
+                                            Las Vegas NV.89107
+										</address>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="add-block">
+							<div class="holder">
+								<div class="by left">
+									<p>Copyright © 2014 TRP Project.</p>
+								</div>
+                                <div class="by">
+                                	<a href="index.php/term">Term of Use</a> | 
+                                	<a href="index.php/policy">Privacy Policy</a>
+                                </div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>-->
+	</div>
+    <div id="fancy_box"></div>
+    <div id="coherent_bubble_node" style="left: 0px; top: 0px; width: 203px; display:none" class="bubble">
+        <span class="chrome tl"></span>
+        <span class="chrome tr"></span>
+        <span class="chrome top"></span>
+        <span class="chrome left"></span>
+        <span class="chrome right"></span>
+        <span class="chrome bottom"></span>
+        <span class="chrome bl"></span>
+        <span class="chrome br"></span>
+        <span class="chrome center"></span>
+        <div class="spinner" __parametersid="parameters_7" id="coherent_id_30" style="display: none;"></div>
+        <div class="container" id="coherent_id_35">
+            <div class="content" id="coherent_id_34"><span>Please complete this mandatory field.</span></div>
+            <ul class="buttons" __parametersid="parameters_10" id="coherent_id_31" style="display: none;"></ul>
+        </div>
+        <span class="chrome arrow" id="coherent_id_36" style="left: 101px;"></span>
+    </div> 
+    <div class="modal" id="box_popup" style="display:none; overflow:hidden">
+        <div class="modal-hd" style="cursor: move"><span id="title_popup">Empty the Spam folder</span> <span title="Close" class="close" id="closebox"></span> </div>
+        <div class="modal-bd">
+            <div id="content_popup" style="overflow:hidden"></div>
+        </div>
+    </div> 	
+<script type="text/javascript">
+function gotoShopping(){
+	//window.location.href = (url_server__+'shop/shome/index/yes');
+	$.post(url_server__+'shop/shome',{
+		gotoShop:'yes'	
+	},function(data){
+		if(data == ''){
+			window.location.href = (url_server__+'shop/shome'); 	
+		}
+	});
+	return false;
+} 
+
+function showVideoPopup(){
+        $("a.video").colorbox({
+            iframe:true,
+            innerWidth:650,
+            innerHeight:500,
+            height:false,
+            opacity:0.2,
+            scrolling: false
+        });
+}
+function showBack() {
+	$('#back').show().animate({
+		right: 0
+	},{
+		duration: 500,
+		easing: 'easeOutBack'
+	});
+}
+
+function hideBack() {
+	$('#back').animate({
+		right: -250,
+		width: '231px'
+	},{
+		duration: 600,
+		easing: 'easeInBack',
+		complete: function (){
+			$('#back').hide()	
+		}
+	})
+			
+	var el = $('#back a');
+	el.stop().animate({
+		"font-size": 32,
+		'margin-left': -25
+	},{
+		duration : 600,
+		easing: 'easeInBack'
+	})
+	
+	$('#back a img').stop().animate({
+		rotate: 0
+	},{
+		duration : 600,
+		easing: 'easeInBack'	
+	});
+}
+function showClock() {
+	// Create two variable with the names of the months and days in an array
+	var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
+	var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+	
+	// Create a newDate() object
+	var newDate = new Date(objTime.nam,(parseInt(objTime.thang - 1)),objTime.ngay,objTime.gio,objTime.phut,objTime.giay);
+	// Extract the current date from Date object
+	newDate.setDate(newDate.getDate());
+	// Output the day, date, month and year   
+	$('#Date').html(dayNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + ', ' + newDate.getFullYear());
+	
+	var seconds = newDate.getSeconds();
+	var minutes = newDate.getMinutes();
+	var hours = newDate.getHours();
+	
+	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+	$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+
+	setInterval( function() {
+		// Create a newDate() object and extract the seconds of the current time on the visitor's
+		if(seconds == 59){
+			seconds = 0;
+			if(minutes == 59){
+				minutes = 0;
+				if(hours == 23){
+					hours = 0;	
+					newDate = new Date(objTime.nam,objTime.thang,parseInt(objTime.ngay) + 1);
+					newDate.setDate(newDate.getDate());
+					$('#Date').html(dayNames[newDate.getDay()] + ", " + monthNames[newDate.getMonth()] + ' ' + newDate.getDate() + ', ' + newDate.getFullYear());
+				}else{
+					hours++;	
+				}
+			}else{
+				minutes++;	
+			}
+		}else{
+			seconds++;
+		}
+		// Add a leading zero to seconds value
+		$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+		$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+		$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+	},997);
+}
+var objTime = [];
+function getTimeGMT(){
+	objTime = [];
+	$.post("index.php/timegmt/index",{
+		getTimeGMT:'yes'	
+	},function(data){
+		if(typeof(data) == 'object'){
+			objTime = data;	
+			showClock();
+		}
+	},'json');	
+}
+var current = window.location.href;
+function activeMenuItem()
+{
+	for(var i=0; i<header_link.length;i++){
+		var _arr = header_link[i];
+		for(var j=0; j<_arr.length;j++){
+			var _link  = _arr[j];	
+			if(current.indexOf(_link) >=0) 
+			{
+				$(".nav li.active").removeClass("active");
+				var selector = ".nav li a[href='"+url_server__+_arr[0]+"']";
+				if(!$(selector)) return;
+				$(selector).parent().addClass("active");
+				return;
+			}
+		}	
+	}
+}//end activeMenuItem function
+$(".mobile-menu option[value='"+current+"']").attr("selected","selected");
+$(function(){
+	activeMenuItem();
+	getTimeGMT();
+    showVideoPopup();
+});
+</script>
+<script type="text/javascript" src="../main/js/dropdown-menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<style>
+
+.spRequired{
+	margin-left:5px;
+	line-height: 30px;
+	}
+
+</style>
+<div class="box_solar">
+<div style="overflow:hidden; width:100%">
+    <div style="clear:both; width:100%; overflow:hidden" align="left">
+        <div id="title" style="margin-bottom:10px;">
+            <span style="color:#06C; font-size:14px; font-style:italic; margin-right:10px;">Please complete the required information accurately and in full</span>
+            <span style="color:#F00; font-size:12px; font-style:italic;">(* = Required)</span>
+        </div>
+    	<div style="clear:both; min-height:300px; overflow:hidden" id="accountdetail_content">
+            <div style="float:left; overflow:hidden;" align="left">
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:145px">Your Profile</span>
+            
+                <div style="float:left; clear:both;">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Legal Business Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="2" type="text" class="input-text" id="legal_business_name" size="10" maxlength="50" name="legal_business_name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Address:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="address" size="10"  name="address" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">City:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="city" size="10" name="city" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Country:</span>
+                    <select name="slcountry" style="width:260px;" size="1" id="slcountry" onchange="showStates()" ></select>
+      			</div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">State:</span>
+            <span class="field-with-placeholder" style="float:left;" id="states_show">
+                
+            </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:85px; text-align:right; padding-right:5px">Zip Code:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="6" type="text" class="input-text" id="zipcode" size="10" name="zipcode" value="" style="width:70px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Phone:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="phone_label" class="placeholder" for="phone"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="phone" size="10" name="phone" value="" style="width:250px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Fax:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="fax_label" class="placeholder" for="fax"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="fax" size="10" name="fax" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Website:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="website_label" class="placeholder" for="website"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="website" size="10" name="website" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Tax ID/SSN:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="tax_label" class="placeholder" for="tax"><span></span></label>
+                        <input tabindex="7" type="text" class="input-text" id="tax" size="10" name="tax" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Contract Start Date:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <label id="contract_start_date_label" class="placeholder" for="contract_start_date"><span></span></label>
+                        <input readonly="readonly" tabindex="5" type="text" class="input-text" id="contract_start_date" size="10" name="contract_start_date" value="" style="width:63px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:108px; text-align:right; padding-right:5px">End Date:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="contract_end_date_label" class="placeholder" for="contract_end_date"><span></span></label>
+                        <input readonly="readonly" tabindex="6" type="text" class="input-text" id="contract_end_date" size="10" name="contract_end_date" value="" style="width:63px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; width:140px; text-align:right; padding-right:5px">Trust Charity:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input type="checkbox" id="trust" value="1" class="input-checkbox" />
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; width:140px; text-align:right; padding-right:5px">Promoted to front page:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input type="checkbox" id="featured" value="1" class="input-checkbox" checked="checked" />
+                    </span>
+                </div>
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:135px">Banking Information</span>
+                <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Payment Type:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="payment_type_label" class="placeholder" for="payment_type"><span></span></label>
+                        <input tabindex="18" type="text" class="input-text" id="payment_type" size="10" name="payment_type" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Beneficiary Bank:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <label id="beneficiary_bank_label" class="placeholder" for="beneficiary_bank"><span></span></label>
+                        <input tabindex="17" type="text" class="input-text" id="beneficiary_bank" size="10" name="beneficiary_bank" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Beneficiary Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <label id="beneficiary_name_label" class="placeholder" for="beneficiary_name"><span></span></label>
+                        <input tabindex="18" type="text" class="input-text" id="beneficiary_name" size="10" name="beneficiary_name" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">Account NO:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <label id="account_NO_label" class="placeholder" for="account_NO"><span></span></label>
+                        <input tabindex="19" type="text" class="input-text" id="account_NO" maxlength="16" size="10" name="account_NO" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:140px; text-align:right; padding-right:5px">SWIFT CODE:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <label id="SWIFT_CODE_label" class="placeholder" for="SWIFT_CODE"><span></span></label>
+                        <input tabindex="20" type="text" class="input-text" id="SWIFT_CODE" maxlength="16" size="10" name="SWIFT_CODE" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">
+                    </span>
+                </div>
+                <div style="clear:both; padding-top:4px; overflow:hidden">
+                	<div style="clear:both; font-weight:bold">Description :</div>
+                    <div style="clear:both"><textarea id="description" style="width:500px; height:120px; resize:none" class="input-text"></textarea></div>
+                </div>
+            </div>
+            <div style="float:right; overflow:hidden">     
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-left:125px">Account Information</span>
+                <div style="float:left; clear:both">
+                    <span style="font-weight:bold; float:left; width:120px; text-align:right; padding-right:5px">Status:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <span style="float:left; padding-top:2px">
+                            <input type="radio" name="user_status[]" id="active_status" checked="checked" value="1" style="background:transparent; border:0px #ffffff solid"/>
+                        </span>
+                        <span style="float:left; padding-left:5px">Active</span>
+                        <span style="float:left; padding-left:10px; padding-top:2px">
+                            <input type="radio" name="user_status[]" id="block_status" value="0" style="background:transparent; border:0px #ffffff solid"/>
+                        </span>
+                        <span style="float:left; padding-left:5px">Block</span>
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; width:120px; padding-top:3px; text-align:right; padding-right:5px">User Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="8" type="text" class="input-text" id="name" size="10" maxlength="50" name="name" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Email:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="9" type="text" class="input-text" id="mail" size="10" maxlength="50" name="mail" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Password:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="10" type="password" class="input-text" id="password" size="10" name="password" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Confirm Password:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="11" type="password" class="input-text" id="confirm_password" size="10" name="confirm_password" value="" style="width:250px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">
+                    </span>
+                    <span class="spRequired">*</span>
+                </div>
+                
+                <span style="float:left; clear:both; font-weight:bold; text-shadow:0px 1px 1px #999; height:30px; padding-top:20px; padding-left:125px">Contact Information</span>
+                <div style="overflow:hidden; float:left; clear:both;" id="Legal_business_contact_content">
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="savebt" align="right">
+        <input type="button" style="float:right; margin-left:5px; margin-right:5px;" value="Submit" id="submit_bt" class="btn btn-primary" onclick="check_accountInfo()" />
+        <input type="button" style="float:right; margin-left:5px;" value="Clear" id="clear_bt" class="btn" onclick="ClearBox();" />
+        <input type="button" style="float:right" onclick="history.go(-1);" class="btn" value="Back">
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+</div>
+<script language="javascript">
+var dataCountries = [];
+function loadDataCountries(){
+	{load_countries}
+	showCountriesListing();
+	showStates();	
+}
+function showCountriesListing(){
+	var st = '';
+	var elSel = document.getElementById('slcountry');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != '')
+		elSel.value = ct;
+}
+function showStates(){
+	var st = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" style="width:80px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="state" size="10" name="state" value="" style="width:70px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)">';
+				st +='<span class="spRequired">*</span>';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+}
+function check_Legal_Business_Contact(checkError){
+	
+	getValue_legalbusitact();
+	
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(legalbusitact[i].first_name == '' && legalbusitact[i].last_name == '' && legalbusitact[i].middle_name == ''){
+			$('#first_name_'+legalbusitact[i].id).css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("first_name_"+legalbusitact[i].id));	
+				document.getElementById("first_name_"+legalbusitact[i].id).focus();	
+			}	
+		}
+		if(legalbusitact[i].email == ''){
+			$('#legal_email_'+legalbusitact[i].id).css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("legal_email_"+legalbusitact[i].id));	
+				document.getElementById("legal_email_"+legalbusitact[i].id).focus();	
+			}	
+		}else{
+			var msg = isValidEmail(legalbusitact[i].email);
+			if(msg != ""){
+				$('#legal_email_'+legalbusitact[i].id).css("background", '#ffffd5');
+				if(checkError == false){
+					checkError = true;
+					showTooltipRequi(document.getElementById('legal_email_'+legalbusitact[i].id));	
+					document.getElementById('legal_email_'+legalbusitact[i].id).focus();	
+				}
+			}		
+		}	
+	}
+	
+	return checkError;
+}
+function check_accountInfo(){
+	var checkError = false;
+	if($('#legal_business_name').val() == ''){
+		$('#legal_business_name').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("legal_business_name"));	
+			document.getElementById("legal_business_name").focus();	
+		}
+	}
+	if($('#address').val() == ''){
+		$('#address').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("address"));	
+			document.getElementById("address").focus();	
+		}
+	}
+	if($('#city').val() == ''){
+		$('#city').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("city"));	
+			document.getElementById("city").focus();	
+		}
+	}
+	if($('#state').val() == ''){
+		$('#state').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("state"));	
+			document.getElementById("state").focus();	
+		}
+	}
+	if($('#zipcode').val() == ''){
+		$('#zipcode').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("zipcode"));	
+			document.getElementById("zipcode").focus();	
+		}
+	}
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#mail').val() == ''){
+		$('#mail').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("mail"));	
+			document.getElementById("mail").focus();	
+		}
+	}else{
+		var msg = isValidEmail($('#mail').val());
+		if(msg != ""){
+			$('#mail').css("background", '#ffffd5');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				showTooltipRequi(document.getElementById("mail"));	
+				document.getElementById("mail").focus();	
+			}
+		}		
+	}
+	if(trim($('#password').val())==''){
+		$('#password').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("password"));	
+			document.getElementById("password").focus();	
+		}
+	}else{
+		if(!passwordStrength(document.getElementById("password"))){
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}
+		}else{
+			if(trim($('#password').val())!=trim($('#confirm_password').val())){
+				$('#confirm_password').css("background", '#ffffd5');
+				if(checkError == false){
+					checkError = true;
+					showTooltipRequi(document.getElementById("confirm_password"));	
+					document.getElementById("confirm_password").focus();	
+				}
+			}
+		}
+	}
+	
+	checkError = check_Legal_Business_Contact(checkError);
+	
+	if(checkError == true) return false;
+	
+	var user_status_value = 1;
+	var user_status = document.getElementsByName("user_status[]");
+	for(var i = 0; i < user_status.length; i++){
+		if(user_status[i].checked == true){
+			user_status_value = user_status[i].value;
+			break;	
+		}	
+	}
+	var trust = 0;
+	if(document.getElementById("trust").checked == true){
+		trust = 1;	
+	}
+	var featured = 0;
+	if(document.getElementById("featured").checked == true){
+		featured = 1;	
+	}
+	
+	var obj_submit = new Object();
+	obj_submit.legal_business_name = document.getElementById("legal_business_name").value;
+	obj_submit.address = document.getElementById("address").value;
+	obj_submit.city = document.getElementById("city").value;
+	obj_submit.country = document.getElementById('slcountry').value,
+	obj_submit.state = document.getElementById("state").value;
+	obj_submit.zipcode = document.getElementById("zipcode").value;
+	obj_submit.phone = document.getElementById("phone").value;
+	obj_submit.fax = document.getElementById("fax").value;
+	obj_submit.website = document.getElementById("website").value;
+	obj_submit.tax = document.getElementById("tax").value;
+	obj_submit.contract_start_date = document.getElementById("contract_start_date").value;
+	obj_submit.contract_end_date = document.getElementById("contract_end_date").value;
+	obj_submit.trust = trust;
+	obj_submit.featured = featured;
+	obj_submit.description = $("#description").val();
+	
+	obj_submit.legalbusitact = legalbusitact;
+	
+	obj_submit.payment_type = document.getElementById("payment_type").value;
+	obj_submit.beneficiary_bank = document.getElementById("beneficiary_bank").value;
+	obj_submit.beneficiary_name = document.getElementById("beneficiary_name").value;
+	obj_submit.account_NO = document.getElementById("account_NO").value;
+	obj_submit.SWIFT_CODE = document.getElementById("SWIFT_CODE").value;
+	
+	obj_submit.status = user_status_value;
+	obj_submit.name = document.getElementById("name").value;
+	obj_submit.mail = document.getElementById("mail").value;
+	obj_submit.password = document.getElementById("password").value;
+	
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/charityManage/add", {
+		saveUser: obj_submit
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/charityManage';
+			}
+		}
+	}, "json");
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		return false;	
+	}
+	switch(o.id){
+	case 'phone':
+		validatePhone(document.getElementById("phone"));		
+		break;
+	case 'user_name':
+		var msg = checkUsername($('#user_name').val());
+		if(msg != ''){
+			return false;	
+		}		
+		break;
+	case 'mail':
+		var msg = isValidEmail($('#mail').val());
+		if(msg != ""){
+			return false;		
+		}
+		break;
+	case 'confirm_password':
+		if(trim($('#password').val()) != trim($('#confirm_password').val())){
+			document.getElementById("confirm_password").value = '';
+			return false;
+		}
+		break;
+	case 'billing_phone':
+		validatePhone(document.getElementById("billing_phone"));
+		break;
+	}
+}
+
+function ClearBox(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			input_text[i].value = '';
+			onkeydownInputText(input_text[i]);	
+		}	
+	}
+}
+
+///////////////////////////////////////////////////////// Legal Business Contact ///////////////////////////////////////////////
+var legalbusitact = [];
+var dem_legalbusitact = 0;
+
+function add_legalbusitact(){
+	getValue_legalbusitact();
+	
+	var obj = new Object();
+	obj.id = dem_legalbusitact;
+	obj.gender = 'Mr';
+	obj.title = 0;
+	obj.first_name = '';
+	obj.last_name = '';
+	obj.middle_name = '';
+	obj.email = '';
+	obj.mobile = '';
+	obj.note = '';
+	obj.last_update_date = '';
+	legalbusitact[legalbusitact.length] = obj;
+	
+	dem_legalbusitact ++;
+	
+	show_Legal_business_contact();
+}
+
+function remove_legalbusitact(id){
+	getValue_legalbusitact();
+	
+	var legalbusitact_tam = legalbusitact;
+	legalbusitact = [];
+	for(var i = 0; i < legalbusitact_tam.length; i++){
+		if(legalbusitact_tam[i].id != parseInt(id, 10)){
+			legalbusitact[legalbusitact.length] = legalbusitact_tam[i];	
+		}	
+	}
+	show_Legal_business_contact();
+}
+
+function getValue_legalbusitact(){
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(document.getElementsByName("gender_"+legalbusitact[i].id+'[]')){
+			var gender_ = document.getElementsByName("gender_"+legalbusitact[i].id+'[]');
+			for(var j = 0; j < gender_.length; j++){
+				if(gender_[j].checked == true){
+					legalbusitact[i].gender = gender_[j].value;
+					break;	
+				}	
+			}		
+		}
+		if(document.getElementById('legal_title_'+legalbusitact[i].id)){
+			legalbusitact[i].title = document.getElementById('legal_title_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('first_name_'+legalbusitact[i].id)){
+			legalbusitact[i].first_name = document.getElementById('first_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('last_name_'+legalbusitact[i].id)){
+			legalbusitact[i].last_name = document.getElementById('last_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('middle_name_'+legalbusitact[i].id)){
+			legalbusitact[i].middle_name = document.getElementById('middle_name_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_email_'+legalbusitact[i].id)){
+			legalbusitact[i].email = document.getElementById('legal_email_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_mobile_'+legalbusitact[i].id)){
+			legalbusitact[i].mobile = document.getElementById('legal_mobile_'+legalbusitact[i].id).value;	
+		}
+		if(document.getElementById('legal_note_'+legalbusitact[i].id)){
+			legalbusitact[i].note = document.getElementById('legal_note_'+legalbusitact[i].id).value;	
+		}
+		
+	}
+}
+
+function updateValue_legalbusitact(){
+	for(var i = 0; i < legalbusitact.length; i++){
+		if(document.getElementsByName("gender_"+legalbusitact[i].id+'[]')){
+			var gender_ = document.getElementsByName("gender_"+legalbusitact[i].id+'[]');
+			for(var j = 0; j < gender_.length; j++){
+				if(gender_[j].value == legalbusitact[i].gender){
+					gender_[j].checked = true;
+					break;	
+				}	
+			}		
+		}
+		if(document.getElementById('legal_title_'+legalbusitact[i].id)){
+		 	document.getElementById('legal_title_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].title);	
+		}
+		if(document.getElementById('first_name_'+legalbusitact[i].id)){
+			 document.getElementById('first_name_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].first_name);	
+		}
+		if(document.getElementById('last_name_'+legalbusitact[i].id)){
+			 document.getElementById('last_name_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].last_name);	
+		}
+		if(document.getElementById('middle_name_'+legalbusitact[i].id)){
+			document.getElementById('middle_name_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].middle_name);	
+		}
+		if(document.getElementById('legal_email_'+legalbusitact[i].id)){
+			document.getElementById('legal_email_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].email);	
+		}
+		if(document.getElementById('legal_mobile_'+legalbusitact[i].id)){
+			document.getElementById('legal_mobile_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].mobile);	
+		}
+		if(document.getElementById('legal_note_'+legalbusitact[i].id)){
+			document.getElementById('legal_note_'+legalbusitact[i].id).value = ConvertToTest(legalbusitact[i].note);	
+		}	
+	}
+}
+
+function show_Legal_business_contact(){
+	
+	var st = '';
+	for(var i = legalbusitact.length-1; i >= 0; i--){
+		
+		st += '<div style="float:left; clear:both">';
+		st += '	<span style="font-weight:bold; float:left; padding-right:5px; width:120px; text-align:right">Gender:</span>';
+		st += '	<div style="float:left">';
+		st += '		<span style="float:left"><input class="input-checkbox" type="radio" name="gender_'+legalbusitact[i].id+'[]" value="Mr" /> Mr.</span>';
+		st += '		<span style="float:left; padding-left:7px"><input class="input-checkbox" type="radio" name="gender_'+legalbusitact[i].id+'[]" value="Mrs" /> Mrs.</span>';
+		st += '		<span style="float:left; padding-left:7px"><input class="input-checkbox" type="radio" name="gender_'+legalbusitact[i].id+'[]" value="Ms" /> Ms</span>';
+		st += '	</div>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Title:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;">';
+		st += '		<select id="legal_title_'+legalbusitact[i].id+'">';
+		st += '			{legal_title}';
+		st += '		</select>';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">First Name:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;">';
+		//st += '		<label id="first_name_'+legalbusitact[i].id+'_label" class="placeholder" for="first_name_'+legalbusitact[i].id+'"><span></span></label>';
+		st += '		<input tabindex="4" type="text" class="input-text" id="first_name_'+legalbusitact[i].id+'" size="10" name="first_name_'+legalbusitact[i].id+'" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">';
+		st += '	</span>';
+		st += '	<span class="spRequired">*</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Last Name:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;">';
+		st += '		<label id="last_name_'+legalbusitact[i].id+'_label" class="placeholder" for="last_name_'+legalbusitact[i].id+'"><span></span></label>';
+		st += '		<input tabindex="4" type="text" class="input-text" id="last_name_'+legalbusitact[i].id+'" size="10" name="last_name_'+legalbusitact[i].id+'" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Middle Name:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;">';
+		st += '		<label id="middle_name_'+legalbusitact[i].id+'_label" class="placeholder" for="middle_name_'+legalbusitact[i].id+'"><span></span></label>';
+		st += '		<input tabindex="4" type="text" class="input-text" id="middle_name_'+legalbusitact[i].id+'" size="10" name="middle_name_'+legalbusitact[i].id+'" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this);">';
+		st += '	</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Email:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left;">';
+		//st += '		<label id="legal_email_'+legalbusitact[i].id+'_label" class="placeholder" for="legal_email_'+legalbusitact[i].id+'"><span></span></label>';
+		st += '		<input tabindex="14" type="text" class="input-text" id="legal_email_'+legalbusitact[i].id+'" size="10" name="legal_email_'+legalbusitact[i].id+'" value="" style="width:250px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)">';
+		st += '	</span>';
+		st += '	<span class="spRequired">*</span>';
+		st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Mobile:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left">';
+		st += '		<label id="legal_mobile_'+legalbusitact[i].id+'_label" class="placeholder" for="legal_mobile_'+legalbusitact[i].id+'"><span></span></label>';
+		st += '		<input tabindex="7" type="text" class="input-text" id="legal_mobile_'+legalbusitact[i].id+'" size="10" name="legal_mobile_'+legalbusitact[i].id+'" value="" style="width:250px" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);">';
+		st += '	</span>';
+		st += '</div>';
+	//	st += '<div style="float:left; clear:both; padding-top:4px">';
+    //  st += '    <span style="font-weight:bold; float:left; width:120px; text-align:right; padding-right:5px">Status:</span>';
+    //  st += '    <span class="field-with-placeholder" style="float:left" id="date_create_'+legalbusitact[i].id+'">';
+    //  st += legalbusitact[i].last_update_date;        
+    //  st += '    </span>';
+    //  st += '</div>';
+		st += '<div style="float:left; clear:both; padding-top:4px">';
+		st += '	<span style="font-weight:bold; float:left; padding-top:3px; width:120px; text-align:right; padding-right:5px">Note:</span>';
+		st += '	<span class="field-with-placeholder" style="float:left">';
+		st += '		<textarea id="legal_note_'+legalbusitact[i].id+'" name="legal_note'+legalbusitact[i].id+'" style="width:250px; height:70px" class="input-text"></textarea>';
+		st += '	</span>';
+		st += '</div>';
+		
+		var action_ = '<a href="javascript:void(0)" onclick="remove_legalbusitact('+legalbusitact[i].id+')">Remove</a>';
+		if(i == 0) action_ = '<a href="javascript:void(0)" onclick="add_legalbusitact()">Add</a>';
+		
+		st += '<div style="float:left; clear:both; padding-top:10px; margin-bottom:10px; border-bottom:1px dashed #000; width:100%" align="right">'+action_+'</div>';		
+	}
+	
+	$("#Legal_business_contact_content").empty().append(st);
+	updateValue_legalbusitact();
+	
+}
+$(function() {
+	add_legalbusitact();
+	loadDataCountries();
+
+	clearForms();
+	var y = new Date();
+	var dates = $( "#contract_start_date, #contract_end_date" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		changeYear: true, 
+		yearRange: '1970:'+y.getFullYear(),
+		numberOfMonths: 2,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "contract_start_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" );
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+	$("#ui-datepicker-div").css('z-index', '100'); 
+	 
+});
+</script>

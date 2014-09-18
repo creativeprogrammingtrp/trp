@@ -1,0 +1,131 @@
+<style>
+.item_details_image
+{
+	float:left;
+	margin-right:10px;
+}
+.item_details_info
+{
+	float:left !important;
+}
+.brandList {
+    border: 1px solid #E0E0E0;
+    list-style: none outside none !important;
+    padding: 0 !important;
+}
+.brandSlider{
+	border-right: 1px solid #e0e0e0;
+    margin: 30px 0 0 !important;}
+</style>
+<div class="row">
+    <div class="span8">
+        <div class="flexslider" id="slide_show">
+            <ul class="slides">
+            	{banners}
+                <li><a href="{url}"><img src="{link}"></a></li>
+                {/banners}
+            </ul>
+        </div><!--end flexslider-->
+    </div><!--end span8-->
+    <div class="span4">
+
+        <div id="homeSpecial">
+            <div class="titleHeader clearfix">
+                <h3>Special</h3>
+                <div class="pagers">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-mini vNext"><i class="icon-caret-down"></i></button>
+                            <button class="btn btn-mini vPrev"><i class="icon-caret-up"></i></button>
+                        </div>
+                        <a href="index.php/shop/specialproducts" class="btn btn-mini">View All</a>
+                    </div>
+                </div>
+            </div><!--end titleHeader-->
+
+
+            <ul class="vProductItems cycle-slideshow vertical clearfix"
+            data-cycle-fx="carousel"
+            data-cycle-timeout=0
+            data-cycle-slides="> li"
+            data-cycle-next=".vPrev"
+            data-cycle-prev=".vNext"
+            data-cycle-carousel-visible="2"
+            data-cycle-carousel-vertical="true" data-cycle-log="false">
+            {special_body}
+                <li class="span4 clearfix">
+                    <div class="thumbImage">
+                        <a href="index.php/shop/item_details?itemid={itm_key}"><img style="width:92px; max-height:100% !important; max-width:100% !important; height:92px;" src="{file}" alt=""></a>
+                    </div>
+                    <div class="thumbSetting">
+                        <div class="thumbTitle">
+                            <a href="index.php/shop/item_details?itemid={itm_key}" class="invarseColor">
+                               {alias_name}
+                            </a>
+                        </div>
+                        <div class="thumbPrice">
+                            <span>${itm_price}</span>
+                        </div>
+                        {stars}
+                    </div>
+                </li>
+            {/special_body}    
+            </ul>
+        </div><!--end special-->
+    </div><!--end span4-->
+
+</div><!--end row-->
+<div class="row">
+    <div class="span12">
+
+        <div id="featuredItems">
+            
+            <div class="titleHeader clearfix">
+                <h3>Featured Items</h3>
+                <div class="pagers">
+                    <div class="btn-toolbar">
+                        <a href="index.php/shop/featureproducts" class="btn btn-mini">View All</a>
+                    </div>
+                </div>
+            </div><!--end titleHeader-->
+
+            <div class="row">
+                <ul class="hProductItems clearfix">
+                <div class="itm-wrapper clearfix">
+                {featured_body}
+                    <li class="span3 clearfix">
+                        <div class="thumbnail">
+                            <a href="index.php/shop/item_details?itemid={itm_key}"><img width="210px" height="187px" src="{file}" alt=""></a>
+                        </div>
+                        <div class="thumbSetting">
+                            <div class="thumbTitle">
+                                <a href="index.php/shop/item_details?itemid={itm_key}" class="invarseColor">
+                                    {itm_name}
+                                </a>
+                                {outOfStock}
+                            </div>
+                            <div class="thumbPrice">
+                                <span>${itm_price}</span>
+                            </div>
+
+                            <div class="thumbButtons">
+                                {addCart}
+                                {Wishlist}
+                            </div>
+
+                            {stars}
+                        </div>
+                    </li>
+                {/featured_body}
+                </div>
+                </ul>
+            </div><!--end row-->
+        </div><!--end featuredItems-->
+    </div><!--end span12-->
+</div><!--end row-->
+<script src="../shop/js/pages/home.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+       showPopup('.btn');
+    });
+</script>

@@ -1,0 +1,174 @@
+<style>
+.control_group label
+{
+	line-height: 22px;
+	margin-right: 5px;
+	float:left;
+}
+.control_group input
+{
+	float:left;
+	margin-right: 5px;
+}
+.control_group 
+{
+	padding-top: 3px;
+}
+label > input
+{
+	margin-top: 0px !important;
+}
+</style>
+<div class="box_solar" style="clear:both">
+    <form name="formSponsor" id="formSponsor" method="post" action="" onsubmit="return checkSponsor();" >
+    {first_level_view}
+    <div style="height:30px; margin:0px; padding:0px; clear:both; overflow:hidden">
+        <div class="control_group" style="float:left">
+        	<input type="radio" name="rdoSponsor" value="0" id="rdoSponsor_1"  checked="checked" onclick="sponsorType()"/>
+            <label style="margin-right:10px;">Enter  Sponsor ID#:</label>            
+        </div>
+        <div style="float:left">
+            <input type="text" id="sponsorNumber" name="sponsorNumber" placeholder="Sponsor's Representative ID#" style="width:200px; margin:0px;" autocomplete="off" value="{sponsor_id}" maxlength="8" />
+        </div>
+    </div>
+    <div style="margin:0px; padding:0px; clear:both; overflow:hidden">
+        <div class="control_group">
+            <input type="radio" name="rdoSponsor" value="-1" id="rdoSponsor_no"  onclick="sponsorType()" autocomplete="off"/>
+            <label style="margin-right:10px;">I do not have Sponsor ID#:</label>
+        </div>
+        <div style="clear:both"></div>
+        <div id="no_sponsor" style="margin-top:10px; display:none;">
+            <table cellpadding="5" cellspacing="0" border="0" width="100%" style="padding:20px; border-radius:5px;">
+                <tr>
+                    <td colspan="2" valign="top">Please provide:</td>
+                </tr>
+                <tr>
+                    <td width="90px" valign="top" style="line-height:23px;">Your name:</td>
+                    <td valign="top">
+                        <input name="txtname" id="txtname" type="text" placeholder="Your name" onkeypress="return isLetters(event)" size="50" maxlength="50" value=""style = "width:150px" autocomplete="off" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="90px" valign="top" style="line-height:23px;">Email:</td>
+                    <td valign="top">
+                        <input name="txtemail" id="txtemail" type="text" placeholder="Email" size="10"  value=""style = "width:150px" autocomplete="off" maxlength="255" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="90px" valign="top" style="line-height:23px;">Phone #:</td>
+                    <td valign="top">
+                        <input type="text" name="txtphone" id="txtphone" placeholder="Phone"  onkeypress="return validatePhone(this, event)" value=""style = "width:150px" autocomplete="off" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" valign="top" style="color:#F7961D; font-style:italic;">Someone will contact you. Thank you!</td>
+                </tr>
+            </table>      
+        </div>
+    </div>
+    <input type="submit" value="Enroll" name="btnSubmit" id="btnSubmit" class="btn btn-primary" style="margin-top:10px;" autocomplete="off">
+    </form>
+    <div id="divError" style="font-size:12px; color:#FF0000; margin-top:10px;">{error}</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#rdoSponsor_1").attr('checked','checked');
+	sponsorType();
+})
+function checkSponsor(){
+	var sponsorType = $("[name='rdoSponsor']:checked").val();
+	var sponsor = '';
+	if(sponsorType ==1)
+	{
+		sponsor = 'first_level';	
+	}
+	else if(sponsorType == -1)
+	{
+		sponsor = 'no_sponsor';
+		if(trim($("#txtname").val()).length < 5)
+		{
+			alert("Your name must be between 5 and 50 characters!");
+			document.getElementById("txtname").focus();
+			return false;	
+		}
+		if(trim($("#txtemail").val())=='')
+		{
+			alert("Please enter email");
+			document.getElementById("txtemail").focus();
+			return false;	
+		}
+		if(trim($("#txtphone").val())=='')
+		{
+			alert("Please enter phone number");
+			document.getElementById("txtphone").focus();
+			return false;	
+		}
+		else if(validateMail('txtemail')!='')
+		{
+			alert(invalid_email);
+			return false;
+		};
+		var obj_ = new Object();
+		obj_.name = document.getElementById("txtname").value;
+		obj_.email = document.getElementById("txtemail").value;
+		obj_.phone = document.getElementById("txtphone").value;
+		$.post("index.php/representatives/add/"+sponsor, {
+			send_email: obj_
+		});
+		alert("Someone will contact you. Thank you!");
+		return false;
+	}
+	else
+	{
+		sponsor = $("#sponsorNumber").val();
+	}
+	var patt1=/^\w*$/g; 
+	if(patt1.test(sponsor)==false) {alert("Invalid sponsor ID#!"); return false;}
+	window.location = 'index.php/representatives/add/'+sponsor;
+	return false;
+}
+function sponsorType()
+{
+	var sponsorType = $("[name='rdoSponsor']:checked").val();
+	if(sponsorType == 0) 
+	{
+		$("#divError").show();
+		$("#sponsorNumber").show();
+		$("#no_sponsor").hide();	
+	}
+	else if(sponsorType == -1)
+	{
+		$("#divError").hide()
+		$("#sponsorNumber").hide();
+		$("#no_sponsor").show();		
+	}
+	else
+	{
+		$("#divError").hide();
+		$("#sponsorNumber,#no_sponsor").hide();
+	}
+}
+
+
+function validateMail(email) {  
+   var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   var address = document.getElementById(email).value;
+   if(reg.test(address) == false) { return 'Invalid Email Address';
+   } else { return '';}
+}
+function isLetters(event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode > 32 && (charcode < 65 || charcode > 90) && (charcode < 97 || charcode > 122))
+		return false;
+	return true;
+}
+function validatePhone(phoneField,event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode==8 || charcode==0) return;
+	if(charcode > 31 && (charcode < 48 || charcode > 57 )) 
+		{ return false; }
+	else {
+		var num = phoneField.value.replace(/[^\d]/g,'');
+		phoneField.value = '('+num.substring(0,3) + ") " + num.substring(3, 6) + "-" + num.substring(6); }
+}
+</script>

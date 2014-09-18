@@ -1,0 +1,17 @@
+/* CSS Document */
+.categories ul.unstyled li .submenu{
+	display:none;}
+.categories ul.unstyled ul.submenu
+{
+	border: 0 none;
+}
+.categories ul.unstyled > li > ul >li li
+{
+	border-bottom: none !important;
+}
+ul.submenu
+{
+	margin: 0px !important;
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}

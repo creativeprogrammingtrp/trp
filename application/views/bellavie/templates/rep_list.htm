@@ -1,0 +1,490 @@
+<style>
+#list_container a{
+	color:#7E7E7E;}
+</style>
+<div style="clear:both; width:100%; overflow:hidden;">
+	<form method="post" name="form_filter" onsubmit="return pageObject()">
+    <div style="width: 100%;margin-bottom: 10px;">
+        <div style="float:left">
+            {addnewbt}
+            {setFirstIR}
+        </div>
+        {show_export_button}
+    </div>
+    <div style="display:none;">
+	<span class="field-with-placeholder" style="float:left">
+        <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{keyword}" style="width:200px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" placeholder="key word">
+    </span>
+    <span style="float:left; padding-left:5px">
+    	<select id="status_user" style="width:80px; color:#AEAEAE">
+        	<option value="-1" style="color:#AEAEAE" {select_}>Status</option>
+            <option value="1" {select_1}>Active</option>
+            <option value="0" {select_0}>Block</option>
+        </select>
+    </span>
+    <span style="float:left; padding-left:10px"><input type="submit" class="pinkButton" value="Filter" style="margin-right:5px;" /></span>
+    </div>
+    </form>
+</div>
+<div style="clear:both; padding-top:15px">
+{upline}
+</div>
+<div style="clear:both; padding-top:10px; overflow:hidden">
+	<div style="width:50%; overflow:hidden; float:left" id="sale_user_tree">
+        <div id="toplist"><a href="javascript:void(0)" onclick="getAll()" id="getall">All</a></div>
+        <div id="list_container"></div>
+    </div>
+    <div style="width:48%; overflow:hidden; display:none; float:right" id="saleRep_detail">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td align="left" valign="top">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td align="left" valign="middle" colspan="2" style="font-size:14px"><b>Your Profile</b></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:20px;"><b> Rep.ID#:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:20px" id="legal_business_id"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b> User:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="user_name"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>Full Legal Name:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="legal_business_name"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>First Name:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="firstname"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>Last Name:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="lastname"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>Address:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="address"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>Phone:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="phone"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>Fax:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="fax"></td>
+                        </tr>
+                       {tax}
+                        <tr>
+                            <td align="left" valign="middle" colspan="2" style="padding-top:20px; font-size:14px"><b>Account Information</b></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="padding-top:4px"><b>Email:</b></td>
+                            <td align="left" valign="top" style="padding-left:10px; padding-top:4px" id="mail"></td>
+                        </tr>
+                     	{pass}
+                    </table>
+                </td>
+                <td align="right" valign="top" id="edit_del_bt" style="width:120px;"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script language="javascript">
+var data_clients = [];
+function Export_to_Excel(){
+	$.post("index.php/representatives/exportlist",{
+		type:'xls',
+		arr_object:data_clients
+	},function(data){
+		if(data.error == 'error'){
+			alert(data.error);	
+		}else{
+			window.location= "index.php/download/get_file/IR_List_Report.xls";
+		}
+	},"json");
+	return false;	
+}
+function delete_Client(ukey){
+	$("#content_popup").empty();
+	if(document.getElementById("content_popup")){
+		$("#content_popup").css("min-height", '65px');
+		$("#content_popup").css("width", '350px');
+	}
+	$("#title_popup").empty().append("Delete Sale Representatives");
+	showbox('box_popup');
+	var st = '<div style="clear:both; font-weight:bold">';
+	st += '	Are you sure you want to delete this account?';
+	st += '</div>';
+	st += '<div style="clear:both; padding-top:20px">';
+	st += '	<div id="cancel" class="button" style="float:right; margin-left:10px; margin-right:5px" align="center">Cancel</div>';
+	st += '	<div id="delete_acc" class="pinkButton" style="float:right;" align="center" onclick="delete_acc(\''+ukey+'\')">Delete account</div>';
+	st += '</div>';
+	$("#content_popup").append(st);
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+	return false;
+}
+function delete_acc(ukey){
+	var url = "index.php/representatives/delete/";
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: url,
+		type: "POST",
+		data:{cid:ukey},
+		dataType:'json',
+		success: function(data){
+			window.location = 'index.php/representatives/';
+		}
+	});
+}
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+function loadClients(){
+	var str = '';
+	if(data_clients.length > 0){
+		str += '<ul id="tree">';
+		for(var i = 0; i < data_clients.length; i++){
+			if(data_clients[i].users.length == 0){
+				str += '<li class = "liTree"><a href= "#'+data_clients[i].ukey+'" role="'+data_clients[i].ukey+'" onclick="View_client(\''+data_clients[i].ukey+'\');getlist(\''+data_clients[i].ukey+'\');">'+data_clients[i].LBN+'</a>';	
+				str += loadClients_Tree(data_clients[i].users,data_clients[i].LBI);
+				str += '</li>';				
+			}else{
+				var length = data_clients[i].users.length;
+                            
+				for(k=0;k< data_clients[i].users.length; k++)
+				{
+					if(data_clients[i].users[k].status ==-1)
+					length --;	
+				}
+				var del = data_clients[i].status == -1 ?'<span style = "font-weight: bold; color:#F00; margin-left : 5px; ">[Deleted]</span>':'';
+				str += '<li class = "_parent"><a href= "#'+data_clients[i].ukey+'" role="'+data_clients[i].ukey+'" onclick="View_client(\''+data_clients[i].ukey+'\');getlist(\''+data_clients[i].ukey+'\');">'+data_clients[i].LBN+' ('+length+')'+del;
+				if(data_clients[i].status == -1){
+					str += '<span class = "spanAdd" style = "height: 20px; width:60px; text-align:center;  padding:0px; margin-top: 2px; float:right;" onclick="ReplaceAccountByKey(\''+data_clients[i].ukey+'\')">Add</span>';
+				}
+				str += '</a>';
+				str += loadClients_Tree(data_clients[i].users,data_clients[i].LBI);
+				str += '</li>';		
+			}	
+		}
+		str += '</ul>';
+	}
+	$("#sale_user_tree").append(str);
+}
+function loadClients_Tree(datas,key){
+	var str = '';
+	if(datas.length > 0){
+		str += '<ul style="display: none;">';
+		for(var i = 0; i < datas.length; i++){
+			if(datas[i].users.length == 0){
+				str += '<li class = "liTree">';
+				str += '	<a href= "#'+datas[i].ukey+'" role="'+datas[i].ukey+'" onclick="View_client(\''+datas[i].ukey+'\');getlist(\''+datas[i].ukey+'\');">'+datas[i].LBN+'</a>';	
+				str += 		loadClients_Tree(datas[i].users,datas[i].LBI);
+				str += '</li>';			
+			}else{
+				var length = datas[i].users.length;
+				for(k=0;k< datas[i].users.length; k++)
+				{
+					if(datas[i].users[k].status ==-1)
+					length --;	
+				}
+				var del = "";
+				if(datas[i].status ==-1) del = '<span style = "font-weight: bold; color:#F00; margin-left : 5px; ">[Deleted]</span>';
+				str += '<li class = "_parent">';
+				str += '	<a href= "#'+datas[i].ukey+'" role="'+datas[i].ukey+'" onclick="View_client(\''+datas[i].ukey+'\');getlist(\''+datas[i].ukey+'\');">'+datas[i].LBN+' ('+length+')'+del;
+				if(datas[i].status ==-1){
+					str += '	<span class = "spanAdd" style = "height: 20px; width:60px; text-align:center;  padding:0px; margin-top: 2px; float:right;" onclick="ReplaceAccountByKey(\''+datas[i].ukey+'\')">Add</span>';
+				}
+				str += '	</a>';
+				str += 		loadClients_Tree(datas[i].users,datas[i].LBI);
+				str += '</li>';						
+			}	
+		}
+		if(Direct_sponsor - datas.length > 0){
+			for(var j = 0; j <(Direct_sponsor - datas.length); j++){
+			str += '<li class = "liAdd" style = "height: 25px;">';
+			str += '	<div class = "NA_name">N/A</div>';
+			str += '	<div class = "addMember" style = "margin-right:20px;">';
+			str += '		<a style = "height: 20px; width:60px; text-align:center;  display:block; padding:0px; margin-top: 2px;" href= "javascript:void(0)" onclick="AddNewAccountByKey(\''+key+'\')" >Add</a>';
+			str += '	</div>';	
+			str += '</li>';		
+			}
+		}
+		str += '</ul>';
+	}
+	else{
+		str += '<ul style="display: none;">';		
+		for(var j = 0; j <Direct_sponsor ; j++){
+			str += '<li class = "liAdd"  style = "height: 25px;">';
+			str += '	<div class = "NA_name">N/A</div>';
+			str += '	<div class = "addMember" style = "margin-right:20px;">';
+			str += '		<a style = "height: 20px; width:60px; text-align:center; padding:0px; margin-top: 2px;" href= "javascript:void(0)" onclick="AddNewAccountByKey(\''+key+'\')" >Add</a>';	
+			str += '	</div>';	
+			str += '</li>';	
+		}
+		str += '</ul>';
+	}
+	return str;
+}
+function ViewUpline(){
+	var objUpline = {objUpline};
+	$("#user_name").empty().append(objUpline.user_name);
+	$("#legal_business_id").empty().append(objUpline.LBI);
+	$("#legal_business_name").empty().append(objUpline.LBN);
+	$("#firstname").empty().append(objUpline.fn);
+	$("#lastname").empty().append(objUpline.ln);
+	$("#address").empty().append(objUpline.adr);
+	$("#phone").empty().append(objUpline.phone);
+	$("#fax").empty().append(objUpline.fax);
+	$("#mail").empty().append(objUpline.mail);
+	$("#Tax_ID_SSN").empty();
+	$("#pass").empty();
+	$("#saleRep_detail").show();
+}
+function redirect(usen,pasw){
+	$.post("index.php/admin/redirect",{
+		redirect:'yes',
+		user:usen,
+		password: pasw
+	},function(data){
+		$.post("index.php/login/checklogin",{ u:usen, p:pasw } ,function(data){
+			if(data != ''){
+				if(data != 'no'){ //if correct login detail
+					$.post("shopping/ajax/ajax_login.php",{ u:usen, p:pasw} ,function(data){
+						goHome();	
+					});
+				}else{
+					alert('The name or password incorrect.');		
+				}
+			}
+		});
+		
+	});	
+}
+function View_client(key){
+	for(var i = 0; i < data_clients.length; i++){
+		if(data_clients[i].ukey == key){
+			$('#user_name').empty().append(data_clients[i].name);
+			$("#legal_business_id").empty().append(data_clients[i].LBI);
+			$("#legal_business_name").empty().append(data_clients[i].LBN);
+			$("#firstname").empty().append(data_clients[i].fn);
+			$("#lastname").empty().append(data_clients[i].ln);
+			$("#address").empty().append(data_clients[i].adr);
+			$("#phone").empty().append(data_clients[i].phone);
+			$("#fax").empty().append(data_clients[i].fax);
+			$("#Tax_ID_SSN").empty().append(data_clients[i].tax);
+			$("#mail").empty().append(data_clients[i].mail);
+			$("#pass").empty().append(data_clients[i].pass);
+			var bt_modyfi = '';
+			bt_modyfi += '<a href="javascript:void(0)" onclick="redirect(\''+data_clients[i].LBI+'\',\''+data_clients[i].pass+'\');">Redirect</a>';
+			if(modify == 'yes'){
+				if(bt_modyfi != '') bt_modyfi += '&nbsp;&nbsp;';
+				var link_ = 'index.php?q=affiliates/edit&key='+key;
+				if(data_clients[i].type == 1) link_ = 'index.php/representatives/edit/'+key;
+				bt_modyfi += '<img src="../images/b_edit.png" border="0" style="cursor:pointer;" onclick="Edit_clients(\''+link_+'\')" />';
+			}
+			if(del == 'yes'){
+				if(bt_modyfi != '') bt_modyfi += '&nbsp;&nbsp;';
+				bt_modyfi += '<img src="../images/b_drop.png" border="0" style="cursor:pointer; margin-left:5px;" onclick="delete_Client(\''+key+'\')" />';	
+			}
+			$("#edit_del_bt").empty().append(bt_modyfi);
+			$("#saleRep_detail").show();
+			break;	
+		}else if(data_clients[i].users.length > 0){
+			View_client_tree(data_clients[i].users, key);	
+		}	
+	}
+	return false;
+}
+function View_client_tree(datas, key){
+	for(var i = 0; i < datas.length; i++){
+		if(datas[i].ukey == key){
+			$('#user_name').empty().append(datas[i].name);
+			$("#legal_business_id").empty().append(datas[i].LBI);
+			$("#legal_business_name").empty().append(datas[i].LBN);
+			$("#firstname").empty().append(datas[i].fn);
+			$("#lastname").empty().append(datas[i].ln);
+			$("#address").empty().append(datas[i].adr);
+			$("#phone").empty().append(datas[i].phone);
+			$("#fax").empty().append(datas[i].fax);
+			$("#Tax_ID_SSN").empty().append(datas[i].tax);
+			$("#mail").empty().append(datas[i].mail);
+			$("#pass").empty().append(datas[i].pass);
+			var bt_modyfi = '';
+			bt_modyfi += '<a href="javascript:void(0)" onclick="redirect(\''+datas[i].LBI+'\',\''+datas[i].pass+'\');">Redirect</a>';
+			if(modify == 'yes'){
+				if(bt_modyfi != '') bt_modyfi += '&nbsp;&nbsp;';
+				var link_ = 'index.php?q=affiliates/edit&key='+key;
+				if(datas[i].type == 1) link_ = 'index.php/representatives/edit/'+key;
+				bt_modyfi += '<img src="../images/b_edit.png" border="0" style="cursor:pointer;" onclick="Edit_clients(\''+link_+'\')" />';
+			}
+			if(del == 'yes'){
+				if(bt_modyfi != '') bt_modyfi += '&nbsp;&nbsp;';
+				bt_modyfi += '<img src="../images/b_drop.png" border="0" style="cursor:pointer; margin-left:5px;" onclick="delete_Client(\''+key+'\')" />';
+			}
+			$("#edit_del_bt").empty().append(bt_modyfi);
+			$("#saleRep_detail").show();
+			break;	
+		}else if(datas[i].users.length > 0){
+			View_client_tree(datas[i].users, key);	
+		}	
+	}
+}
+function returnURL(page){
+	if(page == null || page == 0) page = 1;
+	var url = 'index.php/representatives/repList/'+page;
+	var keyword = 'my_key_word';
+	var status_user = -1;
+	if(document.getElementById("key_word") && $("#key_word").val()!=''){
+		keyword = $("#key_word").val();
+	}
+	if(document.getElementById("status_user")){
+		status_user = $("#status_user").val();
+	}
+	url = url+'/'+keyword+'/'+status_user;
+	return url;
+}
+function pageObject(page){
+	window.location = returnURL(page);
+	return false;
+}
+var view = 'no', modify = 'no', del = 'no', Direct_sponsor = 0;
+function loadObjectClients(){
+	//var dataObject ={dataObject};
+        {if('dataObject' == 'yes');}
+	data_clients = dataObject.data;
+	view = dataObject.view;
+	modify = dataObject.modify;
+	del = dataObject.del;
+	Direct_sponsor = dataObject.Direct_sponsor;
+	loadClients();
+	return false;
+}
+function Edit_clients(link_){
+	window.location = link_;
+	return false;
+}
+function View_clients(key){
+	window.location = 'index.php?q=representatives/view&key='+key;
+	return false;
+}
+function AddNewAccount(){
+	window.location = 'index.php/representatives/add';
+	return false;
+}
+function AddNewAccountByKey(key){
+	window.location = 'index.php/representatives/add/'+key;
+	return false;
+}
+function ReplaceAccountByKey(key){
+	window.location = 'index.php/representatives/replace/'+key;
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function loadDefaultUser(){
+	var page_ = '';
+	var url = window.location.href;
+	var arr_url = url.split("#");
+	if(typeof(arr_url[1]) != 'undefined'){
+		page_ = arr_url[1];	
+	}
+	View_client(page_);
+}
+function getlist(role){
+	var list = "";
+	var toplist = "";
+	var a_role = $("#tree").find("[role ='"+role+"']");
+	if(a_role.next().is("ul")){
+		a_role.next().find("li ul").css({"display":"none"});
+		list = a_role.next().html();
+	}
+	if(list=="") return;
+	list = "<ul>"+list+"</ul>";
+	var item_top = $("#toplist").find("[role = '"+role+"']");
+	$("#toplist").html("");
+	var reloadList = "";
+	a_role.parents("li").each(function(){
+		var thisRole = $("a",this).attr("role");
+		var a_thisRole = $("#tree").find("[role ='"+thisRole+"']");
+		a_thisRole.clone().prepend("&nbsp;&nbsp;&gt;&nbsp;&nbsp;").prependTo("#toplist");
+	})
+	$("#toplist").prepend('<a href="javascript:void(0)" onclick="getAll()" id="getall">All</a>');
+	$("#list_container").html(list);
+	liHover();	
+}
+function getAll(){
+	window.location.hash = '';
+	$("#tree").find("ul").css({"display":"none"});
+	var list = $("#tree").html();
+	if(list == null) list ='';
+	list = "<ul>"+list+"</ul>";
+	var item_all = $("#getall").clone();
+	$("#toplist").empty().append(item_all);
+	$("#list_container").html(list);
+	$("#saleRep_detail").hide();
+	liHover();
+}
+function liHover(){
+	$("#list_container .liTree,#list_container ._parent").hover(function(){
+		$(this).css({"background-color":"#ffab11"}).find("a").css({"color":"#FFFFFF"});
+	},function(){
+		$(this).css({"background-color":"#fff"}).find("a").css({"color":"#7E7E7E"});
+	})	
+}
+function hashHandle(){
+	var _hash = location.hash;
+	_hash = _hash.substr(1);
+	View_client(_hash);
+}
+$(function() {
+	clearForms();
+	loadObjectClients();  
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+	HideLoadingObj(document.getElementById("content_load"));
+	loadDefaultUser();
+	hashHandle();
+	var _hash = location.hash;
+	_hash = _hash.substr(1);
+	if(_hash == "") getAll();
+	if($(document).find($("[role ='"+_hash+"']"))	){
+		getlist(_hash);
+	}
+	$(window).bind( 'hashchange', function(e) {
+		 hashHandle()
+	})
+});
+</script>
+<style>
+#tree { display:none;}
+#toplist {line-height:1.8; background:#E2E2E2; padding:2px 2px 5px 10px;box-shadow: 1px 1px 1px #888}
+#toplist a { color:#ffab11;}
+#toplist .spanAdd { display:none;}
+#list_container { width:100%;}
+#list_container ul { margin:0px; padding:0px;}
+#list_container li { line-height:2em; width:100%; border-bottom:#999999 dotted 1px;}
+#list_container li a{ width:96%; display:block;}
+#sale_user_tree li { list-style:none;}
+#sale_user_tree a { text-decoration:none;}
+._parent a { background:url(../images/dropdown-arrow-right-dark.png) no-repeat right center; padding-right:2%;}
+.NA_name { float:left; font-weight:bold;}
+.addMember { float:right;}
+.addMember a,.spanAdd{ color:#F00; font-weight:bold;}
+.spanAdd { }
+</style>

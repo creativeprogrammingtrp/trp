@@ -1,0 +1,134 @@
+@font-face {
+	font-family: 'AgencyFB';
+	src: url('fonts/AgencyFB/AgencyFB-Reg.eot'), url('fonts/AgencyFB/AgencyFB-Reg.ttf'), url('fonts/AgencyFB/AgencyFB-Reg.woff'), url('fonts/AgencyFB/AgencyFB-Reg.otf'); /* IE9 */
+}
+.menu {
+	font-family: 'AgencyFB';
+	width:1024px;
+	margin:0 auto;
+	clear:both;
+}
+.main-header .menu{
+	height:100%;}
+.menu ul.nav {
+	width:100%;
+	text-align:center;
+	margin:0px;
+	padding:0px;
+	height:100%;
+}
+.menu ul.nav li {
+	display:inline-block; 
+	margin-right: -4px;
+	list-style:none;
+	text-transform:uppercase;
+}
+
+.header-menu .menu ul.nav li {
+	padding:15px 20px 0;
+}
+.main-footer .menu ul.nav li {
+	padding:8px 10px 0;
+}
+.main-header .menu ul.nav li {
+	height:30px;
+}
+.menu ul.nav li ul{
+	z-index:9999;}
+	
+.header-menu .menu ul.nav li.active,.header-menu .menu ul.nav li.hover {
+	background:#509e18;
+	}
+
+.menu ul.nav li a {
+	color:#fff;
+	letter-spacing:1px;
+}
+.main-header .menu ul.nav li a {
+	font-size:18px;
+	font-weight:bold;
+}
+.main-footer .menu ul.nav li.active a,.main-footer .menu ul.nav li.hover a {
+	color:#000;
+}
+
+/* ---------------------submenu---------------------- */
+.menu ul.nav ul {
+	display:none;
+	font-family:Arial, Helvetica, sans-serif !important;
+	list-style:  none;
+	width:250px;
+	padding:0px;
+	margin:0px;
+	margin-left:-20px;
+    position: absolute;
+    top: 230px;
+	-moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.header-menu .menu ul.nav ul li{
+	background:#FFF; 
+	width:240px;
+	text-align:left;
+	widdth: 100%;
+	height:25px;
+	padding-top:5px;
+	margin:0px;
+	padding:0px;
+	padding-left:10px;
+    float: left;
+	clear:both !important;
+    position: relative;
+	border-bottom:1px solid #E2E2E2;}
+.menu ul.nav li ul a {
+	width:240px;
+	display:block;
+	margin-top:5px;
+	font-size:12px !important;
+	text-transform:capitalize;
+}
+.menu ul.nav ul ul {
+    top: auto;
+}
+.menu ul.nav li ul ul {
+    left: 200px;
+    margin: 0px;
+}
+.menu ul.nav li:hover ul ul, 
+.menu ul.nav li:hover ul ul ul,
+.menu ul.nav li:hover ul ul ul ul {
+    display: none;
+}
+.menu ul.nav li:hover ul,
+.menu ul.nav li li:hover ul,
+.menu ul.nav li li li:hover ul,
+.menu ul.nav li li li li:hover ul {
+    display: block;
+}
+.header-menu .menu ul.nav ul li.active,.header-menu .menu ul.nav ul li.hover {
+	background:#ffab11;
+	}
+.menu ul.nav li ul a.bg_child{
+	position:relative;
+	z-index:90;
+	background:url(../images/muiten1.png) no-repeat 190px 10px #fff;
+	white-space:nowrap;
+	color:#ffab11;
+}
+.menu ul.nav li ul a.bg_child:hover{
+	color:#FFCC33 !important;
+	background:url(../images/muiten_vang.png) no-repeat 190px 10px #fff;
+}
+.menu ul.nav li ul a.bg_nobo{
+	position:relative;
+	z-index:29;
+	white-space:nowrap;
+	color:#F7961D;
+}
+.menu ul.nav li ul a.bg_nobo:hover{
+    color:#FFF !important;
+}
+.menu ul.nav li ul li ul { margin-left: -10px;margin-top: 5px; z-index: 100;}
+.menu ul.nav li ul li { margin:0px; padding:0px;}
+/* ---------------------//submenu---------------------- */

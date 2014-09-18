@@ -1,0 +1,78 @@
+<script language="javascript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-ui-1.8.20.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/base/jquery-ui-1.8.16.custom.css" />
+<script language="javascript">
+$(function() {
+	$( "#accordion" ).accordion({
+		autoHeight: false,
+		navigation: true
+	});
+	{callCreateEditor}
+	$('#accordion').show();
+});
+function CreateEditor(id, width){
+	CKEDITOR.replace( id, {
+		uiColor: '#7E7E7E',
+		enterMode : CKEDITOR.ENTER_BR,	
+        filebrowserBrowseUrl : 'misc/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Flash',
+        filebrowserUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		toolbar : [
+			[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+			[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+			[ 'Link','Unlink','Anchor' ],
+			[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		//	'/',
+			[ 'Styles','Format','Font','FontSize' ],
+			[ 'TextColor','BGColor' ],
+			[ 'Maximize', 'ShowBlocks']
+		]
+    });
+}
+</script>
+<style type="text/css">
+.ui-accordion .ui-accordion-content {
+    padding: 1em;
+}
+span.cke_skin_kama {
+    border: 0px solid #D3D3D3;
+    border-radius: 5px 5px 5px 5px;
+    padding: 0px;
+}
+#accordion
+{
+	display: none;
+}
+</style>
+<div class="box_solar">
+    <form method="post" action="" style="z-index:70">
+        <div id="accordion">
+            <!--begin foreach-->
+            {mailconfig}
+            <h3><a href="#">{name}</a></h3>
+            <div>
+                <p>				
+                    <div class="emailcontable">				
+                        <div id="desmail">{des}</div>	
+                        <div style="padding-top:10px; font-weight:bold">Title:</div>
+                        <div id="txttilemail">						
+                            <input type="text" class="input-text" id="subject_{dem}" name="subject_{dem}" value="{titlemail}" style="width:98%" />						
+                        </div>
+                        <div style="padding-top:10px; font-weight:bold">Body:</div>
+                        <div id="txtcontent">
+                            <textarea id="body_{dem}" name="body_{dem}">{contentmail}</textarea>
+                        </div>
+                    </div>				
+                </p>
+            </div>
+            {/mailconfig}
+            <!--end foreach-->
+        </div>
+        <div align="right" style="padding-top:20px">
+            <input type="submit" class="btn btn-primary" value="Submit" name="btnSubmit" id="btnSubmit" />
+        </div>
+    </form>
+</div>

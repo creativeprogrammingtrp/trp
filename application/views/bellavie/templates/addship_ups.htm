@@ -1,0 +1,125 @@
+<form method="post" name="tax_form" onsubmit="return submitFormPopup();">
+<div style="float:left; width:48%; overflow:hidden" align="left">
+	<div style="clear:both; overflow:hidden">
+        <div style="float:left; font-weight:bold; width:100px">Enabled :</div>
+        <div style="float:left"><input type="checkbox" id="status" value="1" checked="checked" /></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="float:left; font-weight:bold; width:100px; padding-top:3px">Name :</div>
+        <div style="float:left"><input type="text" id="label" value="UPS" class="input-text" style="width:250px" /></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="float:left; font-weight:bold; width:100px; padding-top:3px">Handling fee :</div>
+        <div style="float:left; width:10px; padding-top:3px">$</div>
+        <div style="float:left"><input type="text" id="handling_fee" value="0" class="input-text" style="width:70px; text-align:right" onkeypress="return isNumberFloatKey(event)"/></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="clear:both; font-weight:bold">Description :</div>
+        <div style="clear:both">
+            <textarea id="description" style=" width:380px; height:60px; resize:none" class="input-text"></textarea>
+        </div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="clear:both; font-weight:bold">Shipping info (sent to customer with the order notification email) :</div>
+        <div style="clear:both">
+            <textarea id="shipping_info" style=" width:380px; height:60px; resize:none" class="input-text"></textarea>
+        </div>
+    </div>
+</div>
+<div style="float:right; width:50%; overflow:hidden" align="left">
+	<div style="clear:both; font-weight:bold">Shipping rate calculation settings - UPS</div>
+    <div style="clear:both; padding-top:5px" class="description_class">UPS OnLine Tools. Real-time shipping rate calculations.<br />Your need to have an account with www.ups.com to make this module work.</div>
+    <div style="clear:both; font-weight:bold; padding-top:10px">UPS OnLine Tools XML Access Key :</div>
+    <div style="clear:both">
+        <span class="field-with-placeholder">
+            <input type="text" class="input-text" id="access_key" size="10" name="access_key" value="" style="width:250px">
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="clear:both; font-weight:bold;">UPS Shipper # :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <input type="text" class="input-text" id="UPS_Shipper" size="10" name="UPS_Shipper" value="" style="width:250px">
+        </span>
+        <div style="clear:both;" class="description_class">The 6-character string identifying your UPS account as a shipper.</div>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="clear:both; font-weight:bold;">UPS.com user ID :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <input type="text" class="input-text" id="UPS_userid" size="10" name="UPS_userid" value="" style="width:250px">
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="clear:both; font-weight:bold;">UPS Password :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <input type="text" class="input-text" id="UPS_Password" size="10" name="UPS_Password" value="" style="width:250px">
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="font-weight:bold; clear:both">Package type :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <select id="Package_type" style="width:260px">{_package_type_}</select>
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="clear:both; font-weight:bold;">UPS service :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <select name="UPS_service" id="UPS_service" style="width:260px">{shipment_options}</select>
+        </span>
+    </div>
+</div>
+<div style="clear:both; padding-top:20px; height:30px;" id="savebt">
+	<input type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back">
+	<input type="submit" value="Save" name="submit" class="btn" style="margin-left:5px"/>
+</div>
+<div style="clear:both; padding-top:20px; width:100%; height:30px; display:none" id="loadingbt">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>
+</form>
+<script language="javascript">
+function submitFormPopup(){
+	var status = 1;
+	if(document.getElementById("status").checked == false) status = 0;
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/shipping/add/ups", {
+		saveShippingmethod: 'yes',
+		status:status,
+		label:$("#label").val(),
+		description:$("#description").val(),
+		shipping_info:$("#shipping_info").val(),
+		access_key:$("#access_key").val(),
+		UPS_Shipper:$("#UPS_Shipper").val(),
+		UPS_userid:$("#UPS_userid").val(),
+		UPS_Password:$("#UPS_Password").val(),
+		Package_type:$("#Package_type").val(),
+		UPS_service:$("#UPS_service").val(),
+		handling_fee:$("#handling_fee").val()
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(data == 'ok'){
+			alert(success_saved);
+			window.location = 'index.php/store/shipping';	
+		}
+	});
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+$(function() {
+	clearForms();
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+});
+</script>

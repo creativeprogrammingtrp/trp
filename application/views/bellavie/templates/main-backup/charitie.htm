@@ -1,0 +1,48 @@
+<style>
+.box_solar p{
+	line-height:2.1em;}
+</style>
+<div class="box_solar" style="clear:both">
+	<div class="divPageTitle">{title_page}</div>
+    {content}
+    <ul style="padding-left:20px;" class=" size_14">
+        {charities}
+            <li style="float:left; padding-left:20px; margin-right:10px; padding-top:10px;">
+                <span style="color:#F7961E; font-weight:bold; font-size:16px;">
+                {legal_business_name}</span>&nbsp;&nbsp;Raised: 
+                <b>${price}</b>
+                &nbsp;&nbsp;Donated: <b>${paid}</b>
+            </li>
+            
+            {checks}
+            <div style="float:left; margin-left:10px; margin-top:6px">
+                <div style="float:left; cursor:pointer;" id="view_{cid}">
+                    <a href="{url_shop_server}resource/checks/{checks_file}" rel="check_img">
+                        <img style="box-shadow: 1px 1px 2px #000;" src="{url_shop_server}resource/checks/thumb/{checks_file}" height="25px"/>
+                    </a>
+                </div>	
+            </div>
+            {/checks}
+            <div style="clear:both">
+                <a style="float:left; padding-left:20px; color:#999999; color:#999" href="{website}" target="_blank">
+                    {website}
+                </a>
+                <br />
+                <span style="float:left; padding-left:20px;">{description}</span>
+            </div>
+        {/charities}
+    </ul>
+</div>
+<link type="text/css" media="screen" rel="stylesheet" href="../colorbox/theme3/colorbox.css" />
+<script type="text/javascript" src="misc/colorbox/jquery.colorbox.js"></script>
+<script language="javascript">
+$(function() {
+	$("a[rel='check_img']").colorbox({
+		initialWidth:70,
+		initialHeight:50,	
+		height:false,
+		opacity:0.2,
+		scrolling: false
+	});	
+});
+</script>

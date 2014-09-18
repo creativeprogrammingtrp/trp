@@ -1,0 +1,68 @@
+		
+		<table class=" table table-striped" id="examresult-datatable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Exam</th>
+            <th class=" cell-small text-center">Result</th>
+            <th class=" text-center"><i class="icon-bolt"></i> Actions</th>
+        </tr>
+    </thead>
+    <tbody id="showExamResult">
+       
+    </tbody>
+</table>
+    
+<script type="text/javascript">
+	var dataClient = [];
+	
+	 
+		function loadObject2() {
+			{dataLoad}
+	                loadClients2();  
+		}
+		
+		function loadClients2() {
+            var htm = ''; 
+            var j  =  1;
+            for(var i = 0 ; i < dataClient.length ; i++){
+                   var obj = dataClient[i];
+                   var uid = obj.uid;
+                   //var parent = 'body_allero';
+                  
+                     htm +='<tr>';
+                     htm +='<td><a href="javascript:void(0)">'+obj.exam_date+'</a></td>';
+                     htm +='<td><a href="javascript:void(0)">Exam '+j+'</a></td>';
+                     if(obj.resultParcent == 100){
+                     htm +='<td class="hidden-xs hidden-sm text-center"><span class="badge badge-success">'+obj.resultParcent+'</span></td>';
+                     }else{
+                    	 htm +='<td class="hidden-xs hidden-sm text-center"><span class="badge badge-danger">'+obj.resultParcent+'</span></td>';
+                     }
+                      htm +='<td class="text-center">';
+                                htm +='<div class="btn-group">'; 
+                                htm += '<a class="btn btn-xs btn-success EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="index.php/admin/training/examDetails/'+obj.uid+'/'+obj.exam_id+'"  data-original-title="Edit" id ="'+obj.uid+'"  onclick="" >Details</a>';
+                                if(obj.resultParcent == 100){
+                                htm += '<a class="btn btn-xs btn-info EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="index.php/admin/training/certificate/'+obj.uid+'/'+obj.exam_id+'"  data-original-title="Certificate" id ="'+uid+'"  >Certificate</a>';
+                                }
+                               htm += '</div>';
+                        htm += '</td>'
+                     
+                     
+      
+                   htm +='</tr>';
+                   j++;
+            }
+          
+            $("#showExamResult").empty().append(htm);
+	}
+		
+		$(function() {
+			loadObject2(); 
+			
+			$('#examresult-datatable').dataTable({
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "aaSorting": []
+            });
+            $('div.dataTables_filter input').addClass('form-control');
+			});
+</script>	

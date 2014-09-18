@@ -1,0 +1,29 @@
+<div id="__promotion_exist__" style="width:100%; overflow:hidden">
+	{promotions}
+    <div style="clear:both; float:left; padding-bottom:10px; margin-bottom:10px; border-bottom:1px dashed #E2A1FF; width:100%;">
+        <div style="float:left; width:30px; overflow:hidden; padding-top:2px" align="left"><input type="checkbox" class="input-checkbox" name="promotions[]" value="{promo_code}" /></div>
+        <div style="float:left; overflow:hidden;">
+            <div style="clear:both;">
+                <div style="float:left; font-weight:bold; width:100px">Promo Code:</div>
+                <div style="float:left">{promo_code}</div>
+            </div>
+            <div style="clear:both; padding-top:4px">
+                <div style="float:left; font-weight:bold; width:100px">Promo Name:</div>
+                <div style="float:left">{promo_name}</div>
+            </div>  	
+            <div style="clear:both; padding-top:4px">
+                <div style="float:left; font-weight:bold; width:100px">Start Date:</div>
+                <div style="float:left">{start_date}</div>
+                <div style="float:left; font-weight:bold; padding-left:20px">End Date:</div>
+                <div style="float:left; padding-left:10px">{end_date}</div>
+            </div>
+            <div style="clear:both; padding-top:4px">
+                <div style="float:left; font-weight:bold; width:100px">Description:</div>
+                <div style="float:left; clear:both">{description}</div>
+            </div>
+            <div style="clear:both; font-weight:bold; padding-top:15px">Promotion is triggered if the order subtotal is greater than or equal to ${subtotal}&nbsp;&nbsp; and/or min quantity: {minqty}</div>
+            {promotion_products}
+        </div>
+    </div>
+    {/promotions}
+</div>

@@ -1,0 +1,160 @@
+<!-- New App tab -->
+<table id="insurance_employee_report_result" class="table table-striped"></table>
+<!-- End New App tab -->
+<div class="clear1"></div>
+<!-- For Edit Application -->
+
+<!-- End of Edit Application -->
+
+<!-- Javascript code only for this page -->            
+<script type="text/javascript">
+var dataClientIR = [];
+//var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","Action"];
+
+function loadObject() {
+    {dataLoadIR}
+    loadClients();
+}
+
+
+function loadClients() {
+    var htm = ''; 
+    htm +='<thead>';
+    
+    htm +='<tr>';
+	htm +='<th rowspan="2" class="text-center">Name</th>';
+	htm +='<th colspan="7"  class="text-center">Packages Sold</th>';
+	htm +='<th rowspan="2" class="text-center">Action</th>';
+	htm +='</tr>';
+    	
+   	htm +='<tr>';
+		htm +='<th class="text-left">Family Individual</th>';
+		htm +='<th class="text-left">Group Health</th>';
+   		htm +='<th class="" style="">Life Insurance & Annuities</th>';
+   		htm +='<th class="text-left">Auto Insurance</th>';
+		htm +='<th class="text-left">Home Insurance</th>';
+   		htm +='<th class="" style="">Property & Casualty</th>';
+   		htm +='<th  >Total</th>';
+   	htm +='</tr>';
+   
+    htm +='</thead>';
+    
+    
+    htm +='<tbody>';
+    var parent = 'body_insurance_info_edit';
+   // var totalamount = 0;
+    var familyTotal = 0;
+    var groupHealthTotal = 0;
+    var lifeInsuranceTotal = 0;
+    var autoInsuranceTotal = 0;
+    var homeInsuranceTotal = 0;
+    var propertyTotal = 0;
+    var totalCount = 0;
+    
+    for(var i = 0 ; i < dataClientIR.length ; i++){
+           var obj = dataClientIR[i];
+           var uid = obj.uid;
+            	
+           var appststus = '';
+           if(obj.insurance_status == '0')
+          	 appststus = 'Pending';
+           else if(obj.insurance_status == '1')
+          	 appststus = 'Active';
+           else if(obj.insurance_status == '2')
+          	 appststus = 'Canceled';
+           var totalamount = 0;
+           totalamount += parseInt(obj.family)+parseInt(obj.groupHealth)+parseInt(obj.lifeInsurance)+parseInt(obj.autoInsurance)+parseInt(obj.homeInsurance)+parseInt(obj.propertyCasualty);
+           
+           familyTotal += parseInt(obj.family);
+           groupHealthTotal += parseInt(obj.groupHealth);
+           lifeInsuranceTotal += parseInt(obj.lifeInsurance);
+           autoInsuranceTotal += parseInt(obj.autoInsurance);
+           homeInsuranceTotal += parseInt(obj.homeInsurance);
+           propertyTotal += parseInt(obj.propertyCasualty);
+           
+           totalCount += totalamount;
+           
+            htm +='<tr>';
+            
+            htm +='<td class=" text-center border-right">'+obj.firstname+' '+obj.lastname+'</td>';
+        	htm +='<td class="text-center">'+obj.family+'</td>';
+        	htm +='<td class="text-center ">'+obj.groupHealth+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+obj.lifeInsurance+'</td>';
+        	htm +='<td class="text-center">'+obj.autoInsurance+'</td>';
+        	htm +='<td class="text-center ">'+obj.homeInsurance+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+obj.propertyCasualty+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+totalamount+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
+        	htm += '<a class="btn btn-xs btn-info" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="showInsurancesEmployeeCustomerReport(\''+obj.uid+'\',\''+parent+'\')" >View All</a>';
+        	htm += '</td>';
+             
+            htm +='</tr>';
+   } 		
+   htm +=' </tbody>';
+   
+   htm +='<tfoot>';
+	htm +='<tr>';
+		htm +='<td class=" text-center" >Total</td>';
+		htm +='<td class=" text-center" ><span>'+familyTotal+'</span></td>';
+		htm +='<td class="text-center"><span>'+groupHealthTotal+'</span></td>';
+		htm +='<td class=" text-center" ><span>'+lifeInsuranceTotal+'</span></td>';
+		htm +='<td class=" text-center" ><span>'+autoInsuranceTotal+'</span></td>';
+		htm +='<td class="text-center"><span>'+homeInsuranceTotal+'</span></td>';
+		htm +='<td class=" text-center" ><span>'+propertyTotal+'</span></td>';
+		htm +='<td class="text-center">'+totalCount+'</td>';
+		htm +='<td class="text-center"></td>';
+	htm +='</tr>  ';
+htm +='</tfoot>';
+     
+    $("#insurance_employee_report_result").empty().append(htm);	
+    
+    //var $parent = $("#" + parent);
+    $("#" + parent).find("#state").empty().append('{states}');
+    //$("#state1").empty().append('{states}');
+}
+
+function showInsurancesEmployeeCustomerReport(empId){
+	$.ajax({
+                url: 'index.php/admin/reporting/showInsurancesEmployeeCustomerReport?ajax=1&empid='+empId+'',
+                cache: false,
+                success: function(message){
+                        $("#insurance_employees_report").empty().append(message);
+                        return false;
+                }
+	});	
+}
+
+$(function(){
+	loadObject();
+	clickToEditBenefitsInfo('body_benefits_info_edit');
+
+    $('#insurance_employee_report_result').dataTable( {
+         	"sDom": 'T<"clear">lfrtip',
+         	"oTableTools": {
+     			//"aButtons": [ "xls", "pdf","copy", "print" ]
+         		"aButtons": [
+    						{"sExtends":   "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		{"sExtends":   "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                            {"sExtends":   "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		]
+     		},
+     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1 ] }],
+     		"bLengthChange": false,
+       		"bAutoWidth": false,  
+       		"aoColumns": [
+       		            { sWidth: '10%' },
+       		            { sWidth: '10%' },
+       		            { sWidth: '12%' },
+       		            { sWidth: '15%' },
+       		            { sWidth: '10%' },
+       		            { sWidth: '10%' },
+       		         	{ sWidth: '13%' },
+    		            { sWidth: '10%' },
+    		            { sWidth: '10%' }]
+         });
+
+	 
+	 $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	 
+});
+</script>

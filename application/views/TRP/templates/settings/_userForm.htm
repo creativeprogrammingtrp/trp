@@ -1,0 +1,73 @@
+<form class="form-horizontal form-box remove-margin ui-formwizard"  method="post" id="addUserForm"  novalidate="novalidate"> 
+    <div class="form-box-content">
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+            
+            <div class="form-group">
+                <label for="ptin"
+                       class="control-label col-md-3">PTIN #</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="example-advanced-ptin" id="ptin">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="first_name"
+                       class="control-label col-md-3">First Name</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="example-advanced-firstname" id="first_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="last_name"
+                       class="control-label col-md-3">Last Name</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="example-advanced-lastname" id="last_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pass"
+                       class="control-label col-md-3">Password</label>
+                <div class="col-md-4">
+                    <input type="password" class="form-control ui-wizard-content"
+                           name="example-advanced-pass" id="password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="state_m" class="control-label col-md-3">Role</label>                   
+                <div class="col-md-4">
+                    <select class="form-control" name="state_m" id="state_m">
+                        <option value="6">Employee</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group form-actions">
+                <div class="col-md-10 col-md-offset-2">
+
+                    <div id="modal_success" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Save" id="save_p"
+                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                    <input type="button" value="Cancel" id="cancel"
+                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                </div>
+            </div>
+        </div>
+	</div>
+</form>
+

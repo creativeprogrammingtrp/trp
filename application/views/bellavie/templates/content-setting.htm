@@ -1,0 +1,109 @@
+<script language="javascript">
+ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+</script>
+<style type="text/css">
+#ui-datepicker-div{
+	z-index:3;
+}
+span.cke_skin_kama {
+    border: 0px solid #D3D3D3;
+   -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+    padding: 0px;
+}
+</style>
+<div style="clear:both">
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+    	<div style="clear:both;">Content:</div>
+        <div style="clear:both">
+        	<textarea id="body">{content}</textarea>
+        </div>
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" id="submitproductbt" align="left">
+        <input type="button" value="Back" class="btn" onclick="history.go(-1);" />
+        <input type="button" value="Submit" class="btn btn-primary" onclick="check_addForm()" style="margin-left:5px;" />
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="key" name="key" value="{key}" />
+<script language="JavaScript" type="text/javascript" src="misc/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+function check_addForm(){
+	var body_ = editor_obj.getData();
+	
+	$("#submitproductbt").hide();
+	$("#loadingbt").show();
+	$.post("index.php/{postPageLink}",{
+		updateContent:'yes',
+		content:body_
+	} ,function(data){
+		$("#submitproductbt").show();
+		$("#loadingbt").hide();
+		if(data == '1'){
+			alert(success_saved);
+		}else{
+			//alert(data);
+			alert(fail_saved);		
+		}
+	});
+}
+var editor_obj;
+function CreateEditor(id){
+	editor_obj = CKEDITOR.replace( id, {
+		uiColor: '#7E7E7E',
+		height:300,
+		enterMode : CKEDITOR.ENTER_BR,	
+        filebrowserBrowseUrl : 'misc/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : 'misc/ckfinder/ckfinder.html?Type=Flash',
+        filebrowserUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : 'misc/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		toolbar : [
+			[ 'Source'],
+			[ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+			[ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+			[ 'Link','Unlink','Anchor' ],
+			[ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
+		//	'/',
+			[ 'Styles','Format','Font','FontSize' ],
+			[ 'TextColor','BGColor' ],
+			[ 'Maximize', 'ShowBlocks']
+		]
+    });
+}
+function showValDate(date) {
+	var todate_ = new Date('{todate}');
+	if(date < todate_) return [false, date.getDate() + '_day'];	
+  	return [true, ''];
+}
+$(function() { 
+	CreateEditor('body');
+	clearForms();
+	var y  = new Date();
+	var dates = $( "#start_date, #end_date" ).datepicker({
+	//	beforeShowDay: showValDate,
+		defaultDate: "+1w",
+		changeMonth: true,
+		changeYear: true, 
+		yearRange: '1970:'+y.getFullYear(),
+		numberOfMonths: 2,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "start_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" );
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	}); 
+	HideLoadingObj(document.getElementById("content_load"));
+});
+</script>

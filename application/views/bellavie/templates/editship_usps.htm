@@ -1,0 +1,146 @@
+<form method="post" name="tax_form" onsubmit="return submitFormPopup();">
+<div style="float:left; width:48%; overflow:hidden" align="left">
+	<div style="clear:both; overflow:hidden">
+        <div style="float:left; font-weight:bold; width:100px">Enabled :</div>
+        <div style="float:left"><input type="checkbox" id="status" value="1" {checked} /></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="float:left; font-weight:bold; width:100px; padding-top:3px">Name :</div>
+        <div style="float:left"><input type="text" id="label" value="{label}" class="input-text" style="width:250px" /></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="float:left; font-weight:bold; width:100px; padding-top:3px">Handling fee :</div>
+        <div style="float:left; width:10px; padding-top:3px">$</div>
+        <div style="float:left"><input type="text" id="handling_fee" value="{handling_fee}" class="input-text" style="width:70px; text-align:right" onkeypress="return isNumberFloatKey(event)"/></div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="clear:both; font-weight:bold">Description :</div>
+        <div style="clear:both">
+            <textarea id="description" style=" width:380px; height:60px; resize:none" class="input-text">{description}</textarea>
+        </div>
+    </div>
+    <div style="clear:both; overflow:hidden; padding-top:10px">
+        <div style="clear:both; font-weight:bold">Shipping info (sent to customer with the order notification email) :</div>
+        <div style="clear:both">
+            <textarea id="shipping_info" style=" width:380px; height:60px; resize:none" class="input-text">{shipping_info}</textarea>
+        </div>
+    </div>
+</div>
+<div style="float:right; width:50%; overflow:hidden" align="left">
+	<div style="clear:both; font-weight:bold">Shipping rate calculation settings - USPS</div>
+    <div style="clear:both; padding-top:5px" class="description_class">USPS OnLine Tools. Real-time shipping rate calculations.<br />Your need to have an account with www.usps.com to make this module work.</div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="clear:both; font-weight:bold;">USPS user ID :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <input type="text" class="input-text" id="USPS_userid" size="10" name="USPS_userid" value="{USPS_userid}" style="width:250px">
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="font-weight:bold; clear:both">Machinable :</div>
+        <span class="field-with-placeholder">
+            <select  style="width:100px" id="machinable">
+            	{machinable}
+            </select>
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="font-weight:bold; clear:both">Default Package size :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <select id="Package_size" style="width:260px">{_package_size_}</select>
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="font-weight:bold; clear:both">Allowed domestic services :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <select id="domestic_services" style="width:260px">{_domestic_services_}</select>
+        </span>
+    </div>
+    <div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="font-weight:bold; clear:both">Allowed International services :</div>
+        <span class="field-with-placeholder" style="clear:both">
+            <select id="international_services" style="width:260px">{__USPS_international_services__}</select>
+        </span>
+    </div>
+</div>
+<input type="hidden" id="key" value="{key}" />
+<div style="clear:both; padding-top:20px; height:30px;" id="savebt">
+	<input type="button" onclick="history.go(-1);" class="button" value="Back">
+	<input type="submit" value="Save" name="submit" class="button" style="margin-left:5px"/>
+</div>
+<div style="clear:both; padding-top:20px; width:100%; height:30px; display:none" id="loadingbt">
+    <div class="button-loading" style="width:80px">
+        <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+        <span style="float:left; padding-left:10px">Saving...</span>
+    </div>
+</div>
+</form>
+<script language="javascript">
+var USPS_service = [];
+function submitFormPopup(){
+	var status = 1;
+	if(document.getElementById("status").checked == false) status = 0;
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/shipping/edit/musps", {
+		saveShippingmethod: 'yes',
+		key:$("#key").val(),
+		status:status,
+		label:$("#label").val(),
+		handling_fee:$("#handling_fee").val(),
+		description:$("#description").val(),
+		shipping_info:$("#shipping_info").val(),
+		USPS_userid:$("#USPS_userid").val(),
+		USPS_service:$("#domestic_services").val(),
+		USPS_inter_service:$("#international_services").val(),
+		machinable:$("#machinable").val(),
+		Package_type:$("#Package_size").val()
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(data == 'ok'){
+			alert(success_saved);
+			window.location = 'index.php/store/shipping';	
+		}
+	});
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function loadDatas(){
+	if('load_data'=='yes');
+	/*var docmestic_services_data = USPS_service[0];
+	var international_packages_data = USPS_service[1];
+	var docmestic_services = document.getElementsByName("docmestic_services[]");
+	for(var i = 0; i < docmestic_services.length; i++){
+		for(var j = 0; j < docmestic_services_data.length; j++){
+			if(docmestic_services_data[j] == docmestic_services[i].value){
+				docmestic_services[i].checked = true;
+				break;	
+			}	
+		}	
+	}
+	var international_packages = document.getElementsByName("international_packages[]");
+	for(var i = 0; i < international_packages.length; i++){
+		for(var j = 0; j < international_packages_data.length; j++){
+			if(international_packages_data[j] == international_packages[i].value){
+				international_packages[i].checked = true;
+				break;	
+			}	
+		}
+	}*/
+}
+$(function() {
+	clearForms();
+	if(document.getElementById("cancel")){
+		document.getElementById("cancel").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	}
+	//loadDatas();
+});
+</script>

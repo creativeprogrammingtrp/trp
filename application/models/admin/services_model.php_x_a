@@ -1,0 +1,367 @@
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Services_model extends CI_Model {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    
+ function saveNewInsuranceInfo() {
+    	
+ 	$items = $this->lib->escape($_POST['selectedItem']);
+ 	 
+ 	$individualitems = explode('~',$items);
+ 	
+    	$data = array(
+    			/*'uid' => $this->author->objlogin->uid,
+    			'first_name' => $this->lib->escape($_POST['first_name']),
+    			'last_name' => $this->lib->escape($_POST['last_name']),
+    			'ss_number' => $this->lib->escape($_POST['ss_number']),
+    			'dob' => $this->lib->escape($_POST['dob']),
+    			
+    			'add_spouse' => $this->lib->escape($_POST['add_spouse']),
+    			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+    			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+    			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+    			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+    			
+    			'street_address_1' => $this->lib->escape($_POST['street_address']),
+    			'city' => $this->lib->escape($_POST['city']),
+    			'state' => $this->lib->escape($_POST['state']),
+    			'zip_code' => $this->lib->escape($_POST['zip_code']),
+    			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+    			'email_add' => $this->lib->escape($_POST['email_add']),*/
+    			
+    			'item' => $individualitems[0],  //$this->lib->escape($_POST['selectedItem']),
+    			
+    			'create_date' => $this->lib->getTimeGMT(),
+    			
+    			'status' => '0',
+    			'payment_status' => '2',
+    			'author_id' =>  $this->author->objlogin->uid
+    			
+    	);
+    	$this->db->insert("insurance", $data);
+    	
+    	$lastId = $this->db->insert_id();
+    	
+    	$selectedApplicent = $this->lib->escape($_POST['selectedApplicent']);
+    	//substr('abcdef', 1);
+    	$appex = explode(',',substr($selectedApplicent,1));
+    	
+    	for($i = 0; $i < count($appex); $i++){
+	    	$data1 = array(
+	    			 'insurance_id' => $lastId,
+	    			 'uid' => $appex[$i],
+	    	 );
+	    	$this->db->insert("insurance_applicent", $data1);
+    	}
+    	return true;
+    }
+    
+    function saveNewInsuranceInfoNext(){
+    	return true;
+    }
+    
+    function saveNewBenefitsInfoNext(){
+    	return true;
+    }
+    
+
+    function saveNewBenefitsInfo() {
+    	 
+    	$items = $this->lib->escape($_POST['selectedBenefitsItem']);
+    	
+    	$individualitems = explode('~',$items);
+    
+    	$data = array(
+    			/*'uid' => $this->author->objlogin->uid,
+    			'first_name' => $this->lib->escape($_POST['first_name']),
+    			'last_name' => $this->lib->escape($_POST['last_name']),
+    			'ss_number' => $this->lib->escape($_POST['ss_number']),
+    			'dob' => $this->lib->escape($_POST['dob']),
+    			 
+    			'add_spouse' => $this->lib->escape($_POST['add_spouse']),
+    			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+    			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+    			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+    			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+    			 
+    			'street_address_1' => $this->lib->escape($_POST['street_address']),
+    			'city' => $this->lib->escape($_POST['city']),
+    			'state' => $this->lib->escape($_POST['state']),
+    			'zip_code' => $this->lib->escape($_POST['zip_code']),
+    			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+    			'email_add' => $this->lib->escape($_POST['email_add']),*/
+    			'item' => $individualitems[0], //$this->lib->escape($_POST['selectedBenefitsItem']),
+    			'prices' =>  $individualitems[2],
+    			'create_date' => $this->lib->getTimeGMT(),
+    			 
+    			'status' => '0',
+    			'payment_status' => '2',
+    			'author_id' =>  $this->author->objlogin->uid
+    
+    	);
+    	$this->db->insert("benefits", $data);
+    	 
+    	$lastId = $this->db->insert_id();
+    	
+    	$selectedApplicent = $this->lib->escape($_POST['selectedApplicent']);
+    	$appex = explode(',',substr($selectedApplicent,1));
+    	
+    	for($i = 0; $i < count($appex); $i++){
+	    	$data1 = array(
+	    			 'benefits_id' => $lastId,
+	    			 'uid' => $appex[$i],
+	    	 );
+	    	$this->db->insert("benefits_applicent", $data1);
+    	}
+    	 
+    	return true;
+    }
+    
+    
+    function showPendingInsurance(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '0' ORDER BY i.insurance_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function showActiveInsurance(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '1' ORDER BY i.insurance_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function showCancelledInsurance(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '2' ORDER BY i.insurance_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function showPendingBenefits(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '0' ORDER BY b.benefits_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function showActiveBenefits(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '1' ORDER BY b.benefits_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    function showCancelledBenefits(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '2' ORDER BY b.benefits_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    
+    function countInsurance(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '1'";
+    	$res = $this->db->query($sql);
+    	
+    	$result = $res->result_array() ;
+    	return $result[0]['total'];
+    	
+    }
+    
+    
+    
+    function loadAllInsurance(){
+    	$data = array();
+    	$todate = $this->lib->getTimeGMT();
+    	$sql = "select * from new_app  where uid = '" . $this->author->objlogin->uid . "' ORDER BY app_id DESC";
+    	$res = $this->db->query($sql);
+    	foreach ($res->result_array() as $row) {
+    		$row["format_date"] = gmdate("m/d/y", $row["create_date"]);
+    
+    		$sql_1 = "select * from new_app_product  where uid = '" . $this->author->objlogin->uid . "' AND app_id = '".$row["app_id"]."'";
+    		$res_1 = $this->db->query($sql_1);
+    
+    		//$row['prodcuts'] = $res_1->result_array();
+    		foreach ($res_1->result_array() as $row1) {
+    			/*if ($row1['img_source'] !== '') {
+    				$row1['img_source'] = '<img  src="' . $this->system->URL_server__() . 'application/views/TRP/backend/img/' . $row1['img_source'] . '">';
+    			} else {
+    				$row1['img_source'] = '';
+    			}*/
+    			$row['prodcuts'][] =  $row1;
+    		}
+    		//  http://localhost/trpplus/application/views/TRP/backend/img/Client_Center_chart.jpg
+    		$data[] = $row;
+    	}
+    	return $data;
+    }
+    
+    
+    public function updateInsuranceInfo() {
+    	 
+    	$data = array(
+    			'first_name' => $this->lib->escape($_POST['first_name']),
+    			'last_name' => $this->lib->escape($_POST['last_name']),
+    			'ss_number' => $this->lib->escape($_POST['ss_number']),
+    			'dob' => $this->lib->escape($_POST['dob']),
+    			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+    			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+    			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+    			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+    			 
+    			'street_address_1' => $this->lib->escape($_POST['street_address']),
+    			'city' => $this->lib->escape($_POST['city']),
+    			'state' => $this->lib->escape($_POST['state']),
+    			'zip_code' => $this->lib->escape($_POST['zip_code']),
+    			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+    			'email_add' => $this->lib->escape($_POST['email_add']),
+    	);
+    	$this->db->where('applicent_id', $this->lib->escape($_POST['insurance_app_id']));
+    	$this->db->update('new_applicent', $data);
+    	 
+    	
+    	return $this->showPendingInsurance();
+    }
+    
+    public function updateBenefitsInfo() {
+    
+    	$data = array(
+    			'first_name' => $this->lib->escape($_POST['first_name']),
+    			'last_name' => $this->lib->escape($_POST['last_name']),
+    			'ss_number' => $this->lib->escape($_POST['ss_number']),
+    			'dob' => $this->lib->escape($_POST['dob']),
+    			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+    			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+    			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+    			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+    			
+    			'street_address_1' => $this->lib->escape($_POST['street_address']),
+    			'city' => $this->lib->escape($_POST['city']),
+    			'state' => $this->lib->escape($_POST['state']),
+    			'zip_code' => $this->lib->escape($_POST['zip_code']),
+    			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+    			'email_add' => $this->lib->escape($_POST['email_add']),
+    	);
+    	$this->db->where('applicent_id', $this->lib->escape($_POST['benefits_app_id']));
+    	$this->db->update('new_applicent', $data);
+    
+    	 
+    	return $this->showPendingBenefits();
+    }
+    
+    function addNewApplicent(){
+    	//if($this->objlogin->parentUid != ""){
+    	//	$parrentUid = $this->objlogin->parentUid;
+    	//}
+    	//else{
+    		$parrentUid =$this->author->objlogin->uid;
+    	//}
+    	
+    	$data = array(
+    			'uid' => $parrentUid,
+    			'first_name' => $this->lib->escape($_POST['first_name']),
+    			'last_name' => $this->lib->escape($_POST['last_name']),
+    			'ss_number' => $this->lib->escape($_POST['ss_number']),
+    			'dob' => $this->lib->escape($_POST['dob']),
+    			'add_spouse' => $this->lib->escape($_POST['add_spouse']),
+    			'sp_first_name' => $this->lib->escape($_POST['sp_first_name']),
+    			'sp_last_name' => $this->lib->escape($_POST['sp_last_name']),
+    			'sp_ssn_no' => $this->lib->escape($_POST['sp_ss_number']),
+    			'sp_dob' => $this->lib->escape($_POST['sp_dob']),
+    			 
+    			'street_address_1' => $this->lib->escape($_POST['street_address']),
+    			/*'street_address_2' => $this->lib->escape($_POST['street_address2']),*/
+    			 
+    			'city' => $this->lib->escape($_POST['city']),
+    			'state' => $this->lib->escape($_POST['state']),
+    			'zip_code' => $this->lib->escape($_POST['zip_code']),
+    			/*'country' => $this->lib->escape($_POST['country']),*/
+    			'cell_phone' => $this->lib->escape($_POST['cell_phone']),
+    			'email_add' => $this->lib->escape($_POST['email_add']),
+    			 
+    			/*'app_total_refund_amt' => $this->lib->escape($_POST['total_refund_amt_3']),
+    			'app_tax_preparation_fee' => $this->lib->escape($_POST['tax_preparation_fee_3']),
+    			'app_bank_transmission_fee' => $this->lib->escape($_POST['bank_transmission_fee_3']),
+    			'app_sb_fee' => $this->lib->escape($_POST['sb_fee_3']),
+    			//'app_e_file_fee' => $this->lib->escape($_POST['e_file_fee_3']),
+    			'app_add_on_fee' => $this->lib->escape($_POST['add_on_fee_3']),
+    			'app_total_fees'  => $this->lib->escape($_POST['total_fees']),
+    			'app_refund_amt' => $this->lib->escape($_POST['net_refund_amt_3']),
+    			'app_benefit' => $this->lib->escape($_POST['total_benefit']),
+    			'app_net_refund_amt' => $this->lib->escape($_POST['final_net_refund']),
+    	
+    			'payment_method' => $this->lib->escape($_POST['payment_method']),
+    			    			 
+    			'card_number' => $this->lib->escape($_POST['card_number']),
+    			'app_bank_name' => $this->lib->escape($_POST['bank_name']),
+    			'app_account_no' => $this->lib->escape($_POST['acount_number']),
+    			'app_routing_no' => $this->lib->escape($_POST['routing_number']),
+    			 
+    			'assign_acc_no' => '4234432342334534',
+    			'assign_routing_no' => '4232343433',*/
+    			'create_date' => $this->lib->getTimeGMT(),
+    			'author_id' => $this->author->objlogin->uid,			 
+    	);
+    	$this->db->insert("new_applicent", $data);
+    	$lastAppId = $this->db->insert_id();
+    	
+    	return $lastAppId;
+    }
+    
+    function loadRefindApplicentList() {
+    	$data = array();
+    	
+    	$sql = "select app_id,uid,first_name,last_name,ss_number from new_app ORDER BY first_name ASC";
+    	$res = $this->db->query($sql);
+    	
+    	foreach ($res->result_array() as $row) {
+    		
+    		$data[] = $row;
+    	}
+    	
+    	return $data;
+    }
+
+}
+
+?>

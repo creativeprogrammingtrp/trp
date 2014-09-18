@@ -1,0 +1,679 @@
+<style>
+thead tr .td-row{
+	background: #fdfdfd; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fdfdfd 0%, #efefef 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #fdfdfd 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #fdfdfd 0%,#efefef 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #fdfdfd 0%,#efefef 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #fdfdfd 0%,#efefef 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#f1f1f1',GradientType=0 ); /* IE6-9 */
+}
+.td-row {
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
+	border-bottom: 1px solid #d3d3d3;
+}
+#summary_table
+{
+	width: 350px;
+	float: right;
+}
+</style>
+<div class="box_solar">	
+   	<div class="title_section" style=" font-weight:bold; font-size:14px">Sales chart</div>
+    <div style="width:100%; clear:both">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td align="left" valign="top">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <td align="left" valign="middle" id="selected_by_value">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td align="left" valign="middle" style="font-weight:bold; padding-right:12px">From 2010 To 2010</td>
+                                        <td align="left" valign="middle" style="padding-right:2px"><img src="../images/arrow-left.png" border="0" style="cursor:pointer" onclick="" /></td>
+                                        <td align="left" valign="middle"><img src="../images/arrow-right.png" border="0" style="cursor:pointer" onclick="" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td align="right" valign="middle">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td align="left" valign="middle" style="padding-right:10px"><b>Selected by:</b></td>
+                                        <td align="left" valign="middle">
+                                            <select id="selected_by" style="width:80px; padding-left:5px" onchange="loadDataChart()">
+                                                <option value="0" selected="selected">month</option>
+                                                <option value="1">year</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top" style="padding-top:10px">
+                    <div style="width:100%; min-height:370px" id="sales_chart"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="width:100%; clear:both; margin-top:10px" >
+    	<div class="table-total" id="summary_table">
+        	
+        </div>
+    </div>
+    
+    <div style="clear:both; width:100%; overflow:hidden;" id="list_details">
+    <div class="title_section" style="clear:both; margin:0px 0px 10px; font-weight:bold; font-size:14px">Orders</div>
+        <form method="post" name="form_filter" onsubmit="return pageObject()">
+        <span style="float:left;">
+            <select id="status_order" style="color:#AEAEAE">
+                <option value="" style="color:#AEAEAE">All Status</option>
+                {order_status}
+            </select>
+        </span>
+        <span style="float:left; padding-left:5px">
+            {months}
+        </span>
+        <span style="float:left; padding-left:5px">
+            {years}
+        </span>
+        <span style="float:left; padding-left:10px"><input type="submit" class="btn" value="Filter" /></span>
+        <span style="float:left; padding-left:10px; display: none;"><input class="btn btn-primary" type="button" onclick="export_excel()" value="Export to Excel" /></span>
+        </form>
+    </div>
+	<div id="pager" style="min-height:20px; width:100%" align="right"></div>
+	<div style="clear:both;" id="order_history_list" align="left"></div>	
+</div>
+<script language="javascript">
+
+var pager_number = 1;
+var data_order = [];
+var roleID = 0;
+var header_first 	= ['Order #','Status','Order Date','Total','Refund','Vendor','Member','Employee','Charities','Merchant Cost','Gross Profit'];
+var header_last 	= ['Order #','Status','Order Date','Total','Refund','Vendor','Member','Employee','Charities','Merchant Cost','Gross Profit'];
+var columeb = null;
+var sort_list = '';
+function returnURL(page,colum,sort_list){
+	if(page == null || page == 0) page = 1;
+	var url = 'index.php/report/finalreport/listing';
+	url += '/2/'+page;
+	if(document.getElementById("key_word") && document.getElementById("key_word").value != ''){
+		url += '/3/'+document.getElementById("key_word").value;
+	}
+	if(document.getElementById("status_order") && document.getElementById("status_order").value != ''){
+		url += '/4/'+document.getElementById("status_order").value;	
+	}
+	if(document.getElementById("month") && document.getElementById("month").value != ''){
+		url += '/5/'+document.getElementById("month").value;	
+	}
+	if(document.getElementById("years") && document.getElementById("years").value != ''){
+		url += '/6/'+document.getElementById("years").value;	
+	}
+	if(colum != null){
+		url += '/7/'+colum;
+	}
+	if(sort_list != null){
+		url += '/8/'+sort_list;
+	}
+	return url;
+}
+function export_excel(){
+	
+}
+function pageObject(page,colum,sort_list){
+	window.location = returnURL(page,colum,sort_list);
+	return false;
+}
+function filtList_order_admin(colum, page, maxlength){
+	var url = returnURL(page);
+	
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 0;
+	}else{
+		if(sort_list == 0){
+			sort_list = 1;
+		}
+		else{
+			sort_list = 0;
+		}
+	}
+	url += '/7/'+columeb+'/8/'+sort_list;
+	window.location = url;
+	return false;
+}
+function loadObjectOrder(){
+	{if('load_order'=='yes');}
+	{if('load_sort_list'=='yes');}
+	{if('load_columeb'=='yes');}
+	if(sort_list == 0)
+		header_last[columeb] = header_first[columeb]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	else if(sort_list == 1) 
+		header_last[columeb] = header_first[columeb]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+
+	data_order = data_obj.data;
+	roleID = data_obj.rid;
+	var max_length = data_obj.maxlength;
+	var page = data_obj.page;
+	loadOrderList(page, max_length,columeb,sort_list);	
+}
+function loadOrderList(page, maxlength,colum,sort_list){
+	
+	if(page == 0 || page == null) page = 1;
+	var str_content = '';
+	var length_data = data_order.length;
+	var total_row = 20;
+	
+	str_content += '<table class="v3">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(0,'+page+','+maxlength+')">'+header_last[0]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;">'+header_last[1]+'</th>';
+	str_content += '			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_order_admin(2,'+page+','+maxlength+')">'+header_last[2]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[3]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[4]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[5]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[6]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[7]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[8]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[9]+'</th>';
+	str_content += '			<th align="right" valign="middle" class="th-per">'+header_last[10]+'</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	if(length_data > 0){
+		str_content += '	<tbody>';
+		for(var i = 0; i < length_data; i++){
+			var obj = data_order[i];
+			var color = '';
+			if(obj.status == 4) color = 'color:#F00';
+			str_content += '		<tr class="tr-row" id="'+obj.okey+'">';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.okey+'</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.status_format+'</td>';
+			str_content += '			<td align="left" valign="middle" class="td-row">'+obj.order_date+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">$'+formatAsMoney(obj.order_total)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row">$'+formatAsMoney(0)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row" >$'+formatAsMoney(obj.vendor)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row" >$'+formatAsMoney(obj.member)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row" >$'+formatAsMoney(obj.employee)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row" >$'+formatAsMoney(obj.charities_commission)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row" >$'+formatAsMoney(obj.merchant_cost)+'</td>';
+			str_content += '			<td align="right" valign="middle" class="td-row" >$'+formatAsMoney(obj.grossfit)+'</td>';
+			str_content += '		</tr>';
+		}
+		str_content += '</tbody>';
+	}
+	str_content += '</table>';
+	if(IsNumeric(colum) && IsNumeric(sort_list)){
+		pagerAjax_1(total_row, maxlength, page, 'pageObject', ['pager'], colum, sort_list);
+	}else
+		pagerAjax(total_row, maxlength, page, 'pageObject', ['pager']);
+	$("#order_history_list").empty().append(str_content);
+//	$('.table-per').fixedtableheader();
+}
+function pagerSim(page,num_pe_page,total_row,url,pager_name){
+	var st = '';
+	if(page > 1){
+		var page_select = page - 1;
+		var new_url = url+'&page='+page_select;
+		st += '<a href="'+new_url+'">Previous</a>';	
+	}else{
+		st += 'Previous';	
+	}
+	st += '&nbsp;&nbsp;|&nbsp;&nbsp;';
+	if(total_row > num_pe_page){
+		var page_select = page + 1;
+		var new_url = url+'&page='+page_select;
+		st += '<a href="'+new_url+'">Next</a>';
+	}else{
+		st += 'Next';	
+	}
+	for(var i = 0; i < pager_name.length; i++){
+		$("#"+pager_name[i]).empty().append(st);
+	} 	
+}
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function nextYear(){
+	year_selected += 1;
+	loadDataChart();
+}
+function previousYear(){
+	year_selected -= 1;
+	loadDataChart();
+}
+var year_selected = 0;
+var month_current = 0;
+var year_current = 0;
+{if('load_month_current'=='yes');}	//month_current
+{if('load_year_current'=='yes');}	//year_current
+
+function loadSelectedByValue(select_by_value){
+	var str = '';
+	if(year_selected > 0){
+		var arrow_left = '<img src="../images/arrow-left.png" border="0" style="cursor:pointer" onclick="previousYear()" />';
+		var arrow_right = '<img src="../images/arrow-right.png" border="0" />';
+		if(year_selected < year_current){
+			arrow_right = '<img src="../images/arrow-right.png" border="0" style="cursor:pointer" onclick="nextYear()" />';
+		}
+		if(select_by_value == 0){
+			str += '<table cellpadding="0" cellspacing="0" border="0">';
+			str += '<tr>';
+			str += '<td align="left" valign="middle" style="font-weight:bold; padding-right:12px">Year '+year_selected+'</td>';
+			str += '<td align="left" valign="middle" style="padding-right:2px">'+arrow_left+'</td>';
+			str += '<td align="left" valign="middle">'+arrow_right+'</td>';
+			str += '</tr>';
+			str += '</table>';
+		}else if(select_by_value == 1){
+			str += '<table cellpadding="0" cellspacing="0" border="0">';
+			str += '<tr>';
+			str += '<td align="left" valign="middle" style="font-weight:bold; padding-right:12px">From '+(year_selected-11)+' To '+year_selected+'</td>';
+			str += '<td align="left" valign="middle" style="padding-right:2px">'+arrow_left+'</td>';
+			str += '<td align="left" valign="middle">'+arrow_right+'</td>';
+			str += '</tr>';
+			str += '</table>';
+		}
+	}
+	$("#selected_by_value").empty().append(str);
+}
+var dataChart = [];
+function loadDataChart(){
+	dataChart = [];
+	if(year_selected == 0){
+		year_selected = year_current;
+	}
+	var selected_by = $("#selected_by").val();
+	if(year_selected > 0){
+		loadSelectedByValue(selected_by);
+		$("#sales_chart,#summary_table").empty().append('<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center" valign="middle" height="180px">Loading...</td></tr></table>');
+		$.post("index.php/report/finalreport/dataChart",{
+			loadChart:'yes',
+			year:year_selected,
+			type:selected_by
+		},function(data){
+			if(typeof(data) == 'object')
+				dataChart = data.dataChart;
+				show_chart(selected_by);
+		},'json');
+	}
+	return false;	
+}
+var year_selected = 0;
+function show_chart(selected_by){
+	var month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+	var arr_data_chart = [];
+	var str_summary = '';
+	var str = '';
+	if(selected_by == 0){
+		for(var i = 1; i < 13; i++){
+			var obj = new Object();
+			obj.year = year_selected;
+			obj.month = i;
+			obj.total = 0;
+			obj.charities_commission = 0;
+			obj.vendor = 0;
+			obj.employee = 0;
+			obj.merchant_cost = 0;
+			obj.member = 0;
+			obj.grossfit = 0;
+			arr_data_chart[arr_data_chart.length] = obj;
+		}
+		var total_sumarry = new Object();
+		total_sumarry.total = 0;
+		total_sumarry.charities_commission = 0;
+		total_sumarry.vendor = 0;
+		total_sumarry.employee = 0;
+		total_sumarry.merchant_cost = 0;
+		total_sumarry.member = 0;
+		total_sumarry.grossfit = 0;
+		
+		for(var i = 0; i < dataChart.length; i++){
+			for(var j = 0; j < arr_data_chart.length; j++){
+				if(arr_data_chart[j].month == dataChart[i].month){
+					arr_data_chart[j] = dataChart[i];
+					break;
+				}
+			}
+			total_sumarry.total += dataChart[i].total;
+			total_sumarry.charities_commission += dataChart[i].charities_commission;
+			total_sumarry.vendor += dataChart[i].vendor;
+			total_sumarry.employee += dataChart[i].employee;
+			total_sumarry.merchant_cost += dataChart[i].merchant_cost;
+			total_sumarry.member += dataChart[i].member;
+			total_sumarry.grossfit += dataChart[i].grossfit;
+		}
+		str_summary += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per" style="border:1px solid #D3D3D3">';
+		str_summary += '	<thead>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" colspan="2" style="font-weight:bold" align="center">Summary</td>';
+		str_summary += '	</tr>';
+		str_summary += '	</thead>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="min-width:150px; border-right:1px solid #D3D3D3; font-weight:bold">Total</td>';
+		str_summary += '		<td class="td-row" style="min-width:80px" align="right">$'+formatAsMoney(total_sumarry.total)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Vendor</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.vendor)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Member</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.member)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Employee</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.employee)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Charities Commission</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.charities_commission)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Credit Merchant Cost</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.merchant_cost)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Gross Profit</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.grossfit)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '</table>';
+		
+		str += '<table width="100%" class="table-per" style="border:1px solid #D3D3D3; border-bottom:none">';
+		str += '	<thead>';
+		str += '		<tr><td class="td-row" style="border-right:1px solid #D3D3D3">&nbsp;</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; font-weight:bold; border-right:1px solid #D3D3D3" align="center" valign="middle" class="td-row">'+month_name[i]+'</td>';
+		}
+		str += '		</tr>';
+		str += '	</thead>';
+		str += '	<tbody>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Total</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].total)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Vendor</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].vendor)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Member</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].member)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Employee</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].employee)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Charities Commission</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].charities_commission)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Credit Merchant Cost</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].merchant_cost)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold; border-bottom:none !important">Gross Profit</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; border-bottom:none !important" align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].grossfit)+'</td>';
+		}
+		str += '		</tr>';
+		
+		str += '	</tbody>';
+		str += '</table>';
+		str += '<table width="100%" class="table-per" style="border:1px solid #D3D3D3">';
+		str += '	<thead>';
+		str += '		<tr><td class="td-row" style="border-right:1px solid #D3D3D3">&nbsp;</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; font-weight:bold; border-right:1px solid #D3D3D3" align="center" valign="middle" class="td-row">'+month_name[i]+'</td>';
+		}
+		str += '		</tr>';
+		str += '	</thead>';
+		str += '	<tbody>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Total</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].total)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Vendor</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].vendor)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Member</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].member)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Employee</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].employee)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Charities Commission</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].charities_commission)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Credit Merchant Cost</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].merchant_cost)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Gross Profit</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].grossfit)+'</td>';
+		}
+		str += '		</tr>';
+		
+		str += '	</tbody>';
+		str += '</table>';
+	}else if(selected_by == 1){
+		for(var i = 0; i < 12; i++){
+			var obj = new Object();
+			obj.year = year_selected - i;
+			obj.total = 0;
+			obj.charities_commission = 0;
+			obj.vendor = 0;
+			obj.employee = 0;
+			obj.merchant_cost = 0;
+			obj.member = 0;
+			obj.grossfit = 0;
+			arr_data_chart[arr_data_chart.length] = obj;
+		}
+		var total_sumarry = new Object();
+		total_sumarry.total = 0;
+		total_sumarry.charities_commission = 0;
+		total_sumarry.vendor = 0;
+		total_sumarry.employee = 0;
+		total_sumarry.merchant_cost = 0;
+		total_sumarry.member = 0;
+		total_sumarry.grossfit = 0;
+		
+		for(var i = 0; i < dataChart.length; i++){
+			for(var j = 0; j < arr_data_chart.length; j++){
+				if(arr_data_chart[j].year == dataChart[i].year){
+					arr_data_chart[j].total += dataChart[i].total;
+					arr_data_chart[j].charities_commission += dataChart[i].charities_commission;
+					arr_data_chart[j].vendor += dataChart[i].vendor;
+					arr_data_chart[j].employee += dataChart[i].employee;
+					arr_data_chart[j].merchant_cost += dataChart[i].merchant_cost;
+					arr_data_chart[j].member += dataChart[i].member;
+					arr_data_chart[j].grossfit += dataChart[i].grossfit;
+				}
+			}
+			total_sumarry.total += dataChart[i].total;
+			total_sumarry.charities_commission += dataChart[i].charities_commission;
+			total_sumarry.vendor += dataChart[i].vendor;
+			total_sumarry.employee += dataChart[i].employee;
+			total_sumarry.merchant_cost += dataChart[i].merchant_cost;
+			total_sumarry.member += dataChart[i].member;
+			total_sumarry.grossfit += dataChart[i].grossfit;
+		}	
+		str_summary += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table-per" style="border:1px solid #D3D3D3">';
+		str_summary += '	<thead>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" colspan="2" style="font-weight:bold" align="center">Summary</td>';
+		str_summary += '	</tr>';
+		str_summary += '	</thead>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Total</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.total)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Vendor</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.vendor)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Member</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.member)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Employee</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.employee)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Charities Commission</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.charities_commission)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Credit Merchant Cost</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.merchant_cost)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '	<tr>';
+		str_summary += '		<td class="td-row" style="border-right:1px solid #D3D3D3; font-weight:bold">Gross Profit</td>';
+		str_summary += '		<td class="td-row" align="right">$'+formatAsMoney(total_sumarry.grossfit)+'</td>';
+		str_summary += '	</tr>';
+		str_summary += '</table>';
+		
+		str += '<table width="100%" class="table-per" style="border:1px solid #D3D3D3; border-bottom:none">';
+		str += '	<thead>';
+		str += '		<tr><td class="td-row" style="border-right:1px solid #D3D3D3">&nbsp;</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; font-weight:bold; border-right:1px solid #D3D3D3" align="center" valign="middle" class="td-row">'+arr_data_chart[i].year+'</td>';
+		}
+		str += '		</tr>';
+		str += '	</thead>';
+		str += '	<tbody>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Total</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].total)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Vendor</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].vendor)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Member</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].member)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Employee</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].employee)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Charities Commission</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].charities_commission)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Credit Merchant Cost</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].merchant_cost)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold; border-bottom:none !important">Gross Profit</td>';
+		for(var i = 0; i < 6; i++){
+			str += '		<td style="width:14%; border-bottom:none !important" align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].grossfit)+'</td>';
+		}
+		str += '		</tr>';
+		
+		str += '	</tbody>';
+		str += '</table>';
+		str += '<table width="100%" class="table-per" style="border:1px solid #D3D3D3">';
+		str += '	<thead>';
+		str += '		<tr><td class="td-row" style="border-right:1px solid #D3D3D3">&nbsp;</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; font-weight:bold; border-right:1px solid #D3D3D3" align="center" valign="middle" class="td-row">'+arr_data_chart[i].year+'</td>';
+		}
+		str += '		</tr>';
+		str += '	</thead>';
+		str += '	<tbody>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Total</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].total)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Vendor</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].vendor)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Member</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].member)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Employee</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].employee)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Charities Commission</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].charities_commission)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Credit Merchant Cost</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].merchant_cost)+'</td>';
+		}
+		str += '		</tr>';
+		str += '		<tr><td class="td-row" style="font-weight:bold">Gross Profit</td>';
+		for(var i = 6; i < 12; i++){
+			str += '		<td style="width:14%; " align="center" valign="middle" class="td-row">$'+formatAsMoney(arr_data_chart[i].grossfit)+'</td>';
+		}
+		str += '		</tr>';
+		
+		str += '	</tbody>';
+		str += '</table>';
+	}
+	
+	$("#sales_chart").empty().append(str);
+	$("#summary_table").empty().append(str_summary);
+}
+$(function() {  
+	clearForms(); 
+	loadDataChart();   
+	loadObjectOrder();
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+</script>

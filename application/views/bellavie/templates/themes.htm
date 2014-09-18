@@ -1,0 +1,38 @@
+<form method="post">
+<div class="box_solar">
+<div style="clear:both; width:100%;" align="left" id="themes_listings">
+	{themes}
+    <div style="clear:both; padding-top:20px">
+		<input type="hidden" value="{id}"  />
+    	<span style="float:left; width:310px"> <img src="application/views/{title}/_temp_.jpg" border="0" /> </span>
+        <span style="float:left"> <input type="radio" name="theme_[]" value="{title}" {checked} class="input-checkbox" /> </span>
+        <span style="float:left; padding-left:5px; text-transform:capitalize;"><b>{title}</b></span>
+    </div>
+    {/themes}
+</div>
+<div style="clear:both; width:100%; padding-top:20px; margin-bottom:5px">
+	<input type="button" class="btn btn-primary" value="Save Change" name="Save" onclick="saveTheme()" />
+</div>
+</form>
+</div>
+<script type="text/javascript">
+
+function saveTheme(){
+	var id = $("input[name='theme_[]']:checked").parent(this).parent(this).find("input[type='hidden']").val();
+	$.post('index.php/admin/appearance/savetheme', {
+		save: 'yes',
+		id: id,
+		title: $("input[name='theme_[]']:checked").val(),
+	}, function(data){
+		if(data) { alert(success_saved); window.location = 'index.php/admin/appearance'; return false; }
+		else { alert(fail_saved); return false; }
+	});
+}
+
+function getImage(){
+	var img = '';
+	img = $("input[name='theme_[]']:checked").parent(this).parent(this).find('img').attr('src');
+	img = img.substring(img.lastIndexOf('/') + 1);
+	return img;
+}
+</script>

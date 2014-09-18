@@ -1,0 +1,242 @@
+<style>
+table.v3 {
+	color:#333333 !important;
+	border-width: 1px !important;
+	border-color: #DDD !important;
+	border-collapse: collapse !important;
+	width: 100%;
+}
+table.v3 th {
+	border-width: 1px !important;
+	padding: 8px !important;
+	border-style: solid !important;
+	border-color: #DDD !important;
+	background-color: #eee !important;
+}
+table.v3 td {
+	border-width: 1px !important;
+	padding: 8px !important;
+	border-style: solid !important;
+	border-color: #DDD !important;
+	background-color: #ffffff !important;
+}
+</style>
+<script language="javascript">
+var data_clients = [];
+var header_first 	= ['Name', 'Code'];
+var header_last 	= ['Name', 'Code'];
+var columeb = null;
+var sort_list = '';
+var pager_number = 1;
+var clients_select = 0;
+function reset_headerAdminClient(){
+	for(var i = 0; i < header_last.length; i++){
+		header_last[i] = header_first[i];
+	}
+}//end function reset_headerAdminClient
+
+function filtList_adminclient(colum){
+	// Xac dinh Sort type
+	reset_headerAdminClient();
+	if(colum != columeb){
+		columeb = colum;
+		sort_list = 'asc';
+		header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+	}else{
+		if(sort_list == 'desc'){
+			sort_list = 'asc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-asc.png" border="0" align="absmiddle"/>';
+		}
+		else if(sort_list == 'asc'){
+			sort_list = 'desc';
+			header_last[colum] = header_first[colum]+'&nbsp;<img src="../images/arrow-desc.png" border="0" align="absmiddle"/>';
+		}
+	}
+	var row_sort = data_clients.length;
+
+	if(row_sort > 0){
+		var min_index = 0;
+		var max_index = row_sort;		
+	
+		if(colum == 0){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name < data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(data_clients[i].name > data_clients[j].name){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}	
+		}else if(colum == 1){
+			if(sort_list == 'desc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].code) < parseFloat(data_clients[j].code)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}else if(sort_list == 'asc'){
+				for(var i = min_index; i < max_index-1; i++){
+					for(var j = i+1; j < max_index; j++){
+						if(parseFloat(data_clients[i].code) > parseFloat(data_clients[j].code)){
+							var tam = data_clients[i];
+							data_clients[i] = data_clients[j];
+							data_clients[j] = tam;
+						}
+					}		
+				}
+			}			
+		}
+	}
+	loadClients();
+}//end function filtList_adminclient
+
+//function delete_Client(key){
+//	if(confirm('Delete this state?')){
+//	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+//	var url = 'index.php/admin/countries/states/'+key+'/list';
+//	$.ajax({
+//		url: url,
+//		type: 'POST',
+//		data: {preDelete: 'yes'},
+//		cache: false,
+//		success: function(message){
+//			$("#content_popup").append(message);
+//			HideLoadingObj(document.getElementById("content_popup"));
+//			return false;
+//		}
+//	});
+//	return false;
+//	}
+//}//end function delete_Client
+
+function delete_Client(key){
+	if(confirm('Delete this state?')){
+	ShowLoadingObj({obj:document.getElementById("content_popup"), image:"Loader-FloGradient16x16x.gif"});
+	var ckey = document.getElementById("ckey").value;
+	var url = 'index.php/admin/countries/states/'+ckey+'/list';
+	$.post(url, {
+		deleteState:'yes',
+		skey: key
+	},function(data){
+		alert(success_delete);
+		closeBox('box_popup');
+		data_clients = [];
+		HideLoadingObj(document.getElementById("content_popup"));
+		if(typeof(data) == 'object'){
+			data_clients = data;
+		}
+		clients_select = 0;
+		loadClients();
+	}, "json");
+	}
+}//end function delete_key
+
+function loadClients(){
+	var str_content = '';
+	var length_data = data_clients.length;
+	if(length_data > 0){
+		for(var i = 0; i < length_data; i++){
+			var obj = data_clients[i];
+			var button = '';
+			button += '<a href="index.php/admin/countries/states/'+obj.id+'/edit" >Edit</a>';
+			if(button != ''){
+				button += '&nbsp;&nbsp;/&nbsp;&nbsp;';	
+			}
+			button += '<a href="javascript:void(0)" style="color:#ff0000" onclick="delete_Client(\''+obj.id+'\')">x</a>';
+			str_content += '		<tr class="tr-row" id="'+obj.okey+'">';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.name+'</td>';
+			str_content += '			<td align="left" valign="top" class="td-row">'+obj.code+'</td>';
+			str_content += '			<td align="right" valign="top" class="td-row">'+button+'</td>';
+			str_content += '		</tr>';
+		}
+	}
+	$("#statesContent").empty().append(str_content);
+	$("tbody").sortable({
+			handle: '.draggable',
+			update: function(e, ui){
+				
+				var image_thumb_children = $("tbody").children();
+				var dataImgProduct_tam = data_clients;
+				data_clients = [];
+				for(var j = 0; j < image_thumb_children.length; j++){
+					for(var k = 0; k < dataImgProduct_tam.length; k++){
+						if(dataImgProduct_tam[k].okey == image_thumb_children[j].id){
+							data_clients[data_clients.length] = dataImgProduct_tam[k];	
+							break;	
+						}	
+					}
+				}
+			}
+		}
+	);
+	$("tbody").disableSelection();
+}//end function loadClients
+
+function _loadObject_(){
+	data_clients = [];
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	var ckey=document.getElementById("ckey").value;
+	$postUrl = "index.php/admin/countries/states/"+ckey+"/list";
+	$.post($postUrl,{loadStates:'yes'},function(data)
+		{
+			HideLoadingObj(document.getElementById("content_load"));
+			if(typeof(data) == 'object'){
+				data_clients = data;
+			}
+			loadClients();
+		}, "json");
+	return false;
+	return false;
+}//end function _loadObject_
+$(function() {
+	_loadObject_(); 
+	$( "#box_popup" ).draggable({ handle: ".modal-hd" });
+	if(document.getElementById("closebox")){
+		document.getElementById("closebox").onclick = function(event){
+			closeBox("box_popup");
+		}	
+	} 
+});
+</script>
+<div class="box_solar">
+    <div style="clear:both; padding-bottom:20px; width:100%; overflow:hidden">  
+        <a class="btn btn-primary" href="index.php/admin/countries/states/{key}/add">+Add States</a>           
+    </div>
+    <div style="clear:both; text-align:center; overflow:hidden; width:100%" id="clients_list">
+    	<table class="v3">
+        	<thead>
+        		<tr>	
+        			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(0)">Name</th>
+        			<th align="left" valign="middle" class="th-per" style="cursor:pointer;" onclick="filtList_adminclient(1)">Code</th>
+        			<th align="left" valign="middle" class="th-per">&nbsp;</th>
+        		</tr>
+        	</thead>
+          	<tbody id="statesContent"></tbody>
+        </table>
+    </div>
+    <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+	<input type="hidden" id="ckey" name="ckey" value="{key}" />
+    <input style="float:right; margin-top:10px" type="button" onclick="history.go(-1);" class="btn" value="Back">
+</div>

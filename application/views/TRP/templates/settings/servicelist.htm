@@ -1,0 +1,305 @@
+<form class="form-horizontal remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+  
+            <div class="form-group">
+                <label for="add_user" class="control-label col-md-3"></label>            
+                <div class="col-md-9">
+                    <input type="button" value="Add Service"  id="add_new_service"  class="btn btn-success ui-wizard-content ui-formwizard-button" style="float:right">                      
+                </div>
+            </div>
+
+            <div class="form-group form-actions">
+                <div class="col-md-10 col-md-offset-2">
+
+                    <div id="modal_success" class="modal slide">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+    
+        <table class="table table-bordered" id="list_services">
+
+       </table>
+</form>
+<div id="modal_addservice" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Service</h4>
+            </div>
+            <div class="modal-body">
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                    
+                    <div class="form-box-content">
+                      
+                        <div style="display: block;" id="advanced-first" class="step ui-formwizard-content">  
+                
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="example-advanced-efin"></label>  
+                                <div class="col-md-4 choose_file">
+                                    <ul class="thumbnails clearfix">
+                                        <li>
+                                            <a href="javascript:void(0)" id="tmp_logo" name="name" style="width:160px;height:120px;overflow: hidden;" class="thumbnail"><img src="../backend/img/placeholders/image_light_160x120.png"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="example-advanced-efin"></label>  
+                                <div class="col-md-4 choose_file">         
+                                    <button value="" id="upload_service" name="upload" class="btn btn-success col-md-12 " type="submit" style="z-index: 0;">Upload Logo</button>
+                                    <!--<input type="file" class="form-control" name="example-file" id="example-file">-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="name_service">Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="name_service" name="example-advanced-name_service" value="" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="Cost">Cost</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="Cost" name="example-advanced-parent-Cost" value="" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="sb_saleprice">SB sales price</label>
+                                <div class="col-md-6">
+                                    <input type="text" value="" id="sb_saleprice" name="example-advanced-sb_saleprice" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="ero_saleprice">ERO sales price</label>
+                                <div class="col-md-6">
+                                    <input type="text" value="" id="ero_saleprice" name="example-advanced-ero_saleprice" class="form-control ui-wizard-content">
+                                </div>
+                            </div>
+                
+                            <div class="form-group form-actions div_group">
+                                <div class="col-md-10 col-md-offset-2">
+                
+                                    <div class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                    <h4 class="modal-title">Warning</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Save successfully.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="form-group form-actions button_group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <button data-target=".bs-modal-sm" data-toggle="modal" type="submit" id="save_service" class="btn btn-success"><i class="icon-ok"></i> Save</button>
+                                            <button type="button" class="btn btn-danger btn-cancel"><i class="icon-repeat"></i> Cancel</button>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                			<input type="hidden" id="s_id" value=""/>
+                        </div>			
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+	var dataService = [];
+	var arr_img = ['jpg','JPG','jpeg','JPEG','gif','GIF','png','PNG'];
+	var objGallery = [];
+	var fileID = '';
+	var extention = '';
+	var uploadImgProduct_s;
+    var heads = ["#","Service Name","Cost","SB sales price","ERO sales price","Actions"];
+	var url = 'index.php/admin/mycompany';
+	function loadObjectServices() {
+		{dataLoad}
+        loadServices();
+	}
+
+	function loadServices() {
+            var htm = ''; 
+            htm +='<thead>';
+			htm +='<tr>';
+			htm +='<th class="text-center">'+heads[0]+'</th>';
+			htm +='<th class="hidden-xs hidden-sm">'+heads[1]+'</th>';
+			htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+			htm +='<th class="hidden-xs hidden-sm">'+ heads[3]+'</th>';
+			htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+			htm +='<th class="cell-small text-center"><i class="icon-bolt"></i> '+heads[5]+'</th>';
+			htm +='</tr>';
+            htm +='</thead>';
+            htm +='<tbody>';
+            for(var i = 0 ; i < dataService.length ; i++){
+				var obj = dataService[i];
+				 htm +='<tr>';
+				 htm +='<td class="cell-small text-center">'+(i+1)+'</td>';
+				 htm +='<td class="cell-small text-center">'+obj.name+'</td>';
+				 htm +='<td>$'+obj.cost +'</td>';
+				 htm +='<td>$'+obj.sb_saleprice+'</td>';
+				 htm +='<td class="hidden-xs hidden-sm">$'+obj.ero_saleprice+'</td>';
+				
+				 htm +='<td class="text-center">';
+				htm +='<div class="btn-group">';
+				htm += '<a class="btn btn-xs btn-success edit_user" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Edit" id="edit_service_'+obj.id+'" onclick="editService('+obj.id+')" value=""><i class="icon-pencil"></i></a>';
+				htm += '<a class="btn btn-xs btn-danger" rel="tooltip" title="Delete" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Delete" id="deleteService" onclick="deleteService('+obj.id+')" ><i class="icon-remove"></i></a>';
+				htm += '</div>';
+                htm += '</td>'
+                   
+                htm +='</tr>';
+            }
+           htm +=' </tbody>';
+            $("#list_services").empty().append(htm);
+			return false;
+	}
+        
+        function deleteService(s_id){ 
+			if(confirm('Delete this service?')){
+				$.post("index.php/admin/settings/deleteService", {
+						delete : 'yes',
+						s_id : s_id
+				}, function(data) {
+						if (typeof(data) == 'object') {
+							dataService = data;      
+						}
+						loadServices();
+				}, "json");            
+				return false;
+			}
+        }
+        function editService(s_id){
+			for(var j = 0 ; j < dataService.length;  j++){
+				var obj_edit = dataService[j];
+				if(parseInt(s_id) == parseInt(obj_edit.id)){
+					$("#name_service").val(obj_edit.name);
+					$("#Cost").val(obj_edit.cost);
+					$("#sb_saleprice").val(obj_edit.sb_saleprice);
+					$("#ero_saleprice").val(obj_edit.ero_saleprice);
+					$("#s_id").val(obj_edit.id);
+					if(obj_edit.logo != '' && obj_edit.logo != '.')
+						$("#tmp_logo").empty().append(obj_edit.logo);
+					else{ 
+						var img_str = '<img src="../backend/img/placeholders/image_light_160x120.png">';
+						$("#tmp_logo").empty().append(img_str);
+					}
+					break;
+				}
+			}
+             $("#modal_addservice").modal('show');       
+           
+        }
+   
+        function getScriptBoostrapService(){
+            $("[rel='tooltip']").tooltip();
+            $("#add_new_service").click(function(){
+				$("#name_service").val('');
+				$("#upload_service").val();
+				$("#Cost").val('');
+				$("#sb_saleprice").val('');
+				$("#ero_saleprice").val('');
+				$("#s_id").val('');
+				$("#modal_addservice").modal('show');	
+			});
+			$(".btn-cancel").click(function(){
+				$("#modal_addservice").modal('hide');
+			});
+    }
+       
+
+
+
+function save_service() {
+	$("#save_service").click(function() {
+		$.post("index.php/admin/settings/saveService", {
+			save_service : 'yes',
+			s_id : $("#s_id").val(),
+            name : $("#name_service").val(),
+			cost : $("#Cost").val(),
+			sb_saleprice : $("#sb_saleprice").val(),
+			ero_saleprice : $("#ero_saleprice").val(),
+            file_id: fileID,
+            ext:extention
+                 
+		}, function(data) {
+			if(typeof(data) == 'object'){
+				$("#modal_addservice").modal('hide');
+				dataService = data;
+				loadServices();
+			}
+		}, "json");
+
+		return false;
+	});
+}
+
+function uploadGallery_s(){
+        uploadImgProduct_s = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_service',
+            max_file_size : '80mb',
+            url : 'plupload/server/uploadLogo.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+            ]
+        });
+        uploadImgProduct_s.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct_s.start();
+            }, 50);
+        });
+       
+        uploadImgProduct_s.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                $("#tmp_logo").empty();
+                objGallery = obj;
+                fileID = obj.file_id;
+                extention = obj.ext;
+                show_signature_s();   
+            }
+        }, 'json');
+        uploadImgProduct_s.init();
+    }
+    function CancelUploadProduct_s(){	
+        uploadImgProduct_s.stop(); 
+    }
+    function show_signature_s(){
+        var newImg = document.createElement('img');
+        document.getElementById("tmp_logo").appendChild(newImg);
+        newImg.width = objGallery.width;
+        newImg.height = objGallery.height;
+        newImg.src = "plupload/thumb.php?id="+objGallery.file_id;  
+    }
+   
+$(function(){
+		loadObjectServices();
+		getScriptBoostrapService();
+        save_service();
+        uploadGallery_s();
+});
+
+
+</script>

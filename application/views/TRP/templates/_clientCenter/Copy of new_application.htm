@@ -1,0 +1,1143 @@
+<style>
+
+ul li {
+    list-style: none outside none;
+}
+
+.nav-tabs > li > a
+{
+	width:168px;
+}
+
+p{
+	margin:0px;
+}
+
+.table thead > tr > th{
+	background: none !important;
+}
+.stepy-tab {
+    text-align: center;
+	margin-bottom: 28px;
+}
+
+.stepy-tab ul {
+    display: inline-block;
+}
+
+.stepy-tab ul li {
+    float: left;
+}
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+    float: left;
+    margin: 10px 15px;
+}
+
+.stepy-titles li.current-step div {
+    background: none repeat scroll 0 0 #A9D86E;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: auto;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li div {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 300;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+}
+
+.stepy-titles li span {
+    display: block;
+}
+
+.prodcut_list {
+    overflow: hidden;
+}
+
+.product_list_cell {
+    /*float: left;
+    margin: 0 10px 90px 0px;
+    padding: 10px 15px 50px;*/
+    position: relative;
+    /*width: 250px;*/
+}
+
+.product_list_cell p{
+	margin: 0px;
+}
+.product_list_cell .prodcut_img {
+    height: 225px;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.product_list_cell .price {
+    font-size: 80px;
+	font-weight: bold;
+	text-align: center;
+	color:#0097CF;
+	line-height:normal;
+}
+
+.product_list_cell .price > span {
+    font-size: 45px;
+	line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+	top:-20px;
+	left:21px;
+}
+
+
+.product_list_cell .price > small{
+    font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	color:#333;
+	line-height: 0;
+    position: relative;
+	left:-10px;
+}
+
+
+.product_list_cell .prodcut_img img {
+    max-height: 235px;
+    max-width: 235px;
+}
+
+.item_img{
+	max-height: 70px;
+    max-width: 70px;
+}
+
+.ptitle {
+    font-size: 25px;
+    height: 35px;
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+	color:#000;
+	font-weight: bold;
+}
+
+.product_list_cell .pshort_des {
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+	margin: 0px 0px 15px 0px;
+    text-align: center;
+}
+
+.product_list_cell .button_add{
+	text-align: center;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    
+   /* padding-left: 10px;*/
+    
+}
+
+.form-box-header {
+    padding: 15px 0 10px;
+	color:#0097CF;
+	border-bottom: 1px dotted #ddd;
+}
+
+.cart{
+	box-shadow:1px 1px 2px #CCCCCC;
+}
+.cart_details{border-bottom:1px dashed #333;
+padding:14px 0px;
+background:#EEEEEE; box-shadow:1px 1px 2px #CCCCCC;}
+.item_img1{
+	margin-left: 10px;
+}
+.item_img1 img{
+	 max-height: 55px;
+     max-width: 55px;
+	border-radius : 47px;
+	float: left;
+	box-shadow:1px 1px 2px #CCCCCC;
+} 
+.item_detils{
+	float: left;
+	width:60%;
+	margin-left:19px;
+	padding-bottom:14px;
+	font-size: 14px;
+	font-weight: bold;
+} 
+.item_price{
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	width:20%;
+	text-align: right;
+}
+
+.cart_amount_details{
+	padding-top: 5px;
+}
+
+.sub_total_title{
+	width:70%;
+	float: left;
+}
+
+.sub_total{
+	width:30%;
+	float: left;
+}
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td{
+	vertical-align: middle;
+}
+.clear{
+	clear: both;
+}
+</style>
+  <h3 class="form-box-header">
+        <i class="icon-info-sign"></i> Client Center
+    </h3>  
+ <ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#applicant_info" >APPLICANT INFO</a></li>
+    <li class=""><a href="#additional_services"  >ADDITIONAL SERVICES</a></li>
+    <li class=""><a href="#review_and_banking_details" >REVIEW</a></li>
+</ul> 
+      
+ <div class="tab-content tab-content-default" style="background-color:#efefef; padding-top:17px;">
+            
+
+            <div class="tab-pane active" id="applicant_info">
+          
+            {statusmessage}
+            	<form class="form-horizontal form-box remove-margin ui-formwizard"
+				      method="post" id="new-app-wizard" novalidate="novalidate" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+				    <!-- Form Header -->
+				  
+				    <!-- Form Content -->
+				    <div class="form-box-content" style="padding:0px;">
+				        <!-- First Step -->
+				        <div id="first" class="step">
+						         <div class="col-md-6" style="background-color:#fff; width:48%; margin:0px 0 5px 16px;" >
+						         <h4 class="form-box-header">
+							       Customer Info
+							    </h4>   
+						            <div class="form-group">
+						                
+						                <div class="col-md-6">
+						                	<label for="first_name" class="control-label col-md-9">First Name</label>
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                </div>
+						                <div class="col-md-6">
+						               	 	<label for="last_name" class="control-label col-md-9">Last Name</label>
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                </div>
+						            </div>
+						           
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                </div>
+						                	<div class="col-md-6">
+						                		<label for="dob" class="control-label col-md-9">Birth Date</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="">
+						                	</div>
+						                
+						            </div>
+						           <!-- 
+						           <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="ss_number" class="control-label col-md-9"><input type="checkbox"   id="checker"> Add Spouse ?</label>
+							                </div>
+						            </div>
+						            
+						            <div id="dependent-box">
+							            <h4 class="form-box-header">
+								        <i class="glyphicon-girl"></i> Spouse's Info
+								    	</h4> 
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Spouse's First Name</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Spouse's Last Name</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="">
+							                	</div>
+							                
+							            </div>
+							            
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+							                	
+							                
+							            </div>
+						            </div>
+						            
+						            -->
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-12">
+						                	<label for="street_address" class="control-label col-md-12">Address 1</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                </div>
+						            </div>
+						            
+						             <div class="form-group">
+						                <div class="col-md-12">
+						                	<label for="street_address" class="control-label col-md-12">Address 2</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                </div>
+						            </div>
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-4">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                </div>
+						                
+						                <div class="col-md-4">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	<option>Check</option>
+						                    	<option>Debit Card</option>
+						                    </select>
+						                </div>
+						                
+						                <div class="col-md-4">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-6">
+						                	 <label for="payment_method" class="control-label col-md-12">Country</label>
+						                    <select class="form-control ui-wizard-content" name="payment_method" id="payment_method">
+						                    	<option></option>
+						                    	<option>Check</option>
+						                    	<option>Debit Card</option>
+						                    </select>
+						                </div>
+						                
+						                <div class="col-md-6">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+						                </div>
+						                
+						            </div>
+						            
+						            <div class="form-group">
+						                <div class="col-md-6">
+						                	<label for="cell_phone" class="control-label col-md-12">Email Address</label>
+						                    <input type="text" class="form-control ui-wizard-content"  name="cell_phone" id="cell_phone" value="">
+						                </div>
+						                
+						            </div>
+						            
+						</div>
+						<div class="col-md-6" style="margin-top:0px" >
+						
+						<div class="col-md-12" style="background-color:#fff; margin:0px 5px;" >
+						<h4 class="form-box-header">Customer Search</h4> 
+							<div class="form-group">
+				                <div class="col-md-12">
+					                <label for="cell_phone" class="control-label col-md-12">Customer Name</label>
+					                <div class="input-group">
+                                        <input type="text" placeholder="search.." class="form-control example-typeahead" id="example-input-typeahead">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default"><i class="icon-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+				            </div>
+				         </div>   
+				          <p>&nbsp;</p> 
+				        <div class="col-md-12" style="background-color:#fff; margin:0px 5px;" >    
+						<h4 class="form-box-header">Refund Information</h4> 
+							<div class="form-group">
+				                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Refund Amount </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" name="total_refund_amt_3" id="total_refund_amt_3" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Net Refund Amount </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" disabled="disabled" class="form-control text-right" readonly="readonly" value="" id="net_refund_amt_3" name="net_refund_amt_3">
+	                                        
+	                                </div>
+                                </div>
+				            </div>
+				            
+				            <div class="form-group">
+				                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Tax Preparation Fee </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text"  class="form-control text-right" id="tax_preparation_fee_3" name="tax_preparation_fee_3" value="{tax_preparation_fee}" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Bank Transmission Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="bank_transmission_fee_3" name="bank_transmission_fee_3" value="{bank_transmission_fee}" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+                                </div>
+                                
+                                
+				            </div>
+				            
+				            <div class="form-group">
+				            	<div class="col-md-4">
+					                <label for="cell_phone" class="control-label col-md-12">SB Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="sb_fee_3" name="sb_fee_3" value="{sb_fee}" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+                                </div>
+				                <div class="col-md-4">
+					                <label for="cell_phone" class="control-label col-md-12">E-file Fee </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="e_file_fee_3" name="e_file_fee_3" value="{e_file_fee}" onkeyup="calculateNetRefund();">
+	                                       
+	                                </div>
+                                </div>
+                                <div class="col-md-4">
+					                <label for="cell_phone" class="control-label col-md-12">Add On Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" name="add_on_fee_3" id="add_on_fee_3" value="{add_on_fee}" onkeyup="calculateNetRefund();">
+	                                       
+	                                </div>
+                                </div>
+				            </div>
+				           </div>
+				           <p>&nbsp;</p>
+				           <div class="col-md-12" style="background-color:#fff; margin:0px 5px;" > 
+				            <h4 class="form-box-header">Refund Disbursement Method </h4> 
+							<div class="form-group">
+				                <div class="col-md-12">
+					                
+                                    <div class="radio">
+                                        <label for="example-radio1">
+                                            <input type="radio" value="option1" name="example-radios" id="check" onclick="selectDisbursmentMethod('check');"> Check
+                                        </label>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="radio">
+                                        <label for="example-radio2">
+                                            <input type="radio" value="option2" name="example-radios" id="directDeposit" onclick="selectDisbursmentMethod('deposit');"> Direct Deposit
+                                        </label>
+                                    </div>
+                                    
+                                    <div id="direct_deposit-box"  style="display:none">
+							            <div class="form-group">
+							            		<div class="col-md-12">
+							            		<label for="ss_number" class="control-label col-md-12">Bank Name</label>
+								                
+								                	
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+							                	
+							                
+							            </div>
+							            
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Routing Number</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+								                
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Account Number</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="">
+							                	</div>
+							                
+							            </div>
+						            </div>
+						            
+                                    <div class="radio">
+                                        <label for="example-radio3">
+                                            <input type="radio" value="option3" name="example-radios" id="debitCard" onclick="selectDisbursmentMethod('card');"> Debit Card
+                                        </label>
+                                    </div>
+                                    
+                                    <div id="debit_card-box" style="display:none">
+							            <div class="form-group">
+							            	
+								                <div class="col-md-12">
+								                	<label for="ss_number" class="control-label col-md-12">Enter Card Number:</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+							                	
+							                
+							            </div>
+							            
+							            
+						            </div>
+						            
+                               
+                                </div>
+                                
+                                
+				            </div>
+				            
+				          </div>  
+						</div>
+						<div style="clear:both;"></div>
+						            <div class="form-group form-actions" style="margin-top:30px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-6 text-left">
+											 <input type="button" value="Cancel" id="back"
+						                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+						                </div>
+						                <div class="col-md-6 text-right">
+						                    <input type="button" value="Next" id="step1" class=" next_tab btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						            </div>
+						            </div>
+						        
+						    </div> 
+						   <!-- End Steps 1 -->  
+						   
+						   
+						  
+						 
+						  
+						         
+					</div>
+								<div id="modal_success2" class="modal slide">
+									                        <div class="modal-dialog">
+									                            <div class="modal-content">
+									                                <div class="modal-header">
+									                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									                                    <h4 class="modal-title">Message:</h4>
+									                                </div>
+									                                <div class="modal-body">
+									                                    <p>Submit successfully.</p>
+									                                </div>
+									                            </div>
+									                        </div>
+									                    </div>
+									                    
+       
+ 		
+				</form>	
+				<!--  END OF AMIN FORM -->
+				
+ 			</div>
+ 
+ 
+<div id="additional_services" class="tab-pane">
+
+ <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="new-app-wizard" novalidate="novalidate" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+	<div class="col-md-12" style="background-color:#fff; margin:0px 16px; width:97%" >    
+		<h4 class="form-box-header">Tax Services</h4>
+		
+		<table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                
+                                <th width="20%"></th>
+                                <th width="45%" class="hidden-xs hidden-sm"></th>
+                                <th width="15%" class="hidden-xs hidden-sm text-center"><i class="glyphicon-circle_question_mark"></i> 2012</th>
+                                <th width="10%" class="hidden-xs hidden-sm text-center">Fee</th>
+                                <th width="10%" class="cell-small text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img alt="" width="70px" src="../backend/img/audit_guard_icon.png"></td>
+                                <td class="hidden-xs hidden-sm">Protection Plus</td>
+                                <td class="hidden-xs hidden-sm text-center" style="color:#78CD51; font-size: 20px;"><i class="glyphicon-ok"></i></td>
+                                <td class="hidden-xs hidden-sm text-center">$10.00</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add">Add</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img alt="" width="70px" src="../backend/img/payDay-loan_icon.jpg"></td>
+                                <td class="hidden-xs hidden-sm">Payday Loans</td>
+                                <td class="hidden-xs hidden-sm"></td>
+                                <td class="hidden-xs hidden-sm text-center">$10.00</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn  btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add">Add</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table> 
+	</div>	
+	<p>&nbsp;</p>
+	<div class="col-md-12" style="background-color:#fff; margin:0px 16px; width:97%" >    
+		<h4 class="form-box-header">Additional Services</h4>
+		
+		<table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                
+                                <th width="20%"></th>
+                                <th width="45%" class="hidden-xs hidden-sm"></th>
+                                <th width="15%" class="hidden-xs hidden-sm text-center"><i class="glyphicon-circle_question_mark"></i> 2012</th>
+                                <th width="10%" class="hidden-xs hidden-sm text-center">Estimated</th>
+                                <th width="10%" class="cell-small text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                                <td><img alt="" width="70px" src="../backend/img/marvel_optics_icon.jpg"></td>
+                                <td class="hidden-xs hidden-sm">TBD</td>
+                                <td class="hidden-xs hidden-sm text-center"></td>
+                                <td class="hidden-xs hidden-sm text-center">$0.00</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn  btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Start">Start</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                             <tr>
+                                
+                                <td><img alt="" width="70px" src="../backend/img/marvel_optics_icon.jpg"></td>
+                                <td class="hidden-xs hidden-sm">TBD</td>
+                                <td class="hidden-xs hidden-sm text-center"></td>
+                                <td class="hidden-xs hidden-sm text-center">$0.00</td>
+                                <td class="text-center">
+                                <div class="input-group">
+                                <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"> Update <span class="caret"></span></button>
+                                            <ul class="dropdown-menu text-left">
+                                                <li><a href="javascript:void(0)"><i class="icon-edit"></i> Edit</a></li>
+                                                <li><a href="javascript:void(0)"><i class="icon-remove"></i> Remove</a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+		
+	</div> 				        
+						       
+						            
+						            
+						            <input type="hidden" name="inputSeletecItems" id="inputSeletecItems" >
+						            
+						           
+						            
+						            
+						            <div class="form-group form-actions" style="border: 0px;">
+						            <div class="col-md-12 text-left">
+						                <div class="col-md-4 text-left">
+											 <input type="button" value="Back" id="back2"
+						                           class="previous_tab btn btn-success ui-wizard-content ui-formwizard-button">
+						                </div>
+						                <div class="col-md-4 text-center">
+											 <input type="button" value="Cancel" id="cancel"
+						                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+						                </div>
+						                <div class="col-md-4 text-right">
+						                
+						                <input type="button" value="Submit" id="step2"
+						                           class=" next_tab btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						               </div> 
+						            </div>
+						        
+						   
+		 
+</form>						  
+						                          
+</div>
+
+
+<div id="review_and_banking_details"  class="tab-pane">
+ <!-- Step 4  -->
+				       
+						        <h3 class="text-center">Thank you for your Application.</h3>
+						 <div class="col-md-2 text-left"></div>
+						 <div class="col-md-4 text-left">
+						 <div class="alert alert-success" style="font-size:25px;"><i class="icon-ok-sign"></i> Account # 1111-23213</div>
+						 </div>       
+                    	<div class="col-md-4 text-left">
+						 				           
+						                
+						                <div class="alert alert-success"  style="font-size:25px;"><i class="icon-ok-sign"></i> Routing # 2342-75675</div>
+						</div>  
+						<div class="col-md-2 text-left"></div>          
+						            
+						 <div class="clear"></div> 
+						 <div class="col-md-2"></div>
+						 <div class="col-md-8">
+								            	<div class="cart">
+								            		<h3 class="plan-header">$1000 <small>Total Refund</small></h3>
+								            	</div> 
+								            	<div class="cart_details">
+								            		<div class="item_img1"><img alt="" src="../backend/img/payDay-loan_icon.jpg"></div>
+								            		<div class="item_detils">Banking</div>
+								            		<div class="item_price">$200.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_details">
+								            		<div class="item_img1"><img alt="" src="../backend/img/payDay-loan_icon.jpg"></div>
+								            		<div class="item_detils">Audit Gard</div>
+								            		<div class="item_price">$39.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_details">
+								            		<div class="item_img1"><img alt="" src="../backend/img/payDay-loan_icon.jpg"></div>
+								            		<div class="item_detils">PayDay Loan</div>
+								            		<div class="item_price">$100.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_amount_details">
+								            		<div class="sub_total_title text-right">Net Refund</div>
+								            		<div class="sub_total text-right">$800.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_amount_details">
+								            		<div class="sub_total_title text-right">Sub Total</div>
+								            		<div class="sub_total text-right">$139.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_amount_details">
+								            		<div class="sub_total_title text-right"><strong>Total</strong></div>
+								            		<div class="sub_total text-right"><strong>$759.00</strong></div>
+								            		<div class="clear"></div>
+								            	</div>
+								            </div>
+								            
+								            <div class="col-md-2">  &nbsp; </div>
+								<div class="clear"></div>
+								<p>&nbsp;</p>            
+						 <div class="col-md-2 text-left"></div>
+						 <div class="col-md-4 text-left">
+						 	<ul class="icons-ul push">
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #1</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #2</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                            </ul> 
+						 </div>
+						 
+						 <div class="col-md-4 text-left">
+						 	<ul class="icons-ul push">
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #3</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #4</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                            </ul> 
+						 </div>          
+						  <div class="col-md-2 text-left"></div>          
+						 <div class="clear"></div> 
+						 
+						  
+						            
+						            <div class="form-group form-actions">
+						                <!-- <div class="col-md-6 text-left">
+									<input type="reset" value="Cancel" id="back4"
+						                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+						                </div>
+						                 -->
+						                <div class="col-md-12 text-center">
+						                <input type="submit" value="Finished" id="step4"
+						                           class="btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						            </div>
+						        
+						   
+						   <div class="clear"></div> 
+						   <p>&nbsp;</p>
+						  <!-- End step 4  -->  
+   
+</div>
+ 
+    
+</div>
+ 	<script type="text/javascript">
+ 	
+ 	
+ 	
+ 	var allSelectedItems = '';
+ 	var totalFees = 0;
+ 	var refundAmount = 0;
+ 	var tax_preparation_fee = 0;
+ 	var processing_fee = 0;
+ 	var sb_fee_3 = 0;
+ 	var bank_fee = 0;
+ 	var e_file_fee = 0;
+ 	var net_refund = 0 ;
+ 	
+ 	
+ 	function saveSelectedProductInfo(data){
+ 		//alert(data.id);
+ 		data.value = 'ADDED THIS ITEM TO ORDER';
+ 		//data.css = 'Added';
+ 		$(data).removeClass('btn-warning');
+ 		$(data).addClass('btn-default');
+ 		$(data).attr('disabled','disabled');
+ 		
+ 		allSelectedItems = allSelectedItems+','+data.id;
+ 		
+ 		$('#inputSeletecItems').val(allSelectedItems);
+ 		//alert(allSelectedItems);
+ 	}
+ 	
+ 	
+ 	function selectDisbursmentMethod(items){
+ 		// var debitCard = $('#debitCard');
+        // var directDeposit = $('#directDeposit');
+        // var check = $('#check');
+         
+         
+         var direct_deposit_box = $('#direct_deposit-box');
+         var debit_card_box = $('#debit_card-box');
+           
+         
+         
+         if (items === 'check'){
+        	 
+        	 debit_card_box.css('display','none');
+          	direct_deposit_box.css('display','none');
+            
+         } else if(items === 'deposit') {
+        	 debit_card_box.css('display','none');
+          	direct_deposit_box.css('display','block');
+         } else if(items === 'card') {
+         	debit_card_box.css('display','block');
+         	direct_deposit_box.css('display','none');
+         }
+         
+ 	}
+ 	
+ 	
+ 	function calcualteTotalpayment(){
+ 		var output = allSelectedItems.substring(1);
+		var items = output.split(',');
+ 		
+		//var price1 = 10.00;
+		var total1 = 0;
+			
+ 		totalFees = tax_preparation_fee + processing_fee + sb_fee_3 + bank_fee + e_file_fee;
+
+
+		var htmpayment = '';
+		
+		htmpayment +='<div class="col-md-3 text-right">Total Refund:</div>';
+		htmpayment +='<div class="col-md-9 text-left">$'+refundAmount+'</div>';
+		
+		htmpayment +='<div class="col-md-3 text-right">Banking:</div>';
+		htmpayment +='<div class="col-md-9 text-left">&nbsp; &nbsp; &nbsp; &nbsp; - $'+totalFees+'</div>';
+		for(var i = 0 ; i < items.length ; i++){
+			var itemsdet = items[i].split('~');
+			htmpayment +='<div class="col-md-3 text-right">'+itemsdet[0]+':</div>';
+			htmpayment +='<div class="col-md-9 text-left">&nbsp; &nbsp; &nbsp; &nbsp; - $'+itemsdet[3]+'</div>';
+			total1+=parseFloat(itemsdet[3]);
+		}
+		net_refund = parseFloat(refundAmount - (totalFees+total1));
+		
+		htmpayment +='<div class="col-md-3 text-right">Net Refund:</div>';
+		htmpayment +='<div class="col-md-9 text-left">$'+net_refund+'</div>';
+		
+		 
+		
+		$('#creditcardTotalRefund').html(refundAmount);
+		$('#totalRefund').val(refundAmount);
+		$('#creditcardTotalBalance').html(net_refund);
+		$('#totalBalance').val(net_refund);
+		
+		$("#refundamountbox").empty().append(htmpayment);
+ 	}
+ 	
+ 	function calculateNetRefund(){
+		refundAmount = check_is_nan(parseFloat($('#total_refund_amt_3').val()));
+		tax_preparation_fee = check_is_nan(parseFloat($('#tax_preparation_fee_3').val()));
+		processing_fee = check_is_nan(parseFloat($('#processing_fee').val()));
+		sb_fee_3 = check_is_nan(parseFloat($('#sb_fee_3').val()));
+		bank_fee = check_is_nan(parseFloat($('#bank_transmission_fee_3').val()));
+		e_file_fee = check_is_nan(parseFloat($('#e_file_fee_3').val()));
+
+		totalFees = tax_preparation_fee + processing_fee + sb_fee_3 + bank_fee + e_file_fee;
+
+		net_refund = parseFloat(refundAmount - totalFees);
+
+		$('#net_refund_amt_3').val(net_refund);
+		$('#net_refund_amt_3').html(net_refund);
+		//var net_refund = check_is_nan(parseFloat($('#refundAmount').val()));
+		}
+
+	function check_is_nan(value){
+		if(isNaN(value))
+		{return 0;}
+		return value;
+	}
+	
+
+ 	function clickSaveNewApplication() {
+ 		$("#step23").click(function() {
+ 			$.post("index.php/admin/clientcenter/saveNewApplicationInfo", {
+ 				senddata : 'yes',
+ 				 
+ 				first_name : $("#first_name").val(),
+ 				last_name : $("#last_name").val(),
+ 				ss_number : $("#ss_number").val(),
+ 				dob : $("#dob").val(),
+ 				street_address : $("#street_address").val(),
+ 				
+ 				city : $("#city").val(),
+ 				state : $("#state").val(),
+ 				zip_code : $("#zip_code").val(),
+ 				cell_phone : $("#cell_phone").val(),
+ 				payment_method : $("#payment_method").val(),
+ 				
+ 				/*total_refund_amt_3 : $("#total_refund_amt_3").val(),
+ 				tax_preparation_fee : $("#tax_preparation_fee_3").val(),
+ 				bank_transmission_fee : $("#bank_transmission_fee_3").val(),
+ 				sb_fee : $("#sb_fee_3").val(),
+ 				e_file_fee: $("#e_file_fee_3").val(), 
+ 				add_on_fee : $("#add_on_fee_3").val(),
+ 				net_refund_amt_3 : $("#net_refund_amt_3").val()
+ 				*/
+ 	                 
+ 			}, function(data) {
+ 				if (typeof (data) == 'object') {
+ 					dataClient = data;
+ 					/*if($("#next").val()=='Submit' ){
+ 	                                $('.fade').modal('show');
+ 	                                $("#one").trigger('click');
+ 	                                $("#setupcompanybutton").attr('disabled','disabled');
+ 	                                $("#setupcompanyli").css('disabled','disabled');
+ 	                                $("#setupcompanyli").attr('class','overlay');
+ 	                                $("#badge_setup_company").css('display','block');
+ 	                                
+ 						//}*/
+ 				}
+ 				loadClients();
+ 			}, "json");
+
+ 			return false;
+ 		});
+ 	}
+ 	
+ 	$(function(){
+ 		 
+ 		 
+ 		//$('#toppart').remove();
+ 		
+ 		/*$('#new-app-wizard').formwizard({
+            focusFirstInput: true,
+            disableUIStyles: true,
+            back : ":reset",
+    		next : ":submit",
+    		textSubmit : 'Finished',
+    		textNext : 'Next',
+    		textBack : 'Back',
+    		resetForm: true,
+        });
+ 		 */
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		$("#step1").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-2').addClass('current-step');	
+ 		});
+ 		
+ 		$("#step2").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-3').addClass('current-step');	
+ 			
+ 			var output = allSelectedItems.substring(1);
+ 			var items = output.split(',');
+ 			//var itemsdet = '';
+ 			//alert(items.length);
+ 			//var price = 10.00;
+ 			var total = 0;
+ 			var htm = '';
+ 			htm +='<table class="table table-borderless">';
+ 			 for(var i = 0 ; i < items.length ; i++){
+ 				var itemsdet = items[i].split('~');
+ 				//alert(itemsdet[2]);
+ 				
+ 				htm +='<tr>';
+ 				htm +='<td> <img alt="" width="70px" src="../backend/img/'+itemsdet[2]+'"></td>';
+ 				htm +='<td class="hidden-xs hidden-sm">'+itemsdet[0]+' </td>';
+ 				htm +='<td class="hidden-xs hidden-sm text-right">'+itemsdet[3]+'</td>';
+ 				htm +='</tr>';
+ 				total+=parseFloat(itemsdet[3]);
+ 			 }
+ 			htm +='<tr>';
+ 			htm +='<td style="border-top:1px solid #ddd;" colspan="2" class="hidden-xs hidden-sm text-right text-success">Sub Total</td>';
+ 			htm +='<td style="border-top:1px solid #ddd;" class="hidden-xs hidden-sm text-right text-success">'+total+'</td>';
+ 			htm +='</tr>';
+ 			htm +='<tr>';
+ 			htm +='<td  colspan="2" class="hidden-xs hidden-sm text-right text-danger" >Grand Total</td>';
+ 			htm +='<td class="hidden-xs hidden-sm text-right text-danger" >'+total+'</td>';
+ 			htm +='</tr>';
+        
+ 			
+ 			
+ 			htm +='<table>';
+ 			$("#cartdetails").empty().append(htm);	
+ 		});
+ 		
+ 		$("#step3").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-4').addClass('current-step');	
+ 			
+ 			calcualteTotalpayment();
+ 		});
+ 		
+ 		
+ 		$("#step4").click(function() {
+ 			$("#modal_success2").modal('show');	
+ 		});
+ 		
+ 		$("#back2").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-1').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back3").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-2').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back4").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-3').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back5").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-4').addClass('current-step');	
+ 		});
+ 		
+ 		var checkbox = $('#checker'); 
+        var dependent = $('#dependent-box');
+        if (checkbox.attr('checked') !== undefined){
+           dependent.show();
+        } else {
+            dependent.hide();
+        }
+        
+        checkbox.change(function(e){
+           dependent.toggle(); 
+        });
+        
+       
+        
+        
+        
+        
+        
+    
+        
+        
+        $(".next_tab").click(function ()
+        		  { 
+        		    var target = $(".nav-tabs li.active");
+        		    //alert(target);
+        		    var sibbling;
+					//alert($(this).val());
+        		    if ($(this).val() === "Next" || $(this).val() === "Submit")
+        		    {
+        		        sibbling = target.next();
+        		      //  alert(sibbling);
+        		    }
+
+        		    else
+        		    {
+        		        sibbling = target.prev();
+        		    }
+
+        		    if (sibbling.is("li"))
+        		    {
+        		        sibbling.children("a").tab("show");
+        		        //$("[class='btn btn-large btn-block btn-success disabled']").removeClass("btn btn-large btn-block btn-success");
+        		        //sibbling.children("a").addClass("btn btn-large btn-block btn-success");
+        		    }
+        		});
+        
+        $(".previous_tab").click(function ()
+      		  { 
+      		    var target = $(".nav-tabs li.active");
+      		    //alert(target);
+      		    var sibbling;
+					//alert($(this).val());
+      		    if ($(this).val() === "Back")
+      		    {
+      		        sibbling = target.prev();
+      		      //  alert(sibbling);
+      		    }
+
+      		    else
+      		    {
+      		        sibbling = target.next();
+      		    }
+
+      		    if (sibbling.is("li"))
+      		    {
+      		        sibbling.children("a").tab("show");
+      		        //$("[class='btn btn-large btn-block btn-success disabled']").removeClass("btn btn-large btn-block btn-success");
+      		        //sibbling.children("a").addClass("btn btn-large btn-block btn-success");
+      		    }
+      		});
+        
+        
+    });	
+ 	 </script>
+ 
+ 

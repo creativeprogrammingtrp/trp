@@ -1,0 +1,2042 @@
+<style>
+
+ul li {
+    list-style: none outside none;
+}
+
+.nav-tabs > li > a
+{
+	width:168px;
+}
+
+p{
+	margin:0px;
+}
+
+.table thead > tr > th{
+	background: none !important;
+}
+.stepy-tab {
+    text-align: center;
+	margin-bottom: 28px;
+}
+
+.stepy-tab ul {
+    display: inline-block;
+}
+
+.stepy-tab ul li {
+    float: left;
+}
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+    float: left;
+    margin: 10px 15px;
+}
+
+.stepy-titles li.current-step div {
+    background: none repeat scroll 0 0 #A9D86E;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: auto;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li div {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 300;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+}
+
+.stepy-titles li span {
+    display: block;
+}
+
+.prodcut_list {
+    overflow: hidden;
+}
+
+.product_list_cell {
+    /*float: left;
+    margin: 0 10px 90px 0px;
+    padding: 10px 15px 50px;*/
+    position: relative;
+    /*width: 250px;*/
+}
+
+.product_list_cell p{
+	margin: 0px;
+}
+.product_list_cell .prodcut_img {
+    height: 225px;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.product_list_cell .price {
+    font-size: 80px;
+	font-weight: bold;
+	text-align: center;
+	color:#0097CF;
+	line-height:normal;
+}
+
+.product_list_cell .price > span {
+    font-size: 45px;
+	line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+	top:-20px;
+	left:21px;
+}
+
+
+.product_list_cell .price > small{
+    font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	color:#333;
+	line-height: 0;
+    position: relative;
+	left:-10px;
+}
+
+
+.product_list_cell .prodcut_img img {
+    max-height: 235px;
+    max-width: 235px;
+}
+
+.item_img{
+	max-height: 70px;
+    max-width: 70px;
+}
+
+.ptitle {
+    font-size: 25px;
+    height: 35px;
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+	color:#000;
+	font-weight: bold;
+}
+
+.product_list_cell .pshort_des {
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+	margin: 0px 0px 15px 0px;
+    text-align: center;
+}
+
+.product_list_cell .button_add{
+	text-align: center;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    
+   /* padding-left: 10px;*/
+    
+}
+
+.form-box-header {
+    padding: 15px 0 10px;
+	color:#0097CF;
+	border-bottom: 1px dotted #ddd;
+}
+
+.cart{
+	box-shadow:1px 1px 2px #CCCCCC;
+}
+.cart_details{border-bottom:1px dashed #333;
+padding:14px 0px;
+background:#EEEEEE; box-shadow:1px 1px 2px #CCCCCC;}
+.item_img1{
+	margin-left: 10px;
+}
+.item_img1 img{
+	 max-height: 55px;
+     max-width: 55px;
+	border-radius : 47px;
+	float: left;
+	box-shadow:1px 1px 2px #CCCCCC;
+} 
+.item_detils{
+	float: left;
+	width:60%;
+	margin-left:19px;
+	padding-bottom:14px;
+	font-size: 14px;
+	font-weight: bold;
+} 
+.item_price{
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	width:20%;
+	text-align: right;
+}
+
+.cart_amount_details{
+	padding-top: 5px;
+}
+
+.sub_total_title{
+	width:70%;
+	float: left;
+}
+
+.sub_total{
+	width:30%;
+	float: left;
+}
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td{
+	vertical-align: middle;
+}
+.clear{
+	clear: both;
+}
+</style>
+  <!-- <h3 class="form-box-header">
+        <i class="icon-info-sign"></i> Client Center
+    </h3>
+    -->
+   <div class="col-md-3" style="margin-top:45px;margin-bottom:27px; padding-left:24px;" ><img alt="" src="../backend/img/new_app_title.png"></div>
+   <div class="col-md-6" style="margin-top:79px"></div>
+   <div class="col-md-3 pull-right" style="background-image: url('../backend/img/total_refund_box_top.png'); background-repeat: no-repeat; background-position: top right; height:180px;" >
+   
+   <h5 style="margin: 0px; text-align: center; padding: 48px 0px 0px 72px; color:#8A95A7;">Total Refund</h5>
+   <h5 style="margin: 0px; text-align: center; padding: 0px 0px 0px 72px;  color:#8A95A7; font-weight: 400;" id="top_total_refund">$0.00</h5>
+   
+   <h5 style="margin: 0px; text-align: center; padding: 18px 0px 0px 72px; font-weight: 700; color:#5ABF8C;">NET REFUND AMOUNT</h5>
+   <h5 style="margin: 0px; text-align: center; padding: 0px 0px 0px 72px; font-weight: 700; color:#5ABF8C;" id="top_net_refund">$0.00</h5>
+   
+   &nbsp;</div>    
+ <ul data-toggle="tabs" class="nav nav-tabs push" style="display: none;">
+    <li class="active"><a href="#applicant_info" >APPLICANT INFO</a></li>
+    <li class=""><a href="#additional_services"  >ADDITIONAL SERVICES</a></li>
+    <li class=""><a href="#review_and_banking_details" >REVIEW</a></li>
+</ul> 
+      
+ <div class="tab-content tab-content-default" style="background-color:#fff; padding-top:17px;">
+            
+
+            <div class="tab-pane active" id="applicant_info">
+          
+            {statusmessage}
+            	<form class="form-horizontal form-box remove-margin ui-formwizard"
+				      method="post" id="applicant_info_form" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+				    <!-- Form Header -->
+				  <div class="stepimages" style="text-align: center; margin-bottom:20px">
+				  	<img alt="" src="../backend/img/new-application-steps_1.png">
+				  </div>
+				    <!-- Form Content -->
+				    <div class="form-box-content" style="padding:0px;">
+				        <!-- First Step -->
+				        <div style="clear: both;"></div>
+				        <div id="first" class="step" style="background-color: #F5F9FD; padding-top:22px;">
+						         
+						         <div class="col-md-6" style=" width:48%; margin:0px 0 5px 8px;" >
+						         
+						         <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							       Customer Info
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-user"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						         
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						           
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6 form-group1">
+							                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+							                    <div class="input-group1 nopadding col-md-12">
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                    </div>
+							                </div>
+						                	<div class="col-md-6 form-group1">
+						                		<label for="dob" class="control-label col-md-12">Birth Date</label>
+						                    	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="" placeholder="MM/DD/YYYY">
+						                    	</div>
+						                	</div>
+						                
+						            </div>
+						            
+						           <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="ss_number" class="control-label col-md-12"><input type="checkbox"   name="add_spouse" id="checker"> Add Spouse</label>
+							                </div>
+						            </div>
+						            
+						            <div id="dependent-box">
+							            <h4 class="form-box-header">
+								        <i class="glyphicon-girl"></i> Spouse's Info
+								    	</h4> 
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Spouse's First Name</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_first_name" id="sp_first_name" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Spouse's Last Name</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="sp_last_name" id="sp_last_name" value="">
+							                	</div>
+							                
+							            </div>
+							            
+							            <div class="form-group">
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_ss_number" id="sp_ss_number" value="">
+								                </div>
+							            
+							            
+								                <div class="col-md-6">
+								                	<label for="sp_dob" class="control-label col-md-9">Birth Date</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_dob" id="sp_dob" value="" placeholder="MM/DD/YYYY">
+								                </div>
+							            </div>
+						            </div>
+						            
+						            
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-12 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Address</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            <!-- 
+						             <div class="form-group">
+						                <div class="col-md-12">
+						                	<label for="street_address" class="control-label col-md-12">Address 2</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address2" id="street_address2" value="">
+						                    </div>
+						                </div>
+						            </div>
+						             -->
+						            <div class="form-group">
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	{states}
+						                    </select>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                		<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                	</div>	
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group">
+						                
+						                <!-- 
+						                <div class="col-md-6">
+						                	 <label for="payment_method" class="control-label col-md-12">Country</label>
+						                    <div class="input-group1 nopadding col-md-12">
+							                    <select class="form-control ui-wizard-content" name="country" id="country">
+							                    	<option></option>
+							                    	{countries}
+							                    </select>
+							               </div>     
+						                </div>
+						                 -->
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+								            </div>        	
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Email Address</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content"  name="email_add" id="email_add" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						          <!-- Panel End -->
+						          </div>
+						          </section>  
+						</div>
+						<div class="col-md-6" style="margin-top:0px" >
+						
+				        <div class="col-md-12" style=" margin:0px 5px;" >  
+				          
+				          <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Refund Information
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-rotate-left"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						
+							<div class="form-group form-group1">
+				                <div class="col-md-6 ">
+					                <label for="cell_phone" class="control-label col-md-12">Refund Amount </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" name="total_refund_amt_3" id="total_refund_amt_3" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+                                </div>
+                                
+                                <div class="col-md-6" style="padding-left:0px; margin-top:19px">
+					               
+					                <div class="input-group">
+					                <img alt="" src="../backend/img/refund_minus_icon.png">
+	                                      <!--   <span class="input-group-addon">$</span>
+	                                        <input type="text" disabled="disabled" class="form-control text-right" readonly="readonly" value="" id="net_refund_amt_3" name="net_refund_amt_3">
+	                                         -->
+	                                </div>
+                                </div>
+				            </div>
+				            
+				            <div class="col-md-12" style="border:1px solid #DDE2E6; margin:-4px 0px 0px 3px; padding:0px 5px 7px;">
+				            <div class="form-group">
+				                <div class="col-md-6 form-group1">
+					                <div>
+					                <label for="cell_phone" class="control-label col-md-12">Tax Preparation Fee </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text"  class="form-control text-right" id="tax_preparation_fee_3" name="tax_preparation_fee_3" value="{tax_preparation_fee}" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+	                                </div>
+                                </div>
+                                
+                                <div class="col-md-6 form-group1">
+					                <div>
+					                <label for="cell_phone" class="control-label col-md-12">Bank Transmission Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="bank_transmission_fee_3" disabled="disabled" name="bank_transmission_fee_3" value="19.95 " onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+	                                </div>
+                                </div>
+                                
+                                
+				            </div>
+				            
+				            <div class="form-group">
+				            	<div class="col-md-6 form-group1">
+					                <div>
+					                <label for="cell_phone" class="control-label col-md-12">SB Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="sb_fee_3" disabled="disabled" name="sb_fee_3" value="{sb_fee}" onkeyup="calculateNetRefund();">
+	                                        
+	                                </div>
+	                                </div>
+                                </div>
+				                <!-- 
+				                <div class="col-md-4 form-group1">
+					                <div>
+					                <label for="cell_phone" class="control-label col-md-12">E-file Fee </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="e_file_fee_3" name="e_file_fee_3" value="{e_file_fee}" onkeyup="calculateNetRefund();">
+	                                       
+	                                </div>
+	                                </div>
+                                </div>
+                                 -->
+                                <div class="col-md-6 form-group1">
+					                <div>
+					                <label for="cell_phone" class="control-label col-md-12">Add On Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" name="add_on_fee_3" id="add_on_fee_3" value="{add_on_fee}" onkeyup="calculateNetRefund();">
+	                                       
+	                                </div>
+	                                </div>
+                                </div>
+				            </div>
+				            
+				            </div>
+				            <div class="col-md-12" style="padding-left:0px;">
+				            <img src="../backend/img/refund_equals.png" />
+				            </div>
+				            
+				            <div class="col-md-12" style="padding-left:3px;">
+					             <label for="cell_phone" class="control-label col-md-12" style="padding-top:0px; color:#54565F">Net Refund Amount</label>
+					             <label for="cell_phone" class="control-label col-md-12" style="color: #54565F; font-size: 18px; font-weight: bold; padding-top: 0;" id="net_refund_amt_3_label" >$0.00</label>
+					             <input type="hidden" value="" id="net_refund_amt_3" name="net_refund_amt_3">
+					             <input type="hidden" value="" id="final_net_refund" name="final_net_refund">
+					             <input type="hidden" value="" id="total_benefit" name="total_benefit">
+					             <input type="hidden" value="" id="total_fees" name="total_fees">
+					             
+					             
+					        </div>        
+				            <!-- End panel -->
+				            </div>
+				            </section>
+				           </div>
+				           
+				           <div class="col-md-12" style="margin:0px 5px;" > 
+				            <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							     Refund Disbursement Method 
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-credit-card"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+				            
+							<div class="form-group form-group1" >
+				                <div class="col-md-12 ">
+					                
+                                    <div class="radio">
+                                        <label for="DisbursmentMethod1">
+                                            <input type="radio" value="Check" name="DisbursmentMethod" id="DisbursmentMethod1" class="DisbursmentMethod" onclick="selectDisbursmentMethod('check');"> Check
+                                        </label>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="radio">
+                                        <label for="DisbursmentMethod2">
+                                            <input type="radio" value="Direct Deposit" name="DisbursmentMethod" id="DisbursmentMethod2" class="DisbursmentMethod" onclick="selectDisbursmentMethod('deposit');"> Direct Deposit
+                                        </label>
+                                    </div>
+                                    
+                                    <div id="direct_deposit-box"  style="display:none">
+							            <div class="form-group">
+							            		<div class="col-md-12">
+							            		<label for="ss_number" class="control-label col-md-12">Bank Name</label>
+								                
+								                	
+								                    <input type="text" class="form-control ui-wizard-content" name="bank_name" id="bank_name" value="">
+								                </div>
+							                	
+							                
+							            </div>
+							            
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Routing Number</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="routing_number" id="routing_number" value="">
+								                </div>
+								                
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Account Number</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="acount_number" id="acount_number" value="">
+							                	</div>
+							                
+							            </div>
+						            </div>
+						            
+                                    <div class="radio">
+                                        <label for="DisbursmentMethod3">
+                                            <input type="radio" value="Debit Card" name="DisbursmentMethod" id="DisbursmentMethod3"  onclick="selectDisbursmentMethod('card');"> Debit Card
+                                        </label>
+                                    </div>
+                                    
+                                    <div id="debit_card-box" style="display:none">
+							            <div class="form-group">
+							            	
+								                <div class="col-md-12">
+								                	<label for="ss_number" class="control-label col-md-12">Enter Card Number:</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="card_number" id="card_number" value="">
+								                </div>
+							                	
+							                
+							            </div>
+							            
+							            
+						            </div>
+						            
+                               
+                                </div>
+                                
+                                
+				            </div>
+				            <!-- Panel End -->
+				            </div>
+				            </section>
+				          </div>  
+						</div>
+						<div style="clear:both;"></div>
+						            <div class="form-group1 form-actions" style="margin-top:30px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="back" >
+				                                <i class="icon-repeat"></i> Cancel
+				                            </button>
+						                </div>
+						                <div class="col-md-6 text-right">
+						                    <button  class=" btn btn-success btn-lg" type="submit" id="step1" value="Next">
+				                                 Next <i class="icon-long-arrow-right"></i>
+				                            </button>
+						                </div>
+						                <div class="clear"></div>
+						            </div>
+						            </div>
+						        
+						    </div> 
+						   <!-- End Steps 1 -->  
+						   
+						   
+						  
+						 
+						  
+						         
+					</div>
+								
+									                    
+       
+ 		
+				</form>	
+				<!--  END OF AMIN FORM -->
+				
+ 			</div>
+ 
+ 
+<div id="additional_services" class="tab-pane">
+
+ <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="services_form" novalidate="novalidate" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+	<div class="stepimages" style="text-align: center; margin-bottom:20px">
+				  	<img alt="" src="../backend/img/new-application-steps_2.png">
+				  </div>
+	<div style="clear: both;"></div>
+<div id="second" class="step" style="background-color: #F5F9FD; padding-top:22px;">			  
+	<div class="col-md-12" style="" >  
+	   <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Tax Services
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="gemicon-small-dollar"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body" style="padding:20px 15px;">
+						         <!-- Panel start -->
+		<div class="col-md-1 service_img">
+			<img alt=""  src="../backend/img/audit_guard_icon.png">
+		</div>
+		<div class="col-md-4 service_title">
+			<h4>Audit Guard Protection</h4>
+			<small>Some subheading gose here</small>
+		</div>
+		<div class="col-md-4 viewdetailsbutton">
+			<a href="javascript:void(0);" id="audit_details"><img alt="" src="../backend/img/viewdetails_btn.png"></a>
+		</div>
+		<div class="col-md-1 price">
+			<h4>$10</h4>
+			<small>Fee</small>
+		</div>
+		<div class="col-md-2 service_button " >
+		<button class="btn btn-success auditgard" type="button" value="Add" id="Audit Guard Protection~Protect your refund~audit_guard_icon.png~10" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>
+		<!-- <input type="button" value="Add" id="Audit Guard~Protect your refund~audit_guard_icon.png~10" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product">
+		<a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;  &nbsp;</a>
+		 -->
+		</div>
+		
+		<div id="modal_auditgard_details" class="modal slide">
+		     <div class="modal-dialog" style="width:320px;">
+		         <div class="modal-content">
+		             <div class="modal-header">
+		                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                 <h4 class="modal-title" style="font-weight: bold;">Tax Services:</h4>
+		             </div>
+		             <div class="modal-body">
+		                 <div class="col-md-12 text-center">
+		                 	<img alt="" src="../backend/img/audit_guard_icon.png">
+		                 	<h4 class="text-center" style="font-weight: bold;">Audit Guard Protection</h4>
+		                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+		                 	<br><br>
+		                 	<div class="col-md-12 text-center">
+		                 	<button class="btn btn-success auditgard" type="button" value="Add" id="Audit Guard Protection~Protect your refund~audit_guard_icon.png~10" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>                  
+		                    </div>  
+		                 </div>
+		             </div>
+		         </div>
+		     </div>
+		 </div>
+		 
+		<!-- 
+		<table class="table table-condensed" style="margin-bottom: 0px;">
+                        
+                        <tbody>
+                            <tr>
+                                <td><img alt=""  src="../backend/img/audit_guard_icon.png"></td>
+                                <td class="hidden-xs hidden-sm">Protection Plus</td>
+                                <td class="hidden-xs hidden-sm text-center" style="color:#78CD51; font-size: 20px;"><i class="glyphicon-ok"></i></td>
+                                <td class="hidden-xs hidden-sm text-center">$10.00</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add">Add</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                     -->
+                    </div>
+                    </section> 
+	</div>
+	
+		
+	
+	<div class="col-md-12" style="" >    
+		<section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Packaged Services
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="gemicon-small-package"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body" style="padding:20px 15px;">
+						    
+						         <!-- Panel start -->
+						    
+					<div class="col-md-1 service_img">
+						<img alt=""  src="../backend/img/standard_package.png">
+					</div>
+					<div class="col-md-4 service_title">
+						<h4>Standard</h4>
+						<small>Some subheading gose here</small>
+					</div>
+					<div class="col-md-4 viewdetailsbutton">
+						<a href="javascript:void(0);" id="standard_details"><img alt="" src="../backend/img/viewdetails_btn.png"></a>
+					</div>
+					<div class="col-md-1 price">
+						<h4>$10</h4>
+						<small>Fee</small>
+					</div>
+					<div class="col-md-2 service_button " >
+					<button class="btn btn-success standard" type="button" value="Add" id="Standard~Some subheading gose here~standard_package.png~10" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>
+					<!-- <a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;  &nbsp;</a> -->
+					</div>
+					<div class="clear"></div>
+					
+					<div id="modal_standard_details" class="modal slide">
+					     <div class="modal-dialog" style="width:320px;">
+					         <div class="modal-content">
+					             <div class="modal-header">
+					                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                 <h4 class="modal-title" style="font-weight: bold;">Packaged Services:</h4>
+					             </div>
+					             <div class="modal-body">
+					                 <div class="col-md-12 text-center">
+					                 	<img alt="" src="../backend/img/standard_package.png">
+					                 	<h4 class="text-center" style="font-weight: bold;">Standard</h4>
+					                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+					                 	<br><br>
+					                 	<div class="col-md-12 text-center">
+					                 	<button class="btn btn-success standard" type="button" value="Add" id="Standard~Some subheading gose here~standard_package.png~10" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>                  
+					                    </div>  
+					                 </div>
+					             </div>
+					         </div>
+					     </div>
+					 </div>
+					 
+					<hr>
+					
+					<div class="col-md-1 service_img">
+						<img alt=""  src="../backend/img/premium_package.png">
+					</div>
+					<div class="col-md-4 service_title">
+						<h4>Premium</h4>
+						<small>Some subheading gose here</small>
+					</div>
+					<div class="col-md-4 viewdetailsbutton">
+						<a href="javascript:void(0);" id="premium_details"><img alt="" src="../backend/img/viewdetails_btn.png"></a>
+					</div>
+					<div class="col-md-1 price">
+						<h4>$20</h4>
+						<small>Fee</small>
+					</div>
+					<div class="col-md-2 service_button " >
+					<button class="btn btn-success premium" type="button" value="Add" id="Premium~Some subheading gose here~premium_package.png~20" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>
+					<!-- <a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;  &nbsp;</a> -->
+					</div>
+					<div class="clear"></div>
+					
+					<div id="modal_premium_details" class="modal slide">
+					     <div class="modal-dialog" style="width:320px;">
+					         <div class="modal-content">
+					             <div class="modal-header">
+					                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                 <h4 class="modal-title" style="font-weight: bold;">Packaged Services:</h4>
+					             </div>
+					             <div class="modal-body">
+					                 <div class="col-md-12 text-center">
+					                 	<img alt="" src="../backend/img/premium_package.png">
+					                 	<h4 class="text-center" style="font-weight: bold;">Premium</h4>
+					                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+					                 	<br><br>
+					                 	<div class="col-md-12 text-center">
+					                 	<button class="btn btn-success premium" type="button" value="Add" id="Premium~Some subheading gose here~premium_package.png~20" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>                  
+					                    </div>  
+					                 </div>
+					             </div>
+					         </div>
+					     </div>
+					 </div>
+					<hr>
+					
+					
+					<div class="col-md-1 service_img">
+						<img alt=""  src="../backend/img/super_package.png">
+					</div>
+					<div class="col-md-4 service_title">
+						<h4>Super</h4>
+						<small>Some subheading gose here</small>
+					</div>
+					<div class="col-md-4 viewdetailsbutton">
+						<a href="javascript:void(0);" id="super_details"><img alt="" src="../backend/img/viewdetails_btn.png"></a>
+					</div>
+					<div class="col-md-1 price">
+						<h4>$30</h4>
+						<small>Fee</small>
+					</div>
+					<div class="col-md-2 service_button " >
+					<button class="btn btn-success super" type="button" value="Add" id="Super~Some subheading gose here~super_package.png~30" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>
+					<!-- <a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;  &nbsp;</a> -->
+					</div>
+					<div class="clear"></div>
+					
+					<div id="modal_super_details" class="modal slide">
+					     <div class="modal-dialog" style="width:320px;">
+					         <div class="modal-content">
+					             <div class="modal-header">
+					                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                 <h4 class="modal-title" style="font-weight: bold;">Packaged Services:</h4>
+					             </div>
+					             <div class="modal-body">
+					                 <div class="col-md-12 text-center">
+					                 	<img alt="" src="../backend/img/super_package.png">
+					                 	<h4 class="text-center" style="font-weight: bold;">Super</h4>
+					                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+					                 	<br><br>
+					                 	<div class="col-md-12 text-center">
+					                 	<button class="btn btn-success super" type="button" value="Add" id="Super~Some subheading gose here~super_package.png~30" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>                  
+					                    </div>  
+					                 </div>
+					             </div>
+					         </div>
+					     </div>
+					 </div>
+		<!-- 									         
+		<table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                
+                                <th width="20%"></th>
+                                <th width="45%" class="hidden-xs hidden-sm"></th>
+                                <th width="15%" class="hidden-xs hidden-sm text-center"><i class="glyphicon-circle_question_mark"></i> 2012</th>
+                                <th width="10%" class="hidden-xs hidden-sm text-center">Estimated</th>
+                                <th width="10%" class="cell-small text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                                <td><img alt="" width="70px" src="../backend/img/marvel_optics_icon.jpg"></td>
+                                <td class="hidden-xs hidden-sm">TBD</td>
+                                <td class="hidden-xs hidden-sm text-center"></td>
+                                <td class="hidden-xs hidden-sm text-center">$0.00</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Added</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                             <tr>
+                                
+                                <td><img alt="" width="70px" src="../backend/img/marvel_optics_icon.jpg"></td>
+                                <td class="hidden-xs hidden-sm">TBD</td>
+                                <td class="hidden-xs hidden-sm text-center"></td>
+                                <td class="hidden-xs hidden-sm text-center">$0.00</td>
+                                <td class="text-center">
+                                <div class="input-group">
+                                <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"> Update <span class="caret"></span></button>
+                                            <ul class="dropdown-menu text-left">
+                                                <li><a href="javascript:void(0)"><i class="icon-edit"></i> Edit</a></li>
+                                                <li><a href="javascript:void(0)"><i class="icon-remove"></i> Remove</a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     -->
+		</div>
+		</section>
+	</div> 		
+	
+	<div class="col-md-12" style="" >  
+	   <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Other Benefits
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="gemicon-small-star"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body" style="padding:20px 15px;">
+						         <!-- Panel start -->
+		<div class="col-md-1 service_img">
+			<img alt=""  src="../backend/img/benefit.png">
+		</div>
+		<div class="col-md-4 service_title">
+			<h4>First Benefit</h4>
+			<small>Some subheading gose here</small>
+		</div>
+		<div class="col-md-4 viewdetailsbutton">
+			<a href="javascript:void(0);" id="first_benefit_details"><img alt="" src="../backend/img/viewdetails_btn.png"></a>
+		</div>
+		<div class="col-md-1 price">
+			<h4>$15</h4>
+			<small>Fee</small>
+		</div>
+		<div class="col-md-2 service_button " >
+		<button class="btn btn-success first_benefit" type="button" value="Add" id="First Benefit~Some subheading gose here~benefit.png~15" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>
+		<!-- <a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;  &nbsp;</a> -->
+		</div>
+		<div class="clear"></div>
+		
+		<div id="modal_first_benefit_details" class="modal slide">
+					     <div class="modal-dialog" style="width:320px;">
+					         <div class="modal-content">
+					             <div class="modal-header">
+					                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                 <h4 class="modal-title" style="font-weight: bold;">Other Benefits:</h4>
+					             </div>
+					             <div class="modal-body">
+					                 <div class="col-md-12 text-center">
+					                 	<img alt="" src="../backend/img/benefit.png">
+					                 	<h4 class="text-center" style="font-weight: bold;">First Benefit</h4>
+					                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+					                 	<br><br>
+					                 	<div class="col-md-12 text-center">
+					                 	<button class="btn btn-success first_benefit" type="button" value="Add" id="First Benefit~Some subheading gose here~benefit.png~15" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>                  
+					                    </div>  
+					                 </div>
+					             </div>
+					         </div>
+					     </div>
+					 </div>
+					<hr>
+					
+		<div class="col-md-1 service_img">
+			<img alt=""  src="../backend/img/benefit.png">
+		</div>
+		<div class="col-md-4 service_title">
+			<h4>Second Benefit</h4>
+			<small>Some subheading gose here</small>
+		</div>
+		<div class="col-md-4 viewdetailsbutton">
+			<a href="javascript:void(0);" id="second_benefit_details"><img alt="" src="../backend/img/viewdetails_btn.png"></a>
+		</div>
+		<div class="col-md-1 price">
+			<h4>$25</h4>
+			<small>Fee</small>
+		</div>
+		<div class="col-md-2 service_button " >
+		<button class="btn btn-success second_benefit" type="button" value="Add" id="Second Benefit~Some subheading gose here~benefit.png~25" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>
+		<!-- <a class="btn btn-success" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;  &nbsp;</a> -->
+		</div>
+		<div class="clear"></div>
+		
+		<div id="modal_second_benefit_details" class="modal slide">
+					     <div class="modal-dialog" style="width:320px;">
+					         <div class="modal-content">
+					             <div class="modal-header">
+					                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                 <h4 class="modal-title" style="font-weight: bold;">Other Benefits:</h4>
+					             </div>
+					             <div class="modal-body">
+					                 <div class="col-md-12 text-center">
+					                 	<img alt="" src="../backend/img/benefit.png">
+					                 	<h4 class="text-center" style="font-weight: bold;">Second Benefit</h4>
+					                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+					                 	<br><br>
+					                 	<div class="col-md-12 text-center">
+					                 	<button class="btn btn-success second_benefit" type="button" value="Add" id="Second Benefit~Some subheading gose here~benefit.png~25" onclick="saveSelectedProductInfo(this);"><i class="icon-plus-sign"></i> &nbsp; Add  &nbsp;&nbsp;</button>                  
+					                    </div>  
+					                 </div>
+					             </div>
+					         </div>
+					     </div>
+					 </div>					
+		<!-- 
+		<table class="table table-condensed" style="margin-bottom: 0px;">
+                        
+                        <tbody>
+                            <tr>
+                                <td><img alt=""  src="../backend/img/audit_guard_icon.png"></td>
+                                <td class="hidden-xs hidden-sm">Protection Plus</td>
+                                <td class="hidden-xs hidden-sm text-center" style="color:#78CD51; font-size: 20px;"><i class="glyphicon-ok"></i></td>
+                                <td class="hidden-xs hidden-sm text-center">$10.00</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn btn-info" title="" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Add">Add</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                     -->
+                    </div>
+                    </section> 
+	</div>
+	
+		
+	<p>&nbsp;</p>
+			    
+			     <input type="hidden" name="inputSeletecItems" id="inputSeletecItems" >
+						             
+						            <div class="col-md-12 text-left" style="margin:30px 0 85px 0px; padding:0px; ">
+						                <div class="col-md-4 text-left">
+						                    <button  class="btn btn-danger btn-lg" type="button" id="cancel">
+				                                <i class="icon-repeat"></i> Cancel
+				                            </button>
+						                </div>
+						                <div class="col-md-4 text-right">
+											       
+						                  
+						                </div>
+						                
+						                <div class="col-md-4 text-right">
+						                    <button class="previous_tab btn btn-default btn-lg" type="button" id="back2" value="Back">
+				                                <i class="icon-long-arrow-left"></i> Back
+				                            </button>
+				                            &nbsp;
+						                    <button class="btn btn-success btn-lg " type="button" id="step2" value="Submit">
+				                                Submit <i class=" icon-ok"></i> 
+				                            </button>
+						                </div>
+						               </div> 
+						               <div class="clear"></div>
+						               <p>&nbsp;</p>
+						                   
+		</div>				       
+						            
+						            
+						           
+						            
+						        
+						   
+		 
+</form>						  
+						                          
+</div>
+
+
+<div id="review_and_banking_details"  class="tab-pane">
+ <!-- Step 4  -->
+				       <div class="stepimages" style="text-align: center; margin-bottom:20px">
+				  	<img alt="" src="../backend/img/new-application-steps_3.png">
+				  </div>
+				  
+				  <div id="third" class="step" style="background-color: #F5F9FD; padding-top:22px;">
+					<div class="col-md-12 text-left">	
+						 <h3 class="text-left" style="font-weight: bold; margin:4px 0px 25px;">Thank you for your Application!</h3>
+					</div>	
+					<div class="col-md-7 text-left">
+						<section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Summary
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="gemicon-small-dollar_price"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body" id="cartdetails" style="padding:0px;">
+						         <!-- Panel start -->
+						        
+						    <div id="cart_details" style="padding:20px 15px;">    
+						        <div class="col-md-2 service_img">
+									<img alt=""  src="../backend/img/benefit.png">
+								</div>
+								<div class="col-md-8 service_title_2">
+									<h4>First Benefit</h4>
+								</div>
+								
+								<div class="col-md-2 price_2 text-right">
+									<h5>$15.00</h5>
+								</div>
+								<div class="clear"></div>
+								<hr style="margin: 20px 10px;">
+								
+								<div class="col-md-2 service_img">
+									<img alt=""  src="../backend/img/benefit.png">
+								</div>
+								<div class="col-md-8 service_title_2">
+									<h4>First Benefit</h4>
+								</div>
+								
+								<div class="col-md-2 price_2 text-right ">
+									<h5>$150.00</h5>
+								</div>
+								<div class="clear"></div>
+							</div>	
+								<hr style="margin:0px;">
+								
+							<div id="cart_total" style="padding:20px 15px;">	
+								<div class="col-md-10 text-right total-price">
+									<h5>Total Refund</h5>
+								</div>
+								
+								<div class="col-md-2 text-right total-price">
+									<h5  style="font-weight: bold; ">$150.00</h5>
+								</div>
+								<div class="col-md-10 text-right total-price">
+									<h5>Benefit</h5>
+								</div>
+								
+								<div class="col-md-2  text-right total-price">
+									<h5 style="font-weight: bold; ">$150.00</h5>
+								</div>
+								<div class="clear"></div>
+							</div>
+							
+							<div class="col-md-12" style="padding:0px 27px;">
+								<div style="background-color: #F5F9FB; border: 4px solid #D8E3F1; margin:25px auto; padding: 30px 0 30px 140px; text-align: center;">
+									<img style="float:left; margin-right:30px;" alt="" src="../backend/img/cart_total_summary.png" align="left"> <h3 style="float: left; margin:0px; margin-top:-4px;">NET REFUND: <strong>$778</strong></h3>
+									<div class="clear"></div>
+								</div>
+							</div>
+							
+								
+						  </div>
+						</section>
+					</div>
+					<div class="col-md-5 text-left">
+						<div class="col-md-12 text-left" style="padding:0px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Account & Routing Numbers
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="gemicon-small-dollar_price"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:20px 15px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" style="padding:0px 5px;">
+									 	<div class="alert alert-success bank-routing" style="font-size:17px;"><h5><i class="icon-ok-sign"></i>  &nbsp;  &nbsp; Account # <strong>1111-23213</strong></h5></div>
+									 	<div class="alert alert-success bank-routing"  style="font-size:17px; margin-bottom:0px;"> <h5><i class="icon-ok-sign"></i>  &nbsp;  &nbsp;  Routing # <strong>2342-75675</strong></h5></div>
+									 </div> 
+							  </div>
+							</section>
+						</div>
+						
+						<div class="col-md-12 text-left"  style="padding:0px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Files
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="gemicon-small-file"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:0px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" style="padding:0px;">
+									 	<ul class="icons-ul push" style="padding: 20px 23px; margin: 0px;">
+			                                <li><i class="icon-file-alt"></i> <strong>File #1</strong>,<br><em>This is the description of this file..</em></li>
+			                                <li><i class="icon-file-alt"></i> <strong>File #2</strong>,<br><em>This is the description of this file..</em></li>
+			                                <li><i class="icon-file-alt"></i> <strong>File #3</strong>,<br><em>This is the description of this file..</em></li>
+                                			<li><i class="icon-file-alt"></i> <strong>File #4</strong>,<br><em>This is the description of this file..</em></li>
+			                            </ul> 
+			                            <div style="background-color: #F5F9FB; padding:20px 22px;">
+			                            <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="glyphicon-download_alt"></i> Download
+				                         </button>
+				                         <!-- &nbsp; &nbsp; 
+				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="icon-save"></i> Save
+				                         </button>
+				                          -->
+				                         &nbsp; &nbsp; 
+				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="icon-print"></i> Print
+				                         </button>
+				                        </div>    
+									 </div>
+							  </div>
+							</section>
+						</div>
+						
+					</div>	 
+					
+					<!--  
+						 <div class="col-md-2 text-left"></div>
+						 <div class="col-md-4 text-left">
+						 <div class="alert alert-success" style="font-size:25px;"><i class="icon-ok-sign"></i> Account # 1111-23213</div>
+						 </div>       
+                    	<div class="col-md-4 text-left">
+						 				           
+						                
+						                <div class="alert alert-success"  style="font-size:25px;"><i class="icon-ok-sign"></i> Routing # 2342-75675</div>
+						</div>  
+						<div class="col-md-2 text-left"></div>          
+						            
+						 <div class="clear"></div> 
+						 <div class="col-md-2"></div>
+						 <div class="col-md-8">
+								            	<div class="cart">
+								            		<h3 class="plan-header">$1000 <small>Total Refund</small></h3>
+								            	</div> 
+								            	<div class="cart_details">
+								            		<div class="item_img1"><img alt="" src="../backend/img/payDay-loan_icon.jpg"></div>
+								            		<div class="item_detils">Banking</div>
+								            		<div class="item_price">$200.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_details">
+								            		<div class="item_img1"><img alt="" src="../backend/img/payDay-loan_icon.jpg"></div>
+								            		<div class="item_detils">Audit Gard</div>
+								            		<div class="item_price">$39.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_details">
+								            		<div class="item_img1"><img alt="" src="../backend/img/payDay-loan_icon.jpg"></div>
+								            		<div class="item_detils">PayDay Loan</div>
+								            		<div class="item_price">$100.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_amount_details">
+								            		<div class="sub_total_title text-right">Net Refund</div>
+								            		<div class="sub_total text-right">$800.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_amount_details">
+								            		<div class="sub_total_title text-right">Sub Total</div>
+								            		<div class="sub_total text-right">$139.00</div>
+								            		<div class="clear"></div>
+								            	</div>
+								            	<div class="cart_amount_details">
+								            		<div class="sub_total_title text-right"><strong>Total</strong></div>
+								            		<div class="sub_total text-right"><strong>$759.00</strong></div>
+								            		<div class="clear"></div>
+								            	</div>
+								            </div>
+								            
+								            <div class="col-md-2">  &nbsp; </div>
+								<div class="clear"></div>
+								<p>&nbsp;</p>            
+						 <div class="col-md-2 text-left"></div>
+						 <div class="col-md-4 text-left">
+						 	<ul class="icons-ul push">
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #1</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #2</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                            </ul> 
+						 </div>
+						 
+						 <div class="col-md-4 text-left">
+						 	<ul class="icons-ul push">
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #3</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                                <li><i class="icon-li icon-arrow-right"></i> <strong>File #4</strong>,<br><em>This is the description of this file..</em><br><a href="javascript:void(0)">Download</a> | <a href="javascript:void(0)">Save</a> | <a href="javascript:void(0)">Print</a></li>
+                            </ul> 
+						 </div>          
+						  <div class="col-md-2 text-left"></div>          
+						 <div class="clear"></div> 
+						 
+						  -->
+						           <div class="clear"></div> 
+						            <div class="form-group1 form-actions1">
+						                <!-- <div class="col-md-6 text-left">
+									<input type="reset" value="Cancel" id="back4"
+						                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+						                </div>
+						                 -->
+						                <div class="col-md-12 text-right">
+						                
+						                <button class="btn btn-success btn-lg" type="button" id="step4" value="Finished">
+				                                Finished <i class="icon-ok"></i> 
+				                        </button>
+				                            <div class="clear"></div>           
+						                </div>
+						                <div class="clear"></div>
+						            </div>
+						        
+						   
+						   <div class="clear"></div> 
+						   <p>&nbsp;</p>
+						  <!-- End step 4  -->  
+   </div>
+</div>
+ 
+    
+</div>
+
+<div id="modal_success2" class="modal slide">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title" style="font-weight: bold;">Confirmation:</h4>
+             </div>
+             <div class="modal-body">
+                 <div class="col-md-12 text-center">
+                 	<img alt="" src="../backend/img/tick.png">
+                 	<h4 class="text-center" style="font-weight: bold;">Please Confirm</h4>
+                 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora curabitur accumsan eros?</p>
+                 	<br><br>
+                 	<div class="col-md-12 text-center">
+                 	<button class="btn btn-danger " type="button" id="confirm_cancel" value="Cancel">
+                           <i class="icon-long-arrow-left"></i> &nbsp;  &nbsp; Back  &nbsp;  
+                   </button>
+                    &nbsp;  &nbsp;
+                    
+				     <button class="btn btn-success next_tab" type="button" id="confirm" value="Submit">
+                              <i class="icon-ok"></i>  &nbsp;  &nbsp; Submit  &nbsp;  
+                      </button>                   
+                    </div>  
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ 	<script type="text/javascript">
+ 	
+ 	
+ 	
+ 	var allSelectedItems = '';
+ 	var totalFees = 0; // it all benefit total
+ 	var totalRefundAmount = 0;
+ 	var tax_preparation_fee = 0;
+ 	var add_on_fee_3 = 0;
+ 	var sb_fee_3 = 0;
+ 	var bank_fee = 0;
+ 	//var e_file_fee = 0;
+ 	var net_refund = 0 ;
+ 	var refundAmount = 0;
+ 	
+ 	
+ 	function saveSelectedProductInfo(data){
+ 		//alert(data.id);
+ 		data.value = 'Added';
+ 		
+ 		//data.css = 'Added';
+ 		/*$(data).removeClass('btn-warning');
+ 		$(data).addClass('btn-info');
+ 		$(data).attr('disabled','disabled');
+ 		$(data).html('<i class=" next_tab icon-ok"></i> Added');
+ 		*/
+ 		var classname = '';
+ 		
+ 		if($(data).hasClass('auditgard')){
+ 			classname = 'auditgard';
+ 		}else if($(data).hasClass('standard')){
+ 			classname = 'standard';
+ 		}else if($(data).hasClass('premium')){
+ 			classname = 'premium';
+ 		}else if($(data).hasClass('super')){
+ 			classname = 'super';
+ 		}else if($(data).hasClass('first_benefit')){
+ 			classname = 'first_benefit';
+ 		}else if($(data).hasClass('second_benefit')){
+ 			classname = 'second_benefit';
+ 		}
+ 		
+ 		//console.log(classname);
+ 		
+ 		var itemsdet = data.id.split('~');
+ 		
+ 		checkRefundAmount = refundAmount-itemsdet[3];
+ 		
+ 		if(checkRefundAmount < 0){
+ 			alert('You can\'t add service more then refund amount');
+ 		}
+ 		else{
+ 			refundAmount = refundAmount-itemsdet[3];
+ 		if($(data).hasClass(classname)){
+ 			$('.'+classname).removeClass('btn-success');
+ 	 		$('.'+classname).addClass('btn-info');
+ 			$('.'+classname).attr('disabled','disabled');
+ 			$('.'+classname).html('<i class=" next_tab icon-ok"></i> Added');
+ 		}
+ 		
+ 		$('.'+classname).parents('.service_button').append('<button onclick="removeSelectedProductInfo(this);" id="'+data.id+'" value="remove" type="button" class="btn btn-danger '+classname+' "><i class="icon-minus"></i></button>');
+ 		
+ 		
+ 		
+		$('#top_net_refund').val(refundAmount);
+		$('#top_net_refund').html('$'+refundAmount);
+ 		
+ 		allSelectedItems = allSelectedItems+','+data.id;
+ 		
+ 		$('#inputSeletecItems').val(allSelectedItems);
+ 		}
+ 		$("#modal_"+classname+"_details").modal('hide');
+ 		//alert(allSelectedItems);
+ 	}
+ 	
+ 	function removeSelectedProductInfo(data){
+ 		
+ 		var allproduct = $('#inputSeletecItems').val();
+ 		var itemsdelet = data.id; 
+ 		//console.log(allproduct);
+ 		//console.log(itemsdelet);
+ 		
+ 		//data.value = 'Added';
+ 		
+        var classname = '';
+ 		
+ 		if($(data).hasClass('auditgard')){
+ 			classname = 'auditgard';
+ 		}else if($(data).hasClass('standard')){
+ 			classname = 'standard';
+ 		}else if($(data).hasClass('premium')){
+ 			classname = 'premium';
+ 		}else if($(data).hasClass('super')){
+ 			classname = 'super';
+ 		}else if($(data).hasClass('first_benefit')){
+ 			classname = 'first_benefit';
+ 		}else if($(data).hasClass('second_benefit')){
+ 			classname = 'second_benefit';
+ 		}
+ 		
+ 		if($(data).hasClass(classname)){
+ 			$('.'+classname).removeClass('btn-info');
+ 	 		$('.'+classname).addClass('btn-success');
+ 			$('.'+classname).removeAttr('disabled');
+ 			$('.'+classname).html('<i class=" next_tab icon-plus-sign"></i> &nbsp; Add &nbsp;&nbsp;');
+ 		}
+ 		
+		var itemsdet = itemsdelet.split('~');
+ 		
+		//alert(refundAmount);
+		//alert(itemsdet[3]);
+ 		refundAmount = parseFloat(refundAmount)+parseFloat(itemsdet[3]);
+ 		
+ 		//alert(refundAmount);
+		$('#top_net_refund').val(refundAmount);
+		$('#top_net_refund').html('$'+refundAmount);
+		
+ 		str = allproduct.replace(','+itemsdelet, "");
+ 		allSelectedItems = str;
+ 		$('#inputSeletecItems').val(allSelectedItems);
+ 		
+ 		//console.log(str);
+ 		
+ 		data.remove();
+ 	}
+ 	
+ 	function selectDisbursmentMethod(items){
+ 		// var debitCard = $('#debitCard');
+        // var directDeposit = $('#directDeposit');
+        // var check = $('#check');
+         
+         
+         var direct_deposit_box = $('#direct_deposit-box');
+         var debit_card_box = $('#debit_card-box');
+           
+         
+         
+         if (items === 'check'){
+        	 
+        	 debit_card_box.css('display','none');
+          	direct_deposit_box.css('display','none');
+            
+         } else if(items === 'deposit') {
+        	 debit_card_box.css('display','none');
+          	direct_deposit_box.css('display','block');
+         } else if(items === 'card') {
+         	debit_card_box.css('display','block');
+         	direct_deposit_box.css('display','none');
+         }
+         
+ 	}
+ 	
+ 	
+ 	function calcualteTotalpayment(){
+ 		var output = allSelectedItems.substring(1);
+		var items = output.split(',');
+ 		
+		//var price1 = 10.00;
+		var total1 = 0;
+			
+ 		//totalFees = tax_preparation_fee + add_on_fee_3 + sb_fee_3 + bank_fee + e_file_fee;
+ 		totalFees = tax_preparation_fee + add_on_fee_3 + sb_fee_3 + bank_fee;
+
+
+		var htmpayment = '';
+		
+		htmpayment +='<div class="col-md-3 text-right">Total Refund:</div>';
+		htmpayment +='<div class="col-md-9 text-left">$'+refundAmount+'</div>';
+		
+		htmpayment +='<div class="col-md-3 text-right">Banking:</div>';
+		htmpayment +='<div class="col-md-9 text-left">&nbsp; &nbsp; &nbsp; &nbsp; - $'+totalFees+'</div>';
+		for(var i = 0 ; i < items.length ; i++){
+			var itemsdet = items[i].split('~');
+			htmpayment +='<div class="col-md-3 text-right">'+itemsdet[0]+':</div>';
+			htmpayment +='<div class="col-md-9 text-left">&nbsp; &nbsp; &nbsp; &nbsp; - $'+itemsdet[3]+'</div>';
+			total1+=parseFloat(itemsdet[3]);
+		}
+		net_refund = parseFloat(refundAmount - (totalFees+total1));
+		
+		htmpayment +='<div class="col-md-3 text-right">Net Refund:</div>';
+		htmpayment +='<div class="col-md-9 text-left">$'+net_refund+'</div>';
+		
+		 
+		
+		$('#creditcardTotalRefund').html('$'+refundAmount);
+		$('#totalRefund').val(refundAmount);
+		$('#creditcardTotalBalance').html('$'+net_refund);
+		$('#totalBalance').val(net_refund);
+		
+		$("#refundamountbox").empty().append(htmpayment);
+ 	}
+ 	
+ 	function calculateNetRefund(){
+		totalRefundAmount = check_is_nan(parseFloat($('#total_refund_amt_3').val()));
+		tax_preparation_fee = check_is_nan(parseFloat($('#tax_preparation_fee_3').val()));
+		add_on_fee_3 = check_is_nan(parseFloat($('#add_on_fee_3').val()));
+		sb_fee_3 = check_is_nan(parseFloat($('#sb_fee_3').val()));
+		bank_fee = check_is_nan(parseFloat($('#bank_transmission_fee_3').val()));
+		//e_file_fee = check_is_nan(parseFloat($('#e_file_fee_3').val()));
+
+		//totalFees = tax_preparation_fee + add_on_fee_3 + sb_fee_3 + bank_fee + e_file_fee; // it's total benefits
+		totalFees = tax_preparation_fee + add_on_fee_3 + sb_fee_3 + bank_fee; // it's total benefits
+
+		refundAmount = parseFloat(totalRefundAmount - totalFees);
+
+		$('#net_refund_amt_3').val(refundAmount);
+		$('#net_refund_amt_3').html('$'+refundAmount);
+		$('#net_refund_amt_3_label').html('$'+refundAmount);
+		$('#final_net_refund').val(refundAmount);
+		$('#top_total_refund').val(totalRefundAmount);
+		$('#top_total_refund').html('$'+totalRefundAmount);
+		$('#top_net_refund').val(refundAmount);
+		$('#top_net_refund').html('$'+refundAmount);
+		$('#total_fees').val(totalFees);
+		
+		//var refundAmount = check_is_nan(parseFloat($('#totalRefundAmount').val()));
+		}
+
+	function check_is_nan(value){
+		if(isNaN(value))
+		{return 0;}
+		return value;
+	}
+	
+
+ 	function clickSaveNewApplication() {
+ 		
+ 	}
+ 	
+ 	$(function(){
+ 		 
+ 		 
+ 		//$('#toppart').remove();
+ 		
+ 		/*$('#new-app-wizard').formwizard({
+            focusFirstInput: true,
+            disableUIStyles: true,
+            back : ":reset",
+    		next : ":submit",
+    		textSubmit : 'Finished',
+    		textNext : 'Next',
+    		textBack : 'Back',
+    		resetForm: true,
+        });
+ 		 */
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		/*$("#step1").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-2').addClass('current-step');	
+ 			calcualteTotalpayment();
+ 		});*/
+ 		
+ 		$("#step2").click(function() {
+ 			
+ 			/*$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-3').addClass('current-step');	
+ 			*/
+ 			//console.log(allSelectedItems);
+ 			
+ 			var totalrefund = parseFloat(totalRefundAmount-totalFees); 
+ 			var output = allSelectedItems.substring(1);
+ 			//console.log(output);
+ 			var items = output.split(',');
+ 			//var itemsdet = '';
+ 			//alert(items.length);
+ 			//var price = 10.00;
+ 			var total = 0;
+ 			var netrefund = 0;
+ 			var htm = '';
+ 			
+        	
+        	htm += '<div id="cart_details1" style="padding:20px 15px 0px 15px;">';    
+        	
+        	htm += '<div class="col-md-2 service_img">';
+        	htm += '	<img alt=""  src="../backend/img/banking.png">';
+        	htm += '</div>';
+        	htm += '<div class="col-md-8 service_title_2">';
+        	htm += '	<h4>Banking </h4>';
+        	htm += '</div>';
+			
+        	htm += '<div class="col-md-2 price_2 text-right">';
+        	htm += '	<h5>$'+totalFees+'</h5>';
+        	htm += '</div>';
+        	htm += '<div class="clear"></div>';
+        	htm += '<hr style="margin: 20px 10px;">';
+        	//console.log(items.length);
+        	if(allSelectedItems === ''){
+        		
+        	}else{
+        	for(var i = 0 ; i < items.length ; i++){
+        		//console.log(items[i]);
+ 				var itemsdet = items[i].split('~');
+        	htm += '<div class="col-md-2 service_img">';
+        	htm += '	<img alt=""  src="../backend/img/'+itemsdet[2]+'">';
+        	htm += '</div>';
+        	htm += '<div class="col-md-8 service_title_2">';
+        	htm += '	<h4>'+itemsdet[0]+' </h4>';
+        	htm += '</div>';
+			
+        	htm += '<div class="col-md-2 price_2 text-right">';
+        	htm += '	<h5>$'+itemsdet[3]+'</h5>';
+        	htm += '</div>';
+        	htm += '<div class="clear"></div>';
+        	htm += '<hr style="margin: 20px 10px;">';
+        	total+=parseFloat(itemsdet[3]);
+        	}
+ 			}
+        	//totalRefundAmount - totalFees
+        	net_refund = parseFloat(totalrefund - total);
+        	$('#final_net_refund').val(net_refund);
+        	$('#total_benefit').val(total);
+        	$('#total_fees').val(totalFees);
+        	
+        	htm += '</div>';
+        	//htm += '<hr style="margin:0px;">';
+        	
+        	htm += '<div id="cart_total" style="padding:20px 15px;">';	
+        	htm += '<div class="col-md-10 text-right total-price">';
+        	htm += '<h5>Total Refund</h5>';
+        	htm += '</div>';
+			
+        	htm += '<div class="col-md-2 text-right total-price">';
+        	htm += '	<h5  style="font-weight: bold; ">$'+check_is_nan(totalrefund)+'</h5>';
+        	htm += '</div>';
+        	htm += '<div class="col-md-10 text-right total-price">';
+        	htm += '	<h5>Benefit</h5>';
+        	htm += '</div>';
+			
+        	htm += '<div class="col-md-2  text-right total-price">';
+        	htm += '	<h5 style="font-weight: bold; ">$'+check_is_nan(total)+'</h5>';
+        	htm += '</div>';
+        	htm += '<div class="clear"></div>';
+        	htm += '</div>';
+		
+        	htm += '<div class="col-md-12" style="padding:0px 27px;">';
+        	htm += '<div style="background-color: #F5F9FB; border: 4px solid #D8E3F1; margin:25px auto; padding: 30px 0 30px 140px; text-align: center;">';
+        	htm += '	<img style="float:left; margin-right:30px;" alt="" src="../backend/img/cart_total_summary.png" align="left"> <h3 style="float: left; margin:0px; margin-top:-4px;">NET REFUND: <strong>$'+parseFloat(check_is_nan(net_refund))+'</strong></h3>';
+        	htm += '	<div class="clear"></div>';
+        	htm += '</div>';
+        	htm += '</div>';
+        	
+ 			$("#cartdetails").empty().append(htm);
+ 			
+ 			$("#modal_success2").modal('show');
+ 			
+ 		});
+ 		
+ 		
+ 		$("#step3").click(function() {
+ 		/*
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-4').addClass('current-step');	
+ 			*/
+ 			//calcualteTotalpayment();
+ 		});
+ 		
+ 		
+ 		$("#step4").click(function() {
+ 			//$("#modal_success2").modal('show');
+ 			window.location.href = "index.php/admin/bankproducts/";
+ 		});
+ 		
+ 		$("#confirm_cancel").click(function() {
+ 			$("#modal_success2").modal('hide');	
+ 		});
+ 		
+ 		$("#audit_details").click(function() {
+ 			$("#modal_auditgard_details").modal('show');	
+ 		});
+ 		
+ 		$("#standard_details").click(function() {
+ 			$("#modal_standard_details").modal('show');	
+ 		});
+ 		
+ 		$("#premium_details").click(function() {
+ 			$("#modal_premium_details").modal('show');	
+ 		});
+ 		
+ 		$("#super_details").click(function() {
+ 			$("#modal_super_details").modal('show');	
+ 		});
+ 		
+ 		$("#first_benefit_details").click(function() {
+ 			$("#modal_first_benefit_details").modal('show');	
+ 		});
+ 		
+ 		$("#second_benefit_details").click(function() {
+ 			$("#modal_second_benefit_details").modal('show');	
+ 		});
+ 		
+ 		
+ 		/*
+ 		$("#back2").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-1').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back3").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-2').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back4").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-3').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back5").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-4').addClass('current-step');	
+ 		});
+ 		*/
+ 		
+ 		var checkbox = $('#checker'); 
+        var dependent = $('#dependent-box');
+        if (checkbox.attr('checked') !== undefined){
+           dependent.show();
+        } else {
+            dependent.hide();
+        }
+        
+        checkbox.change(function(e){
+           dependent.toggle(); 
+        });
+        
+       
+        
+        
+        
+        
+        
+    
+        
+        
+        $(".next_tab").click(function ()
+   		{ 	var target = $(".nav-tabs li.active");
+   		    var sibbling;
+   		    if ($(this).val() === "Next" || $(this).val() === "Submit")
+   		    { sibbling = target.next(); }
+   		    else
+   		    { sibbling = target.prev();}
+
+   		    if (sibbling.is("li"))
+   		    {sibbling.children("a").tab("show");}
+   		});
+        
+        /*$("#confirm").click(function ()
+      	{ 
+        	$("#modal_success2").modal('hide');
+  		    var target = $(".nav-tabs li.active");
+  		    var sibbling;
+  		    if ($(this).val() === "Next" || $(this).val() === "Submit")
+  		    { sibbling = target.next(); }
+
+  		    else { sibbling = target.prev(); }
+
+  		    if (sibbling.is("li"))
+  		    { sibbling.children("a").tab("show"); }
+      	});
+        */
+        
+        $(".previous_tab").click(function ()
+   		  { 
+   		    var target = $(".nav-tabs li.active");
+   		    var sibbling;
+   		    if ($(this).val() === "Back")
+   		    {   sibbling = target.prev();}
+   		    else
+   		    { sibbling = target.next(); }
+   		    if (sibbling.is("li"))
+   		    {  sibbling.children("a").tab("show"); }
+   		});
+        
+        $("#ss_number").mask("999-99-9999");
+        $("#cell_phone").mask("(999) 999-9999");
+        $("#dob").mask("99/99/9999");
+        $("#sp_ss_number").mask("999-99-9999");
+        $("#sp_dob").mask("99/99/9999");
+        
+        
+        jQuery.validator.addMethod("greaterThan", 
+        		function(value, element, params) {
+
+        		    //if (!/Invalid|NaN/.test(new Date(value))) {
+        		     //   return new Date(value) > new Date($(params).val());
+        		   // }
+
+        		    return isNaN(value) && isNaN($(params).val()) 
+        		        || (Number(value) > Number($(params).val())); 
+        		},'Must be greater than total fee.');
+        
+        jQuery.validator.addMethod("lessThan", 
+        		function(value, element, params) {
+
+        		    //if (!/Invalid|NaN/.test(new Date(value))) {
+        		     //   return new Date(value) > new Date($(params).val());
+        		   // }
+
+        		    return isNaN(value) && isNaN($(params).val()) 
+        		        || (Number(value) < Number($(params).val())); 
+        		},'Must be less than total refund.');
+        
+        /**/
+           /* Initialize Form Validation */
+                $('#applicant_info_form').validate({
+                    errorClass: 'help-block',
+                    errorElement: 'span',
+                    errorPlacement: function(error, e) {
+                        e.parents('.form-group1 > div').append(error);
+                    },
+                    highlight: function(e) {
+                        $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+                        $(e).closest('.help-block').remove();
+                    },
+                    success: function(e) {
+                        // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                        e.closest('.form-group1').removeClass('has-success has-error');
+                        e.closest('.help-block').remove();
+                    },
+                    rules: {
+                    	first_name: { required: true },
+                        last_name: { required: true},
+                        ss_number: { required: true},
+                        dob: { required: true},
+                        street_address: { required: true},
+                        city: { required: true},
+                        state: { required: true},
+                        zip_code: { required: true, maxlength: 5,  number: true},
+                        cell_phone: { required: true},
+                        email_add: { required: true, email: true},
+                        total_refund_amt_3: { required: true, number: true, greaterThan: '#total_fees'},
+                        DisbursmentMethod: { required: true},
+                        card_number: {creditcard: true,  maxlength: 16},
+                        tax_preparation_fee_3: { number: true, lessThan: '#total_refund_amt_3'},
+                        bank_transmission_fee_3: { number: true},
+                        sb_fee_3: { number: true, range: [1, 40]},
+                        /*e_file_fee_3: { number: true},*/
+                        add_on_fee_3: { number: true, range: [1, 40], lessThan: '#total_refund_amt_3'}
+                    },
+                    messages: {
+                    	first_name: { required: 'Please enter a first name'},
+                        last_name: { required: 'Please enter a last name'},
+                        ss_number: { required: 'Please enter SSN number '},
+                        dob: { required: 'Please enter your DOB'},
+                        street_address: { required: 'Please enter Address'},
+                        city: { required: 'Please enter city'},
+                        state: { required: 'Please select state'},
+                        zip_code: { required: 'Please enter zip code',
+                        			maxlength: 'Please enter no more then 5 digit.'},
+                        cell_phone: { required: 'Please enter phone number'},
+                        email_add: { required: 'Please enter a email address',
+                        	 		email: 'Please enter a valid email address'},
+                        total_refund_amt_3: { required: 'Please enter amount'},
+                        DisbursmentMethod: { required: 'Please select any one method'},
+                        card_number: {maxlength: 'Please enter no more then 16 digit.'},
+                        sb_fee_3 :{
+                            number: 'Please enter only number!',
+                            range: 'Please enter amount between 1 and 40',
+                        }
+                        ,
+                        add_on_fee_3 :{
+                            number: 'Please enter only number!',
+                            range: 'Please enter amount between 1 and 40',
+                        }
+                        
+                    },
+                    submitHandler: function(form) {
+                    	
+               		 	$.post("index.php/admin/clientcenter/nextstep", {
+             				next_step : 'yes'
+	             		}, function(data) {
+	             			if (data != '') {
+	             				// For send to the next step  
+	                        	var target = $(".nav-tabs li.active");
+	                   		    var sibbling;
+								sibbling = target.next();
+	                   		    if (sibbling.is("li"))
+	                   		    {sibbling.children("a").tab("show");}
+	                   		 	// End For send to the next step 
+	             			}
+	             		}, "json");
+	
+	             		return false;
+                    }
+                });
+        /**/
+        
+        //Confirm applciation
+        
+        $("#confirm").click(function() {
+ 			$.post("index.php/admin/clientcenter/saveNewApplicationInfo", {
+ 				senddata : 'yes',
+ 				 
+ 				first_name : $("#first_name").val(),
+ 				last_name : $("#last_name").val(),
+ 				ss_number : $("#ss_number").val(),
+ 				dob : $("#dob").val(),
+ 				
+ 				add_spouse :  $("#add_spouse").is(':checked') ? 1 : 0,
+ 				sp_first_name : $("#sp_first_name").val(),
+ 				sp_last_name : $("#sp_last_name").val(),
+ 				sp_ss_number : $("#sp_ss_number").val(),
+ 				sp_dob : $("#sp_dob").val(),
+ 				
+ 				street_address : $("#street_address").val(),
+ 				/*street_address2 : $("#street_address2").val(),*/
+ 				
+ 				city : $("#city").val(),
+ 				state : $("#state").val(),
+ 				zip_code : $("#zip_code").val(),
+ 				/*country : $("#country").val(),*/
+ 				cell_phone : $("#cell_phone").val(),
+ 				
+ 				total_refund_amt_3 : $("#total_refund_amt_3").val(),
+ 				tax_preparation_fee_3 : $("#tax_preparation_fee_3").val(),
+ 				bank_transmission_fee_3 : $("#bank_transmission_fee_3").val(),
+ 				sb_fee_3 : $("#sb_fee_3").val(),
+ 				/*e_file_fee_3: $("#e_file_fee_3").val(),*/ 
+ 				add_on_fee_3 : $("#add_on_fee_3").val(),
+ 				net_refund_amt_3 : $("#net_refund_amt_3").val(),
+ 				
+ 				total_benefit : $("#total_benefit").val(),
+ 				total_fees : $("#total_fees").val(),
+ 				final_net_refund : $("#final_net_refund").val(),
+ 				
+ 				payment_method : $(".DisbursmentMethod").val(),
+ 				bank_name : $("#bank_name").val(),
+ 				routing_number : $("#routing_number").val(),
+ 				acount_number : $("#acount_number").val(),
+ 				card_number : $("#card_number").val(),
+ 				
+ 				inputSeletecItems : $("#inputSeletecItems").val(),
+ 	                 
+ 			}, function(data) {
+ 				if (data) {
+     				// For send to the next step  
+                	var target = $(".nav-tabs li.active");
+           		    var sibbling;
+					sibbling = target.next();
+           		    if (sibbling.is("li"))
+           		    {sibbling.children("a").tab("show");}
+           		 	// End For send to the next step 
+           		 	
+           		 	$("#modal_success2").modal('hide');	
+     			}
+ 			}, "json");
+
+ 			return false;
+ 		});
+        
+        //end 
+        
+    });	
+ 	 </script>
+ 
+ 

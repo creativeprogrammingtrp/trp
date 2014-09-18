@@ -1,0 +1,312 @@
+<style>
+  /*  td.column{
+        border-right: 1px solid #E1E1E1;
+        border-bottom: 1px solid #E1E1E1;
+        padding:10px;
+    }
+    td.column:first-child{
+        border-left: 1px solid #E1E1E1;
+        border-radius:15px;
+    }
+    tr#title td{
+        border-top: 1px solid #E1E1E1;
+    }
+    td.td_name ,td.td_review{
+        padding-left: 10px;
+    }
+    td.title{
+        padding:10px;
+        text-align: center;
+    }*/
+    .v3 td.title{
+        border-width: 1px !important;
+	 	padding: 8px !important;
+	 	border-style: solid !important;
+		border-color: #DDD !important;
+		background-color: #eee !important;
+    }/*
+    td.itm_name{
+        border-left: 1px solid #E1E1E1;
+        border-radius:15px;
+        border: 1px solid #E1E1E1;
+        padding:10px;
+        text-align: center;
+    }*/
+
+
+</style>
+<div id="acor" style="clear:both; overflow:hidden; padding-top:10px">
+
+    <div style="float:left; clear:both; padding-top:10px;padding-bottom: 15px">
+        <form method="get" name="form_filter" onsubmit="return pageObject()">
+            <span class="field-with-placeholder" style="float:left">
+                <input type="text" class="input-text" id="key_word" size="10" name="key_word" value="{key_word}" style="width:200px" placeholder="Product Name">
+            </span>
+            <span style="float:left; padding-left:10px"><input type="submit" class="btn btn-primary" value="Filter" /></span>
+        </form>
+    </div>
+
+    <div id="pager" style="float:right;"></div>
+    <div style="clear:both">
+
+        <table border="0" width="100%" class="v3" style="margin-bottom:5px;"><!-- 80%-->
+            <thead id="_review_body" >
+
+            </thead>
+            
+            <tbody id="_review_head" >
+               
+               
+                    
+            </tbody>
+            
+        </table>
+
+
+       <!-- <table width="20%" style="float:left">
+            <tbody id="_review_body_" >
+
+            </tbody>
+
+
+        </table>-->
+    </div>
+</div>
+
+<script type="text/javascript">
+    {data_name}
+    {data_review}
+    //datas = [];
+   // var test;
+
+     function load(page,maxlength){
+        var html =  '';
+        if(page == 0 || page == null) page = 1;
+        var total_row = 10;
+        
+        for(var i = 0 ; i< arr_name[0].length; i++){
+            var obj_name = arr_name[0][i];
+            html += '<tr id="title" >';
+            html += '<td class = "title column" >'+obj_name.itm_name+'</td>';
+            html += '<td  class = "title column" >Content</td>';
+            html += '<td  class = "title column" >Rating</td>';
+            html += '<td class = "title column" >Active</td>';
+            html += '<td  class = "title column" >Reject</td></tr>';
+            for(var j = 0 ; j< arr_review.length ; j++){
+                var obj_review = arr_review[j];
+              
+                if(obj_name.itm_id == obj_review.itm_id){
+                    html += '<tr ><div id = "content">';
+                    html += '<td class="td_name column">'+obj_review.rname+'</td>';
+                    html += '<td class="td_review column">'+obj_review.rcontent+'</td>';
+                    html += '<td style="text-align:center"  class="td_rating column">'+obj_review.rating+'</td>';
+                    if(obj_review.status == 1){
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/checked.png" title="Unactive" > </a></td>';
+                    }else{
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/unchecked.png" title="active"> </a></td>';
+                    }
+                    
+                    html += '<td class="td_del column" style="text-align:center" ><a class="del_review" onclick="deleteReview('+obj_review.rid+','+obj_review.itm_id+')" href="javascript:void(0)"><img src ="../images/b_drop.png" title="Reject"> </a></td>';
+                    html += '</div></tr>';
+                }
+            }
+          
+        }
+        pagerAjax(total_row,maxlength, page, 'pageObject', ['pager']);
+        $("#_review_body").empty().append(html);
+    }
+    
+    
+    
+   /* function load(page,maxlength){
+        var html =  '';
+        var html_ = '';
+        if(page == 0 || page == null) page = 1;
+        var total_row = 10;
+        
+        
+         html_ += '</tr>';
+            html += '<tr id="title" >';
+            html += '<td class = "title column" >Author</td>';
+            html += '<td  class = "title column" >Content</td>';
+            html += '<td  class = "title column" >Rating</td>';
+            html += '<td class = "title column" >Active</td>';
+            html += '<td  class = "title column" >Reject</td></tr>';
+        for(var i = 0 ; i< arr_name[0].length; i++){
+            var obj_name = arr_name[0][i];
+            var obj_name_first = arr_name[0][0];
+            html_ += '<tr id = "item">';
+            html_ += '<td class= "itm_name"><a class = "itm" id = "'+obj_name.itm_id+'" href = "javascript:void(0)">'+obj_name.itm_name+'</a></td>';*/
+  
+           
+            /*for(var j = 0 ; j< arr_review.length ; j++){
+                var obj_review = arr_review[j];
+              
+                if(obj_name_first.itm_id == obj_review.itm_id){
+                    html += '<tr ><div id = "content">';
+                    html += '<td class="td_name column">'+obj_review.rname+'</td>';
+                    html += '<td class="td_review column">'+obj_review.rcontent+'</td>';
+                    html += '<td style="text-align:center"  class="td_rating column">'+obj_review.rating+'</td>';
+                    if(obj_review.status == 1){
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/checked.png" title="Unactive" > </a></td>';
+                    }else{
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/unchecked.png" title="active"> </a></td>';
+                    }
+                    
+                    html += '<td class="td_del column" style="text-align:center" ><a class="del_review" onclick="deleteReview('+obj_review.rid+','+obj_review.itm_id+')" href="javascript:void(0)"><img src ="../images/b_drop.png" title="Reject"> </a></td>';
+                    html += '</div></tr>';
+                }
+            }*/
+          
+       /* }
+        pagerAjax(total_row,maxlength, page, 'pageObject', ['pager']);
+        $("#_review_body").empty().append(html);
+        $("#_review_body_").empty().append(html_);
+    }
+    
+    function parseJson(string_object){
+    return JSON.parse(string_object);
+}*/
+    
+   /* function clickItems(){
+       
+        $('.itm').bind('click',function(){
+            var id = $(this).attr('id');
+             
+             
+            $.ajax({
+            url:'index.php/store/review',
+            data: {"send":'yes',"id":id},
+            type:'post',
+            cache:false,
+            success:function(data){
+             datas = data;
+             localStorage.setItem("someVarName", datas);
+             loadItems(datas);
+            }
+        })*/
+             
+           /* for(var j = 0 ; j< arr_review.length ; j++){
+                var obj_review = arr_review[j];
+              
+              
+                if(id == obj_review.itm_id){
+                    console.log(obj_review);
+                    html += '<tr ><div id = "content">';
+                    html += '<td class="td_name column">'+obj_review.rname+'</td>';
+                    html += '<td class="td_review column">'+obj_review.rcontent+'</td>';
+                    html += '<td style="text-align:center"  class="td_rating column">'+obj_review.rating+'</td>';
+                    if(obj_review.status == 1){
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/checked.png" title="Unactive" > </a></td>';
+                    }else{
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/unchecked.png" title="active"> </a></td>';
+                    }
+                    
+                    html += '<td class="td_del column" style="text-align:center" ><a class="del_review" onclick="deleteReview('+obj_review.rid+','+obj_review.itm_id+')" href="javascript:void(0)"><img src ="../images/b_drop.png" title="Reject"> </a></td>';
+                    html += '</div></tr>';
+                }
+            }
+            
+            $('#_review_head').empty().append(html);*/
+       /* });
+       return false;
+    }*/
+    
+    
+    /*function loadItems(objects){
+     var html = '';
+     objects = parseJson(datas);
+ 
+        for(var j = 0 ; j< objects.length ; j++){
+           
+                var obj_review = objects[j];
+      
+                    html += '<tr>';
+                    html += '<td class="td_name column">'+obj_review.rname+'</td>';
+                    html += '<td class="td_review column">'+obj_review.rcontent+'</td>';
+                    html += '<td style="text-align:center"  class="td_rating column">'+obj_review.rating+'</td>';
+                    if(obj_review.status == 1){
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/checked.png" title="Unactive" > </a></td>';
+                    }else{
+                        html += '<td class="td_active column" style="text-align:center" ><a class="act_review" onclick="activate('+obj_review.rid+','+obj_review.status+')" href="javascript:void(0)"><img src ="../images/unchecked.png" title="active"> </a></td>';
+                    }
+                    
+                    html += '<td class="td_del column" style="text-align:center" ><a class="del_review" onclick="deleteReview('+obj_review.rid+','+obj_review.itm_id+')" href="javascript:void(0)"><img src ="../images/b_drop.png" title="Reject"> </a></td>';
+                    html += '</tr>';
+                
+            }
+             $('#_review_head').empty().append(html);
+          
+       
+    }*/
+    
+    
+    function pageObject(page){
+        window.location = returnURL(page);
+        return false;
+    }
+
+    function returnURL(page){
+    
+        if(page == null || page == 0) page = 1;
+        var url = 'index.php/store/review';
+        url += '?page='+page;
+        var keyword = '';
+        if(document.getElementById("key_word") && trim(document.getElementById("key_word").value) != '')
+        {
+            keyword = trim(document.getElementById("key_word").value);
+        }
+        if(keyword == ''){
+            url;
+        }else{
+            url += '&keyword='+encodeURIComponent(keyword);
+        }
+
+        return url;
+    }
+
+    function loadObject(){
+        load(arr_name[1],arr_name[2]);
+        //clickItems();
+       // return false;
+    }
+    function deleteReview(rid,item_id){
+        $.ajax({
+            url:'index.php/store/review/deleteReview',
+            data: {"rid":rid,"itm":item_id},
+            type:'post',
+            cache:false,
+            success:function(data){
+               window.location.reload();
+               //var someVarNames = localStorage.getItem("someVarName");
+               //loadItems(someVarNames);
+            }
+        })
+    }
+
+    function activate(rid,status){
+        $.ajax({
+            url:'index.php/store/review/activateReview',
+            data: {"status":status,"rid":rid},
+            type:'post',
+            cache:false,
+            success:function(data){
+                window.location.reload();
+               // var someVarNames = localStorage.getItem("someVarName");
+                //loadItems(someVarNames);
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        loadObject();
+    });
+ 
+</script>
+
+
+
+
+
+
+

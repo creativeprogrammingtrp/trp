@@ -1,0 +1,126 @@
+<link rel='stylesheet' type='text/css' href='../fullcalendar/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='../fullcalendar/fullcalendar.print.css' media='print' /><link rel='stylesheet' type='text/css' href='../css/events.css' />
+<div style="clear:both;" class="box_solar">
+    <div class="divPageTitle">{title_page}</div>
+   <div id="tabs_container">
+        <ul class="tabs">
+            <li class="active"><a class="tab" rel="#tab_1_contents" href="javascript:void(0)">Events</a></li>
+            <li><a class="tab" rel="#tab_2_contents" href="javascript:void(0)">Calendar</a></li>
+        </ul>
+    	<div class="tab_contents_container">
+    		<div class="tab_contents tab_contents_active" id="tab_1_contents" style="overflow:hidden">
+            	<div style="clear:both; padding-top:20px" id="event_list"></div>
+           	</div>
+        	<div class="tab_contents" id="tab_2_contents" style="overflow:hidden"><div id="show_calendar"></div></div>
+   		</div>
+  	</div>
+</div>
+<div class="modal" id="box_video" style="overflow:hidden; margin-left:-324px; margin-top:-220px; display:none">
+	<div class="modal-hd" style="cursor: move"><span id="title_popup">Event</span> <span title="Close" class="close" onclick="closeBox('box_video');"></span> </div>
+    <div class="modal-bd">
+    	<div style="overflow:hidden; width:600px; height:400px" id="event_jScrollPane">
+        	<div id="content_evnet"></div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" media="all" href="../jScrollPane/styles/jquery.jscrollpane.css" />
+<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="misc/jScrollPane/scripts/jquery.jscrollpane.min.js"></script>
+<script type='text/javascript' src='../fullcalendar/fullcalendar.min.js'></script>
+<script language="javascript">
+var loadFirstCalendar = false;
+function loadCalendar(){
+	var dataEvents_cal = [];
+	for(var i = 0; i < dataEvents.length; i++){
+		var obj = new Object();
+		obj.id = dataEvents[i].id;
+		obj.title = ConvertToTest(dataEvents[i].title);
+		obj.start = dataEvents[i].start_date;
+		obj.end = dataEvents[i].end_date;
+		obj.url = "javascript:showpopupEvent('"+dataEvents[i].ekey+"')";
+		dataEvents_cal[dataEvents_cal.length] = obj;
+	}
+	$('#show_calendar').fullCalendar({
+		header: {
+			left: 'prev',
+			center: 'title',
+			right: 'next'
+		},
+		editable: true,
+		events: dataEvents_cal
+	});
+}
+function showpopupEvent(key){
+	for(var i = 0; i < dataEvents.length; i++){
+		if(dataEvents[i].ekey == key){
+			$("#content_evnet").empty();
+			$("#box_video").show();
+			var str_content = '<div class="title">'+dataEvents[i].title+'</div>';
+			str_content += '<div class="date_event">'+dataEvents[i].start_date_s+'</div>';
+			str_content += '<div class="event_content">'+dataEvents[i].content+'</div>';
+			$("#content_evnet").append(str_content);
+			$("#event_jScrollPane").jScrollPane({showArrows:false, scrollbarWidth: 7});	
+			break;	
+		}	
+	}
+}
+var dataEvents = [];
+function showEvents(page, maxlength){
+	if(page == 0 || page == null) page = 1;
+	var total_row = 20;
+	var str_content = '';
+	var length_data = dataEvents.length;
+	if(length_data > 0){
+		for(var i = 0; i < length_data; i++){
+			str_content += '<table cellpadding="0" cellspacing="0" border="0" width="100%" class = "table_event">';
+			str_content += '<tr>';
+			str_content += '	<td valign="top" width = "70px" style = "border-right:#AEAEAE solid 1px;padding-right:20px">';
+			str_content += '		<div class="event_date">';
+			str_content += '			<div class="event_month">'+dataEvents[i].event_month+'</div>';
+			str_content += '			<div class="event_day">'+dataEvents[i].event_day+'</div>';
+			str_content += '			<div class="event_year">'+dataEvents[i].event_year+'</div>';
+			str_content += '		</div>';
+			str_content += '	</td>';
+			str_content += '	<td valign="top" style ="padding-left:20px">';
+			str_content += '		<div class="event_title">'+dataEvents[i].title+'</div>';
+			str_content += '		<div class="event_content">'+dataEvents[i].content+'</div>';
+			str_content += '	</td>';
+			str_content += '</tr>';
+			str_content += '</table>';
+		}
+		if(maxlength > total_row)
+			str_content += '<div style="clear:both; padding-top:5px" id="pager" align="right"></div>';
+	}
+	$("#event_list").empty().append(str_content);
+	if(document.getElementById("pager"))
+		pagerAjax(total_row, maxlength, page, 'pageObject', ['pager']);
+}
+function pageObject(page){
+	if(page == null || page == 0) page = 1;
+	var url = 'index.php/events/calendar/'+page;
+	window.location = url;		
+	return false;
+}
+function loadEvents(){
+	var data_obj = {loadStores}
+	dataEvents = data_obj.data;
+	var max_length = data_obj.maxlength;
+	var page = data_obj.page;
+	showEvents(page, max_length);
+}
+$(document).ready(function(){
+	$('.tab').click(function () {
+		$('#tabs_container > .tabs > li.active').removeClass('active');
+		$(this).parent().addClass('active');
+		$('#tabs_container > .tab_contents_container > div.tab_contents_active').removeClass('tab_contents_active');
+		$(this.rel).addClass('tab_contents_active');	
+		if(this.rel == '#tab_2_contents'){
+			if(loadFirstCalendar == false){
+				loadFirstCalendar = true;
+				loadCalendar();	
+			}	
+		}
+	});
+	loadEvents();
+});
+</script>

@@ -1,0 +1,1072 @@
+<style>
+
+ul li {
+    list-style: none outside none;
+}
+
+.stepy-tab {
+    text-align: center;
+	margin-bottom: 28px;
+}
+
+.stepy-tab ul {
+    display: inline-block;
+}
+
+.stepy-tab ul li {
+    float: left;
+}
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+    float: left;
+    margin: 10px 15px;
+}
+
+.stepy-titles li.current-step div {
+    background: none repeat scroll 0 0 #A9D86E;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: auto;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li div {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 300;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+}
+
+.stepy-titles li span {
+    display: block;
+}
+
+.prodcut_list {
+    overflow: hidden;
+}
+
+.product_list_cell {
+    float: left;
+    margin: 0 10px 90px 0px;
+    /*padding: 10px 15px 50px;*/
+    position: relative;
+    width: 155px;
+}
+
+.product_list_cell p{
+	margin: 0px;
+}
+.product_list_cell .prodcut_img {
+    height: 90px;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.product_list_cell .prodcut_img img {
+    max-height: 70px;
+    max-width: 70px;
+}
+
+.item_img{
+	max-height: 70px;
+    max-width: 70px;
+}
+
+.ptitle {
+    font-size: 17px;
+    height: 25px;
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+	color:#000;
+}
+
+.product_list_cell .pshort_des {
+    color: #999;
+    font-size: 12px;
+    font-weight: 400;
+	margin: 0px 0px 15px 0px;
+    text-align: center;
+}
+
+.product_list_cell .button_add{
+	text-align: center;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    
+    padding-left: 10px;
+    
+}
+
+.form-box-header {
+    padding: 20px 0 10px;
+	color:#0097CF;
+	border-bottom: 1px dotted #ddd;
+}
+
+</style>
+                
+
+            <div class="modal-body">
+            <div class="stepy-tab">
+            	<ul id="default-titles" class="stepy-titles clearfix">
+            		<li id="default-title-1" class="current-step"><div>Step1</div><span> Applicant Info </span></li>
+            		<li id="default-title-2"><div>Step 2</div><span> Products</span></li>
+            		<li id="default-title-3"><div>Step 3</div><span> Review & Approve </span></li>
+            		<li id="default-title-4"><div>Step 4</div><span> Confirmation</span></li>
+            	</ul>
+            </div>
+            {statusmessage}
+            	<form class="form-horizontal form-box remove-margin ui-formwizard"
+				      method="post" id="new-app-wizard" novalidate="novalidate" action="index.php/admin/clientcenter/newapp/save">
+				    <!-- Form Header -->
+				  
+				    <!-- Form Content -->
+				    <div class="form-box-content" style="padding:0px;">
+				        <!-- First Step -->
+				        <div id="first" class="step">
+						         <div class="col-md-6">
+						         <h4 class="form-box-header">
+							        <i class="glyphicon-user"></i> Personal Info
+							    </h4>   
+						            <div class="form-group">
+						                
+						                <div class="col-md-6">
+						                	<label for="first_name" class="control-label col-md-9">First Name</label>
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                </div>
+						                <div class="col-md-6">
+						               	 	<label for="last_name" class="control-label col-md-9">Last Name</label>
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                </div>
+						            </div>
+						           
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                </div>
+						                	<div class="col-md-6">
+						                		<label for="dob" class="control-label col-md-9">Birth Date</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="">
+						                	</div>
+						                
+						            </div>
+						           
+						           <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="ss_number" class="control-label col-md-9"><input type="checkbox"   id="checker"> Add Spouse ?</label>
+							                </div>
+						            </div>
+						            <div id="dependent-box">
+							            <h4 class="form-box-header">
+								        <i class="glyphicon-girl"></i> Spouse's Info
+								    	</h4> 
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Spouse's First Name</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Spouse's Last Name</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="">
+							                	</div>
+							                
+							            </div>
+							            
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+								                </div>
+							                	
+							                
+							            </div>
+						            </div>
+						           <h4 class="form-box-header"> <i class="glyphicon-envelope"></i> Contact Info </h4> 
+						            <div class="form-group">
+						                
+						                <div class="col-md-12">
+						                	<label for="street_address" class="control-label col-md-12">Home Address</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                </div>
+						            </div>
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-4">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                </div>
+						                
+						                <div class="col-md-4">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option>Check</option>
+						                    	<option>Debit Card</option>
+						                    </select>
+						                </div>
+						                
+						                <div class="col-md-4">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-6">
+						                	<label for="cell_phone" class="control-label col-md-12">Cell Phone #</label>
+						                    <input type="text" class="form-control ui-wizard-content" disabled="disabled"  name="cell_phone" id="cell_phone" value="">
+						                </div>
+						                
+						                <div class="col-md-6">
+						                	 <label for="payment_method" class="control-label col-md-12">Disbursement Method</label>
+						                    <select class="form-control ui-wizard-content" name="payment_method" id="payment_method">
+						                    	<option>Check</option>
+						                    	<option>Debit Card</option>
+						                    </select>
+						                </div>
+						            </div>
+						            
+						            
+						</div>
+						<div class="col-md-6">
+						<h4 class="form-box-header"> <i class="icon-dollar"></i> Banking Info</h4> 
+							<div class="form-group">
+				                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Refund Amount </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" name="refundAmount" id="refundAmount">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+				            </div>
+				            
+				            <div class="form-group">
+				                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Tax Preparation Fee </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text"  class="form-control text-right" id="tax_preparation_fee" name="tax_preparation_fee" onkeyup="calculateNetRefund();">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Bank Transmission Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="bank_fee" name="bank_fee" value="" onkeyup="calculateNetRefund();">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+                                
+                                
+				            </div>
+				            
+				            <div class="form-group">
+				            	<div class="col-md-4">
+					                <label for="cell_phone" class="control-label col-md-12">SB Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="service_bureau_fee" name="service_bureau_fee" value="" onkeyup="calculateNetRefund();">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+				                <div class="col-md-4">
+					                <label for="cell_phone" class="control-label col-md-12">E-file Fee </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" id="e_file_fee" name="e_file_fee" value="" onkeyup="calculateNetRefund();">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+                                <div class="col-md-4">
+					                <label for="cell_phone" class="control-label col-md-12">Add On Fee</label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" class="form-control text-right" name="example-input-preapppend" id="example-input-preapppend">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+				            </div>
+				            
+				            <div class="form-group">
+				                <div class="col-md-6">
+					                <label for="cell_phone" class="control-label col-md-12">Net Refund Amount </label>
+					                <div class="input-group">
+	                                        <span class="input-group-addon">$</span>
+	                                        <input type="text" disabled="disabled" class="form-control text-right" readonly="readonly" id="net_refund" name="net_refund">
+	                                        <span class="input-group-addon">.00</span>
+	                                </div>
+                                </div>
+				            </div>
+				            
+				            
+						</div>
+						            <div class="form-group form-actions">
+						                <div class="col-md-11 text-right">
+						                    <input type="submit" value="Save" id="step1" class="btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						            </div>
+						        
+						    </div> 
+						   <!-- End Steps 1 -->  
+						   
+						    <!-- First Step -->
+				        <div id="second" class="step">
+						       
+						            
+						            <div class="form-group">
+						                <div class="col-md-12">
+						                	<div class="prodcut_list">
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/banking_icon.jpg">  </a>
+							                		</p>
+							                		<p class="ptitle">Banking</p>
+							                		<p class="pshort_des">Refund Anticipation Cash</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Banking~Refund Anticipation Cash~banking_icon.jpg~0" class="Banking btn btn-round btn-warning "></p>
+							                	</div>
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/audit_guard_icon.png">  </a>
+							                		</p>
+							                		<p class="ptitle">Audit Guard</p>
+							                		<p class="pshort_des">Protect your refund</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Audit Guard~Protect your refund~audit_guard_icon.png~10" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/autoinsurance-icon3.png">  </a>
+							                		</p>
+							                		<p class="ptitle">Auto Insurance</p>
+							                		<p class="pshort_des">Save 20% on Auto</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Auto Insurance~Save 20% on Auto~autoinsurance-icon3.png~10" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/health_Insurance_icon.jpg">  </a>
+							                		</p>
+							                		<p class="ptitle">Health Insurance</p>
+							                		<p class="pshort_des">ObamaCare Required</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Health Insurance~ObamaCare Required~health_Insurance_icon.jpg~10" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/life_insurance_icon.jpg">  </a>
+							                		</p>
+							                		<p class="ptitle">Life Insurance</p>
+							                		<p class="pshort_des">For your family</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Life Insurance~For your family~life_insurance_icon.jpg~20" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/home-insurance_icon.svg">  </a>
+							                		</p>
+							                		<p class="ptitle">Home Insurance</p>
+							                		<p class="pshort_des">For your home</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Home Insurance~For your home~home-insurance_icon.svg~50" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/AAA_coverage_icon.jpg">  </a>
+							                		</p>
+							                		<p class="ptitle">AAA Coverage</p>
+							                		<p class="pshort_des">Safe while on road</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="AAA Coverage~Safe while on road~AAA_coverage_icon.jpg~10" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/Burial_Coverage_icon.png">  </a>
+							                		</p>
+							                		<p class="ptitle">Burial Coverage</p>
+							                		<p class="pshort_des">Protect yourselves</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Burial Coverage~Protect yourselves~Burial_Coverage_icon.png~0" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                	
+							                	<div class="product_list_cell">
+							                		<p class="prodcut_img">
+							                			<a> <img alt="" src="../backend/img/marvel_optics_icon.jpg">  </a>
+							                		</p>
+							                		<p class="ptitle">Marvel Optics</p>
+							                		<p class="pshort_des">Cheap Prescription Glasses</p>
+							                		<p class="button_add"> <input type="button" value="Add" id="Marvel Optics~Cheap Prescription Glasses~marvel_optics_icon.jpg~25" onclick="saveSelectedProductInfo(this);" class="btn btn-round btn-warning others_product"></p>
+							                	</div>
+							                </div>	
+						                </div>
+						            </div>
+						            <input type="hidden" name="inputSeletecItems" id="inputSeletecItems" >
+						            
+						            <div class="form-group form-actions">
+						                <div class="col-md-6 text-left">
+											 <input type="reset" value="Cancel" id="back2"
+						                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+						                </div>
+						                <div class="col-md-6 text-right">
+						                <input type="submit" value="Save" id="step2"
+						                           class="btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						                
+						            </div>
+						        
+						   </div>
+						  <!-- End 2nd  -->  
+						  
+						  <!-- 3rd Step -->
+				        <div id="3rd" class="step">
+						       
+						         <div class="row grid-boxes" >
+    <div class="col-md-12" id="pdf1" style="background: none;">
+     <!-- <h3 class="modal-title">Please review & sign our trams & condition 	</h3> -->
+    <div style="max-height: 360px; overflow: scroll; background: none;" id="printArea"> 
+    <h3>Banking</h3>
+    <p>The set of APIs (application programming interfaces) is designed to allow client applications to process real-time account creation, account loading, reverse load, cancel load, and account management functions. All data exchanged between the client system and the payment application will be in an XML block in a regular HTTPS POST method. This document will cover:
+
+Sending the XML request message via HTTPS POST method
+Information required (and optional parameters) to use the API
+Sample XML responses.</p>
+
+<p>The API Gateway is the entry point for all APIs. The gateway handles user authentication and authorization for the APIs. In order to submit a message through the gateway, a valid API user with the correct permissions is required. Please contact hyperWALLET Systems Inc. to be setup with an API user account.</p>
+<p>For increased security, the API gateway enforces the use of SSL (HTTPS / Port 448) only, and only accepts POSTs (GETs will be ignored). Production site APIs will be using trusted certificates and should be automatically accepted by most client systems. In the event of a trusted certificate not being trusted (SSL Exception) please download the certificate from the website, and follow the steps outlined in section 2.3.</p>
+<p>Note: Demo sites are also enforcing SSL-only connections, but will be using self-signed certificates which are not automatically trusted. In order to use the self-signed certificates for demo, follow the same steps outlined in section 2.3 for your environment. If you wish to purchase a signed certificate for your demo site, please contact hyperWALLET.</p>
+<p></p>
+    <p>The set of APIs (application programming interfaces) is designed to allow client applications to process real-time account creation, account loading, reverse load, cancel load, and account management functions. All data exchanged between the client system and the payment application will be in an XML block in a regular HTTPS POST method. This document will cover:
+
+Sending the XML request message via HTTPS POST method
+Information required (and optional parameters) to use the API
+Sample XML responses.</p>
+<p></p>
+<h3>Home Insurance</h3>
+<p>The API Gateway is the entry point for all APIs. The gateway handles user authentication and authorization for the APIs. In order to submit a message through the gateway, a valid API user with the correct permissions is required. Please contact hyperWALLET Systems Inc. to be setup with an API user account.</p>
+<p>For increased security, the API gateway enforces the use of SSL (HTTPS / Port 448) only, and only accepts POSTs (GETs will be ignored). Production site APIs will be using trusted certificates and should be automatically accepted by most client systems. In the event of a trusted certificate not being trusted (SSL Exception) please download the certificate from the website, and follow the steps outlined in section 2.3.</p>
+<p>Note: Demo sites are also enforcing SSL-only connections, but will be using self-signed certificates which are not automatically trusted. In order to use the self-signed certificates for demo, follow the same steps outlined in section 2.3 for your environment. If you wish to purchase a signed certificate for your demo site, please contact hyperWALLET.</p>
+
+    <p>The set of APIs (application programming interfaces) is designed to allow client applications to process real-time account creation, account loading, reverse load, cancel load, and account management functions. All data exchanged between the client system and the payment application will be in an XML block in a regular HTTPS POST method. This document will cover:
+
+Sending the XML request message via HTTPS POST method
+Information required (and optional parameters) to use the API
+Sample XML responses.</p>
+
+<p>The API Gateway is the entry point for all APIs. The gateway handles user authentication and authorization for the APIs. In order to submit a message through the gateway, a valid API user with the correct permissions is required. Please contact hyperWALLET Systems Inc. to be setup with an API user account.</p>
+<p>For increased security, the API gateway enforces the use of SSL (HTTPS / Port 448) only, and only accepts POSTs (GETs will be ignored). Production site APIs will be using trusted certificates and should be automatically accepted by most client systems. In the event of a trusted certificate not being trusted (SSL Exception) please download the certificate from the website, and follow the steps outlined in section 2.3.</p>
+<p>Note: Demo sites are also enforcing SSL-only connections, but will be using self-signed certificates which are not automatically trusted. In order to use the self-signed certificates for demo, follow the same steps outlined in section 2.3 for your environment. If you wish to purchase a signed certificate for your demo site, please contact hyperWALLET.</p>
+
+    <p>The set of APIs (application programming interfaces) is designed to allow client applications to process real-time account creation, account loading, reverse load, cancel load, and account management functions. All data exchanged between the client system and the payment application will be in an XML block in a regular HTTPS POST method. This document will cover:
+
+Sending the XML request message via HTTPS POST method
+Information required (and optional parameters) to use the API
+Sample XML responses.</p>
+
+<p>The API Gateway is the entry point for all APIs. The gateway handles user authentication and authorization for the APIs. In order to submit a message through the gateway, a valid API user with the correct permissions is required. Please contact hyperWALLET Systems Inc. to be setup with an API user account.</p>
+<p>For increased security, the API gateway enforces the use of SSL (HTTPS / Port 448) only, and only accepts POSTs (GETs will be ignored). Production site APIs will be using trusted certificates and should be automatically accepted by most client systems. In the event of a trusted certificate not being trusted (SSL Exception) please download the certificate from the website, and follow the steps outlined in section 2.3.</p>
+<p>Note: Demo sites are also enforcing SSL-only connections, but will be using self-signed certificates which are not automatically trusted. In order to use the self-signed certificates for demo, follow the same steps outlined in section 2.3 for your environment. If you wish to purchase a signed certificate for your demo site, please contact hyperWALLET.</p>
+
+
+
+</div>
+
+    <div style="background: none;"><button class="btn btn-info" id="confirmSign" type="button" style="font-size:30px">Confirm Signature</button> </div>
+    
+    </div>
+</div>   
+					
+						            
+						            <div class="form-group form-actions">
+						                <div class="col-md-6 text-back">
+						 <input type="reset" value="Cancel" id="back3"
+						                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+						                </div>
+						                <div class="col-md-6 text-right">
+						                <input type="submit" value="Save" id="step3"
+						                           class="btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						            </div>
+						        
+						   </div>
+						  <!-- End 3rd step  -->
+						  
+						  <!-- Step 4  -->
+				        <div id="4th" class="step">
+						        
+						        <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th class="hidden-xs hidden-sm"> Description</th>
+                                <th class=" cell-small hidden-xs hidden-sm text-right"><i class="icon-dollar"></i>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            
+                             <tr>
+                             	<td colspan="3" id="cartdetails">
+                             	</td>
+                             </tr>
+                           <tr>
+ 			<td style="border-top:1px solid #ddd;" colspan="2" class="hidden-xs hidden-sm text-right text-danger" ><a href="javascript:;" id="modal_link_terms_condition">Please review & sign our trams & condition</a></td>
+ 			<td style="border-top:1px solid #ddd;" class="hidden-xs hidden-sm text-right text-danger" ></td>
+ 			</tr>
+                        </tbody>
+                    </table>
+                    
+						            
+						                <div class="col-md-12">
+						                    <input type="radio" checked="checked"  value="" name="paymentBy" id="refund" onclick="showRefundbox()"> Pay By Refund Amount
+						                    <input type="radio" onclick="showCreditCardbox()"  value="" name="paymentBy" id="creditcard"> Pay By Credit Card
+						                </div>
+						            
+						            <div id="refundamountbox"  style="margin-top: 30px;">
+						            	 
+						            	  
+						            </div>
+						            
+						            <div  id="creditcardbox" style="display: none;">
+						            <div class="form-group">
+							                <label for=""
+							                       class="control-label col-md-3 text-right"><img alt="" src="../backend/img/icon1.png"></label>
+							                <div class="col-md-5">
+							                    <small>Secure credit card payment.</small><br>
+							                    <small>This is secure 128-bit SSL encrypted payment.</small>
+							                </div>
+							            </div>
+							           
+							            <div class="form-group">
+							                <label for="p_efin"
+							                       class="control-label col-md-3">Your name</label>
+							                <div class="col-md-5">
+							                    <input type="text" class="form-control ui-wizard-content"
+							                           value="" name="card_holder_name"
+							                           id="card_holder_name">
+							                </div>
+							            </div>
+							            <div class="form-group">
+							                <label for="company_name"
+							                       class="control-label col-md-3">Credit card number</label>
+							                <div class="col-md-5">
+							                    <input type="text" class="form-control ui-wizard-content"
+							                           name="card_number" id="card_number" value="">
+							                           <small>The 16 digits on front of your credit card.</small>
+							                           <img alt="" src="../backend/img/visa.png">
+							                           
+							                </div>
+							            </div>
+							            <div class="form-group">
+							                <label for="efin"
+							                       class="control-label col-md-3">Expiration date:</label>
+							                <div class="col-md-5">
+							                    <input type="text" style="width:100px; float: left;"  class="form-control ui-wizard-content" value="" name="expire_date" id="expire_date"> 
+							                    <span style="float: left;" >/</span> 
+							                    <input type="text" style="width:100px; float: left;" class="form-control ui-wizard-content" value="" name="expire_month" id="expire_month">
+							                    <br /><br/><small style="clear: both;">The date your credit card expires. Find this on the front of your credit card.</small>       
+							                </div>
+							                
+							            </div>
+							            <div class="form-group">
+							                <label for="p_efin"
+							                       class="control-label col-md-3"> Security Code ("CVC" or "CVV"):</label>
+							                <div class="col-md-5">
+							                    <input type="text" style="width:100px; float: left;" class="form-control ui-wizard-content"
+							                           value="" name="cvc_number"
+							                           id="cvc_number">
+							                           <img alt="" src="../backend/img/cvc.png">
+							                         <br /><br/> <small>The last 3 disig displayed on back of your credit card.</small> 
+							                </div>
+							            </div>
+							            
+							            <div class="form-group">
+							                <label for="p_efin"
+							                       class="control-label col-md-3"> Total Refund:</label>
+							                <div class="col-md-5" id="creditcardTotalRefund">
+							                    
+							                </div>
+							                <input type="hidden" name="totalRefund" value="" id="totalRefund">
+							            </div>
+							            
+							            <div class="form-group">
+							                <label for="p_efin"
+							                       class="control-label col-md-3"> Balance Refund:</label>
+							                <div class="col-md-5" id="creditcardTotalBalance">
+							                    
+							                </div>
+							                <input type="hidden" name="totalBalance" value="" id="totalBalance">
+							            </div>
+
+						            </div>
+						             <div class="form-group">
+							                <label for="p_efin"
+							                       class="control-label col-md-2 text-right" > </label>
+							                <div class="col-md-7">
+							                     <input type="checkbox" name="" value=""> <a href="javascript:;"> Terms & Condition</a>
+							                </div>
+							            </div>
+						            <div class="form-group form-actions">
+						                <div class="col-md-6 text-left">
+									<input type="reset" value="Cancel" id="back4"
+						                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+						                </div>
+						                
+						                <div class="col-md-6 text-right">
+						                <input type="submit" value="Save" id="step4"
+						                           class="btn btn-info ui-wizard-content ui-formwizard-button">
+						                </div>
+						            </div>
+						        
+						   </div>
+						  <!-- End step 4  -->          
+					</div>
+								<div id="modal_success2" class="modal slide">
+									                        <div class="modal-dialog">
+									                            <div class="modal-content">
+									                                <div class="modal-header">
+									                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									                                    <h4 class="modal-title">Message:</h4>
+									                                </div>
+									                                <div class="modal-body">
+									                                    <p>Submit successfully.</p>
+									                                </div>
+									                            </div>
+									                        </div>
+									                    </div>
+									                    
+									                									                    			
+<!-- Modal Box For Banking Product Info -->
+<div id="modal_banking_products" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        	<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Banking Information:</h4>
+            </div>
+            <div class="modal-body">
+			        	
+							    <!-- Form Header -->
+							  
+							    <!-- Form Content -->
+							    <div class="form-box-content">
+						<div class="form-group">
+			                <label for="total_refund_amt_3"
+			                       class="control-label col-md-4">Total Refund</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           value="" name="total_refund_amt_3"
+			                           id="total_refund_amt_3" onkeyup="calculateNetRefund();">
+			                </div>
+			            </div>		    
+			            <div class="form-group">
+			                <label for="tax_preparation_fee_3"
+			                       class="control-label col-md-4">Tax Preparation Fee</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           value="{tax_preparation_fee}" name="tax_preparation_fee_3"
+			                           id="tax_preparation_fee_3" onkeyup="calculateNetRefund();">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="bank_transmission_fee_3"
+			                       class="control-label col-md-4">Bank Transmission Fee</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           value="{bank_transmission_fee}" name="bank_transmission_fee_3"
+			                           id="bank_transmission_fee_3" onkeyup="calculateNetRefund();">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="sb_fee_3"
+			                       class="control-label col-md-4">SB Fee</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           name="sb_fee_3" id="sb_fee_3" value="{sb_fee}" onkeyup="calculateNetRefund();">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="e_file_fee_3"
+			                       class="control-label col-md-4">E-file Fee</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           name="e_file_fee_3" id="e_file_fee_3" value="{e_file_fee}"  onkeyup="calculateNetRefund();">
+			                </div>
+			            </div>
+			            
+			            <div class="form-group">
+			                <label for="add_on_fee_3"
+			                       class="control-label col-md-4">Add On Fee</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           name="add_on_fee_3" id="add_on_fee_3" value="{add_on_fee}"  onkeyup="calculateNetRefund();">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="net_refund_amt_3"
+			                       class="control-label col-md-4">Net Refund</label>
+			                <div class="col-md-4">
+			                    <input type="text" class="form-control ui-wizard-content"
+			                           value="" name="net_refund_amt_3"
+			                           id="net_refund_amt_3">
+			                </div>
+			            </div>
+			            <div class="form-group form-actions">
+                                <div class="col-md-12 text-center">
+                                    <input type="button" value="Submit" id="save_banking"
+                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                    <input type="button" value="Cancel" id="cancel_banking"
+                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                </div>
+                            </div>
+			            </div>
+			           
+			      </div>      
+        </div>
+    </div>
+</div>        
+ 		
+				</form>	
+				<!--  END OF AMIN FORM -->
+ 			</div>
+ 
+ <!-- Modal Box For Banking Product Info -->
+<div id="modal_terms_condition" class="modal slide">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+        	<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Trams & Condition</h3>
+            </div>
+            <div class="modal-body">
+
+            		
+            </div>			
+ 		</div>
+ 	</div>
+</div> 
+
+
+<div id="modal_terms_condition_success" class="modal slide">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Message:</h4>
+             </div>
+             <div class="modal-body">
+                 <p>Terms & Condition is submitted.</p>
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+
+ 	<script type="text/javascript">
+ 	
+ 	var allSelectedItems = '';
+ 	var totalFees = 0;
+ 	var refundAmount = 0;
+ 	var tax_preparation_fee = 0;
+ 	var processing_fee = 0;
+ 	var sb_fee_3 = 0;
+ 	var bank_fee = 0;
+ 	var e_file_fee = 0;
+ 	var net_refund = 0 ;
+ 	
+ 	
+ 	function saveSelectedProductInfo(data){
+ 		//alert(data.id);
+ 		data.value = 'Added';
+ 		//data.css = 'Added';
+ 		$(data).removeClass('btn-warning');
+ 		$(data).addClass('btn-default');
+ 		$(data).attr('disabled','disabled');
+ 		
+ 		allSelectedItems = allSelectedItems+','+data.id;
+ 		
+ 		$('#inputSeletecItems').val(allSelectedItems);
+ 		//alert(allSelectedItems);
+ 	}
+ 	
+ 	
+ 	
+ 	function showCreditCardbox(){
+ 		$('#creditcardbox').css('display','block');
+ 		$('#refundamountbox').css('display','none');
+ 	}
+ 	
+ 	
+ 	function showRefundbox(){
+ 		$('#creditcardbox').css('display','none');
+ 		$('#refundamountbox').css('display','block');
+ 	}
+ 	
+ 	function calcualteTotalpayment(){
+ 		var output = allSelectedItems.substring(1);
+		var items = output.split(',');
+ 		
+		//var price1 = 10.00;
+		var total1 = 0;
+			
+ 		totalFees = tax_preparation_fee + processing_fee + sb_fee_3 + bank_fee + e_file_fee;
+
+
+		var htmpayment = '';
+		
+		htmpayment +='<div class="col-md-3 text-right">Total Refund:</div>';
+		htmpayment +='<div class="col-md-9 text-left">$'+refundAmount+'</div>';
+		
+		htmpayment +='<div class="col-md-3 text-right">Banking:</div>';
+		htmpayment +='<div class="col-md-9 text-left">&nbsp; &nbsp; &nbsp; &nbsp; - $'+totalFees+'</div>';
+		for(var i = 0 ; i < items.length ; i++){
+			var itemsdet = items[i].split('~');
+			htmpayment +='<div class="col-md-3 text-right">'+itemsdet[0]+':</div>';
+			htmpayment +='<div class="col-md-9 text-left">&nbsp; &nbsp; &nbsp; &nbsp; - $'+itemsdet[3]+'</div>';
+			total1+=parseFloat(itemsdet[3]);
+		}
+		net_refund = parseFloat(refundAmount - (totalFees+total1));
+		
+		htmpayment +='<div class="col-md-3 text-right">Net Refund:</div>';
+		htmpayment +='<div class="col-md-9 text-left">$'+net_refund+'</div>';
+		
+		 
+		
+		$('#creditcardTotalRefund').html(refundAmount);
+		$('#totalRefund').val(refundAmount);
+		$('#creditcardTotalBalance').html(net_refund);
+		$('#totalBalance').val(net_refund);
+		
+		$("#refundamountbox").empty().append(htmpayment);
+ 	}
+ 	
+ 	function calculateNetRefund(){
+		refundAmount = check_is_nan(parseFloat($('#total_refund_amt_3').val()));
+		tax_preparation_fee = check_is_nan(parseFloat($('#tax_preparation_fee_3').val()));
+		processing_fee = check_is_nan(parseFloat($('#processing_fee').val()));
+		sb_fee_3 = check_is_nan(parseFloat($('#sb_fee_3').val()));
+		bank_fee = check_is_nan(parseFloat($('#bank_transmission_fee_3').val()));
+		e_file_fee = check_is_nan(parseFloat($('#e_file_fee_3').val()));
+
+		totalFees = tax_preparation_fee + processing_fee + sb_fee_3 + bank_fee + e_file_fee;
+
+		net_refund = parseFloat(refundAmount - totalFees);
+
+		$('#net_refund_amt_3').val(net_refund);
+		$('#net_refund_amt_3').html(net_refund);
+		//var net_refund = check_is_nan(parseFloat($('#refundAmount').val()));
+		}
+
+	function check_is_nan(value){
+		if(isNaN(value))
+		{return 0;}
+		return value;
+	}
+	
+
+ 	function clickSaveNewApplication() {
+ 		$("#step23").click(function() {
+ 			$.post("index.php/admin/clientcenter/saveNewApplicationInfo", {
+ 				senddata : 'yes',
+ 				 
+ 				first_name : $("#first_name").val(),
+ 				last_name : $("#last_name").val(),
+ 				ss_number : $("#ss_number").val(),
+ 				dob : $("#dob").val(),
+ 				street_address : $("#street_address").val(),
+ 				
+ 				city : $("#city").val(),
+ 				state : $("#state").val(),
+ 				zip_code : $("#zip_code").val(),
+ 				cell_phone : $("#cell_phone").val(),
+ 				payment_method : $("#payment_method").val(),
+ 				
+ 				/*total_refund_amt_3 : $("#total_refund_amt_3").val(),
+ 				tax_preparation_fee : $("#tax_preparation_fee_3").val(),
+ 				bank_transmission_fee : $("#bank_transmission_fee_3").val(),
+ 				sb_fee : $("#sb_fee_3").val(),
+ 				e_file_fee: $("#e_file_fee_3").val(), 
+ 				add_on_fee : $("#add_on_fee_3").val(),
+ 				net_refund_amt_3 : $("#net_refund_amt_3").val()
+ 				*/
+ 	                 
+ 			}, function(data) {
+ 				if (typeof (data) == 'object') {
+ 					dataClient = data;
+ 					/*if($("#next").val()=='Submit' ){
+ 	                                $('.fade').modal('show');
+ 	                                $("#one").trigger('click');
+ 	                                $("#setupcompanybutton").attr('disabled','disabled');
+ 	                                $("#setupcompanyli").css('disabled','disabled');
+ 	                                $("#setupcompanyli").attr('class','overlay');
+ 	                                $("#badge_setup_company").css('display','block');
+ 	                                
+ 						//}*/
+ 				}
+ 				loadClients();
+ 			}, "json");
+
+ 			return false;
+ 		});
+ 	}
+ 	
+ 	$(function(){
+ 		 
+ 		 
+ 		$('#toppart').remove();
+ 		
+ 		$('#new-app-wizard').formwizard({
+            focusFirstInput: true,
+            disableUIStyles: true,
+            back : ":reset",
+    		next : ":submit",
+    		textSubmit : 'Submit',
+    		textNext : 'Next',
+    		textBack : 'Back',
+    		resetForm: true,
+        });
+ 		 
+ 		$("#modal_link_terms_condition").click(function() {
+ 			$("#modal_terms_condition").modal('show');	
+ 		});
+ 		
+
+ 		$("#confirmSign").click(function() {
+ 			$("#modal_terms_condition").modal('hide');
+ 			$("#modal_terms_condition_success").modal('show');
+ 		});
+ 		
+ 		
+ 		$(".Banking").click(function() {
+ 			$("#modal_banking_products").modal('show');	
+ 		});
+ 		
+ 		$("#cancel_banking").click(function() {
+ 			$("#modal_banking_products").modal('hide');	
+ 		});
+ 		
+ 		$("#save_banking").click(function() {
+ 			$("#modal_banking_products").modal('hide');
+ 			$("#modal_success2").modal('show');	
+ 			$('.Banking').val('Added');
+ 			$('.Banking').removeClass('btn-warning');
+ 	 		$('.Banking').addClass('btn-default');
+ 	 		allSelectedItems = allSelectedItems+","+$('.Banking').attr('id');
+ 	 		$('.Banking').attr('disabled','disabled');
+ 	 		$('#inputSeletecItems').val(allSelectedItems);
+ 	 		//alert(allSelectedItems);
+ 		});
+ 		
+ 		
+ 		$("#step1").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-2').addClass('current-step');	
+ 		});
+ 		
+ 		$("#step2").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-3').addClass('current-step');	
+ 			
+ 			var output = allSelectedItems.substring(1);
+ 			var items = output.split(',');
+ 			//var itemsdet = '';
+ 			//alert(items.length);
+ 			//var price = 10.00;
+ 			var total = 0;
+ 			var htm = '';
+ 			htm +='<table class="table table-borderless">';
+ 			 for(var i = 0 ; i < items.length ; i++){
+ 				var itemsdet = items[i].split('~');
+ 				//alert(itemsdet[2]);
+ 				
+ 				htm +='<tr>';
+ 				htm +='<td> <img alt="" width="70px" src="../backend/img/'+itemsdet[2]+'"></td>';
+ 				htm +='<td class="hidden-xs hidden-sm">'+itemsdet[0]+' </td>';
+ 				htm +='<td class="hidden-xs hidden-sm text-right">'+itemsdet[3]+'</td>';
+ 				htm +='</tr>';
+ 				total+=parseFloat(itemsdet[3]);
+ 			 }
+ 			htm +='<tr>';
+ 			htm +='<td style="border-top:1px solid #ddd;" colspan="2" class="hidden-xs hidden-sm text-right text-success">Sub Total</td>';
+ 			htm +='<td style="border-top:1px solid #ddd;" class="hidden-xs hidden-sm text-right text-success">'+total+'</td>';
+ 			htm +='</tr>';
+ 			htm +='<tr>';
+ 			htm +='<td  colspan="2" class="hidden-xs hidden-sm text-right text-danger" >Grand Total</td>';
+ 			htm +='<td class="hidden-xs hidden-sm text-right text-danger" >'+total+'</td>';
+ 			htm +='</tr>';
+        
+ 			
+ 			
+ 			htm +='<table>';
+ 			$("#cartdetails").empty().append(htm);	
+ 		});
+ 		
+ 		$("#step3").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-4').addClass('current-step');	
+ 			
+ 			calcualteTotalpayment();
+ 		});
+ 		
+ 		
+ 		$("#step4").click(function() {
+ 			$("#modal_success2").modal('show');	
+ 		});
+ 		
+ 		$("#back2").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-1').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back3").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-2').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back4").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-3').addClass('current-step');	
+ 		});
+ 		
+ 		$("#back5").click(function() {
+ 			$('#default-titles li').removeClass('current-step');
+ 			$('#default-title-4').addClass('current-step');	
+ 		});
+ 		
+ 		var checkbox = $('#checker'); 
+        var dependent = $('#dependent-box');
+        if (checkbox.attr('checked') !== undefined){
+           dependent.show();
+        } else {
+            dependent.hide();
+        }
+        
+        checkbox.change(function(e){
+           dependent.toggle(); 
+        });
+    });	
+ 	 </script>
+ 
+ 

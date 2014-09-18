@@ -1,0 +1,347 @@
+<style type="text/css">
+.table-per .th-per {
+    background: none repeat scroll 0 0 #E1E2DC;
+    border: 1px solid #BEBFB9;
+    padding: 5px 3px;
+}
+.table-per {
+    border: 1px solid #BEBFB9;
+	border-collapse:collapse;
+	border-spacing:0;
+	width:auto;
+}
+.table-per .td-row{
+    border: 1px solid #BEBFB9;
+}
+</style>
+<form method="post" onsubmit="return submitForm();">
+<div class="titlepage-admin">Add a Markup</div>
+<div class="box_solar">
+    <div style="clear:both; width:100%; min-height:300px; overflow:hidden">
+    	<div style="clear:both; overflow:hidden">
+        	<div style="float:left; overflow:hidden;">
+            	<div style="clear:both">
+                    <div style="font-weight:bold;">Markup name:</div>
+                    <span class="field-with-placeholder" style="clear:both; float:left;">
+                        <label id="name_label" class="placeholder" for="name"><span>Required</span></label>
+                        <input tabindex="0" type="text" class="input-text" id="name" size="10" name="name" value="{name}" style="width:255px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" >
+                    </span>
+                </div>
+                <div style="clear:both; overflow:hidden; padding-top:10px">
+                	<div style="font-weight:bold; clear:both">Description:</div>
+                    <span class="field-with-placeholder" style="clear:both">
+                        <textarea id="description" name="description" style="width:255px; height:60px;" class="input-text">{description}</textarea>
+                    </span>
+                </div>
+            </div>
+            <div style="float:left; overflow:hidden; padding-left:40px">
+            	<div style="clear:both">
+                    <div style="font-weight:bold;">Product Categories:</div>
+                    <span class="field-with-placeholder" style="clear:both; float:left;">
+                        <select id="category" style="width:260px">
+                            <option value="0">All Categories</option>
+                            {category}
+                        </select>
+                    </span>
+                </div>
+                <div style="clear:both; padding-top:10px">
+                    <div style="font-weight:bold;">Manufacturers:</div>
+                    <span class="field-with-placeholder" style="clear:both; float:left;">
+                        <select id="manufacturer" style="width:260px">
+                            <option value="0">All Manufacturers</option>
+                            {manufacturers}
+                        </select>
+                    </span>
+                </div>
+                <div style="clear:both; padding-top:10px;">
+                    <div style="font-weight:bold;">Markup percentage:</div>
+                    <span class="field-with-placeholder" style="clear:both; float:left;">
+                        <label id="markup_percentage_label" class="placeholder" for="markup_percentage"><span>Required</span></label>
+                        <input tabindex="0" type="text" class="input-text" id="markup_percentage" size="10" name="markup_percentage" value="{markup_percentage}" style="width:80px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberFloatKey(event)">
+                    </span>
+                    <span style="float:left; padding-top:3px; padding-left:3px">%</span>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both; overflow:hidden; padding-top:20px">
+        	<fieldset style="padding-top:10px; border:1px solid #d2d2d2;">
+            	<legend style="font-weight:bold;">Commission</legend>
+                <div style="clear:both; overflow:auto !important; width:100%" id="commission_lever">
+                	
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+    	<input type="button" value="Back" class="button" onclick="history.go(-1);" />
+        <input type="submit" value="Submit" name="submit" class="button" style="margin-left:5px" />
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="key" name="key" value="{key}" />
+</form>
+<script language="javascript">
+var dataSaleRep = [];
+var dem_sale = 0;
+var commission_charities = 0;
+var commission_employees_bonus = 0;
+var commission_trust_charity = 0;
+function loadObjectData(){
+	{loadObjSaleRep}
+	commission_charities = parseFloat('{commission_charities}');
+	commission_employees_bonus = parseFloat('{commission_employees_bonus}');
+	commission_trust_charity = parseFloat('{commission_trust_charity}');
+	dem_sale = dataSaleRep.length;
+}
+function addSaleRep(){
+	if(dataSaleRep.length >= 10) return false;
+	getValue();
+	var obj = new Object();
+	obj.id = dem_sale;
+	obj.value = [];
+	dataSaleRep[dataSaleRep.length] = obj;
+	dem_sale ++;
+	showSaleRep();
+}
+function removeSaleRep(index){
+	getValue();
+	var dataSaleRep_tam = dataSaleRep;
+	dataSaleRep = [];
+	for(var i = 0; i < dataSaleRep_tam.length; i++){
+		if(i != index){
+			dataSaleRep[dataSaleRep.length] = dataSaleRep_tam[i];	
+		}	
+	}
+	showSaleRep();
+}
+function getValue(){
+	if(document.getElementById("commission_charities")){
+		commission_charities = document.getElementById("commission_charities").value;	
+	}
+	if(document.getElementById("commission_employees_bonus")){
+		commission_employees_bonus = document.getElementById("commission_employees_bonus").value;	
+	}
+	if(document.getElementById("commission_trust_charity")){
+		commission_trust_charity = document.getElementById("commission_trust_charity").value;	
+	}
+	for(var i = 0; i < dataSaleRep.length; i++){
+		if(document.getElementsByName('commission_sale_'+i+'[]')){
+			var dataValue = [];
+			var commission_sale_ = document.getElementsByName('commission_sale_'+i+'[]');
+			for(var j = 0; j < commission_sale_.length; j++){
+				dataValue[dataValue.length] = commission_sale_[j].value;	
+			}
+			dataSaleRep[i].value = dataValue;	
+		}	
+	}
+}
+function updateTotalPayOut(){
+	getValue();
+	for(var i = 0; i < dataSaleRep.length; i++){
+		var value = 0;
+		for(var j = 0; j < dataSaleRep.length; j++){
+			var commission_sale_ = dataSaleRep[j].value;
+			if(typeof(commission_sale_[i]) != 'undefined' && commission_sale_[i] != ''){
+				value += parseFloat(commission_sale_[i]);	
+			}	
+		}
+		if(commission_charities != '') value += parseFloat(commission_charities);
+		if(commission_employees_bonus != '') value += parseFloat(commission_employees_bonus);
+		$("#Total_pay_out_"+i).empty().append(value+' %');
+	}
+	var value = 0;
+	if(commission_trust_charity != '') value += parseFloat(commission_trust_charity);
+	if(commission_charities != '') value += parseFloat(commission_charities);
+	if(commission_employees_bonus != '') value += parseFloat(commission_employees_bonus);
+	$("#Total_pay_out_").empty().append(value+' %');
+}
+function showSaleRep(){
+	var st = '';
+	st += '<table cellpadding="0" cellspacing="0" border="0" class="table-per">';
+	st += '	<thead>';
+	st += '		<tr>';
+	st += '			<th class="th-per">&nbsp;</th>';
+	for(var i = 0; i < dataSaleRep.length; i++){
+		st += '<th class="th-per" align="center" valign="top">Case<br />'+(i+1)+'</th>';		
+	}
+	st += '<th class="th-per" align="center" valign="top">Trust<br>Charity</th>';		
+	st += '		</tr>';
+	st += '	</thead>';
+	st += '<tbody>';
+	for(var i = 0; i < dataSaleRep.length; i++){
+		var label = '<span style="float:left;">SaleRep'+i+'</span><span style="float:right;"><img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="removeSaleRep('+i+')" /></span>';
+		if(i == 0) label = '<span style="float:left;">Affiliate</span><span style="float:right;"><img src="../images/b_drop.png" border="0" style="cursor:pointer" onclick="removeSaleRep('+i+')" /></span>';
+		st += '	<tr>';
+		st += '		<td class="td-row" align="left" valign="middle" style="font-weight:bold">'+label+'</td>';
+		var commission_sale_ = dataSaleRep[i].value;
+		for(var j = 0; j < dataSaleRep.length; j++){
+			var background = '';
+			if(i == j) background = 'style="background:#eaeaea"';
+			var value = '0';
+			if(typeof(commission_sale_[j]) != 'undefined'){
+				value = commission_sale_[j];	
+			}
+			var readonly = '';
+			if(j < i) readonly = 'readonly="readonly"';
+			st += '	<td class="td-row" align="center" valign="middle" '+background+'>';
+			st += '		<span class="field-with-placeholder" style="float:left">';
+			st += '			<input type="text" class="input-text" size="10" name="commission_sale_'+i+'[]" onkeyup="updateTotalPayOut()" value="'+value+'" '+readonly+' style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">';
+			st += '		</span>';
+			st += '		<span style="float:left; padding-top:3px; padding-left:2px">%</span>';
+			st += '	</td>';	
+		}
+		st += '	<td class="td-row" align="left" valign="middle">&nbsp;</td>';
+		st += '	</tr>';
+	}
+	st += '<tr>';
+	st += '	<td class="td-row" align="left" valign="middle" colspan="'+(dataSaleRep.length+1)+'">';
+	st += '		<a href="javascript:void(0)" style="text-decoration:none" onclick="addSaleRep()">+ SaleRep</a>';
+	st += '	</td>';
+	st += '	<td class="td-row" align="center" valign="middle">';
+	st += '		<span class="field-with-placeholder" style="float:left">';
+	st += '			<input type="text" class="input-text" size="10" id="commission_trust_charity" onkeyup="updateTotalPayOut()" value="'+commission_trust_charity+'" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">';
+	st += '		</span>';
+	st += '		<span style="float:left; padding-top:3px; padding-left:2px">%</span>';
+	st += '	</td>';
+	st += '</tr>';
+	st += '<tr>';
+	st += '	<td class="td-row" align="left" valign="middle" style="font-weight:bold">Charities</td>';
+	st += '	<td class="td-row" align="center" valign="middle" colspan="'+(dataSaleRep.length+1)+'">';
+	st += '		<div style="clear:both;">';
+	st += '			<span class="field-with-placeholder" style="float:left">';
+	st += '				<input type="text" class="input-text" id="commission_charities" onkeyup="updateTotalPayOut()" size="10" value="'+commission_charities+'" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">';
+	st += '			</span>';
+	st += '			<span style="float:left; padding-top:3px; padding-left:2px">%</span>';
+	st += '		</div>';
+	st += '	</td>';
+	st += '</tr>';
+	st += '<tr>';
+	st += '	<td class="td-row" align="left" valign="middle" style="font-weight:bold">Employees bonus</td>';
+	st += '	<td class="td-row" align="center" valign="middle" colspan="'+(dataSaleRep.length+1)+'">';
+	st += '		<div style="clear:both;">';
+	st += '			<span class="field-with-placeholder" style="float:left">';
+	st += '				<input type="text" class="input-text" id="commission_employees_bonus" onkeyup="updateTotalPayOut()" size="10" value="'+commission_employees_bonus+'" style="width:45px; text-align:right" onkeypress="return isNumberFloatKey(event)">';
+	st += '			</span>';
+	st += '			<span style="float:left; padding-top:3px; padding-left:2px">%</span>';
+	st += '		</div>';
+	st += '	</td>';
+	st += '</tr>';
+	st += '<tr>';
+	st += '	<td class="td-row" align="left" valign="middle" style="font-weight:bold">Total pay out</td>';
+	for(var i = 0; i < dataSaleRep.length; i++){
+		var value = 0;
+		for(var j = 0; j < dataSaleRep.length; j++){
+			var commission_sale_ = dataSaleRep[j].value;
+			if(typeof(commission_sale_[i]) != 'undefined' && commission_sale_[i] != ''){
+				value += parseFloat(commission_sale_[i]);
+			}	
+		}
+		if(commission_charities != '') value += parseFloat(commission_charities);
+		if(commission_employees_bonus != '') value += parseFloat(commission_employees_bonus);
+		st += '	<td class="td-row" align="center" valign="middle" id="Total_pay_out_'+i+'">';
+		st += '		'+value+' %';
+		st += '	</td>';
+	}
+	var value_ = 0;
+	if(commission_trust_charity != '') value_ += parseFloat(commission_trust_charity);
+	if(commission_charities != '') value_ += parseFloat(commission_charities);
+	if(commission_employees_bonus != '') value_ += parseFloat(commission_employees_bonus);
+	st += '	<td class="td-row" align="center" valign="middle" id="Total_pay_out_">';
+	st += value_ + ' %';
+	st += '	</td>';	
+	st += '</tr>';
+	st += '</tbody>';
+	st += '</table>';
+	$("#commission_lever").empty().append(st);
+}
+function submitForm(){
+	var checkError = false;
+	if($('#name').val() == ''){
+		$('#name').css("background", '#ffffd5');
+		hidelabelfocus("name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("name"));	
+			document.getElementById("name").focus();	
+		}
+	}
+	if($('#markup_percentage').val() == ''){
+		$('#markup_percentage').css("background", '#ffffd5');
+		hidelabelfocus("markup_percentage_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("markup_percentage"));	
+			document.getElementById("markup_percentage").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	getValue();
+	var salerepPost = [];
+	for(var i = 0; i < dataSaleRep.length; i++){
+		var obj_row = [];
+		var commission_sale_ = dataSaleRep[i].value;
+		for(var j = 0; j < dataSaleRep.length; j++){
+			var value = 0;
+			if(typeof(commission_sale_[j]) != 'undefined' && commission_sale_[j] != ''){
+				value = commission_sale_[j];	
+			}
+			obj_row[obj_row.length] = value;	
+		}
+		salerepPost[salerepPost.length] = obj_row;
+	}
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/markup/edit", {
+		saveObj: 'yes',
+		key:document.getElementById("key").value,
+		name:$("#name").val(),
+		description:$("#description").val(),
+		markup_percentage:$("#markup_percentage").val(),
+		category:document.getElementById("category").value,
+		manufacturer:document.getElementById("manufacturer").value,
+		commission_charities:$("#commission_charities").val(),
+		commission_employees_bonus:$("#commission_employees_bonus").val(),
+		commission_trust_charity:$("#commission_trust_charity").val(),
+		salerepPost:salerepPost
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				if(document.getElementById("add_markup_box")){
+					try{	 
+						$("#cboxClose").click();
+					}catch(ex){alert(success_saved);}
+					if(function_exists('showMarkupListings')) showMarkupListings();
+				}else{
+					history.go(-1);
+				}
+			}
+		}
+	}, "json");
+	
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+$(function() {
+	clearForms();
+	loadObjectData();
+	showSaleRep();
+});
+</script>

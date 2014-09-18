@@ -1,0 +1,323 @@
+<script language="javascript">ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});</script>
+<div class="breadcrumb"><a href="javascript:void(0)" onclick="goHome()">Home</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<!--@title_page@--></div>
+<div class="divPageTitle"><!--@title_page@--></div>
+<div class="box_solar">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" >
+    <tr>
+    	<td>
+        	<div style="float:left; width:162px; height:144px">
+            	<!--img_source-->
+            </div>
+            <div style="float:left; margin-left:20px; height:144px; width:500px; position:relative">	                	
+                <p class="product_title"><!--product_name--></p>
+                <p><!--product_model--></p>		                     
+                <p class="product_price" style="margin-bottom:0px"><!--product_price--></p>		                     
+                <p><!--product_origin--></p>
+                <p><!--quatity--></p>
+                <div style="position:absolute; clear:both; bottom:0px; font-weight:bold;"><!--total--></div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<div style="width:100%; padding:10px 0px; border-bottom:1px dashed #999"></div>
+        </td>
+    </tr>
+    <tr>
+      	<td align="left" valign="top" class="white_background">
+            <form name="payment" id="payment" method="post">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td align="left" valign="top" style="padding-top:20px">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td align="left" valign="top" colspan="2"><strong>Information:</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-top:10px; padding-right:5px; font-weight:bold; font-size:13px">First Name:</td>
+                                    <td height="29" valign="middle" style="padding-top:10px;">
+                                        <input type="text" style="width: 270px;" class="input-text" maxlength="30" autocomplete="off" tabindex="" id="cardholder_name" value="<!--billing_Name-->" name="cardholder_name"  dir="ltr" n="7" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">Last Name:</td>
+                                    <td height="29" >
+                                        <input type="text" style="width: 270px; " maxlength="30" class="input-text" autocomplete="off" tabindex="" id="last_name" value="<!--billing_LastName-->" name="last_name"  dir="ltr" n="7" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">Address:</td>
+                                    <td height="29" >
+                                        <input type="text" style="display: block; width: 270px; " class="input-text" maxlength="100" autocomplete="off" tabindex="" id="address_street" value="<!--billing_Address-->" name="address_street"  dir="ltr" n="15"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">City:</td>
+                                    <td height="29" >
+                                        <input type="text" style="display: block; width: 270px; " class="input-text" maxlength="40" autocomplete="off" tabindex="" id="address_city" value="<!--billing_City-->" name="address_city"  dir="ltr" n="15" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">Country:</td>
+                                    <td height="29" align="left" valign="middle">
+                                        <select name="slcountry" style="width:280px;" size="1" id="slcountry" onchange="showStates()" ></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">State:</td>
+                                    <td height="29" >
+                                        <div style="float:left" id="states_show"></div>
+                                        <div style="float:right" class="confirm">Zip code:&nbsp; <input type="text" class="input-text" style="width:65px" autocomplete="off" tabindex="" id="address_zip" value="<!--billing_Zip-->" name="address_zip"  dir="ltr" n="19"/></div> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">Tel:</td>
+                                    <td height="29" >
+                                        <input type="text" style="width: 270px;" class="input-text" autocomplete="off" tabindex="" id="phone" value="<!--billing_Phone-->" name="phone"  dir="ltr" n="20" onkeydown="return keypress(event,0,this);" onblur="return keypress(event,1,this);"  onchange="return keypress(event,1,this);" onfocus="return keypress(event,1,this);"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">Email:</td>
+                                    <td height="29" >
+                                        <input type="text" class="input-text" style="width: 270px; " maxlength="100" autocomplete="off" tabindex="" id="email_address" value="<!--billing_Email-->" name="email_address"  dir="ltr" n="21" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td align="left" valign="top" style="padding-top:20px; padding-left:100px">
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td align="left" valign="top" colspan="2"><strong>Payment Information:</strong></td>
+                                </tr>
+                                <tr>
+                                	<td colspan="2">
+                                        <div style="clear:both; padding-top:10px; font-weight:bold">
+                                            <input type="checkbox" id="check_commission" class="input-checkbox" onclick="showOrderValue()"/> &nbsp;MyWallet Account: $<span id="MyWallet_value">0.00</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td colspan="2">
+                                    	<div style="padding:3px 5px; background-color:#F7961E; color:#FFF; width:40px; text-align:center; font-size:12px; margin-top:10px" >OR</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-top:10px; width:60px; padding-right:5px; font-weight:bold; font-size:13px">Card #:</td>
+                                    <td height="29" style="padding-top:10px;">
+                                        <input class="input-text" name="creditcard" value=""  style="width:225px;" maxlength="16" autocomplete="off" id="creditcard" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">Exp:</td>
+                                    <td height="29" >
+                                        <div style="float:left;"><!--cc_Month--></div>
+                                        <div style="float:left; width:75px; text-align:center">&nbsp;/&nbsp;</div>
+                                        <div style="float:right;"><!--cc_Year--></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-right:5px; font-weight:bold; font-size:13px">CVC:</td>
+                                    <td height="29" >
+                                        <div style="float:left; width: 20px"><input class="input-text" n="5" style="width:70px;" name="cc_Cvv" maxlength="4" id="cc_Cvv" autocomplete="off" type="text" value="" onkeypress="return isNumberIntKey(event)" ></div>
+            							<div style="background:url(../images/cart_types.jpg); width:98px; height:19px; float:right; margin:3px 0px"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td>&nbsp;</td>
+                                	<td align="right" valign="bottom" style="height:115px">
+                                    	<div style="clear:both; float:right; background-color:#F7961E; padding:6px 10px; font-weight:bold; color:#FFF" id="last_total"><!--total--></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td align="right" valign="top" style="padding-top:20px;" colspan="2">
+                        	<DIV id="pagesnext"><input type="button" class="button" value="Back" onclick="window.location = 'history.go(-1)';" /><input type="button" class="button" value="Submit" onclick="return check_submit();" style="margin-left:10px" /></DIV>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" id="billing_country" name="billing_country" value="@billing_country@" />
+                <input type="hidden" id="billing_state" name="billing_state" value="@billing_state@" />
+                <input type="hidden" id="pkey" name="pkey" value="@pkey@" />
+                <input type="hidden" id="qtt" name="qtt" value="@qtt@" />
+            </form>
+        </td>
+    </tr>
+</table>
+</div>
+<script language="javascript">
+function check_submit(){
+	var frm = document.payment;
+	if( trim(frm.cardholder_name.value)=="" || trim(frm.cardholder_name.value)=="First Name"){
+		alert("Please enter first name!");
+		frm.cardholder_name.focus();
+		return false;
+	}
+	if( trim(frm.last_name.value)=="" || trim(frm.last_name.value)=="Last Name"){
+		alert("Please enter last name!");
+		frm.last_name.focus();
+		return false;
+	}	
+	if( trim(frm.address_street.value)=="" || trim(frm.address_street.value)=="Billing Address"){
+		alert("Please enter billing address!");
+		frm.address_street.focus();
+		return false;
+	}
+	if( trim(frm.address_city.value)=="" || trim(frm.address_city.value)=="City / Town"){
+		alert("Please enter billing city!");
+		frm.address_city.focus();
+		return false;
+	}
+	if( trim(frm.states.value)==""){
+		alert("Please select billing state!");
+		frm.states.focus();
+		return false;
+	}
+	if( trim(frm.address_zip.value)=="" || trim(frm.address_zip.value)=="Zip Code"){
+		alert("Please enter billing zip code!");
+		frm.address_zip.focus();
+		return false;
+	}
+	if( trim(frm.phone.value)==""||trim(frm.phone.value)=="Phone Number"){
+		alert("Please enter billing phone number!");
+		frm.phone.focus();
+		return false;
+	}
+	if( trim(frm.email_address.value)==""||trim(frm.email_address.value)=="Email Address"){
+		alert("Please enter email address!");
+		frm.email_address.focus();
+		return false;
+	}
+	msg = isValidEmail(trim(frm.email_address.value));
+	if(msg != ""){
+		alert(invalid_email);
+		frm.email_address.focus();
+		return false;
+	}
+	loadOrderConfirm();
+	return false;
+}
+
+function loadOrderConfirm(){
+	var check_com = document.getElementById("check_commission").checked;
+	var check_commission = 0;
+	if(check_com) check_commission = 1;
+	
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php?q=payment/submitdonate",{
+		submit_donate:'yes',
+		billing_Name:$('#cardholder_name').val(),
+		billing_LastName:$('#last_name').val(),
+		billing_Address:$('#address_street').val(),
+		billing_City:$('#address_city').val(),
+		billing_State:$('#states').val(),
+		billing_Zip:$('#address_zip').val(),
+		billing_Country:$('#slcountry').val(),
+		billing_Phone:$('#phone').val(),
+		billing_Email:$('#email_address').val(),
+		cc_Card_Number:$('#creditcard').val(),
+		cc_Card_Month:$('#cc_month').val(),
+		cc_Card_Year:$('#cc_year').val(),
+		cc_Card_Cvc:$('#cc_Cvv').val(),
+		pkey:$("#pkey").val(),
+		qtt:$("#qtt").val(),
+		check_commission:check_commission
+	} ,function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		if(data != ''){
+			var _arrres	 = data.split('^');
+			if(_arrres[0] != 'incorrect'){
+				$("#content_load").empty().append(data);
+			}else{
+				if(_arrres[1]=='')
+					alert('Cannot connect to payment gateway.');
+				else
+					alert(_arrres[1]);
+			}
+		}
+	});
+	return false;
+}
+
+var dataCountries = [];
+function loadDataCountries(){
+	if('load_countries'=='yes');
+	showCountriesListing('slcountry');
+	$("#slcountry").val(document.getElementById("billing_country").value);
+	showStates();
+	$("#states").val(document.getElementById("billing_state").value);
+}
+function showCountriesListing(div){
+	var st = '';
+	var elSel = document.getElementById(div);
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null);
+		}catch(ex) {
+			elSel.add(elOptNew);
+		}		
+	}
+	$(elSel).val(ct);
+}
+function showStates(){
+	var st = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="states" name="states" style="width:120px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="states" size="10" name="states" value="" style="width:110px">';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+}
+function showOrderValue(){ 
+	var last_total = 0;
+	if(commission >0){
+		if(document.getElementById("check_commission").checked){
+			if(commission >= subtotal){
+				last_total = 0; 
+			}else{
+				last_total = parseFloat(subtotal - commission);
+				var str_note = 'Still short of $'+formatAsMoney(last_total)+' for your order and use credit card for the balance';
+				alert(str_note);
+			}
+			var str = '<div>Total: $'+formatAsMoney(subtotal)+'</div>';
+			str += '<div style="padding-bottom:5px">MyWallet Account: $'+formatAsMoney(commission)+'</div>';
+			str += '<div style="border-top:1px solid #FFF; padding-top:5px">Total: $'+formatAsMoney(last_total)+'</div>';
+			$("#last_total").empty().append(str);
+		}else{
+			$("#last_total").empty().append('Total: $'+formatAsMoney(subtotal));	
+		}
+	}else{
+		if(document.getElementById("check_commission").checked){
+			var str_note = 'Still short of $'+formatAsMoney(subtotal)+' for your order and use credit card for the balance';
+			alert(str_note);	
+		}
+		$("#last_total").empty().append('Total: $'+formatAsMoney(subtotal));	
+	}
+}
+if('commission' == 'yes');
+if('subtotal' == 'yes');
+$(function() {
+	if(commission > 0){
+		$("#MyWallet_value").empty().append(formatAsMoney(commission));	
+	}
+	loadDataCountries();
+	HideLoadingObj(document.getElementById("content_load"));
+});
+</script>

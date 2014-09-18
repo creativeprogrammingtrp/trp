@@ -1,0 +1,138 @@
+<script language="javascript">
+function submitForm(){
+	var checkError = false;
+	if($('#label').val() == ''){
+		$('#label').css("background", '#ffffd5');
+		hidelabelfocus("label_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("label"));	
+			document.getElementById("label").focus();	
+		}
+	}
+	
+	if($('#duration').val() == ''){
+		$('#duration').css("background", '#ffffd5');
+		hidelabelfocus("duration_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("duration"));	
+			document.getElementById("duration").focus();	
+		}
+	}
+
+	if(checkError == true){
+		return false;	
+	}
+
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/store/warranty/editsave", {
+		saveObj: 'yes',
+		key:document.getElementById("key").value,
+		label:$("#label").val(),
+		duration:$("#duration").val(),
+		duration_type:document.getElementById("duration_type").value,
+		cost:document.getElementById("cost").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				//alert(data.error);	
+				alert(fail_saved);
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/store/warranty';
+			}
+		}
+	}, "json");
+	
+	return false;
+}
+
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+
+function updateMarkup(){
+	var value_ = 0;
+	var current_cost = 0;
+	var markup_percentage = 0;
+	
+	if(form_input_is_numeric(document.getElementById("current_cost").value) == true){
+		current_cost = parseFloat(document.getElementById("current_cost").value);	
+	}
+	if(form_input_is_numeric(document.getElementById("markup_percentage").value) == true){
+		markup_percentage = parseFloat(document.getElementById("markup_percentage").value);	
+		if(markup_percentage > 20){
+			alert("Markup percentage must less 20%");
+			document.getElementById("markup_percentage").value = '';	
+			document.getElementById("markup_percentage").focus();
+			return false;		
+		}
+	}
+	value_ = current_cost + markup_percentage*current_cost/100;
+	$("#selling_price").empty().append('$'+formatAsMoney(value_));
+}
+
+$(function() {
+	clearForms();
+});
+
+</script>
+<form method="post" onsubmit="return submitForm();">
+<div class="box_solar">
+    <div style="clear:both; width:100%; min-height:300px; overflow:hidden">
+    	<div style="clear:both; float:left;">
+            <div style="font-weight:bold;">Label:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <label id="label_label" class="placeholder" for="label"><span>Required</span></label>
+                <input tabindex="0" type="text" class="input-text" id="label" size="10" name="label" maxlength="50" value="{@label@}" style="width:255px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" >
+            </span>
+        </div>
+        <div style="clear:both; float:left; padding-top:15px;">
+            <div style="font-weight:bold;">Duration:</div>
+            <span class="field-with-placeholder" style="clear:both; float:left;">
+                <label id="duration_label" class="placeholder" for="duration"><span></span></label>
+                <input tabindex="0" type="text" class="input-text" id="duration" size="10" name="duration" value="{@duration@}" style="width:80px" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" onkeypress="return isNumberIntKey(event)">
+            </span>
+            <span style="float:left; padding-left:3px">
+            	<select id="duration_type" style="width:70px">
+                	<option value="1" {@days@}>Days</option>
+                    <option value="30" {@months@}>Months</option>
+                    <option value="365" {@years@}>Years</option>
+                </select>
+            </span>
+        </div>
+        <div style=" clear:both; padding-top:15px;">
+            <div style="font-weight:bold;">Cost:</div>
+            <span style="float:left; padding-top:3px; clear:both;">$</span>
+            <span class="field-with-placeholder" style="float:left; padding-left:3px;">
+                <label id="cost_label" class="placeholder" for="cost"><span></span></label>
+                <input tabindex="0" type="text" class="input-text" id="cost" size="10" name="cost" value="{@cost@}" style="width:80px" onfocus="onfocusInputText2(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText2(this)" onkeypress="return isNumberFloatKey(event)">
+            </span>
+        </div>
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px" align="right" id="savebt">
+    	<input type="button" value="Back" class="btn" onclick="history.go(-1);" />
+        <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="margin-left:5px" />
+    </div>
+    <div style="float: right; clear:both; padding-top:20px; height:30px; margin-right:5px; display:none" id="loadingbt" align="right">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="key" name="key" value="{@key@}" />
+</form>
+
+
+
+
+

@@ -1,0 +1,365 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="span12" id="cartlistings">
+            
+        </div><!--end span12-->
+        <div class="span7">
+            
+        </div><!--end span7-->
+        <div class="span5">
+            <div class="cart-receipt">
+                <table class="table table-receipt">
+                    <tr>
+                        <td class="alignRight"><h2>&nbsp;</h2></td>
+                        <td class="alignRight"><h2>Sub Total: <span id="suptotal">$0.00</span></h2></td>
+                    </tr>
+                </table>
+            </div>
+        </div><!--end span5-->
+        <div class="span12">
+        	<div class="control-group pull-right">
+                <div class="controls">
+	                <div class="btn-checkout pull-right" id="gocheckout"></div>
+                    <button class="btn btn-success pull-right" onclick="window.location = 'index.php/shop/shome'">Continue Shoping</button>
+                </div>
+            </div><!--end control-group-->
+        </div>
+    </div><!--end row-->
+</div><!--end conatiner-->
+<!--<script language="javascript" type="text/javascript" src="misc/scripts/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery-ui-1.8.20.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.fixedtableheader.min.js"></script>-->
+<script language="javascript">
+function updateItem(s, attributes, inventories, qty){
+	if(s.value == ''){
+		alert("Please enter quantity for product.");
+		s.focus();
+		return false;	
+	}
+	var new_qty = parseInt(s.value, 10);
+	if(new_qty <= 0){
+		removaItem(attributes);	
+	}
+	if(new_qty > inventories){
+		alert("This quantity out of stock, select smaller quantity or contact to us to buy more.");
+		s.value = qty;
+		s.focus();
+		return false;
+	}else{
+		var post_card = new Object();
+		post_card.attributes 	= attributes;
+		post_card.type 			= 'u';
+		post_card.qlt 			= new_qty;
+		
+		$.post("index.php/shop/cart/shopcart", {
+			addcard:post_card
+		},function(data){
+			$("#itemsNumber").empty().append(data);
+			loadObjectCart();
+		});		
+	}
+}
+function updateItem_ref(i, attributes, inventories, qty){
+	s = $("#item_"+i).val();	
+	if(s == ''){
+		alert("Please enter quantity for product.");
+		s.focus();
+		return false;	
+	}
+	var new_qty = parseInt(s, 10);
+	if(new_qty <= 0){
+		removaItem(attributes);	
+	}
+	if(new_qty > inventories){
+		alert("This quantity out of stock, select smaller quantity or contact to us to buy more.");
+		$("#item_"+i).val(qty);
+		$("#item_"+i).focus();
+		return false;
+	}else{
+		var post_card = new Object();
+		post_card.attributes 	= attributes;
+		post_card.type 			= 'u';
+		post_card.qlt 			= new_qty;
+		
+		$.post("index.php/shop/cart/shopcart", {
+			addcard:post_card
+		},function(data){
+			$("#itemsNumber").empty().append(data);
+			loadObjectCart();
+		});		
+	}
+}
+var dataCarts = [];
+var dataPromotions = [];
+var dataLocations = [];
+function loadObjectCart(){
+	dataCarts = [];
+	dataPromotions = [];
+	dataLocations = [];
+	$.post("index.php/shop/cart", {
+		loadshoppingcart:'yes'
+	},function(data){
+		if(typeof(data) == 'object'){
+			dataCarts = data.shopping;
+			dataPromotions = data.promotions;
+			dataLocations = data.locations;
+		}
+		loadShoppingList();
+                showPopup('.btn');
+	}, "json");
+	 
+}
+function loadShoppingList(){
+	var total_price = 0;
+	var str_next = '';
+	var str_content = '';
+	
+	str_content += '<table class="table table-per">';
+	str_content += '	<thead>';
+	str_content += '		<tr>';
+	str_content += '			<th class="desc" colspan="2">Description</th>';
+	str_content += '			<th>Quantity</th>';
+	str_content += '			<th>Unit Price</th>';
+	str_content += '			<th>Total</th>';
+	str_content += '			<th>Action</th>';
+	str_content += '		</tr>';
+	str_content += '	</thead>';
+	str_content += '	<tbody>';
+	
+	if(dataCarts){
+		if(dataCarts.length > 0){
+			for(var i = 0; i < dataCarts.length; i++){
+				var obj = dataCarts[i];
+                            
+				var price = parseFloat(obj.itm_price);
+				var attributes__ = '';
+				if(typeof(obj.attributes) == 'object'){
+					for(var j = 0; j < obj.attributes.length; j++){
+						var at_price = Math.round(parseFloat(obj.attributes[j].price)*100)/100;
+						price += at_price;
+						attributes__ += '<br><b>' + obj.attributes[j].label + ': </b>' + obj.attributes[j].name;
+						if(at_price > 0){
+							attributes__ += '&nbsp;&nbsp;(+$'+formatAsMoney(at_price)+')';	
+						}	
+					}	
+				}
+				
+				var qty = parseInt(obj.qty, 10);
+				if(qty <= 0) continue;
+				
+				price = Math.round(price*100)/100;
+				var new_price = price;
+				var promotions_row = '';
+				var arr_show_promotions = [];
+				for(var k = 0; k < dataPromotions.length; k++){
+					if(parseInt(dataPromotions[k].promo_type, 10) == 2 && dataPromotions[k].product_key == obj.itm_key){	//Free Products
+						var bac_qty = parseInt(qty / parseInt(dataPromotions[k].minqty, 10), 10);
+						var qty_free = bac_qty * parseFloat(dataPromotions[k].freeqty);
+						promotions_row += '		<tr>';
+						promotions_row += '			<td><img src="shopping/data/img/thumb/'+dataPromotions[k].file+'" /></td>';
+						promotions_row += '			<td>';						
+						promotions_row += '				<div style="clear:both"><a href="index.php/shop/item_details?itemid='+dataPromotions[k].itm_key+'" style="font-weight:bold">'+ConvertToHTML(dataPromotions[k].itm_name)+'</a><br><b>Model: </b>'+ConvertToHTML(dataPromotions[k].itm_model) + '</div>';
+						promotions_row += '				<div style="clear:both; padding-top:10px">';
+						promotions_row += '					<table cellpadding="0" cellspacing="0" border="0">';
+						promotions_row += '						<tr>';
+						promotions_row += '							<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+						promotions_row += '							<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Free Products</td>';
+						promotions_row += '						</tr>';
+						promotions_row += '					</table>';
+						promotions_row += '				</div>';
+						promotions_row += '			</td>';
+						promotions_row += '			<td>$0.00</td>';
+						promotions_row += '			<td>'+number_format(qty_free)+'</td>';
+						promotions_row += '			<td>$0.00</td>';
+						promotions_row += '			<td>&nbsp;</td>';
+						promotions_row += '		</tr>';
+					}
+					if(obj.itm_key == dataPromotions[k].itm_key){
+						var discount_type = parseInt(dataPromotions[k].discount_type, 10);
+						var discount = parseFloat(dataPromotions[k].discount);
+						var promo_type = parseInt(dataPromotions[k].promo_type, 10);
+						if(promo_type == 1){
+							if(discount_type == 0){
+								new_price -= price * discount / 100;
+							}else{
+								new_price -= discount;	
+							}	
+						}
+						var arr_show_promotions_step = new Object();
+						arr_show_promotions_step.promo_type = promo_type;
+						arr_show_promotions_step.discount_type = discount_type;
+						arr_show_promotions_step.discount = discount;
+						
+						var check_exist_pro = false;
+						for(var p = 0; p < arr_show_promotions.length; p++){
+							if(arr_show_promotions[p].promo_type == promo_type && arr_show_promotions[p].discount_type == discount_type){
+								arr_show_promotions[p].discount += discount;
+								check_exist_pro = true;
+								break;	
+							}	
+						}
+						if(check_exist_pro == false) arr_show_promotions[arr_show_promotions.length] = arr_show_promotions_step;	
+					}	
+				}
+				var promotions_ = '';
+				for(var p = 0; p < arr_show_promotions.length; p++){
+					switch(arr_show_promotions[p].promo_type){
+						case 1:
+							var discount = '';
+							if(discount_type == 0){
+								discount = number_format(arr_show_promotions[p].discount) + '%';	
+							}else{
+								discount = '$' + formatAsMoney(arr_show_promotions[p].discount);	
+							}
+							promotions_ += '<div style="clear:both; padding-top:10px">';
+							promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+							promotions_ += '	<tr>';
+							promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+							promotions_ += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Product Discounts: '+discount+'</td>';
+							promotions_ += '	</tr>';
+							promotions_ += '</table>';
+							promotions_ +='</div>';
+							break;
+						case 3:
+							var discount = '';
+							if(arr_show_promotions[p].discount_type == 0){
+								discount = number_format(arr_show_promotions[p].discount) + '%';	
+							}else{
+								discount = '$' + formatAsMoney(arr_show_promotions[p].discount);	
+							}
+							promotions_ += '<div style="clear:both; padding-top:10px">';
+							promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+							promotions_ += '	<tr>';
+							promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+							promotions_ += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Shipping Discounts: '+discount+'</td>';
+							promotions_ += '	</tr>';
+							promotions_ += '</table>';
+							promotions_ +='</div>';
+							break;
+						case 4:
+							promotions_ += '<div style="clear:both; padding-top:10px">';
+							promotions_ += '<table cellpadding="0" cellspacing="0" border="0">';
+							promotions_ += '	<tr>';
+							promotions_ += '		<td align="left" valign="top"><img src="../images/ico-gift.png" border="0" width="20px" /></td>';
+							promotions_ += '		<td align="left" valign="top" style="padding-left:10px; font-weight:bold; font-size:16px; color:#D2D2D2">Free Shippings</td>';
+							promotions_ += '	</tr>';
+							promotions_ += '</table>';
+							promotions_ +='</div>';
+							break;
+					}
+				}
+				
+				if(new_price < 0) new_price = 0;
+				new_price = Math.round(new_price*100)/100;
+				var total = new_price * qty;
+				total = Math.round(total*100)/100;
+				total_price += total;
+				
+				var price_show = formatAsMoney(price);
+				if(new_price != price) price_show = formatAsMoney(new_price) + '<br><span style="text-decoration:line-through">$'+formatAsMoney(price)+'</span>';
+				
+				var origin = '';
+				if(obj.origin != ''){
+					origin = ConvertToHTML(obj.origin);	
+				}
+				
+				var check_service_product = false;
+				var str_location = '<div style="clear:both">';
+				if(dataLocations.length > 0){
+					for(var k = 0; k < dataLocations.length; k++){		
+						data_loc = dataLocations[k];
+						for(var hm = 0 ; hm < data_loc.length; hm++){
+							if(data_loc[hm].attributes == obj.attributes_key){
+								if(check_service_product == false) check_service_product = true;
+								str_location += '<div style="clear:both; font-style:italic; color:#666">'+data_loc[hm].location+' (x'+data_loc[hm].quantity+') <a href="javascript:void(0)" onclick="remove_location(\''+data_loc[hm].attributes+'\',\''+data_loc[hm].id+'\')" style="color:#F00;"> </a></div>';	
+							}
+						}
+					}
+				}
+				str_location += '</div>';
+
+				str_content += '		<tr>';
+				str_content += '			<td>';
+				str_content += '				<img src="shopping/data/img/thumb/'+obj.file+'" border="0" />';
+				str_content += '			</td>';
+				str_content += '			<td class="desc">';
+				str_content += '				<h4><a href="index.php/shop/item_details?itemid='+obj.itm_key+'" class="invarseColor">';
+				str_content += 					ConvertToHTML(obj.itm_name);
+				str_content += '				</a></h4>';
+				str_content += '				<ul class="unstyled">';
+				str_content += '					<li>Model: '+ConvertToHTML(obj.itm_model)+'</li>';
+				str_content += '					<li>'+origin+attributes__+'</li>';
+				str_content += '				</ul>';
+				str_content += 					str_location;
+				str_content += 					promotions_;
+				str_content += '			</td>';
+				str_content += '			<td class="quantity">';
+				str_content += '				<div class="input-prepend input-append">';
+				str_content += '					<button class="btn" data-title="Decrease" data-placement="top" data-toggle="tooltip" onclick="update_value(-1,'+i+')"><i class="icon-chevron-left"></i></button>';
+				var disable = '';
+				if(check_service_product){
+					disable = 'disabled="disabled"';
+				}
+				str_content += '					<input type="text" id="item_'+i+'" onblur="updateItem(this, \''+obj.attributes_key+'\','+obj.minimum_in_stock+','+qty+');" '+disable+' onkeypress="return isNumberIntKey(event)" value="'+qty+'">';
+				str_content += '					<button class="btn" data-title="Increase" data-placement="top" data-toggle="tooltip" onclick="update_value(1,'+i+')"><i class="icon-chevron-right"></i></button>';
+				str_content += '				</div>';
+				str_content += '			</td>';
+				str_content += '			<td class="sub-price">';
+				str_content += '				<h2>$'+price_show+'</h2>';
+				str_content += '			</td>';
+				str_content += '			<td class="total-price">';
+				str_content += '				<h2>$'+formatAsMoney(total)+'</h2>';
+				str_content += '			</td>';
+				str_content += '			<td>';
+				str_content += '				<button class="btn btn-small"  data-title="Update" data-placement="top" data-toggle="tooltip" onclick="updateItem_ref('+i+', \''+obj.attributes_key+'\','+obj.minimum_in_stock+','+qty+');"><i class="icon-refresh"></i></button>';//inventories
+				str_content += '				<button class="btn btn-small btn-danger" data-title="Remove" data-placement="top" data-toggle="tooltip" onclick="removaItem(\''+obj.attributes_key+'\')"><i class="icon-trash"></i></button>';
+				str_content += '			</td>';
+				str_content += '		</tr>';
+				str_content += 			promotions_row;
+			}
+		}
+	}
+	str_content += '	</tbody>';
+	str_content += '</table>';
+	
+	$("#cartlistings").empty().append(str_content);
+//	$('.table-per').fixedtableheader(); 
+	
+	if(total_price <= 0){
+		str_next = '<button class="btn btn-primary" disabled>Checkout</button>';	
+	}else if(total_price > 0){
+		str_next = '<button class="btn btn-primary" onclick="window.location = \'index.php/shop/cart/checkout\';">Checkout</button>';	
+	}
+	$("#suptotal").empty().append('$'+formatAsMoney(total_price));
+	$("#gocheckout").empty().append(str_next);
+}
+function remove_location(attributes,location_id){
+	$.post("index.php?q=items/cart",{
+		remove_location:'yes',
+		attributes:attributes,
+		location:location_id	
+	},function(data){
+		if(data == 'ok'){
+			loadObjectCart();	
+		}
+	});
+}
+function update_value(type,i){
+	var value = parseInt($("#item_"+i).val());
+	if(type == -1){
+		if(value > 0)
+			value = value - 1;
+	}else{
+		value = value + 1;	
+	}
+	$("#item_"+i).val(value);
+	return false;
+}
+
+$(function() {
+	loadObjectCart(); 
+     
+});
+</script>

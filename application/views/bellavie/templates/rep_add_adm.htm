@@ -1,0 +1,799 @@
+<style>
+.personalInfoLeft {
+	width:25%;
+	}
+.personalInfoRight{
+	width:75%;
+	}
+.spRequired{
+	margin-right:10px;
+	}
+fieldset{
+	 border:#7E7E7E solid 1px;
+	 margin-bottom:10px;
+	border-radius:7px;
+	-moz-border-radius:7px; 
+	}
+legend{
+	color:#F7961E;
+	font-size:16px;
+	font-style:italic;
+	}
+input{
+    float: left;
+}
+.box_solar table, .box_solar tr, .box_solar td
+{
+	border: none !important;
+}
+.box_solar .spRequired
+{
+	float: left; 
+	line-height: 33px;
+	padding-left: 5px;
+}
+#tooltip
+{
+	position: absolute;
+	opacity: 1;
+	border: 1px solid #DDD;
+	background-color: #EEE;
+	border-radius: 5px;
+}
+</style> 
+<div class="box_solar" style="clear:both">
+    <div id="title" style="margin-bottom:10px;">
+        <span style="color:#06C; font-size:14px; font-style:italic; margin-right:10px;">Please complete the required information accurately and in full</span>
+        <span style="color:#F00; font-size:12px; font-style:italic;">(* = Required)</span>
+    </div>
+    <div class="table">
+        <div class="table_left" style="clear:both">
+            <fieldset>
+                <legend>Personal / Business Information</legend>
+                <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Legal business name</td>
+                            <td class="personalInfoRight">
+                                <input type="text" class="input-text input smallinput" size="10" id="legal_business_name" name="legal_business_name" onkeypress="return isLetters(event)"  placeholder="Legal business name" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:200px;" value="" />
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft">Full Legal Name</td>
+                            <td class="personalInfoRight">
+                                <input type="text" class="input-text input smallinput" size="10" id="first_name" name="first_name" onkeypress="return isLetters(event)"  placeholder="First Name" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:120px;" />
+                                <span class="spRequired">*</span>
+                                <input type="text" class="input-text input smallinput" size="10" id="mi" name="mi" onkeypress="return isLetters(event)" placeholder="MI" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:120px;margin-right: 10px;" />
+                                <input type="text" class="input-text input smallinput" size="10" id="last_name" name="last_name" onkeypress="return isLetters(event)"placeholder="Last Name" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"   style="width:120px;"  />
+                                <span class="spRequired">*</span>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Date of Birth</td>
+                            <td class="personalInfoRight">
+                                <input type="text" size="10" name="date_of_birth" id="date_of_birth" class="input-text smallinput" style="width:120px; margin-right:5px;"  />
+                                <label class="drop smallabel" style="color:#06C; font-size:12px; font-style:italic; line-height: 30px;">Must be at least 18 yrs old </label>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">SSN  / Tax ID</td>
+                            <td class="personalInfoRight">
+                                <input type="text" size="10" id="ssn_itin" name="ssn_itin" class="input-text input smallinput" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:120px; margin-right: 5px;"  />
+                                <a href="#" class="hover" id="infoTooltip" style="color:#7E7E7E;line-height:30px;" title="">Why do we need this information? </a>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="personalInfoLeft" valign="top">Email</td>
+                            <td class="personalInfoRight">
+                                <input type="text" class="input-text input" id="primary_email" name="primary_email" size="10" placeholder="Primary Email" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"     style="width:200px;"   /> 
+                                <span class="spRequired">*</span>
+                                <input type="text" class="input-text input" size="10" id="confirm_primary_email" name="confirm_primary_email" placeholder="Confirm Primary Email" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"     style="width:200px;"   />
+                                <span class="spRequired">*</span>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td class="personalInfoRight">
+                                <input class="input-text" type="text" size="10" id="secondary_email" name="secondary_email" placeholder="Secondary Email"    style="width:200px; margin-right:18px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();" />
+                                <input type="text" size="10" id="confirm_secondary_email" class="input-text" name="confirm_secondary_email" placeholder="Confirm Secondary Email"    style="width:200px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"   />
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Association</td>
+                            <td class="personalInfoRight">
+                                <select id="association" name="association" style="width:210px;">
+                                	<option value=""> ---- Please select association ---- </option>
+                                	<option value="lasan">Lasan</option>
+                                	<option value="other">Other</option>
+                                </select>
+                            </td>  
+                        </tr>                
+                    </tbody>
+                </table>
+            </fieldset>
+            <fieldset>
+              <legend>Residential / Business Information</legend>
+                <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                   <tbody>
+                        <tr class="_borderBottom">
+                            <td rowspan="3" class="personalInfoLeft"  valign="top">Address</td>
+                            <td class="personalInfoRight">
+                                <input type="text" id="street_address" name="street_address" class="input-text input" size="10" placeholder="Street Address" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:310px;" />
+                                <span class="spRequired">*</span>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoRight">
+                                <input type="text" class="input-text input" size="10" name="apartment_suite_floor" id="apartment_suite_floor" placeholder="Apartment, Suite, Unit, Building, Floor, etc" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:310px;"/>
+                                <span class="spRequired">*</span>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoRight">
+                                <div style="float:left" id="residential_cities_show">
+                                    <input type="text" size="10" class="input-text input smallinput" id="city" name="city"  placeholder="City" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:120px;"/>
+                                </div>
+                                <span class="spRequired">*</span>
+                                <div style="float:left;">
+                                    <select name="residential_country" style="width:170px;" id="residential_country" onchange="showResidentialStates();showResidentialCities();"></select>
+                                    
+                                </div>
+                                <span class="spRequired">*</span>
+                                <div style="float:left; padding-left:5px" id="residential_states_show">
+                                    <input type="text" size="10" class="input-text input smallinput" id="state" name="state" placeholder="State"  style="width:120px;"/>
+                                    
+                                </div>
+                                <span class="spRequired">*</span>
+                                <div style="float:left; padding-left:5px">
+                                    <input type="text" size="10" class="input-text input smallinput" id="zipcode"  name="zipcode" placeholder="Zip Code" style="width:120px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"/>
+                                </div>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td rowspan="2" class="personalInfoLeft" valign="top">Phone Numbers</td>
+                            <td class="personalInfoRight">
+                                <input type="text" class="input-text input smallinput" id="home" name="home" onkeypress="return validatePhone(this, event)" placeholder="Primary Phone" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:200px;"/>
+                                <span class="spRequired">*</span>                   
+                                <input type="text"  class="input-text input smallinput" id="mobile" name="mobile" onkeypress="return validatePhone(this, event)" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  placeholder="Secondary Phone" style="width:200px;" />                 
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoRight"><span style="font-style:italic; font-size:12px; color:#06C;">At least one phone number required</span></td>  
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <fieldset>
+              <legend>Billing Information</legend>
+                <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                    <tbody> 
+                        <tr class="_borderBottom">
+                            <td style="width:100%;" colspan="2">
+                                <input style="float: left;margin-right:5px;" type="checkbox" id="residential" name="residential"  />&nbsp;&nbsp;<label style="float:left;line-height:23px;">Same as Residential </label>
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Name</td>
+                            <td class="personalInfoRight">
+                                <input type="text" class="input-text smallinput" size="10" id="fname" name="fname" placeholder="First Name" style="width:120px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();" />
+                            <span class="spRequired">*</span>
+                                <input type="text" size="10" class="input-text smallinput" id="lname" name="lname" placeholder="Last Name"  style="width:120px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();" />
+                            <span class="spRequired">*</span>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td rowspan="3" class="personalInfoLeft" valign="top">Address</td>
+                            <td class="personalInfoRight">
+                                <input type="text" size="10" class="input-text" id="s_address" name="s_address" placeholder="Street Address" style="width:300px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  />
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoRight">
+                                <input type="text" size="10" class="input-text" id="apartment_suite_floor_2" name="apartment_suite_floor_2" placeholder="Apartment, Suite, Unit, Building, Floor, etc" style="width:300px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"   />        
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoRight">
+                                <div style="float:left" id="billing_cities_show">
+                                    <input type="text" class="input-text smallinput" size="10" id="city_2" name="city_2" placeholder="City" style="width:120px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  />
+                                </div>
+                                <div style="float:left; padding-left:10px">
+                                    <select name="billing_country" style="width:170px;" id="billing_country" onchange="showBillingStates();showBillingCities();"></select>
+                                </div>
+                                <div style="float:left; padding-left:5px" id="billing_states_show">
+                                    <input type="text" size="10" class="input-text input smallinput" id="state_2" name="state_2" placeholder="State"  style="width:120px;"/>
+                                </div>
+                                <div style="float:left; padding-left:5px">
+                                    <input type="text" size="10" class="input-text input smallinput" id="zipcode_2" maxlength="5" name="zipcode_2" placeholder="Zip Code" style="width:120px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"/>
+                                </div>
+                            </td>  
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Phone Number</td>
+                            <td class="personalInfoRight">
+                               <input type="text" size="10" id="phone_number" name="phone_number" maxlength="15" class="input-text smallinput" onkeydown="return keypress(event,0,this);" onchange="return keypress(event,1,this);" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();" placeholder="Phone number" style="width:120px;" />
+                            </td>  
+                        </tr>
+                    </tbody>
+                </table>  
+            </fieldset>
+            <fieldset>
+                <legend>Account Information</legend> 
+                <table cellpadding="5" cellspacing="0" border="0" width="100%">
+                    <tbody> 
+                        <tr class="_borderBottom">
+                            <td style="width:100%; font-size:12px; line-height:2em;" colspan="2">
+                                Please create password that will allow you to access BMN websites. Your password is case sensitive, and must be <b>between 5 and 20 characters and consist of at least one letter and one number</b>. You will use your Rep ID number provided upon successful enrollment, as well as the password you create here on all BMN login sites. This information will be emailed to you upon successful completion of the enrollment process.
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Rep.ID#</td>
+                            <td class="personalInfoRight"> 
+                                <input type="text" size="10" class="input-text input" name="repid" maxlength="20" id="repid" style="width:200px;" placeholder="auto generate" disabled="disabled" />
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">User: </td>
+                            <td class="personalInfoRight"> 
+                                <input type="text" size="10" class="input-text input" name="user_name" maxlength="20" id="user_name" style="width:200px;" />
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Password</td>
+                            <td class="personalInfoRight">
+                                <input type="password" size="10" class="input-text input" maxlength="20" id="password" name="password" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();"  style="width:200px;" onkeypress="password_Strength(this.value)" />
+                                <span class="spRequired">*</span>  	
+                                <div style="float:left; line-height:25px;width:150px;font-style:italic; font-size:12px; color:#06C;;" id="pass_str">Password Strength</div>
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td class="personalInfoLeft" valign="top">Confirm Password</td>
+                            <td class="personalInfoRight">
+                                <input type="password" size="10" class="input-text input" id="confirm_password" maxlength="20" name="confirm_password" style="width:200px;" onfocus="showTooltipRequi(this)" onblur="return hideTooltipRequi();" />   
+                                <span class="spRequired">*</span>  	         
+                            </td>
+                        </tr>
+                        <tr class="_borderBottom">
+                            <td style="width:100%;" colspan="2">
+                                <br/>
+                                <span style="color:#F7961E; font-size:12px;"> Commission Payment Preference </span><br/>
+                                <span style="color:#06C; font-size:12px;">Select the method by which you would like to receive your commission payments from BMN.</span><br/><br/>
+                                <input style="float:left; margin-right:5px;" type="radio" class="r" id="radio_1" name="radio" checked="checked" value="1"  />&nbsp;&nbsp;<label style="float:left;line-height:23px;">Direct Deposit</label><br style="clear:both;"/>
+                                <input type="radio" class="r" id="radio_2" name="radio" value="2" style="float:left;margin-right:5px;"/>&nbsp;&nbsp;<label style="float:left;line-height:23px;">Check mailed to Residential Address</label><br /> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <div id="divTooltip" style="display:none;">
+                <div style="padding:10px; width:400px;">
+                <div style="color:#F7961E; font-size:14px;">Under penalties of perjury, by clicking continue, I certify that:</div>
+                <ol>
+                    <li>The Social Security Number (SSN) shown on this form is my correct taxpayer identification number, and</li>
+                    <li>I am not subject to backup withholding because: (a) I am exempt from backup withholding, or (b) I have not been notified by the Internal Revenue Service (IRS) that I am subject to backup withholding as a result of a failure to report all interest or dividends, or (c) the IRS has notified me that I am no longer subject to backup withholding, and</li>
+                    <li>
+                        I am a U.S. citizen or other U.S. person. For federal tax purposes, you are considered a U.S. person if you are:
+                        <ul type="circle">
+                            <li>An individual who is a U.S. citizen or U.S. resident alien,</li>
+                            <li>A partnership, corporation, company, or association created or organized in the United States or under the laws of the United States,</li>
+                            <li>An estate (other than a foreign estate), or</li>
+                            <li>A domestic trust (as defined in Regulations section 301.7701-7).</li>
+                        </ul>
+                    </li>
+                </ol>   
+                <div style="color:#06C; font-size:12px;">Your social security number is required to enable us to fulfill our tax reporting obligations and for identification purposes.</div>
+                </div> 
+            </div>	
+        </div>
+   	</div>
+    <div style="height:30px; clear:both;" id="savebt" align="right">
+    	<input type="hidden" name="replace_key" id="replace_key" value="{replace_key}" />
+        <input type="button" value="Submit" id="submit_bt" class="button" onclick="check_accountInfo()" style="margin-right:5px;"/>
+        <input type="button" style="float:right" value="Clear" id="clear_bt" class="button" onclick="ClearBox();" />
+        <input type="button" value="Back" class="button" style="margin-right:5px" onclick="history.go(-1);"/>
+    </div>
+    <div style="height:30px; display:none; clear:both;" id="loadingbt" align="right">
+        <div class="button-loading">
+            <img src="../images/loading_16x16.gif" border="0" align="absmiddle" /> Saving...
+        </div>
+    </div>
+</div>
+<div style="clear:both"></div>
+<script type="text/javascript">
+var dataCountries = [];
+function loadDataCountries(){
+	{dataCountries}
+	showResidentialCountryListing();
+	showResidentialStates();
+        showResidentialCities();
+	showBillingCountryListing();
+	showBillingStates();
+        showBillingCities();
+}
+function showResidentialCountryListing(){
+	var st = '', i = 0;
+	var elSel = document.getElementById('residential_country');
+	var ct="";
+	for(i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != ''){
+		elSel.value = ct;
+	}
+}
+function showResidentialStates(){
+	var st = '';
+	var country_value = document.getElementById('residential_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" style="width:130px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" size="10" class="input-text input smallinput" id="state" name="state" placeholder="State"  style="width:120px;"/>';	
+			}
+			break;	
+		}	
+	}
+	$("#residential_states_show").empty().append(st);	
+}
+
+function showResidentialCities(){
+	var ct = '';
+	var country_value = document.getElementById('residential_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				var cities = dataCountries[i].cities;
+				ct += '<select id="city" name="city" style="width:130px">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input type="text" size="10" class="input-text input smallinput" id="city" name="city" placeholder="City"  style="width:120px;"/>';	
+			}
+			break;	
+		}	
+	}
+	$("#residential_cities_show").empty().append(ct);	
+}
+function showBillingCountryListing(){
+	var st = '', i = 0;
+	var elSel2 = document.getElementById('billing_country');
+	var ct="";
+	for(i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel2.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel2.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != ''){
+		elSel2.value = ct;
+	}
+}
+function showBillingStates(){
+	var st = '';
+	var country_value = document.getElementById('billing_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="state_2" name="state_2" style="width:130px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" size="10" class="input-text input smallinput" id="state_2" name="state_2" placeholder="State"  style="width:120px;"/>';	
+			}
+			break;	
+		}	
+	}
+	$("#billing_states_show").empty().append(st);	
+}
+
+function showBillingCities(){
+    var ct= '';
+    var country_value = document.getElementById('billing_country').value;
+    for(var i = 0;i<dataCountries.length; i++){
+        if(dataCountries[i].code == country_value){
+            if(dataCountries[i].cities.length>0){
+                var cities = dataCountries[i].cities;
+                ct += '<select id="city_2" name="city_2" style="width:130px">';
+                for(var j = 0;j<cities.length; j++){
+                    ct += '<option value ="'+cities[j].city+'">'+cities[j].city+'</option>';
+                }
+                ct += '</select>';
+            }else{
+                ct +='<input type="text" size="10" class="input-text input smallinput" id="city_2" name="city_2" placeholder="City"  style="width:120px;"/>';
+            }
+            break;
+        }
+    }
+    $("#billing_cities_show").empty().append(ct);
+}
+
+$(document).ready(function(e) {
+	var  y =new Date();
+	$('#date_of_birth').datepicker({changeMonth: true, changeYear: true, yearRange: '1970:'+y.getFullYear()});
+	clearForms();
+	loadDataCountries();
+	$('#residential').change(function(){
+		if(this.checked) {
+			var fname = $('#first_name').val();
+			var lname = $('#last_name').val();
+			var address = $('#street_address').val();
+			var apart = $('#apartment_suite_floor').val();
+			var city = $('#city').val();
+			var country = $('#residential_country').val();
+			var state = $('#state').val();
+			var zip = $('#zipcode').val();
+			var phone = $('#home').val();
+			$('#fname').val(fname);
+			$('#lname').val(lname);
+			$('#s_address').val(address);
+			$('#apartment_suite_floor_2').val(apart);
+			$('#city_2').val(city);
+			$('#billing_country').val(country);
+                        showBillingCities();
+			showBillingStates();
+			$('#state_2').val(state);
+			$('#zipcode_2').val(zip);
+			$('#phone_number').val(phone);
+		}
+	});
+	$("#infoTooltip").tooltip({
+		delay: 0, 
+		track: true,
+		showURL: false, 
+		opacity:1,
+		bodyHandler: function() {
+		 return $("#divTooltip").html();
+	   },
+		fade: 250 
+	});	
+});
+function password_Strength(objpass) {
+	var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+	var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+	if (strongRegex.test(objpass)) {
+		$('#pass_str').html('<span style="color:green">Strong!</span>');
+	} else if (mediumRegex.test(objpass)) {
+		$('#pass_str').html('<span style="color:orange">Medium!</span>');
+	} else { 
+		$('#pass_str').html('<span style="color:red">Weak!</span>');
+	}
+	return true;
+}
+function validateMail(email) { 
+   var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   var address = document.getElementById(email).value;
+   if(reg.test(address) == false) { return 'Invalid Email Address';
+   } else { return '';}
+}
+function isNumber(event){
+	var charcode = window.event ? event.keyCode : event.which;
+	//if(charcode > 31 && charcode != 78 && charcode != 89 && charcode != 110 && charcode != 121)
+	if(charcode > 31 && (charcode < 48 || charcode > 57))
+		return false;
+	return true;
+}
+function isLetters(event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode > 32 && (charcode < 65 || charcode > 90) && (charcode < 97 || charcode > 122))
+		return false;
+	return true;
+}
+function validatePhone(phoneField,event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode==8 || charcode==0) return;
+	if(charcode > 31 && (charcode < 48 || charcode > 57 )) 
+		{ return false; }
+	else {
+		var num = phoneField.value.replace(/[^\d]/g,'');
+		phoneField.value = '('+num.substring(0,3) + ") " + num.substring(3, 6) + "-" + num.substring(6); }
+}
+function check_accountInfo(){
+	var checkError = false;
+	if($("#date_of_birth").val() !='')
+	{
+		var t = new Date($("#date_of_birth").val());
+		var current_t = new Date();
+		var age = current_t.getFullYear() - t.getFullYear();
+		var age_month = current_t.getMonth() - t.getMonth();
+		var age_date = current_t.getDate() - t.getDate();
+		if((age < 18) || (age == 18 && age_month < 0) || (age == 18 && age_month ==0 && age_date<0))
+		{
+			if(checkError == false)
+			{
+				checkError = true;
+				onfocusInputText(document.getElementById("date_of_birth"));	
+				document.getElementById("date_of_birth").focus();	
+			}	
+		}
+	}
+	if($('#first_name').val() == ''){
+		$('#first_name').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("first_name"));	
+			document.getElementById("first_name").focus();	
+		}
+	}
+	if($('#last_name').val() == ''){
+		$('#last_name').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("last_name"));	
+			document.getElementById("last_name").focus();	
+		}
+	}	
+	if($('#fname').val() == ''){
+		$('#fname').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("fname"));	
+			document.getElementById("fname").focus();	
+		}
+	}
+	if($('#lname').val() == ''){
+		$('#lname').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("lname"));	
+			document.getElementById("lname").focus();	
+		}
+	}
+	if($('#street_address').val() == ''){
+		$('#street_address').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("street_address"));	
+			document.getElementById("street_address").focus();	
+		}
+	}
+	if($('#city').val() == ''){
+		$('#city').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("city"));	
+			document.getElementById("city").focus();	
+		}
+	}
+	if($('#state').val() == ''){
+		$('#state').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("state"));	
+			document.getElementById("state").focus();	
+		}
+	}	
+	
+	if($('#home').val() == ''){
+		$('#home').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("home"));	
+			document.getElementById("home").focus();	
+		}
+	}	
+	if($('#primary_email').val() == ''){
+		$('#primary_email').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("primary_email"));	
+			document.getElementById("primary_email").focus();	
+		}
+	}else{
+		var msg = validateMail('primary_email');
+		if(msg != ""){
+			$('#primary_email').css("background", '#ffffd5');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				showTooltipRequi(document.getElementById("primary_email"));	
+				document.getElementById("primary_email").focus();	
+			}
+		}		
+	}
+	if($('#confirm_primary_email').val() == ''){
+		$('#confirm_primary_email').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("confirm_primary_email"));	
+			document.getElementById("confirm_primary_email").focus();	
+		}
+	}else{
+		var msg = validateMail('confirm_primary_email');
+		if(msg != ""){
+			$('#confirm_primary_email').css("background", '#ffffd5');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				showTooltipRequi(document.getElementById("confirm_primary_email"));	
+				document.getElementById("confirm_primary_email").focus();	
+			}
+		}
+		else if($('#primary_email').val() != $('#confirm_primary_email').val()) { 
+			if(checkError == false){
+				alert('Confirm primary mail is not the same Primary mail');
+				checkError = true;
+				showTooltipRequi(document.getElementById("confirm_primary_email"));	
+				document.getElementById("confirm_primary_email").focus();	
+			} 
+		}		
+	}
+	if($("#secondary_email").val() != '')
+	{
+		var msg = validateMail('secondary_email');
+		if(msg != ""){
+			$('#secondary_email').css("background", '#ffffd5');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				showTooltipRequi(document.getElementById("secondary_email"));	
+				document.getElementById("secondary_email").focus();	
+			}
+		}	
+		if($('#confirm_secondary_email').val() == ''){
+			$('#confirm_secondary_email').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("confirm_secondary_email"));	
+				document.getElementById("confirm_secondary_email").focus();	
+			}
+		}else{
+			var msg = validateMail('confirm_secondary_email');
+			if(msg != ""){
+				$('#confirm_secondary_email').css("background", '#ffffd5');
+				if(checkError == false){
+					alert(invalid_email);
+					checkError = true;
+					showTooltipRequi(document.getElementById("confirm_secondary_email"));	
+					document.getElementById("confirm_secondary_email").focus();	
+				}
+			}
+			else if($('#secondary_email').val() != $('#confirm_secondary_email').val()) { 
+				if(checkError == false){
+					alert('Confirm secondary is mail not same Secondary mail');
+					checkError = true;
+					showTooltipRequi(document.getElementById("confirm_secondary_email"));	
+					document.getElementById("confirm_secondary_email").focus();	
+				} 
+			}		
+		}
+	}
+	
+	if (!/^([a-zA-Z0-9.]+@){0,1}([a-zA-Z0-9.])+$/.test($('#user_name').val()) || $('#user_name').val()=="" || $('#user_name').val().length < 5)
+	{
+		$('#user_name').css("background", '#ffffd5');
+		if(checkError == false){
+			alert("Invalid user name.");
+			checkError = true;
+			onfocusInputText(document.getElementById("user_name"));	
+			document.getElementById("user_name").focus();	
+		}
+	}
+	
+	if($('#password').val().length < 5 || $('#password').val().length >20 || trim($('#password').val())==''){
+		$('#password').css("background", '#ffffd5');
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("password"));	
+			document.getElementById("password").focus();	
+		}
+	}else{
+		var re = /^\w*(?=\w*\d)(?=\w*[a-zA-Z])\w*$/;
+		if(password_Strength(document.getElementById("password")) && !re.test($('#password').val())){
+			alert("Invalid password!");
+			$('#password').css("background", '#ffffd5');
+			if(checkError == false){
+				checkError = true;
+				showTooltipRequi(document.getElementById("password"));	
+				document.getElementById("password").focus();	
+			}
+		}else{
+			if(trim($('#password').val()) != trim($('#confirm_password').val())){
+				$('#confirm_password').css("background", '#ffffd5');
+				if(checkError == false){
+					alert('Confirm password is not same Password');
+					checkError = true;
+					showTooltipRequi(document.getElementById("confirm_password"));	
+					document.getElementById("confirm_password").focus();	
+				}
+			}
+		}
+	}
+	if(checkError == true) return false;
+	var obj_submit = new Object();
+	obj_submit.user_name = $('#user_name').val();
+	obj_submit.same_checked = $('#residential').is(':checked')? 1:0;
+	obj_submit.mi = document.getElementById("mi").value;
+	obj_submit.first_name = document.getElementById("first_name").value;
+	obj_submit.last_name = document.getElementById("last_name").value;
+	obj_submit.legal_business_name = document.getElementById('legal_business_name').value;
+	obj_submit.date_birth = document.getElementById('date_of_birth').value;
+	obj_submit.ssn_itin = document.getElementById("ssn_itin").value;
+	obj_submit.street_address = document.getElementById("street_address").value;
+	obj_submit.apartment_suite_floor = document.getElementById('apartment_suite_floor').value;
+	obj_submit.city = document.getElementById("city").value;
+	obj_submit.country = document.getElementById("residential_country").value;
+	obj_submit.state = document.getElementById("state").value;
+	obj_submit.zipcode = document.getElementById("zipcode").value;
+	obj_submit.home_phone = document.getElementById("home").value;
+	obj_submit.mobile = document.getElementById('mobile').value;
+	obj_submit.first_name_2 = document.getElementById('fname').value;
+	obj_submit.last_name_2 = document.getElementById('lname').value;
+	obj_submit.street_address_2 = document.getElementById('s_address').value;
+	obj_submit.apartment_suite_floor_2 = document.getElementById('apartment_suite_floor_2').value;
+	obj_submit.city_2 = document.getElementById('city_2').value;
+	obj_submit.country_2 = document.getElementById('billing_country').value;
+	obj_submit.state_2 = document.getElementById('state_2').value;
+	obj_submit.zipcode_2 = document.getElementById('zipcode_2').value;
+	obj_submit.home_phone_2 = document.getElementById('phone_number').value;
+	obj_submit.primary_email = document.getElementById("primary_email").value;
+	obj_submit.secondary_email = document.getElementById('secondary_email').value;
+	obj_submit.payment_preference = $('input:radio[name=radio]:checked').val();
+
+	obj_submit.status = 1;
+	obj_submit.password = document.getElementById("password").value;	
+	obj_submit.association = document.getElementById('association').value;		
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	var postUrl = ($("#replace_key").val()=='')?"index.php/representatives/add/{repID}" : "index.php/representatives/replace/"+$("#replace_key").val();
+	$.post(postUrl, {
+		saveUser: obj_submit
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+				//alert(fail_saved);	
+			}else{
+				alert(success_saved);
+				window.location = 'index.php/representatives/register_success/'+data.customer_name;
+			}
+		}
+	}, "json");
+	return false;
+}
+
+function ClearBox(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			if(input_text[i].value == '') { 
+				var t = $('.value_input').text(); 
+				$('.input').empty().css({'font-family': 'Arial,Helvetica,sans-serif', 'color': '#CBB9D2'}).val(t); 
+				$('#pass_str').html('<span>Password Strength</span>');
+				$('#residential').attr('checked', false);
+			}
+			else if(input_text[i].value != '')  { 
+				input_text[i].value = '';
+				var t = $('.value_input').text();
+				$('.input').empty().css({'font-family': 'Arial,Helvetica,sans-serif', 'color': '#CBB9D2'}).val(t); 
+				$('#pass_str').html('<span>Password Strength</span>');
+				$('#residential').attr('checked', false);
+			}
+		}	
+	}
+}
+</script>

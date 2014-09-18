@@ -1,0 +1,78 @@
+.nav, .nav ul {
+    list-style:  none;
+    position: relative;
+	padding:0px;
+	margin:0px;
+}
+ul.nav li a, ul.nav li a:active, ul.nav li a:visited{
+    display: block;
+    text-decoration: none;
+}
+ul.nav li {
+    float: left;
+    position: relative;
+}
+ul.nav > li {
+	height:25px;
+	z-index:5;
+}
+.nav ul {
+    position: absolute;
+    top: 25px;
+    display: none;
+	-moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.nav li ul a {
+    width: 212px;
+    float: left;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:10px;
+	border-top:1px solid #E2E2E2;
+	font-size:12px;
+	text-transform:capitalize;
+}
+.nav ul ul {
+    top: auto;
+}
+.nav li ul ul {
+    left: 200px;
+    margin: 0px;
+}
+.nav li:hover ul ul, 
+.nav li:hover ul ul ul,
+.nav li:hover ul ul ul ul {
+    display: none;
+}
+.nav li:hover ul,
+.nav li li:hover ul,
+.nav li li li:hover ul,
+.nav li li li li:hover ul {
+    display: block;
+}
+.nav li ul a.bg_child{
+	position:relative;
+	z-index:90;
+	background:url(../images/muiten1.png) no-repeat 190px 10px #fff;
+	white-space:nowrap;
+	color:#ffab11;
+}
+.nav li ul a.bg_child:hover{
+	color:#FFCC33 !important;
+	background:url(../images/muiten_vang.png) no-repeat 190px 10px #fff;
+}
+.nav li ul a.bg_nobo{
+	position:relative;
+	z-index:29;
+	background:#FFF; 
+	white-space:nowrap;
+	color:#F7961D;
+}
+.nav li ul a.bg_nobo:hover{
+    color:#FFF !important;
+	background:#ffab11;
+}
+.nav li ul li ul { margin-left: -10px;margin-top: 5px; z-index: 100;}
+.nav li ul li { margin:0px; padding:0px;}

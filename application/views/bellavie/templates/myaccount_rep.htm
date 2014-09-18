@@ -1,0 +1,1037 @@
+<style>
+.control_group
+{
+	clear:both;
+	display:inline-block;
+	padding-bottom:10px;
+}
+.comment-form label
+{
+	width: 150px;
+	float: left;
+	margin: 5px 20px 0px 0px;
+}
+.control_element
+{
+	width: 360px;
+	overflow:visible;
+	float:left;
+}
+.control_element input
+{
+	padding:0px 5px;
+	width:337px;
+	float:left;
+}
+input[type='text'], input[type='password']
+{
+	background-color: #FFF !important;
+}
+.comment-form .row
+{
+	width: auto;
+	float:left;
+	padding-bottom: 0px;
+}
+.alone_input
+{
+	width: 324px !important;
+}
+.two_input
+{
+	width: 149px !important;
+	margin-right: 4px !important;
+}
+.third_input
+{
+	width: 90px !important;
+	margin-right:5px !important;
+	float:left;
+}
+.comment
+{
+	color:#06C; 
+	font-size:12px; 
+	font-style:italic; 
+	float:left; 
+	width: auto !important;
+}
+.ext_comment
+{
+	color:#7E7E7E;
+}
+.comment-form .text select {
+	float:left;
+	padding:7px 0 8px;
+	font-size:12px;
+	line-height:18px;
+	margin:0;
+	background:none;
+	border:0;
+	outline:none;
+	-webkit-border-radius: 0 !important;
+}
+.my_select
+{
+	height: 32px;
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	line-height:32px;
+	vertical-align: middle;
+}
+.my_select option
+{
+	line-height:32px;
+	vertical-align: middle;
+}
+#tooltip
+{
+	z-index: 9999 !important;
+	position:absolute !important;
+	background-color: #FFF;
+	border: 1px solid #000;
+}
+.tab-content
+{
+	display: none;
+}
+</style>
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="index.php/home">Home</a></li>
+            <li>/</li>
+            <li><a href="index.php/myaccount_links">My Account</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>
+<div class="main-container holder">
+        <!-- tabs-vertical -->
+        <div class="tabs-vertical">
+            <ul class="tabset">
+                <li class="active"><a href="#tab1" class="tab1" id="nav_tab1">Personal / Business Information</a></li>
+                <li class=""><a href="#tab2" class="tab1" id="nav_tab2">Residential / Business Information</a></li>
+                <li class=""><a href="#tab3" class="tab1" id="nav_tab3">Billing Information</a></li>
+                <li class=""><a href="#tab4" class="tab1" id="nav_tab4">Account Information</a></li>
+            </ul>
+            <form method="post" id="cont_form" class="comment-form" action="#">
+            <div id="tab1" class="tab-content" style="display: block;">  
+            	<div id="divTooltip" style="display:none;">
+              <div style="padding:10px; width:400px;" class="tooltip_content">
+              <div style="color:#F7961E; font-size:14px;">Under penalties of perjury, by clicking continue, I certify that:</div>
+              <ol>
+                  <li>The Social Security Number (SSN) shown on this form is my correct taxpayer identification number, and</li>
+                  <li>I am not subject to backup withholding because: (a) I am exempt from backup withholding, or (b) I have not been notified by the Internal Revenue Service (IRS) that I am subject to backup withholding as a result of a failure to report all interest or dividends, or (c) the IRS has notified me that I am no longer subject to backup withholding, and</li>
+                  <li>
+                      I am a U.S. citizen or other U.S. person. For federal tax purposes, you are considered a U.S. person if you are:
+                      <ul type="circle">
+                          <li>An individual who is a U.S. citizen or U.S. resident alien,</li>
+                          <li>A partnership, corporation, company, or association created or organized in the United States or under the laws of the United States,</li>
+                          <li>An estate (other than a foreign estate), or</li>
+                          <li>A domestic trust (as defined in Regulations section 301.7701-7).</li>
+                      </ul>
+                  </li>
+              </ol>   
+              <div style="color:#06C; font-size:12px;">Your social security number is required to enable us to fulfill our tax reporting obligations and for identification purposes.</div>
+              </div> 
+          </div>
+                <div class="control_group">
+                    <label for="legal_business_name" class="label_left">Legal business name</label>
+                  	<div class="control_element">
+                     <div class="row">			
+                          <span class="text">
+                              <input type="text" class="text alone_input"  id="legal_business_name" name="legal_business_name" onkeypress="return isLetters(event)"  placeholder="Legal business name"  value="{rep_legal_business_name}">
+                          </span>
+                      </div> 
+                     </div>
+                </div>
+                <div class="control_group">
+                	<label for="first_name" class="label_left">Full Legal Name (*)</label>
+                    <div class="control_element">
+                    <div class="row">			
+                          <span class="text third_input">
+                    <input type="text" size="10" id="first_name" name="first_name" onkeypress="return isLetters(event)"  placeholder="First Name"   value="{firstname}"  class="text" style="width:100px; margin-right:5px;">
+                    	</span>
+                     </div>
+                     <div class="row">			
+                          <span class="text third_input">
+                    <input type="text" size="10" class="text" id="mi" name="mi" onkeypress="return isLetters(event)" placeholder="MI"  value="{middlename}" >
+                    	</span>
+                    </div>
+                    <div class="row">			
+                          <span class="text third_input">
+                     <input type="text" size="10" class="text" id="last_name" name="last_name" onkeypress="return isLetters(event)"placeholder="Last Name"  value="{lastname}" >
+                     </span>
+                     </div>
+                    </div>
+                </div>
+                <div class="control_group">
+                	<label for="date_of_birth" class="label_left">Date of Birth</label>
+                    <div class="control_element">
+                    <div class="row">			
+                          <span class="text third_input">
+                    	<input type="text" size="10" name="date_of_birth" id="date_of_birth" class="input-text smallinput" style="width:120px; margin-right:15px;" value="{rep_date_of_birth}"  />
+                    </span>
+                    </div>
+                            <label class="comment">Must be at least 18 yrs old </label>
+                    </div>
+                </div>
+				<div class="control_group">
+                	<label for="ssn_itin" class="label_left">SSN / Tax ID</label>
+                	<div class="control_element">
+                    <div class="row">			
+                          <span class="text third_input">
+                    	<input type="text" size="10" id="ssn_itin" name="ssn_itin" class="input-text input smallinput"  style="width:120px; margin-right:15px;" value="{rep_ssn_itin}"  />
+                     		</span>
+                     </div>
+                            <a href="#" class="ext_comment" style="display:block; padding-top:5px;" id="infoTooltip">Why do we need this information? </a>
+                    </div>
+                </div>
+                <div class="control_group">
+                	<label for="primary_email" class="label_left">Email (*)</label>
+                	<div class="control_element">
+                    <div class="row">			
+                          <span class="text">
+                    	<input type="text" class="text alone_input"  id="primary_email" name="primary_email" size="10" placeholder="Primary Email"  value="{mail}"  />
+                      </span>
+                      </div>
+                     </div>
+                </div>
+                <div class="control_group">
+                	<label for="confirm_primary_email" class="label_left">Confirm Email (*)</label>
+                	<div class="control_element">
+                    <div class="row">			
+                          <span class="text">
+                     <input type="text" class="text alone_input"  size="10" id="confirm_primary_email" name="confirm_primary_email" placeholder="Confirm Primary Email"  value="{mail}"/>
+                     </span>
+                     </div>
+                    </div>
+                </div>
+                <div class="control_group">
+                	<label for="secondary_email" class="label_left">Secondary Email</label>
+                	<div class="control_element">
+                    <div class="row">			
+                          <span class="text">
+                    	<input type="text" class="text alone_input" size="10" id="secondary_email" name="secondary_email" placeholder="Secondary Email"   value="{rep_secondary_mail}" />
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="control_group">
+                	<label for="confirm_secondary_email" class="label_left">Confirm Secondary Email</label>
+                	<div class="control_element">
+                    <div class="row">			
+                          <span class="text">
+                    	<input type="text" size="10" id="confirm_secondary_email" class="text alone_input" name="confirm_secondary_email" placeholder="Confirm Secondary Email"  value="{rep_secondary_mail}"   />
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="control_group">
+                	<label for="association" class="label_left">Association:</label>
+                	<div class="control_element">
+                    	<div class="row">			
+                            <span class="text" style="padding: 0px" >
+                            	<select id="association" class="my_select default" name="association">
+                                	<option value=""> ---- Please select association ---- </option>
+                                	<option value="lasan">Lasan</option>
+                                	<option value="other">Other</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both; margin-bottom: 15px;"></div>
+        	</div>
+            <div id="tab2" class="tab-content">
+            	<div class="control_group">
+                	<label for="street_address" class="label_left">Address (*)</label>
+                    <div class="control_element">
+                    <div class="row" style="margin-bottom:5px;">			
+                          <span class="text">
+                    	<input type="text" id="street_address" name="street_address" class="text alone_input" size="10" placeholder="Street Address" value="{address}" />
+                     </span>
+                     </div>
+                     <div class="row">			
+                          <span class="text">
+                        <input type="text" class="text alone_input" size="10" name="apartment_suite_floor" id="apartment_suite_floor" placeholder="Apartment, Suite, Unit, Building, Floor, etc"  value="{rep_apartment}"/>
+                        </span>
+                      </div>
+                        
+                        <div style="margin-top: 5px; display: inline-block;">
+                        	<div class="row" >
+                            <span class="text third_input" id="residential_cities_show">
+                                <input type="text" size="10" class="text" id="city" name="city"  placeholder="City"  value="{city}"/>							</span>
+                           </div>
+                           <div class="row" style="margin-bottom:5px;">
+                           <span class="text third-input" id="residential_states_show" style="margin-right:5px !important;">
+                                <input type="text" size="10" class="text" id="state" name="state" placeholder="State"  value="{state}"/>
+                                </span>
+                            </div>
+                            <div class="row">
+                            <span class="text third_input">
+                                <input type="text" size="10" class="input-text input smallinput" id="zipcode" name="zipcode" placeholder="Zip Code" style="width:60px;" value="{zipcode}" />
+                                </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <label class="label_left"></label>
+                    <div class="control_element">
+                    	<div class="row">
+                            	<span class="text" style="padding: 0px !important;">
+                                <select name="residential_country"  class="my_select default" id="residential_country" onchange="showResidentialStates();showResidentialCities();"><option value="">Select Country</option></select>
+                                </span>
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="control_group">
+                	<label for="home" class="label_left">Phone Numbers (*)</label>
+                    <div class="control_element">
+                    <div class="row" >
+                     	<span class="text two_input">
+                    	 <input type="text"  id="home" name="home"  onkeypress="return validatePhone(this, event)" placeholder="Home Phone"  value="{phone}"/>
+                        </span>
+                     </div>
+                     <div class="row">
+                     	<span class="text two_input">
+                          <input type="text" id="mobile" name="mobile" onkeypress="return validatePhone(this, event)"  placeholder="Mobile Phone" value="{mobile}" /> 
+                         </span>
+                      </div>
+                      <div style="clear:both"></div>
+                       <span style="font-style:italic; font-size:12px; color:#06C; clear:both;">At least one phone number required</span> 
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab3" class="tab-content">
+            <div class="control_group">
+            <div class="row">
+            	 <label><input type="checkbox" id="residential" style="margin-left:0px; float:right;" name="residential" {same_checked}></label><label style="margin-top:2px; text-align:left; padding-top: 0px;">Same as Residential </label>
+            </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="control_group">
+            	<label for="fname" class="label_left">Name (*)</label>
+                <div class="control_element">
+                <div class="row">
+                <span class="text two_input">
+                <input type="text" size="10" id="fname" name="fname" placeholder="First Name" value="{rep_legal_business_fname}" />
+                </span>
+                </div>
+                <div class="row">
+                <span class="text two_input">
+                <input type="text" size="10" id="lname" name="lname" placeholder="Last Name"  value="{rep_legal_business_lname}" />
+                </span>
+                </div>
+                </div>
+            </div>
+            
+            <div class="control_group">
+            	<label for="" class="label_left">Address</label>
+                <div class="control_element">
+                <div class="row">
+                <span class="text" style="margin-bottom:5px;">
+                	 <input class="alone_input" type="text" size="10" id="s_address" name="s_address" placeholder="Street Address" value="{rep_address}"  />
+                     </span>
+                     </div>
+                     <div class="row">
+                <span class="text">
+                      <input class="alone_input" type="text" size="10"  id="apartment_suite_floor_2" name="apartment_suite_floor_2" placeholder="Apartment, Suite, Unit, Building, Floor, etc"  value="{rep_apartment_2}"  />
+                      </span>
+                      </div>
+                      <div style="display:inline-block; margin-top:5px;">
+                      <div class="row">
+                <span class="text third_input" id="billing_cities_show">
+                          <input type="text" class="input-text smallinput" size="10" id="city_2" name="city_2" placeholder="City" value="{rep_city}"  />
+                          </span>
+                      </div>
+                      <div class="row">
+   						<span class="text third_input" id="billing_states_show">
+                          <input type="text" size="10" class="input-text input smallinput" id="state_2" value="" name="state_2" placeholder="State"/>
+                          </span>
+                      </div>
+                      <div class="row">
+                      <span class="text third_input">
+                          <input type="text" size="10" class="input-text input smallinput" id="zipcode_2" maxlength="5" name="zipcode_2" placeholder="Zip Code" style="width:60px;" value="{rep_zipcode}" />
+                          </span>
+                      </div>
+                      </div>
+                      <div class="row" style="clear:both; margin-top: 5px;">
+                      <span class="text" style="padding:0px;">
+                          <select name="billing_country" class="my_select default"  id="billing_country" onchange="showBillingStates(); showBillingCities();"><option value="">Select Country</option></select>
+                          </span>
+                      </div>
+                </div>
+            </div>
+            
+            <div class="control_group">
+            	<label for="" class="label_left">Phone Number</label>
+                <div class="control_element">
+                <div class="row">
+                <span class="text">
+                	<input class="alone_input" type="text" size="10" id="phone_number" name="phone_number" maxlength="15" onkeydown="return keypress(event,0,this);" onchange="return keypress(event,1,this);" value="{rep_phone}"  />
+                    </span>
+                   </div>
+                </div>
+            </div>
+            </div>
+            
+            <div id="tab4" class="tab-content">
+            <div class="control_group" style=" font-size:12px; line-height:2em;">
+            	Please create password that will allow you to access BMN websites. Your password is case sensitive, and must be <b>between 5 and 20 characters and consist of at least one letter and one number</b>. You will use your Rep ID number provided upon successful enrollment, as well as the password you create here on all BMN login sites. This information will be emailed to you upon successful completion of the enrollment process.
+            </div>
+            <div style="clear:both"></div>
+            <div class="control_group">
+            	<label for="" class="label_left">Rep.ID#</label>
+                <div class="control_element" style="color:#F7961E; font-weight:bold; font-size:14px; padding-top:5px;">{repid}</div>
+            </div>
+             <div class="control_group">
+            	<label for="" class="label_left">User</label>
+                <div class="control_element" style="color:#F7961E; font-weight:bold; font-size:14px; padding-top:5px;">{name}</div>
+            </div>
+            <div class="control_group">
+            	<label for="" class="label_left">Old Password</label>
+                <div class="control_element">
+                <div class="row">
+                <span class="text">
+                	<input type="password" size="10" class="input-text input" maxlength="20" id="oldPassword" name="oldPassword"  style="width:200px;" />
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control_group">
+            	<label for="" class="label_left">New Password</label>
+                <div class="control_element">
+                <div class="row">
+                <span class="text">
+                	<input type="password" size="10" class="input-text input" maxlength="20" id="newPassword" name="newPassword"   style="width:200px;" onkeypress="password_Strength(this.value)" />	
+                    </span>
+                    </div>
+                     <div style="float:left;font-style:italic; font-size:12px; color:#06C;; padding-top: 5px; padding-left:5px;" id="pass_str">Password Strength</div>
+                </div>
+            </div>
+            <div class="control_group">
+            	<label for="" class="label_left">Confirm New Password</label>
+                <div class="control_element">
+                <div class="row">
+                <span class="text">
+                	<input type="password" size="10" class="input-text input" id="confirm_password" maxlength="20" name="confirm_password" style="width:200px;"  />
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="control_group" style="margin-bottom:20px;">
+            	<label for="" class="label_left" style="color:#F7961E; font-size:12px; width:100%; text-align:left;">Commission Payment Preference</label>
+                <label for="" class="label_left" style="color:#06C; font-size:12px; clear:both; width:100%; margin: 5px 0px; text-align:left;" >Select the method by which you would like to receive your commission payments from BMN.</label>
+                <input type="radio" class="r" id="radio_1" name="radio" checked="checked" value="1" style="margin-top:-2px;"  />&nbsp;&nbsp;<span>Direct Deposit</span><br />
+                <input type="radio" class="r" id="radio_2" name="radio" value="2" style="margin-top:-2px;"/>&nbsp;&nbsp;<span>Check mailed to Residential Address</span>
+            </div>-->
+            </div>
+            </form>
+            <div style="clear:both"></div>
+            <div style="height:30px; clear:both; padding:20px 0px;" id="savebt" align="center">
+                <input type="button" style="margin-left:5px;" value="Submit" id="submit_bt" class="btn blue" onclick="check_accountInfo()" />
+                <input type="button" style="" value="Clear" id="clear_bt" class="btn orange" onclick="ClearBox();" />
+                <input type="button" value="Back" class="btn" style="margin-right:5px" onclick="history.go(-1);"/>
+            </div>
+            
+            <div style="height:30px; display:none; clear:both;" id="loadingbt" align="right">
+                <div class="button-loading">
+                    <img src="../images/loading_16x16.gif" border="0" align="absmiddle" /> Saving...
+                </div>
+            </div>		
+        </div>						
+</div>
+<script type="text/javascript">
+var dataCountries = [];
+function loadDataCountries(){
+	{dataCountries}
+	showResidentialCountryListing();
+	document.getElementById('residential_country').value = '{country}';
+	showResidentialStates();
+	document.getElementById('state').value = '{state}';
+	showResidentialCities();
+        document.getElementById('city').value = '{city}';
+	showBillingCountryListing();
+	document.getElementById('billing_country').value = '{rep_country}';
+	showBillingStates();
+	document.getElementById('state_2').value = '{rep_state}';
+        showBillingCities();
+        document.getElementById('city_2').value = '{rep_city}';
+	document.getElementById('association').value = '{rep_association}';
+}
+function showResidentialCountryListing(){
+	var st = '', i = 0;
+	var elSel = document.getElementById('residential_country');
+	$(elSel).empty();
+	var ct="";
+	for(i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;   
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != ''){
+		elSel.value = ct;
+	}
+}
+function showResidentialStates(){
+	var st = '';
+	var country_value = document.getElementById('residential_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				$("#residential_states_show").css('padding','0px');	
+				var states = dataCountries[i].states;
+				st += '<select id="state" name="state" class="my_select default" style="width:100px; height: 30px;">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" size="10" id="state" name="state" placeholder="State"  style="width:90px;"/>';	
+				$("#residential_states_show").css('padding','0px 10px 0px 10px');
+			}
+			break;	
+		}	
+	}
+	if (st == "")
+	{
+		st += '<input type="text" size="10" id="state" name="state" placeholder="State"  style="width:90px;"/>';	
+		$("#residential_states_show").css('padding','0px 10px 0px 10px');
+	}
+	$("#residential_states_show").empty().append(st);	
+}
+
+function showResidentialCities()
+{
+        var ct = '';
+	var country_value = document.getElementById('residential_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				$("#residential_cities_show").css('padding-left','0px');
+				var cities = dataCountries[i].cities;
+				ct += '<select id="city" name="city" class="my_select default" style="width:100px; height: 30px;">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input type="text" size="10" id="city" name="city" placeholder="City"  style="width:90px;"/>';
+				$("#residential_cities_show").css('padding','0px 10px');
+			}
+			break;	
+		}	
+	}
+	if (ct == "")
+	{
+		ct += '<input type="text" size="10" id="city" name="city" placeholder="City"  style="width:90px;"/>';
+		$("#residential_cities_show").css('padding','0px 10px');
+	}
+	$("#residential_cities_show").empty().append(ct);	
+}
+
+function showBillingCountryListing(){
+	var st = '', i = 0;
+	var elSel2 = document.getElementById('billing_country');
+	$(elSel2).empty();
+	var ct="";
+	for(i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel2.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel2.add(elOptNew); // IE only
+		}		
+	}
+	if(ct != ''){
+		elSel2.value = ct;
+	}
+}
+function showBillingStates(){
+	var st = '';
+	var country_value = document.getElementById('billing_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				$("#billing_states_show").css('padding-left','0px');	
+				
+				var states = dataCountries[i].states;
+				st += '<select id="state_2" name="state_2" class="my_select default" style="width:100px; height: 30px;">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" size="10" id="state_2" name="state_2" placeholder="State"  style="width:90px;"/>';
+				$("#billing_states_show").css('padding','0px 10px');
+			}
+			break;	
+		}	
+	}
+	if (st == '') 
+	{
+		st =  '<input type="text" size="10" id="state_2" name="state_2" placeholder="State"  style="width:90px;"/>';
+		$("#billing_states_show").css('padding','0px 10px');
+	}
+	$("#billing_states_show").empty().append(st);	
+}
+
+function showBillingCities(){
+	var ct = '';
+	var country_value = document.getElementById('billing_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				$("#billing_cities_show").css('padding-left','0px');
+				var cities = dataCountries[i].cities;
+				ct += '<select id="city_2" name="city_2" class="my_select default" style="width:100px; height: 30px;">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				$("#billing_cities_show").css('padding','0px 10px');
+				ct += '<input type="text" size="10" id="city_2" name="city_2" placeholder="City"  style="width:90px;"/>';	
+			}
+			break;	
+		}	
+	}
+	if (ct == '') 
+	{
+		ct = '<input type="text" size="10"  id="city_2" name="city_2" placeholder="City"  style="width:90px;"/>';	
+		$("#billing_cities_show").css('padding','0px 10px');
+	}
+	$("#billing_cities_show").empty().append(ct);	
+}
+
+var  y =new Date();
+$('#date_of_birth').datepicker({changeMonth: true, changeYear: true, yearRange: '1970:'+y.getFullYear()});
+$(document).ready(function(e) {
+	clearForms();
+	loadDataCountries();
+	$('#residential').change(function(){
+		if(this.checked) {
+			var fname = $('#first_name').val();
+			var lname = $('#last_name').val();
+			var address = $('#street_address').val();
+			var apart = $('#apartment_suite_floor').val();
+			var city = $('#city').val();
+			var country = $('#residential_country').val();
+			var state = $('#state').val();
+			var zip = $('#zipcode').val();
+			var phone = $('#home').val();
+			$('#fname').val(fname);
+			$('#lname').val(lname);
+			$('#s_address').val(address);
+			$('#apartment_suite_floor_2').val(apart);
+                        showBillingCities();
+			$('#city_2').val(city);
+			$('#billing_country').val(country);
+			showBillingStates();
+			$('#state_2').val(state);
+			$('#zipcode_2').val(zip);
+			$('#phone_number').val(phone);
+		}
+	});
+	$("#infoTooltip").tooltip({
+		delay: 0, 
+		track: true,
+		showURL: false, 
+		opacity:1,
+		bodyHandler: function() {
+		 return $("#divTooltip").html();
+	   },
+		fade: 250 
+	});	
+});
+function password_Strength(objpass) {
+	var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+	var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+	if (strongRegex.test(objpass)) {
+		$('#pass_str').html('<span style="color:green">Strong!</span>');
+	} else if (mediumRegex.test(objpass)) {
+		$('#pass_str').html('<span style="color:orange">Medium!</span>');
+	} else { 
+		$('#pass_str').html('<span style="color:red">Weak!</span>');
+	}
+	return true;
+}
+function validateMail(email) { 
+   var reg =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   var address = document.getElementById(email).value;
+   if(reg.test(address) == false) { return 'Invalid Email Address';
+   } else { return '';}
+}
+function isNumber(event){
+	var charcode = window.event ? event.keyCode : event.which;
+	//if(charcode > 31 && charcode != 78 && charcode != 89 && charcode != 110 && charcode != 121)
+	if(charcode > 31 && (charcode < 48 || charcode > 57))
+		return false;
+	return true;
+}
+function isLetters(event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode > 32 && (charcode < 65 || charcode > 90) && (charcode < 97 || charcode > 122))
+		return false;
+	return true;
+}
+function validatePhone(phoneField,event){
+	var charcode = window.event ? event.keyCode : event.which;
+	if(charcode==8 || charcode==0) return;
+	if(charcode > 31 && (charcode < 48 || charcode > 57 )) 
+		{ return false; }
+	else {
+		var num = phoneField.value.replace(/[^\d]/g,'');
+		phoneField.value = '('+num.substring(0,3) + ") " + num.substring(3, 6) + "-" + num.substring(6); }
+}
+function check_accountInfo(){
+	var checkError = false;
+	$("#date_of_birth").closest('span').css('border-color','#E4E4E4');
+	$("#first_name").closest('span').css('border-color','#E4E4E4');
+	$("#last_name").closest('span').css('border-color','#E4E4E4');
+	$("#fname").closest('span').css('border-color','#E4E4E4');
+	$("#lname").closest('span').css('border-color','#E4E4E4');
+	$("#mi").closest('span').css('border-color','#E4E4E4');
+	$("#legal_business_name").closest('span').css('border-color','#E4E4E4');
+	$("#street_address").closest('span').css('border-color','#E4E4E4');
+	$("#city").closest('span').css('border-color','#E4E4E4');
+	$("#state").closest('span').css('border-color','#E4E4E4');
+	$("#confirm_account_number").closest('span').css('border-color','#E4E4E4');
+	$("#home").closest('span').css('border-color','#E4E4E4');
+	$("#primary_email").closest('span').css('border-color','#E4E4E4');
+	$("#confirm_primary_email").closest('span').css('border-color','#E4E4E4');
+	$("#secondary_email").closest('span').css('border-color','#E4E4E4');
+	$("#confirm_secondary_email").closest('span').css('border-color','#E4E4E4');
+	$("#oldPassword").closest('span').css('border-color','#E4E4E4');
+	$("#newPassword").closest('span').css('border-color','#E4E4E4');
+	$("#confirm_password").closest('span').css('border-color','#E4E4E4');
+	if($("#date_of_birth").val() !='')
+	{
+		var t = new Date($("#date_of_birth").val());
+		var current_t = new Date();
+		var age = current_t.getFullYear() - t.getFullYear();
+		var age_month = current_t.getMonth() - t.getMonth();
+		var age_date = current_t.getDate() - t.getDate();
+				
+		if((age < 18) || (age == 18 && age_month < 0) || (age == 18 && age_month ==0 && age_date<0) || isNaN(Date.parse($("#date_of_birth").val())))
+		{
+			$("#date_of_birth").val('');
+			$("#date_of_birth").closest('span').css('border-color','#FE8F01');
+			if(checkError == false)
+			{
+				checkError = true;
+				$('#nav_tab1').click();
+				document.getElementById("date_of_birth").focus();	
+			}	
+		}
+	}
+	if($('#first_name').val() == '' || /^[a-zA-Z0-9- ]*$/.test($('#first_name').val()) == false){
+		$('#first_name').val($('#first_name').val().replace(/[^a-zA-Z0-9]/g,''));
+		$("#first_name").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab1').click();
+			document.getElementById("first_name").focus();	
+		}
+	}
+	else
+	{
+		$("#first_name").closest('span').css('border-color','#E4E4E4');
+	}
+	if($('#last_name').val() == '' || /^[a-zA-Z0-9- ]*$/.test($('#last_name').val()) == false){
+		$('#last_name').val($('#last_name').val().replace(/[^a-zA-Z0-9]/g,''));
+		$("#last_name").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab1').click();	
+			document.getElementById("last_name").focus();	
+		}
+	}	
+	if($('#fname').val() == '' || /^[a-zA-Z0-9- ]*$/.test($('#fname').val()) == false ){
+		$('#fname').val($('#fname').val().replace(/[^a-zA-Z0-9]/g,''));
+		$("#fname").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab1').click();
+			document.getElementById("fname").focus();	
+		}
+	}
+	if($('#lname').val() == '' || /^[a-zA-Z0-9- ]*$/.test($('#lname').val()) == false ){
+		$('#lname').val($('#lname').val().replace(/[^a-zA-Z0-9]/g,''));
+		$("#lname").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab1').click();
+			document.getElementById("lname").focus();	
+		}
+	}
+	if ( /^[a-zA-Z0-9- ]*$/.test($('#mi').val()) == false)
+	{
+		$('#mi').val($('#mi').val().replace(/[^a-zA-Z0-9]/g,''));
+		checkError = true;
+		$('#nav_tab1').click();
+		$("#mi").closest('span').css('border-color','#FE8F01');	
+		document.getElementById("mi").focus();	
+	}
+	if ( /^[a-zA-Z0-9- ]*$/.test($('#legal_business_name').val()) == false)
+	{
+		$('#legal_business_name').val($('#legal_business_name').val().replace(/[^a-zA-Z0-9]/g,''));
+		checkError = true;
+		$('#nav_tab1').click();
+		$("#legal_business_name").closest('span').css('border-color','#FE8F01');
+		document.getElementById("legal_business_name").focus();	
+	}
+	if($('#street_address').val() == ''){
+		$("#street_address").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab2').click();	
+			document.getElementById("street_address").focus();	
+		}
+	}
+	if($('#city').val() == ''){
+		$('#city').css("background", '#ffffd5');
+		$("#city").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab2').click();	
+			document.getElementById("city").focus();	
+		}
+	}
+	if($('#state').val() == ''){
+		$("#state").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab2').click();;	
+			document.getElementById("state").focus();	
+		}
+	}
+	
+	if($('#home').val() == ''){
+		$("#home").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab2').click();	
+			document.getElementById("home").focus();	
+		}
+	}	
+	if($('#primary_email').val() == ''){
+		$("#primary_email").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab1').click();	
+			document.getElementById("primary_email").focus();	
+		}
+	}else{
+		var msg = validateMail('primary_email');
+		if(msg != ""){
+			$("#primary_email").closest('span').css('border-color','#FE8F01');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				$('#nav_tab1').click();
+				document.getElementById("primary_email").focus();	
+			}
+		}		
+	}
+	if($('#confirm_primary_email').val() == ''){
+		$("#confirm_primary_email").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab1').click();
+			document.getElementById("confirm_primary_email").focus();	
+		}
+	}else{
+		var msg = validateMail('confirm_primary_email');
+		if(msg != ""){
+			$("#confirm_primary_email").closest('span').css('border-color','#FE8F01');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				$('#nav_tab1').click();
+				document.getElementById("confirm_primary_email").focus();	
+			}
+		}
+		else if($('#primary_email').val() != $('#confirm_primary_email').val()) {
+			$("#confirm_primary_email").closest('span').css('border-color','#FE8F01');
+			if(checkError == false){
+				alert('Confirm primary mail not same Primary mail');
+				checkError = true;
+				$('#nav_tab1').click();	
+				document.getElementById("confirm_primary_email").focus();	
+			} 
+		}		
+	}
+	if($("#secondary_email").val() != '')
+	{
+		var msg = validateMail('secondary_email');
+		if(msg != ""){
+			$("#secondary_email").closest('span').css('border-color','#FE8F01');
+			if(checkError == false){
+				alert(invalid_email);
+				checkError = true;
+				$('#nav_tab1').click();	
+				document.getElementById("secondary_email").focus();	
+			}
+		}	
+		if($('#confirm_secondary_email').val() == ''){
+			$("#confirm_secondary_email").closest('span').css('border-color','#FE8F01');
+			if(checkError == false){
+				checkError = true;
+				$('#nav_tab1').click();
+				document.getElementById("confirm_secondary_email").focus();	
+			}
+		}else{
+			var msg = validateMail('confirm_secondary_email');
+			if(msg != ""){
+				$("#confirm_secondary_email").closest('span').css('border-color','#FE8F01');
+				if(checkError == false){
+					alert(invalid_email);
+					checkError = true;
+					$('#nav_tab1').click();
+					document.getElementById("confirm_secondary_email").focus();	
+				}
+			}
+			else if($('#secondary_email').val() != $('#confirm_secondary_email').val()) {
+				$("#confirm_secondary_email").closest('span').css('border-color','#FE8F01');
+				if(checkError == false){
+					alert('Confirm secondary mail not same Secondary mail');
+					checkError = true;
+					$('#nav_tab1').click();
+					document.getElementById("confirm_secondary_email").focus();	
+				} 
+			}		
+		}
+	}
+	if(trim($('#oldPassword').val()) =='' && (trim($('#newPassword').val()) !='' || trim($('#confirm_password').val()) !='')){
+		alert("Please enter your old password!"); 
+		$("#oldPassword").closest('span').css('border-color','#FE8F01');
+		if(checkError == false){
+			checkError = true;
+			$('#nav_tab4').click();	
+			document.getElementById("oldPassword").focus();	
+		}	
+	}
+	if(trim($('#oldPassword').val()) !='')
+	{
+		if($('#newPassword').val().length < 5 || $('#newPassword').val().length >20 || trim($('#newPassword').val())==''){
+			$("#newPassword").closest('span').css('border-color','#FE8F01');
+			if(checkError == false){
+				checkError = true;
+				$('#nav_tab4').click();
+				document.getElementById("newPassword").focus();	
+			}
+		}else{
+			var re = /^\w*(?=\w*\d)(?=\w*[a-zA-Z])\w*$/;
+			if(password_Strength(document.getElementById("newPassword")) && !re.test($('#newPassword').val()) ){
+				alert("Invalid new password!");
+				$("#newPassword").closest('span').css('border-color','#FE8F01');
+				if(checkError == false){
+					checkError = true;
+					$('#nav_tab4').click();	
+					document.getElementById("newPassword").focus();	
+				}
+			}else{
+				if(trim($('#newPassword').val()) != trim($('#confirm_password').val())){
+					$("#confirm_password").closest('span').css('border-color','#FE8F01');
+					if(checkError == false){
+						alert('Confirm password is not same Password');
+						checkError = true;
+						$('#nav_tab4').click();
+						document.getElementById("confirm_password").focus();	
+					}
+				}
+			}
+		}	
+	}	
+	if(checkError == true) return false;
+	var obj_submit = new Object();
+	obj_submit.same_checked = $('#residential').is(':checked')? 1:0;
+	obj_submit.oldPassword = document.getElementById("oldPassword").value;
+	obj_submit.newPassword = document.getElementById("newPassword").value;
+	obj_submit.mi = document.getElementById("mi").value;
+	obj_submit.first_name = document.getElementById("first_name").value;
+	obj_submit.last_name = document.getElementById("last_name").value;
+	obj_submit.legal_business_name = document.getElementById('legal_business_name').value;
+	obj_submit.date_birth = document.getElementById('date_of_birth').value;
+	obj_submit.ssn_itin = document.getElementById("ssn_itin").value;
+	obj_submit.street_address = document.getElementById("street_address").value;
+	obj_submit.apartment_suite_floor = document.getElementById('apartment_suite_floor').value;
+	obj_submit.city = document.getElementById("city").value;
+	obj_submit.country = document.getElementById("residential_country").value;
+	obj_submit.state = document.getElementById("state").value;
+	obj_submit.zipcode = document.getElementById("zipcode").value;
+	obj_submit.home_phone = document.getElementById("home").value;
+	obj_submit.mobile = document.getElementById('mobile').value;
+	obj_submit.first_name_2 = document.getElementById('fname').value;
+	obj_submit.last_name_2 = document.getElementById('lname').value;
+	obj_submit.street_address_2 = document.getElementById('s_address').value;
+	obj_submit.apartment_suite_floor_2 = document.getElementById('apartment_suite_floor_2').value;
+	obj_submit.city_2 = document.getElementById('city_2').value;
+	obj_submit.country_2 = document.getElementById('billing_country').value;
+	obj_submit.state_2 = document.getElementById('state_2').value;
+	obj_submit.zipcode_2 = document.getElementById('zipcode_2').value;
+	obj_submit.home_phone_2 = document.getElementById('phone_number').value;
+	obj_submit.primary_email = document.getElementById("primary_email").value;
+	obj_submit.secondary_email = document.getElementById('secondary_email').value;
+	//obj_submit.payment_preference = $('input:radio[name=radio]:checked').val();
+	obj_submit.association = document.getElementById('association').value;
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/user/myaccount", {
+		saveUser: obj_submit
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+				//alert(fail_saved);	
+			}else{
+				alert(success_saved);
+				//goHome();
+			}
+		}
+	}, "json");
+	return false;
+}
+function ClearBox(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			if(input_text[i].value == '') 
+			{ 
+				var t = $('.value_input').text(); 
+				$('.input').empty().css({'font-family': 'Arial,Helvetica,sans-serif', 'color': '#CBB9D2'}).val(t); 
+				$('#pass_str').html('<span>Password Strength</span>');
+				$('#residential').attr('checked', false);
+			}
+			else if(input_text[i].value != '')  
+			{ 
+				input_text[i].value = '';
+				var t = $('.value_input').text();
+				$('.input').empty().css({'font-family': 'Arial,Helvetica,sans-serif', 'color': '#CBB9D2'}).val(t); 
+				$('#pass_str').html('<span>Password Strength</span>');
+				$('#residential').attr('checked', false);
+			}
+		}	
+	}
+}
+</script>
+<script language="javascript" type="text/javascript" src="misc/scripts/jquery.tooltip.min.js"></script>
+<script src="../main/js/tabs.js" type="text/javascript"></script>

@@ -1,0 +1,182 @@
+<link rel='stylesheet' type='text/css' href='../fullcalendar/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='../fullcalendar/fullcalendar.print.css' media='print' />
+<style type="text/css">
+.order div, .add_order .add_bt, .choose-products{
+	transition:all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-webkit-transition: all 0.2s ease-out; 
+	-o-transition: all 0.2s ease-out;
+}
+.close-bt{
+	float:right; margin-right:8px; color:#999; font-weight:bold; cursor:pointer;
+	font-size:14px;
+}
+.close-bt:hover{
+	color:#FFF;	
+}
+.order{
+	float:left; width:185px; border:1px solid #AAA; background-color:#EFEFEF; margin-top:30px; margin-left:30px;
+}
+.choose-products{
+	clear:both; float:left; margin-top:45px; text-align:center; line-height:50px; text-align:center; font-size:24px; width:100%; cursor:pointer; color:#FFF; background-color:#CCC;
+}
+.choose-products:hover{
+	background-color:#FE8F01;
+}
+.add_order{
+	float:left; width:185px; height:180px; margin-left:30px; margin-top:20px;	
+}
+.add_order .add_bt{
+	float:left; margin-top:75px; margin-left:65px; background-color:#CCC; width:50px; height:50px; border-radius:50px; text-align:center; line-height:50px; font-size:25px; font-weight:bold; color:#FFF; cursor:pointer;	
+}
+.add_order .add_bt:hover{
+	background-color:#FE8F01;
+}
+/*Calendar*/
+.osX .jScrollPaneDrag {
+    background: none repeat scroll 0 0 #ACABAB;
+}
+#external-events {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	background: #eee;
+	text-align: left;
+}
+	
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}
+	
+.external-event { /* try to mimick the look of a real event */
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #3366CC;
+	color: #fff;
+	font-size: .85em;
+	cursor: pointer;
+}
+	
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}
+	
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+</style>
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="index.php/home">Home</a></li>
+            <li>/</li>
+            <li><a href="index.php/products_links">Products</a></li>
+            <li>/</li>
+            <li><a href="index.php/store/autodelivery">
+Autoship</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>
+<div class="main-container holder" style="margin-bottom:20px;">
+    <div style="clear:both; float:left; width:96%; padding-left:20px; padding-bottom:20px">
+        <div id="create_order_tab" style="clear:both; float:left; width:100%; margin-top:30px">
+            <div style="float:right; clear:both; width:100%;">
+                <div id="order_detail"></div>
+            </div>
+        </div>
+        <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px" align="right">
+            <input type="button" value="Back" class="btn" style="margin-right:5px" onclick="javascript:history.back()"/>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='../fullcalendar/fullcalendar.min.js'></script>
+<script type="text/javascript">
+var orders = [];
+var count = 0;
+function add_order(){
+	var order_item = [];
+	var obj = new Object();
+	obj.id = count;
+	obj.ckey = '';
+	obj.cdate = '';
+	orders[orders.length] = obj;
+	show_order();		
+	count++;
+	return false;
+}
+function goProducts(){
+	window.location = 'index.php/products_links';	
+}
+function goAutoOrder(){
+	window.location = 'index.php/store/autodelivery';	
+}
+function show_order(){
+	var str = '';
+	str += '<table cellpadding="0" cellspacing="0" border="0" width="100%">';
+	str += '	<tr><td>';
+	for(var i = 0 ; i < orders.length; i++){
+		str += '<div class="order">';
+		str += '	<div style="float:left; clear:both; height:30px; width:185px; background-color:#CCCCCC; line-height:30px;">';
+		str += '		<div style="float:left; color:#FFF; font-weight:bold; padding-left:5px">Schedule '+(i+1)+'</div>';
+		str += '		<div class="close-bt" onclick="delete_order(\''+orders[i].id+'\')">X</div>';
+		str += '	</div>';
+		str += '	<div style="float:left; clear:both; min-height:100px;">';
+		str += '		<span style="float:left; margin:10px">Empty Item</span>';
+		str += '	</div>';
+		str += '	<div style="float:left; clear:both; height:30px; width:185px; background-color:#CCCCCC; ">';
+		str += '		<span style="float:right; clear:both; color:#FFF; font-weight:bold; font-size:12px; line-height:30px; padding-right:10px">SubTotal: $0.00</span>';
+		str += '	</div>';
+		str += '</div>';
+	}
+	var multi_s = '';
+	if(i > 1) multi_s = 's';
+	str += '		<div class="add_order">';
+	str += '			<div class="add_bt" onclick="add_order()">+</div>';
+	str += '		</div>';
+	str += '	</td></tr>';
+	str += '	<tr><td>';
+	str += '		<div class="choose-products" onclick="choose_product()">';
+	str += '			Choose products';
+	str += '		</div>';
+	str += '	</td></tr>';
+	str += '</table>';
+	$("#order_detail").empty().append(str);
+}
+function delete_order(id){
+	var order_temp = orders;
+	orders = [];
+	for(var i = 0; i < order_temp.length; i++){
+		if(order_temp[i].id != id){
+			orders[orders.length] = order_temp[i];
+		}
+	}
+	show_order();
+}
+function choose_product(){
+	if(orders.length <=0 ){
+		alert('You must create schedule to use autoship service.');
+		return false;	
+	}
+	$.post('index.php/store/autodelivery/gotoshopping',{
+		chooseProduct:'yes',
+		orders:orders
+	},function(data){
+		if(data.error == 'ok'){
+			window.location	= url_server__+'shop/shome';
+		}
+	},'json');
+}
+$(function(){
+	add_order();
+})
+</script>

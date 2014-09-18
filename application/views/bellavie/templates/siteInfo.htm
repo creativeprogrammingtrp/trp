@@ -1,0 +1,246 @@
+<style>
+.personalInfoLeft {
+	width:15%;
+	}
+.personalInfoRight{
+	width:85%;
+	}
+fieldset{
+	 border:#7E7E7E solid 1px;
+	 margin-bottom:10px;
+	border-radius:7px;
+	-moz-border-radius:7px; 
+	padding:20px;
+	}
+input[type="text"],textarea{
+	width:95%;}
+</style>
+<fieldset>
+<form method="post" style="margin-bottom: 0px;">
+<table cellpadding="5" cellspacing="0" border="0" width="100%">
+    <tbody>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"  valign="top">Site name:</td>
+            <td class="personalInfoRight"  valign="top">
+				<input type="hidden" value="{id}" id="id_site" autocomplete="off" />
+            	<input tabindex="1" type="text" class="input-text" id="site_name" size="10" name="site_name" value="{site_name}" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="site name" autocomplete="off">  
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"  valign="top">E-mail address:</td>
+            <td class="personalInfoRight"  valign="top">
+            	<input tabindex="2" type="text" class="input-text" id="mail_address" size="10" name="mail_address" value="{email}"  onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="email address" autocomplete="off">
+                <div style=" margin-top:5px; margin-bottom:10px;" class="note_text">
+                    The From address in automated e-mails sent during registration and new password requests, and other notifications. <br/>
+                    <span style="color:#06C; font-style:italic;">(Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"  valign="top">Enroll-new e-mail:</td>
+            <td class="personalInfoRight"  valign="top">
+            	<input tabindex="3" type="text" class="input-text" id="enroll_email" size="10" name="enroll_email" value="{enroll_email}"  onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="enroll new email" autocomplete="off">
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"   valign="top">Sender name:</td>
+            <td class="personalInfoRight"  valign="top">
+              <input tabindex="2" type="text" class="input-text" id="sender_name" size="10" name="sender_name" value="{sender_name}" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="sender name" autocomplete="off"> 
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"   valign="top">Signature:</td>
+            <td class="personalInfoRight"  valign="top">
+               <input tabindex="2" type="text" class="input-text" id="signature" size="10" name="signature" value="{signature}" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)" placeholder="signature" autocomplete="off"> 
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"   valign="top">Keywords:</td>
+            <td class="personalInfoRight"  valign="top">
+            	<textarea id="keywords" name="keywords" class="input-text" style="height:100px" placeholder="key word" >{keyword}</textarea>
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"   valign="top">Description:</td>
+            <td class="personalInfoRight"  valign="top">
+          		<textarea id="description" name="description" class="input-text" style="height:100px" placeholder="description">{description}</textarea>
+            </td>
+        </tr>
+        <tr class="_borderBottom">                    
+            <td class="personalInfoLeft"   valign="top">
+                <div style="clear:both; height:30px; margin-right:5px; margin-bottom:5px; width: 100%;" id="savebt">
+                    <input type="button" class="btn btn-primary" value="Save Change" onclick="return submitFormPopup();" autocomplete="off" />
+                </div>
+            </td>
+            <td class="personalInfoRight"  valign="top">
+            <div style="clear:both;height:30px; margin-right:5px; margin-bottom:5px; display:none" id="loadingbt" align="left">
+                <div class="button-loading" style="width:80px">
+                    <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                    <span style="float:left; padding-left:10px">Saving...</span>
+                </div>
+            </div>
+            </td>
+        </tr>
+    </tbody>
+ </table>
+</form>
+</fieldset>
+<script language="javascript">
+function submitFormPopup(){
+	var checkError = false;
+	if($('#site_name').val() == ''){
+		$('#site_name').css("background", '#ffffd5');
+		hidelabelfocus("site_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("site_name"));	
+			document.getElementById("site_name").focus();	
+		}
+	}
+	if($('#mail_address').val() == ''){
+		$('#mail_address').css("background", '#ffffd5');
+		hidelabelfocus("mail_address_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("mail_address"));	
+			document.getElementById("mail_address").focus();	
+		}
+	} else {
+		var check = validateMail('mail_address');
+		if(!check) {
+			$('#mail_address').css("background", '#ffffd5');
+			hidelabelfocus("mail_address_label");
+			if(checkError == false){
+				checkError = true;
+				alert(invalid_email);
+				onfocusInputText(document.getElementById("mail_address"));	
+				document.getElementById("mail_address").focus();	
+			}
+		}
+	}
+	if($('#enroll_email').val() == ''){
+		$('#enroll_email').css("background", '#ffffd5');
+		hidelabelfocus("enroll_email_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("enroll_email"));	
+			document.getElementById("enroll_email").focus();	
+		}
+	} else {
+		var check = validateMail('enroll_email');
+		if(!check) {
+			$('#enroll_email').css("background", '#ffffd5');
+			hidelabelfocus("enroll_email_label");
+			if(checkError == false){
+				checkError = true;
+				alert(invalid_email);
+				onfocusInputText(document.getElementById("enroll_email"));	
+				document.getElementById("enroll_email").focus();	
+			}
+		}
+	}
+	if($('#sender_name').val() == ''){
+		$('#sender_name').css("background", '#ffffd5');
+		hidelabelfocus("sender_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("sender_name"));	
+			document.getElementById("sender_name").focus();	
+		}
+	}
+	if($('#signature').val() == ''){
+		$('#signature').css("background", '#ffffd5');
+		hidelabelfocus("signature_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("signature"));	
+			document.getElementById("signature").focus();	
+		}
+	}
+	
+	if(checkError == true){
+		return false;	
+	}
+	
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	var id = document.getElementById("id_site").value;
+	$.post("index.php/admin/siteinfo/saveInfo", {
+		updateinfo: 'yes',
+		id: id,
+		site_name:document.getElementById("site_name").value,
+		signature:$("#signature").val(),
+		mail_address:$("#mail_address").val(),
+		enroll_email:$("#enroll_email").val(),
+		sender_name:$("#sender_name").val(),
+		keywords:document.getElementById("keywords").value,
+		description:document.getElementById("description").value
+	}, function(data){
+		$("#loadingbt").hide();
+		$("#savebt").show();			
+		if(data){ 
+			alert(success_saved);
+			window.location = 'index.php/admin/siteinfo'; return false; 
+		}
+		else { 
+			alert(fail_saved); return false; 
+		}
+	});
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function clearDataForm(){
+	var check = true;
+	if(document.getElementById("site_name")){
+		if(document.getElementById("site_name").value != ''){
+			onkeydownInputText(document.getElementById("site_name"));	
+		}
+	}else check = false;
+	
+	if(document.getElementById("mail_address")){
+		if(document.getElementById("mail_address").value != ''){
+			onkeydownInputText(document.getElementById("mail_address"));	
+		}
+	}else check = false;
+	
+	if(document.getElementById("enroll_email")){
+		if(document.getElementById("enroll_email").value != ''){
+			onkeydownInputText(document.getElementById("enroll_email"));	
+		}
+	}else check = false;
+	
+	if(document.getElementById("sender_name")){
+		if(document.getElementById("sender_name").value != ''){
+			onkeydownInputText(document.getElementById("sender_name"));	
+		}
+	}else check = false;
+	
+	if(document.getElementById("signature")){
+		if(document.getElementById("signature").value != ''){
+			onkeydownInputText(document.getElementById("signature"));	
+		}
+	}else check = false;
+	
+	if(check == true){
+		setTimeout(function () {
+			clearDataForm();
+		}, 70);
+	}
+}
+$(function() {
+	clearDataForm();
+});
+
+function validateMail(emailId) { 
+   var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   var address = document.getElementById(emailId).value;
+   if(reg.test(address)) { return true;
+   } else { return false;}
+}
+</script>

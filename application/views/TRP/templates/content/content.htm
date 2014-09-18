@@ -1,0 +1,311 @@
+<h3>{title_page}</h3>
+
+<!--<form class="form-horizontal form-box remove-margin ui-formwizard"
+      method="post" id="advanced-wizard" novalidate="novalidate"  enctype="multipart/form-data">
+
+    <div class="form-box-content"> 
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">  
+            <div class="form-group">
+                <label for="example-advanced-efin"   class="control-label col-md-3"></label>  
+                <div class="col-md-4 choose_file">         
+                    <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_efin" value="" >Import EFIN</button>
+                </div>
+            </div>
+
+            <!--<div class="form-group">
+                <label for="example-advanced-efin"   class="control-label col-md-3"></label>  
+                <div class="col-md-4 choose_file">         
+                    <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_ein" value="" >Import EIN</button>  
+                </div>
+
+            </div>		
+        </div>
+    </div>
+</form>-->	
+
+<div class="row">
+    <div class="col-md-6 push">
+        <div role="grid" class="dataTables_wrapper form-inline" id="example-datatables2_wrapper">
+            <div class="row">
+                <div class="col-sm-6 col-xs-5">
+                    <div id="example-datatables2_length" class="dataTables_length">
+                        <label class="badge badge-info">EFIN</label>
+                        
+                    </div>
+                    
+                </div>
+            <div class="col-sm-6 col-xs-7">
+            <div class="dataTables_filter" id="example-datatables2_filter">
+                <label>
+
+                            
+            <div class="form-group">
+                <label for="example-advanced-efin"   class="control-label col-md-3"></label>  
+                <div class="col-md-4 choose_file">         
+                    <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_efin" value="" >Import EFIN</button>
+                </div>
+            </div>
+
+              </label>
+             </div>
+            </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover dataTable custom_table" id="example-datatables2" aria-describedby="example-datatables2_info">
+                <thead>
+                    <tr role="row">
+                        <th class="text-center sorting_asc" role="columnheader" tabindex="0" aria-controls="example-datatables2" rowspan="1" colspan="1" style="width: 48px;" aria-sort="ascending" aria-label="#: activate to sort column descending">#</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="example-datatables2" rowspan="1" colspan="1" style="width: 172px;" aria-label=" Username: activate to sort column ascending">EFIN Number</th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="example-datatables2" rowspan="1" colspan="1" style="width: 224px;" aria-label=" Status: activate to sort column ascending"><i class="icon-bolt"></i> Status</th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="example-datatables2" rowspan="1" colspan="1" aria-label=" Status: activate to sort column ascending"><i class="icon-bolt"></i> Action</th>
+                    </tr>
+                </thead>
+
+                <tbody role="alert" aria-live="polite" aria-relevant="all" id="efins">
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div role="grid" class="dataTables_wrapper form-inline" id="example-datatables3_wrapper">
+            <div class="row">
+                <div class="col-sm-6 col-xs-5">
+                    <div id="example-datatables3_length" class="dataTables_length">
+                        <label class="badge">EIN</label>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6 col-xs-7">
+                    <div class="dataTables_filter" id="example-datatables3_filter">
+                        <label>
+
+                <div class="form-group">
+                    <label for="example-advanced-efin"   class="control-label col-md-3"></label>  
+                    <div class="col-md-4 choose_file">         
+                        <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_ein" value="" >Import EIN</button>  
+                    </div>
+
+                </div>	
+
+                 </label>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover dataTable custom_table" id="example-datatables3" aria-describedby="example-datatables3_info">
+                <thead>
+                    <tr role="row">
+                        <th class="text-center sorting_asc" role="columnheader" tabindex="0" aria-controls="example-datatables3" rowspan="1" colspan="1" style="width: 48px;" aria-sort="ascending" aria-label="#: activate to sort column descending">#</th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="example-datatables3" rowspan="1" colspan="1" style="width: 172px;" aria-label=" Username: activate to sort column ascending">EIN Number</th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="example-datatables3" rowspan="1" colspan="1" style="width: 224px;" aria-label=" Status: activate to sort column ascending"><i class="icon-bolt"></i> Status</th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="example-datatables2" rowspan="1" colspan="1" aria-label=" Status: activate to sort column ascending"><i class="icon-bolt"></i> Action</th>
+                    </tr>
+                </thead>
+                
+
+                <tbody role="alert" aria-live="polite" aria-relevant="all" id="eins">
+                    
+                    </tbody>
+                 </table>
+        </div>
+    </div>
+</div>
+            
+ <div class="form-group form-actions">
+        <div class="col-md-10 col-md-offset-2">
+
+            <div id="modal_success" class="modal slide">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Warning</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Import successfully.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>           
+
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+
+var dataClient = [];
+var arr_img = ['jpg','JPG','jpeg','JPEG','gif','GIF','png','PNG'];
+var objGallery = [];
+var uploadImgProduct1;
+var uploadImgProduct2;
+var dataClients = [];
+
+function load(){
+    $.post("index.php/admin/content",{load:'yes'},function(data){
+       dataClients = data;
+       loadEfinAndEin();
+    },'json'); 
+}
+
+function loadEfinAndEin(){
+    var htm_1 = '';
+    var htm_2 = '';
+    
+    for(var i = 0 ; i < dataClients.efins.length ; i++){
+        var obj_efins = dataClients.efins[i];
+        var efin = obj_efins.efin;
+        htm_1 +='<tr class="">';
+             htm_1 +='<td class="text-center  sorting_1">'+(i+1)+'</td>';
+             htm_1 +='<td class=" "><a href="javascript:void(0)">'+obj_efins.efin+'</a></td>';
+             htm_1 +='<td class=" "><span class="label label-success">active</span></td>';
+             
+              htm_1 +='<td class="text-center">';
+                                   htm_1 += '<a class="btn btn-xs btn-danger delete_efin" rel="tooltip" title="Delete" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Delete" onclick="delete_efin('+efin+')" id="'+efin+'" ><i class="icon-remove"></i></a>';//
+                        htm_1 += '</td>';  
+         htm_1 +='</tr>';
+   
+    }
+    $("#efins").empty().append(htm_1);
+    
+    for(var j = 0 ; j < dataClients.eins.length ; j++){
+        var obj_eins = dataClients.eins[j];
+        var ein = obj_eins.ein;
+        htm_2 +='<tr class="">';
+             htm_2 +='<td class="text-center  sorting_1">'+(j+1)+'</td>';
+             htm_2 +='<td class=" "><a href="javascript:void(0)">'+obj_eins.ein+'</a></td>';
+             htm_2 +='<td class=" "><span class="label label-success">active</span></td>';
+              htm_2 +='<td class="text-center">';
+                        htm_2 += '<a class="btn btn-xs btn-danger delete_ein" rel="tooltip" title="Delete" data-toggle="tooltip" href="javascript:void(0)" data-original-title="Delete" onclick="delete_ein(\''+ein+'\')" id="'+ein+'" ><i class="icon-remove"></i></a>';//
+             htm_2 += '</td>';  
+         htm_2 +='</tr>';
+   
+    }
+    $("#eins").empty().append(htm_2);
+}
+
+
+function delete_efin(efin){
+	if(confirm('Delete this EFIN?')){
+       $.ajax({
+        url: 'index.php/admin/content/deleteEfin?ajax=1&efin='+efin,
+        cache: false,
+        success: function(data){
+           dataClients = data ;
+           loadEfinAndEin();
+          }
+        },'json');
+        return false;
+	}
+}
+
+function delete_ein(ein){
+	if(confirm('Delete this EIN')){
+       $.ajax({
+        url: 'index.php/admin/content/deleteEin?ajax=1&ein='+ein,
+        cache: false,
+        success: function(data){
+           dataClients = data ;
+           loadEfinAndEin();
+          }
+        },'json');
+        return false;
+	}
+}
+function importEfin() {
+		$.post("index.php/admin/content/importEfin", {
+			senddata : 'yes',
+                        obj:objGallery
+                 
+		}, function(data) {
+                    $('#modal_success').modal('show');
+                    dataClients = data ;
+                    loadEfinAndEin();
+		},"json");
+}
+function importEin() {
+		$.post("index.php/admin/content/importEin", {
+			senddata : 'yes',
+                        obj:objGallery
+                 
+		}, function(data) {
+                    $('#modal_success').modal('show');
+                    dataClients = data ;
+                    loadEfinAndEin();
+		},"json");
+}
+
+
+function uploadGallery1(){
+        uploadImgProduct1 = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_efin',
+            max_file_size : '80mb',
+            url : 'plupload/server/importcsv.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "csv,CSV,xls,xlsx"}
+            ]
+        });
+        uploadImgProduct1.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct1.start();
+            }, 50);
+        });
+       
+        uploadImgProduct1.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                objGallery = obj;
+                importEfin();
+            }
+        }, 'json');
+        uploadImgProduct1.init();
+    }
+    function CancelUploadProduct1(){	
+        uploadImgProduct1.stop(); 
+    }
+    
+    function uploadGallery2(){
+        uploadImgProduct2 = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_ein',
+            max_file_size : '80mb',
+            url : 'plupload/server/importcsv.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "csv,CSV,xls,xlsx"}
+            ]
+        });
+        uploadImgProduct2.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct2.start();
+            }, 50);
+        });
+       
+        uploadImgProduct2.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                objGallery = obj;
+                importEin();
+            }
+        }, 'json');
+        uploadImgProduct2.init();
+    }
+    function CancelUploadProduct2(){	
+        uploadImgProduct2.stop(); 
+    }
+    
+   
+$(function(){
+        load();
+        $("[rel='tooltip']").tooltip();
+        uploadGallery1();  
+        uploadGallery2();    
+});
+
+
+</script>

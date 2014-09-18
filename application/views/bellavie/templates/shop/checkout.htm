@@ -1,0 +1,603 @@
+<div id="content_load">
+    <div class="row">
+        <div class="span6">
+            <div class="checkout-outer">
+                <div class="checkout-header">
+                    <h4><i class="icon-caret-right"></i> Billing Informations</h4>
+                </div><!--end checkout-header-->
+                <div class="checkout-content">
+                	<hr>
+                    <form method="post" id="form_1" name="form_1" class="form-horizontal">
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputFirstName">First Name: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="cardholder_name" value="{billing_Name}">
+                            </div>
+                        </div><!--end control-group-->
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputLastName">Last Name: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="last_name" value="{billing_LastName}">
+                            </div>
+                        </div><!--end control-group-->
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputAdd">Address: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="address_street" value="{billing_Address}">
+                            </div>
+                        </div><!--end control-group-->
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputCity">City: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <div style="float:left" id="cities_show"></div>
+                            </div>
+                        </div><!--end control-group-->
+						
+                        <div class="control-group">
+                            <div class="control-label">Country: <span class="text-error">*</span></div>
+                            <div class="controls">
+                              <select name="slcountry" id="slcountry" onchange="showStates();showCities();" ></select>
+                            </div>
+                        </div><!--end control-group-->
+                        
+                        <div class="control-group">
+                            <div class="control-label">State: <span class="text-error">*</span></div>
+                            <div class="controls">
+                              <div style="float:left" id="states_show"></div>
+                            </div>
+                        </div><!--end control-group-->
+                        
+                        <div class="control-group">
+                            <label class="control-label" for="inputPostCode">Zip Code: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="address_zip" value="{billing_Zip}">
+                            </div>
+                        </div><!--end control-group-->
+						
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail">Email: </label>
+                            <div class="controls">
+                              <input type="text" id="email_address" value="{billing_Email}">
+                            </div>
+                        </div><!--end control-group-->
+                        
+                        <div class="control-group">
+                            <label class="control-label" for="inputTel">Tel: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="phone" value="{billing_Phone}">
+                            </div>
+                        </div><!--end control-group-->
+                        <input type="hidden" id="billing_country" name="billing_country" value="{billing_country}" />
+                        <input type="hidden" id="billing_state" name="billing_state" value="{billing_state}" />
+                        <input type="hidden" id="billing_city" name="billing_city" value="{billing_city}">
+                        <input type="hidden" id="shipping_country" name="shipping_country" value="{shipping_country}" />
+                        <input type="hidden" id="shipping_state" name="shipping_state" value="{shipping_state}" />
+                        <input type="hidden" id="shipping_city" name="shipping_city" value="{shipping_city}" />
+                    </form><!--end form-->
+                </div><!--end checkout-content-->
+            </div><!--end checkout-outer-->
+        </div>
+        <div class="span6">
+            <div class="checkout-outer delivery-block">
+                <div class="checkout-header">
+                    <h4><i class="icon-caret-right"></i> Delivery Informations</h4>
+                </div><!--end checkout-header-->
+
+                <div class="checkout-content">
+                    <form method="post" id="form_2" name="form_2" class="form-inline">
+                        <label class="checkbox inline">
+                          <input type="checkbox" {shipping_Check} name="shipping_check" value="1" id="shipping_check" onclick="loadShippingAddress(this,true);"> Check here if shipping address is the same as billing address
+                        </label>
+                    </form><!--end form-->
+
+                    <hr>
+
+                    <form method="post" id="form_3" name="form_3" class="form-horizontal">
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputFirstName_ship">Recipient's Name: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="cardholder_name2" value="{shipping_Name}">
+                            </div>
+                        </div><!--end control-group-->
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputAdd_ship">Address: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="address_street2" value="{shipping_Address}">
+                            </div>
+                        </div><!--end control-group-->
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputCity_ship">City: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <div style="float:left" id="cities_show_delivery"></div>
+                            </div>
+                        </div><!--end control-group-->
+						
+                        <div class="control-group">
+                            <div class="control-label">Country: <span class="text-error">*</span></div>
+                            <div class="controls">
+                              <select name="slcountry2" id="slcountry2" onchange="showStates2();showCitiesDelivery();"></select>
+                            </div>
+                        </div><!--end control-group-->
+                        
+                        <div class="control-group">
+                            <div class="control-label">State: <span class="text-error">*</span></div>
+                            <div class="controls">
+                              	<div style="float:left" id="states_show2"></div>
+                            </div>
+                        </div><!--end control-group-->
+                        
+                        <div class="control-group">
+                            <label class="control-label" for="inputPostCode_ship">Zip Code: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="address_zip2" value="{shipping_Zip}">
+                            </div>
+                        </div><!--end control-group-->
+						
+                        <div class="control-group">
+                            <label class="control-label" for="inputTel">Tel: <span class="text-error">*</span></label>
+                            <div class="controls">
+                              <input type="text" id="phone2" value="{shipping_Phone}">
+                            </div>
+                        </div><!--end control-group-->     
+                    </form><!--end form-->
+                </div><!--end checkout-content-->
+            </div><!--end checkout-outer-->
+        </div><!--end span6-->
+    </div><!--end row-->
+    <div class="row">
+    	<div class="span12">
+        	<div class="control-group pull-right">
+                <div class="controls">
+	                <button type="submit" class="btn" onclick="window.history.back()">Back</button>
+                    <button type="submit" class="btn btn-primary" onclick="return check_submit();">Continue</button>
+                </div>
+            </div><!--end control-group-->
+        </div>
+    </div>
+</div>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script language="javascript">
+var arr_ValidAddress = [];
+function check_submit(){
+	var frm = document.form_1;
+	if( trim(frm.cardholder_name.value)=="" || trim(frm.cardholder_name.value)=="First Name"){
+		alert("Please enter first name!");
+		frm.cardholder_name.focus();
+		return false;
+	}
+	if( trim(frm.last_name.value)=="" || trim(frm.last_name.value)=="Last Name"){
+		alert("Please enter last name!");
+		frm.last_name.focus();
+		return false;
+	}	
+	if( trim(frm.address_street.value)=="" || trim(frm.address_street.value)=="Billing Address"){
+		alert("Please enter billing address!");
+		frm.address_street.focus();
+		return false;
+	}
+	if( trim(frm.address_city.value)=="" || trim(frm.address_city.value)=="City / Town"){
+		alert("Please enter billing city!");
+		frm.address_city.focus();
+		return false;
+	}
+	if( trim(frm.states.value)==""){
+		alert("Please select billing state!");
+		frm.states.focus();
+		return false;
+	}
+	if( trim(frm.address_zip.value)=="" || trim(frm.address_zip.value)=="Zip Code"){
+		alert("Please enter billing zip code!");
+		frm.address_zip.focus();
+		return false;
+	}
+	if( trim(frm.phone.value)==""||trim(frm.phone.value)=="Phone Number"){
+		alert("Please enter billing phone number!");
+		frm.phone.focus();
+		return false;
+	}
+	if( trim(frm.email_address.value)==""||trim(frm.email_address.value)=="Email Address"){
+		alert("Please enter email address!");
+		frm.email_address.focus();
+		return false;
+	}
+	msg = isValidEmail(trim(frm.email_address.value));
+	if(msg != ""){
+		alert(invalid_email);
+		frm.email_address.focus();
+		return false;
+	}
+	
+	frm = document.form_3;
+	if( trim(frm.cardholder_name2.value)=="" || trim(frm.cardholder_name2.value)=="Recipient's Name"){
+		alert("Please enter recipient's name!");
+		frm.cardholder_name2.focus();
+		return false;
+	}
+	if( trim(frm.address_street2.value)==""||trim(frm.address_street2.value)=="Delivery Address"){
+		alert("Please enter delivery address!");
+		frm.address_street2.focus();
+		return false;
+	}
+	if( trim(frm.address_city2.value)==""||trim(frm.address_city2.value)=="City / Town"){
+		alert("Please enter delivery city!");
+		frm.address_city2.focus();
+		return false;
+	}
+	if( trim(frm.states2.value)==""){
+		alert("Please select delivery state!");
+		frm.states2.focus();
+		return false;
+	}
+	if( trim(frm.address_zip2.value)==""||trim(frm.address_zip2.value)=="Zip Code"){
+		alert("Please enter delivery zip code!");
+		frm.address_zip2.focus();
+		return false;
+	}
+	if( trim(frm.phone2.value)==""||trim(frm.phone2.value)=="Phone Number"){
+		alert("Please enter recipient's phone number!");
+		frm.phone2.focus();
+		return false;
+	}
+	loadOrderConfirm();
+//	checkValidAddress();
+	return false;
+}
+function checkValidAddress(){
+	var address_street2 = trim($('#address_street2').val());
+	var address_city2 = trim($('#address_city2').val());
+	var states2 = trim($('#states2').val());
+	var address_zip2 = trim($('#address_zip2').val());
+	var slcountry2 = $('#slcountry2').val();
+	arr_ValidAddress = [];
+	var CurrentAddress = address_street2.replace(/#/gi, "suite") + ', ' + address_city2 + ', ' + states2 + ' ' + address_zip2 + ', ' + slcountry2;
+	// Create a new Google geocoder
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({ 'address': CurrentAddress }, function (results, status) {
+		// Google reported a valid geocoded address
+		if (status == google.maps.GeocoderStatus.OK) {
+			// Get the formatted Google result
+			for(var i = 0; i < results.length; i++){
+				var address = results[i].formatted_address;
+				var numCommas = address.match(/,/g).length;
+				if (numCommas >= 3) {
+					var address_value = '';
+					var city_value = '';
+					var state_value = '';
+					var zip_value = '';
+					var country_value = '';
+					var street_number = '';
+					var route = '';
+					var subpremise = '';
+					var address_components = results[i].address_components;
+					for(var j = 0; j < address_components.length; j++){
+						var types = address_components[j].types[0];	
+						switch(types){
+							case "country":
+								country_value = address_components[j].short_name;
+								break;
+							case "postal_code":
+								zip_value = address_components[j].short_name;
+								break;
+							case "administrative_area_level_1":
+								state_value = address_components[j].short_name;
+								break;
+							case "locality":
+								city_value = address_components[j].short_name;
+								break;
+							case "street_number":
+								street_number = address_components[j].short_name;
+								break;
+							case "route":
+								route = address_components[j].short_name;
+								break;
+							case "subpremise":
+								subpremise = address_components[j].short_name;
+								break;				
+						}	
+					}
+					address_value = ((street_number != '')?street_number+' ':'') + route + ((subpremise != '')?' ste '+subpremise:'');
+					var obj_address = new Object();
+					obj_address.address = address_value;
+					obj_address.city = city_value;
+					obj_address.state = state_value;
+					obj_address.zip = zip_value;
+					obj_address.country = country_value;
+					obj_address.formatted_address = address;
+					arr_ValidAddress[arr_ValidAddress.length] = obj_address;
+				}
+			}
+		}
+		if(arr_ValidAddress.length == 0){
+			var answer = confirm("It seem to be invalid address. Are you sure you want to use this address to ship?");
+			if(answer){
+				loadOrderConfirm();
+			}else{
+				return false;	
+			}
+		}else{
+			var check_exit_address = false;
+			for(var i = 0; i < arr_ValidAddress.length; i++){
+				var check_true = true;
+				var obj_address = arr_ValidAddress[i];
+				if(address_street2.toLowerCase().replace(/suite/gi, "#") != obj_address.address.toLowerCase()){
+					check_true = false;
+				}
+				if(address_city2.toLowerCase() != obj_address.city.toLowerCase()){
+					check_true = false;
+				}
+				if(states2.toLowerCase() != obj_address.state.toLowerCase()){
+					check_true = false;
+				}
+				if(address_zip2.toLowerCase() != obj_address.zip.toLowerCase()){
+					check_true = false;
+				}
+				if(slcountry2.toLowerCase() != obj_address.country.toLowerCase()){
+					check_true = false;
+				}
+				if(check_true == true){
+					check_exit_address = true;
+					break;	
+				}	
+			}
+			if(check_exit_address == true){
+				loadOrderConfirm();	
+			}else{
+				showBoxAddress();
+			}
+		}
+	});
+	return false;		
+}
+
+function showBoxAddress(){
+	var address_street2 = trim($('#address_street2').val());
+	var address_city2 = trim($('#address_city2').val());
+	var states2 = trim($('#states2').val());
+	var address_zip2 = trim($('#address_zip2').val());
+	var slcountry2 = $('#slcountry2').val();
+	var CurrentAddress = address_street2 + ', ' + address_city2 + ', ' + states2 + ' ' + address_zip2 + ', ' + slcountry2;
+	var st = '';
+	st += '<table cellpadding="0" cellspacing="0" border="0" width="100%">';
+	st += '	<tr>';
+	st += '		<td align="left" valign="middle" height="25px" width="110px"><b>Original address:</b></td>';
+	st += '		<td align="center" valign="middle" width="25px"><input type="radio" checked="checked" name="shippingAddress[]" value="-1" /></td>';
+	st += '		<td align="left" valign="middle" style="border-bottom:2px solid #999;">'+CurrentAddress+'</td>';
+	st += '		<td align="right" valign="middle" width="40px"><a href="javascript:void(0)" onclick="$(\'#result_address\').hide();">Edit</a></td>';
+	st += '	</tr>';
+	var label = '';
+	for(var i = 0; i < arr_ValidAddress.length; i++){
+		label = '&nbsp;';
+		if(i == 0) label = 'Suggest address:';
+		st += '	<tr>';
+		st += '		<td align="left" valign="middle" height="25px"><b>'+label+'</b></td>';
+		st += '		<td align="center" valign="middle"><input type="radio" name="shippingAddress[]" value="'+i+'" /></td>';
+		st += '		<td align="left" valign="middle" id="valid_address_"'+i+'>'+arr_ValidAddress[i].formatted_address+'</td>';
+		st += '		<td align="right" valign="middle"><a href="javascript:void(0)" onclick="edit_address('+i+')">Edit</a></td>';
+		st += '	</tr>';
+	}
+	st += '</table>';
+	$("#addressIsValid").empty().append(st);
+	$("#result_address").show();	
+}
+function edit_address(value_){
+	if(value_ < arr_ValidAddress.length){
+		document.getElementById("address_street2").value = arr_ValidAddress[value_].address;
+		document.getElementById("address_city2").value = arr_ValidAddress[value_].city;
+		document.getElementById("states2").value = arr_ValidAddress[value_].state;
+		document.getElementById("address_zip2").value = arr_ValidAddress[value_].zip;
+		document.getElementById("slcountry2").value = arr_ValidAddress[value_].country;	
+	}
+	$("#result_address").hide();
+}
+function continueShip(){
+	var shippingAddress = document.getElementsByName("shippingAddress[]");
+	for(var i = 0; i < shippingAddress.length; i++){
+		if(shippingAddress[i].checked == true){
+			var value_ = parseInt(shippingAddress[i].value, 10);
+			if(value_ == -1){
+				loadOrderConfirm();	
+			}else{
+				if(value_ < arr_ValidAddress.length){
+					document.getElementById("address_street2").value = arr_ValidAddress[value_].address;
+					document.getElementById("address_city2").value = arr_ValidAddress[value_].city;
+					document.getElementById("states2").value = arr_ValidAddress[value_].state;
+					document.getElementById("address_zip2").value = arr_ValidAddress[value_].zip;
+					document.getElementById("slcountry2").value = arr_ValidAddress[value_].country;	
+				}
+				loadOrderConfirm();	
+			}
+			break;	
+		}	
+	}
+}
+function loadOrderConfirm(){
+	var shipping = 1;
+	if(document.getElementById('shipping_check').checked == true) shipping = 0;
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/shop/cart/order_confirm",{
+		loadorderconfirm:'yes',
+		cccardname:$('#cardholder_name').val(),
+		last_name:$('#last_name').val(),
+		ccstreet:$('#address_street').val(),
+		cccity:$('#address_city').val(),
+		ccstate:$('#states').val(),
+		cczip:$('#address_zip').val(),
+		cccountry:$('#slcountry').val(),
+		ccphone:$('#phone').val(),
+		ccemail:$('#email_address').val(),
+		ccshipping:shipping,
+		ccrecipient:$('#cardholder_name2').val(),
+		ccstreet2:$('#address_street2').val(),
+		cccity2:$('#address_city2').val(),
+		ccstate2:$('#states2').val(),
+		cczip2:$('#address_zip2').val(),
+		cccountry2:$('#slcountry2').val(),
+		ccphone2:$('#phone2').val(),
+		rand:Math.random(),
+		coupon_code:$("#coupon_code").val(),
+		discount:$("#discount").val(),
+		discount_type:$("#discount_type").val()
+	} ,function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		$("#content_load").empty().append(data);
+	});
+	return false;
+}
+function loadShippingAddress(o,bol){
+	if(!o.checked){
+		if(bol){
+			$("#cardholder_name2").val("");
+			$("#address_street2").val("");
+			$("#address_city2").val("");
+			$("#address_zip2").val("");
+			$("#phone2").val("");
+			$("#states2").val("");
+		}
+	}else{
+		$("#cardholder_name2").val($("#cardholder_name").val()+" "+$("#last_name").val());
+		$("#address_street2").val($("#address_street").val());
+		$("#address_city2").val($("#address_city").val());
+		$("#address_zip2").val($("#address_zip").val());
+		$("#phone2").val($("#phone").val());
+		$("#slcountry2").val(document.getElementById("slcountry").value);	
+		showStates2();
+		$("#states2").val($("#states").val());
+                showCitiesDelivery();
+                $("#address_city2").val($("#address_city").val());
+	}
+}
+var dataCountries = [];
+function loadDataCountries(){
+	{if('load_countries'=='yes');}
+	showCountriesListing('slcountry');
+	$("#slcountry").val(document.getElementById("billing_country").value);
+	showCountriesListing('slcountry2');
+	$("#slcountry2").val(document.getElementById("shipping_country").value);
+	showStates();
+	showStates2();
+	showCities();
+	showCitiesDelivery();
+	$("#states").val(document.getElementById("billing_state").value);
+	$("#states2").val(document.getElementById("shipping_state").value);
+        $("#address_city").val(document.getElementById("billing_city").value);
+        $("#address_city2").val(document.getElementById("shipping_city").value);
+}
+function showCountriesListing(div){
+	var st = '';
+	var elSel = document.getElementById(div);
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null);
+		}catch(ex) {
+			elSel.add(elOptNew);
+		}		
+	}
+	$(elSel).val(ct);
+}
+function showStates(){
+	var st = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="states" name="states" style="width:120px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="states" size="10" name="states" value="">';	
+			}
+			break;	
+		}	
+	}
+	$("#states_show").empty().append(st);	
+}
+
+function showCities(){
+	var ct = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+           
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				var cities = dataCountries[i].cities;
+				ct += '<select id="address_city" name="address_city">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input tabindex="5" type="text" class="input-text" id="address_city" size="10" name="address_city" value="">';	
+			}
+			break;	
+		}	
+	}
+	$("#cities_show").empty().append(ct);	
+}
+
+function showCitiesDelivery(){
+	var ct = '';
+	var country_value = document.getElementById('slcountry').value;
+	for(var i = 0; i < dataCountries.length; i++){
+           
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].cities.length > 0){
+				var cities = dataCountries[i].cities;
+				ct += '<select id="address_city2" name="address_city2">';
+				for(var j = 0; j < cities.length; j++){
+					ct += '<option value="'+cities[j].city+'">'+cities[j].city+'</option>';		
+				}
+				ct += '</select>';
+			}else{
+				ct += '<input tabindex="5" type="text" class="input-text" id="address_city2" size="10" name="address_city2" value="">';	
+			}
+			break;	
+		}	
+	}
+	$("#cities_show_delivery").empty().append(ct);	
+}
+
+function showStates2(){
+	var st = '';
+	var country_value = document.getElementById('slcountry2').value;
+        if(country_value == ''){
+                  st += '<input tabindex="5" type="text" class="input-text" id="states2" size="10" name="states2" value="" style="width:110px">';	
+        }
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="states2" name="states2" style="width:120px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input tabindex="5" type="text" class="input-text" id="states2" size="10" name="states2" value="" style="width:110px">';	
+			}
+			break;	
+		}	
+	}
+       
+	$("#states_show2").empty().append(st);	
+}
+$(function() {
+	loadDataCountries();
+});
+</script>
+
+		

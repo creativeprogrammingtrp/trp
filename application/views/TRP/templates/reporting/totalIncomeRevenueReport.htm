@@ -1,0 +1,129 @@
+<!-- New App tab -->
+<table id="total_income_revenue_report_result" class="table table-striped"></table>
+<!-- End New App tab -->
+<div class="clear1"></div>
+<!-- For Edit Application -->
+
+<!-- End of Edit Application -->
+
+<!-- Javascript code only for this page -->            
+<script type="text/javascript">
+var dataClientDR = [];
+//var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","Action"];
+
+function loadObject() {
+    {dataLoadIR}
+    loadClients();
+}
+
+
+function loadClients() {
+    var htm = ''; 
+    htm +='<thead>';
+    	
+    	htm +='<tr>';
+	    	htm +='<th class="text-center">Date Created</th>';
+			htm +='<th class="text-center">Bank Products</th>';
+			htm +='<th class="text-center">Discount Benefits</th>';
+			htm +='<th  >Insurance</th>';
+    		htm +='<th class="hidden-xs hidden-sm">Total Revenue</th>';
+    	htm +='</tr>';
+   
+    htm +='</thead>';
+    
+    
+    htm +='<tbody>';
+    var parent = 'body_insurance_info_edit';
+    
+    var totalBankProduct = 0;
+    var totalBenefits = 0;
+    var totalTotalRevenue = 0;
+    
+    for(var i = 0 ; i < dataClientIR.length ; i++){
+           var obj = dataClientIR[i];
+           var uid = obj.uid;
+           
+            	
+           var appststus = '';
+           if(obj.package_status == '0')
+          	 appststus = 'Pending';
+           else if(obj.package_status == '1')
+          	 appststus = 'Active';
+           else if(obj.package_status == '2')
+          	 appststus = 'Canceled';
+            
+           var totalRevenue = 0;
+           var benefitsT = check_is_nan(parseFloat(obj.totalBenefits));
+           
+           var actualTax = check_is_nan(parseFloat(obj.actTaxFee));
+           var actualAddOn = check_is_nan(parseFloat(obj.actAddonFee));
+           var actualAuditGuard = check_is_nan(parseFloat(obj.actAuditGuardFee));
+           
+           var bankProducts = actualTax+actualAddOn+actualAuditGuard;
+           
+           totalRevenue += (benefitsT+bankProducts);
+           
+           totalBankProduct += bankProducts;
+           totalBenefits += benefitsT;
+           
+           totalTotalRevenue +=totalRevenue;
+           
+            htm +='<tr>';
+            
+            htm +='<td class=" text-center border-right">'+obj.app_create_date+'</td>';
+        	htm +='<td class="text-center">'+toUSD(check_is_nan(bankProducts))+'</td>';
+        	htm +='<td class="text-center ">'+toUSD(check_is_nan(benefitsT))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm  text-center"></td>';
+        	
+        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+toUSD(check_is_nan(totalRevenue))+'</td>';
+             
+            htm +='</tr>';
+   } 		
+   htm +=' </tbody>';
+  
+   htm +='<tfoot>';
+	htm +='<tr>';
+		htm +='<td class=" text-center" >Total</td>';
+		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalBankProduct))+'</span></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalBenefits))+'</span></td>';
+		htm +='<td class=" text-center" ><span></span></td>';
+		htm +='<td class="text-center">'+toUSD(check_is_nan(totalTotalRevenue))+'</td>';
+	htm +='</tr>  ';
+htm +='</tfoot>';
+     
+    $("#total_income_revenue_report_result").empty().append(htm);	
+    
+   
+}
+
+$(function(){
+	loadObject();
+	clickToEditBenefitsInfo('body_benefits_info_edit');
+
+    $('#total_income_revenue_report_result').dataTable( {
+         	"sDom": 'T<"clear">lfrtip',
+         	"oTableTools": {
+     			//"aButtons": [ "xls", "pdf","copy", "print" ]
+         		"aButtons": [
+    						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                             { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		]
+     		},
+     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1 ] }],
+     		"bLengthChange": false,
+       		"bAutoWidth": false,  
+       		"aoColumns": [
+       		            { sWidth: '15%' },
+       		            { sWidth: '20%' },
+       		            { sWidth: '25%' },
+       		            { sWidth: '15%' },
+       		            { sWidth: '15%' },
+       		            ]
+         });
+
+	 
+	 $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	 
+});
+</script>

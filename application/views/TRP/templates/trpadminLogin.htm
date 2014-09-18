@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+	================================================== -->
+	<meta charset="utf-8">
+	<title>TRP Project - Home</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	
+	<!-- CSS
+  ================================================== -->
+	<!-- Normalize default styles -->
+	<link rel="stylesheet" href="../frontend/css/normalize.css" media="screen" />
+	<!-- Fonts -->
+	<link rel="stylesheet" href="../frontend/css/fonts.css" media="screen" />
+	<!-- Skeleton grid system -->
+	<link rel="stylesheet" href="../frontend/css/skeleton.css" media="screen" />
+	<!-- Base Template Styles-->
+	<link rel="stylesheet" href="../frontend/css/base.css" media="screen" />
+	<!-- Superfish Menu-->
+	<link rel="stylesheet" href="../frontend/css/superfish.css" media="screen" />
+	<!-- Template Styles-->
+	<link rel="stylesheet" href="../frontend/css/style.css" media="screen" />
+	<!-- PrettyPhoto -->
+	<link rel="stylesheet" href="../frontend/css/prettyPhoto.css" media="screen" />
+	<!-- Layout and Media queries-->
+	<link rel="stylesheet" href="../frontend/css/layout.css" media="screen" />
+	<!-- Onebyone styles-->
+	<link rel="stylesheet" href="../frontend/css/jquery.onebyone.css" media="screen" />
+	<!-- Animate CSS-->
+	<link rel="stylesheet" href="../frontend/css/animate.min.css" media="screen" />
+	
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="css/ie/ie8.css" media="screen" />
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="../frontend/images/favicon.ico">
+	<link rel="apple-touch-icon" href="../frontend/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../frontend/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../frontend/images/apple-touch-icon-114x114.png">
+	
+	
+	<!-- For Old Browsers
+	================================================== -->
+	<!--[if lt IE 8]>
+	<div style=' clear: both; text-align:center; position: relative;'>
+		<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+	</div>
+	<![endif]-->
+	
+	
+</head>
+<body class="page home-page">
+
+	<!-- Primary Page Layout
+	================================================== -->
+	
+	<!-- BEGIN WRAPPER -->
+	<div id="wrapper">
+		</div>	
+	
+	<!-- BEGIN MODAL WINDOWS -->
+	{login_account}
+        <div id="signup_success" class="reveal-modal">
+		<header class="reveal-modal-header">
+			Success
+		</header>
+		<div class="cont">
+			<form action="#"> 
+                                <p class="clearfix">
+					<label>Sign up Successful</label>	
+				</p>
+			</form>		
+		</div>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	{sign_up_account}
+	<!-- END MODAL WINDOWS -->
+			
+<div id="signin" class="reveal-modal">
+    <header class="reveal-modal-header">
+        Sign in
+    </header>
+    <div id="warninglogin" ></div>
+    <div class="cont">
+        <div class="indication">
+            classic
+        </div>
+        <form action="#" method="post" class="signin" id="formLogin" name="formLogin"  ><!--onsubmit="return login_('efin_signin','username_signin','password_signin');"-->
+
+            <p class="clearfix">
+                <label>EFIN :</label>
+                <input type="text" value="" id="efin_signin" />
+            </p>
+            <p class="clearfix">
+                <label>Username:</label>
+                <input type="text" value="" id="username_signin" />
+            </p>
+            <p class="clearfix">
+                <label>Password:</label>
+                <input type="password" value="" id="password_signin" />
+            </p>
+            <p class="checkboxes without-label clearfix">
+                <span class="niceCheck"><input type="checkbox" name="ch1" /></span>
+                Remember me
+                <a href="#">Forgot password?</a>
+            </p>
+            <p class="without-label clearfix"><input type="submit" id="btnSubmitLogin" value="" /></p>
+        </form>
+       <!-- <div class="indication">
+            socials
+        </div>
+        <ul class="socials-login">
+            <li><a href="#" class="fb"></a></li>
+            <li><a href="#" class="tw"></a></li>
+        </ul>-->
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+
+
+
+	<!-- Javascript Files
+	================================================== -->
+	
+	<!-- initialize jQuery Library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../frontend/js/jquery-1.8.2.min.js"><\/script>')</script>
+	<!-- Modernizr -->
+	<script type="text/javascript" src="../frontend/js/modernizr.custom.14583.js"></script>
+	<!-- Superfish Menu -->
+	<script type="text/javascript" src="../frontend/js/superfish.js"></script>
+	<!-- easing plugin -->
+	<script type="text/javascript" src="../frontend/js/jquery.easing.min.js"></script>
+	<!-- Prettyphoto -->
+	<script type="text/javascript" src="../frontend/js/jquery.prettyPhoto.js"></script>
+	<!-- Mobile Menu -->
+	<script type="text/javascript" src="../frontend/js/jquery.mobilemenu.js"></script>
+	<!-- Twitter -->
+	<script type="text/javascript" src="../frontend/js/jquery.twitter.js"></script>
+	<!-- Elastslide -->
+	<script type="text/javascript" src="../frontend/js/jquery.elastislide.js"></script>
+	<!-- Custom Checkbox -->
+	<script type="text/javascript" src="../frontend/js/jquery.checkbox.js"></script>
+	<!-- Reveal Modal -->
+	<script type="text/javascript" src="../frontend/js/jquery.reveal.js"></script>
+	<!-- Onebyone slider -->
+	<script type="text/javascript" src="../frontend/js/jquery.onebyone.min.js"></script>
+	<!-- Touchwipe -->
+	<script type="text/javascript" src="../frontend/js/jquery.touchwipe.min.js"></script>
+	<!-- Dropkick select -->
+	<script type="text/javascript" src="../frontend/js/dropkick.js"></script>
+	<!-- Custom radio-checkboxes -->
+	<script type="text/javascript" src="../frontend/js/jquery.custom-radio-checkbox.js"></script>
+	<!-- Tooltips (tipsy) -->
+	<script type="text/javascript" src="../frontend/js/jquery.tipsy.js"></script>
+	
+	<!-- Custom -->
+	<script type="text/javascript" src="../frontend/js/custom.js"></script>
+        
+        <script type="text/javascript" src="../frontend/js/custom_mainpage.js"></script>
+        
+        <script type="text/javascript" src="misc/scripts/js.js"></script>
+	
+	<!-- Onebyone slider init -->
+	<script type="text/javascript">
+                var url_server__ = '{curPageURLServer}'; 
+                dir_theme = 'application/views/{dir_theme}/';
+		var url_base_path__ = '{url_base_path}';
+		
+		
+	</script>
+	
+</body>
+</html>

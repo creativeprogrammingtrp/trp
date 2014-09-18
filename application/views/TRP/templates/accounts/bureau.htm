@@ -1,0 +1,38 @@
+<h3>{title_page}</h3>
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#all_bureau" onclick="ChangeContent(10);">All Service Bureau</a></li>
+    <li class=""><a href="#pending_approval"  onclick="">Pending Approval</a></li>
+    <li class=""><a href="#approval">Approved</a></li>
+    <li class=""><a href="#rejected">Rejected</a></li>
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="all_bureau" class="tab-pane active"></div>
+    <div id="pending_approval" class="tab-pane" > </div>
+<div id="approval" class="tab-pane">
+    This will be User Accounts
+</div>
+<div id="rejected" class="tab-pane">
+    This will be Services
+</div>
+
+</div>
+
+<script type="text/javascript">
+ 
+    function showAllService(){
+	$.ajax({
+                url: 'index.php/admin/bureau/showAllService?ajax=1',
+                cache: false,
+                success: function(message){
+                    console.log(message);
+                        $("#all_bureau").empty().append(message);
+                        return false;
+                }
+	});	
+    }
+
+    $(function(){
+       showAllService();
+    });
+</script>
+

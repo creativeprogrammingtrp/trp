@@ -1,0 +1,47 @@
+<div class="divPageTitle">Order complete</div>
+<div class="box_solar">
+<div style="clear:both; width:100%;" align="left">
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="left" width="100%" valign="top">
+            	<div style="float:left"><strong class="confirm">Dear Mr/Mrs <!--name-->,</strong></div>
+                <div style="float:right"><a href="javascript:void(0)" onclick="printOrder('<!--order_number-->')">Print Receipt</a></div>
+           	</td>
+        </tr>				
+        <tr>
+            <td align="left" valign="top" style="padding-top:10px">Your order is completed. Your reference number is <!--order_number-->. While logged in, you may continue shopping or <a href="javascript:view_order_detail()">viewing your order history</a>. <a href="javascript:goHome();">Return to the front page.</a></td>
+        </tr>
+        <tr>
+            <td align="left" valign="top" style="padding-top:20px"><span class="confirm"><br>Regards,<br>Bellavie Network Inc.</span></td>
+        </tr>
+    </table>
+</div>
+</div>
+<input type="hidden" name="ck_commission" id="ck_commission" value="{ck_commission}" />
+<script language="javascript">
+function view_order_detail(){
+	var url = url_server__;
+	url = url.replace('shopping/','');
+	window.location = url+'store/orders/details/<!--order_number-->';
+}
+function printOrder(okey){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+   	var url =  "index.php/shop/print_invoices/odetails";
+	var data = {okey : okey};
+	if($("#ck_commission").val() != '' && $("#ck_commission").val() > 0){
+		data = {okey : okey,ck: $("#ck_commission").val() };	
+	}
+	$.ajax({
+		url:url ,
+		type: "GET",
+		data:data,
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			var newWin=window.open('', '', 'scrollbars=1,width=850,height=400', false);
+			newWin.document.open();
+			newWin.document.write('<html><body onload="window.print()">'+html+'</body></html>');
+			newWin.document.close();
+		}
+	});
+}
+</script>

@@ -1,0 +1,154 @@
+<style type="text/css">
+.title{
+    font-weight:bold;
+    clear:both;
+    text-transform:capitalize;
+    color:#ffab11;
+    float: left
+}
+
+.date_event{
+	clear:both;
+	color:#7E7E7E;
+	padding-left:15px;
+	font-style:italic;
+}
+.event_content{
+	clear:both;
+	padding-left:15px;
+	padding-top:5px;
+        color:#7E7E7E;
+}
+</style>
+<script language="javascript">
+var arr_object = [];
+var del = '{delPerm}';
+function check()
+{
+	var checkError = false;
+	if($('#t_title').val() == ''){
+		$('#t_title').css("background", '#ffffd5');
+		hidelabelfocus("t_title_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("t_title"));	
+			document.getElementById("t_title").focus();	
+		}
+	}
+	if($('#t_email').val() == ''){
+		$('#t_email').css("background", '#ffffd5');
+		hidelabelfocus("t_email_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("t_email"));	
+			document.getElementById("t_email").focus();	
+		}
+	}
+	else
+	{
+		var msg = '';
+		var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var address = document.getElementById('t_email').value;
+		if(reg.test(address) == false) { msg= 'Invalid Email Address';	}
+		if(msg != ""){
+			alert(invalid_email);
+			hidelabelfocus("t_email_label");
+			if(checkError == false){
+				checkError = true;
+				onfocusInputText(document.getElementById("t_email"));			
+				document.getElementById("t_email").focus();	
+				document.getElementById("t_email").value = "";
+			}		
+		}	
+	}
+	
+	if($('#t_content').val() == ''){
+		$('#t_content').css("background", '#ffffd5');
+		hidelabelfocus("t_content_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("t_content"));	
+			document.getElementById("t_content").focus();	
+		}
+	}
+	if(checkError == true){
+		return false;	
+	}
+	//register_btn
+	$("#register_btn").empty().append('<img src="../images/Loader-FloGradient16x16x.gif" border="0"/> Saving...');
+	$.post("index.php/contact",{
+		send:'yes',
+		t_title:$('#t_title').val(),
+		t_email:$('#t_email').val(),
+		t_content:$('#t_content').val()	
+	} ,function(data){
+		$("#register_btn").empty().append(' <input type="button" value="Send mail" onclick="return check()" />');
+		alert(data)
+		window.location.reload();
+	});
+	return false;
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+
+	switch(o.id){
+	
+	case 't_email':
+		var msg = isValidEmail($('#t_email').val());	
+		if(msg != ""){
+			hidelabelfocus(o.id+"_label");
+			return false;		
+		}	
+		break;
+	
+	}
+}
+</script>
+<form id="form1" name="form1" method="post" class="box_solar size_14">
+<div class="divPageTitle">{title_page}</div>
+    <table cellpadding="5" cellspacing="0" border="0" width="100%" >
+        <tr>
+            <td colspan="2" valign="top">
+                Do you have any suggestions or ideas? Share with us, we'd love to hear.
+                <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td width="200px" valign="top">
+                Subject:	
+            </td>
+            <td valign="top">
+            	<input type="text" onkeyup="onfocusInputText(this)" onkeydown="onkeydownInputText(this)" onblur="onblurInputText(this)" onfocus="onfocusInputText(this)" style="width:100%;" value="" name="t_title" size="10" maxlength="50" id="t_title" class="input-text" placeholder="Subject" autocomplete="off">
+            </td>
+        </tr>
+        <tr>
+            <td width="200px" valign="top">
+                Your Email:	
+            </td>
+            <td valign="top">
+            	<input type="text" onkeyup="onfocusInputText(this)" onkeydown="onkeydownInputText(this)" onblur="onblurInputText(this)" onfocus="onfocusInputText(this)" style="width: 100%;" value="" name="t_email" size="10" maxlength="50" id="t_email" class="input-text" placeholder="Your Email" autocomplete="off">
+            </td>
+        </tr>
+        <tr>
+            <td width="200px" valign="top">
+                Question and comments...	
+            </td>
+            <td valign="top">
+            	<textarea onkeyup="onfocusInputText(this)" onkeydown="onkeydownInputText(this)" onblur="onblurInputText(this)" onfocus="onfocusInputText(this)" style="width: 100%; height:200px;" value="" name="t_content" id="t_content" class="input-text"></textarea>
+            </td>
+        </tr>
+        <tr>
+        	<td colspan="2" valign="top" align="right">
+            	<input type="button" class="button" style="margin-right:-10px" value="Submit" onclick="return check()" autocomplete="off" />
+            </td>
+        </tr>
+    </table>
+</form>
+<div style="clear:both; width:100%; overflow:hidden; font-size:12px;" id="products_list" align="left"></div>
+<div style="clear:both; width:100%; border-top:1px dashed #CCC; margin-top:20px; padding-top:20px">
+	{content}
+</div>

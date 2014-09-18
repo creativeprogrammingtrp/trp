@@ -1,0 +1,2640 @@
+<style>
+.table thead > tr > th{
+	padding-bottom:0px;
+	padding-top:0px;
+}
+
+
+
+ul li {
+    list-style: none outside none;
+}
+
+.nav-tabs > li > a
+{
+	width:168px;
+}
+
+p{
+	margin:0px;
+}
+
+.table thead > tr > th{
+	background: none !important;
+}
+.stepy-tab {
+    text-align: center;
+	margin-bottom: 28px;
+}
+
+.stepy-tab ul {
+    display: inline-block;
+}
+
+.stepy-tab ul li {
+    float: left;
+}
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+    float: left;
+    margin: 10px 15px;
+}
+
+.stepy-titles li.current-step div {
+    background: none repeat scroll 0 0 #A9D86E;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: auto;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li div {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 300;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+}
+
+.stepy-titles li {
+    color: #757575;
+    cursor: pointer;
+}
+
+.stepy-titles li span {
+    display: block;
+}
+
+
+.form-box-header {
+    padding: 15px 0 10px;
+	color:#0097CF;
+	border-bottom: 1px dotted #ddd;
+}
+
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td{
+	vertical-align: middle;
+}
+
+hr{
+	border-top: 1px solid #efefef;
+	margin:10px 14px;
+}
+
+.btn-group, .btn-group-vertical
+{
+	width:100%;
+}
+
+.multiselect {
+    text-align: left;
+}
+.multiselect b.caret {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+}
+.multiselect-group {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#all_applicent_apptable{
+	border-left:1px solid #efefef;
+	border-right:1px solid #efefef;
+	border-bottom:1px solid #efefef;
+}
+</style>
+
+<div style="padding-top:29px;margin-bottom:0px; padding-left:24px;" class="col-md-12"><h2 style="margin:0px; color:#54565F;"><i class="icon-umbrella"></i> &nbsp;{title_page}</h2></div>
+
+
+
+				  
+				  
+<div style="clear:both"></div>
+<!-- 
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class="active"><a href="#insurance">Insurance</a></li>
+    <li class=""><a href="#pendingInsurance" onclick="ChangeContent(27);">Pending</a></li>
+    <li class=""><a href="#activeInsurance">Active</a></li>
+    <li class=""><a href="#canceledInsurance">Cancelled</a></li>
+</ul>
+ -->
+<div class="tab-content tab-content-default" style="background-color:#fff; padding-top:17px;">
+    <div id="insurance_applicent" class="tab-pane active">
+ 
+ <form id="insurance_info_add_form1" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+            
+       <div class="stepimages" style="text-align: center; margin-bottom:35px">
+				  	<!--<img alt="" src="../backend/img/new-application-steps_1.png">-->
+                    <ul class="steps pvsteps">
+                        <li class="editing"><div>1</div><span>APPLICANT INFO</span></li><li class="process done"></li><li><div>2</div><span>INSURANCE</span></li><li class="process"></li><li><div>3</div><span>REVIEW</span></li>
+                        </ul>
+                    
+				  </div>     
+            <div style="clear:both"></div>
+            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+						         
+						         <div class="col-md-6" style="width:49%; margin:0px 0 5px 8px;	" >
+						         
+						         <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							       Customer Info
+							    </span>
+							    
+                            <span class="tools pull-right icons" style="margin-left:20px;">
+                                <i class="icon-user"></i>
+                            </span>
+                            <button  class="btn btn-default pull-right" type="button" id="adduser" > <i class="icon-plus-sign"></i> Add User </button>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						         
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-12 form-group1">
+						                	<!-- <label for="multiselectapplicent" class="control-label col-md-12">Select Applicent</label> -->
+						                    <div class="input-group1 nopadding col-md-12">
+						                    
+						                    <div class="input-group">
+		                                        <span class="input-group-addon"><i class="icon-search"></i></span>
+		                                        <input type="text" placeholder="Search" class="form-control" name="search_query" id="search_query">
+		                                    </div>
+		                                    <div id="WebPartWPQ1" style="max-height: 471px; overflow: scroll; margin-top: 20px">
+						                    <table id="all_applicent_apptable" class="table table-striped">
+											
+{applicent}											
+											</table>
+											</div>
+			<!-- 			                    <select class="multiselectapplicent" multiple="multiple" name="selectApplicent" id="selectApplicent">
+
+</select> -->
+						                   
+						                    </div>
+						                </div>
+						               
+						            </div>
+						           
+						           
+						            
+						           
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						            
+						          <!-- Panel End -->
+						          </div>
+						          </section>  
+						</div>
+						<div class="col-md-6" style=" margin:0px;" >
+						
+					        <div class="col-md-12" style=" margin:0px; padding-right: 0px" >  
+					          
+					          <section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Selected Customer
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-undo"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body">
+							        <!-- Panel start -->
+							        
+							        <!--  Content will be add here -->
+							        <div id="selected_applicent_div" style="font-weight: 300">
+							        
+							        </div>
+							        
+								    <!-- End panel -->
+					            </div>
+					            </section>
+				           	</div>
+				           
+				            
+						</div>
+						<div style="clear:both;"></div>
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						            <div class="col-md-6 text-left" style="padding-left: 25px">
+						            	
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance" >
+				                               <i class="icon-redo"></i> &nbsp; &nbsp; Cancel  
+				                            </button>
+				             </div>
+						            
+						            <div class="col-md-6 text-right" style="padding-right: 25px">
+						            <button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                 Next   &nbsp; &nbsp; <i class="icon-long-arrow-right"></i> 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...     
+				                            </button>
+						            </div>
+						            <div class="" style="clear:both"></div>
+						            </div>
+						        
+						    </div> 
+						    
+						    <input type="hidden" name="selectedItem"  id="selectedItem" />
+						    <input type="hidden" name="selectedApplicent" id="selectedApplicent" />
+						    
+						   </form> 
+
+</div>
+
+<div id="insurance" class="tab-pane ">
+
+<div class="stepimages" style="text-align: center; margin-bottom:35px">
+				  	<!--<img alt="" src="../backend/img/new-application-steps_1.png">-->
+                    <ul class="steps pvsteps">
+                        <li class="done"><div>1</div><span>APPLICANT INFO</span></li><li class="process done"></li><li  class="editing"><div>2</div><span>INSURANCE</span></li><li class="process"></li><li><div>3</div><span>REVIEW</span></li>
+                        </ul>
+                    
+				  </div>     
+            <div style="clear:both"></div>
+
+<div class="state-overview" style="padding:25px 25px;px; background-color: #ebf1f5; padding-top:22px;">
+<!-- Top part -->
+<section class="panel">
+ 	<!-- Insurance table -->
+ 	<header class="panel-heading">
+       <span class="title" style="">Insurance</span>
+       
+    </header>
+    <div class="panel-body" style="padding:0px 0px 30px 0px;">
+    	<div class="col-md-4 text-center insurance" >
+	    	<div class="insurance_symbol gray">
+	                 <i class="icon-users4"></i>
+	        </div>
+	        <h4>Family/Individual</h4>
+	        <a href="javascript:void(0)" id="Family Individual~icon-users4" style="font-size: 13px; font-weight: 600;" class="btn btn-success showaddForm"><i class="icon-plus-sign"></i> &nbsp; Add</a>
+	    </div> 
+	    
+	    <div class="col-md-4 text-center insurance ">
+	    	<div class="insurance_symbol gray">
+	                 <i class="icon-health"></i>
+	        </div>
+	        <h4>Group Health</h4>
+	        <a href="javascript:void(0)" id="Group Health~icon-health" style="font-size: 13px; font-weight: 600;" class="btn btn-success showaddForm"><i class="icon-plus-sign"></i> &nbsp; Add</a>
+	    </div> 
+	    
+	    <div class="col-md-4 text-center insurance">
+	    	<div class="insurance_symbol gray">
+	                 <i class="icon-umbrella"></i>
+	        </div>
+	        <h4>Life Insurance & Annuities</h4>
+	        <a href="javascript:void(0)" id="Life Insurance & Annuities~icon-umbrella" style="font-size: 13px; font-weight: 600;" class="btn btn-success showaddForm"><i class="icon-plus-sign"></i> &nbsp; Add</a>
+	    </div>
+	    
+	    <div class="col-md-4 text-center insurance">
+	    	<div class="insurance_symbol gray">
+	                 <i class="icon-car"></i>
+	        </div>  
+	        <h4>Auto Insurance</h4>
+	        <a href="javascript:void(0)" id="Auto Insurance~icon-car" style="font-size: 13px; font-weight: 600;" class="btn btn-success showaddForm"><i class="icon-plus-sign"></i> &nbsp; Add</a>
+	    </div>
+	    
+	    <div class="col-md-4 text-center insurance">
+	    	<div class="insurance_symbol gray">
+	                 <i class="icon-home3"></i>
+	        </div>
+	        <h4>Home Insurance</h4>
+	        <a href="javascript:void(0)" id="Home Insurance~icon-home3" style="font-size: 13px; font-weight: 600;" class="btn btn-success showaddForm"><i class="icon-plus-sign"></i> &nbsp; Add</a>
+	    </div>
+	    
+	    <div class="col-md-4 text-center insurance">
+	    	<div class="insurance_symbol gray">
+	                 <i class="icon-fire"></i>
+	        </div>
+	        <h4>Property & Casualty</h4>
+	        <a href="javascript:void(0)" id="Property & Casualty~icon-fire" style="font-size: 13px; font-weight: 600;" class="btn btn-success showaddForm"><i class="icon-plus-sign"></i> &nbsp; Add</a>
+	    </div>    
+    </div>
+ 	<!-- End pricing table -->
+</section>
+
+<!-- End Top Part -->
+
+<div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						            <div class="col-md-6 text-left" style="padding-left: 0px">
+						            	
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance" >
+				                               <i class="icon-redo"></i> &nbsp; &nbsp; Cancel  
+				                            </button>
+				             </div>
+						            
+						            <div class="col-md-6 text-right" style="padding-right: 0px">
+						            <button value="Back" id="back1" type="button" class="btn btn-default btn-lg">
+				                                <i class="icon-arrow-left4"></i> Back
+				                            </button>
+						            <button  class=" btn btn-success btn-lg step1btn" type="submit" id="step2" value="Next">
+				                                 Submit   &nbsp; &nbsp; <i class="icon-ok"></i> 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...     
+				                            </button>
+						            </div>
+						            <div class="" style="clear:both"></div>
+						            </div>
+
+</div>
+
+</div>
+
+<div id="insurance_review" class="tab-pane ">
+
+<div class="stepimages" style="text-align: center; margin-bottom:35px">
+				  	<!--<img alt="" src="../backend/img/new-application-steps_1.png">-->
+                    <ul class="steps pvsteps">
+                        <li class="done"><div>1</div><span>APPLICANT INFO</span></li><li class="process done"></li><li  class="done"><div>2</div><span>INSURANCE</span></li><li class="process"></li><li  class="editing"><div>3</div><span>REVIEW</span></li>
+                        </ul>
+                    
+				  </div>     
+            <div style="clear:both"></div>
+
+<!--  -->
+<div id="third" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+					<div class="col-md-12 text-left">	
+						 <h3 class="text-left" style="font-weight: bold; margin:4px 0px 25px;">Thank you for your Insurance!</h3>
+					</div>	
+					<div class="col-md-7 text-left">
+						<section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Summary
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-umbrella"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body" id="cartdetails" style="padding:0px;">
+						         <!-- Panel start -->
+						        
+						    <div id="cart_details" style="padding:8px 15px;">    
+						       
+							</div>	
+							
+						  </div>
+						</section>
+					</div>
+					<div class="col-md-5 text-left">
+						<div class="col-md-12 text-left" style="padding:0px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Status
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-busy"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:20px 15px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" style="padding:0px 5px;">
+									 	<div class="alert alert-warning" style="font-size:17px; margin-bottom:0px;"><h4 style="margin-bottom:0px;"><i class="icon-busy"></i>  &nbsp;  &nbsp; Pending &nbsp;&nbsp;&nbsp;&nbsp;  </h4></div>
+									 	
+									 </div> 
+							  </div>
+							</section>
+						</div>
+						
+						<div class="col-md-12 text-left"  style="padding:0px; margin-top:30px;">
+							<section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Selected Applicent
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="icon-user"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:10px 0px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" id="selected_appl_sum" style="padding:0px;">
+									 	
+			                              
+									 </div>
+							  </div>
+							</section>
+						</div>
+						
+					</div>	 
+					
+					
+						           <div class="" style="clear:both"></div> 
+						            <div class="form-group1 form-actions1">
+						                <!-- <div class="col-md-6 text-left">
+									<input type="reset" value="Cancel" id="back4"
+						                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+						                </div>
+						                 -->
+						                <div class="col-md-12 text-right">
+						                
+						                <button class="btn btn-success btn-lg" type="button" id="finishedBtn" value="Finished">
+				                                Finished <i class="icon-ok"></i> 
+				                        </button>
+				                            <div class="" style="clear:both"></div>           
+						                </div>
+						                <div class="" style="clear:both"></div>
+						            </div>
+						        
+						   
+						   <div class="clear"></div> 
+						   <p>&nbsp;</p>
+						  <!-- End step 4  -->  
+   </div>
+<!--  -->
+
+
+</div>
+
+
+
+</div>
+
+
+<!--  Modal box for add  insurance product  -->
+<div id="modal_add_insuracne_product" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Add New Applicent </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+            
+            <form id="insurance_info_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+            
+            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+						         
+						         <div class="col-md-12" style=" margin:0px;" >
+						         
+						         <section class="panel">
+                         
+                          <div class="panel-body">
+						         <!-- Panel start -->
+						         
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						           
+						            <div class="form-group">
+						            	
+							                <div class="col-md-6 form-group1">
+							                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+							                    <div class="input-group1 nopadding col-md-12">
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                    </div>
+							                </div>
+						                	<div class="col-md-6 form-group1">
+						                		<label for="dob" class="control-label col-md-12">Birth Date</label>
+						                    	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="" placeholder="MM/DD/YYYY">
+						                    	</div>
+						                	</div>
+						                
+						            </div>
+						            
+						           <div class="form-group">
+						            	
+							                <div class="col-md-6">
+							                	<label for="add_spouse" class="control-label col-md-12"><input type="checkbox"   name="add_spouse" id="add_spouse"> Add Spouse</label>
+							                </div>
+						            </div>
+						            
+						            <div id="dependent-box">
+							            <h4 class="form-box-header">
+								        <i class="glyphicon-girl"></i> Spouse's Info
+								    	</h4> 
+							            <div class="form-group">
+							            	
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">Spouse's First Name</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_first_name" id="sp_first_name" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-9">Spouse's Last Name</label>
+							                    <input type="text" class="form-control ui-wizard-content" name="sp_last_name" id="sp_last_name" value="">
+							                	</div>
+							                
+							            </div>
+							            
+							            <div class="form-group">
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-9">SSN</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_ss_number" id="sp_ss_number" value="">
+								                </div>
+							            
+							            
+								                <div class="col-md-6">
+								                	<label for="sp_dob" class="control-label col-md-9">Birth Date</label>
+								                    <input type="text" class="form-control ui-wizard-content" name="sp_dob" id="sp_dob" value="" placeholder="MM/DD/YYYY">
+								                </div>
+							            </div>
+						            </div>
+						            
+						            
+						            
+						            <div class="form-group">
+						                
+						                <div class="col-md-12 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Address</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="form-group">
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	{states}
+						                    </select>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                		<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                	</div>	
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+								            </div>        	
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						                	<label for="email_add" class="control-label col-md-12">Email Address</label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content"  name="email_add" id="email_add" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						          <!-- Panel End -->
+						          </div>
+						          </section>  
+						</div>
+						
+						<div style="clear:both;"></div>
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                              
+				                            
+				                            
+						                </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Save &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						        
+						    </div> 
+						    
+						    <input type="hidden" name="selectedItem" id="selectedItem"  value="" >
+						    
+						   </form> 
+            </div>
+        </div>
+    </div>
+</div>       
+<!-- End  Modal box for Edit insurance product-->
+
+
+<!-- Modal Box for Insurance: Family / Individual -->
+
+<div id="modal_add_insuracne_product_family" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Family / Individual </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+	            <form id="insurance_info_family_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+	            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+							         
+				         <div class="col-md-12" style=" margin:0px;" >
+							<section class="panel">
+	                          <div class="panel-body" id="family_insurance_body_div">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" disabled="disabled" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" disabled="disabled" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						           
+						            <div class="form-group">
+						            	<div class="col-md-4 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Coverage Start Date </label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" data-date-format="yyyy-mm-dd" name="family_coverage_date" id="family_coverage_date" value="">
+						                    </div>
+						                </div>
+						                <div class="col-md-4 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Gender</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="family_gender" id="family_gender" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Male">Male</option>
+						                    		<option value="Female">Female</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-4 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Tobacco Use </label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="family_tobacco_use" id="family_tobacco_use" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Yes">Yes</option>
+						                    		<option value= "No">No</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_family_modal" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                        </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						         <!-- Panel end -->
+							  </div>  
+						  </section>
+					  </div>
+				  </div>
+			  </form>        
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- End Modal Box for Insurance: Family / Individual -->	
+
+<!-- Modal Box for Insurance: Group Health -->
+
+<div id="modal_add_insuracne_product_grouphealth" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Group Health </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;">
+	            <form id="insurance_info_grouphealth_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+	            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+							         
+				         <div class="col-md-12" style=" margin:0px;" >
+							<section class="panel">
+	                          <div class="panel-body">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Company name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="company_name_grouphealth" id="company_name_grouphealth">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Industry (Type of Business)</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="industry_grouphealth" id="industry_grouphealth">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            <div class="form-group">
+						                <div class="col-md-7 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Company Address</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="company_address_grouphealth" id="company_address_grouphealth">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-2 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">State</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="state_grouphealth" id="state_grouphealth">
+						                    </div>
+						                </div>
+						                <div class="col-md-3 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Zip</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="zip_grouphealth" id="zip_grouphealth">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						           <div class="form-group">
+						                <div class="col-md-8 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Requested Lines of Coverage</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="checkbox"  class="" value="Health" name="requested_line_grouphealth[]" id="requested_line_grouphealth"> Health 
+						                    <input type="checkbox"  class="" value="Dental" name="requested_line_grouphealth[]" id="requested_line_grouphealth"> Dental 
+						                    <input type="checkbox"  class="" value="Vision" name="requested_line_grouphealth[]" id="requested_line_grouphealth"> Vision 
+						                    <input type="checkbox"  class="" value="Life" name="requested_line_grouphealth[]" id="requested_line_grouphealth"> Life 
+						                    <input type="checkbox"  class="" value="Disability" name="requested_line_grouphealth[]" id="requested_line_grouphealth"> Disability 
+						                    </div>
+						                </div>
+						                <div class="col-md-4 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Current Carrier</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="current_carrier_grouphealth" id="current_carrier_grouphealth">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group">
+						            	<div class="col-md-6 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Current Renewal Date</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content input-datepicker" data-date-format="yyyy-mm-dd" name="renewal_date_grouphealth" id="renewal_date_grouphealth" value="">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Requested Effective Date</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content input-datepicker" data-date-format="yyyy-mm-dd" name="effective_date_grouphealth" id="effective_date_grouphealth" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_grouphealth_modal" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                        </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						         <!-- Panel end -->
+							  </div>  
+						  </section>
+					  </div>
+				  </div>
+			  </form>        
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- End Modal Box for Insurance: Group Health -->	
+
+<!-- Modal Box for Insurance: Life Insurance -->
+
+<div id="modal_add_insuracne_product_life" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Life Insurance & Annuities </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+	            <form id="insurance_info_life_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+	            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+							         
+				         <div class="col-md-12" style=" margin:0px;" >
+							<section class="panel">
+	                          <div class="panel-body">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" disabled="disabled" name="first_name_life" id="first_name_life">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" disabled="disabled" name="last_name_life" id="last_name_life">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						           
+						            <div class="form-group">
+						            	
+						                <div class="col-md-3 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Gender</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="gender_life" id="gender_life" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Male">Male</option>
+						                    		<option value="Female">Female</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						                <div class="col-md-3 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Height</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="height_life" id="height_life" value="">
+						                    </div>
+						                </div>
+						                <div class="col-md-3 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Width</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="width_life" id="width_life" value="">
+						                    </div>
+						                </div>
+						                <div class="col-md-3 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Tobacco Use </label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="tobacco_use_life" id="tobacco_use_life" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Yes">Yes</option>
+						                    		<option value="No">No</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						            </div>
+						          
+						            
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_life_modal" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                        </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						         <!-- Panel end -->
+							  </div>  
+						  </section>
+					  </div>
+				  </div>
+			  </form>        
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- End Modal Box for Insurance: Life Insuraance-->
+
+
+<!-- Modal Box for Insurance: Auto Insurance -->
+
+<div id="modal_add_insuracne_product_auto" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Auto Insurance </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+	            <form id="insurance_info_auto_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+	            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+							         
+				         <div class="col-md-12" style=" margin:0px;" >
+							<section class="panel">
+	                          <div class="panel-body" id="auto_insurance_body_div">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name_auto" id="first_name_auto">
+						                    </div>
+						                </div>
+						                
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name_auto" id="last_name_auto">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						           
+						            <div class="form-group">
+						            	<div class="col-md-4 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Marital Status  </label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="marital_status_auto" id="marital_status_auto" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Single">Single </option>
+						                    		<option value="Married">Married</option>
+						                    		<option value="Divorced">Divorced</option>
+						                    		<option value="Widow">Widow</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						                <div class="col-md-4 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Gender</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="gender_auto" id="gender_auto" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Male">Male</option>
+						                    		<option value="Female">Female</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            <div class="form-group">
+						            	<div class="col-md-3 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Year  </label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" value="" name="year_auto" id="year_auto">
+						                    </div>
+						                </div>
+						                <div class="col-md-3 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Make </label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" value="" name="make_auto" id="make_auto">
+						                    </div>	
+						                </div>
+						                <div class="col-md-3 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Model </label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" value="" name="model_auto" id="model_auto">
+						                    </div>	
+						                </div>
+						                <div class="col-md-3 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Coverage </label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<select name="coverage_auto" id="coverage_auto" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Male">Liability </option>
+						                    		<option value="Female">Full Coverage</option>
+						                    	</select>
+						                    </div>	
+						                </div>
+						                
+						            </div>
+						            
+						            <div class="form-group">
+						            	<div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Relationship to Applicant </label>
+						                	<div class="input-group1 nopadding col-md-12">
+						                    	<input type="text" class="form-control ui-wizard-content" value="" name="model_auto" id="model_auto">
+						                    </div>	
+						                </div>
+						            	<div class="col-md-3 form-group1">
+						                	<label for="street_address" class="control-label col-md-12" style="padding-right: 0px;">Marital Status  </label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="marital_status_auto" id="marital_status_auto" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Single">Single </option>
+						                    		<option value="Married">Married</option>
+						                    		<option value="Divorced">Divorced</option>
+						                    		<option value="Widow">Widow</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						                <div class="col-md-3 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Gender</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    	<select name="gender_auto" id="gender_auto" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Male">Male</option>
+						                    		<option value="Female">Female</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						            
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_auto_modal" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                        </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						         <!-- Panel end -->
+							  </div>  
+						  </section>
+					  </div>
+				  </div>
+			  </form>        
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- End Modal Box for Insurance: Auto Insurance -->
+					            
+<!-- Modal Box for Insurance: Home Insurance -->
+
+<div id="modal_add_insuracne_product_home" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Home Insurance </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+	            <form id="insurance_info_home_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+	            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+							         
+				         <div class="col-md-12" style=" margin:0px;" >
+							<section class="panel">
+	                          <div class="panel-body">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Coverage Start Date</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content input-datepicker" data-date-format="yyyy-mm-dd" name="coverage_date_home" id="coverage_date_home" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_home_modal" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                        </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						         <!-- Panel end -->
+							  </div>  
+						  </section>
+					  </div>
+				  </div>
+			  </form>        
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- End Modal Box for Insurance: Home Insurance -->
+
+<!-- Modal Box for Insurance: Property & Casualty -->
+
+<div id="modal_add_insuracne_product_property" class="modal slide modal_add_insurance">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-plus-sign"></i> Property & Casualty </h4>
+            </div>
+            <div class="modal-body" style="padding:0px;">
+	            <form id="insurance_info_property_add_form" method="post" class="form-horizontal form-box remove-margin ui-formwizard" novalidate="novalidate"><!-- action="http://localhost/trpplus/admin/clientcenter/newapp/save" -->
+	            	<div id="first" class="step" style="background-color: #ebf1f5; padding-top:22px;">
+							         
+				         <div class="col-md-12" style=" margin:0px;" >
+							<section class="panel">
+	                          <div class="panel-body">
+						         <!-- Panel start -->
+						            <div class="form-group">
+						                <div class="col-md-12 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Provide a realistic estimate of your gross revenue for the current financial year</label>
+						                    <div class="input-group1 nopadding col-md-7">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="revenue_property" id="revenue_property">	<small>Revenue should be rounded up to the nearest $1,000</small>
+						                    </div>
+						                </div>
+						             </div>
+						              <div class="" style="clear:both"></div>
+						              <div class="form-group">  
+						                <div class="col-md-12 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Have any claims been filed against your business during the past 3 years</label>
+						                    <div class="input-group1 nopadding col-md-3">
+						                    <select name="past_claims_property" id="past_claims_property" class="form-control ui-wizard-content">
+						                    		<option></option>
+						                    		<option value="Yes">Yes</option>
+						                    		<option value= "No">No</option>
+						                    	</select>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="" style="clear:both"></div> 
+						            <div class="form-group">
+						                <div class="col-md-12 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">Please indicate which types of insurance you would like to receive a quote for: <br> <small>Type of insurance needed (check all that apply)</small></label>
+						                    <div class="input-group1 nopadding col-md-12">
+							                    <div class="input-group1 nopadding col-md-12">
+							                    <input type="checkbox"  class="" value="General Liability" name="insurance_type_property[]" id="insurance_type_property"> General Liability <br>
+							                    <input type="checkbox"  class="" value="Professional Liability" name="insurance_type_property[]" id="insurance_type_property"> Professional Liability <br> 
+							                    <input type="checkbox"  class="" value="Vision" name="insurance_type_property[]" id="insurance_type_property"> Workers Comp  <br>
+							                    <input type="checkbox"  class="" value="Workers Comp" name="insurance_type_property[]" id="insurance_type_property"> Equipment Coverage  <br>
+							                    <input type="checkbox"  class="" value="Contractor Bond" name="insurance_type_property[]" id="insurance_type_property"> Contractor Bond <br>
+							                    <input type="checkbox"  class="" value="Builder's Risk" name="insurance_type_property[]" id="insurance_type_property"> Builder's Risk <br>
+							                    <input type="checkbox"  class="" value="Pollution/Environmental Liability" name="insurance_type_property[]" id="insurance_type_property"> Pollution/Environmental Liability <br>
+							                    <input type="checkbox"  class="" value="Commercial Auto" name="insurance_type_property[]" id="insurance_type_property"> Commercial Auto <br>
+							                    <input type="checkbox"  class="" value="Architects & Engineers" name="insurance_type_property[]" id="insurance_type_property"> Architects & Engineers <br> 
+							                    </div>
+						                    </div>
+						                </div>
+						            </div>
+						            
+						            
+						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
+						           
+						            	<div class="col-md-6 text-left">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_property_modal" >
+				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; 
+				                            </button>
+				                        </div>
+						                <div class="col-md-6 text-right">
+						                	<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next">
+				                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; 
+				                            </button>
+				                            
+				                            <button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value="">
+				                               &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+				                            </button>
+						                </div>
+						                
+						                <div class="" style="clear:both"></div>
+						            </div>
+						            
+						         <!-- Panel end -->
+							  </div>  
+						  </section>
+					  </div>
+				  </div>
+			  </form>   
+			  <input type="hidden" name="temp_selected_item"  id="temp_selected_item">     
+			</div>
+		</div>
+	</div>
+</div>
+	
+<!-- End Modal Box for Insurance: Property & Casualty -->	
+
+<!--script for this page only-->
+   <!-- <script src="../backend/js/flot-chart.js"></script> -->
+   
+   <script>
+   
+   var dataLoadApplicent = [];
+	  
+   // remove selected applicent form right side panel.
+   function removeSelectedApplicentInfo(item){
+	   //console.log($('#selectedApplicent').val());
+	   //console.log($(item).attr('id'));
+	    	   
+	   var text =  $('#selectedApplicent').val();
+	   var sitm = $(item).attr('id');
+	   text = text.replace(","+sitm, "");
+	   $('#selectedApplicent').val(text);
+	   
+	   $(item).parent().parent().remove();
+	   
+	   $('.'+sitm).removeClass("btn-danger");
+	   $('.'+sitm).addClass("btn-success");	
+	   $('.'+sitm).html('<i class="icon-plus"></i>');
+	   $('.'+sitm).attr('onclick','gettablevalue2(this)');
+	   //console.log($('#selectedApplicent').val());
+   }
+   
+   function removeSelectedApplicentInfo2(item){
+	   //console.log($('#selectedApplicent').val());
+	   //console.log($(item).attr('id'));
+	    	   
+	   var text =  $('#selectedApplicent').val();
+	   var sitm = $(item).val();
+	   text = text.replace(","+sitm, "");
+	   $('#selectedApplicent').val(text);
+	  // console.log('#'+sitm);
+	   $('#selected_applicent_div').find("#"+sitm).hide();
+	   
+	   //$('#'+sitm).parent().parent().remove();
+	  // removeSelectedApplicentInfo2(this)
+	  //gettablevalue(this)
+	   $('.'+sitm).removeClass("btn-danger");
+	   $('.'+sitm).addClass("btn-success");
+	   $('.'+sitm).html('<i class="icon-plus"></i>');
+	   $('.'+sitm).attr('onclick','gettablevalue2(this)');
+	   //console.log($('#selectedApplicent').val());
+   }
+   
+   function gettablevalue (item) {
+		//console.log('test1');
+	    var anOpen = [];
+	    var nTr = item.parentNode;
+	    var i = $.inArray(nTr, anOpen);
+	    //console.log($(this).attr('id')); // clicked cell
+	    //console.log(nTr); // clicked row
+	    
+	    var a = $('#selectedApplicent').val();
+	  //  console.log($(item).parent().find("td"));
+	    $(item).parent().find("td").each(function() {
+	       //console.log($(this).html()); // logs each cell value
+	       //console.log($(item).parent().attr('id'));
+	       if($(this).attr('id') == undefined){    	     
+	    	   //$(this).parent().find('input:checkbox:first').attr("checked",true)
+	    	   $(this).parent().find('button').removeClass("btn-success");
+	    	   $(this).parent().find('button').addClass("btn-danger");
+	    	   $(this).parent().find('button').html('<i class="icon-minus"></i>');
+	    	   
+	    	   $(this).parent().find('button').attr('onclick','removeSelectedApplicentInfo2(this)');
+       		}
+	       
+	      if($(this).attr('id') != undefined){
+	    	  
+	    	  if (a.indexOf($(item).attr('id')) > -1) {
+	        		
+	    	  }
+	    	  else{
+	    		  var checkSelectedApplicent = $('#selectedApplicent').val();
+	    		  if(checkSelectedApplicent != ''){
+	    			  var primary = '';
+	    		  }else{
+	    			  var primary = '<span style="color:#83d19f;"> &nbsp; &nbsp;(Primary)</span>';
+	    		  }
+	    		  $("#selected_applicent_div").append('<div  id="'+$(this).attr('id')+'"><div class="col-md-2 minus_appl" style="padding-top: 0px" ><button class="btn btn-danger btn-sm" type="button" value="remove" id="'+$(this).attr('id')+'" onclick="removeSelectedApplicentInfo(this);"><i class="icon-minus"></i></button></div><div class="col-md-10" style="padding-top: 5px">  '+$(this).html()+''+primary+'</div><div style="clear:both;"></div><hr></div>');
+	    	        
+       			  $('#selectedApplicent').val($('#selectedApplicent').val()+','+$(this).attr('id')+"");
+	    	  }
+	      }
+	    });
+	 }
+   
+   function gettablevalue2 (item) {
+		//console.log('test1');
+	    var anOpen = [];
+	    var nTr = item.parentNode;
+	    var i = $.inArray(nTr, anOpen);
+	    //console.log($(item).attr('id')); // clicked cell
+	    //console.log(nTr); // clicked row
+	    var id = $(item).attr('id');
+	    var a = $('#selectedApplicent').val();
+	   // console.log($(item).find("td"));
+	    //$(item).parent().find("tr").each(function() {
+	    $(".tr"+id).find("td").each(function() {
+	     //  console.log($(this).html()); // logs each cell value
+	       //console.log($(item).parent().attr('id'));
+	       if($(this).attr('id') == undefined){    	     
+	    	   //$(this).parent().find('input:checkbox:first').attr("checked",true)
+	    	   $(this).parent().find('button').removeClass("btn-success");
+	    	   $(this).parent().find('button').addClass("btn-danger");
+	    	   $(this).parent().find('button').html('<i class="icon-minus"></i>');
+	    	   
+	    	   $(this).parent().find('button').attr('onclick','removeSelectedApplicentInfo2(this)');
+      		}
+	       
+	      if($(this).attr('id') != undefined){
+	    	  
+	    	  if (a.indexOf($(item).attr('id')) > -1) {
+	        		
+	    	  }
+	    	  else{
+	    		  
+	    		  var checkSelectedApplicent = $('#selectedApplicent').val();
+	    		  if(checkSelectedApplicent != ''){
+	    			  var primary = '';
+	    		  }else{
+	    			  var primary = '<span style="color:#83d19f;"> &nbsp; &nbsp;(Primary)</span>';
+	    		  }
+	    		  
+	    		  $("#selected_applicent_div").append('<div  id="'+$(this).attr('id')+'"><div class="col-md-2 minus_appl" style="padding-top: 0px" ><button class="btn btn-danger btn-sm" type="button" value="remove" id="'+$(this).attr('id')+'" onclick="removeSelectedApplicentInfo(this);"><i class="icon-minus"></i></button></div><div class="col-md-10" style="padding-top: 5px">  '+$(this).html()+''+primary+'</div><div style="clear:both;"></div><hr></div>');
+	    	        
+      			  $('#selectedApplicent').val($('#selectedApplicent').val()+','+$(this).attr('id')+"");
+	    	  }
+	      }
+	    });
+	 }
+	    
+	  function setSelectedItem(){
+		  var tempitem = $('#temp_selected_item').val();
+			
+		  var selectedItem = $('#selectedItem').val();
+			/*$('.showaddForm').removeClass('btn-info');
+	 		$('.showaddForm').addClass('btn-success');
+			$('.showaddForm').removeAttr('disabled');
+			$('.showaddForm').html('<i class="icon-plus-sign"></i> &nbsp;  Add');
+	 		*/
+			//$('.uniq_package_danger').remove();
+	 		//console.log(tempitem);
+	 		$( ".showaddForm" ).each(function() {
+	 			var item = $(this).attr('id');
+	 		
+				if(item == tempitem){
+					
+					$(this).removeClass('btn-success');
+			 		$(this).addClass('btn-info');
+					$(this).attr('disabled','disabled');
+					$(this).html('<i class="icon-ok"></i> Added');
+					  
+					
+					$('#selectedItem').val(selectedItem+','+item);
+					
+					
+					  //console.log(item);
+					  
+					//var selectItem = $("#selectedItem").val();
+					var items = item.split('~');
+						
+					if(items[0] == 'Family Individual'){
+						$("#modal_add_insuracne_product_family").modal('hide');
+					}
+					else if(items[0] == 'Group Health'){
+						$("#modal_add_insuracne_product_grouphealth").modal('hide');
+					}
+					else if(items[0] == 'Life Insurance & Annuities'){
+						$("#modal_add_insuracne_product_life").modal('hide');
+					}
+					else if(items[0] == 'Auto Insurance'){
+						$("#modal_add_insuracne_product_auto").modal('hide');
+					}
+					else if(items[0] == 'Home Insurance'){
+						$("#modal_add_insuracne_product_home").modal('hide');
+					}
+					else if(items[0] == 'Property & Casualty'){
+						$("#modal_add_insuracne_product_property").modal('hide');
+					}
+				}
+				//$(this).addClass( "foo" );
+			});  
+	  }
+   
+  $(function(){
+	  
+	  $("#finishedBtn").click(function() {
+			//$("#modal_success2").modal('show');
+			window.location.href = "index.php/admin/services/insurancePolicies";
+		});
+	  
+	  $(".showaddForm").click(function() {
+		  
+		  var item = $(this).attr('id');
+		  //console.log(item);
+		  
+		//var selectItem = $("#selectedItem").val();
+		var items = item.split('~');
+			
+		if(items[0] == 'Family Individual'){
+			
+			$.post("index.php/admin/services/getSelectedApplicentInfo", {
+       			senddata : 'yes',
+       			selectedApplicent : $("#selectedApplicent").val(),
+     		}, function(data) {
+     			if (typeof data === 'object') {
+     			var result = data;	
+					$('.step1btn').show();
+					$('.step1load').hide();
+					var html = '';
+					// start
+					//console.log(result.length);
+					for(var i = 0 ; i < result.length ; i++){
+						
+						 var obj = result[i];
+				html+= '<div class="form-group">';
+					html+= '<div class="col-md-6 form-group1">';
+						html+= '<label for="first_name" class="control-label col-md-12">First Name</label>';
+						html+= '<div class="input-group1 nopadding col-md-12">';
+							html+= '<input type="text"  class="form-control ui-wizard-content" disabled="disabled" value="'+obj.first_name+'" name="first_name" id="first_name">';
+						html+= '</div>';
+					html+= '</div>';
+		                
+					html+= '<div class="col-md-6 form-group1">';
+						html+= '<label for="last_name" class="control-label col-md-12">Last Name</label>';
+						html+= '<div class="input-group1 nopadding col-md-12">';
+							html+= '<input type="text" class="form-control ui-wizard-content" disabled="disabled" value="'+obj.last_name+'" name="last_name" id="last_name">';
+						html+= '</div>';
+					html+= '</div>';
+				html+= '</div>';
+		            
+		           
+				html+= '<div class="form-group">';
+					html+= '<div class="col-md-4 form-group1">';
+						html+= '<label for="street_address" class="control-label col-md-12">Coverage Start Date </label>';
+						html+= '<div class="input-group1 nopadding col-md-12">';
+							html+= '<input type="text" class="form-control ui-wizard-content input-datepicker family_coverage_date" data-date-format="yyyy-mm-dd" name="family_coverage_date[]" id="family_coverage_date" value="">';
+						html+= '</div>';
+					html+= '</div>';
+					html+= '<div class="col-md-4 form-group1">';
+						html+= '<label for="first_name" class="control-label col-md-12">Gender</label>';
+						html+= '<div class="input-group1 nopadding col-md-12">';
+						html+= '<select name="family_gender[]" id="family_gender" class="form-control family_gender ui-wizard-content">';
+							html+= '<option></option>';
+							html+= '<option value="Male">Male</option>';
+							html+= '<option value="Female">Female</option>';
+						html+= '</select>';
+					html+= '</div>';
+				html+= '</div>';
+		                
+					html+= '<div class="col-md-4 form-group1">';
+						html+= '<label for="last_name" class="control-label col-md-12">Tobacco Use </label>';
+							html+= '<div class="input-group1 nopadding col-md-12">';
+		                    	html+= '<select name="family_tobacco_use[]" id="family_tobacco_use" class="form-control ui-wizard-content family_tobacco_use">';
+		                    		html+= '<option></option>';
+		                    		html+= '<option value="Yes">Yes</option>';
+		                    		html+= '<option value= "No">No</option>';
+		                    	html+= '</select>';
+		                    html+= '</div>';
+		             html+= '</div>';
+		      html+= '</div>';
+			}
+					html+= '<div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">';
+			           
+					html+= '<div class="col-md-6 text-left">';
+						html+= '<button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_family_modal" > &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; </button>';
+					html+= '</div>';
+					html+= '<div class="col-md-6 text-right">';
+					html+= '<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next"> &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp; </button>';
+                        
+					html+= '<button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value=""> &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   </button>';
+					html+= '</div>';
+	                
+					html+= '<div class="" style="clear:both"></div>';
+					html+= '</div>';
+	            
+					//end
+					//$('#insurance_applicent').hide();
+					//$('.tab-pane').removeClass('active');
+						//$('#insurance').show().addClass('active');	
+						//$("html, body").animate({ scrollTop: 0 }, 300);
+					$("#family_insurance_body_div").empty().append(html);
+					$('.input-datepicker').datepicker();
+					$("#modal_add_insuracne_product_family").modal('show');
+					$('#temp_selected_item').val(item);
+					
+					$("#cancel_add_insurance_family_modal").click(function() {
+						$("#modal_add_insuracne_product_family").modal('hide');	
+				  });
+     			}
+     		}, "json");
+
+     		return false;
+		}
+		else if(items[0] == 'Group Health'){
+			$("#modal_add_insuracne_product_grouphealth").modal('show');
+		}
+		else if(items[0] == 'Life Insurance & Annuities'){
+			
+			// start
+			$.post("index.php/admin/services/getSelectedApplicentInfo", {
+       			senddata : 'yes',
+       			selectedApplicent : $("#selectedApplicent").val(),
+     		}, function(data) {
+     			if (typeof data === 'object') {
+     			var result = data;	
+					$('.step1btn').show();
+					$('.step1load').hide();
+					var html = '';
+					// start
+					//console.log(result.length);
+					
+						
+						 var obj1 = result[0];
+						  
+						 $('#first_name_life').val(obj1.first_name);
+						 $('#last_name_life').val(obj1.last_name);
+				
+					//$("#family_insurance_body_div").empty().append(html);
+					//$('.input-datepicker').datepicker();
+					$("#modal_add_insuracne_product_life").modal('show');
+					$('#temp_selected_item').val(item);
+     			}
+     		}, "json");
+
+     		return false;
+			// end
+			//$("#modal_add_insuracne_product_life").modal('show');
+		}
+		else if(items[0] == 'Auto Insurance'){
+			
+			// start
+			$.post("index.php/admin/services/getSelectedApplicentInfo", {
+       			senddata : 'yes',
+       			selectedApplicent : $("#selectedApplicent").val(),
+     		}, function(data) {
+     			if (typeof data === 'object') {
+     			var result = data;	
+					$('.step1btn').show();
+					$('.step1load').hide();
+					var html = '';
+					// start
+					//console.log(result.length);
+					var htm='';
+					var obj2 = result[0];
+					
+					htm += '<div class="form-group">';
+						htm += '<div class="col-md-6 form-group1">';
+							htm += '<label for="first_name" class="control-label col-md-12">First Name</label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text"  class="form-control ui-wizard-content" value="'+obj2.first_name+'" disabled="disabled" name="first_name_auto" id="first_name_auto">';
+							htm += '</div>';
+						htm += '</div>';
+		                
+						htm += '<div class="col-md-6 form-group1">';
+							htm += '<label for="last_name" class="control-label col-md-12">Last Name</label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text" class="form-control ui-wizard-content" value="'+obj2.last_name+'" disabled="disabled" name="last_name_auto" id="last_name_auto">';
+							htm += '</div>';
+						htm += '</div>';
+					htm += '</div>';
+		            
+					htm += '<input type="hidden" class="form-control ui-wizard-content relation_auto" value="" name="relation_auto[]" id="relation_auto">';
+					
+					htm += '<div class="form-group">';
+						htm += '<div class="col-md-4 form-group1">';
+							htm += '<label for="street_address" class="control-label col-md-12">Marital Status  </label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<select name="marital_status_auto[]" id="marital_status_auto" class=" marital_status_auto form-control ui-wizard-content">';
+									htm += '<option></option>';
+									htm += '<option value="Single">Single </option>';
+									htm += '<option value="Married">Married</option>';
+									htm += '<option value="Divorced">Divorced</option>';
+									htm += '<option value="Widow">Widow</option>';
+								htm += '</select>';
+							htm += '</div>';
+						htm += '</div>';
+						htm += '<div class="col-md-4 form-group1">';
+							htm += '<label for="first_name" class="control-label col-md-12">Gender</label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<select name="gender_auto[]" id="gender_auto" class=" gender_auto form-control ui-wizard-content">';
+									htm += '<option></option>';
+									htm += '<option value="Male">Male</option>';
+									htm += '<option value="Female">Female</option>';
+								htm += '</select>';
+							htm += '</div>';
+						htm += '</div>';
+					 htm += '</div>';
+		            
+					htm += '<div class="form-group">';
+					htm += '<div class="col-md-3 form-group1">';
+						htm += '<label for="street_address" class="control-label col-md-12">Year  </label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text" class="form-control ui-wizard-content" value="" name="year_auto" id="year_auto">';
+							htm += '</div>';
+					htm += '</div>';
+					htm += '<div class="col-md-3 form-group1">';
+						htm += '<label for="first_name" class="control-label col-md-12">Make </label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text" class="form-control ui-wizard-content" value="" name="make_auto" id="make_auto">';
+							htm += '</div>';	
+					htm += '</div>';
+					htm += '<div class="col-md-3 form-group1">';
+						htm += '<label for="first_name" class="control-label col-md-12">Model </label>';
+						htm += '<div class="input-group1 nopadding col-md-12">';
+							htm += '<input type="text" class="form-control ui-wizard-content" value="" name="model_auto" id="model_auto">';
+						htm += '</div>';	
+					htm += '</div>';
+					htm += '<div class="col-md-3 form-group1">';
+						htm += '<label for="first_name" class="control-label col-md-12">Coverage </label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<select name="coverage_auto" id="coverage_auto" class="form-control ui-wizard-content">';
+									htm += '<option></option>';
+									htm += '<option value="Liability">Liability </option>';
+									htm += '<option value="Full Coverage">Full Coverage</option>';
+								htm += '</select>';
+							htm += '</div>';	
+					htm += '</div>';
+		                
+					htm += '</div>';
+		            
+					for(var i = 1 ; i < result.length ; i++){
+						
+						var obj3 = result[i];
+						
+						htm += '<div class="form-group">';
+						htm += '<div class="col-md-6 form-group1">';
+							htm += '<label for="first_name" class="control-label col-md-12">First Name</label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text"  class="form-control ui-wizard-content" value="'+obj3.first_name+'" disabled="disabled" name="first_name_auto" id="first_name_auto">';
+							htm += '</div>';
+						htm += '</div>';
+		                
+						htm += '<div class="col-md-6 form-group1">';
+							htm += '<label for="last_name" class="control-label col-md-12">Last Name</label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text" class="form-control ui-wizard-content" value="'+obj3.last_name+'" disabled="disabled" name="last_name_auto" id="last_name_auto">';
+							htm += '</div>';
+						htm += '</div>';
+					htm += '</div>';
+					
+					
+					htm += '<div class="form-group">';
+						htm += '<div class="col-md-6 form-group1">';
+							htm += '<label for="first_name" class="control-label col-md-12">Relationship to Applicant </label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<input type="text" class="form-control ui-wizard-content relation_auto" value="" name="relation_auto[]" id="relation_auto">';
+							htm += '</div>';	
+						htm += '</div>';
+						htm += '<div class="col-md-3 form-group1">';
+							htm += '<label for="street_address" class="control-label col-md-12" style="padding-right: 0px;">Marital Status  </label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<select name="marital_status_auto[]" id="marital_status_auto" class="marital_status_auto form-control ui-wizard-content">';
+									htm += '<option></option>';
+									htm += '<option value="Single">Single </option>';
+									htm += '<option value="Married">Married</option>';
+									htm += '<option value="Divorced">Divorced</option>';
+									htm += '<option value="Widow">Widow</option>';
+								htm += '</select>';
+							htm += '</div>';
+						htm += '</div>';
+						htm += '<div class="col-md-3 form-group1">';
+							htm += '<label for="first_name" class="control-label col-md-12">Gender</label>';
+							htm += '<div class="input-group1 nopadding col-md-12">';
+								htm += '<select name="gender_auto[]" id="gender_auto" class="gender_auto form-control ui-wizard-content">';
+									htm += '<option></option>';
+									htm += '<option value="Male">Male</option>';
+									htm += '<option value="Female">Female</option>';
+								htm += '</select>';
+							htm += '</div>';
+						htm += '</div>';
+					htm += '</div>';
+		            
+					} // end for loap for more applicent
+		            
+					htm += '<div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">';
+		           
+						htm += '<div class="col-md-6 text-left">';
+							htm += '<button  class="btn btn-danger btn-lg" type="button" id="cancel_add_insurance_auto_modal" > &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Cancel &nbsp; &nbsp; </button>';
+							htm += '</div>';
+						htm += '<div class="col-md-6 text-right">';
+							htm += '<button  class=" btn btn-success btn-lg step1btn" type="submit" id="step1" value="Next"> &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Add &nbsp; &nbsp;  </button>';
+		                          
+							htm += '<button  style="display:none;" class=" btn btn-success btn-lg step1load" type="button" id="" value=""> &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   </button>';
+						htm += '</div>';
+		                
+						htm += '<div class="" style="clear:both"></div>';
+					htm += '</div>';
+		            
+					$("#auto_insurance_body_div").empty().append(htm);
+					//$('.input-datepicker').datepicker();
+					$("#modal_add_insuracne_product_auto").modal('show');
+					
+					$('#temp_selected_item').val(item);
+					
+					$("#cancel_add_insurance_auto_modal").click(function() {
+						$("#modal_add_insuracne_product_auto").modal('hide');	
+				  	});
+     			}
+     		}, "json");
+
+     		return false;
+			// end
+			
+			//$("#modal_add_insuracne_product_auto").modal('show');
+		}
+		else if(items[0] == 'Home Insurance'){
+			$("#modal_add_insuracne_product_home").modal('show');
+		}
+		else if(items[0] == 'Property & Casualty'){
+			$("#modal_add_insuracne_product_property").modal('show');
+		}
+		
+		 
+		$('#temp_selected_item').val(item);
+		
+		/*
+		$('.showaddForm').removeClass('btn-info');
+ 		$('.showaddForm').addClass('btn-success');
+		$('.showaddForm').removeAttr('disabled');
+		$('.showaddForm').html('<i class="icon-plus-sign"></i> &nbsp;  Add');
+ 		//$('.uniq_package_danger').remove();
+ 		
+ 		
+ 		$(this).removeClass('btn-success');
+ 		$(this).addClass('btn-info');
+		$(this).attr('disabled','disabled');
+		$(this).html('<i class="icon-ok"></i> Added');
+	
+		  
+		$('#selectedItem').val(item);
+		  */
+		  
+		 // $("#modal_add_insuracne_product").modal('show');	
+	  });
+	  
+	  $("#cancel_add_insurance").click(function() {
+			$("#modal_add_insuracne_product").modal('hide');	
+	  });
+	  
+	  $("#cancel_add_insurance_family_modal").click(function() {
+			$("#modal_add_insuracne_product_family").modal('hide');	
+	  });
+	  
+	  $("#cancel_add_insurance_grouphealth_modal").click(function() {
+			$("#modal_add_insuracne_product_grouphealth").modal('hide');	
+	  });
+	  
+	  $("#cancel_add_insurance_life_modal").click(function() {
+			$("#modal_add_insuracne_product_life").modal('hide');	
+	  });
+	  
+	  $("#cancel_add_insurance_auto_modal").click(function() {
+			$("#modal_add_insuracne_product_auto").modal('hide');	
+	  });
+	  
+	  $("#cancel_add_insurance_home_modal").click(function() {
+			$("#modal_add_insuracne_product_home").modal('hide');	
+	  });
+	  
+	  $("#cancel_add_insurance_property_modal").click(function() {
+			$("#modal_add_insuracne_product_property").modal('hide');	
+	  });
+	 
+	  
+	     
+          
+         
+	  
+	  // For spouse show / hide
+	  var checkbox = $('#add_spouse'); 
+      var dependent = $('#dependent-box');
+      if (checkbox.attr('checked') !== undefined){
+         dependent.show();
+      } else {
+          dependent.hide();
+      }
+      
+      checkbox.change(function(e){
+         dependent.toggle(); 
+      });
+      
+      $("#adduser").click(function() {
+    	  $("#modal_add_insuracne_product").modal('show');
+		});
+      
+
+		$("#back1").click(function() {
+			$('#insurance').hide();
+			$('.tab-pane').removeClass('active');
+			$('#insurance_applicent').show().addClass('active');	
+			//calcualteTotalpayment();
+			$("html, body").animate({ scrollTop: 0 }, 300);
+		});
+		
+		function myGetValue(fieldName)
+		{
+		    var values =  [];   
+		    $('input[name="'+fieldName+'[]"]:checked').each(function(i) {
+		        values[i] = $(this).val();
+		    });
+		    return values.join(",");
+		}
+		
+		$("#step2").click(function() {
+			
+			$('.step1btn').hide();
+			$('.step1load').show();
+			
+			 
+ 	    	var family_gender1 =  []; // myGetValue('family_gender');
+ 	    	
+ 	    	$(".family_gender").each(function(index, elem) {
+ 	    		family_gender1.push(elem.value);
+ 	    	});
+ 	    	
+ 	    	var family_coverage_date1 = []; // myGetValue('family_coverage_date'); 
+ 	    	$(".family_coverage_date").each(function(index, elem) {
+ 	    		family_coverage_date1.push(elem.value);
+ 	    	});
+ 	    	
+ 	    	var family_tobacco_use1 =  []; //myGetValue('family_tobacco_use');
+ 	    	$(".family_tobacco_use").each(function(index, elem) {
+ 	    		family_tobacco_use1.push(elem.value);
+ 	    	});
+ 	    	
+ 	    	var marital_status_auto1 = [];
+ 	    	$(".marital_status_auto").each(function(index, elem) {
+ 	    		marital_status_auto1.push(elem.value);
+ 	    	});
+ 	    	
+			var gender_auto1 = [];
+			$(".gender_auto").each(function(index, elem) {
+				gender_auto1.push(elem.value);
+ 	    	});
+ 	    	
+			var relation_auto1 = [];
+			$(".relation_auto").each(function(index, elem) {
+				relation_auto1.push(elem.value);
+ 	    	});
+ 	    	
+			var insuranceTypeProperty = myGetValue('insurance_type_property');
+ 	    	var requested_line_grouphealth1 = myGetValue('requested_line_grouphealth');
+ 	    	
+   		 	$.post("index.php/admin/services/addinsurance", {
+       		 	senddata : 'yes',
+       		 	selectedItem : $("#selectedItem").val(),
+ 				selectedApplicent : $("#selectedApplicent").val(),
+ 				
+ 			
+ 	    	family_gender :family_gender1,// $('input[name="family_gender[]"]').map(function(){return $(this).val();}).get(), //$('#family_gender').val(),
+ 	    	family_tobacco_use :  family_tobacco_use1, //$('input[name="family_tobacco_use[]"]').map(function(){return $(this).val();}).get(), // $('#family_tobacco_use').val(),	
+ 	    	family_coverage_date : family_coverage_date1, //$('input[name="family_coverage_date[]"]').map(function(){return $(this).val();}).get(),   //$('#family_coverage_date').val(),
+ 	    	
+ 			company_name_grouphealth : $('#company_name_grouphealth').val(),
+			industry_grouphealth: $('#industry_grouphealth').val(),
+			company_address_grouphealth: $('#company_address_grouphealth').val(),
+			state_grouphealth: $('#state_grouphealth').val(),
+			zip_grouphealth: $('#zip_grouphealth').val(),
+			requested_line_grouphealth: requested_line_grouphealth1, //$('#requested_line_grouphealth').val(),
+			current_carrier_grouphealth: $('#current_carrier_grouphealth').val(),
+			renewal_date_grouphealth: $('#renewal_date_grouphealth').val(),
+			effective_date_grouphealth:$('#effective_date_grouphealth').val(),
+		 	
+			gender_life : $('#gender_life').val(),
+			height_life : $('#height_life').val(),
+			width_life: $('#width_life').val(),
+			tobacco_use_life: $('#tobacco_use_life').val(),
+			
+			marital_status_auto : marital_status_auto1, //$('#marital_status_auto').val(),
+			gender_auto : gender_auto1, // $('#gender_auto').val(),
+			relation_auto: relation_auto1, // $('#relation_auto').val(),
+			year_auto: $('#year_auto').val(),
+			make_auto : $('#make_auto').val(),
+			model_auto: $('#model_auto').val(),
+			coverage_auto: $('#coverage_auto').val(),
+  		 	
+   			coverage_date_home : $('#coverage_date_home').val(),
+  		 	
+   			revenue_property: $('#revenue_property').val(),
+   			past_claims_property:$('#past_claims_property').val(),
+   			insurance_type_property: insuranceTypeProperty, //$('#insurance_type_property').val(),
+   		 	
+     		}, function(data) {
+     			if (data) {
+     				
+					$('.step1btn').show();
+					$('.step1load').hide();
+					
+					// generate review page here
+					var htm = '';
+					var selectItem = $("#selectedItem").val();
+					selectItem = selectItem.substring(1); 
+					var items = selectItem.split(',');
+					
+					htm += '<div id="cart_details1" style="padding:8px 15px;">';    
+        	
+					for(var i = 0;  i < items.length; i++){
+						
+						var item = items[i].split('~');
+						//console.log(item[0]);
+						htm += '<div class="col-md-3 service_img">';
+			        	htm += '	<div style="color:#525a5e;  padding-top:10px; margin-bottom: 5px" class="symbol gray">';
+			        	htm += '<i class="'+item[1]+'"></i>';
+			        	htm += '	</div>';
+			        	htm += '</div>';
+			        	htm += '<div class="col-md-9 service_title_2">';
+			        	htm += '	<h4>'+item[0]+' </h4>';
+			        	htm += '</div>';
+			        	htm += '<div class="" style="clear:both"></div>';
+					}
+					
+		        	//htm += '<div class="col-md-2 price_2 text-right">';
+		        	//htm += '	<h5>$'+totalFees+'</h5>';
+		        	//htm += '</div>';
+		        	
+		        	
+		        	
+		        	htm += '</div>';
+		        	//htm += '<hr style="margin: 20px 10px;">';
+        	
+		        	$("#cartdetails").empty().append(htm);
+		        	
+		        	$('.minus_appl').hide();
+		        	
+		        	$('#selected_appl_sum').html($('#selected_applicent_div').html());
+		        	
+					// end generate review page here
+					
+					$('#insurance').hide();
+					$('.tab-pane').removeClass('active');
+					$('#insurance_review').show().addClass('active');	
+					//calcualteTotalpayment();
+					$("html, body").animate({ scrollTop: 0 }, 300);
+     			}
+     		}, "json");
+
+     		return false;
+     		
+			
+		});
+      
+      // End for spouse show / hide
+      
+      // for field masking 
+      	$("#ss_number").mask("999-99-9999");
+        $("#cell_phone").mask("(999) 999-9999");
+        $("#dob").mask("99/99/9999");
+        $("#sp_ss_number").mask("999-99-9999");
+        $("#sp_dob").mask("99/99/9999");
+        
+     // End for field masking   
+        
+      // For form submit with validation
+      
+           /* Initialize Form Validation */
+                $('#insurance_info_add_form1').validate({
+                    errorClass: 'help-block',
+                    errorElement: 'span',
+                    errorPlacement: function(error, e) {
+                        e.parents('.form-group1 > div').append(error);
+                    },
+                    highlight: function(e) {
+                        $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+                        $(e).closest('.help-block').remove();
+                    },
+                    success: function(e) {
+                        // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                        e.closest('.form-group1').removeClass('has-success has-error');
+                        e.closest('.help-block').remove();
+                    },
+                    rules: {
+                    	selectApplicent: { required: true },
+                    },
+                    messages: {
+                    	selectApplicent: { required: 'Please Select any one Applicent.'},
+                    },
+                    submitHandler: function(form) {
+                    	$('.step1btn').hide();
+						$('.step1load').show();
+               		 	$.post("index.php/admin/services/addinsuranceNext", {
+	               			senddata : 'yes',
+	             		}, function(data) {
+	             			if (data) {
+	             				
+								$('.step1btn').show();
+								$('.step1load').hide();
+								
+								$('#insurance_applicent').hide();
+								$('.tab-pane').removeClass('active');
+ 								$('#insurance').show().addClass('active');	
+ 								$("html, body").animate({ scrollTop: 0 }, 300);
+	             			}
+	             		}, "json");
+	
+	             		return false;
+                    }
+                });
+        /**/
+        
+      // End for form submit with validation
+      
+       // For form submit with validation
+      
+           /* Initialize Form Validation */
+                $('#insurance_info_add_form').validate({
+                    errorClass: 'help-block',
+                    errorElement: 'span',
+                    errorPlacement: function(error, e) {
+                        e.parents('.form-group1 > div').append(error);
+                    },
+                    highlight: function(e) {
+                        $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+                        $(e).closest('.help-block').remove();
+                    },
+                    success: function(e) {
+                        // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                        e.closest('.form-group1').removeClass('has-success has-error');
+                        e.closest('.help-block').remove();
+                    },
+                    rules: {
+                    	first_name: { required: true },
+                        last_name: { required: true},
+                        ss_number: { required: true},
+                        dob: { required: true},
+                        street_address: { required: true},
+                        city: { required: true},
+                        state: { required: true},
+                        zip_code: { required: true, maxlength: 5,  minlength: 5, number: true},
+                        cell_phone: { required: true},
+                        email_add: { required: true, email: true}
+                        
+                    },
+                    messages: {
+                    	first_name: { required: 'Please enter a first name'},
+                        last_name: { required: 'Please enter a last name'},
+                        ss_number: { required: 'Please enter SSN number '},
+                        dob: { required: 'Please enter your DOB'},
+                        street_address: { required: 'Please enter Address'},
+                        city: { required: 'Please enter city'},
+                        state: { required: 'Please select state'},
+                        zip_code: { required: 'Please enter zip code',
+                        			maxlength: 'Please enter no more then 5 digit.',
+                        			minlength: 'Please enter at least 5 digit.'},
+                        cell_phone: { required: 'Please enter phone number'},
+                        email_add: { required: 'Please enter a email address',
+                        	 		email: 'Please enter a valid email address'},
+                       
+                        
+                    },
+                    submitHandler: function(form) {
+                    	$('.step1btn').hide();
+						$('.step1load').show();
+               		 	$.post("index.php/admin/services/addNewApplicent", {
+	               		 	senddata : 'yes',
+	        				 
+	         				first_name : $("#first_name").val(),
+	         				last_name : $("#last_name").val(),
+	         				ss_number : $("#ss_number").val(),
+	         				dob : $("#dob").val(),
+	         				
+	         				add_spouse :  $("#add_spouse").is(':checked') ? 1 : 0,
+	         				sp_first_name : $("#sp_first_name").val(),
+	         				sp_last_name : $("#sp_last_name").val(),
+	         				sp_ss_number : $("#sp_ss_number").val(),
+	         				sp_dob : $("#sp_dob").val(),
+	         				
+	         				street_address : $("#street_address").val(),
+	         				/*street_address2 : $("#street_address2").val(),*/
+	         				
+	         				city : $("#city").val(),
+	         				state : $("#state").val(),
+	         				zip_code : $("#zip_code").val(),
+	         				/*country : $("#country").val(),*/
+	         				cell_phone : $("#cell_phone").val(),
+	         				email_add : $("#email_add").val(),
+	         				//selectedItem : $("#selectedItem").val()
+	             		}, function(data) {
+	             			//if (typeof (data) == 'object') {
+	             			if (data != ''){
+	             				
+								$('.step1btn').show();
+								$('.step1load').hide();
+								
+								var first_name1 = $("#first_name").val();
+		         				var last_name1 = $("#last_name").val();
+		         				var ss_number1 = $("#ss_number").val();
+		         				
+		         				var dataarray = ['<input type="checkbox" name="selecctall" id="selecctall" value="">',first_name1+' '+last_name1+' (XXX-XX-'+ss_number1.substring(7,11)+')'];
+		         				
+		         				//$('#all_applicent_apptable').dataTable().fnAddData(dataarray);
+		         				
+		         				var row = '<tr class="tr'+data+'"><td><button onclick="removeSelectedApplicentInfo2(this);" id="'+data+'" value="'+data+'" type="button" class="btn btn-danger btn-sm '+data+'"><i class="icon-minus"></i></button></td><td onclick="javascript:gettablevalue(this);" id="'+data+'">'+dataarray[1]+')</td></tr>';
+		         				$('#all_applicent_apptable tbody').append(row);
+		         				
+		         				$("#selected_applicent_div").append('<div id="'+data+'"><div class="col-md-2 minus_appl"  style="padding-top: 0px" ><button class="btn btn-danger btn-sm" type="button" value="remove" id="'+data+'" onclick="removeSelectedApplicentInfo(this);"><i class="icon-minus"></i></button></div><div class="col-md-10" style="padding-top: 5px">  '+dataarray[1]+'</div><div style="clear:both;"></div><hr></div>');
+		         				//$("#selected_applicent_div").append('<div class="col-md-2"> <button class="btn btn-danger" type="button" value="remove" id="" onclick="removeSelectedProductInfo(this);"><i class="icon-minus"></i></button></div><div class="col-md-10">  '+data[0]+'</div>');
+		         				
+								$('#selectedApplicent').val($('#selectedApplicent').val()+','+data+"");
+								
+								$("#modal_add_insuracne_product").modal('hide');	
+	             			}
+	             		}, "json");
+	
+	             		return false;
+                    }
+                });
+        /**/
+        
+        
+          
+      // End for form submit with validation
+     
+      /*
+      $('.multiselectapplicent').multiselect({
+    			  includeSelectAllOption: false,
+    			  enableFiltering: true,
+    			  filterBehavior: 'both',
+    			  enableCaseInsensitiveFiltering: true,
+    			  filterPlaceholder: 'Search Applicent',
+    			  buttonWidth: '400px',
+    			  maxHeight: 300,
+    			  buttonClass: ' btn btn-info ',
+    			  selectedClass: null,
+    			  dropRight: false,
+    			  buttonText: function(options) {
+    		            if (options.length == 0) {
+    		            	var selecteddiv = '';
+    		                options.each(function() {
+    		                    selecteddiv += $(this).text() + '<br>';
+    		                });
+    		                $("#selected_applicent_div").empty().append(selecteddiv);
+    		                
+    		                return 'None selected <b class="caret"></b>';
+    		            }
+    		            else if (options.length > 2) {
+    		            	var selecteddiv = '';
+    		                options.each(function() {
+    		                    selecteddiv += $(this).text() + '<br>';
+    		                });
+    		                $("#selected_applicent_div").empty().append(selecteddiv);
+    		                
+    		                return options.length + ' selected  <b class="caret"></b>';
+    		            }
+    		            else {
+    		                var selected = '';
+    		                var selecteddiv = '';
+    		                options.each(function() {
+    		                    selected += $(this).text() + ', ';
+    		                    selecteddiv += $(this).text() + '<br>';
+    		                   
+    		                });
+    		                $("#selected_applicent_div").empty().append(selecteddiv);
+    		                return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
+    		            }
+    		        },
+    		        onChange: function(element, checked) {
+    		            if(checked == true) {
+    		                // action taken here if true
+    		              //  var selected = '';
+    		                
+    		               // console.log(element.length);
+    		               
+    		                $('#selectedApplicent').val($('.multiselectapplicent').val());
+    		                
+    		                
+    		            }
+    		            else if (checked == false) {
+    		               // if (confirm('Do you wish to deselect the element?')) {
+    		                    // action taken here
+    		                //	$("#selected_applicent_div").append($("#multiselectapplicent").multiselect('select', element.val()));
+    		               // }
+    		               // else {
+    		                	//$("#selected_applicent_div").append(element.val());
+    		               // }
+    		            }
+    		        }
+
+    			  
+    		  });*/
+	  
+      /*$('#all_applicent_apptable').dataTable( {
+       	
+   			"bAutoWidth": false, 
+   			"bLengthChange": false,
+         		"aoColumns": [
+         		            { sWidth: '10%' },
+         		            { sWidth: '90%' },
+         		           
+         		            ]
+     		
+       });
+      
+      */
+      
+      $("#search_query").keyup(function(event){
+    	  event.preventDefault();
+    	  search_ajax_way();
+   	  });
+      
+      function search_ajax_way(){
+    	// $("#search_results").show();
+    	 var search_this=$("#search_query").val();
+    	 var selectedCust = $('#selectedApplicent').val();
+    	 $.post("index.php/admin/services/searchApplicent", {senddata:'yes', searchit : search_this, selectedCust :selectedCust}, function(data){
+    	 	$("#all_applicent_apptable").html(data);
+    	 	 
+    	 }, "json");
+    		
+  		return false;
+       }
+      
+      //$('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+      $('.dataTables_filter').css('width','100%');
+      $('.dataTables_filter input').removeAttr('placeholder');
+      $('.dataTables_filter input').attr('placeholder', 'Search Applicent');
+      $('.dataTables_filter').parent().css('width','100%');
+      $('.dataTables_filter').parent().css('padding','0px');
+      $('.dataTables_filter').parent().parent().css('padding','0px');
+      $('.dataTables_info').css('display','none');
+      
+      $('.dataTables_paginate').parent().css('width','100%');
+      $('.dataTables_paginate').parent().css('padding','0px');
+      $('.dataTables_paginate').parent().parent().css('padding','10px 0px');
+      
+      $('#family_coverage_date').datepicker();
+      //$('#all_applicent_apptable td').live('click', function() {
+    	 
+    	  /*$('#all_applicent_apptable tbody').on( 'click', 'td', function () {
+      		console.log('test');
+    	    var anOpen = [];
+    	    var nTr = this.parentNode;
+    	    var i = $.inArray(nTr, anOpen);
+    	    //console.log($(this).attr('id')); // clicked cell
+    	    //console.log(nTr); // clicked row
+    	    
+    	    var a = $('#selectedApplicent').val();
+    	    
+    	    $(this).parent().find("td").each(function() {
+    	       //console.log($(this).html()); // logs each cell value
+    	       if($(this).attr('id') == undefined){    	     
+    	    	   //$(this).parent().find('input:checkbox:first').attr("checked",true)
+    	    	   $(this).parent().find('button').removeClass("btn-success");
+    	    	   $(this).parent().find('button').addClass("btn-danger");
+    	    	   $(this).parent().find('button').html('<i class="icon-minus"></i>');
+	           }
+    	      if($(this).attr('id') != undefined){
+    	    	  
+    	    	  if (a.indexOf($(this).attr('id')) > -1) {
+    	        		
+    	    	  }
+    	    	  else{
+    	    		  $("#selected_applicent_div").append('<div id="'+$(this).attr('id')+'"><div class="col-md-2 minus_appl" style="padding-top: 0px" ><button class="btn btn-danger btn-sm" type="button" value="remove" id="'+$(this).attr('id')+'" onclick="removeSelectedApplicentInfo(this);"><i class="icon-minus"></i></button></div><div class="col-md-10" style="padding-top: 5px">  '+$(this).html()+'</div><div style="clear:both;"></div><hr></div>');
+    	    	        
+  	        		$('#selectedApplicent').val($('#selectedApplicent').val()+','+$(this).attr('id')+"");
+    	    	  }
+    	      }
+    	    });
+    	 });
+    	  */
+    	  
+    //$(".table-striped").lazyload();
+    	
+    //$('.table-striped').lazyload({load: load});
+    
+    // Form Family 
+     $('#insurance_info_family_add_form').validate({
+       errorClass: 'help-block',
+       errorElement: 'span',
+       errorPlacement: function(error, e) {
+           e.parents('.form-group1 > div').append(error);
+       },
+       highlight: function(e) {
+           $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+           $(e).closest('.help-block').remove();
+       },
+       success: function(e) {
+           // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+           e.closest('.form-group1').removeClass('has-success has-error');
+           e.closest('.help-block').remove();
+       },
+       rules: {
+    	   family_coverage_date: { required: true },
+    	   family_gender:{ required: true },
+    	   family_tobacco_use:{ required: true },
+       },
+       messages: {
+    	   
+       },
+       submitHandler: function(form) {
+       	$('.step1btn').hide();
+			$('.step1load').show();
+  		 	$.post("index.php/admin/services/addinsuranceNext", {
+   			senddata : 'yes',
+ 		}, function(data) {
+ 			if (data) {
+ 				
+			$('.step1btn').show();
+			$('.step1load').hide();
+			
+			setSelectedItem();
+ 			}
+ 		}, "json");
+
+ 		return false;
+       }
+   });
+     
+    // Form Group health
+    $('#insurance_info_grouphealth_add_form').validate({
+       errorClass: 'help-block',
+       errorElement: 'span',
+       errorPlacement: function(error, e) {
+           e.parents('.form-group1 > div').append(error);
+       },
+       highlight: function(e) {
+           $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+           $(e).closest('.help-block').remove();
+       },
+       success: function(e) {
+           // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+           e.closest('.form-group1').removeClass('has-success has-error');
+           e.closest('.help-block').remove();
+       },
+       rules: {
+    	   company_name_grouphealth: { required: true },
+    	   industry_grouphealth:{ required: true },
+    	   current_carrier_grouphealth:{ required: true },
+       },
+       messages: {
+    	   
+       },
+       submitHandler: function(form) {
+       	$('.step1btn').hide();
+			$('.step1load').show();
+  		 	$.post("index.php/admin/services/addinsuranceNext", {
+   			senddata : 'yes',
+   			
+ 		}, function(data) {
+ 			if (data) {
+ 				
+			$('.step1btn').show();
+			$('.step1load').hide();
+			
+			setSelectedItem();
+ 			}
+ 		}, "json");
+
+ 		return false;
+       }
+   });
+    
+    // Form Life Insurance
+    $('#insurance_info_life_add_form').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group1 > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+            e.closest('.form-group1').removeClass('has-success has-error');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	gender_life: { required: true },
+        	height_life:{ required: true },
+        	width_life:{ required: true },
+     	  	tobacco_use_life:{ required: true },
+        },
+        messages: {
+     	   
+        },
+        submitHandler: function(form) {
+        	$('.step1btn').hide();
+ 			$('.step1load').show();
+   		 	$.post("index.php/admin/services/addinsuranceNext", {
+    			senddata : 'yes',
+    			
+  		}, function(data) {
+  			if (data) {
+  				
+ 			$('.step1btn').show();
+ 			$('.step1load').hide();
+ 			
+ 			setSelectedItem();
+  			}
+  		}, "json");
+
+  		return false;
+        }
+    });
+    
+    // Auto Insurance
+     $('#insurance_info_auto_add_form').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group1 > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+            e.closest('.form-group1').removeClass('has-success has-error');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	marital_status_auto: { required: true },
+        	gender_auto:{ required: true },
+        	year_auto:{ required: true },
+        	make_auto:{ required: true },
+        	model_auto:{ required: true },
+        	coverage_auto:{ required: true },
+        },
+        messages: {
+     	    
+        },
+        submitHandler: function(form) {
+        	$('.step1btn').hide();
+ 			$('.step1load').show();
+   		 	$.post("index.php/admin/services/addinsuranceNext", {
+    			senddata : 'yes',
+    			
+    			
+  		}, function(data) {
+  			if (data) {
+  				
+ 			$('.step1btn').show();
+ 			$('.step1load').hide();
+ 			
+ 			setSelectedItem();
+  			}
+  		}, "json");
+
+  		return false;
+        }
+    });
+    
+    // Form Home
+    $('#insurance_info_home_add_form').validate({
+       errorClass: 'help-block',
+       errorElement: 'span',
+       errorPlacement: function(error, e) {
+           e.parents('.form-group1 > div').append(error);
+       },
+       highlight: function(e) {
+           $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+           $(e).closest('.help-block').remove();
+       },
+       success: function(e) {
+           // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+           e.closest('.form-group1').removeClass('has-success has-error');
+           e.closest('.help-block').remove();
+       },
+       rules: {
+       	coverage_date_home: { required: true },
+       },
+       messages: {
+       	coverage_date_home: { required: 'Please Select Date.'},
+       },
+       submitHandler: function(form) {
+       	$('.step1btn').hide();
+			$('.step1load').show();
+  		 	$.post("index.php/admin/services/addinsuranceNext", {
+   			senddata : 'yes',
+   			
+ 		}, function(data) {
+ 			if (data) {
+ 				
+			$('.step1btn').show();
+			$('.step1load').hide();
+			
+			setSelectedItem();
+ 			}
+ 		}, "json");
+
+ 		return false;
+       }
+   });
+    
+ // Auto Property
+    $('#insurance_info_property_add_form').validate({
+       errorClass: 'help-block',
+       errorElement: 'span',
+       errorPlacement: function(error, e) {
+           e.parents('.form-group1 > div').append(error);
+       },
+       highlight: function(e) {
+           $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+           $(e).closest('.help-block').remove();
+       },
+       success: function(e) {
+           // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+           e.closest('.form-group1').removeClass('has-success has-error');
+           e.closest('.help-block').remove();
+       },
+       rules: {
+    	   revenue_property: { required: true },
+    	   past_claims_property:{ required: true },
+    	   insurance_type_property:{ required: true },
+       
+       },
+       messages: {
+    	   
+       },
+       submitHandler: function(form) {
+       	$('.step1btn').hide();
+			$('.step1load').show();
+  		 	$.post("index.php/admin/services/addinsuranceNext", {
+   			
+  		 	senddata : 'yes',
+  		 	
+ 		}, function(data) {
+ 			if (data) {
+ 				
+			$('.step1btn').show();
+			$('.step1load').hide();
+			
+			setSelectedItem();
+ 			}
+ 		}, "json");
+
+ 		return false;
+       }
+   });
+        /**/
+    
+  });
+</script>	   

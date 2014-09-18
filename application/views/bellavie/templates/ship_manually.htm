@@ -1,0 +1,407 @@
+<div class="box_solar" style="width:100%; overflow:hidden">
+	<div style="width:100%; clear:both; overflow:hidden">
+    	<div style="overflow:hidden; float:left; padding-right:30px">
+        	<fieldset style="padding-top:5px; border:1px solid #d2d2d2;">
+                <legend style="font-weight:bold; margin-left:5px; color:#831CEB">Origin address</legend>
+                <div style="float:left; clear:both;">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">First Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="1" type="text" class="input-text" id="origin_firstname" size="10" name="origin_firstname" value="{origin_firstname}" style="width:250px">
+                    </span>
+                </div>
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Last Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="2" type="text" class="input-text" id="origin_lastname" size="10"  name="origin_lastname" value="{origin_lastname}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Address:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="origin_address" size="10" name="origin_address" value="{origin_address}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">City:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="origin_city" size="10" name="origin_city" value="{origin_city}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Country:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <select name="origin_country" style="width:260px;" id="origin_country" onchange="showOriginStates()" ></select>
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">State:</span>
+                    <span class="field-with-placeholder" style="float:left;" id="show_origin_states">
+                        <input tabindex="5" type="text" class="input-text" id="origin_state" maxlength="2" size="10" name="origin_state" value="{origin_state}" style="width:50px">
+                    </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:65px; text-align:right; padding-right:5px">Zip Code:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="6" type="text" class="input-text" id="origin_zipcode" size="10" name="origin_zipcode" value="{origin_zipcode}" style="width:70px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Phone:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="7" type="text" class="input-text" id="origin_phone" size="10" name="origin_phone" value="{origin_phone}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">E-mail:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="8" type="text" class="input-text" id="origin_mail" size="10" name="origin_mail" value="{origin_mail}" style="width:250px">
+                    </span>
+                </div>				
+            </fieldset>
+        </div>
+        <div style="overflow:hidden; float:right;">
+        	<fieldset style="padding-top:5px; border:1px solid #d2d2d2;">
+                <legend style="font-weight:bold; margin-left:5px; color:#831CEB">Destination address</legend>
+                <div style="float:left; clear:both;">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">First Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="1" type="text" class="input-text" id="destination_firstname" size="10" name="destination_firstname" value="{destination_firstname}" style="width:250px">
+                    </span>
+                </div>
+                 <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Last Name:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="2" type="text" class="input-text" id="destination_lastname" size="10"  name="destination_lastname" value="{destination_lastname}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Address:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="3" type="text" class="input-text" id="destination_address" size="10" name="destination_address" value="{destination_address}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">City:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <input tabindex="4" type="text" class="input-text" id="destination_city" size="10" name="destination_city" value="{destination_city}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Country:</span>
+                    <span class="field-with-placeholder" style="float:left;">
+                        <select name="destination_country" style="width:260px;" id="destination_country" onchange="showDestinationStates()" ></select>
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">State:</span>
+                    <span class="field-with-placeholder" style="float:left;" id="show_destination_states">
+                        <input tabindex="5" type="text" class="input-text" id="destination_state" maxlength="2" size="10" name="destination_state" value="{destination_state}" style="width:50px">
+                    </span>
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:65px; text-align:right; padding-right:5px">Zip Code:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="6" type="text" class="input-text" id="destination_zipcode" size="10" name="destination_zipcode" value="{destination_zipcode}" style="width:70px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">Phone:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="7" type="text" class="input-text" id="destination_phone" size="10" name="destination_phone" value="{destination_phone}" style="width:250px">
+                    </span>
+                </div>
+                <div style="float:left; clear:both; padding-top:4px">
+                    <span style="font-weight:bold; float:left; padding-top:3px; width:77px; text-align:right; padding-right:5px">E-mail:</span>
+                    <span class="field-with-placeholder" style="float:left">
+                        <input tabindex="8" type="text" class="input-text" id="destination_mail" size="10" name="destination_mail" value="{destination_mail}" style="width:250px">
+                    </span>
+                </div>				
+            </fieldset>
+        </div>
+    </div>
+    <div style="width:100%; clear:both; overflow:hidden; padding-top:20px">
+    	<fieldset style="padding-top:5px; border:1px solid #d2d2d2;">
+            <legend style="font-weight:bold; margin-left:5px; color:#831CEB">Packages</legend>
+            <div style="clear:both; overflow:hidden">
+            	{package_arr}
+            	<fieldset style="padding-top:5px; margin-top:10px; border:1px solid #d2d2d2;">
+            		<legend style="font-weight:bold; margin-left:5px;">Package {pkey}</legend>
+                    <div style="clear:both">{products}</div>
+                    <div style="clear:both; padding-top:10px; overflow:hidden">
+                        <div style="font-weight:bold; float:left; padding-top:3px; width:120px">Package type:</div>
+                        <span class="field-with-placeholder" style="float:left">
+                            <input type="text" class="input-text" id="Package_type_{pkey}" size="10" name="Package_type_{pkey}" value="" style="width:250px">
+                        </span>
+                        <div style="clear:both; padding-left:120px" class="description_class">For example: Box, pallet, tube, envelope, etc.</div>
+                    </div>
+                    <div style="clear:both; padding-top:10px; overflow:hidden">
+                        <div style="font-weight:bold; float:left; padding-top:3px; width:120px">Declared value:</div>
+                        <div style="float:left; padding-top:3px; width:9px">$</div>
+                        <span class="field-with-placeholder" style=" float:left">
+                            <input type="text" class="input-text" id="declared_value_{pkey}" size="10" name="declared_value_{pkey}" value="0" style="width:70px" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                    </div>
+                    <div style="clear:both; padding-top:10px; overflow:hidden">
+                        <div style="font-weight:bold; float:left; padding-top:3px; width:120px">Weight:</div>
+                        <span class="field-with-placeholder" style="float:left">
+                            <input type="text" class="input-text" id="weight_{pkey}" size="10" name="weight_{pkey}" value="1" style="width:79px" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <div style="float:left; padding-left:5px">
+                        	<select id="weight_units_{pkey}">
+                            	{_weight_units_}
+                            </select>
+                        </div>
+                    </div>	
+                    <div style="clear:both; padding-top:10px; overflow:hidden">
+                        <div style="font-weight:bold; float:left; padding-top:3px;">Length:</div>
+                        <span class="field-with-placeholder" style="float:left; padding-left:5px">
+                            <input type="text" class="input-text" id="length_{pkey}" size="10" name="length_{pkey}" value="1" style="width:79px" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <div style="font-weight:bold; float:left; padding-top:3px; padding-left:20px">Width:</div>
+                        <span class="field-with-placeholder" style="float:left; padding-left:5px">
+                            <input type="text" class="input-text" id="width_{pkey}" size="10" name="width_{pkey}" value="1" style="width:79px" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <div style="font-weight:bold; float:left; padding-top:3px; padding-left:20px">Height:</div>
+                        <span class="field-with-placeholder" style="float:left; padding-left:5px">
+                            <input type="text" class="input-text" id="height_{pkey}" size="10" name="height_{pkey}" value="1" style="width:79px" onkeypress="return isNumberFloatKey(event)">
+                        </span>
+                        <div style="font-weight:bold; float:left; padding-top:3px; padding-left:20px">Units of measurement:</div>
+                        <span class="field-with-placeholder" style="float:left; padding-left:5px">
+                            <select id="units_measurement_{pkey}">
+                            	{_units_measurement_}
+                            </select>
+                        </span>
+                    </div>			
+               	</fieldset>
+                {/package_arr}
+            </div>				
+        </fieldset>
+    </div>
+    <div style="width:100%; clear:both; overflow:hidden; padding-top:20px">
+    	<fieldset style="padding-top:5px; border:1px solid #d2d2d2;">
+            <legend style="font-weight:bold; margin-left:5px; color:#831CEB">Shipment data</legend>
+            <div style="clear:both; overflow:hidden">Customer selected &quot;<b>{ship_label}</b>&quot; as the shipping method and paid <b>${shipping_fee}</b></div>
+            <div style="clear:both; padding-top:10px; overflow:hidden">
+            	<div style="font-weight:bold; float:left; padding-top:3px; width:120px">Shipment options:</div>
+            	<span class="field-with-placeholder" style="float:left">
+                    <input type="text" class="input-text" id="shipment_options" size="10" name="shipment_options" value="" style="width:250px">
+                </span>
+                <div style="clear:both; padding-left:120px" class="description_class">Short notes about the shipment, e.g. residential, overnight, etc.</div>
+            </div>
+            <div style="clear:both; padding-top:10px; overflow:hidden">
+            	<div style="font-weight:bold; float:left; padding-top:3px; width:120px">Transaction ID:</div>
+            	<span class="field-with-placeholder" style="float:left">
+                    <input type="text" class="input-text" id="transaction_ID" size="10" name="transaction_ID" value="" style="width:250px">
+                </span>
+            </div>
+            <div style="clear:both; padding-top:10px; overflow:hidden">
+            	<div style="font-weight:bold; float:left; padding-top:3px; width:120px">Tracking number:</div>
+            	<span class="field-with-placeholder" style="float:left">
+                    <input type="text" class="input-text" id="tracking_number" size="10" name="tracking_number" value="" style="width:250px">
+                </span>
+            </div>
+            <div style="clear:both; padding-top:10px; overflow:hidden">
+            	<div style="font-weight:bold; float:left; padding-top:3px; width:120px">Ship date:</div>
+            	<span class="field-with-placeholder" style="float:left">
+                    <input type="text" class="input-text" id="ship_date" size="10" name="ship_date" value="" style="width:79px">
+                </span>
+            </div>	
+            <div style="clear:both; padding-top:10px; overflow:hidden">
+            	<div style="font-weight:bold; float:left; padding-top:3px; width:120px">Expected delivery:</div>
+            	<span class="field-with-placeholder" style="float:left">
+                    <input type="text" class="input-text" id="expected_delivery" size="10" name="expected_delivery" value="" style="width:79px">
+                </span>
+            </div>
+            <div style="clear:both; padding-top:10px; overflow:hidden">
+            	<div style="font-weight:bold; float:left; padding-top:3px; width:120px">Shipping cost:</div>
+                <div style="float:left; padding-top:3px; width:9px">$</div>
+            	<span class="field-with-placeholder" style=" float:left">
+                    <input type="text" class="input-text" id="shipping_cost" size="10" name="shipping_cost" value="0" style="width:70px" onkeypress="return isNumberFloatKey(event)">
+                </span>
+            </div>						
+        </fieldset>
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px;" align="left" id="savebt_2">
+        <input type="button" value="Save Shipment" class="button" style="margin-left:5px" onclick="Save_package()" />
+        <input type="button" value="Cancel" class="button" style="margin-left:5px" onclick="ShowPackageTab()" />
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px; display:none" id="loadingbt_2" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Saving...</span>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+{load_packages}
+var dataCountries = [];
+function loadDataCountries(){
+	{load_countries}
+	showOriginCountries();
+	{loadOriginCountryValue}
+	showOriginStates();
+	{loadOriginStateValue}
+	
+	showDestinationCountries();
+	{loadDestinationCountryValue}
+	showDestinationStates();
+	{loadDestinationStateValue}
+}
+function showOriginCountries(){
+	var st = '';
+	var elSel = document.getElementById('origin_country');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	elSel.value = ct;
+}
+function showOriginStates(){
+	var st = '';
+	var country_value = document.getElementById('origin_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="origin_state" name="origin_state" style="width:110px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" class="input-text" id="origin_state" size="10" name="origin_state" value="" style="width:100px">';	
+			}
+			break;	
+		}	
+	}
+	$("#show_origin_states").empty().append(st);
+}
+function showDestinationCountries(){
+	var st = '';
+	var elSel = document.getElementById('destination_country');
+	var ct="";
+	for(var i = 0; i < dataCountries.length; i++){
+		var elOptNew = document.createElement('option');
+		elOptNew.text = dataCountries[i].name; 
+		elOptNew.value = dataCountries[i].code;  
+		ct = dataCountries[i].codedefault;
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}		
+	}
+	elSel.value = ct;
+}
+function showDestinationStates(){
+	var st = '';
+	var country_value = document.getElementById('destination_country').value;
+	for(var i = 0; i < dataCountries.length; i++){
+		if(dataCountries[i].code == country_value){
+			if(dataCountries[i].states.length > 0){
+				var states = dataCountries[i].states;
+				st += '<select id="destination_state" name="destination_state" style="width:110px">';
+				for(var j = 0; j < states.length; j++){
+					st += '<option value="'+states[j].code+'">'+states[j].name+'</option>';		
+				}
+				st += '</select>';
+			}else{
+				st += '<input type="text" class="input-text" id="destination_state" size="10" name="destination_state" value="" style="width:100px">';	
+			}
+			break;	
+		}	
+	}
+	$("#show_destination_states").empty().append(st);
+}
+function Save_package(){
+	var okey = document.getElementById("okey").value;
+	var packages_post = [];
+	for(var i = 0; i < packages.length; i++){
+		var pkey = packages[i];
+		var obj_package = [];
+		obj_package[0] = pkey;
+		if(document.getElementById("Package_type_"+pkey)){
+			obj_package[1] = document.getElementById("Package_type_"+pkey).value;	
+		}
+		if(document.getElementById("declared_value_"+pkey)){
+			obj_package[2] = trim(document.getElementById("declared_value_"+pkey).value);	
+		}
+		if(document.getElementById("weight_"+pkey)){
+			obj_package[3] = trim(document.getElementById("weight_"+pkey).value);	
+		}
+		if(document.getElementById("weight_units_"+pkey)){
+			obj_package[4] = document.getElementById("weight_units_"+pkey).value;	
+		}
+		if(document.getElementById("length_"+pkey)){
+			obj_package[5] = trim(document.getElementById("length_"+pkey).value);	
+		}
+		if(document.getElementById("width_"+pkey)){
+			obj_package[6] = trim(document.getElementById("width_"+pkey).value);	
+		}
+		if(document.getElementById("height_"+pkey)){
+			obj_package[7] = trim(document.getElementById("height_"+pkey).value);	
+		}
+		if(document.getElementById("units_measurement_"+pkey)){
+			obj_package[8] = document.getElementById("units_measurement_"+pkey).value;	
+		}
+		packages_post[packages_post.length] = obj_package;	
+	}
+	var obj_submit = new Object();
+	obj_submit.okey = okey;
+	obj_submit.destination_firstname = $("#destination_firstname").val();
+	obj_submit.destination_lastname = $("#destination_lastname").val();
+	obj_submit.destination_address = $("#destination_address").val();
+	obj_submit.destination_city = $("#destination_city").val();
+	obj_submit.destination_state = $("#destination_state").val();
+	obj_submit.destination_zipcode = $("#destination_zipcode").val();
+	obj_submit.destination_phone = $("#destination_phone").val();
+	obj_submit.destination_mail = $("#destination_mail").val();
+	obj_submit.destination_country = $("#destination_country").val();
+	obj_submit.origin_firstname = $("#origin_firstname").val();
+	obj_submit.origin_lastname = $("#origin_lastname").val();
+	obj_submit.origin_address = $("#origin_address").val();
+	obj_submit.origin_city = $("#origin_city").val();
+	obj_submit.origin_state = $("#origin_state").val();
+	obj_submit.origin_zipcode = $("#origin_zipcode").val();
+	obj_submit.origin_phone = $("#origin_phone").val();
+	obj_submit.origin_mail = $("#origin_mail").val();
+	obj_submit.origin_country = $("#origin_country").val();
+	obj_submit.shipment_options = $("#shipment_options").val();
+	obj_submit.transaction_ID = $("#transaction_ID").val();
+	obj_submit.tracking_number = $("#tracking_number").val();
+	obj_submit.ship_date = $("#ship_date").val();
+	obj_submit.expected_delivery = $("#expected_delivery").val();
+	obj_submit.shipping_cost = $("#shipping_cost").val();
+	obj_submit.packages_post = packages_post;
+	
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.post("index.php/store/shipments/manually", {
+		obj_submit: obj_submit
+	}, function(data){
+		HideLoadingObj(document.getElementById("content_load"));
+		alert(success_saved);
+		ShowShipmentsTab();
+	}, "json");
+}
+$(function() {  
+	loadDataCountries();
+	var dates = $( "#ship_date, #expected_delivery" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 2,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "ship_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});  
+});
+</script>

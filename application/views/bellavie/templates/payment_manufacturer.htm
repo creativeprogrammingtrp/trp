@@ -1,0 +1,213 @@
+<form onsubmit="return submitForms();">
+<fieldset style="text-align:left; padding:10px">
+	<legend style="padding-left:5px; padding-right:5px;font-size:18px; color:#4A0B8A">Payment</legend>
+    <div style="overflow:hidden; width:500px">
+    	<div style="clear:both; overflow:hidden">
+        	<div style="float:left; overflow:hidden">
+            	<div style="clear:both; font-weight:bold; color:#999">CHECK NUMBER</div>
+        		<div style="clear:both; color:#000;"><input type="text" id="check_number" value="" class="input-text" style="width:110px;" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"/></div>
+            </div>
+        	<div style="float:right; overflow:hidden" align="right">
+            	<div style="clear:both; font-weight:bold; color:#999" align="right">DATE</div>
+        		<div style="clear:both; color:#000;" align="right">{date}</div>
+            </div>
+        </div>
+        <div style="clear:both; font-weight:bold; color:#999; padding-top:10px">PAY TO</div>
+        <div style="clear:both"><input type="text" id="legal_business_name" value="{legal_business_name}" class="input-text" style="width:250px;" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this)" onkeyup="onfocusInputText(this)"/></div>
+        <div style="clear:both; color:#000; font-style:italic">ID# : {legal_business_id}</div>
+        <div style="clear:both; overflow:hidden; width:100%; padding-top:15px">
+        	<table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td align="left" valign="middle" style="color:#999" width="85px">Order #</td>
+                    <td align="right" valign="middle" style="color:#999" width="100px">Total</td>
+                    <td align="right" valign="middle" style="color:#999" width="100px">Paid</td>
+                    <td align="right" valign="middle" style="color:#999" width="90px">Balance</td>
+                    <td align="right" valign="middle" style="color:#999" width="110px">Pay</td>
+                </tr>
+          	</table>
+        </div>
+        <div class="holder osX" style="overflow: auto; overflow-x: hidden; clear:both;">
+        	<div id="orders_payment" class="scroll-pane" style="overflow-x: hidden; width:500px; height:250px;" align="left"></div>
+        </div>
+        <div style="clear:both; overflow:hidden; width:100%; padding-top:10px">
+        	<table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td align="right" valign="middle" width="375px"><b>Total:</b></td>
+                    <td align="right" valign="middle" width="110px"><b><span id="show_totalPayment"></span></b></td>
+                </tr>
+          	</table>
+        </div>	
+        <div style="clear:both; height:28px; width:100%; padding-top:20px" align="right" id="savebt">
+            <input type="button" value="Cancel" class="button" onclick="closebox()" />
+            <input type="submit" value="Submit" name="submit" class="button" style="margin-left:5px" />
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px; display:none" align="right" id="loadingbt">
+            <div class="button-loading" style="width:80px">
+                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                <span style="float:left; padding-left:10px">Saving...</span>
+            </div>
+        </div>
+        <div style="clear:both; height:28px; width:100%; padding-top:20px; display:none" align="right" id="showExport">
+        	<img src="../images/excel_icon.png" border="0" style="cursor:pointer" onclick="export_invoice('xls');" align="absmiddle" />&nbsp;&nbsp;<img src="../images/64px-PDF.png" border="0" style="cursor:pointer" onclick="export_invoice('pdf');" align="absmiddle"/>&nbsp;&nbsp;<img src="../images/print-icon.png" border="0" style="cursor:pointer" onclick="printDiv();" align="absmiddle"/>
+        </div>
+    </div>
+</fieldset>
+<input type="hidden" id="okey" name="okey" value="{okey}" />
+<input type="hidden" id="key" name="key" value="{key}" />
+<input type="hidden" id="pay_month" name="pay_month" value="{pay_month}" />
+<input type="hidden" id="pay_year" name="pay_year" value="{pay_year}" />
+</form>
+<script language="javascript">
+var pay_key = '';
+var orders = [];
+function submitForms(){
+	var checkError = false;
+	if($('#check_number').val() == ''){
+		$('#check_number').css("background", '#ffffd5');
+		hidelabelfocus("check_number_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("check_number"));	
+			document.getElementById("check_number").focus();	
+		}
+	}
+	if($('#legal_business_name').val() == ''){
+		$('#legal_business_name').css("background", '#ffffd5');
+		hidelabelfocus("legal_business_name_label");
+		if(checkError == false){
+			checkError = true;
+			onfocusInputText(document.getElementById("legal_business_name"));	
+			document.getElementById("legal_business_name").focus();	
+		}
+	}
+	var orders_payment = [];
+	
+	for(var i = 0; i < orders.length; i++){
+		var total = orders[i].subtotal + orders[i].tax + orders[i].shipping - orders[i].refund;
+		var balance = total - orders[i].paid;
+		if(balance < 0 ) continue;
+		var new_price = 0;
+		if(document.getElementById(orders[i].okey)) new_price = document.getElementById(orders[i].okey).value;
+		if(new_price != '' && new_price > balance){
+			
+			alert("The total payment amount order# "+orders[i].okey+" must be less than or equal to $"+formatAsMoney(balance)+".");
+			document.getElementById(orders[i].okey).focus();
+			return false;		
+		}
+		if(new_price != '' && new_price > 0)
+			orders_payment[orders_payment.length] = orders[i].okey + '|' + new_price;	
+	}
+	if(checkError == true) return false;
+	$("#loadingbt").show();
+	$("#savebt").hide();
+	$.post("index.php/report/manufacturer/payment", {
+		saveObj: 'yes',
+		orders_payment:orders_payment,
+		key:document.getElementById("key").value,
+		okey:document.getElementById("okey").value,
+		check_number:$("#check_number").val(),
+		legal_business_name:$("#legal_business_name").val(),
+		pay_month:document.getElementById("pay_month").value,
+		pay_year:document.getElementById("pay_year").value
+	}, function(data){
+		$("#loadingbt").hide();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+			}else{
+				alert(success_payment);
+                                window.open('index.php/print/invoices_print/printInvoice/'+data.pay_key);
+				window.location.reload();
+				return false;
+			}
+		}
+	}, "json");
+	
+	return false;	
+}
+function clearAll(){
+	var input_text = document.getElementsByTagName('input');
+	for(var i = 0; i < input_text.length; i++){
+		if(input_text[i].type == "text"){
+			input_text[i].value = '';
+		}	
+	}
+}
+function onblurInputText(o){
+	hideTooltipRequi();
+	if(o.value == ''){
+		hidelabelfocus(o.id+"_label");
+		return false;	
+	}
+}
+function closebox(){
+	$("#cboxClose").click();
+	return false;
+}
+function export_invoice(type){
+	window.open('index.php?q=export/invoice_acquisitions&type='+type+'&pay_key='+pay_key);
+	return false;
+}
+function printDiv(){
+	ShowLoadingObj({obj:document.getElementById("content_load"), image:"Loader-FloGradient16x16x.gif"});
+	$.ajax({
+		url: "index.php?q=print/invoices&ajax=1&block=yes&key="+pay_key,
+		type: "GET",
+		success: function(html){
+			HideLoadingObj(document.getElementById("content_load"));
+			var newWin=window.open('');
+			newWin.document.open();
+			newWin.document.write('<html><body onload="window.print()">'+html+'</body></html>');
+			newWin.document.close();
+		//	setTimeout(function(){newWin.close();},10);
+		}
+	});
+}
+function loadOrdersPayment(){
+       {arr_orders}
+	showOrdersPayment();
+}
+function sumTotalPay(){
+	var total_pay = 0;
+	for(var i = 0; i < orders.length; i++){
+		var total = orders[i].subtotal + orders[i].tax + orders[i].shipping - orders[i].refund;
+		var balance = total - orders[i].paid;
+		if(balance < 0 ) continue;
+		var new_price = 0;
+		if(document.getElementById(orders[i].okey)) new_price = document.getElementById(orders[i].okey).value;
+		if(new_price != '')
+			total_pay += parseFloat(new_price);		
+	}
+	$("#show_totalPayment").empty().append(showUSAMoney(total_pay));
+}
+function showOrdersPayment(){
+	var st = '';
+	if(orders.length > 0){
+		var total_pay = 0;
+		st += '<table cellpadding="0" cellspacing="0" border="0">';
+		for(var i = 0; i < orders.length; i++){
+			var total = orders[i].subtotal + orders[i].tax + orders[i].shipping - orders[i].refund;
+			var balance = total - orders[i].paid;
+			if(balance < 0 ) continue;
+			total_pay += balance;
+			st += '	<tr>';
+			st += '		<td align="left" valign="middle" height="31px" width="85px">'+orders[i].okey+'</td>';
+			st += '		<td align="right" valign="middle" width="100px">'+showUSAMoney(total)+'</td>';
+			st += '		<td align="right" valign="middle" width="100px">'+showUSAMoney(orders[i].paid)+'</td>';
+			st += '		<td align="right" valign="middle" width="90px">'+showUSAMoney(balance)+'</td>';
+			st += '		<td align="right" valign="middle" width="110px">';
+			st += '			<span style="float:right; padding-left:3px"><input type="text" id="'+orders[i].okey+'" value="'+balance+'" class="input-text" style="width:70px; text-align:right" onfocus="onfocusInputText(this)" onblur="onblurInputText(this)" onkeydown="onkeydownInputText(this);" onkeyup="onfocusInputText(this); sumTotalPay();" onkeypress="return isNumberFloatKey(event)"/></span>';
+			st += '			<span style="float:right; padding-top:3px;">$</span>';
+			st += '		</td>';
+			st += '	</tr>';		
+		}
+		st += '</table>';		
+	}
+	$("#orders_payment").empty().append(st);
+	$("#show_totalPayment").empty().append(showUSAMoney(total_pay));
+}
+$(function() {
+	clearForms();
+        loadOrdersPayment();
+});
+</script>

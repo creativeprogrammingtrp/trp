@@ -1,0 +1,140 @@
+<!-- New App tab -->
+<table id="discount_benefits_employees_report_result" class="table table-striped"></table>
+<!-- End New App tab -->
+<div class="clear1"></div>
+<!-- For Edit Application -->
+
+<!-- End of Edit Application -->
+
+<!-- Javascript code only for this page -->            
+<script type="text/javascript">
+var dataClientDR = [];
+//var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","Action"];
+
+function loadObject() {
+    {dataLoadDR}
+    loadClients();
+}
+
+
+function loadClients() {
+    var htm = ''; 
+    htm +='<thead>';
+    
+    htm +='<tr>';
+	htm +='<th rowspan="2" class="text-center">Name</th>';
+	htm +='<th colspan="4"  class="text-center">Packages Sold</th>';
+	htm +='<th rowspan="2" class="text-center">Action</th>';
+	htm +='</tr>';
+    	htm +='<tr>';
+			htm +='<th class="text-left">Health Package</th>';
+			htm +='<th class="text-left">Lifestyle Package</th>';
+    		htm +='<th class="" style="">Combination Package</th>';
+    		htm +='<th>Total</th>';
+    	htm +='</tr>';
+    htm +='</thead>';
+    
+    
+    htm +='<tbody>';
+    var parent = 'body_benefits_info_edit';
+    var totalamount = 0;
+    var medicalTotal = 0;
+    var lefeStyleTotal = 0;
+    var combinationTotal = 0;
+    var totalCount = 0;
+    
+    for(var i = 0 ; i < dataClientDR.length ; i++){
+           var obj = dataClientDR[i];
+           var uid = obj.uid;
+            	
+           var appststus = '';
+           if(obj.package_status == '0')
+          	 appststus = 'Pending';
+           else if(obj.package_status == '1')
+          	 appststus = 'Active';
+           else if(obj.package_status == '2')
+          	 appststus = 'Canceled';
+            
+           totalamount += parseInt(obj.medical)+parseInt(obj.lifestyle)+parseInt(obj.combination);
+           
+           medicalTotal += parseInt(obj.medical);
+           lefeStyleTotal += parseInt(obj.lifestyle);
+           combinationTotal += parseInt(obj.combination);
+           totalCount += totalamount;
+           
+            htm +='<tr>';
+            
+            htm +='<td class=" text-center border-right"><strong>'+obj.firstname+' '+obj.lastname+'</strong></td>';
+        	htm +='<td class="text-center">'+toUSD(check_is_nan(obj.medical))+'</td>';
+        	htm +='<td class="text-center ">'+toUSD(check_is_nan(obj.lifestyle))+'</td>';
+        	
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+toUSD(check_is_nan(obj.combination))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+toUSD(check_is_nan(totalamount))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
+        	htm += '<a class="btn btn-xs btn-info" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="showDiscountBenefitsEmployeeCustomerReport(\''+obj.uid+'\')" >View All</a>';
+        	htm += '</td>';
+             
+            htm +='</tr>';
+   } 		
+   htm +=' </tbody>';
+   
+   htm +='<tfoot>';
+	htm +='<tr>';
+		htm +='<td class=" text-center" >Total</td>';
+		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(medicalTotal))+'</span></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(lefeStyleTotal))+'</span></td>';
+		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(combinationTotal))+'</span></td>';
+		htm +='<td class="text-center">'+toUSD(check_is_nan(totalCount))+'</td>';
+		htm +='<td class="text-center"></td>';
+	htm +='</tr>  ';
+htm +='</tfoot>';
+     
+    $("#discount_benefits_employees_report_result").empty().append(htm);	
+    
+    //var $parent = $("#" + parent);
+    $("#" + parent).find("#state").empty().append('{states}');
+    //$("#state1").empty().append('{states}');
+}
+
+function showDiscountBenefitsEmployeeCustomerReport(empId){
+	$.ajax({
+                url: 'index.php/admin/reporting/showDiscountBenefitsEmployeeCustomerReport?ajax=1&empid='+empId+'',
+                cache: false,
+                success: function(message){
+                        $("#discount_benefits_employees_report").empty().append(message);
+                        return false;
+                }
+	});	
+}
+
+$(function(){
+	loadObject();
+	clickToEditBenefitsInfo('body_benefits_info_edit');
+
+    $('#discount_benefits_employees_report_result').dataTable( {
+         	"sDom": 'T<"clear">lfrtip',
+         	"oTableTools": {
+     			//"aButtons": [ "xls", "pdf","copy", "print" ]
+         		"aButtons": [
+    						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
+                             { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+                     		]
+     		},
+     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [-1 ] }],
+     		"bLengthChange": false,
+       		"bAutoWidth": false,  
+       		"aoColumns": [
+       		            { sWidth: '25%' },
+       		            { sWidth: '15%' },
+       		            { sWidth: '15%' },
+       		            { sWidth: '20%' },
+       		            { sWidth: '15%' },
+       		            { sWidth: '10%' }]
+         });
+
+	 
+	 $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	 
+});
+</script>

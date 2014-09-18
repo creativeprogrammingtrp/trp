@@ -1,0 +1,220 @@
+<style type="text/css">
+.table-per .th-per {
+    background: none repeat scroll 0 0 #E1E2DC;
+    border: none;
+    padding: 5px 5px;
+}
+.table-per {
+    border: 1px solid #BEBFB9;
+	border-collapse:collapse;
+	border-spacing:0;
+	width:auto;
+}
+.table-per .td-row{
+    border: none;
+	padding:5px 5px;
+}
+.products_select{
+	background:#E1E2DC;
+}
+.personalInfoLeft {
+	width:35%;
+	}
+.personalInfoRight{
+	width:65%;
+	}
+fieldset{
+	 border:#7E7E7E solid 1px;
+	 margin-bottom:10px;
+	border-radius:5px;
+	-moz-border-radius:7px; 
+	padding: 20px;
+	}
+.spnChar{
+	margin-right:5px;}
+</style>
+<fieldset>
+    <form onsubmit="return checkForm();">
+    	{select_update}
+        <div id="tab_1_content" style="clear:both">
+            <table cellpadding="5" cellspacing="0" border="0">
+                <tbody>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft" width="155px">Minimum Purchase Amount :<br><span style="font-size:11px; color:#999; font-style:italic">Minimum purchase amount per pay period.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <span class="spnChar">$</span><input type="text" style="width:100px;" class="input-text" id="Minimum_purchased" value="{minimum_purchased}" onkeypress="return isNumberFloatKey(event)" autocomplete="off" />
+                            <span class="spnChar" style="margin-left:10px;">per</span><input type="text" id="limit_time_purchase" style="width:100px; " class="input-text" value="{limit_time_purchase}" onkeypress="return isNumberIntKey(event)" autocomplete="off" />
+                            <select id="units_purchase" style="margin-left:10px;">
+                            {units_purchase}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Minimum Wallet Transfer to ATM:<br><span style="font-size:11px; color:#999; font-style:italic">Minimum amount members must keep in their wallet before a transfer to ATM.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <span class="spnChar">$</span><input type="text" style="width:100px;" class="input-text" id="Minimum_payment" value="{minimum_payment}" onkeypress="return isNumberFloatKey(event)" autocomplete="off" />
+                            <span class="spnChar" style="margin-left:10px;">per</span><input type="text" id="limit_time_payment" style="width:100px;" class="input-text" value="{limit_time_payment}" onkeypress="return isNumberIntKey(event)" autocomplete="off" />
+                             <select id="units_payment" style="margin-left:10px;">
+                            {units_payment}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Max Number of Levels:<br><span style="font-size:11px; color:#999; font-style:italic">Maximum number of levels down.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <input type="text" style="width:113px;" id="Number_of_level" value="{number_of_level}" class="input-text" onkeypress="return isNumberFloatKey(event)" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Direct Sponsors:<br><span style="font-size:11px; color:#999; font-style:italic">Maximum Number of members you can immediately sponsor.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <input type="text" style="width:113px;" id="Direct_sponsor" value="{direct_sponsor}" class="input-text" onkeypress="return isNumberIntKey(event)" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Activation Time:<br><span style="font-size:11px; color:#999; font-style:italic">The amount of time they have to Activate their account by purchasing through BellaVieNetwork.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <input type="text" id="To_be_active" style="width:113px;" class="input-text" value="{to_be_active}" onkeypress="return isNumberIntKey(event)" autocomplete="off" />
+                             <select id="units_active" style="margin-left:10px;">
+                            {units_active}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Forfeit Period:<br><span style="font-size:11px; color:#999; font-style:italic">The amount of time allotted before forfeiting their position as a member.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <input type="text" id="time_purchase_actived" style="width:113px;" class="input-text" value="{time_purchase_actived}" onkeypress="return isNumberIntKey(event)" autocomplete="off" />
+                             <select id="units_time_purchase" style="margin-left:10px;">
+                            {units_time_purchase}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Member Money Transfer Date:<br><span style="font-size:11px; color:#999; font-style:italic">Date on which all Member transfers will be final. All transfers after date will be for following month.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            {select_holding}
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                        <td class="personalInfoLeft">Vendor Money Transfer Date:<br><span style="font-size:11px; color:#999; font-style:italic">Date on which all Vendor transfers will be final. All transfers after date will be for following month.</span></td>
+                        <td class="personalInfoRight" valign="top">
+                            <input type="text" style="width:113px;" id="date_apply" value="{date_apply}" class="input-text" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr class="_borderBottom">                    
+                      <td colspan="2">
+                        <div style="clear:both; width:100%; height:30px;" id="submitproductbt" align="left">
+                            <input type="submit" value="Apply" class="btn btn-primary" autocomplete="off" />
+                        </div>
+                        <div style="clear:both; padding-top:20px; width:100%; height:30px; margin-right:5px; display:none" id="loadingbt" align="left">
+                            <div class="button-loading" style="width:80px">
+                                <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+                                <span style="float:left; padding-left:10px">Saving...</span>
+                            </div>
+                        </div>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</fieldset>
+<script language="javascript">
+function checkForm(){
+	var Minimum_purchased = document.getElementById("Minimum_purchased").value;
+	if(Minimum_purchased == '') Minimum_purchased = 0;
+	
+	var Minimum_payment = document.getElementById("Minimum_payment").value;
+	if(Minimum_payment == '') Minimum_payment = 0;
+	
+	var limit_time_payment = document.getElementById("limit_time_payment").value;
+	if(limit_time_payment == ''){
+		alert("Please enter limit date.");
+		document.getElementById("limit_time_payment").focus();
+		return false;	
+	}
+	
+	var limit_time_purchase = document.getElementById("limit_time_purchase").value;
+	if(limit_time_purchase == ''){
+		alert("Please enter limit date.");
+		document.getElementById("limit_time_purchase").focus();
+		return false;	
+	}
+	var Number_of_level = document.getElementById("Number_of_level").value;
+	if(Number_of_level == '') Number_of_level = 0;
+	
+	var Direct_sponsor = document.getElementById("Direct_sponsor").value;
+	if(Direct_sponsor == '') Direct_sponsor = 0;  
+	
+	var To_be_active = document.getElementById("To_be_active").value;
+	if(To_be_active == ''){
+		alert("Please enter limit date.");
+		document.getElementById("To_be_active").focus();
+		return false;	
+	}
+	var time_purchase_actived = document.getElementById("time_purchase_actived").value;
+	if(time_purchase_actived == ''){
+		alert("Please enter time to purchase to be actived.");
+		document.getElementById("time_purchase_actived").focus();
+		return false;	
+	}
+	$("#submitproductbt").hide();
+	$("#loadingbt").show();
+	$.post("index.php/settingrepresent/savesetting", {
+		saveForm: 'yes',
+		minimum_purchased:Minimum_purchased,
+		limit_time_purchase:limit_time_purchase,
+		units_purchase:document.getElementById("units_purchase").value,
+		number_of_level:Number_of_level,
+		direct_sponsor:Direct_sponsor,
+		to_be_active:To_be_active,
+		units_active:document.getElementById("units_active").value,
+		date_apply:document.getElementById("date_apply").value,
+		minimum_payment:Minimum_payment,
+		limit_time_payment:limit_time_payment,
+		units_payment:$("#units_payment").val(),
+		time_purchase_actived:$("#time_purchase_actived").val(),
+		units_time_purchase:$("#units_time_purchase").val(),
+		date_holding_account: $('#date_holding_account').val()
+	}, function(data){
+		if(data == '') alert(success_saved);
+		$("#submitproductbt").show();
+		$("#loadingbt").hide();
+		window.location.reload();
+	}, "json");
+	return false;
+}
+$(function() {
+	$( "#date_apply" ).datepicker();
+});
+var all_setup = {all} ;
+function change_value()
+{
+	var current_id = $('#day_update').find('option:selected').attr('myid');
+	if (all_setup.length > 0)
+	{
+		for (i = 0; i<all_setup.length; i++)
+		{
+			if (current_id == all_setup[i].id)
+			{
+				$('#Minimum_purchased').val(all_setup[i].minimum_purchased);
+				$('#limit_time_purchase').val(all_setup[i].limit_time_purchase);
+				$('#units_purchase').val(all_setup[i].units_purchase);
+				$('#Minimum_payment').val(all_setup[i].minimum_payment);
+				$('#limit_time_payment').val(all_setup[i].limit_time_payment);
+				$('#units_active').val(all_setup[i].units_active);
+				$('#units_payment').val(all_setup[i].units_payment);
+				$('#To_be_active').val(all_setup[i].to_be_active);
+				$('#Number_of_level').val(all_setup[i].number_of_level);
+				$('#Direct_sponsor').val(all_setup[i].direct_sponsor);
+				$('#date_apply').val(all_setup[i].date_apply);
+				$('#time_purchase_actived').val(all_setup[i].time_purchase_actived);
+				$('#units_time_purchase').val(all_setup[i].units_time_purchase);
+				$('#date_holding_account').val(all_setup[i].date_holding_account);
+				
+			}
+		}
+	}
+}
+
+</script>

@@ -1,0 +1,133 @@
+<style type="text/css">
+#categories_listtings tr td { vertical-align:top; padding-top:3px;}
+#categories_listtings ul { width:200px; z-index:100; position:absolute; display:none; top:auto; margin:0px; background: none; padding:0px;}
+#categories_listtings ul li { list-style:none; padding:3px 5px 3px 10px; background:#4A0B8A; border-top:#FFF solid 1px;}
+#categories_listtings ul li a { color:#FFF; text-decoration:none;}
+</style>
+<div id="header_top">
+	<div id="logo" onclick="goMain()"></div>	
+    <div id="shoppingnet" style="cursor:pointer" onclick="goHome()"></div>
+    <div class="account">
+        <div id="contenthello">
+            <div id="newcustomer">
+            	<p>Hello {login_name}&nbsp;&nbsp;-&nbsp;&nbsp;<a href="index.php/user/myaccount" class="menu-link">My Account</a><!--@order_history@-->&nbsp;&nbsp;|&nbsp;&nbsp;<a href="index.php/logout" class="menu-link">Log out</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="index.php/help">Help</a>
+              	<br /><br/><!--<a href="index.php/store/orders/refunds">Returns and Refunds</a>--><!--@tracking_your_package@--><!--@report@-->
+    		    </p><br/>
+            	<p><!--@campaign_manager@--><!--@ad_shop@--><!--@ad_storage@--></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="search">			
+    <div id="bosearchtrai"></div>
+    <div id="showall" style="cursor:pointer"><ul class="nav"><li><span style="font-size:15px">Show All Departments &nbsp;<img src="../images/rowShowall.png" border="0" align="absmiddle" /></span><!--@shop_all_departments@--></li></ul></div>
+    <form method="post" onsubmit="return submitFormSearch()">
+        <div id="btnsearch">
+          <input name="Submit" type="submit" value="Search" class="button_search" />
+        </div>
+        <div id="alldeparment">
+            <select id="allDepartment" name="allDepartment" style="width:195px;" class="select-search">
+                <option value="">All Departments</option>
+                <!--@categories@-->
+            </select>
+        </div>
+        <div id="textsearch"><input id="txtSearch" name="txtSearch" class="input-search" type="text" value="" style="width:440px;" /></div>
+	</form>
+    <div id="shoppingcard"><div style="float:right; margin-right:-20px"></div></div>
+    <div id="bosearchphai"></div>		
+</div>
+<div class="border_header"></div>
+<div id="categories_slide">
+	<div style="width:20px; height:20px; background:url(../images/go_left.png) no-repeat; float:left; cursor:pointer; margin-right:3px;" onmouseout="DungLai__()" onmouseup="DungLai__()" onmousedown="moveThumb__('left')" ></div>
+    <div style="float:left; height:20px; width:913px; overflow:hidden; background:#cd87ff" id="categories_listtings"><!--@categories_slide@--></div>
+    <div style="width:20px; height:20px; background:url(../images/go_right.png) no-repeat; float:left; cursor:pointer; margin-left:4px" onmouseout="DungLai__()" onmouseup="DungLai__()" onmousedown="moveThumb__('right')" ></div>
+</div>
+<script language="javascript">
+var timerID__;
+var nhay__ = 10;
+var setTimeOut__ = 40;
+var thumb_section__;
+var timerRunning__ = false;
+{scrollLeft_}
+function StartScrolling__(){
+	thumb_section__ = document.getElementById("categories_listtings");
+	if(typeof(scrollLeft_) != 'undefined')	thumb_section__.scrollLeft = scrollLeft_;
+}
+function moveThumb__(type){
+	if(timerRunning__ == false){
+		timerRunning__ = true;
+		if(type == 'left') move_left__();
+		else if(type == 'right') move_right__();	
+	}
+}
+function move_right__() {
+	if(typeof(timerRunning__) != 'undefined'){
+		if(timerRunning__ == true){
+			var scrollLeft = thumb_section__.scrollLeft;
+			scrollLeft_ = thumb_section__.scrollLeft = scrollLeft + nhay__;
+			timerID__ = setTimeout(function () {
+				move_right__();	
+			}, setTimeOut__);	
+		}
+	}
+}
+function move_left__() {
+	if(typeof(timerRunning__) != 'undefined'){
+		if(timerRunning__ == true){
+			var scrollLeft = thumb_section__.scrollLeft;
+			if (scrollLeft > 0){
+				scrollLeft_ = thumb_section__.scrollLeft = scrollLeft - nhay__;
+				if(thumb_section__.scrollLeft < 0){
+					scrollLeft_ = thumb_section__.scrollLeft = 0;
+					DungLai__();
+				}else{
+					timerID__ = setTimeout(function () {
+						move_left__();	
+					}, setTimeOut__);		
+				}
+			}else{
+				scrollLeft_ = thumb_section__.scrollLeft = 0;
+				DungLai__();	
+			}
+		}
+	}
+}
+function DungLai__(){
+	timerRunning__ = false;
+	clearTimeout(timerID__);
+}
+function categories_products(link_){
+	window.location = link_ + '&scrollLeft='+scrollLeft_;
+}
+function submitFormSearch(){
+	var catid = '';
+	if(document.getElementById("allDepartment")){
+		catid = document.getElementById("allDepartment").value;	
+	}
+	if(catid != '') catid = '&catid='+catid;
+	
+	var txtSearch = '';
+	if(document.getElementById("txtSearch")){
+		txtSearch = trim(document.getElementById("txtSearch").value);	
+	}
+	if(txtSearch != '') txtSearch = '&key='+txtSearch;
+	window.location = 'index.php/products'+catid+txtSearch;
+	return false;
+}
+$(document).ready(function() {
+	$(".nav li").hover(function(){ 
+		$(this).find('ul:first').css({visibility: "visible",display: "none"}).show(400); 
+	},function(){ 
+	//	$(this).find('ul:first').css({visibility: "visible",display: "block"}).hide(400); 
+		$(this).find('ul:first').css({visibility: "hidden"}); 
+	}); 		
+	StartScrolling__();	
+	$("#categories_listtings tr td").hover(function(){
+		var x  = $(this).offset().left;
+		$(this).find('ul:first').css({visibility: "visible",display: "none",left:x}).show(400); 
+	},function(){ 
+		$(this).find('ul:first').hide(400); 
+	}); 	   
+});
+</script>

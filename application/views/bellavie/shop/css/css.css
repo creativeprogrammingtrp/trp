@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/cJZKeOuBrn4kERxqtaUH3fY6323mHUZFJMgTvxaG2iE.eot)/*tpa=http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3fY6323mHUZFJMgTvxaG2iE.eot*/;
+  src: local('Open Sans'), local('OpenSans'), url(fonts/cJZKeOuBrn4kERxqtaUH3fY6323mHUZFJMgTvxaG2iE.eot)/*tpa=http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3fY6323mHUZFJMgTvxaG2iE.eot*/ format('embedded-opentype'), url(fonts/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff)/*tpa=http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff*/ format('woff');
+}
+@font-face {
+  font-family: 'Sanchez';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/jmAEUIQSCRFE1APV8uXw3Q.eot)/*tpa=http://themes.googleusercontent.com/static/fonts/sanchez/v1/jmAEUIQSCRFE1APV8uXw3Q.eot*/;
+  src: local('Sanchez'), local('Sanchez-Regular'), url(fonts/jmAEUIQSCRFE1APV8uXw3Q.eot)/*tpa=http://themes.googleusercontent.com/static/fonts/sanchez/v1/jmAEUIQSCRFE1APV8uXw3Q.eot*/ format('embedded-opentype'), url(fonts/mx466fsxfR1AA3OwUm3waQ.woff) format('woff');
+}

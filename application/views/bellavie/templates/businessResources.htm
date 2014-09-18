@@ -1,0 +1,30 @@
+<style>
+.business-resource ul li {
+    background: url("../main/images/arrow2.png") no-repeat scroll 0 13px transparent;
+	padding:5px 0 3px 15px;
+}
+.heading{
+	margin:0 0 10px;}
+.main-container{
+	padding:4px 19px 20px}
+</style>
+<div class="content-panel">
+    <div class="page-title holder">
+        <h2>{title_page}</h2>
+        <ul class="breadcrumbs">
+            <li><a href="javascript:goHome();">Home</a></li>
+            <li>/</li>
+            <li>{title_page}</li>								
+        </ul>
+    </div>
+</div>
+
+<div class="main-container holder">
+    <div class="col-holder business-resource">
+        {documents}
+        	<h5><a href="javascript:void(0);">{label}</a><a href="index.php/download/get_file/{file_name}"><img src="../images/icon_pdf.gif" border="0" align="absmiddle" width="20px" /></a></h5>
+        {/documents}
+        {content}
+    </div>
+</div>
+<script src="../main/js/tabs.js" type="text/javascript"></script>	

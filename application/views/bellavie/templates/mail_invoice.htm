@@ -1,0 +1,39 @@
+<div style="width:100%; overflow:hidden">
+	<div style="clear:both; padding-top:10px; overflow:hidden">
+        <div style="clear:both; font-weight:bold;">Recipient e-mail address </div>
+        <span class="field-with-placeholder" style="clear:both">
+            <input type="text" class="input-text" id="recipient_mail" size="10" name="recipient_mail" value="{recipient_mail}" style="width:250px">
+        </span>
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px;" align="left" id="sendmailbt">
+        <input type="button" value="Mail invoice" name="submit" class="button" style="margin-left:5px" onclick="Send_mail_invoice()" />
+    </div>
+    <div style="clear:both; padding-top:30px; height:30px; display:none" id="loading_sendmailbt" align="left">
+        <div class="button-loading" style="width:80px">
+            <span style="float:left"><img src="../images/loading_16x16.gif" border="0" /></span>
+            <span style="float:left; padding-left:10px">Mailing...</span>
+        </div>
+    </div>
+</div>
+<!--start_script-->
+<script type="text/javascript">
+function Send_mail_invoice(){
+	$("#loading_sendmailbt").show();
+	$("#sendmailbt").hide();
+	$.post("index.php/store/orders/mailinvoice", {
+		sendMail: 'yes',
+		okey:document.getElementById("okey").value,
+		recipient_mail:document.getElementById("recipient_mail").value
+	}, function(data){
+		$("#loading_sendmailbt").hide();
+		$("#sendmailbt").show();
+		if(typeof(data) == 'object'){
+			if(data.error != ''){
+				alert(data.error);	
+			}else{
+				alert("Sent mail completed.");
+			}
+		}
+	}, "json");
+}
+</script>

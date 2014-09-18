@@ -1,0 +1,88 @@
+<div id="tracking_content"></div>
+<script type="text/javascript">
+var objData = [];
+$(function(){
+	checkTrackingID();
+});
+function checkTrackingID(){
+	objData = [];
+	var data = [];
+	{if('load_tracking_detail' == 'yes');}
+	
+	if(data.tracking == ''){
+		alert("Tracking ID# is not exist in system.");
+		return false;		
+	}else if(data.tracking != '' && data.type == '1'){
+		window.open(data.data);	
+	}else if(data.tracking != '' && data.type == '0'){
+		objData = data;	
+		$("#form_submit").hide();
+		show_data();
+	}
+	
+	return false;
+}
+function show_data(){
+	var str = '';
+	str += '<div style="float:left; width:700px; min-height:280px; padding-left:5px; clear:both">';
+	str += '	<div style="clear:both; float:left; width:350px; font-weight:bold;">';
+	str += '		<span style="clear:both; float:left; width:110px; font-weight:bold">Tracking ID#:</span>';
+	str += '		<span style="float:left; width:200px; font-weight:bold;">'+objData.tracking+'</span>';
+	str += '		<span style="clear:both; float:left; width:110px; font-weight:bold; padding-top:3px;">Date shipping:</span>';
+	str += '		<span style="float:left; width:200px; font-weight:bold; padding-top:3px;">'+objData.data.trackinfo.ship_date+'</span>';
+	if(objData.data.trackinfo.expected_delivery != ''){
+		str += '	<span style="clear:both; float:left; width:110px; font-weight:bold; padding-top:3px;">Expected delivery:</span>';
+		str += '	<span style="float:left; width:200px; font-weight:bold; padding-top:3px;">'+objData.data.trackinfo.expected_delivery+'</span>';
+	}
+	str += '	</div>';
+	str += '	<div style="float:right; width:350px; font-weight:bold;">';
+	str += '		<span style="clear:both; float:left; width:115px; font-weight:bold">Ship To Address:</span>';
+	str += '		<div style="float:left; width:200px; font-weight:normal;">';
+	str += '		<span style="clear:both; float:left; width:200px; font-weight:bold;">'+objData.data.trackinfo.destination_firstname+' '+objData.data.trackinfo.destination_lastname+'</span>';
+	str += '		<span style="clear:both; float:left; width:200px; padding-top:3px;">'+objData.data.trackinfo.destination_address+'</span>';
+	str += '		<span style="clear:both; float:left; width:200px; padding-top:3px;">'+objData.data.trackinfo.destination_city+', '+objData.data.trackinfo.destination_state+' '+objData.data.trackinfo.destination_zipcode+', '+objData.data.trackinfo.destination_country+'</span>';
+	str += '		</div>';
+	str += '	</div>';
+	str += '	<table style="float:left; clear:both; margin-top:10px;" width="100%">';
+	str += '		<tr>';
+    str += '    		<td align="left" valign="top" style="padding-top:15px">';
+    str += '        		<table cellpadding="0" cellspacing="0" border="0" width="100%" style="">';
+    str += '               		<tr>';
+    str += '                    	<td align="left" valign="top" style="padding:5px">';
+    str += '                   			<table cellpadding="0" cellspacing="0" border="0" width="100%">';
+    str += '                        		<tr>';
+    str += '                            		<td align="left" valign="middle" style="background:#d2d2d2; color:#666666; padding:5px; font-weight:bold">PACKAGE ID</td>';
+    str += '                                	<td align="left" valign="middle" style="background:#d2d2d2; color:#666666; padding:5px; font-weight:bold; border-left:1px solid #ffffff">PRODUCTS</td>';
+    str += '                                	<td align="right" valign="middle" style="background:#d2d2d2; color:#666666; padding:5px; font-weight:bold; border-left:1px solid #ffffff">PACKAGE TYPE</td>';
+    str += '                            	</tr>';
+	var pack = objData.data.trackpack;
+	for(var i = 0; i < pack.length; i++){
+		str += '                        	<tr>';
+		str += '                           		<td align="left" valign="top" style="padding:10px 5px; border-bottom:1px dashed #d2d2d2">'+pack[i].packages.pkey+'</td>';
+		str += '                            	<td align="left" valign="top" style="padding:10px 5px; border-bottom:1px dashed #d2d2d2">';
+		str += '									<table cellpadding="0" cellspacing="0" border="0" width="100%">';
+		var products = pack[i].products; 
+		for(var j = 0; j < products.length; j++){
+			str += '									<tr>';
+			str += '										<td>'+products[j]+'</td>';
+			str += '									</tr>';
+		}
+		str += '									</table>';
+		str += '								</td>';
+		str += '                            	<td align="right" valign="top" style="padding:10px 5px; border-bottom:1px dashed #d2d2d2">'+pack[i].packages.package_type+'</td>';
+		str += '                        	</tr>';
+	}
+    str += '                        	</table>';
+    str += '                    	</td>';
+    str += '               		</tr>';
+    str += '          		</table>';
+    str += '        	</td>';
+    str += '    	</tr>';
+	str += '	</table>';
+	str += '</div>';
+	str += '<div align="right" style="float: right; clear:both; margin-top:5px">';
+	str += '	<input class="button" type="button" onclick="history.go(-1);" style="margin-left:7px" value="Back">';
+	str += '</div>';
+	$("#tracking_content").empty().append(str);
+}
+</script>
