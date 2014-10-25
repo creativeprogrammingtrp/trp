@@ -1668,7 +1668,17 @@ function loadReport(val){
     // do some validation on the hash here
 
     //hash && $('ul.nav a[href="' + hash + '"]').tab('show');
-    
+
+
+     $("#cancel_edit_benefits").click(function() {
+         $("#modal_edit_benefits_product").modal('hide');
+     });
+
+     $("#cancel_edit_insurance").click(function() {
+         $("#modal_edit_insuracne_product").modal('hide');
+     });
+
+     
     // Initialize DateRangePicker Advanced 
         var bankProductsfundedReportDaterangepicker = $('#bank_products_funded_report_daterangepicker');
         var bankProductsfundedReportDaterangepickerSpan = $('#bank_products_funded_report_daterangepicker span');

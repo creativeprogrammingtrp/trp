@@ -294,16 +294,21 @@
 						         <!-- Panel start -->
 						
 							<div class="form-group form-group1" style="padding-bottom:0px;">
-								<div class="col-md-3 "></div>
-								<div class="col-md-6 " style="border:1px solid #eee; border-radius:4px; padding:8px 28px 12px;">
-						                <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Refund Amount </label>
+                                <div class="col-md-1 ">
+                                </div>
+                                <div class="col-md-5 " style="border:1px solid #eee; border-radius:4px; padding:8px 10px 12px;">
+                                    <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Expected Refund Amount </label>
+                                    <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="expected_refund_amt_3">$0.00</label>
+                                </div>
+								<div class="col-md-5 " style="border:1px solid #eee; border-radius:4px; padding:8px 10px 12px;  margin-left: 10px;">
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Actual Refund Amount </label>
 						                <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="total_refund_amt_3">$0.00</label>
 	                                </div>
-								<div class="col-md-3 ">
+								<div class="col-md-1 ">
 								</div>
 							</div>
 							
-							<div class="col-md-12 text-center" style="padding-left:0px;" >
+							<div class="col-md-12 text-center" style="padding-left:140px;" >
 				            <img src="../backend/img/refund_minus_icon_small.png" align="middle"  />
 				            </div>
 				            
@@ -501,7 +506,7 @@
             
 <script type="text/javascript">
 var dataClient = [];
-var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","ERO","Action"];
+var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Payment <br>Status","ERO","Action"];
 
 function loadObject() {
     {dataLoad}
@@ -535,19 +540,23 @@ function loadClients() {
            var parent = 'body_edit_application_ready_to_print';
            var count = 0;
              htm +='<tr>';
-             htm +='<td><input type="checkbox" class="ready_to_print_check" name="ready_to_print_check" id="ready_to_print_check" value="'+obj.app_id+'"></td>';
+        if(obj.payment_method == 'Check') {
+            htm += '<td><input type="checkbox" class="ready_to_print_check" name="ready_to_print_check" id="ready_to_print_check" value="' + obj.app_id + '"></td>';
+        }else if(obj.payment_method == 'Direct Deposit') {
+            htm += '<td><input type="checkbox" class="direct_deposit_app" name="direct_deposit_app" id="direct_deposit_app" value="' + obj.app_id + '"></td>';
+        }
              htm +='<td class="text-left hidden-xs capitalize"><strong>'+obj.first_name+' '+obj.last_name+'</strong><br>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';
              htm +='<td><strong>'+obj.cell_phone+'</strong></td>';
              htm +='<td class="hidden-xs hidden-sm">';
              var flag = 0;
             // for(var j = 0 ; j < obj.prodcuts.length ; j++){
             	// var obj1 = obj.prodcuts[j];
-            	 
+
             	 if(obj.audit_guard_item == "Audit Guard Protection"){
             		// htm += 'Yes';
             		 flag = 1;
             	 }
-            	 
+
             	 /*if(j<2){
             		htm += obj1.prodcut_name+'<br> ';
             	 }else{
@@ -562,7 +571,7 @@ function loadClients() {
                 	 htm += '<a href="javascript:void(0)">More</a>';
                  }*/
            //  }
-             
+
              if(flag == 1){
             	 htm += 'Yes';
              }else{
@@ -571,7 +580,8 @@ function loadClients() {
             
              
              htm +='</td>';
-             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+            // htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_actual_refund_amount+'</td>';
              htm +='<td class="capitalize">'+obj.firstname+' '+obj.lastname+' </td>';
              htm +='<td>'+obj.format_date+'</td>';
              var appststus = '';
@@ -581,15 +591,19 @@ function loadClients() {
             	 appststus = 'Ready To Print';
              else if(obj.status == '2')
             	 appststus = 'Printed Check';
-             
-             
-             htm +='<td class="hidden-xs hidden-sm">'+appststus+'</td>';
+
+
+             htm +='<td class="hidden-xs hidden-sm">'+obj.payment_method+'</td>';
              htm +='<td class="capitalize">'+obj.company_name+'</td>';
              
               htm +='<td class="text-center">';
-              htm += ' <button class="btn btn-xs btn-info print_check1" type="button" id="print" value="'+obj.app_id+'" style=margin-right:10px;">Print</button>';
+        if(obj.payment_method == 'Check') {
+            htm += ' <button class="btn btn-xs btn-info print_check1" type="button" id="print" value="' + obj.app_id + '" style=margin-right:10px;">Print</button>';
+        }else if(obj.payment_method == 'Direct Deposit') {
+            htm += ' <button class="btn btn-xs btn-info initiate1" type="button" id="initiate" value="' + obj.app_id + '" style=margin-right:10px;">Initiate</button>';
+        }
                         //htm += '<a class="btn c btn-info PrintApp print_check" style="" title="Print"  href="javascript:void(0)"  id ="">Print</a>';
-                        htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editApplication(\''+obj.app_id+'\',\''+parent+'\')" >View</a>';
+                        htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editApplicationAfterDeposit(\''+obj.app_id+'\',\''+parent+'\')" >View</a>';
                            
                        
                 htm += '</td>'
@@ -672,7 +686,7 @@ function printCheckModal1(actionFrom){
     	    
     	    
     	    $.ajax({
-                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplication?ajax=1&ids='+ids+'',
+                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplicationFromAdmin?ajax=1&ids='+ids+'',
                 cache: false,
                 success: function(message){
                 //	alert(message);
@@ -681,7 +695,6 @@ function printCheckModal1(actionFrom){
                         return false;
                 }
 			});	
-    	 
 
         	if(actionFrom != ''){
 	        	var $parent = $("#" + actionFrom);
@@ -692,9 +705,51 @@ function printCheckModal1(actionFrom){
     });
 }
 
+function initiateAppModal1(actionFrom){
+    $(".initiate1").click(function(){
+
+
+        var arr = [];
+        var ids='';
+        var i = 0;
+        $('.direct_deposit_app:checked').each(function(){
+            arr[i++] = $(this).val();
+        });
+        //alert(arr.length);
+        if(arr.length > 0){
+            ids = arr.join(",");
+        }else{
+            ids = $(this).val();
+        }
+
+
+
+        $.ajax({
+            url: 'index.php/admin/clientcenter/showSelectedDirectDepositApplicationFromAdmin?ajax=1&ids='+ids+'',
+            cache: false,
+            success: function(message){
+                //	alert(message);
+                $("#body_direct_deposit").empty().append(message);
+                //  $(".print_check").css('display','block');
+                return false;
+            }
+        });
+
+
+        if(actionFrom != ''){
+            var $parent = $("#" + actionFrom);
+            $parent.closest("#modal_editApplication").modal('hide');
+        }
+
+        $("#modal_direct_deposit").modal('show');
+    });
+}
+
 $(function(){
 	loadObject();
 	printCheckModal1('body_edit_application_ready_to_print');
+    initiateAppModal1('body_edit_application_ready_to_print');
+
 	clickToEditApplicationInfo('body_edit_application_ready_to_print');
 	//$('#toppart').remove();
 	$(".toottip_product").tooltip(); 
@@ -720,14 +775,14 @@ $(function(){
                              "sButtonText": "PDF",
                              "sFileName": "recentApplication-*.pdf",
                              "sPdfOrientation": "landscape",
-                             "mColumns": [ 0, 1, 2, 3, 4, 5],
+                             "mColumns": [ 0, 1, 2, 3, 4, 5]
                              
                          },
                          {
                              "sExtends":     "print",
                             // "sButtonClass": "btn btn-info",
                              "sButtonText": "Print",
-                             "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+                             "mColumns": [ 0, 1, 2, 3, 4, 5 ]
                              
                          },
                          

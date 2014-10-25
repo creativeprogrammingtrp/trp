@@ -12,7 +12,7 @@ class Settings extends CI_Controller {
     }
 
     function perms() {
-        $perms['Settings'] = array('index', 'profileSetting', 'showCompanyInformation', 'showSetupCompanyInformation', 'saveCompanyInfo','saveSetupCompanyInfo', 'saveProfileInfo', 'resetPassword','showUserLists','showUserForm','addUser','deleteUser','ShowService','saveService','deleteService','savePaymentInfo','showPaymentInfo','showBankFeesInfo','saveBankingFeesInfo','checkParentEFINInfo','checkSBEFINInfo');
+        $perms['Settings'] = array('index', 'profileSetting', 'showCompanyInformation', 'showSetupCompanyInformation', 'saveCompanyInfo','saveSetupCompanyInfo', 'saveProfileInfo', 'resetPassword','showUserLists','showUserForm','addUser','deleteUser','ShowService','saveService','deleteService','savePaymentInfo','showPaymentInfo','showBankFeesInfo','saveBankingFeesInfo','checkParentEFINInfo','checkSBEFINInfo','saveCompanyInfoFromAdmin','saveProfileInfoFromAdmin','saveBankingFeesInfoFromAdmin','savePaymentInfoFromAdmin');
         return $perms;
     }
 
@@ -29,6 +29,14 @@ class Settings extends CI_Controller {
         	}else{
             	echo json_encode($this->m_com->saveCompany());
         	}
+            exit();
+        }
+    }
+
+    public function saveCompanyInfoFromAdmin() {
+        if (isset($_POST['senddata']) && !empty($_POST['senddata']) && $_POST['senddata'] == 'yes') {
+
+            echo json_encode($this->m_com->saveCompanyFromAdmin());
             exit();
         }
     }
@@ -62,6 +70,13 @@ class Settings extends CI_Controller {
         }
     }
 
+    public function saveProfileInfoFromAdmin() {
+        if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
+            echo json_encode($this->m_com->saveProfileFromAdmin());
+            exit();
+        }
+    }
+
     public function profileSetting() {
         $data = array();
         $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
@@ -77,6 +92,15 @@ class Settings extends CI_Controller {
     		exit();
     	}
     }
+
+    public function savePaymentInfoFromAdmin() {
+        if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
+            echo json_encode($this->m_com->saveBankAccountFromAdmin());
+            exit();
+        }
+    }
+
+
     
     public function showPaymentInfo() {
     	$data = array();
@@ -93,9 +117,16 @@ class Settings extends CI_Controller {
     		exit();
     	}
     }
-    
-    
-    
+
+    public function saveBankingFeesInfoFromAdmin() {
+        if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
+            echo json_encode($this->m_com->saveBankFeesFromAdmin());
+            exit();
+        }
+    }
+
+
+
     public function showBankFeesInfo() {
     	$data = array();
     	$data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
@@ -169,20 +200,48 @@ class Settings extends CI_Controller {
     	
          if (isset($_POST['add']) && !empty($_POST['add']) && $_POST['add'] == 'yes') {
          	if ($_POST['author'] == ""){
-	         	$checkUsername =  $this ->author ->check_usernaem_exists($this ->input ->post('username'));
-	         	if($checkUsername == 'nameexit'){
-	         		 $data = "Username is already in use.";
-	         		echo json_encode($data);
-	         		exit();
-	         	}else{
-	         		echo json_encode($this->m_com->addUser());
-	         		exit();
-	         	}
+                $check_ptin_exists = $this ->author ->check_ptin_exists($this ->input ->post('ptin'));
+                if($check_ptin_exists != 'ptinexit') {
+                    $checkUsername = $this->author->check_usernaem_exists($this->input->post('username'));
+                    if ($checkUsername == 'nameexit') {
+                        $data = "Username is already in use.";
+                        echo json_encode($data);
+                        exit();
+                    } else {
+                        echo json_encode($this->m_com->addUser());
+                        exit();
+                    }
+                }else{
+                    $data = "PTIN is already in use.";
+                    echo json_encode($data);
+                    exit();
+                }
          	}
          	else{
             	echo json_encode($this->m_com->addUser());
             	exit();
          	}
+        }
+    }
+
+    public function addUserFromAdmin(){
+
+        if (isset($_POST['add']) && !empty($_POST['add']) && $_POST['add'] == 'yes') {
+            if ($_POST['author'] == ""){
+                $checkUsername =  $this ->author ->check_usernaem_exists($this ->input ->post('username'));
+                if($checkUsername == 'nameexit'){
+                    $data = "Username is already in use.";
+                    echo json_encode($data);
+                    exit();
+                }else{
+                    echo json_encode($this->m_com->addUserFromAdmin());
+                    exit();
+                }
+            }
+            else{
+                echo json_encode($this->m_com->addUserFromAdmin());
+                exit();
+            }
         }
     }
     

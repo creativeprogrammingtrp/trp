@@ -23,6 +23,20 @@ class Mycompany_model extends CI_Model {
         return $data;
     }
 
+    function loadListForAdmin($eroid) {
+        $data = array();
+        //$sql = "select ero.*,rid,email,pass,users.uid as user_id,users.status from users join ero join users_roles on users.uid = ero.uid and users_roles.uid = users.uid where users.status <> -1 and users.uid =" . $this->author->objlogin->uid;
+        $sql = "select ero.*,rid,email,pass,users.uid as user_id,users.status from users
+				INNER JOIN ero on ero.uid = users.uid
+				INNER JOIN users_roles ur on ur.uid = ero.author
+ 				where users.status <> -1 and ero.status_ero <> -1 and users.uid =". $eroid;
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
     function loadEmployeeList() {
         $data = array();
        // echo $sql = "select ero.*,rid,email,pass,users.uid as user_id,users.status from users join ero join users_roles on users.uid = ero.author and users_roles.uid = users.uid where users.status <> -1 and ero.status_ero <> -1 and users.uid =" . $this->author->objlogin->uid;
@@ -128,6 +142,70 @@ class Mycompany_model extends CI_Model {
         
         
         return $this->loadInfor();
+    }
+
+    function saveCompanyFromAdmin() {
+        $file_id = (isset($_POST['file_id']) && $_POST['file_id'] != '') ? $_POST['file_id'] : '';
+        $ext = $_POST['ext'];
+        $filename = $file_id . '.' . $ext;
+
+        $ero_id =  $_POST['ero_id'];
+
+        $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $ero_id));
+
+        $data = array(
+            'p_efin' => $this->lib->escape($_POST['p_efin']),
+            'service_bureau_num' => $this->lib->escape($_POST['service_bureau_num']),
+            'is_parent_efin' => $this->lib->escape($_POST['is_parent_efin']),
+            'is_service_bureau' => $this->lib->escape($_POST['is_service_bureau']),
+
+            'is_view' => $this->lib->escape($_POST['is_view']),
+            'pefin_status' => $this->lib->escape($_POST['pefin_status']),
+
+            'image' => $this->lib->escape($filename),
+            'company_name' => $this->lib->escape($_POST['company_name']),
+            'business_phone' => $this->lib->escape($_POST['com_phoneno']),
+            'business_addr_1' => $this->lib->escape($_POST['address_1']),
+            'business_addr_2' => $this->lib->escape($_POST['address_2']),
+            'business_zip' => $this->lib->escape($_POST['zipcode']),
+            'business_city' => $this->lib->escape($_POST['city']),
+            'business_state' => $this->lib->escape($_POST['state']),
+            'same_as' => $this->lib->escape($_POST['same_as']),
+            'mail_addr_1' => $this->lib->escape($_POST['address_1_m']),
+            'mail_addr_2' => $this->lib->escape($_POST['address_2_m']),
+            'mail_zip' => $this->lib->escape($_POST['zipcode_m']),
+            'mail_city' => $this->lib->escape($_POST['city_m']),
+            'mail_state' => $this->lib->escape($_POST['state_m']),
+            'tax_software' => $this->lib->escape($_POST['tax']),
+            'date_created' => $this->lib->getTimeGMT()
+        );
+        $query = $this->db->get_where('master_ero', array('uid' => $ero_id));
+        if ($query->num_rows() > 0) {
+            $this->db->where('uid', $ero_id);
+            $this->db->update('master_ero', $data);
+        } else {
+            $data['uid'] = $ero_id;
+            $data['efin'] = $this->lib->escape($_POST['efin']);
+            $this->db->insert("master_ero", $data);
+        }
+
+
+        if ($query1->num_rows() > 0) {
+
+        }else{
+            $data1 = array(
+                'uid' => $ero_id,
+                'efin' => $this->lib->escape($_POST['efin']),
+                'pefin' => $this->lib->escape($_POST['p_efin']),
+                'service_buraue' => $this->lib->escape($_POST['service_bureau_num']),
+                'add_date' => $this->lib->getTimeGMT()
+            );
+            $this->db->insert("efin_pefin", $data1);
+        }
+
+
+
+        return $this->ero->loadAllErosForAdmin();
     }
 
     function saveSetupCompany() {
@@ -241,6 +319,32 @@ class Mycompany_model extends CI_Model {
         $this->db->update('users', $data);
         return $this->loadInfor();
     }
+
+    function saveProfileFromAdmin() {
+
+        $ero_id = $this->lib->escape($_POST['ero_id']);
+        $data = array(
+            'name' => $this->lib->escape($_POST['username']),
+            'ptin' => $this->lib->escape($_POST['ptin']),
+            //'pass' 				=> $this ->author ->encode_password(trim($_POST['pass'])),
+            'mail' => $this->lib->escape($_POST['email']),
+            'firstname' => $this->lib->escape($_POST['first_name']),
+            'lastname' => $this->lib->escape($_POST['last_name']),
+            'phone' => $this->lib->escape($_POST['phone']),
+            // 'mobile' => $this->lib->escape($_POST['cell_phone']),
+            'created' => strtotime(gmdate("Y-m-d H:i:s")),
+            'access' => strtotime(gmdate("Y-m-d H:i:s")),
+            'login' => strtotime(gmdate("Y-m-d H:i:s")),
+            'data' => 1,
+
+        );
+
+        $this->db->where("uid", $ero_id);
+        $this->db->update('users', $data);
+        return  $this->ero->loadAllErosForAdmin();
+    }
+
+
     
     function saveBankAccount(){
     	$data = array(
@@ -254,18 +358,70 @@ class Mycompany_model extends CI_Model {
     	return $this->loadInfor();
     }
 
+    function saveBankAccountFromAdmin(){
+        $ero_id = $this->lib->escape($_POST['ero_id']);
+        $data = array(
+            'bank_name' => 	$this->lib->escape($_POST['bank_name']),
+            'bank_routing' => $this->lib->escape($_POST['bank_routing']),
+            'bank_account' => $this->lib->escape($_POST['b_account_name'])
+        );
+
+        $this->db->where('uid', $ero_id);
+        $this->db->update('master_ero', $data);
+        return  $this->ero->loadAllErosForAdmin();
+    }
+
+
+
+
     function saveBankFees(){
+
+        if($this->lib->escape($_POST['add_on_fee']) != 0){
+            $addonfeeComm = 10.00;
+        }else{
+            $addonfeeComm = 0.00;
+        }
+
+
     	$data = array(
     			'tax_preparation_fee' => 	$this->lib->escape($_POST['tax_preparation_fee']),
         		'bank_transmission_fee' => $this->lib->escape($_POST['bank_transmission_fee']),
         		'sb_fee' => $this->lib->escape($_POST['sb_fee']),
         		//'e_file_fee' => $this->lib->escape($_POST['e_file_fee']),
-        		'add_on_fee' => $this->lib->escape($_POST['add_on_fee'])
+        		'add_on_fee' => $this->lib->escape($_POST['add_on_fee']),
+            'add_on_commission_type' => '1',
+            'add_on_commission' => $addonfeeComm
     	);
     	 
     	$this->db->where('uid', $this->author->objlogin->uid);
     	$this->db->update('master_ero', $data);
     	return $this->loadInfor();
+    }
+
+    function saveBankFeesFromAdmin(){
+        $ero_id = $this->lib->escape($_POST['ero_id']);
+
+        if($this->lib->escape($_POST['add_on_fee']) != 0){
+            $addonfeeComm = 10.00;
+        }else{
+            $addonfeeComm = 0.00;
+        }
+
+        $data = array(
+            'tax_preparation_fee' => 	$this->lib->escape($_POST['tax_preparation_fee']),
+            'bank_transmission_fee' => $this->lib->escape($_POST['bank_transmission_fee']),
+            'sb_fee' => $this->lib->escape($_POST['sb_fee']),
+            //'e_file_fee' => $this->lib->escape($_POST['e_file_fee']),
+            'add_on_fee' => $this->lib->escape($_POST['add_on_fee']),
+            'tax_pre_commission_type' => $this->lib->escape($_POST['tax_preparation_commission1_type']),
+            'tax_pre_commission' => $this->lib->escape($_POST['tax_preparation_commission1']),
+            'add_on_commission_type' => 1,
+            'add_on_commission' => $addonfeeComm
+        );
+
+        $this->db->where('uid', $ero_id);
+        $this->db->update('master_ero', $data);
+        return  $this->ero->loadAllErosForAdmin();
     }
     
     
@@ -305,6 +461,7 @@ class Mycompany_model extends CI_Model {
             'created' => strtotime(gmdate("Y-m-d H:i:s")),
             'access' => strtotime(gmdate("Y-m-d H:i:s")),
             'login' => strtotime(gmdate("Y-m-d H:i:s")),
+            'efin' => $this->lib->escape($_POST['eifn']),
             'ptin' => $this->lib->escape($_POST['ptin']),
         );
         $sql = "select uid  from users where uid = '" . $author . "' ";
@@ -330,6 +487,55 @@ class Mycompany_model extends CI_Model {
             } 
         }
         return $this->loadList();
+    }
+
+    function addUserFromAdmin() {
+        $cid = $this->lib->escape($_POST['cid']);
+        $author = $this->lib->escape($_POST['author']);
+        $ero_id = $this->lib->escape($_POST['ero_id']);
+
+        $data_ero = array(
+            'ptin' => $this->lib->escape($_POST['ptin']),
+            'legal_business_name' => $this->lib->escape($_POST['username']),
+            'legal_business_fname' => $this->lib->escape($_POST['first_name']),
+            'legal_business_lname' => $this->lib->escape($_POST['last_name']),
+            'email' => $this->lib->escape($_POST['add_email']),
+        );
+
+        $data = array(
+            'name' => $this->lib->escape($_POST['username']),
+            'pass' => $this->author->encode_password(trim($this->input->post("pass"))),
+            'mail' => $this->lib->escape($_POST['add_email']),
+            'firstname' => $this->lib->escape($_POST['first_name']),
+            'lastname' => $this->lib->escape($_POST['last_name']),
+            'created' => strtotime(gmdate("Y-m-d H:i:s")),
+            'access' => strtotime(gmdate("Y-m-d H:i:s")),
+            'login' => strtotime(gmdate("Y-m-d H:i:s")),
+            'ptin' => $this->lib->escape($_POST['ptin']),
+        );
+        $sql = "select uid  from users where uid = '" . $ero_id . "' ";
+        $res = $this->db->query($sql);
+        if ($res->num_rows() > 0) {
+            $this->db->where('uid', $author);
+            $this->db->update('users', $data);
+            $this->db->where('cid', $cid);
+            $this->db->update('ero', $data_ero);
+        } else {
+            $this->db->insert('users', $data);
+            $last_id = $this->db->insert_id();
+
+            if ($last_id > 0) {
+                $data_ero['uid'] = $ero_id;
+                $data_ero['author'] = $last_id;
+                $this->db->insert('ero', $data_ero);
+                $users_roles = array(
+                    'uid' => $last_id,
+                    'rid' => $this->lib->escape($_POST['role'])
+                );
+                $this->db->insert('users_roles', $users_roles);
+            }
+        }
+        return $this->loadListForAdmin($ero_id);
     }
 
     function deleteUser() {

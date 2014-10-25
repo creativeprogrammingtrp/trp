@@ -316,7 +316,7 @@ z-index: 30000;
 	      }
        
       */
-      if((compiliance_test === '1') && (company_setting === '1') && (order_supplies_setting !== '1')){
+      /*if((compiliance_test === '1') && (company_setting === '1') && (order_supplies_setting !== '1')){
           //$(".alert-info").css('display','none');
           $("#setuptestbutton").attr('disabled','disabled');
           $("#setuptestli").css('disabled','disabled');
@@ -328,41 +328,69 @@ z-index: 30000;
           $("#setupcompanyli").attr('class','overlay');
           $("#badge_setup_company").css('display','block');
           
-       }
+       }*/
       /*else{
        	  $("#setupcompanybutton").attr('disabled','disabled');
        	  $("#ordersuppliesbutton").attr('disabled','disabled');
        	  $("#setuptestbutton").removeAttr('disabled');
        	  
       }*/
-      
+      /*
       if((company_setting === '1') && (compiliance_test !== '1') && (order_supplies_setting !== '1')){
           //$(".alert-info").css('display','none');
           $("#setupcompanybutton").attr('disabled','disabled');
           $("#setupcompanyli").css('disabled','disabled');
           $("#setupcompanyli").attr('class','overlay');
           $("#badge_setup_company").css('display','block');
-          
+
           $("#ordersuppliesbutton").attr('disabled','disabled');
-          
+
        }
       else{
      	  $("#setuptestbutton").attr('disabled','disabled');
      	  $("#ordersuppliesbutton").attr('disabled','disabled');
      	  $("#setupcompanybutton").removeAttr('disabled');
-     	  
-       }
+
+       }*/
       
       //$('#menu-orders').hide();
       //$('#menu-setting').hide();
       //$('#menu-training').hide();
       
       //alert(order_supplies_setting);
-      
-      
- 	 
-      
-      
+
+
+
+
+        if(company_setting != '1' && compiliance_test != '1' && order_supplies_setting != '1'){
+
+            $("#setuptestbutton").attr('disabled','disabled');
+            $("#ordersuppliesbutton").attr('disabled','disabled');
+
+        }else if(company_setting === '1' && compiliance_test != '1' && order_supplies_setting != '1'){
+
+            $("#setupcompanybutton").attr('disabled','disabled');
+            $("#setupcompanyli").css('disabled','disabled');
+            $("#setupcompanyli").attr('class','overlay');
+            $("#badge_setup_company").css('display','block');
+
+            $("#ordersuppliesbutton").attr('disabled','disabled');
+        }else if(company_setting === '1' && compiliance_test === '1' && order_supplies_setting != '1'){
+
+            $("#setupcompanybutton").attr('disabled','disabled');
+            $("#setupcompanyli").css('disabled','disabled');
+            $("#setupcompanyli").attr('class','overlay');
+            $("#badge_setup_company").css('display','block');
+
+            $("#setuptestbutton").attr('disabled','disabled');
+            $("#setuptestli").css('disabled','disabled');
+            $("#setuptestli").attr('class','overlay');
+            $("#badge_test").css('display','block');
+        }else{
+            $("#setuptestbutton").attr('disabled','disabled');
+            $("#ordersuppliesbutton").attr('disabled','disabled');
+            $("#setupcompanybutton").removeAttr('disabled');
+        }
       
       
       

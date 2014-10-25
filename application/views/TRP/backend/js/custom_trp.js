@@ -1,3 +1,4 @@
+
 function ChangeContent(type) {
     tab_selected = type;
     switch (parseInt(type, 10)) {
@@ -100,11 +101,51 @@ function ChangeContent(type) {
             break;
         case 34:
         	showBankProductUnfundedReport();
-            break;    
+            break;
+
     }
 }
 
+function editPaidApplicationForVoid(id, parent) {
 
+    var ids = id;
+
+    if (confirm("Are you sure you want to void this application payment?")) {
+        $.ajax({
+            url: url_base_path__+"admin/clientcenter/makePaymentAsVoid?id="+ids,
+            cache: false,
+            //type: "POST",
+            dataType: 'json',
+            success: function(data){
+                if (typeof (data) == 'object') {
+                    //  Console.log('test');
+                    //	alert(message);
+                    // $("#body_check_for_print").empty().append(message);
+                    //var obj = jQuery.parseJSON(data);
+
+                    //dataClientACH = data;
+                    //loadClientsACH();
+
+                    // $('#generatedFileForWellsFargos').css('display', 'none');
+                    // $('#dataFileUplaodResult').css('display', 'none');
+                    // $('#generatedACHFileForWellsFargos').css('display', 'block');
+
+                }else{
+                    alert(data);
+                    // Console.log('test3');
+                    //  $('#generatemessage').html(data);
+                    //  $('#generatedFileForWellsFargos').css('display', 'none');
+                    //  $('#dataFileUplaodResult').css('display', 'none');
+                    //  $('#generatedACHFileForWellsFargos').css('display', 'block');
+
+                }
+
+                //  $(".print_check").css('display','block');
+                return false;
+            }
+        });
+    }
+}
 
 function editEro(uid, parent) {
     var $parent = $("#" + parent);
@@ -170,10 +211,93 @@ function editEro(uid, parent) {
         	$parent.find("#e_file_fee1").val(obj_ero.e_file_fee);
         	$parent.find("#add_on_fee1").val(obj_ero.add_on_fee);
 
+            $parent.find("#tax_preparation_commission1_type").val(obj_ero.tax_pre_commission_type);
+            $parent.find("#tax_preparation_commission1").val(obj_ero.tax_pre_commission);
+            $parent.find("#add_on_commission1_type").val(obj_ero.add_on_commission_type);
+            $parent.find("#add_on_commission1").val(obj_ero.add_on_commission);
+
         }
     }
     $parent.closest("#modal_editEro").modal('show');
 }
+
+
+function editEroFromAdmin(uid, parent) {
+    var $parent = $("#" + parent);
+    for (var k = 0; k < dataClient.length; k++) {
+        var obj_ero = dataClient[k];
+        if (obj_ero.uid == uid) {
+
+            $parent.find("#ero_id").val(uid);
+            $parent.find("#efin").val(obj_ero.user_efin);
+            $parent.find("#parent_efin").val(obj_ero.p_efin);
+            $parent.find("#image_show").empty().append(obj_ero.image);
+            $parent.find("#company_name").val(obj_ero.company_name);
+
+            $parent.find("#service_bureau_efin").val(obj_ero.service_bureau_num);
+            (obj_ero.is_parent_efin === '1') ?  $parent.find("#pefin_check_box").attr("checked",true) : $parent.find("#pefin_check_box").attr("checked",false)  ;
+            (obj_ero.is_service_bureau === '1') ?  $parent.find("#pservice_bureau_check_box").attr("checked",true) : $parent.find("#pservice_bureau_check_box").attr("checked",false)  ;
+
+
+            $parent.find("#address_1").val(obj_ero.business_addr_1);
+            $parent.find("#address_2").val(obj_ero.business_addr_2);
+            $parent.find("#com_phoneno").val(obj_ero.business_phone);
+            $parent.find("#zipcode").val(obj_ero.business_zip);
+            $parent.find("#city").val(obj_ero.business_city);
+            $parent.find("#state").val(obj_ero.business_state);
+            (obj_ero.same_as === '1') ? $parent.find("#example-checkbox1").attr("checked", true) : $parent.find("#example-checkbox1").attr("checked", false);
+            $parent.find("#address_1_m").val(obj_ero.mail_addr_1);
+            $parent.find("#address_2_m").val(obj_ero.mail_addr_2);
+            $parent.find("#zipcode_m").val(obj_ero.mail_zip);
+            $parent.find("#city_m").val(obj_ero.mail_city);
+            $parent.find("#state_m").val(obj_ero.mail_state);
+            $parent.find("#tax").val(obj_ero.tax_software);
+            $parent.find('input:radio[name="tax"]').filter('[value="'+obj_ero.tax_software+'"]').attr('checked', true);
+            //console.log(obj_ero.tax_software);
+            // $parent.find("#bank_name").val(obj_ero.bank_name);
+            // $parent.find("#bank_routing").val(obj_ero.bank_routing);
+            //$parent.find("#bank_account").val(obj_ero.bank_account);
+            // $parent.find("#addon").val(obj_ero.addon);
+            //$parent.find("#file").val(obj_ero.file);
+            //$parent.find("#ag").val(obj_ero.ag);
+            //$parent.find("#agprep").val(obj_ero.agprep);
+            $parent.find("#uid_master").val(obj_ero.uid);
+
+            $parent.find("#username").val(obj_ero.username);
+            $parent.find("#role").val(obj_ero.role);
+            $parent.find("#ptin1").val(obj_ero.ptin);
+            $parent.find("#first_name").val(obj_ero.firstname);
+            $parent.find("#middle_name").val(obj_ero.middlename);
+            $parent.find("#last_name").val(obj_ero.lastname);
+            $parent.find("#email").val(obj_ero.mail);
+            $parent.find("#phone").val(obj_ero.phone);
+            // $parent.find("#cell_phone").val(obj_ero.mobile);
+            $parent.find("#address_1_p").val(obj_ero.address);
+            $parent.find("#zipcode_p").val(obj_ero.zipcode);
+            $parent.find("#city_p").val(obj_ero.city);
+            $parent.find("#state_p").val(obj_ero.state);
+            $parent.find("#current_p").val(obj_ero.pass);
+
+            $parent.find("#bank_name1").val(obj_ero.bank_name);
+            $parent.find("#bank_routing1").val(obj_ero.bank_routing);
+            $parent.find("#b_account_name1").val(obj_ero.bank_account);
+
+            $parent.find("#tax_preparation_fee1").val(obj_ero.tax_preparation_fee);
+            $parent.find("#bank_transmission_fee1").val(obj_ero.bank_transmission_fee);
+            $parent.find("#sb_fee1").val(obj_ero.sb_fee);
+            $parent.find("#e_file_fee1").val(obj_ero.e_file_fee);
+            $parent.find("#add_on_fee1").val(obj_ero.add_on_fee);
+
+            $parent.find("#tax_preparation_commission1_type").val(obj_ero.tax_pre_commission_type);
+            $parent.find("#tax_preparation_commission1").val(obj_ero.tax_pre_commission);
+            $parent.find("#add_on_commission1_type").val(obj_ero.add_on_commission_type);
+            $parent.find("#add_on_commission1").val(obj_ero.add_on_commission);
+
+        }
+    }
+    $parent.closest("#modal_editEro").modal('show');
+}
+
 
 function editApplication(uid, parent) {
     var $parent = $("#" + parent);
@@ -242,6 +366,11 @@ function editApplication(uid, parent) {
             $parent.find("#app_type").val(obj_ero.status);
             
             $parent.find("#net_refund_amt_3_label").html('$'+obj_ero.app_net_refund_amt);
+
+
+            $parent.find(".forDepositedFunds").css('display','none');
+            $parent.find(".forPendingFunds").css('display','block');
+
             
             //for (var l = 0; l < obj_ero.prodcuts.length; l++) {
             	// obj_app_product = obj_ero.prodcuts[l];
@@ -836,6 +965,742 @@ function editApplication(uid, parent) {
 		 $parent.find("#saveData").css('display','none');
 		 
     $parent.closest("#modal_editApplication").modal('show');
+}
+
+function editApplicationAfterDeposit(uid, parent) {
+    var $parent = $("#" + parent);
+    //console.log($parent);
+    for (var k = 0; k < dataClient.length; k++) {
+        var obj_ero = dataClient[k];
+        var obj_app_product = '';
+        var producthtm = '';
+        var pmathodhtm = '';
+        var appststus = '';
+        var html = '';
+        //console.log(uid);
+        //console.log(obj_ero.app_id);
+        if (obj_ero.app_id == uid) {
+        	//alert(uid);
+        	//alert(obj_ero.app_id);
+            $parent.find("#first_name_lab").html(obj_ero.first_name);
+            $parent.find("#first_name").val(obj_ero.first_name);
+            $parent.find("#last_name_lab").html(obj_ero.last_name);
+            $parent.find("#last_name").val(obj_ero.last_name);
+            $parent.find("#ss_number_lab").html(obj_ero.ss_number);
+            $parent.find("#ss_number").val(obj_ero.ss_number);
+            $parent.find("#dob_lab").html(obj_ero.dob);
+            $parent.find("#dob").val(obj_ero.dob);            
+            
+            if(obj_ero.sp_first_name == ''){
+            //	$("#dependent-box").css({'display','none'});
+            	$parent.find("#dependent-box").css('display','none');
+        	}
+            $parent.find("#sp_first_name_lab").html(obj_ero.sp_first_name);
+            $parent.find("#sp_first_name").val(obj_ero.sp_first_name);
+           // (obj_ero.is_parent_efin === '1') ?  $parent.find("#pefin_check_box").attr("checked",true) : $parent.find("#pefin_check_box").attr("checked",false)  ;
+           // (obj_ero.is_service_bureau === '1') ?  $parent.find("#pservice_bureau_check_box").attr("checked",true) : $parent.find("#pservice_bureau_check_box").attr("checked",false)  ;
+    	
+            
+            $parent.find("#sp_last_name_lab").html(obj_ero.sp_last_name);
+            $parent.find("#sp_last_name").val(obj_ero.sp_last_name);
+            $parent.find("#sp_ss_number_lab").html(obj_ero.sp_ssn_no);
+            $parent.find("#sp_ss_number").val(obj_ero.sp_ssn_no);
+            $parent.find("#sp_dob_lab").html(obj_ero.sp_dob);
+            $parent.find("#sp_dob").val(obj_ero.sp_dob);
+            $parent.find("#street_address_lab").html(obj_ero.street_address_1);
+            $parent.find("#street_address").val(obj_ero.street_address_1);
+            $parent.find("#city_lab").html(obj_ero.city);
+            $parent.find("#city").val(obj_ero.city);
+           // (obj_ero.same_as === '1') ? $parent.find("#example-checkbox1").attr("checked", true) : $parent.find("#example-checkbox1").attr("checked", false);
+            $parent.find("#state_lab").html(obj_ero.state);
+           
+            $parent.find("#state").val(obj_ero.state);
+            $parent.find("#zip_code_lab").html(obj_ero.zip_code);
+            $parent.find("#zip_code").val(obj_ero.zip_code);
+            $parent.find("#cell_phone_lab").html(obj_ero.cell_phone);
+            $parent.find("#cell_phone").val(obj_ero.cell_phone);
+            $parent.find("#email_add_lab").html(obj_ero.email_add);
+            $parent.find("#email_add").val(obj_ero.email_add);
+
+            $parent.find("#expected_refund_amt_3").html('$'+obj_ero.app_refund_amt);
+            $parent.find("#total_refund_amt_3").html('$'+obj_ero.deposit_amount);
+            $parent.find("#banking_fee").html('$'+obj_ero.app_total_fees);
+            $parent.find("#tax_preparation_fee_3").html('$'+obj_ero.app_tax_preparation_fee);
+            $parent.find("#bank_transmission_fee_3").html('$'+obj_ero.app_bank_transmission_fee);
+            $parent.find("#sb_fee_3").html('$'+obj_ero.app_sb_fee);
+            $parent.find("#add_on_fee_3").html('$'+obj_ero.app_add_on_fee);
+            $parent.find("#product_fee").html('$'+obj_ero.app_benefit);
+            
+            $parent.find("#application_id").val(obj_ero.applicent_id);
+            $parent.find("#app_type").val(obj_ero.status);
+            
+            $parent.find("#net_refund_amt_3_label").html('$'+obj_ero.app_actual_refund_amount);
+
+
+            $parent.find(".forPendingFunds").css('display','none');
+            $parent.find(".forDepositedFunds").css('display','block');
+
+            
+            //for (var l = 0; l < obj_ero.prodcuts.length; l++) {
+            	// obj_app_product = obj_ero.prodcuts[l];
+            	
+            	//producthtm += '<div class="col-md-2 service_img">';
+            	//producthtm += ''+obj_app_product.img_source+'';
+            	//producthtm += '</div>';
+          //  console.log(obj_ero.audit_guard_item);
+            if(obj_ero.audit_guard_item != '' && obj_ero.audit_guard_item !== null){	
+            	producthtm += '<div class="col-md-3 service_img">';
+            		producthtm += '<div style="color:#525a5e;  padding-top:10px; margin-bottom: 5px" class="symbol gray">';
+            			producthtm += '<i class="'+obj_ero.audit_guard_img_source+'"></i>';
+            		producthtm += '</div>';
+            	producthtm += '</div>';
+			
+            	producthtm += '<div class="col-md-7 service_title_2" style="padding:0px">';
+            	producthtm += '<h4>'+obj_ero.audit_guard_item+'</h4>';
+            	producthtm += '</div>';
+				
+            	producthtm += '<div class="col-md-2 price_2 text-right">';
+            	producthtm += '<h5>$'+obj_ero.audit_guard_fee+'</h5>';
+            	producthtm += '</div>';
+            	producthtm += '<div style="clear: both;"></div>';
+				producthtm += '<hr style="margin: 20px 0px;">';
+            }	
+           // }
+           
+            //benefits
+            if(obj_ero.benefits.length > 0){
+            	//for(var i = 0 ; i < obj_ero.benefits.length ; i++){
+        			obj_benefits_info = obj_ero.benefits[0];
+        			
+	           // if(obj_ero.benefits_item != '' && obj_ero.benefits_item !== null){	
+	            	producthtm += '<div class="col-md-3 service_img">';
+	            		producthtm += '<div style="color:#525a5e;  padding-top:10px; margin-bottom: 5px" class="symbol gray">';
+	            			producthtm += '<i class="'+obj_benefits_info.benefits_img_source+'"></i>';
+	            		producthtm += '</div>';
+	            	producthtm += '</div>';
+				
+	            	producthtm += '<div class="col-md-7 service_title_2"  style="padding:0px">';
+	            	producthtm += '<h4>'+obj_benefits_info.benefits_item+'</h4>';
+	            	producthtm += '</div>';
+					
+	            	producthtm += '<div class="col-md-2 price_2 text-right">';
+	            	producthtm += '<h5>$'+obj_benefits_info.benefits_price+'</h5>';
+	            	producthtm += '</div>';
+	            	producthtm += '<div style="clear: both;"></div>';
+					producthtm += '<hr style="margin: 20px 0px;">';
+	            //}
+            }
+            
+            
+            if(obj_ero.insurance.length > 0){
+           // if(obj_ero.insurance_item != '' && obj_ero.insurance_item !== null){
+            //if(obj_ero.products.length > 0){
+            	for(var i = 0 ; i < obj_ero.insurance.length ; i++){           		
+            		obj_insurance_products_info = obj_ero.insurance[i];
+            
+            	producthtm += '<div class="col-md-3 service_img"> ';
+            		producthtm += '<div style="color:#525a5e;  padding-top:10px; margin-bottom: 5px" class="symbol gray">';
+            			producthtm += '<i class="'+obj_insurance_products_info.insurance_img_source+'"></i>';
+            		producthtm += '</div>';
+            	producthtm += '</div>';
+			
+            	producthtm += '<div class="col-md-9 service_title_2"  style="padding:0px">';
+            	producthtm += '<h4>'+obj_insurance_products_info.insurance_item+'</h4>';
+            	producthtm += '</div>';
+				
+            	producthtm += '<div style="clear: both;"></div>';
+				producthtm += '<hr style="margin: 20px 0px;">';
+            	}
+            }
+            
+            $parent.find("#cart_details_view").empty().append(producthtm);
+            
+           if(obj_ero.payment_method == 'Check') {
+        	   pmathodhtm += '<div class="col-md-6 "  style="margin-top:20px">';
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '    <i class="icon-ok"></i> &nbsp; &nbsp; <strong>'+obj_ero.payment_method+'</strong>';
+               pmathodhtm += '</div>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '<div class="col-md-6 "  style="margin-top:20px">';
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>'+obj_ero.assign_acc_no+'</strong> <br>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Routing # <strong>'+obj_ero.assign_routing_no+'</strong>';
+               pmathodhtm += '</div>';
+               pmathodhtm += '</div>';
+           }
+           else if(obj_ero.payment_method == 'Direct Deposit') {
+        	   pmathodhtm += '<div class="col-md-6 "  style="margin-top:20px">';
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '    <i class="icon-ok"></i> &nbsp; &nbsp;  Bank: <strong>'+obj_ero.app_bank_name+'</strong>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>'+obj_ero.app_account_no+'</strong>';
+               pmathodhtm += '</div>';
+               
+               
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '    <i class="icon-ok"></i> &nbsp; &nbsp;  Routing # <strong>'+obj_ero.app_routing_no+'</strong>';
+               pmathodhtm += '</div>';
+               pmathodhtm += '</div>';
+               
+               
+               pmathodhtm += '<div class="col-md-6 "  style="margin-top:20px">';
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>'+obj_ero.assign_acc_no+'</strong> <br>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Routing # <strong>'+obj_ero.assign_routing_no+'</strong>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '</div>';
+               
+           }
+           else if(obj_ero.payment_method == 'Debit Card') {
+        	   pmathodhtm += '<div class="col-md-6 "  style="margin-top:20px">';
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Card # <strong>XXX-XXXX-XXXX-'+obj_ero.card_number.substring(16,12);+'</strong>';
+               pmathodhtm += '</div>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '<div class="col-md-6 "  style="margin-top:20px">';
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>'+obj_ero.assign_acc_no+'</strong> <br>';
+               pmathodhtm += '</div>';
+               
+               pmathodhtm += '<div class="alert alert-success">';
+               pmathodhtm += '<i class="icon-ok"></i> &nbsp; &nbsp;  Routing # <strong>'+obj_ero.assign_routing_no+'</strong>';
+               pmathodhtm += '</div>';
+               pmathodhtm += '</div>';
+           }
+           
+           
+           if(obj_ero.status == '0'){
+          	 appststus = 'PENDING';
+          	$parent.find("#ap_status_div").removeClass('alert-success').addClass('alert-warning');
+          	$parent.find("#app_status_btn").css('display','none');
+          	$parent.find("#print_check_icon").removeClass('icon-print').addClass('icon-busy');
+          	
+           }
+           else if(obj_ero.status == '1'){
+          	 appststus = 'READY TO PRINT';
+          	$parent.find("#ap_status_div").removeClass('alert-warning').addClass('alert-success');
+          	$parent.find("#app_status_btn").css('display','block');
+          	$parent.find("#print_check_icon").removeClass('icon-busy').addClass('icon-print');
+           //ap_status_div
+           //$("#app_status").closest("#ap_status_div").modal('show');
+           }else if(obj_ero.status == '2'){
+          	 appststus = 'PRINTED CHECK';
+          	$parent.find("#ap_status_div").removeClass('alert-warning').addClass('alert-success');
+          	$parent.find("#app_status_btn").css('display','block');
+          	$parent.find("#print_check_icon").removeClass('icon-busy').addClass('icon-print');
+           }else if(obj_ero.status == '3'){
+            	 appststus = 'VOIDED CHECK';
+               	$parent.find("#ap_status_div").removeClass('alert-success').addClass('alert-warning');
+               	$parent.find("#app_status_btn").css('display','none');
+               	$parent.find("#print_check_icon").removeClass('icon-print').addClass('icon-busy');
+               	
+                }
+           
+           $parent.find("#app_status").html(appststus);
+           $parent.find("#app_status_btn").val(obj_ero.app_id);
+           
+            
+           $parent.find("#disbursement_method_details").empty().append(pmathodhtm);
+        
+           $parent.find('#bank_insurance_additional_info').css('display','none');
+           //console.log(obj_ero.i_additional.length);
+           
+		if(obj_ero.insurance.length > 0){
+			for(var n = 0 ; n < obj_ero.insurance.length ; n++){           		
+        		obj_insurance_info = obj_ero.insurance[n];
+        		
+			if(obj_insurance_info.i_additional.length > 0){
+				
+				var c = 0;
+				obj_addition_info = obj_insurance_info.i_additional[0];
+        	   
+				html+= '<section class="panel">';
+        		  html+= '<header class="panel-heading">';
+        			html+= '<span class="title" style="">'+obj_addition_info.insurance_title+' Order Information</span>';
+        			html+= '<span class="tools pull-right icons" style=""><i class="'+obj_insurance_info.insurance_img_source+'"></i></span>';
+        		html+= '</header>';
+        		html+= '<div class="panel-body" style="padding:10px 17px;">';
+               
+        		//if(obj_ero.products.length > 0){
+                	
+                	//for(var k = 0 ; k < obj_ero.products.length ; k++){           		
+                		//obj_products_info = obj_ero.products[k];
+                		//console.log(obj_products_info.prodcut_name);
+                		//for(var i = 0 ; i < obj_insurance_info.i_additional.length ; i++){
+                			
+                			
+	            if(obj_insurance_info.insurance_item == 'Family Individual'){
+	            	//for(var i = 0 ; i < obj_ero.i_additional.length ; i++){
+						//obj_addition_info = obj_ero.i_additional[i];
+	            	//if(obj_products_info.app_pro_id == obj_addition_info.product_id){
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">First Name:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj_addition_info.first_name+'';
+								html+= '</div>';
+							html+= '</div>';
+				                
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Last Name:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj_addition_info.last_name+'';
+								html+= '</div>';
+							html+= '</div>';
+						html+= '</div>';
+				            
+				           
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-5 form-group1">';
+								html+= '<label for="street_address" class="control-label col-md-12">Coverage Start Date: </label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.family_coverage_date+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">Gender:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj_addition_info.family_gender+'';
+							html+= '</div>';
+						html+= '</div>';
+				                
+							html+= '<div class="col-md-4 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Tobacco Use: </label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.family_tobacco_use+'';	
+									html+= '</div>';
+				             html+= '</div>';
+				      html+= '</div>';
+				      html+= '<hr style="margin: 8px 5px; display: block;" class="dottline info_hr">';
+	            //	}
+					//}
+	            }
+	            if(obj_insurance_info.insurance_item == 'Group Health'){
+	            	//for(var i = 0 ; i < obj_ero.i_additional.length ; i++){
+					//	obj_addition_info = obj_ero.i_additional[i];
+	            	//if(obj_products_info.app_pro_id == obj_addition_info.product_id){
+	            	
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">Company name:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.company_name_grouphealth+'';
+									html+= '</div>';
+							html+= '</div>';
+		                
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Industry (Type of Business):</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.industry_grouphealth+'';
+									html+= '</div>';
+							html+= '</div>';
+						html+= '</div>';
+		            
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">Company Address:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.company_address_grouphealth+'';
+									html+= '</div>';
+							html+= '</div>';
+		                
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">State:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.state_grouphealth+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Zip:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.zip_grouphealth+'';
+								html+= '</div>';
+							html+= '</div>';
+						html+= '</div>';
+		            
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">Requested Lines of Coverage:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.requested_line_grouphealth+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Current Carrier:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.current_carrier_grouphealth+'';
+								html+= '</div>';
+							html+= '</div>';
+						html+= '</div>';
+		            
+		            
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="street_address" class="control-label col-md-12">Current Renewal Date:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.renewal_date_grouphealth+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">Requested Effective Date:</label>';
+									html+= '<div class="input-group1 nopadding col-md-12">';
+										html+= ''+obj_addition_info.effective_date_grouphealth+'';
+								html+= '</div>';
+							html+= '</div>';
+						html+= '</div>';
+						
+	            //	}
+	            	//}
+	            }
+	            if(obj_insurance_info.insurance_item == 'Life Insurance & Annuities'){
+	            	//for(var i = 0 ; i < obj_ero.i_additional.length ; i++){
+					//	obj_addition_info = obj_ero.i_additional[i];
+	            //	if(obj_products_info.app_pro_id == obj_addition_info.product_id){
+	            	
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">First Name:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.last_name+'';
+								html+= '</div>';
+							html+= '</div>';
+		                
+							html+= '<div class="col-md-6 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Last Name:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.first_name+'';
+								html+= '</div>';
+							html+= '</div>';
+						html+= '</div>';
+		            
+		           
+						html+= '<div class="form-group">';
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="first_name" class="control-label col-md-12">Gender:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.gender_life+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="street_address" class="control-label col-md-12">Height:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.height_life+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="street_address" class="control-label col-md-12">Width:</label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.width_life+'';
+								html+= '</div>';
+							html+= '</div>';
+							html+= '<div class="col-md-3 form-group1">';
+								html+= '<label for="last_name" class="control-label col-md-12">Tobacco Use: </label>';
+								html+= '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.tobacco_use_life+'';
+								html+= '</div>';
+							html+= '</div>';
+					html+= '</div>';
+					
+	            //	}
+	            	//}
+	            }
+	             if(obj_insurance_info.insurance_item == 'Auto Insurance'){
+	            //	for(var i = 0 ; i < obj_ero.i_additional.length ; i++){
+						//obj_addition_info = obj_ero.i_additional[i];
+	            	// if(obj_products_info.app_pro_id == obj_addition_info.product_id){
+							if(c < 1){
+								//console.log('c='+c);
+								c=1;
+								
+						html += '<div class="form-group">';
+						html += '<div class="col-md-6 form-group1">';
+							html += '<label for="first_name" class="control-label col-md-12">First Name:</label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].first_name+'';
+							html += '</div>';
+						html += '</div>';
+		                
+						html += '<div class="col-md-6 form-group1">';
+							html += '<label for="last_name" class="control-label col-md-12">Last Name:</label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].last_name+'';
+							html += '</div>';
+						html += '</div>';
+					html += '</div>';
+		            
+					html += '<div class="form-group">';
+						html += '<div class="col-md-4 form-group1">';
+							html += '<label for="street_address" class="control-label col-md-12">Marital Status:  </label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].marital_status_auto+'';
+							html += '</div>';
+						html += '</div>';
+						html += '<div class="col-md-4 form-group1">';
+							html += '<label for="first_name" class="control-label col-md-12">Gender:</label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].gender_auto+'';
+							html += '</div>';
+						html += '</div>';
+					 html += '</div>';
+		            
+					html += '<div class="form-group">';
+					html += '<div class="col-md-3 form-group1">';
+						html += '<label for="street_address" class="control-label col-md-12">Year:  </label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].year_auto+'';
+							html += '</div>';
+					html += '</div>';
+					html += '<div class="col-md-3 form-group1">';
+						html += '<label for="first_name" class="control-label col-md-12">Make: </label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].make_auto+'';
+							html += '</div>';	
+					html += '</div>';
+					html += '<div class="col-md-3 form-group1">';
+						html += '<label for="first_name" class="control-label col-md-12">Model: </label>';
+						html += '<div class="input-group1 nopadding col-md-12">';
+						html+= ''+obj_insurance_info.i_additional[i].model_auto+'';
+						html += '</div>';	
+					html += '</div>';
+					html += '<div class="col-md-3 form-group1">';
+						html += '<label for="first_name" class="control-label col-md-12">Coverage: </label>';
+							html += '<div class="input-group1 nopadding col-md-12">';
+							html+= ''+obj_insurance_info.i_additional[i].coverage_auto+'';
+							html += '</div>';	
+					html += '</div>';
+		                
+					html += '</div>';
+							}
+							
+					//	for(var j = 1 ; j < obj_ero.i_additional.length ; j++){
+						
+							if(i < parseInt(obj_insurance_info.i_additional.length - 1)){
+								var l = parseInt(i+1);
+								//console.log(l);
+												var obj3 = obj_insurance_info.i_additional[l];
+												
+							//var obj3 = obj_ero.i_additional[j];
+							
+							html += '<div class="form-group">';
+							html += '<div class="col-md-6 form-group1">';
+								html += '<label for="first_name" class="control-label col-md-12">First Name:</label>';
+								html += '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj3.first_name+'';
+								html += '</div>';
+							html += '</div>';
+			                
+							html += '<div class="col-md-6 form-group1">';
+								html += '<label for="last_name" class="control-label col-md-12">Last Name:</label>';
+								html += '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj3.last_name+'';
+								html += '</div>';
+							html += '</div>';
+						html += '</div>';
+						
+						
+						html += '<div class="form-group">';
+							html += '<div class="col-md-6 form-group1">';
+								html += '<label for="first_name" class="control-label col-md-12">Relationship to Applicant: </label>';
+								html += '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj3.relation_auto+'';
+								html += '</div>';	
+							html += '</div>';
+							html += '<div class="col-md-3 form-group1">';
+								html += '<label for="street_address" class="control-label col-md-12" style="padding-right: 0px;">Marital Status:  </label>';
+								html += '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj3.marital_status_auto+'';
+									html += '</div>';
+							html += '</div>';
+							html += '<div class="col-md-3 form-group1">';
+								html += '<label for="first_name" class="control-label col-md-12">Gender:</label>';
+								html += '<div class="input-group1 nopadding col-md-12">';
+								html+= ''+obj3.gender_auto+'';
+								html += '</div>';
+							html += '</div>';
+						html += '</div>';
+						html+= '<hr style="margin: 8px 5px; display: block;" class="dottline info_hr">';
+							}
+					//	}
+	            //	}
+	            }
+	            if(obj_insurance_info.insurance_item == 'Home Insurance'){
+	            //	for(var i = 0 ; i < obj_ero.i_additional.length ; i++){
+					//	obj_addition_info = obj_ero.i_additional[i];
+	            	//if(obj_products_info.app_pro_id == obj_addition_info.product_id){
+						html += '<div class="form-group">';
+							html += '<div class="col-md-6 form-group1">';
+								html += '<label for="first_name" class="control-label col-md-12">Coverage Start Date:</label>';
+								html += '<div class="input-group1 nopadding col-md-12">';
+									html+= ''+obj_addition_info.coverage_date_home+'';
+								html += '</div>';
+							html += '</div>';
+						html += '</div>';
+						
+	            	//}
+	            	//}
+	            }
+	            if(obj_insurance_info.insurance_item == 'Property & Casualty'){
+	            	//for(var i = 0 ; i < obj_ero.i_additional.length ; i++){
+						//obj_addition_info = obj_ero.i_additional[i];
+	            	//if(obj_products_info.app_pro_id == obj_addition_info.product_id){
+						html+= '<div class="form-group">';
+						html+= '<div class="col-md-12 form-group1">';
+						html+= '<label for="first_name" class="control-label col-md-12">Provide a realistic estimate of your gross revenue for the current financial year:</label>';
+						html+= '<div class="input-group1 nopadding col-md-7">';
+		                    html+= ''+obj_addition_info.revenue_property+'';
+		                    html+= '</div>';
+		               html+= '</div>';
+		              html+= '</div>';
+		            	  html+= '<div class="" style="clear:both"></div>';
+		            		  html+= '<div class="form-group">  ';
+		            			  html+= '<div class="col-md-12 form-group1">';
+		            				  html+= '<label for="last_name" class="control-label col-md-12">Have any claims been filed against your business during the past 3 years:</label>';
+		            				html+= '<div class="input-group1 nopadding col-md-3">';
+		            					html+= ''+obj_addition_info.past_claims_property+'';
+		              				html+= '</div>';
+		              		html+= '</div>';
+		              html+= '</div>';
+		            html+= '<div class="" style="clear:both"></div>'; 
+		            html+= '<div class="form-group">';
+		            html+= '<div class="col-md-12 form-group1">';
+		            	html+= '<label for="first_name" class="control-label col-md-12">Please indicate which types of insurance you would like to receive a quote for: <br> <small>Type of insurance needed (check all that apply)</small></label>';
+		            		html+= '<div class="input-group1 nopadding col-md-12">';
+		            			html+= '<div class="input-group1 nopadding col-md-12">';
+			                    html+= ''+obj_addition_info.insurance_type_property+'';
+		              				html+= '</div>';
+		              			html+= '</div>';
+		              			html+= '</div>';
+		              html+= '</div>';
+		              
+	            	//}
+	            	//}
+	            }
+	          // } // end additional loop
+	         // }
+           //}
+	            
+	            html+= '</div>';
+	            html+= '</section>';
+	            $parent.find('#bank_insurance_additional_info').css('display','block');
+	            $parent.find('#bank_insurance_additional_info').empty().html(html);    
+           } // end additional condition 
+		}// end insurance loop
+		} // end insurance condition
+        }
+    }
+    	
+    	$parent.find("#first_name_lab").css('display','block');
+		 $parent.find("#first_name_div").css('display','none');
+		 $parent.find("#last_name_lab").css('display','block');
+		 $parent.find("#last_name_div").css('display','none');
+		 $parent.find("#ss_number_lab").css('display','block');
+		 $parent.find("#ss_number_div").css('display','none');
+		 $parent.find("#dob_lab").css('display','block');
+		 $parent.find("#dob_div").css('display','none');
+		 $parent.find("#sp_first_name_lab").css('display','block');
+		 $parent.find("#sp_first_name").css('display','none');
+		 $parent.find("#sp_last_name_lab").css('display','block');
+		 $parent.find("#sp_last_name").css('display','none');
+		 $parent.find("#sp_ss_number_lab").css('display','block');
+		 $parent.find("#sp_ss_number").css('display','none');
+		 $parent.find("#sp_dob_lab").css('display','block');
+		 $parent.find("#sp_dob").css('display','none');
+		 $parent.find("#street_address_lab").css('display','block');
+		 $parent.find("#street_address_div").css('display','none');
+		 $parent.find("#city_lab").css('display','block');
+		 $parent.find("#city_div").css('display','none');
+		 $parent.find("#state_lab").css('display','block');
+		 $parent.find("#state_div").css('display','none');
+		 $parent.find("#zip_code_lab").css('display','block');
+		 $parent.find("#zip_code_div").css('display','none');
+		 $parent.find("#cell_phone_lab").css('display','block');
+		 $parent.find("#cell_phone_div").css('display','none');
+		 $parent.find("#email_add_lab").css('display','block');
+		 $parent.find("#email_add_div").css('display','none');
+		 $(".info_hr").css('display','block');
+		 
+		 
+		 $parent.find("#saveData").css('display','none');
+		 
+    $parent.closest("#modal_editApplication").modal('show');
+}
+
+
+function editApplicationForVoidOrReprint(uid, parent) {
+    var $parent = $("#" + parent);
+    //console.log($parent);
+
+    $parent.find("#h_application_id").val(uid);
+
+    $parent.closest("#modal_void_reprint").modal('show');
+}
+
+
+function voidApplication(parent) {
+    var $parent = $("#" + parent);
+    //console.log($parent);
+
+    var appid = $parent.find("#h_application_id").val();
+    $parent.find(".tempmessage").remove();
+
+    if (confirm("Are you sure? Do you want to void this check?")){
+        $.post(url_base_path__+"admin/clientcenter/setCheckAsVoid", {
+            delete: 'yes',
+            id: appid
+        }, function(data) {
+
+            $("#body_void_reprint_application_printed").prepend(data);
+            //if (typeof(data) == 'object') {
+            //    dataService = data;
+            //}
+            // loadServicesList(dataService,parent_body);
+        }, "json");
+        return false;
+    }
+}
+
+
+
+
+function voidAndReprintApplication(parent) {
+    var $parent = $("#" + parent);
+    //console.log($parent);
+    $parent.find(".tempmessage").remove();
+    var appid = $parent.find("#h_application_id").val();
+    if (confirm("Are you sure? Do you want to void & Re-print this check ?")){
+        $.post(url_base_path__+"admin/clientcenter/setCheckAsVoidAndReprint", {
+            delete: 'yes',
+            id: appid
+        }, function(data) {
+
+            $("#body_void_reprint_application_printed").prepend(data);
+            //if (typeof(data) == 'object') {
+            //    dataService = data;
+            //}
+            // loadServicesList(dataService,parent_body);
+        }, "json");
+        return false;
+    }
+}
+
+
+
+// cancel Void Check
+function cancelVoidCheck() {
+    $("#cancelVoidCheckBtn").click(function () {
+        $("#modal_void_reprint").modal('hide');
+    });
 }
 
 function editApplicationFromReporting(uid, parent) {
@@ -5250,6 +6115,13 @@ function showCompanySetup(parent){
      $parent.closest("#modal_company_setup").find(".btn-cancel").click(function(){
               parent_body.find("#modal_company_setup").modal('hide');
     });
+}
+
+
+function cancelPrinting(){
+
+        $("#modal_check_for_print").modal('hide');
+
 }
 
 function showOrderSuppliesSetup(parent){

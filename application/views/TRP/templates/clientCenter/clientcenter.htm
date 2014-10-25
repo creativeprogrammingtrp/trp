@@ -8,7 +8,8 @@
 
 
 
-<!-- <button class="btn btn-success btn-lg" type="button" id="newapp" value="New App" onclick="top.location='index.php/admin/clientcenter/newapp'">
+<!--
+<button class="btn btn-success btn-lg" type="button" id="newapp" value="New App" onclick="top.location='index.php/admin/clientcenter/newapp'">
         <i class="icon-plus-sign"></i> New App  
 </button>
  -->
@@ -16,7 +17,7 @@
 </div>
 <div style="clear:both"></div>
 
-<div id="modal_check_for_print" class="modal slide" >
+<div id="modal_check_for_print" class="modal slide">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -29,13 +30,30 @@
         </div>
      </div>
 </div>
+
+
+<div id="modal_direct_deposit" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="glyphicon-bank"></i> Direct Deposit</h4>
+            </div>
+            <div class="modal-body" id="body_direct_deposit" style="padding:0px; " >
+                Loading Applications ...
+            </div>
+        </div>
+    </div>
+</div>
             
 <ul data-toggle="tabs" class="nav nav-tabs push">
     <!--<li class="active"><a href="#recent_application" onclick="ChangeContent(17);">Todays Application</a></li>-->
     <li class="active"><a href="#pending_funds" data-toggle="tooltip"  data-original-title="Total Pending Funds Application: {countPendingFundsApplication}" onclick="ChangeContent(22);">Pending Funds</a></li>
-    <li class=""><a href="#ready_print"  data-toggle="tooltip"  data-original-title="Total Ready to Print Application: {readytoprintCoutBadgeValue}" onclick="ChangeContent(23);">Ready to Print <span class="badge badge-danger" id="readytoprintCoutBadgeValue">{readytoprintCoutBadgeValue}</span></a></li>
+    <li class=""><a href="#ready_print"  data-toggle="tooltip"  data-original-title="Total Ready to Print Application: {readytoprintCoutBadgeValue}" onclick="ChangeContent(23);">Ready to Payout <span class="badge badge-danger" id="readytoprintCoutBadgeValue">{readytoprintCoutBadgeValue}</span></a></li>
     <li class=""><a href="#printed_checks"  data-toggle="tooltip"  data-original-title="Total Printed Check Application: {countPrintedCheckApplication}" onclick="ChangeContent(25);">Printed Checks</a></li>
     <li class=""><a href="#voided_application"  data-toggle="tooltip"  data-original-title="Total Void Check Application: {countVoidCheckApplication}" onclick="ChangeContent(26);">Voided Checks</a></li>
+    <li class=""><a href="#paid_application"  data-toggle="tooltip"  data-original-title="Total Paid Application: {countAllPaidApplication}" onclick="showPaidApplication();">Paid</a></li>
+    <li class=""><a href="#voided_payment_application"  data-toggle="tooltip"  data-original-title="Total Voided Payment Application: {countAllVoidedPaymentApplication}" onclick="showVoidedPaymentApplication();">Voided Payment</a></li>
     <li class=""><a href="#all_applications"  data-toggle="tooltip"  data-original-title="All Application: {countAllApplication}" onclick="ChangeContent(24);" >All Applications</a></li>
 </ul>
 <div class="tab-content tab-content-default">
@@ -53,6 +71,18 @@
     <!-- End New App tab -->
     <div class="clear1"></div>
 </div>
+    <div id="paid_application" class="tab-pane tab-pane-width">
+        <!-- New App tab -->
+        <!-- End New App tab -->
+        <div class="clear1"></div>
+    </div>
+
+    <div id="voided_payment_application" class="tab-pane tab-pane-width">
+        <!-- New App tab -->
+        <!-- End New App tab -->
+        <div class="clear1"></div>
+    </div>
+
 <div id="printed_checks" class="tab-pane tab-pane-width">
    <!-- New App tab -->
     	
@@ -134,8 +164,32 @@ function showVoidedApplication(){
                         return false;
                 }
 	});	
-} 
+}
 
+
+function showPaidApplication(){
+    $.ajax({
+        url: 'index.php/admin/clientcenter/showPaidApplication?ajax=1',
+        cache: false,
+        success: function(message){
+            $("#paid_application").empty().append(message);
+            $(".print_check").css('display','none');
+            return false;
+        }
+    });
+}
+
+function showVoidedPaymentApplication(){
+    $.ajax({
+        url: 'index.php/admin/clientcenter/showVoidedPaymentApplication?ajax=1',
+        cache: false,
+        success: function(message){
+            $("#voided_payment_application").empty().append(message);
+            $(".print_check").css('display','none');
+            return false;
+        }
+    });
+}
 
 function showAllApplication(){
 	$.ajax({
@@ -148,6 +202,8 @@ function showAllApplication(){
                 }
 	});	
 }
+
+
 
 
     

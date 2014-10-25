@@ -768,7 +768,8 @@ function loadClientsReadyToPrint() {
              htm +='<tr>';
              htm +='<td class="text-left hidden-xs"><strong>'+obj1.first_name+' '+obj1.last_name+'</strong></td>';
              htm +='<td>XXX-XX-'+obj1.ss_number.substring(7,11);+'</td>';
-             htm +='<td class="hidden-xs hidden-sm">$'+obj1.app_net_refund_amt+'</td>';
+             //htm +='<td class="hidden-xs hidden-sm">$'+obj1.app_net_refund_amt+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">$'+obj1.app_actual_refund_amount+'</td>';
               htm +='<td class="text-center">';
                         htm +='<div class="btn-group">'; 
                         htm += ' <button class="btn btn-xs btn-info print_check1" type="button" id="print" value="'+obj1.app_id+'" style="">Print</button>';
@@ -809,7 +810,7 @@ function printCheckModal1(actionFrom){
     	    
     	    
     	    $.ajax({
-                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplication?ajax=1&ids='+ids+'',
+                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplicationFromAdmin?ajax=1&ids='+ids+'',
                 cache: false,
                 success: function(message){
                 //	alert(message);
@@ -829,9 +830,21 @@ function printCheckModal1(actionFrom){
     });
 }
 
+
+
 $(function(){
 	loadObject();
-	clickToEditApplicationInfo('body_edit_application');
+
+    $("#cancel_app_edit").click(function(){
+        $("#modal_editApplication").modal('hide');
+    });
+
+
+
+
+
+
+    clickToEditApplicationInfo('body_edit_application');
 	/*
 	var chartStacked = $('#example-chart-stacked');
 	

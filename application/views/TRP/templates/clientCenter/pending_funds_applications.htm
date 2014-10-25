@@ -499,7 +499,7 @@
             
 <script type="text/javascript">
 var dataClient = [];
-var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","Action"];
+var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Payment <br>Method","Action"];
 
 function loadObject() {
     {dataLoad}
@@ -577,7 +577,7 @@ function loadClients() {
             	 appststus = 'Printed Check';
              
              
-             htm +='<td class="hidden-xs hidden-sm">'+appststus+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">'+obj.payment_method+'</td>';
              
               htm +='<td class="text-center">';
                         htm +='<div class="btn-group">'; 

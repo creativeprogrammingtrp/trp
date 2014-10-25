@@ -1,0 +1,71 @@
+(d) 1. Have to be add following infi into File generate section Text & Excel
+Account number              5284810933
+Routing number               111900659
+Bank ID                            808
+
+
+(d) 2. Assign check no have to be assign seperatly 10000 for ero. 1000001
+(D) 2.1. Have to work on assigned check range when printing check.
+
+(d) 3. Void button will be hide after 1 hours hours from printed check byutton
+
+(d) 4. Excepted Refund Amount & Actual refund amount will show without pending funds tab. and all the fees will be diduct from actual refund amount
+
+(d) 5. new application: if applicant choose insurance then system will send email as order receipt from Scalefinsncial.com with ERO info, applicent infi & insurance info
+(d) 5.1. have to be set default routing no.
+
+6. insurance : it will send email with all the selected applicent info
+
+(d) 7. void & reprint
+
+8. have to be work on ACH to ERO
+
+9. (d)ERO edit section for bank fees tab.
+
+10. (d) Have to be work on commission part
+
+11. (d) have to be work on bank produce > ready to payout, paid (), payment type
+
+12. (d) have to be check cancel button,
+
+13. (d) add ero section add addon fess check
+
+14. (d) Have to be add Time under Positive pay view section.
+
+15. Have to be fixed fileAcc when not found previous account info
+
+16. (d) have to be add ERO column under coustomer section from admin panel as like Insurance tab. and have to be delete DOB.
+
+17. (d) So from abnk accouunt > ready to payout page,  when customer select direct diposit then it will not show the print button, it will show Initiate button. and after click on that button it will show one confirmaitn info, and if yes then that account will go to the PAID.
+
+18. So from admin section when admin will clcik on generat file for ACH to ERO then system will check all the DIrect diposited application for generate file.
+
+19. (d) Pending fund, ready to payout, printed check, voidied check, paid, voided payments, all applications.
+
+20. For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
+
+21. under bank account or any other places we have to be implement refresh option after make any event. like after print
+
+22. (d) have to be add column header with transjournal file uplaod section
+
+23. layout if change resulation
+
+24. (d) after deactivated any ERO then can login with our sytem. but it's not should login with system.
+
+25. (d) after complete step-1, & step 2 it's repeating all the steps agian. so it's error.
+
+26. have to be add EFIN under add employee.
+
+27. udner ERO, after click on view all, we need back button under all customer list page.
+
+28. under funded report : Posted date, name, expected refund, actual refund , fees (Txt fee, addon ffee, audint ffe), refund to customer, payment type.
+
+20. (d) delete all info from db.
+
+
+
+
+
+
+
+

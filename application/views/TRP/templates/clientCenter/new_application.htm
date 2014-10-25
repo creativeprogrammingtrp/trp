@@ -1332,7 +1332,7 @@ hr{
 									 	<!-- <a id="copyAccount" data-original-title="Copy" href="javascript:void(0)" data-toggle="tooltip" title="Copy" rel="tooltip" class="btn btn-xs btn-success">Copy</a> -->
 									 	<input type=button id=d_clip_button1 data-clipboard-text="Copy Me! ONE" class="btn btn-xs btn-success" value=Copy>
 									 	</div> </h5></div>
-									 	<div class="alert alert-success bank-routing"  style="font-size:17px; margin-bottom:0px;"> <h5><i class="icon-ok"></i>  &nbsp;  &nbsp;  Routing # <span style="font-weight:bold" id="routingCode">2342-75675</span> &nbsp;&nbsp;&nbsp;&nbsp; <div class="btn-group">
+									 	<div class="alert alert-success bank-routing"  style="font-size:17px; margin-bottom:0px;"> <h5><i class="icon-ok"></i>  &nbsp;  &nbsp;  Routing # <span style="font-weight:bold" id="routingCode">111900659</span> &nbsp;&nbsp;&nbsp;&nbsp; <div class="btn-group">
 									 	<!-- <a  id="copyRouting" data-original-title="Copy" href="javascript:void(0)" data-toggle="tooltip" title="Copy" rel="tooltip" class="btn btn-xs btn-success">Copy</a> -->
 									 	<input type=button id=d_clip_button2 data-clipboard-text="Copy Me! ONE" class="btn btn-xs btn-success" value=Copy>
 									 	
@@ -3209,8 +3209,11 @@ function removeSelectedProductInfo2(data){
  	   			insurance_type_property: insuranceTypeProperty //$('#insurance_type_property').val(),
  	                 
  			}, function(data) {
- 				if (data) {
-     				// For send to the next step  
+ 				//if (data) {
+     				// For send to the next step
+
+                $('#accountCode').empty().html(data.AssignAccNo);
+
                 	var target = $(".nav-tabs li.active");
            		    var sibbling;
 					sibbling = target.next();
@@ -3219,8 +3222,8 @@ function removeSelectedProductInfo2(data){
            		 	// End For send to the next step 
            		 	
            		 	$("#modal_success2").modal('hide');	
-           		 $("html, body").animate({ scrollTop: 0 }, 300);
-     			}
+           		    $("html, body").animate({ scrollTop: 0 }, 300);
+     			//}
  			}, "json");
 
  			return false;

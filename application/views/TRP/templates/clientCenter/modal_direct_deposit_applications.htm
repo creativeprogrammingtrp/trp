@@ -1,0 +1,157 @@
+<style>
+.table thead > tr > th{
+	border-top:1px solid #efefef;
+}
+.table{	
+	 background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    border-radius: 3px;
+    border-top: 1px solid #efefef;
+    /*box-shadow: 0 0 1px 1px #efefef;*/
+    clear: both;
+    margin-bottom: 0 !important;
+    max-width: none !important;
+}
+</style>
+<div id="pv_table">
+<div class="col-md-12 text-left" style="padding-top:20px;">
+             	 <div class="col-md-8 text-left">
+	             	 <div class="form-group form-group1" >
+
+	                     <div class="clear"></div>
+	             	 </div>
+             	 </div>
+             	 
+             	 <div class="col-md-4 text-center">
+             	 	<div class="form-group form-group1" >
+	             	   	<label for="cell_phone" style="padding-right:0px; font-weight: 400; " class="control-label col-md-13 text-left">Total Application</label>
+		                <div class="col-md-12 " style="padding:0px; ">
+		                	<h3 style="margin:0px; font-weight: 600; color:#8a95a7; " id="total_application">5</h3>
+	                     </div>        
+	                     <div class="clear"></div>
+             	 	</div>
+             	 </div>
+             	 <div class="clear"></div>
+</div>
+<table id="direct_deposit_list_table" class="table table-striped">
+                </table>
+ <div style="clear:both"></div>
+ <br>
+ <div class="form-group form-group1" >
+                     	<div class="col-md-12 text-left">
+		            	
+		                     <button  class="btn btn-danger " type="button" id="cancel_print" onclick="javascript:cancelPrinting();" >
+                                <i class="icon-repeat"></i> Cancel
+                            </button>
+
+		                    <button  class=" btn btn-info" type="submit" id="make_payment">
+                               <i class="icon-print"></i>  Make Payment
+                            </button>
+		                
+			                <div  style="clear:both"></div>
+			            </div>
+		            </div>
+ <div style="clear:both"></div>
+</div>
+
+
+		            
+		            <script type="text/javascript">
+var dataClientDirectDeposit = [];
+var heads = ["Name","SSN","Net Refund"];
+
+function loadObject() {
+    {dataLoad}
+    loadClients();
+}
+
+
+function loadClients() {
+	$("#total_application").html(dataClientDirectDeposit.length);
+    var htm = ''; 
+    htm +='<thead>';
+                htm +='<tr>';
+                	htm +='<th class="hidden-xs hidden-sm"><input type="checkbox" name="direct_deposit_app_modal" id="direct_deposit_app_modal" value=""></th>';
+                	htm +='<th class="hidden-xs hidden-sm" >Name</th>';
+                	htm +='<th class="hidden-xs hidden-sm">SSN</th>';
+                	htm +='<th class="hidden-xs hidden-sm">Net Refund</th>';
+
+                htm +='</tr>';
+    htm +='</thead>';
+    htm +='<tbody>';
+
+    // get last printed check no
+   // var assignno = parseInt({lastPrintedCheckNo});
+
+   // $("#starting_check_no").val(assignno);
+
+   // console.log(assignno);
+    var checkNo = 1;
+    for(var i = 0 ; i < dataClientDirectDeposit.length ; i++){
+    	//alert(dataClientPrint[i]);
+           var obj = dataClientDirectDeposit[i];
+
+           var uid = obj.uid;
+          // var appid = obj.app_id;
+          // var parent = 'body_edit_application_ready_to_print';
+           var count = 0;
+             htm +='<tr>';
+             htm +='<td><input type="checkbox" checked="checked" class="direct_deposit_app_modal" name="direct_deposit_app_modal" id="direct_deposit_app_modal" value="'+obj.app_id+'"></td>';
+             htm +='<td class="text-left hidden-xs"><strong>'+obj.first_name+' '+obj.last_name+'</strong></td>';
+             htm +='<td>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';             
+             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_actual_refund_amount+'</td>';
+             //htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+            // htm +='<td class="hidden-xs hidden-sm">'+assignno+'</td>';
+           	 htm +='</tr>';
+       // assignno = parseInt(assignno+checkNo);
+        //checkNo++;
+    }
+   htm +='</tbody>';
+
+
+   
+   $("#direct_deposit_list_table").empty().append(htm);
+    
+   //$("#state").empty().append('{states}');
+    
+}
+
+
+$(function() {
+	
+	loadObject();
+	
+
+	
+	$("#make_payment").click(function(){
+		
+		var arr = [];
+    	var ids='';
+    	var i = 0;
+       // var startpoint = $('#starting_check_no').val();
+
+    	    $('.direct_deposit_app_modal:checked').each(function(){
+    	    	arr[i++] = $(this).val();	
+    	    });
+    	    //alert(arr.length);
+    	    if(arr.length > 0){
+    	     	ids = arr.join(",");
+    	    }
+    	    else{
+    	    	ids = $(this).val();
+    	    }
+
+    	    $.ajax({
+                url: 'index.php/admin/clientcenter/makeAllApplicationAsPaid?ajax=1&ids='+ids,
+                cache: false,
+                success: function(message){
+                //	alert(message);
+                        $("#body_direct_deposit").empty().append(message);
+                      //  $(".print_check").css('display','block');
+                        return false;
+                }
+			});
+	});
+	
+});
+</script>

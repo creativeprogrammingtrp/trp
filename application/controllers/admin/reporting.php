@@ -29,7 +29,7 @@ class Reporting extends CI_Controller{
     	$data = array();
     	$data['dataLoad'] = "dataClient = " . json_encode($this->m_reporting->loadBankProductFundedReportDatePicker());
     	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-    		$this->system->parse_templace('reporting/bankProductfundetReport.htm', $data);
+    		$this->system->parse_templace('reporting/bankProductReport.htm', $data);
     		exit();
     	}
     }

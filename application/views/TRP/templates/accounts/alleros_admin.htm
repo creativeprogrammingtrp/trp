@@ -22,6 +22,7 @@
                 </ul>
 
                 <div class="row" id="body_allero">
+                <input type="hidden" name="ero_id" id="ero_id" />
                     <div class="tab-content tab-content-default">
 
                         <div id="company-setting" class="tab-pane active">
@@ -615,7 +616,7 @@
                         </div>
                         
                         <div id="banking" class="tab-pane">
-                        <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="bankingFeesForm" novalidate="novalidate">
+                        <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="bankingFeesForm12" novalidate="novalidate">
     <!-- Form Header -->
    
     <!-- Form Content -->
@@ -630,7 +631,7 @@
         
     <div class="form-box-content">
         <!-- First Step -->
-        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">
+        <div class="step ui-formwizard-content" id="-first" style="display: block;">
             
             <div class="form-group1 col-md-3">
                 <label for="tax_preparation_fee1" class="control-label col-md-12">Tax Preparation Fee <i data-original-title="Tax Preparation Fee " data-toggle="tooltip" class="icon-question4 toottip_product"></i></label>
@@ -670,12 +671,75 @@
 
             
         </div>
+
 	</div>
 	</div>
 	</section>
+
+
 	</div>
-	
-	
+
+    <div style="margin: 0 0 0 13px; padding-top: 25px; width: 98%;" class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <span style="" class="title">Scale Financial Commission Info</span>
+                <span style="" class="tools pull-right icons"><i class="gemicon-small-dollar"></i></span>
+            </header>
+            <div class="panel-body">
+
+                <div class="form-box-content">
+
+                    <div class="step ui-formwizard-content" id="" style="display: block;">
+
+                        <!--
+                            <div class="form-group1 col-md-3">
+                                <label for="tax_preparation_commission1_type" class="control-label col-md-12">Commission Type <i data-original-title="Tax Preparation Commission Type" data-toggle="tooltip" class="icon-question4 toottip_product"></i></label>
+                                <div class="col-md-12 nopadding">
+                                    <select class="form-control ui-wizard-content" name="tax_preparation_commission1_type" id="tax_preparation_commission1_type">
+                                        <option value="1">Fixed Amount</option>
+                                        <option value="2">Percentage</option>
+                                    </select>
+                                </div>
+                           </div>
+                        -->
+                        <div class="col-md-3  form-group1">
+                            <label for="add_on_commission1" class="control-label col-md-12">Add On Commission <i data-original-title="Add On Commission for Scale Financial" data-toggle="tooltip" class="icon-question4 toottip_product "></i></label>
+                            <div class="col-md-12 nopadding">
+                                <input type="text" class="form-control ui-wizard-content" name="add_on_commission1" id="add_on_commission1" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group1 col-md-3">
+                            <label for="add_on_commission1_type" class="control-label col-md-12">Commission Type <i data-original-title="Add on Commission Type" data-toggle="tooltip" class="icon-question4 toottip_product"></i></label>
+                            <div class="col-md-12 nopadding">
+                                <select class="form-control ui-wizard-content" name="add_on_commission1_type" id="add_on_commission1_type">
+                                    <option value="1">Fixed Amount</option>
+                                    <option value="2">Percentage</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group1 col-md-3" style="padding: 0px 10px">
+                            <label for="tax_preparation_commission1" style="padding-right:0px;" class="control-label col-md-12">Tax Preparation Commission <i data-original-title="Tax Preparation Commission for Scale Financial " data-toggle="tooltip" class="icon-question4 toottip_product"></i></label>
+                            <div class="col-md-12 nopadding">
+                                <input type="text" class="form-control ui-wizard-content" value="" name="tax_preparation_commission1" id="tax_preparation_commission1">
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+    </div>
                 <div class="col-md-12 " style="padding:20px;">
 
                     <button type="submit" id="save_bank" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
@@ -851,7 +915,7 @@
                                 </div>
                             </div>
                              <div class="form-group">
-                                <label for="add_roles" class="control-label col-md-4">Role</label>
+                                <label for="add_role" class="control-label col-md-4">Role</label>
                                 <div class="col-md-6">
                                     <select id="add_role" name="add_role" class="form-control">
                                         <option value="6">Employee</option>
@@ -951,7 +1015,7 @@ function check_is_nan(value){
         var fileID = '';
 	var extention = '';
         
-        var heads = ["EFIN #","Name","User Name","Email Address","Contact #","Created Date","Status","Action"];
+        var heads = ["EFIN #","Name","Company","User Name","Email Address","Contact #","Created Date","Status","Action"];
 	function loadObject() {
 		{dataLoad}
                 loadClients();  
@@ -969,6 +1033,7 @@ function check_is_nan(value){
                             htm +='<th class=" text-center">'+heads[5]+'</th>';
                           	htm +='<th class="hidden-xs hidden-sm">'+heads[6]+'</th>';                          	
                             htm +='<th class="hidden-xs hidden-sm">'+heads[7]+'</th>';
+                            htm +='<th class="hidden-xs hidden-sm">'+heads[8]+'</th>';
                             
 
                             
@@ -996,8 +1061,9 @@ function check_is_nan(value){
                         status = '<span class="label label-default">Deactivated</span>' ; ""; 
                    }
                      htm +='<tr>';
-                     htm +='<td><a href="javascript:void(0)">'+obj.user_efin+'</a></td>';
+                     htm +='<td><a href="javascript:void(0)" onclick="editEroFromAdmin(\''+uid+'\',\''+parent+'\')">'+obj.user_efin+'</a></td>';
                      htm +='<td class="hidden-xs hidden-sm capitalize">'+obj.firstname+' '+obj.lastname+'</td>';
+                     htm +='<td class="hidden-xs hidden-sm">'+obj.company_name+'</td>';
                      htm +='<td class="hidden-xs hidden-sm">'+obj.username+'</td>';
                      htm +='<td><a href="javascript:void(0)">'+obj.mail+'</a></td>';
                      
@@ -1008,7 +1074,7 @@ function check_is_nan(value){
                      
                      	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
                      //	htm +='<div class="btn-group">';
-                 		htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEro(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
+                 		htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEroFromAdmin(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
                   		htm += '&nbsp; <a class="btn btn-xs btn-success ChangeStatus" rel="tooltip" title="Change Status" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+efin+'"  onclick="changeEroStatus(\''+uid+'\',\''+obj.status+'\',\'modal_changeStatus\')" ><i class="glyphicon-settings"></i></a>';
                   		htm += '&nbsp; <a class="btn btn-xs btn-info EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="showCustomerReportByEro(\''+obj.uid+'\')" >View All</a>';
                   		//htm += '<a class="btn btn-xs btn-danger reject" rel="tooltip" title="Reject" data-toggle="tooltip" href="#" data-original-title="Delete" id="'+efin+'" onclick="reject(\''+efin+'\')" ><i class="icon-unlock-alt"></i></a>';
@@ -1027,6 +1093,8 @@ function check_is_nan(value){
            //$('#state_m').html({states});
 
             $("#bank_products_employee_report_result").empty().append(htm);
+
+
 	}
         
        
@@ -1168,7 +1236,7 @@ function check_is_nan(value){
          
          $(".toottip_product").tooltip(); 
                
-		$('#bank_products_employee_report_result').dataTable( {
+	var table =	$('#bank_products_employee_report_result').dataTable( {
          	"sDom": 'T<"clear">lfrtip',
          	"oTableTools": {
      			//"aButtons": [ "xls", "pdf","copy", "print" ]
@@ -1319,7 +1387,18 @@ function check_is_nan(value){
 			        	//alert( "Handler for .blur() called." );
 			        });
 
-			     /* Initialize Form Validation */
+
+        var table_config = {
+            "bDestroy": true,
+            "paging": false,
+            "language": {
+                "zeroRecords": "No results found",
+                "processing": "<div align='center'>Loading..</div>",
+                "loadingRecords": "<div align='center'>Loading Records..</div>"
+            }
+        };
+
+        /* Initialize Form Validation */
 			     $('#form_validation_company_info').validate({
 			         errorClass: 'help-block',
 			         errorElement: 'span',
@@ -1360,7 +1439,7 @@ function check_is_nan(value){
 			         	$('#companySaveBtn').hide();
 							$('#companySaveBtnLoad').show();
 							
-			         	$.post("index.php/admin/settings/saveCompanyInfo", {
+			         	$.post("index.php/admin/settings/saveCompanyInfoFromAdmin", {
 			     			senddata : 'yes',
 			     			sendfrom : 'allEroPage',
 			                             uid:dataClient.uid,
@@ -1390,7 +1469,8 @@ function check_is_nan(value){
 			     			tax:$("input:radio[name=tax]:checked").val(),
 			     			//tax : $("#tax1").val(),
 			                             file_id: fileID,
-			                             ext:extention
+			                             ext:extention,
+                            ero_id : $("#ero_id").val()
 			                      
 			     		}, function(data) {
 			     			if (typeof (data) == 'object') {
@@ -1402,6 +1482,15 @@ function check_is_nan(value){
 			                                    // $("#one").trigger('click');
 			     			}
 			     			loadClients();
+
+                            //table_config.data = data;
+                            //table_config.columns = data.columns;
+
+                            //$('#bank_products_employee_report_result').dataTable(table_config);
+
+                            //var table = $("#bank_products_employee_report_result").DataTable();
+                            //table.ajax.reload();
+
 			     		}, "json");
 			
 			     		return false;
@@ -1409,6 +1498,9 @@ function check_is_nan(value){
 			          
 			     });
 			 	/*End Form validation*/
+
+
+
 			 	
 			 	// End company info
 			 	
@@ -1424,6 +1516,15 @@ function check_is_nan(value){
 			 	$("#change_username1").click(function(){
 			 		$("#username").removeAttr('disabled');
 			 	});
+
+        $("#cancel_user").click(function(){
+            $("#modal_adduser").modal('hide');
+        });
+
+        $("#cancel_status").click(function(){
+            $("#modal_changeStatus").modal('hide');
+        });
+
 			 	
 			 	$("#phone").mask("(999) 999-9999");
 				
@@ -1458,7 +1559,7 @@ function check_is_nan(value){
 			        	$('#save_p').hide();
 						$('#profileSaveBtnLoad').show();
 						
-			        	$.post("index.php/admin/settings/saveProfileInfo", {
+			        	$.post("index.php/admin/settings/saveProfileInfoFromAdmin", {
 			    			load_p : 'yes',
 			    			username : $("#username").val(),
 			    			role : $("#role").val(),
@@ -1466,7 +1567,8 @@ function check_is_nan(value){
 			    			first_name : $("#first_name").val(),
 			    			last_name : $("#last_name").val(),
 			    			email : $("#email").val(),
-			    			phone : $("#phone").val()
+			    			phone : $("#phone").val(),
+                            ero_id : $("#ero_id").val()
 			    			//,
 			    			//cell_phone : $("#cell_phone1").val()
 			    		}, function(data) {
@@ -1566,7 +1668,8 @@ function check_is_nan(value){
             add_email : $("#add_email").val(),
             role : $("#add_role").val(),
             cid : $("#cid").val(),
-            author:$("#author").val()
+            author:$("#author").val(),
+            ero_id : $("#ero_id").val()
    
         }, function(data) {
             if (typeof(data) == 'object') {
@@ -1650,11 +1753,12 @@ function check_is_nan(value){
         	$('#bankingSaveBtn').hide();
 			$('#bankingSaveBtnLoad').show();
 			
-        	$.post("index.php/admin/settings/savePaymentInfo", {
+        	$.post("index.php/admin/settings/savePaymentInfoFromAdmin", {
     			load_p : 'yes',
     			bank_name : $("#bank_name1").val(),
     			bank_routing: $("#bank_routing1").val(),
-    			b_account_name : $("#b_account_no1").val()
+    			b_account_name : $("#b_account_no1").val(),
+                ero_id : $("#ero_id").val()
     		}, function(data) {
     			if (typeof (data) == 'object') {
     				dataClient = data;
@@ -1677,7 +1781,7 @@ function check_is_nan(value){
 			// save Payment info
 			
     /* Initialize Form Validation */
-    $('#bankingFeesForm').validate({
+    $('#bankingFeesForm12').validate({
         errorClass: 'help-block',
         errorElement: 'span',
         errorPlacement: function(error, e) {
@@ -1712,9 +1816,9 @@ function check_is_nan(value){
                 number: true
             },*/
             add_on_fee1 :{
-                required: true,
+              //  required: true,
                 number: true,
-                range: [1, 40]
+                range: [0, 40]
             }
         },
         messages: {
@@ -1727,31 +1831,36 @@ function check_is_nan(value){
             },
             sb_fee1 :{
                 number: 'Please enter only number!',
-                val_range: 'Please enter amount between 1 and 40',
+                val_range: 'Please enter amount between 1 and 40'
             },
             /*e_file_fee1 :{
                 number: 'Please enter only number!'
             },*/
             add_on_fee1 :{
                 number: 'Please enter only number!',
-                range: 'Please enter amount between 1 and 40',
+                range: 'Please enter amount between 0 and 40'
             }
         },
         submitHandler: function(form) {
         	
-        	form.closest('.form-group1').removeClass('has-success has-error');	
-        	form.closest('.help-block').remove();
+        	//form.closest('.form-group1').removeClass('has-success has-error');
+        	//form.closest('.help-block').remove();
             
         	$('#feesSaveBtn').hide();
 			$('#feesSaveBtnLoad').show();
 			
-        	$.post("index.php/admin/settings/saveBankingFeesInfo", {
+        	$.post("index.php/admin/settings/saveBankingFeesInfoFromAdmin", {
     			load_p : 'yes',
     			tax_preparation_fee : $("#tax_preparation_fee1").val(),
     			bank_transmission_fee : $("#bank_transmission_fee1").val(),
     			sb_fee : $("#sb_fee1").val(),
     			//e_file_fee: $("#e_file_fee1").val(), 
-    			add_on_fee : $("#add_on_fee1").val()
+    			add_on_fee : $("#add_on_fee1").val(),
+                tax_preparation_commission1_type : $("#tax_preparation_commission1_type").val(),
+                tax_preparation_commission1 : $("#tax_preparation_commission1").val(),
+                add_on_commission1_type : $("#add_on_commission1_type").val(),
+                add_on_commission1 : $("#add_on_commission1").val(),
+                ero_id : $("#ero_id").val()
     		}, function(data) {
     			if (typeof (data) == 'object') {
     				dataClient = data;

@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="30efd993-18e4-436d-affe-5e1cad6b477b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/libraries/Excel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_admin.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/author.php" afterPath="$PROJECT_DIR$/application/libraries/author.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/settings/bankfeesInfosettings.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/settings/bankfeesInfosettings.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/bankproducts.php" afterPath="$PROJECT_DIR$/application/controllers/admin/bankproducts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/services/benefits_orders.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/services/benefits_orders.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" afterPath="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" afterPath="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" afterPath="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" afterPath="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/customer/customer_list.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/customer/customer_list.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/customers_model.php" afterPath="$PROJECT_DIR$/application/models/admin/customers_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_script/db_script.txt" afterPath="$PROJECT_DIR$/db_script/db_script.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/services/insurance_policies.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/services/insurance_policies.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/mainpage-admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/mainpage-admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/message.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/message.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/mycompany_model.php" afterPath="$PROJECT_DIR$/application/models/admin/mycompany_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php.ini" afterPath="$PROJECT_DIR$/php.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/reporting/reporting.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/reporting/reporting.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/reporting.php" afterPath="$PROJECT_DIR$/application/controllers/admin/reporting.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/reporting_model.php" afterPath="$PROJECT_DIR$/application/models/admin/reporting_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/settings.php" afterPath="$PROJECT_DIR$/application/controllers/admin/settings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_admin.htm" />
+    </list>
+    <ignored path="trpgit.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_TOOLBAR" value="true" />
+    <option name="FLATTEN" value="false" />
+    <option name="GROUP_BY_TYPE" value="true" />
+    <option name="SORT_CHILDREN" value="false" />
+    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - trpgit@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="trpgit" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - trpgit@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="trpgit" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="new_app" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="trpgit" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="requirements" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userlists.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.75" vertical-offset="4905" max-vertical-offset="6540">
+              <caret line="341" column="52" selection-start-line="341" selection-start-column="45" selection-end-line="341" selection-end-column="52" />
+              <folding>
+                <marker date="1414154725000" expanded="true" signature="16446:16530" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/admin/settings.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="4005">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="author.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/libraries/author.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.02377179" vertical-offset="825" max-vertical-offset="5325">
+              <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+              <folding>
+                <marker date="1414157010000" expanded="true" signature="1831:1961" placeholder="select roles..roles..." />
+                <marker date="1414157010000" expanded="true" signature="2463:2496" placeholder="select * fro..roles..." />
+                <marker date="1414157010000" expanded="true" signature="3059:3157" placeholder="select roles..roles..." />
+                <marker date="1414157010000" expanded="true" signature="3362:3435" placeholder="select permi..roles_permission..." />
+                <marker date="1414157010000" expanded="true" signature="3769:3812" placeholder="SELECT * FRO..efins..." />
+                <marker date="1414157010000" expanded="true" signature="3879:3912" placeholder="SELECT * fro..users..." />
+                <marker date="1414157010000" expanded="true" signature="5444:5570" placeholder="SELECT users..users..." />
+                <marker date="1414157010000" expanded="true" signature="6197:6342" placeholder="SELECT * fro..users..." />
+                <marker date="1414157010000" expanded="true" signature="6517:6635" placeholder="SELECT * fro..users..." />
+                <marker date="1414157010000" expanded="true" signature="7889:7928" placeholder="SELECT * fro..ero..." />
+                <marker date="1414157010000" expanded="true" signature="9117:9179" placeholder="select efin ..users..." />
+                <marker date="1414157010000" expanded="true" signature="9489:9552" placeholder="select efin ..users..." />
+                <marker date="1414157010000" expanded="true" signature="9766:9815" placeholder="SELECT * FRO..efins..." />
+                <marker date="1414157010000" expanded="true" signature="10061:10109" placeholder="select mail ..users..." />
+                <marker date="1414157010000" expanded="true" signature="10310:10357" placeholder="select mail ..users..." />
+                <marker date="1414157010000" expanded="true" signature="10589:10640" placeholder="select name ..users..." />
+                <marker date="1414157010000" expanded="true" signature="10847:10883" placeholder="select * fro..roles..." />
+                <marker date="1414157010000" expanded="true" signature="11049:11079" placeholder="SELECT * FRO..users..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editEro.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/editEro.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-34.416668" vertical-offset="2174" max-vertical-offset="10395">
+              <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="message.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/message.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.083333" vertical-offset="4420" max-vertical-offset="6720">
+              <caret line="314" column="9" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="DONT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/php.ini" />
+        <option value="$PROJECT_DIR$/application/libraries/Excel.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/settings/bankfeesInfosettings.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/services/benefits_orders.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/services/insurance_policies.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/reporting/reporting.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/mainpage.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/backend/js/main.js" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/bank/datafile.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/customer/customer_list.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" />
+        <option value="$PROJECT_DIR$/application/controllers/admin/adjustment.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" />
+        <option value="$PROJECT_DIR$/application/controllers/admin/bankproducts.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications.htm" />
+        <option value="$PROJECT_DIR$/application/models/admin/customers_model.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm" />
+        <option value="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
+        <option value="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm" />
+        <option value="$PROJECT_DIR$/application/models/admin/mycompany_model.php" />
+        <option value="$PROJECT_DIR$/db_script/db_script.txt" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/message.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" />
+        <option value="$PROJECT_DIR$/application/libraries/author.php" />
+        <option value="$PROJECT_DIR$/application/controllers/admin/settings.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="http://localhost" name="localhost" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
+    <option name="y" value="23" />
+    <option name="width" value="1279" />
+    <option name="height" value="773" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TRP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TRP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TRP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="settings" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="appearance" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="last_opened_file_path" value="/usr/bin/git" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="89" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="106" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="109" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="903" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="100" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="102" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="105" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="900" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="database.results.filters.show" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="SearchEverywhereHistoryKey" value="clie&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/application/models/admin/clientcenter_model.php&#10;adj&#9;null&#9;null&#10;db_sc&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/db_script/db_script.txt&#10;re&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/application/views/TRP/templates/bank/requirements&#10;pri&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/views/TRP/templates/clientCenter" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.database.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-env-vars>false</pass-parent-env-vars>
+      <envs />
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30efd993-18e4-436d-affe-5e1cad6b477b" name="Default" comment="" />
+      <created>1412050679092</created>
+      <option name="number" value="Default" />
+      <updated>1412050679092</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="2">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1" y="23" width="1279" height="773" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27485853" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2166532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983023" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27485853" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983023" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21341956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.88" vertical-offset="46756" max-vertical-offset="52965">
+          <caret line="3130" column="71" selection-start-line="3130" selection-start-column="49" selection-end-line="3130" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="14.666667" vertical-offset="352" max-vertical-offset="1320">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="1815">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.75" vertical-offset="615" max-vertical-offset="7125">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/system.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.68" vertical-offset="5836" max-vertical-offset="8430">
+          <caret line="408" column="59" selection-start-line="408" selection-start-column="59" selection-end-line="408" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/signin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="632">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/mainpage.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.84" vertical-offset="10338" max-vertical-offset="12435">
+          <caret line="702" column="13" selection-start-line="702" selection-start-column="13" selection-end-line="702" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8145">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/login.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.083333" vertical-offset="2842" max-vertical-offset="7575">
+          <caret line="204" column="72" selection-start-line="204" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/frontend/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86259544" vertical-offset="3560" max-vertical-offset="4275">
+          <caret line="275" column="14" selection-start-line="275" selection-start-column="14" selection-end-line="275" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/frontend/js/custom_mainpage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2877584" vertical-offset="1995" max-vertical-offset="3555">
+          <caret line="187" column="47" selection-start-line="187" selection-start-column="47" selection-end-line="187" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/reporting_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6666665" vertical-offset="404" max-vertical-offset="36600">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/bureau_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="465">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/recent_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.058637083" vertical-offset="6292" max-vertical-offset="15240">
+          <caret line="417" column="44" selection-start-line="417" selection-start-column="44" selection-end-line="417" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/adjustment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125" vertical-offset="4680" max-vertical-offset="15135">
+          <caret line="341" column="0" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.04" vertical-offset="11178" max-vertical-offset="12390">
+          <caret line="782" column="25" selection-start-line="782" selection-start-column="25" selection-end-line="782" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.04" vertical-offset="1788" max-vertical-offset="2430">
+          <caret line="146" column="19" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/bankproducts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625" vertical-offset="9135" max-vertical-offset="12165">
+          <caret line="626" column="46" selection-start-line="626" selection-start-column="46" selection-end-line="626" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.898734" vertical-offset="10436" max-vertical-offset="11640">
+          <caret line="711" column="47" selection-start-line="711" selection-start-column="47" selection-end-line="711" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.791667" vertical-offset="8597" max-vertical-offset="11640">
+          <caret line="592" column="72" selection-start-line="592" selection-start-column="72" selection-end-line="592" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.791667" vertical-offset="11032" max-vertical-offset="11640">
+          <caret line="715" column="53" selection-start-line="715" selection-start-column="53" selection-end-line="715" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4901316" vertical-offset="7997" max-vertical-offset="12315">
+          <caret line="553" column="0" selection-start-line="553" selection-start-column="0" selection-end-line="553" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16940789" vertical-offset="7442" max-vertical-offset="11640">
+          <caret line="503" column="12" selection-start-line="503" selection-start-column="12" selection-end-line="503" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/datafile.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4166665" vertical-offset="5249" max-vertical-offset="6510">
+          <caret line="357" column="11" selection-start-line="357" selection-start-column="11" selection-end-line="388" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.14" vertical-offset="2343" max-vertical-offset="6045">
+          <caret line="170" column="12" selection-start-line="170" selection-start-column="12" selection-end-line="170" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.208333" vertical-offset="9307" max-vertical-offset="12330">
+          <caret line="640" column="20" selection-start-line="640" selection-start-column="20" selection-end-line="640" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.7" vertical-offset="9075" max-vertical-offset="12165">
+          <caret line="634" column="10" selection-start-line="634" selection-start-column="10" selection-end-line="634" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/customers_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625" vertical-offset="15" max-vertical-offset="3765">
+          <caret line="18" column="166" selection-start-line="18" selection-start-column="166" selection-end-line="18" selection-end-column="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.0833333" vertical-offset="10130" max-vertical-offset="13710">
+          <caret line="672" column="31" selection-start-line="672" selection-start-column="31" selection-end-line="672" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/customers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.25" vertical-offset="330" max-vertical-offset="1035">
+          <caret line="48" column="77" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/customer/customer_list.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.88" vertical-offset="811" max-vertical-offset="1740">
+          <caret line="67" column="52" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="649" max-vertical-offset="28365">
+          <caret line="347" column="0" selection-start-line="347" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/ero.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.25" vertical-offset="30" max-vertical-offset="3300">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.84" vertical-offset="11283" max-vertical-offset="13800">
+          <caret line="765" column="5" selection-start-line="765" selection-start-column="5" selection-end-line="767" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.583334" vertical-offset="10462" max-vertical-offset="11115">
+          <caret line="732" column="40" selection-start-line="732" selection-start-column="40" selection-end-line="732" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="66780" max-vertical-offset="92700">
+          <caret line="4464" column="48" selection-start-line="4464" selection-start-column="27" selection-end-line="4464" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/clientcenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6594" max-vertical-offset="9780">
+          <caret line="457" column="39" selection-start-line="457" selection-start-column="39" selection-end-line="457" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="7477" max-vertical-offset="11760">
+          <caret line="512" column="4" selection-start-line="512" selection-start-column="4" selection-end-line="512" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2399" max-vertical-offset="3030">
+          <caret line="177" column="36" selection-start-line="177" selection-start-column="36" selection-end-line="177" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/clientcenter_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="29905" max-vertical-offset="30630">
+          <caret line="2011" column="14" selection-start-line="2011" selection-start-column="14" selection-end-line="2011" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.5" vertical-offset="75" max-vertical-offset="1230">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/settings/profilesettings.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37006578" vertical-offset="0" max-vertical-offset="4905">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/mycompany_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6459" max-vertical-offset="10980">
+          <caret line="462" column="56" selection-start-line="462" selection-start-column="56" selection-end-line="462" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_script/db_script.txt">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.088" vertical-offset="1550" max-vertical-offset="2175">
+          <caret line="107" column="69" selection-start-line="107" selection-start-column="69" selection-end-line="107" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/editEro.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-34.416668" vertical-offset="2174" max-vertical-offset="10395">
+          <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/message.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.083333" vertical-offset="4420" max-vertical-offset="6720">
+          <caret line="314" column="9" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.75" vertical-offset="4905" max-vertical-offset="6540">
+          <caret line="341" column="52" selection-start-line="341" selection-start-column="45" selection-end-line="341" selection-end-column="52" />
+          <folding>
+            <marker date="1414154725000" expanded="true" signature="16446:16530" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="4005">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/author.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02377179" vertical-offset="825" max-vertical-offset="5325">
+          <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+          <folding>
+            <marker date="1414157010000" expanded="true" signature="1831:1961" placeholder="select roles..roles..." />
+            <marker date="1414157010000" expanded="true" signature="2463:2496" placeholder="select * fro..roles..." />
+            <marker date="1414157010000" expanded="true" signature="3059:3157" placeholder="select roles..roles..." />
+            <marker date="1414157010000" expanded="true" signature="3362:3435" placeholder="select permi..roles_permission..." />
+            <marker date="1414157010000" expanded="true" signature="3769:3812" placeholder="SELECT * FRO..efins..." />
+            <marker date="1414157010000" expanded="true" signature="3879:3912" placeholder="SELECT * fro..users..." />
+            <marker date="1414157010000" expanded="true" signature="5444:5570" placeholder="SELECT users..users..." />
+            <marker date="1414157010000" expanded="true" signature="6197:6342" placeholder="SELECT * fro..users..." />
+            <marker date="1414157010000" expanded="true" signature="6517:6635" placeholder="SELECT * fro..users..." />
+            <marker date="1414157010000" expanded="true" signature="7889:7928" placeholder="SELECT * fro..ero..." />
+            <marker date="1414157010000" expanded="true" signature="9117:9179" placeholder="select efin ..users..." />
+            <marker date="1414157010000" expanded="true" signature="9489:9552" placeholder="select efin ..users..." />
+            <marker date="1414157010000" expanded="true" signature="9766:9815" placeholder="SELECT * FRO..efins..." />
+            <marker date="1414157010000" expanded="true" signature="10061:10109" placeholder="select mail ..users..." />
+            <marker date="1414157010000" expanded="true" signature="10310:10357" placeholder="select mail ..users..." />
+            <marker date="1414157010000" expanded="true" signature="10589:10640" placeholder="select name ..users..." />
+            <marker date="1414157010000" expanded="true" signature="10847:10883" placeholder="select * fro..roles..." />
+            <marker date="1414157010000" expanded="true" signature="11049:11079" placeholder="SELECT * FRO..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

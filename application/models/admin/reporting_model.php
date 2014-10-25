@@ -19,25 +19,13 @@ class Reporting_model extends CI_Model {
     	$todate = date('Y-m-d');
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	
-    	$sql = "SELECT 
+    	if($this->author->objlogin->uid != '1'){
+    	 $sql = "SELECT 
     			a.app_id,
-    			a.create_date,
-    			a.app_tax_preparation_fee, 
-    			a.app_sb_fee,
-    			a.app_bank_transmission_fee, 
-    			a.app_add_on_fee,
-    			a.audit_guard_fee, 
-    			a.posted_date,
-    			a.app_actual_tax_preparation_fee, 
-    			a.app_actual_bank_transmission_fee, 
-    			a.app_actual_sb_fee, 
-    			a.app_actual_add_on_fee,
-    			a.actual_audit_guard_fee,
-    			a.deposit_amount,
-    			a.payment_status,
-    			c.first_name,
-    			c.last_name,
-    			c.ss_number
+    			FROM_UNIXTIME(a.create_date) AS create_date1,
+    			a.*,
+    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
+    			c.*
     			
     			FROM new_app a, new_applicent c
     			where c.applicent_id = a.applicent_id    			
@@ -46,12 +34,29 @@ class Reporting_model extends CI_Model {
     			AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
     			ORDER BY a.posted_date DESC
     	"; 
+    	}else{
+    		$sql = "SELECT
+    			a.app_id,
+    			FROM_UNIXTIME(a.create_date) AS create_date1,
+    			a.*,
+    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
+    			c.*
+    
+    			FROM new_app a, new_applicent c
+    			where c.applicent_id = a.applicent_id
+    			
+    			AND a.posted_date != ''
+    AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
+    			ORDER BY a.posted_date DESC
+    	";
+    	}
+    	//AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
     	//AND a.posted_date != ''
     			//AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
     	$res = $this->db->query($sql);
     	
     	foreach ($res->result_array() as $row) {
-    		$row["create_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$row["app_create_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
     		$row["posted_date"] = gmdate("m/d/y", $row["posted_date"]);
     		$data[] = $row;
     	}
@@ -69,26 +74,13 @@ class Reporting_model extends CI_Model {
     	$todate = $_GET['enddate']; //$this->lib->escape($_POST['enddate']);
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	
-    	 
+    	if($this->author->objlogin->uid != '1'){
     	$sql = "SELECT
     		a.app_id,
-    			a.create_date,
-    			a.app_tax_preparation_fee,
-    			a.app_sb_fee,
-    			a.app_bank_transmission_fee,
-    			a.app_add_on_fee,
-    			a.audit_guard_fee,
-    			a.posted_date,
-    			a.app_actual_tax_preparation_fee,
-    			a.app_actual_bank_transmission_fee,
-    			a.app_actual_sb_fee,
-    			a.app_actual_add_on_fee,
-    			a.actual_audit_guard_fee,
-    			a.deposit_amount,
-    			a.payment_status,
-    			c.first_name,
-    			c.last_name,
-    			c.ss_number
+    			FROM_UNIXTIME(a.create_date) AS create_date1,
+    			a.*,
+    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
+    			c.*
     
     			FROM new_app a, new_applicent c
     			where c.applicent_id = a.applicent_id
@@ -97,11 +89,26 @@ class Reporting_model extends CI_Model {
     			AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
     			ORDER BY a.posted_date DESC
     	";
-    	
+    	}
+    	else{
+    		$sql = "SELECT
+    		a.app_id,
+    			FROM_UNIXTIME(a.create_date) AS create_date1,
+    			a.*,
+    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
+    			c.*
+    		
+    			FROM new_app a, new_applicent c
+    			where c.applicent_id = a.applicent_id
+    		    			AND a.posted_date != ''
+    		    			AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
+    		    			ORDER BY a.posted_date DESC
+    		    			";
+    	}
     	$res = $this->db->query($sql);
     	 
     	foreach ($res->result_array() as $row) {
-    		$row["create_date"] = gmdate("m/d/y", $row["create_date"]);
+    		$row["app_create_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
     		$row["posted_date"] = gmdate("m/d/y", $row["posted_date"]);
     		$data[] = $row;
     	}

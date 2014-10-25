@@ -1,0 +1,51 @@
+#B  NATBDLVP IFILE            ITXID 0000001933 ICPNY                                          
+SPIN..........: 04        PERFECT RECEIVABLES SERVICE        SYS DATE: 09/23/14               
+APPLICATION...: DDA            DOLLAR TRANJOURNAL            SYS TIME: 02:28                  
+GROUP NUMBER..: 1933                                     PROCESS DATE: 09/23/14               
+GROUP NAME....: TRP SOLUTIONS                                    PAGE:     1                  
+                                                                                              
+TRAN/ ACCOUNT NO                                  AMOUNT    ENTRY DESC   SPIN                 
+ORG   INDIVIDUAL ID     INDIVIDUAL NAME                     DESCR DATE   CCLS                 
+      COMPANY ID        COMPANY NAME                        DISCR DATA   TRACE                
+                                                                                              
+CR   19330000000000031                                25.03 PRFILE        04                  
+1    001252690          TEST DATA60                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510400               
+                                                                                              
+CR   19330000000000032                                24.78 PRFILE        04                  
+1    001252691          TEST DATA61                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510401               
+                                                                                              
+CR   19330000000000033                                44.45 PRFILE        04                  
+1    001252692          TEST DATA62                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510402               
+                                                                                              
+CR   19330000000000034                                32.54 PRFILE        04                  
+1    001252693          TEST DATA63                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510403               
+                                                                                              
+CR   19330000000000035                                  .01 PRFILE        04                  
+1    001252694          TEST DATA64                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510404               
+                                                                                              
+DR   19330000000000036                                25.30 PRFILE        04                  
+1    001252695          TEST DATA65                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510405               
+                                                                                              
+CR   19330000000000037                                52.91 PRFILE        04                  
+1    001252696          TEST DATA66                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510406               
+                                                                                              
+CR   19330000000000038                                88.13 PRFILE        04                  
+1    001252697          TEST DATA67                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510407               
+                                                                                              
+CR   19330000000000039                                75.28 PRFILE        04                  
+1    001252698          TEST DATA68                                       PPD                 
+     1234567891         PR TEST FILE                            121108253510408               
+                                                                                              
+                 DDA TOTALS:    VOLUME       DOLLAR AMOUNT                                    
+                                     8              343.13  CREDITS                           
+                                     1               25.30  DEBITS                            
+#E  NATBDLVP IFILE            ITXID 0000001933 ICPNY                                         
+ 

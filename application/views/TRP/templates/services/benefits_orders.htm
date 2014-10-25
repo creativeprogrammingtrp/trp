@@ -573,7 +573,7 @@
 						            <div class="form-group1 form-actions" style="margin-top:0px; border-top: 0px;">
 						            <div class="col-md-12 text-left">
 						            	<div class="col-md-6 text-left">
-						                     <button  class="btn btn-danger" type="button" id="cancel_edit_benefits" >
+						                     <button  class="btn btn-danger" type="button" id="cancel_edit_benefits_status" >
 				                               &nbsp; &nbsp;  <i class="icon-redo"></i> &nbsp; &nbsp; Close &nbsp; &nbsp; 
 				                            </button>
 				                            
@@ -639,6 +639,9 @@
   $(function(){
 	  
 	  showPendingBenefits();
+
+
+
 	  
 $(".showBenefitsAddForm").click(function() {
 		  
@@ -651,8 +654,18 @@ $(".showBenefitsAddForm").click(function() {
 	  $("#cancel_add_benefits").click(function() {
 			$("#modal_add_benefits_product").modal('hide');	
 	  });
-	  
-	  // For spouse show / hide
+
+      $("#cancel_edit_benefits_status").click(function() {
+          $("#modal_edit_benefits_status").modal('hide');
+      });
+
+
+      $("#cancel_edit_benefits").click(function() {
+          $("#modal_edit_benefits_product").modal('hide');
+      });
+
+
+      // For spouse show / hide
 	  var checkbox = $('#b_add_spouse'); 
       var dependent = $('#dependent-box-benefits');
       if (checkbox.attr('checked') !== undefined){

@@ -1,0 +1,428 @@
+<div style="padding-top:25px;margin-bottom:29px; padding-left:24px;" class="col-md-12"><h2 style="margin:0px; color:#54565F;"><i class="icon-library2"></i> &nbsp;Bank Adjustment</h2></div>
+
+<div style="clear:both"></div>
+
+<div class="tab-content tab-content-default">
+	<div id="pendingInsurance" class="tab-pane tab-pane-width active">
+	<div class="col-md-4" style="padding:25px  0px 0px;" >
+        <div class="col-md-12" style="padding: 0px;" >
+
+        <form action="index.php/admin/adjustment" method="post" enctype="multipart/form-data">
+		  
+		<section class="panel">
+	       <header class="panel-heading">
+	          <span class="title" style=""> Transjournal File Upload</span>
+	            <span class="tools pull-right icons" style="">
+					<i class="icon-user"></i>
+	    		</span>
+	       </header>
+	       <div class="panel-body">
+				
+					<div class="form-group">
+		                <div class="col-md-6 form-group1">
+		                	
+		                    <div class="input-group1 nopadding col-md-12">
+		                    	<input type="file" name="uploadFile" id="uploadFile" class="form-control ui-wizard-content"/>
+		                    </div>
+		                </div>
+		                <div class="col-md-6 text-right" style="padding: 0px;">
+		               			<button value="Next" id="upload" type="submit" name="upload" class=" btn btn-success step1btn">Upload</button>
+                                <button value="View" id="viewresult" type="button" name="view" class=" btn btn-success">View</button>
+		                         
+		                         <button value=""  type="button" class=" btn btn-success btn-lg step1load" style="display:none;">&nbsp;  <i class="glyphicon-refresh"></i> &nbsp; Uploading... &nbsp;</button>
+		               </div>
+		            </div>
+				   	
+				   	
+					<!-- <input type="submit" value="Submit" name="submit"> -->
+				
+			</div>
+		</section>
+		<div style="clear:both;"></div>
+		
+		
+		</form>
+        </div>
+</div>
+
+        <div class="col-md-4" style="padding:25px 0px 0px;" >
+            <div class="col-md-12" style="padding: 0px 0px 0px 15px;" >
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="title" style=""> Positive Pay (Check Verification)</span>
+	                    <span class="tools pull-right icons" style="">
+					        <i class="icon-user"></i>
+	    		        </span>
+                    </header>
+                    <div class="panel-body" style="padding : 15px 0px">
+
+                        <div class="col-md-12 text-center" style="padding:0px;">
+                            <button value="Next" onclick="javascript:generateFile();" id="generateFile" type="submit" name="generateFile" class=" btn btn-success">Generate Text</button>
+
+                           <!-- <button value="Next" onclick="javascript:generateExcelFile();" id="generateExcelFile" type="submit" name="generateFile" class=" btn btn-success step1btn">
+                                &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Generate Excel File &nbsp; &nbsp;
+                            </button>
+                            -->
+
+                            <a onclick="" id="" data-original-title="" href="http://localhost/trpgit/admin/adjustment/generateExcel" data-toggle="tooltip" title="" rel="tooltip" class="btn btn-primary VoidApplication">Generate Excel</a>
+
+                            <button value="View" id="viewGeneratedFile" type="button" name="view" class=" btn btn-success">View</button>
+
+                            <button value="" id="" type="button" class=" btn btn-success btn-lg step1load" style="display:none;">&nbsp;  <i class="glyphicon-refresh"></i> &nbsp; Creating File...  &nbsp;</button>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="col-md-4" style="padding:25px 0px 0px;" >
+            <div class="col-md-12" style="" >
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="title" style="">ACH to ERO</span>
+	                    <span class="tools pull-right icons" style="">
+					        <i class="icon-user"></i>
+	    		        </span>
+                    </header>
+                    <div class="panel-body">
+
+                        <div class="col-md-12 text-center" style="padding:0px;">
+                            <button value="Next" onclick="javascript:generateACHFile();" id="generateAchFile" type="submit" name="generateFile" class=" btn btn-success">Generate ACH to ERO Text File</button>
+                            <button value="View" id="viewGeneratedAchFile" type="button" name="view" class=" btn btn-success">View</button>
+
+                            <button value=""  type="button" class=" btn btn-success btn-lg step1load" style="display:none;">&nbsp;  <i class="glyphicon-refresh"></i> &nbsp; Creating File...  &nbsp;</button>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div class="col-md-6" id="generatedFileForWellsFargos" style="padding:25px 15px 0px 0px; display: none;" >
+            <div id="generatemessage"></div>
+        <div class="col-md-12" style="padding: 0px;" >
+            <section class="panel">
+                <header class="panel-heading">
+                    <span class="title" style=""> Generated Files For Wells Fargo	 </span>
+	                    <span class="tools pull-right icons" style="">
+					        <i class="icon-user"></i>
+	    		        </span>
+                </header>
+                <div class="panel-body">
+
+                    <table id="exported_file_list" class="table table-striped">
+                    </table>
+
+                </div>
+            </section>
+        </div>
+		</div>
+        <div style="clear:both;"></div>
+
+		 <div class="col-md-12" id="dataFileUplaodResult" style=" padding:25px 0px 0px 0px; " >
+		 <div style="{style1}">{message1}</div>
+		 <form action="index.php/admin/adjustment" method="post" enctype="multipart/form-data">	
+		 	<section class="panel">
+		       <header class="panel-heading">
+		          <span class="title" style=""> Data File Upload Result	 </span>
+		            <span class="tools pull-right icons" style="">
+						<i class="icon-user"></i>
+		    		</span>
+		       </header>
+		       <div class="panel-body">
+
+                   <div class="form-group">
+                       <div class="col-md-12 form-group1">
+                           {html_old}
+
+                       </div>
+                   </div>
+					
+						<div class="form-group">
+			                <div class="col-md-12 form-group1">
+			                	{htmls}
+			                	
+			               		<input type="hidden" name="hiddenresult" value="{result}"  />	
+			                </div>
+			            </div>
+					   	
+					   	
+						<!-- <input type="submit" value="Submit" name="submit"> -->
+					
+				</div>
+			</section>
+			<div style="clear:both;"></div>
+			
+			<div class="col-md-12 text-right">
+               	<button value="Next" id="submit" type="submit" name="submit" class=" btn btn-success btn-lg step1btn">
+                             &nbsp; &nbsp;   <i class="icon-ok"></i> &nbsp; &nbsp;  Submit &nbsp; &nbsp; 
+                         </button>
+                         
+                         <button value="" type="button" class=" btn btn-success btn-lg step1load" style="display:none;">
+                            &nbsp; &nbsp;  <i class="glyphicon-refresh"></i> &nbsp; &nbsp;  Saving...  &nbsp; &nbsp;   
+                         </button>
+               </div>
+               </form>
+		 </div>
+
+		 <div style="clear:both;"></div>
+        <div class="col-md-6" id="generatedACHFileForWellsFargos" style="padding:25px 15px 0px 0px; display: none;" >
+            <div id="generateACHmessage"></div>
+            <div class="col-md-12" style="padding: 0px;" >
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="title" style=""> Generated ACH to ERO Files For Wells Fargo	 </span>
+	                    <span class="tools pull-right icons" style="">
+					        <i class="icon-user"></i>
+	    		        </span>
+                    </header>
+                    <div class="panel-body">
+
+                        <table id="generated_file_list" class="table table-striped">
+                        </table>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+	</div>
+</div>
+
+<script>
+    var dataClient = [];
+    var dataClientACH = [];
+    var heads = ["Name","Created Date & Time","Action"];
+    var headsACH = ["Name","Created Date & Time","Action"];
+
+    function loadObject() {
+        {dataLoad}
+        {dataLoadACH}
+        loadClients();
+        loadClientsACH();
+    }
+
+
+    function loadClients() {
+        var htm = '';
+        htm +='<thead>';
+        htm +='<tr>';
+        htm +='<th class="hidden-xs hidden-sm">'+heads[0]+'</th>';
+        htm +='<th>'+heads[1]+'</th>';
+        htm +='<th class="text-center">'+heads[2]+'</th>';
+        htm +='</tr>';
+        htm +='</thead>';
+        htm +='<tbody>';
+
+        for(var i = 0 ; i < dataClient.length ; i++){
+            var obj = dataClient[i];
+            var uid = obj.uid;
+            // var appid = obj.app_id;
+            var parent = 'body_edit_application_printed';
+
+            var count = 0;
+            htm +='<tr>';
+            htm +='<td class="capitalize">'+obj.file_name+'.txt </td>';
+            htm +='<td>'+obj.formated_file_create_date+'</td>';
+
+            htm +='<td class="text-center">';
+          htm += '<a class="btn btn-xs btn-primary VoidApplication" rel="tooltip" title="Void" data-toggle="tooltip" href="'+url_base_path__+'admin/adjustment/download/'+obj.file_name+'"  data-original-title="Void" id =""  onclick="" >Download</a>';
+            htm += '</td>'
+
+
+
+            htm +='</tr>';
+        }
+        htm +=' </tbody>';
+
+        $("#exported_file_list").empty().append(htm);
+
+       // $("#state").empty().append('{states}');
+
+    }
+
+    function loadClientsACH() {
+        var htm = '';
+        htm +='<thead>';
+        htm +='<tr>';
+        htm +='<th class="hidden-xs hidden-sm">'+headsACH[0]+'</th>';
+        htm +='<th>'+headsACH[1]+'</th>';
+        htm +='<th class="text-center">'+headsACH[2]+'</th>';
+        htm +='</tr>';
+        htm +='</thead>';
+        htm +='<tbody>';
+
+        for(var i = 0 ; i < dataClientACH.length ; i++){
+            var objACH = dataClientACH[i];
+            var uid = objACH.uid;
+            // var appid = obj.app_id;
+            var parent = 'body_edit_application_printed';
+
+            var count = 0;
+            htm +='<tr>';
+            htm +='<td class="capitalize">'+objACH.file_name+'.txt </td>';
+            htm +='<td>'+objACH.formated_file_create_date+'</td>';
+
+            htm +='<td class="text-center">';
+            htm += '<a class="btn btn-xs btn-primary VoidApplication" rel="tooltip" title="Void" data-toggle="tooltip" href="'+url_base_path__+'admin/adjustment/download/'+objACH.file_name+'"  data-original-title="Void" id =""  onclick="" >Download</a>';
+            htm += '</td>'
+
+
+
+            htm +='</tr>';
+        }
+        htm +=' </tbody>';
+
+        $("#generated_file_list").empty().append(htm);
+
+        // $("#state").empty().append('{states}');
+
+    }
+
+    function generateFile() {
+      //  var $parent = $("#" + parent);
+        //console.log($parent);
+
+        //var appid = $parent.find("#h_application_id").val();
+        //$parent.find(".tempmessage").remove();
+
+        if (confirm("Are you sure you want to generate file?")){
+
+            $.ajax({
+                url: url_base_path__+"admin/adjustment/generateFile",
+                cache: false,
+                type: "POST",
+                dataType: 'json',
+                success: function(data){
+                    if (typeof (data) == 'object') {
+                      //  Console.log('test');
+                    //	alert(message);
+                   // $("#body_check_for_print").empty().append(message);
+                    //var obj = jQuery.parseJSON(data);
+
+                        dataClient = data;
+                        loadClients();
+
+                        $('#generatedFileForWellsFargos').css('display', 'block');
+                        $('#dataFileUplaodResult').css('display', 'none');
+                        $('#generatedACHFileForWellsFargos').css('display', 'none');
+
+                    }else{
+                       // Console.log('test3');
+                        $('#generatemessage').html(data);
+                        $('#generatedFileForWellsFargos').css('display', 'block');
+                        $('#dataFileUplaodResult').css('display', 'none');
+                        $('#generatedACHFileForWellsFargos').css('display', 'none');
+
+                    }
+
+                    //  $(".print_check").css('display','block');
+                    return false;
+                }
+            });
+
+        }
+    }
+
+    function generateExcelFile(){
+        if (confirm("Are you sure you want to generate file?")){
+            $.post(url_base_path__+"admin/adjustment/generateExcel", {
+                generate: 'yes'
+            }, function(data) {
+
+               // console.log(data);
+               // dataClient = data;
+               // loadClients();
+
+                $('#generatedFileForWellsFargos').css('display','block');
+                $('#dataFileUplaodResult').css('display','none');
+                //  $("#body_void_reprint_application_printed").prepend(data);
+                //if (typeof(data) == 'object') {
+                //    dataService = data;
+                //}
+                // loadServicesList(dataService,parent_body);
+            }, "json");
+            return false;
+        }
+    }
+
+
+    function generateACHFile() {
+
+
+        if (confirm("Are you sure you want to generate file for ACH to ERO?")){
+
+            $.ajax({
+                url: url_base_path__+"admin/adjustment/generateACHFile",
+                cache: false,
+                type: "POST",
+                dataType: 'json',
+                success: function(data){
+                    if (typeof (data) == 'object') {
+                        //  Console.log('test');
+                        //	alert(message);
+                        // $("#body_check_for_print").empty().append(message);
+                        //var obj = jQuery.parseJSON(data);
+
+                        dataClientACH = data;
+                        loadClientsACH();
+
+                        $('#generatedFileForWellsFargos').css('display', 'none');
+                        $('#dataFileUplaodResult').css('display', 'none');
+                        $('#generatedACHFileForWellsFargos').css('display', 'block');
+
+                    }else{
+                        // Console.log('test3');
+                        $('#generatemessage').html(data);
+                        $('#generatedFileForWellsFargos').css('display', 'none');
+                        $('#dataFileUplaodResult').css('display', 'none');
+                        $('#generatedACHFileForWellsFargos').css('display', 'block');
+
+                    }
+
+                    //  $(".print_check").css('display','block');
+                    return false;
+                }
+            });
+
+        }
+    }
+
+
+    $(function() {
+        loadObject();
+
+
+
+        $('#viewresult').click(function(e) {
+            //e.preventDefault();
+            //$(this).tab('show');
+            $('#generatedFileForWellsFargos').css('display','none');
+            $('#generatedACHFileForWellsFargos').css('display','none');
+
+            $('#dataFileUplaodResult').css('display','block');
+        });
+
+
+        $('#viewGeneratedFile').click(function(e) {
+            //e.preventDefault();
+            //$(this).tab('show');
+            $('#generatedFileForWellsFargos').css('display','block');
+            $('#dataFileUplaodResult').css('display','none');
+            $('#generatedACHFileForWellsFargos').css('display','none');
+        });
+
+        $('#viewGeneratedAchFile').click(function(e) {
+            //e.preventDefault();
+            //$(this).tab('show');
+            $('#generatedFileForWellsFargos').css('display','none');
+            $('#dataFileUplaodResult').css('display','none');
+            $('#generatedACHFileForWellsFargos').css('display','block');
+        });
+
+    });
+</script>
+

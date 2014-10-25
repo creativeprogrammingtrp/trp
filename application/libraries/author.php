@@ -181,12 +181,13 @@ class Author{
 		//echo "SELECT * from users where (efin = '".$t_efin."')  AND  name = '$t_user' AND pass = '$t_password' ";
 		if ($uid != 0) // comments added by Azfar : if not admin
 		{
-             $sql = "SELECT * from users where (efin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' "; // user checking wih efin
+            $sql = "SELECT * from users where (efin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' AND (status = '1' OR status = '2' OR status = '4')"; // user checking wih efin
 			//$sql = "SELECT * from users where  name = '$t_user' AND pass = '$t_password' "; // user checking wihout efin
 		}
 		else{
-                    $sql = "SELECT * from users where name = '$t_user' AND pass = '$t_password'";
-                }
+            $sql = "SELECT * from users where name = '$t_user' AND pass = '$t_password' AND (status = '1' OR status = '2' OR status = '4')";
+        }
+
 		$query = $this->CI->db->query($sql);
 		
 		if ($query->num_rows() > 0){
@@ -226,8 +227,6 @@ class Author{
 			}else{
 				$this->objlogin->parentUid 	= 0;
 			}
-			
-			
 			return true;
 		}
 		
@@ -266,7 +265,7 @@ class Author{
 		$exists = $query ->num_rows();
 		return $exists;
 	}
-        function check_efin_exists($efin){
+    function check_efin_exists($efin){
         	$exists = '';	
                 $sql_ =  'select efin from users where status = 3 and efin = "'.$efin.'" ';
                 $res_ = $this->CI->db->query($sql_);
@@ -299,6 +298,17 @@ class Author{
 		}
 		return $exists;
 	}
+
+    function check_ptin_exists($ptin){
+        $exists = '';
+
+        $sql =  'select ptin from users where ptin = "'.$ptin.'" ';
+        $res = $this->CI->db->query($sql);
+        if($res ->num_rows() >  0){
+            $exists = 'ptinexit';
+        }
+        return $exists;
+    }
 	
 	function check_usernaem_exists($username){
 		$exists = '';

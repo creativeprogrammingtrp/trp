@@ -499,7 +499,7 @@
             
 <script type="text/javascript">
 var dataClient = [];
-var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","ERO","Action"];
+var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Payment <br>Method","ERO","Action"];
 
 function loadObject() {
     {dataLoad}
@@ -578,7 +578,7 @@ function loadClients() {
             	 appststus = 'Printed Check';
              
              
-             htm +='<td class="hidden-xs hidden-sm">'+appststus+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">'+obj.payment_method+'</td>';
              
              htm +='<td class="capitalize">'+obj.company_name+' </td>';
              
@@ -662,7 +662,7 @@ $(function(){
 						{
 						    "sExtends":     "xls",
 						    "sButtonText": "Excel	",
-                            "sFileName": "recentApplication-*.pdf",
+                            "sFileName": "recentApplication-*.pdf"
 						   // "mColumns": [ 0, 1, 2, 3, 4, 5 ],
 						    
 						},
@@ -671,14 +671,14 @@ $(function(){
                             // "sButtonClass": "btn btn-primary",
                              "sButtonText": "PDF",
                              "sFileName": "recentApplication-*.pdf",
-                             "sPdfOrientation": "landscape",
+                             "sPdfOrientation": "landscape"
                             // "mColumns": [ 0, 1, 2, 3, 4, 5],
                              
                          },
                          {
                              "sExtends":     "print",
                             // "sButtonClass": "btn btn-info",
-                             "sButtonText": "Print",
+                             "sButtonText": "Print"
                              //"mColumns": [ 0, 1, 2, 3, 4, 5 ],
                              
                          },

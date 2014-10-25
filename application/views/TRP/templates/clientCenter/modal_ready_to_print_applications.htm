@@ -43,7 +43,7 @@
  <div class="form-group form-group1" >
                      	<div class="col-md-12 text-left">
 		            	
-		                     <button  class="btn btn-danger " type="button" id="back" >
+		                     <button  class="btn btn-danger " type="button" id="cancel_print" onclick="javascript:cancelPrinting();" >
                                 <i class="icon-repeat"></i> Cancel
                             </button>
 		                
@@ -53,7 +53,7 @@
                             </button>
 		                
 		                
-		                    <button  class=" btn btn-info" type="submit" id="step1" value="Next">
+		                    <button  class=" btn btn-info" type="submit" id="print_check_btn" value="printCheckBtn">
                                <i class="icon-print"></i>  Print 
                             </button>
 		                
@@ -104,11 +104,18 @@ function loadClients() {
                 htm +='</tr>';
     htm +='</thead>';
     htm +='<tbody>';
-    
+
+    // get last printed check no
+    var assignno = parseInt({lastPrintedCheckNo});
+
+    $("#starting_check_no").val(assignno);
+
+   // console.log(assignno);
+    var checkNo = 1;
     for(var i = 0 ; i < dataClientPrint.length ; i++){
     	//alert(dataClientPrint[i]);
            var obj = dataClientPrint[i];
-           var assignno = '123456789';
+
            var uid = obj.uid;
           // var appid = obj.app_id;
           // var parent = 'body_edit_application_ready_to_print';
@@ -117,13 +124,16 @@ function loadClients() {
              htm +='<td><input type="checkbox" checked="checked" class="ready_to_print_check_modal" name="ready_to_print_check_modal" id="ready_to_print_check_modal" value="'+obj.app_id+'"></td>';
              htm +='<td class="text-left hidden-xs"><strong>'+obj.first_name+' '+obj.last_name+'</strong></td>';
              htm +='<td>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';             
-             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
-             htm +='<td class="hidden-xs hidden-sm">'+assignno+''+i+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_actual_refund_amount+'</td>';
+             //htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">'+assignno+'</td>';
            	 htm +='</tr>';
+        assignno = parseInt(assignno+checkNo);
+        checkNo++;
     }
    htm +='</tbody>';
 
-   $("#starting_check_no").val(assignno+'0');
+
    
    $("#print_check_list_table").empty().append(htm);	
     
@@ -148,6 +158,40 @@ $(function() {
 		$('.modal-content').removeClass('pvmodalcontent');
 		$('#pv_check').hide();
 		$('#pv_table').show();
-	})
+	});
+	
+	$("#print_check_btn").click(function(){
+		
+		var arr = [];
+    	var ids='';
+    	var i = 0;
+        var startpoint = $('#starting_check_no').val();
+
+    	    $('.ready_to_print_check_modal:checked').each(function(){        
+    	    	arr[i++] = $(this).val();	
+    	    });
+    	    //alert(arr.length);
+    	    if(arr.length > 0){
+    	     	ids = arr.join(",");
+    	    }
+    	    else{
+    	    	ids = $(this).val();
+    	    }
+
+    	    $.ajax({
+                url: 'index.php/admin/clientcenter/generatePdfSelectedReadyToPrintApplication?ajax=1&ids='+ids+'&startp='+startpoint,
+                cache: false,
+                dataType: "json",
+                success: function(message){
+                //	alert(message);
+                       // $("#body_check_for_print").empty().append(message);
+                    var dataClient = message;
+                    loadClients();
+                      //  $(".print_check").css('display','block');
+                        return false;
+                }
+			});
+	});
+	
 });
 </script>

@@ -1,0 +1,817 @@
+
+<!-- New App tab -->
+<table id="paid_apptable" class="table table-striped">
+</table>
+<!-- End New App tab -->
+<div class="clear1"></div>
+
+<!-- For Edit Application -->
+
+<div id="modal_editApplication" class="modal slide modal_allero">
+    <div class="modal-dialog resize_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="glyphicon-bank"></i> Banking Products</h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="application_edit_form" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+				    <!-- Form Header -->
+
+				    <!-- Form Content -->
+				    <div class="form-box-content" style="padding:0px;">
+				        <!-- First Step -->
+				        <div style="clear: both;"></div>
+				        <div id="body_edit_application_paid" class="step" style="background-color: #F5F9FD; padding-top:22px;">
+						   <div class="col-md-12 ">
+						           	<div class="alert alert-success">
+				                       <i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">PENDING</strong>
+				                       <button value="" style="float: right; margin-top:-5px;" id="app_status_btn"  type="button"  class="print_check1 edit_cust_info_btn btn btn-success"> Print </button>
+				                    </div>
+                                </div>
+						         <div class="col-md-6" style=" width:49%; margin:0px 0 5px 8px;" >
+
+						         <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							       Customer Info
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-user"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+
+						         	<hr class="dottline" style="border-top:1px solid #eee; margin: 11px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/customer_info_icon.png">
+						            </div>
+						            <div class="form-group">
+
+						                <div class="col-md-6 form-group1">
+						                	<label for="first_name" class="control-label col-md-12">First Name</label>
+						                	<span  class="control-label col-md-12  text_300" id="first_name_lab">John</span>
+						                    <div class="input-group1 nopadding col-md-12" id="first_name_div"  style="display:none;">
+						                    <input type="text"  class="form-control ui-wizard-content" value="" name="first_name" id="first_name">
+						                    </div>
+						                </div>
+						                <div class="col-md-6 form-group1">
+						               	 	<label for="last_name" class="control-label col-md-12">Last Name</label>
+						               	 	<span  class="control-label col-md-12  text_300" id="last_name_lab">Dev</span>
+						                    <div class="input-group1 nopadding col-md-12" id="last_name_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" value="" name="last_name" id="last_name">
+						                    </div>
+						                </div>
+						            </div>
+						           <hr class="dottline info_hr"  style=" margin: 8px 5px;" />
+						            <div class="form-group">
+
+							                <div class="col-md-6 form-group1">
+							                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+							                	<span  class="control-label col-md-12  text_300" id="ss_number_lab">312-21-1232</span>
+							                    <div class="input-group1 nopadding col-md-12" id="ss_number_div"  style="display:none;">
+							                    <input type="text" class="form-control ui-wizard-content" name="ss_number" id="ss_number" value="">
+							                    </div>
+							                </div>
+						                	<div class="col-md-6 form-group1">
+						                		<label for="dob" class="control-label col-md-12">Birth Date</label>
+						                		<span  class="control-label col-md-12  text_300" id="dob_lab">12/12/1979</span>
+						                    	<div class="input-group1 nopadding col-md-12" id="dob_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content" name="dob" id="dob" value="" placeholder="MM/DD/YYYY">
+						                    	</div>
+						                	</div>
+
+						            </div>
+
+						            <div id="dependent-box" style="margin-top: 45px;">
+							            <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+								            <div class="col-md-12 text-center" style="margin-top:-30px;">
+								            	<img alt="" src="../backend/img/spouse_info_icon.png">
+								            </div>
+							            <div class="form-group">
+
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-12">Spouse's First Name</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_first_name_lab">yasmin</span>
+								                    <input type="text" class="form-control ui-wizard-content"  style="display:none;" name="sp_first_name" id="sp_first_name" value="">
+								                </div>
+							                	<div class="col-md-6">
+							                		<label for="dob" class="control-label col-md-12">Spouse's Last Name</label>
+							                		<span  class="control-label col-md-12  text_300" id="sp_last_name_lab">Akter</span>
+							                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_last_name" id="sp_last_name" value="">
+							                	</div>
+
+							            </div>
+							            <hr class="dottline info_hr" style=" margin: 8px 5px;" />
+							            <div class="form-group">
+								                <div class="col-md-6">
+								                	<label for="ss_number" class="control-label col-md-12">SSN</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_ss_number_lab">232-22-2323</span>
+								                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_ss_number" id="sp_ss_number" value="">
+								                </div>
+
+
+								                <div class="col-md-6">
+								                	<label for="sp_dob" class="control-label col-md-12">Birth Date</label>
+								                	<span  class="control-label col-md-12  text_300" id="sp_dob_lab">12/12/1981</span>
+								                    <input type="text" class="form-control ui-wizard-content" style="display:none;" name="sp_dob" id="sp_dob" value="" placeholder="MM/DD/YYYY">
+								                </div>
+							            </div>
+						            </div>
+
+
+
+						            <div class="form-group" style="margin-top: 15px">
+						                <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/address_info_icon.png">
+						            </div>
+						                <div class="col-md-12 form-group1">
+						                	<label for="street_address" class="control-label col-md-12">Address</label>
+						                	<span  class="control-label col-md-12  text_300" id="street_address_lab">this is address</span>
+						                    <div class="input-group1 nopadding col-md-12" id="street_address_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address" id="street_address" value="">
+						                    </div>
+						                </div>
+						            </div>
+						            <!--
+						             <div class="form-group">
+						                <div class="col-md-12">
+						                	<label for="street_address" class="control-label col-md-12">Address 2</label>
+						                    <div class="input-group1 nopadding col-md-12">
+						                    <input type="text" class="form-control ui-wizard-content" name="street_address2" id="street_address2" value="">
+						                    </div>
+						                </div>
+						            </div>
+						             -->
+						             <hr class="dottline info_hr" style=" margin: 8px 5px;" />
+						            <div class="form-group">
+
+						                <div class="col-md-4 form-group1">
+						                	<label for="city" class="control-label col-md-12">City</label>
+						                	<span  class="control-label col-md-12  text_300" id="city_lab">Dhaka</span>
+						                    <div class="input-group1 nopadding col-md-12" id="city_div"  style="display:none;">
+						                    <input type="text" class="form-control ui-wizard-content" name="city" id="city" value="">
+						                    </div>
+						                </div>
+
+						                <div class="col-md-4 form-group1">
+						                	<label for="state" class="control-label col-md-12">State</label>
+						                	<span  class="control-label col-md-12  text_300" id="state_lab">NK</span>
+						                	<div class="input-group1 nopadding col-md-12" id="state_div" style="display:none;">
+						                	 <select class="form-control ui-wizard-content" name="state" id="state">
+						                    	<option></option>
+						                    	{states}
+						                    </select>
+						                    </div>
+						                </div>
+
+						                <div class="col-md-4 form-group1">
+						                	<label for="zip_code" class="control-label col-md-12">Zip Code</label>
+						                	<span  class="control-label col-md-12  text_300" id="zip_code_lab">12123</span>
+						                	<div class="input-group1 nopadding col-md-12" id="zip_code_div" style="display:none;">
+						                		<input type="text" class="form-control ui-wizard-content" name="zip_code" id="zip_code" value="">
+						                	</div>
+						                </div>
+						            </div>
+
+
+						            <div class="form-group" style="margin-top: 15px">
+						                <hr class="dottline" style="border-top:1px solid #eee; margin: 23px 5px 5px;" />
+						            <div class="col-md-12 text-center" style="margin-top:-30px;">
+						            	<img alt="" src="../backend/img/contact_info_icon.png">
+						            </div>
+						                <!--
+						                <div class="col-md-6">
+						                	 <label for="payment_method" class="control-label col-md-12">Country</label>
+						                    <div class="input-group1 nopadding col-md-12">
+							                    <select class="form-control ui-wizard-content" name="country" id="country">
+							                    	<option></option>
+							                    	{countries}
+							                    </select>
+							               </div>
+						                </div>
+						                 -->
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Contact Phone #</label>
+						                	<span  class="control-label col-md-12  text_300" id="cell_phone_lab">()232) 231 - 2232</span>
+						                    <div class="input-group1 nopadding col-md-12" id="cell_phone_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content" name="cell_phone" id="cell_phone" value="">
+								            </div>
+						                </div>
+
+						                <div class="col-md-6 form-group1">
+						                	<label for="cell_phone" class="control-label col-md-12">Email Address</label>
+						                	<span  class="control-label col-md-12  text_300" id="email_add_lab">shuvro@osourcebd.com</span>
+						                	<div class="input-group1 nopadding col-md-12" id="email_add_div" style="display:none;">
+						                    	<input type="text" class="form-control ui-wizard-content"  name="email_add" id="email_add" value="">
+						                    </div>
+						                </div>
+						            </div>
+
+
+						          <!-- Panel End -->
+						          </div>
+
+						          <div style="background-color: #F5F9FB; padding:20px 22px;">
+			                            <button value="Downlaod" style="float: left; margin-right: 10px;" id="edit_cust_info_btn" type="button" onclick="editEnable('body_edit_application_paid');" class="edit_cust_info_btn btn btn-white-red">
+				                              <i class="icon-pencil6"></i> Edit
+				                         </button>
+				                         <button style="display:none;" class=" btn btn-success" type="submit" id="saveData" value="Next">
+				                                <i class="icon-ok"></i> Save
+				                            </button>
+				                        <div style="clear:both;"></div>
+				                        </div>
+
+						          </section>
+
+						          <!-- File Section -->
+						          <section class="panel">
+	                          <header class="panel-heading">
+	                              <span class="title" style="">
+								      Files
+								    </span>
+	                              <span class="tools pull-right icons" style="">
+	                                <i class="gemicon-small-file"></i>
+	                            </span>
+	                          </header>
+	                          <div class="panel-body" style="padding:0px;">
+							         <!-- Panel start -->
+							         <div class="col-md-12 text-left" style="padding:0px;">
+									 	<ul class="icons-ul push" style="padding: 20px 23px; margin: 0px;">
+			                                 <li><i class="icon-file4"></i> <strong>Concent Form</strong>,<br><em>Disclouse of tax return confirmation.</em></li>
+			                                <li><i class="icon-file4"></i> <strong>Refund Transfer Form</strong>,<br><em>Refund Aggrement and apploication.</em></li>
+			                                <!-- <li><i class="icon-file4"></i> <strong>File #3</strong>,<br><em>This is the description of this file..</em></li>
+                                			<li><i class="icon-file4"></i> <strong>File #4</strong>,<br><em>This is the description of this file..</em></li>-->
+			                            </ul>
+			                            <div style="background-color: #F5F9FB; padding:20px 22px;">
+			                            <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="glyphicon-download_alt"></i> Download
+				                         </button>
+				                         <!-- &nbsp; &nbsp;
+				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="icon-save"></i> Save
+				                         </button>
+				                          -->
+				                         &nbsp; &nbsp;
+				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+				                              <i class="icon-print"></i> Print
+				                         </button>
+				                        </div>
+									 </div>
+							  </div>
+							</section>
+						          <!-- End File Section -->
+
+						           <!-- Additional section -->
+
+
+							         <div class="col-md-12 text-left" id="bank_insurance_additional_info" style="padding:0px;">
+
+
+									 </div>
+
+
+						          <!-- End Additional section -->
+						</div>
+						<div class="col-md-6" style="margin-top:0px; padding:0 10px 0 0;" >
+
+				        <div class="col-md-12" style=" margin:0px 5px;" >
+
+				          <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							      Summary
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-undo"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+
+							<div class="form-group form-group1" style="padding-bottom:0px;">
+                                <div class="col-md-1 ">
+                                </div>
+								<div class="col-md-5 " style="border:1px solid #eee; border-radius:4px; padding:8px 10px 12px;">
+                                    <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Expected Refund Amount </label>
+                                    <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="expected_refund_amt_3">$0.00</label>
+                                </div>
+								<div class="col-md-5 " style="border:1px solid #eee; border-radius:4px; padding:8px 10px 12px; margin-left: 10px;">
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Actual Refund Amount </label>
+						                <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="total_refund_amt_3">$0.00</label>
+	                                </div>
+								<div class="col-md-1 ">
+								</div>
+							</div>
+
+							<div class="col-md-12 text-center" style="padding-left:140px;" >
+				            <img src="../backend/img/refund_minus_icon_small.png" align="middle"  />
+				            </div>
+
+							<div class="form-group form-group1" style="padding-top:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border: 1px solid #eee; border-radius: 4px; padding: 8px 28px 12px; background-color: #fff; z-index: 9;">
+						                <label for="" class="control-label col-md-12 text-center" style="padding:0px; color:#8A95A7; font-weight: 600; ">Banking Fee</label>
+					             <label for="" class="control-label col-md-12  text-center" style="color: #8A95A7; font-weight: 600; padding: 0px;" id="banking_fee" >$0.00</label>
+	                                </div>
+								<div class="col-md-3 ">
+								</div>
+							</div>
+
+
+							<div class="form-group form-group1" style="margin:0px 5px; padding-bottom:0px;">
+
+								<div class="col-md-12 " style="border: 1px solid #eee; border-radius: 4px; padding: 50px 28px 12px; margin-top: -36px; background-color: #fff;">
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Tax Preparation Fee</label>
+						                <span  class="control-label col-md-3  text_300 text-right" id="tax_preparation_fee_3">$120.00</span>
+		                                <div style="clear: both;" ></div>
+		                                <hr class="dottline" style="border-top:1px dotted #666; margin-top:8px; margin-bottom:8px;">
+
+
+		                                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Bank Transmission Fee</label>
+						                <span  class="control-label col-md-3  text_300 text-right" id="bank_transmission_fee_3">$19.95</span>
+
+		                                <div style="clear: both;"></div>
+		                                <hr class="dottline" style="border-top:1px dotted #666;  margin-top:8px; margin-bottom:8px;" />
+
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">SB Fee</label>
+						                <span  class="control-label col-md-3  text_300 text-right" id="sb_fee_3">$120.00</span>
+		                                <div style="clear: both;"></div>
+		                                <hr class="dottline" style="border-top:1px dotted #666;  margin-top:8px; margin-bottom:8px;">
+
+		                                <label for="cell_phone" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Add On Fee</label>
+						               <span  class="control-label col-md-3  text_300 text-right" id="add_on_fee_3">$120.00</span>
+		                                <div style="clear: both;"></div>
+
+	                                </div>
+	                                <div style="clear: both;"></div>
+							</div>
+
+							<!-- For service  -->
+							<div class="col-md-12 text-center" style="padding-left:0px;" >
+				            <img src="../backend/img/refund_minus_icon_small.png" align="middle"  />
+				            </div>
+
+							<div class="form-group form-group1" style="padding-top:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border: 1px solid #eee; border-radius: 4px; padding: 8px 28px 12px; background-color: #fff; z-index: 9;">
+						                <label for="" class="control-label col-md-12 text-center" style="padding:0px; color:#8A95A7; font-weight: 600; ">Product Fee</label>
+					             <label for="" class="control-label col-md-12  text-center" style="color: #8A95A7; font-weight: 600; padding: 0px;" id="product_fee" >$0.00</label>
+	                                </div>
+								<div class="col-md-3 ">
+								</div>
+							</div>
+
+
+							<div class="form-group form-group1" style="margin:0px 5px; padding-bottom:0px;">
+
+								<div class="col-md-12 " style="border: 1px solid #eee; border-radius: 4px; padding: 50px 28px 12px; margin-top: -36px; background-color: #fff;">
+						        <div id="cart_details_view" style="padding:0px 0px 20px 0px;">
+						        <div class="col-md-2 service_img">
+									<img alt=""  src="../backend/img/benefit.png">
+								</div>
+								<div class="col-md-8 service_title_2">
+									<h4>First Benefit</h4>
+								</div>
+
+								<div class="col-md-2 price_2 text-right">
+									<h5>$15.00</h5>
+								</div>
+								<div style="clear: both;"></div>
+								<hr style="margin: 20px 0px;">
+
+								<div class="col-md-2 service_img">
+									<img alt=""  src="../backend/img/benefit.png">
+								</div>
+								<div class="col-md-8 service_title_2">
+									<h4>First Benefit</h4>
+								</div>
+
+								<div class="col-md-2 price_2 text-right ">
+									<h5>$150.00</h5>
+								</div>
+								<div style="clear: both;"></div>
+							</div>
+
+	                                </div>
+	                                <div style="clear: both;"></div>
+							</div>
+							<!-- end service list -->
+
+							<div class="col-md-12  text-center" style="padding-left:0px;">
+				            <img src="../backend/img/refund_equals_small.png" align="middle" />
+				            </div>
+
+							<div class="form-group form-group1" style="padding-top:0px;">
+								<div class="col-md-3 "></div>
+								<div class="col-md-6 " style="border:1px solid #eee; border-radius:4px; padding:8px 28px 12px;">
+						         <label for="cell_phone" class="control-label col-md-12 text-center" style="padding:0px; color:#8A95A7; font-weight: 600; ">Net Refund Amount</label>
+					             <label for="cell_phone" class="control-label col-md-12  text-center" style="color: #8A95A7;  font-weight: 600; padding: 0px;" id="net_refund_amt_3_label" >$0.00</label>
+	                                </div>
+								<div class="col-md-3 ">
+								</div>
+							</div>
+							    <input type="hidden" value="" id="application_id" name="application_id">
+					             <input type="hidden" value="" id="app_type" name="app_type">
+					             <input type="hidden" value="" id="app_type_d" name="app_type_d">
+				            <!-- End panel -->
+				            </div>
+				            </section>
+				           </div>
+
+
+						</div>
+						<div style="clear:both;"></div>
+
+						<div class="col-md-12" style="margin:0px 5px;" >
+				            <section class="panel">
+                          <header class="panel-heading">
+                              <span class="title" style="">
+							     Disbursement Method
+							    </span>
+                              <span class="tools pull-right icons" style="">
+                                <i class="icon-credit-card"></i>
+                            </span>
+                          </header>
+                          <div class="panel-body">
+						         <!-- Panel start -->
+
+							<div class="form-group form-group1" id='disbursement_method_details'>
+				                <div class="col-md-4 "  style="margin-top:20px">
+						           	<div class="alert alert-success">
+				                       <i class="icon-ok"></i> &nbsp; &nbsp;  Account # <strong>1111-23232</strong>
+				                    </div>
+                                </div>
+                                <div class="col-md-4 "  style="margin-top:20px">
+					           		<div class="alert alert-success">
+				                        <i class="icon-ok"></i> &nbsp; &nbsp;  Routing # <strong>2342-75656</strong>
+				                    </div>
+                                </div>
+                                <div class="col-md-4 "  style="margin-top:20px">
+					           		<div class="alert alert-success">
+				                        <i class="icon-ok"></i> &nbsp; &nbsp;  Card # <strong>XXXX-XXXX-XXXX-1111</strong>
+				                    </div>
+                                </div>
+
+				            </div>
+				            <!-- Panel End -->
+				            </div>
+				            </section>
+				          </div>
+						            <div class="form-group1 form-actions" style="margin-top:30px; border-top: 0px;">
+						            <div class="col-md-12 text-left">
+						            	<div class="col-md-12 text-center">
+						                     <button  class="btn btn-danger btn-lg" type="button" id="cancel_app_edit" >
+				                                <i class="icon-repeat"></i> Close
+				                            </button>
+						                </div>
+						              <!--   <div class="col-md-6 text-left">
+						                    <button  class=" btn btn-success btn-lg" type="submit" id="step1" value="Next">
+				                                <i class="icon-ok"></i> Submit
+				                            </button>
+						                </div>
+						                -->
+						                <div style="clear: both;"></div>
+						            </div>
+						            </div>
+
+						    </div>
+						   <!-- End Steps 1 -->
+
+
+
+
+
+
+					</div>
+
+
+
+
+				</form>
+				<!--  END OF AMIN FORM -->
+
+            </div>
+         </div>
+     </div>
+</div>
+<!-- End of Edit Application -->
+
+
+<!-- Void or Reprint modal box-->
+<div id="modal_void_reprint" class="modal slide modal_allero">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="glyphicon-bank"></i> Void or Re-Print Check</h4>
+            </div>
+            <div class="modal-body" style="padding:0px;" >
+
+                <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="application_reprint_void_form" ><!-- action="index.php/admin/clientcenter/newapp/save" -->
+                    <!-- Form Header -->
+
+                    <!-- Form Content -->
+
+                    <div class="form-box-content" style="padding:0px;">
+                    <!-- First Step -->
+                    <div style="clear: both;"></div>
+                    <div id="body_void_reprint_application_printed" class="step" style="padding:20px 9px;">
+                        <input type="hidden" name="h_application_id" id="h_application_id">
+
+                        <button style="margin-right: 0px;" value="Print" id="voidCheckBtn" onclick="voidApplication('body_void_reprint_application_printed');" type="button" class="btn btn-primary btn-lg ">
+                            <i class="icon-cancel-circle"></i> Void Check
+                        </button>
+                        &nbsp; &nbsp;
+                        <button style="margin-right: 0px;" value="Print" id="reprintCheckBtn" onclick="voidAndReprintApplication('body_void_reprint_application_printed')" type="button" class="btn btn-info btn-lg ">
+                            <i class="icon-cancel-circle"></i> Void & <i class="icon-print"></i> Re-Print Check
+                        </button>
+                        &nbsp; &nbsp;
+                        <button style="margin-right: 0px;" value="Print" id="cancelVoidCheckBtn" type="button" class="btn btn-danger btn-lg ">
+                            <i class="icon-repeat"></i> Close
+                        </button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Javascript code only for this page -->
+            
+<script type="text/javascript">
+var dataClient = [];
+var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Payment <br>Method","ERO","Action"];
+
+function loadObject() {
+    {dataLoad}
+    loadClients();
+}
+
+
+function loadClients() {
+    var htm = ''; 
+    htm +='<thead>';
+                htm +='<tr>';
+                htm +='<th class="hidden-xs hidden-sm"><input type="checkbox" name="selecctAllPrinted" id="selecctAllPrinted" value=""></th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[0]+'</th>';
+                    htm +='<th>'+heads[1]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[3]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[5]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[6]+'</th>';
+                    htm +='<th class="hidden-xs hidden-sm">'+heads[7]+'</th>';
+                    htm +='<th class="text-center">'+heads[8]+'</th>';
+                htm +='</tr>';
+    htm +='</thead>';
+    htm +='<tbody>';
+    
+    for(var i = 0 ; i < dataClient.length ; i++){
+           var obj = dataClient[i];
+        var uid = obj.uid;
+        // var appid = obj.app_id;
+        var parent = 'body_edit_application_paid';
+        var parentVoid = 'body_void_reprint_application_printed';
+
+           var count = 0;
+             htm +='<tr>';
+             htm +='<td><input type="checkbox" class="printed_check" name="printed_check" id="printed_check" value="'+obj.app_id+'"></td>';
+             htm +='<td class="text-left hidden-xs capitalize"><strong>'+obj.first_name+' '+obj.last_name+'</strong><br>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';
+             htm +='<td><strong>'+obj.cell_phone+'</strong></td>';
+             htm +='<td class="hidden-xs hidden-sm">';
+             
+             var flag = 0;
+           //  for(var j = 0 ; j < obj.prodcuts.length ; j++){
+           // 	 var obj1 = obj.prodcuts[j];
+            	 
+            	 if(obj.audit_guard_item == "Audit Guard Protection"){
+            		 flag = 1; 
+            	 }
+            	 
+            	 /*if(j<2){
+            		htm += obj1.prodcut_name+'<br> ';
+            	 }else{
+            	 }
+            	 count = count+1;
+            	 if(count==2){
+            		 htm += '<a href="javascript:void(0)" class="toottip_product" data-html="true" data-toggle="tooltip" data-placement="right" title="';
+                	 for(var k = 0 ; k < obj.prodcuts.length ; k++){
+                		 var obj2 = obj.prodcuts[k];
+                		 htm += obj2.prodcut_name+'<br> ';
+                	 }
+                	 htm += '<a href="javascript:void(0)">More</a>';
+                 }*/
+            // }
+             
+             if(flag == 1){
+            	 htm += 'Yes';
+             }else{
+            	 htm += 'No';
+             }
+            
+             
+             htm +='</td>';
+             //htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_actual_refund_amount+'</td>';
+             htm +='<td class="capitalize">'+obj.firstname+' '+obj.lastname+' </td>';
+             htm +='<td>'+obj.format_date+'</td>';
+             var appststus = '';
+             if(obj.status == '0')
+            	 appststus = 'Pending';
+             else if(obj.status == '1')
+            	 appststus = 'Ready To Print';
+             else if(obj.status == '2')
+            	 appststus = 'Printed Check';
+             
+             
+             htm +='<td class="hidden-xs hidden-sm">'+obj.payment_method+'</td>';
+             htm +='<td class="capitalize">'+obj.company_name+' </td>';
+              htm +='<td class="text-center">';
+             // htm += ' <button class="btn btn-xs btn-info print_check1" type="button" disabled="disabled" id="print" value="'+obj.app_id+'" style=margin-right:10px;">Print</button>';
+                        //htm += '<a class="btn c btn-info PrintApp print_check" style="" title="Print"  href="javascript:void(0)"  id ="">Print</a>';
+                      if(obj.void_status == 'true' ) {
+                          htm += '<a class="btn btn-xs btn-primary VoidApplication" rel="tooltip" title="Void" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Void" id =""  onclick="editPaidApplicationForVoid(\'' + obj.app_id + '\',\'' + parentVoid + '\')" >Void</a>';
+
+                          htm += '&nbsp; &nbsp;';
+                      }
+        htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editApplicationAfterDeposit(\''+obj.app_id+'\',\''+parent+'\')" >View</a>';
+                           
+                       
+                htm += '</td>'
+             
+             
+
+           htm +='</tr>';
+    }
+   htm +=' </tbody>';
+
+    $("#paid_apptable").empty().append(htm);
+    
+    $("#state").empty().append('{states}');
+    
+}
+/*
+
+function editEnable(parent) {
+	var $parent = $("#" + parent);
+	//alert(parent);
+	// var $parent = parent; //$("#body_edit_application_pending");
+		//$parent.closest("#modal_editApplication_pending_fund").modal('hide');
+		
+	 $parent.find("#first_name_lab").css('display','none');
+	 $parent.find("#first_name_div").css('display','block');
+	 $parent.find("#last_name_lab").css('display','none');
+	 $parent.find("#last_name_div").css('display','block');
+	 $parent.find("#ss_number_lab").css('display','none');
+	 $parent.find("#ss_number_div").css('display','block');
+	 $parent.find("#dob_lab").css('display','none');
+	 $parent.find("#dob_div").css('display','block');
+	 $parent.find("#sp_first_name_lab").css('display','none');
+	 $parent.find("#sp_first_name").css('display','block');
+	 $parent.find("#sp_last_name_lab").css('display','none');
+	 $parent.find("#sp_last_name").css('display','block');
+	 $parent.find("#sp_ss_number_lab").css('display','none');
+	 $parent.find("#sp_ss_number").css('display','block');
+	 $parent.find("#sp_dob_lab").css('display','none');
+	 $parent.find("#sp_dob").css('display','block');
+	 $parent.find("#street_address_lab").css('display','none');
+	 $parent.find("#street_address_div").css('display','block');
+	 $parent.find("#city_lab").css('display','none');
+	 $parent.find("#city_div").css('display','block');
+	 $parent.find("#state_lab").css('display','none');
+	 $parent.find("#state_div").css('display','block');
+	 $parent.find("#zip_code_lab").css('display','none');
+	 $parent.find("#zip_code_div").css('display','block');
+	 $parent.find("#cell_phone_lab").css('display','none');
+	 $parent.find("#cell_phone_div").css('display','block');
+	 $parent.find("#email_add_lab").css('display','none');
+	 $parent.find("#email_add_div").css('display','block');
+	 $parent.find(".info_hr").css('display','none');
+	 
+	 $parent.find("#saveData").css('display','block');
+	 
+	
+	 
+}
+*/
+
+
+
+function printCheckModal1(actionFrom){
+    $(".print_check1").click(function(){
+    	
+    	
+    	var arr = [];
+    	var ids='';
+    	var i = 0;
+    	    $('.ready_to_print_check:checked').each(function(){        
+    	    	arr[i++] = $(this).val();	
+    	    });
+    	    //alert(arr.length);
+    	    if(arr.length > 0){
+    	     	ids = arr.join(",");
+    	    }
+    	    else{
+    	    	ids = $(this).val();
+    	    }
+    	    
+    	    
+    	    
+    	    $.ajax({
+                url: 'index.php/admin/clientcenter/showSelectedReadyToPrintApplication?ajax=1&ids='+ids+'',
+                cache: false,
+                success: function(message){
+                //	alert(message);
+                        $("#body_check_for_print").empty().append(message);
+                      //  $(".print_check").css('display','block');
+                        return false;
+                }
+			});	
+    	 
+
+        	if(actionFrom != ''){
+	        	var $parent = $("#" + actionFrom);
+	        	$parent.closest("#modal_editApplication").modal('hide');
+        	}
+    	
+    	$("#modal_check_for_print").modal('show');
+    });
+}
+
+$(function(){
+	loadObject();
+	printCheckModal1('body_edit_application_paid');
+	clickToEditApplicationInfo('body_edit_application_paid');
+	//$('#toppart').remove();
+	$(".toottip_product").tooltip(); 
+	cancelEditApplicationModal('body_edit_application_paid');
+
+
+    // cancel void check modal box
+    cancelVoidCheck();
+   // voidApplication('body_void_reprint_application_printed')
+
+	 $('#paid_apptable').dataTable( {
+     	"sDom": 'T<"clear">lfrtip',
+		"aaSorting": [[6,'desc']],
+     	"oTableTools": {
+ 			//"aButtons": [ "xls", "pdf","copy", "print" ]
+     		"aButtons": [
+						{
+						    "sExtends":     "xls",
+						    "sButtonText": "Excel	",
+                            "sFileName": "recentApplication-*.pdf",
+						    "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+						    
+						},
+                 		{
+                             "sExtends":     "pdf",
+                            // "sButtonClass": "btn btn-primary",
+                             "sButtonText": "PDF",
+                             "sFileName": "recentApplication-*.pdf",
+                             "sPdfOrientation": "landscape",
+                             "mColumns": [ 0, 1, 2, 3, 4, 5],
+                             
+                         },
+                         {
+                             "sExtends":     "print",
+                            // "sButtonClass": "btn btn-info",
+                             "sButtonText": "Print",
+                             "mColumns": [ 0, 1, 2, 3, 4, 5 ],
+                             
+                         },
+                         
+                 		]
+ 		},
+ 		"aoColumnDefs": [
+  		                { 'bSortable': false, 'aTargets': [0,7,9 ] }
+  		             ]
+     } );
+	 $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
+	 
+	 $("#ss_number").mask("999-99-9999");
+     $("#cell_phone").mask("(999) 999-9999");
+     $("#dob").mask("99/99/9999");
+     $("#sp_ss_number").mask("999-99-9999");
+     $("#sp_dob").mask("99/99/9999");
+    
+	 
+     $('#selecctAllPrinted').click(function(event) {  //on click
+	        if(this.checked) { // check select status
+	            $('.printed_check').each(function() { //loop through each checkbox
+	                this.checked = true;  //select all checkboxes with class "checkbox1"              
+	            });
+	        }else{
+	            $('.printed_check').each(function() { //loop through each checkbox
+	                this.checked = false; //deselect all checkboxes with class "checkbox1"                      
+	            });        
+	        }
+	    }); 
+	
+});
+</script>

@@ -9,7 +9,7 @@
             
 <script type="text/javascript">
 var dataClient = [];
-var heads = ["Name","Contact Info","DOB","Action"];
+var heads = ["Name","Contact Info","ERO","Action"];
 
 function loadObject() {
     {dataLoad}
@@ -40,7 +40,7 @@ function loadClients() {
             
              htm +='<td class="text-left hidden-xs capitalize"><strong>'+obj.first_name+' '+obj.last_name+'</strong><br>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';
              htm +='<td><strong>'+obj.cell_phone+'</strong></td>';
-             htm +='<td class="hidden-xs hidden-sm">'+obj.dob+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">'+obj.company_name+'</td>';
              
               htm +='<td class="text-center">';
                         htm +='<div class="btn-group">'; 

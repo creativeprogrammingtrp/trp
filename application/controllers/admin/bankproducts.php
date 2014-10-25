@@ -17,6 +17,9 @@ class Bankproducts extends CI_Controller{
         $data['countPrintedCheckApplication'] = $this->m_clientcenter->countPrintedCheckApplication();
         $data['countVoidCheckApplication'] = $this->m_clientcenter->countVoidCheckApplication();
         $data['countAllApplication'] = $this->m_clientcenter->countAllApplication();
+        $data['countAllPaidApplication'] = $this->m_clientcenter->countAllPaidApplication();
+        $data['countAllVoidedPaymentApplication'] = $this->m_clientcenter->countAllVoidedPaymentApplication();
+
         
         
         $this->system->parse("clientCenter/clientcenter.htm",$data);

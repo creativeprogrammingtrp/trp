@@ -43,3 +43,97 @@ ALTER TABLE `benefits_applicent` CHANGE `uid` `applicent_id` INT( 11 ) NOT NULL 
 ALTER TABLE `insurance` ADD `insurance_img_source` VARCHAR(30) NOT NULL AFTER `insurance_item`;
 
 ALTER TABLE `insurance_application_additional_info` CHANGE `app_id` `insurance_id` INT(11) NOT NULL COMMENT 'this is the referance id of application';
+
+
+
+============================
+25th September (Done)
+
+ALTER TABLE `new_app`  ADD `w_application` VARCHAR(5) NOT NULL COMMENT 'Application or Type. DDA or SAV',  ADD `w_group_number` INT(20) NOT NULL,  ADD `w_process_date` VARCHAR(10) NOT NULL COMMENT 'If transactions are listed on the report, this is the date the items will post. Or If there are no transactions to report, this is the date the tranjournal was created.',  ADD `w_group_name` VARCHAR(50) NOT NULL COMMENT 'normally your company name',  ADD `w_tran` VARCHAR(2) NOT NULL COMMENT 'Tran. Will be CR for a credit entry or DR for a debit entry.',  ADD `w_account_no` INT(20) NOT NULL COMMENT 'For account range customers, each account number is a WPIC (Wells Fargo Payment Identification Code) that identifies the client account that you need to credit or debit.',  ADD `w_amount` DOUBLE(10,2) NOT NULL COMMENT 'Amount. Dollar amount of the transaction. If the amount is zero, the transaction is a prenote.',  ADD `w_entry_desc` VARCHAR(100) NOT NULL COMMENT 'Description of the transaction provided by the originating company.',  ADD `w_spin` INT(2) NOT NULL COMMENT 'A two-digit number identifying the delivery time for the entries for this report. ',  ADD `w_org` INT(1) NOT NULL COMMENT 'Org. Code identifying where the transaction originated: 1= Sent by a non-government (commercial) entity. & 2 = Sent by Federal government entity.',  ADD `w_individual_id` VARCHAR(100) NOT NULL COMMENT 'Individual ID. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include a ID number to identify the client or individual for whom the transaction is intended, such as an employee number or customer number.',  ADD `w_individual_name` VARCHAR(100) NOT NULL COMMENT 'Individual Name. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include the name of the client or individual for whom the transaction is intended.',  ADD `w_descr_date` VARCHAR(10) NOT NULL COMMENT 'Descr Date. Reference date provided by the originator for descriptive purposes only.',  ADD `w_ccls` VARCHAR(10) NOT NULL COMMENT 'CCLS. Standard Entry Class (SEC) code identifying the type of ACH activity being processed.',  ADD `w_company_id` INT(20) NOT NULL COMMENT 'Company ID. Unique number used by the originating company sending this transaction.',  ADD `w_company_name` VARCHAR(100) NOT NULL COMMENT 'Company Name. Name of the company sending this transaction.',  ADD `w_discr_date` VARCHAR(10) NOT NULL COMMENT 'Discr Data. Discretionary data. This field may include codes to enable specialized handling of the entry. This field must be returned intact for any returned entry. For IAT transactions, this is the OFAC screening indicator and secondary OFAC screening indicator (positions 77 and 78) from the detail record.',  ADD `w_trace` INT(20) NOT NULL COMMENT 'Trace Number. A unique trace number assigned to the entry by the originating institution. The first eight digits of the trace number are the routing/transit number of the sending institution.'
+
+ALTER TABLE `new_app` CHANGE `w_application` `w_application` VARCHAR(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Application or Type. DDA or SAV', CHANGE `w_group_number` `w_group_number` INT(20) NULL, CHANGE `w_process_date` `w_process_date` VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'If transactions are listed on the report, this is the date the items will post. Or If there are no transactions to report, this is the date the tranjournal was created.', CHANGE `w_group_name` `w_group_name` VARCHAR(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'normally your company name', CHANGE `w_tran` `w_tran` VARCHAR(2) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Tran. Will be CR for a credit entry or DR for a debit entry.', CHANGE `w_account_no` `w_account_no` INT(20) NULL COMMENT 'For account range customers, each account number is a WPIC (Wells Fargo Payment Identification Code) that identifies the client account that you need to credit or debit.', CHANGE `w_amount` `w_amount` DOUBLE NULL COMMENT 'Amount. Dollar amount of the transaction. If the amount is zero, the transaction is a prenote.', CHANGE `w_entry_desc` `w_entry_desc` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Description of the transaction provided by the originating company.', CHANGE `w_spin` `w_spin` INT(2) NULL COMMENT 'A two-digit number identifying the delivery time for the entries for this report. ', CHANGE `w_org` `w_org` INT(1) NULL COMMENT 'Org. Code identifying where the transaction originated: 1= Sent by a non-government (commercial) entity. & 2 = Sent by Federal government entity.', CHANGE `w_individual_id` `w_individual_id` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Individual ID. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include a ID number to identify the client or individual for whom the transaction is intended, such as an employee number or customer number.', CHANGE `w_individual_name` `w_individual_name` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Individual Name. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include the name of the client or individual for whom the transaction is intended.', CHANGE `w_descr_date` `w_descr_date` VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Descr Date. Reference date provided by the originator for descriptive purposes only.', CHANGE `w_ccls` `w_ccls` VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'CCLS. Standard Entry Class (SEC) code identifying the type of ACH activity being processed.', CHANGE `w_company_id` `w_company_id` INT(20) NULL COMMENT 'Company ID. Unique number used by the originating company sending this transaction.', CHANGE `w_company_name` `w_company_name` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Company Name. Name of the company sending this transaction.', CHANGE `w_discr_date` `w_discr_date` VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Discr Data. Discretionary data. This field may include codes to enable specialized handling of the entry. This field must be returned intact for any returned entry. For IAT transactions, this is the OFAC screening indicator and secondary OFAC screening indicator (positions 77 and 78) from the detail record.', CHANGE `w_trace` `w_trace` INT(20) NULL COMMENT 'Trace Number. A unique trace number assigned to the entry by the originating institution. The first eight digits of the trace number are the routing/transit number of the sending institution.';
+
+==========================
+29th September (Done)
+
+ALTER TABLE `new_app` ADD `app_actual_refund_amount` DOUBLE( 10, 2 ) NULL AFTER `app_net_refund_amt` 
+
+
+==========================
+30th September Done
+
+CREATE TABLE `trpgit`.`app_check` (`check_id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, `check_no` INT(11) NOT NULL COMMENT 'this check no, we get range of check no form weelsfago and have to be we have to be send to the wells fargo', `app_id` INT(11) NOT NULL COMMENT 'this is the foreign key of new_app', `transaction_code` INT(3) NOT NULL COMMENT '320 = Check Register, 370 =  Cancelled Register with Dollar Amount, 430 = Void Register with Zero Amount, 525 = Delete Issue Notices Not Received, 620 = Stop Payment Request,  630 = Release Stop Payment (Cancellation), 640 = Stop Payment Renewal Cancellation', `issue_date` INT(15) NOT NULL, `check_amount` DOUBLE(10,2) NOT NULL, `additional_data` VARCHAR(120) NULL COMMENT 'initially it will be 40 character, but if expended then it will be 120 character. not more then that.', `status` INT(1) NOT NULL COMMENT '1 = printed, 2 = vpided or canceled', `action_date` INT(15) NOT NULL COMMENT 'it will be cancel date or print date, will depend on status, like status = 1 then it will be printed date', `re_print` VARCHAR(5) NULL COMMENT 'Yes , No', `re_print_check_id` INT(11) NULL) ENGINE = InnoDB;
+
+ALTER TABLE `app_check` ADD `author_id` INT( 11 ) NOT NULL COMMENT 'Who doing this action'
+
+CREATE TABLE `trpgit`.`assign_check` (`assign_check_id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, `starting_no` INT(15) NOT NULL, `ending_no` INT(15) NOT NULL, `assign_date` INT(15) NOT NULL COMMENT 'when this cehck no is assigned ', `complete_date` INT(15) NOT NULL COMMENT 'when this range is completed', `author_id` INT(11) NOT NULL COMMENT 'Who issuing this check no range') ENGINE = InnoDB;
+
+ALTER TABLE `assign_check` CHANGE `complete_date` `complete_date` INT( 15 ) NULL COMMENT 'when this range is completed'
+
+ALTER TABLE `assign_check` CHANGE `starting_no` `starting_no` BIGINT(15) NOT NULL, CHANGE `ending_no` `ending_no` BIGINT(15) NOT NULL
+
+==========================[-
+4th October Done
+
+ALTER TABLE `app_check` ADD `exported_date` INT( 20 ) NULL
+
+CREATE TABLE `trpgit`.`generated_file_info` (
+`file_id` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`file_name` VARCHAR( 100 ) NOT NULL ,
+`file_create_date` INT( 11 ) NOT NULL ,
+`created_by` INT( 11 ) NOT NULL
+) ENGINE = InnoDB;
+
+
+
+
+===========================
+13th October Done
+
+CREATE TABLE `trpgit`.`transjournal_queu_account` (`transjournal_queu_id` INT(11) NULL AUTO_INCREMENT, `w_application` VARCHAR(5) NULL COMMENT 'Application or Type. DDA or SAV', `w_group_number` INT(20) NULL, `w_process_date` VARCHAR(10) NULL COMMENT 'If transactions are listed on the report, this is the date the items will post. Or If there are no transactions to report, this is the date the tranjournal was created.', `w_group_name` VARCHAR(50) NULL COMMENT 'normally your company name', `w_tran` VARCHAR(2) NULL COMMENT 'Tran. Will be CR for a credit entry or DR for a debit entry.', `w_account_no` INT(20) NULL COMMENT 'For account range customers, each account number is a WPIC (Wells Fargo Payment Identification Code) that identifies the client account that you need to credit or debit.', `w_amount` DOUBLE(10,2) NULL COMMENT 'Amount. Dollar amount of the transaction. If the amount is zero, the transaction is a prenote.', `w_entry_desc` VARCHAR(100) NULL COMMENT 'Description of the transaction provided by the originating company.', `w_spin` INT(2) NULL COMMENT 'A two-digit number identifying the delivery time for the entries for this report. ', `w_org` INT(1) NULL COMMENT 'Org. Code identifying where the transaction originated: 1= Sent by a non-government (commercial) entity. & 2 = Sent by Federal government entity.', `w_individual_id` VARCHAR(100) NULL COMMENT 'Individual ID. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include a ID number to identify the client or individual for whom the transaction is intended, such as an employee number or customer number.', `w_individual_name` VARCHAR(100) NULL COMMENT 'Individual Name. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include the name of the client or individual for whom the transaction is intended.', `w_descr_date` VARCHAR(10) NULL COMMENT 'Descr Date. Reference date provided by the originator for descriptive purposes only.', `w_ccls` VARCHAR(10) NULL COMMENT 'CCLS. Standard Entry Class (SEC) code identifying the type of ACH activity being processed.', `w_company_id` INT(20) NULL COMMENT 'Company ID. Unique number used by the originating company sending this transaction.', `w_company_name` VARCHAR(100) NULL COMMENT 'Company Name. Name of the company sending this transaction.', `w_discr_date` VARCHAR(10) NULL COMMENT 'Discr Data. Discretionary data. This field may include codes to enable specialized handling of the entry. This field must be returned intact for any returned entry. For IAT transactions, this is the OFAC screening indicator and secondary OFAC screening indicator (positions 77 and 78) from the detail record.', `w_trace` INT(20) NULL COMMENT 'Trace Number. A unique trace number assigned to the entry by the originating institution. The first eight digits of the trace number are the routing/transit number of the sending institution.', PRIMARY KEY (`transjournal_queu_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `transjournal_queu_account` CHANGE `w_account_no` `w_account_no` VARCHAR(20) NULL DEFAULT NULL COMMENT 'For account range customers, each account number is a WPIC (Wells Fargo Payment Identification Code) that identifies the client account that you need to credit or debit.'
+
+ALTER TABLE `new_app` ADD `imp_file_name` VARCHAR(30) NOT NULL ;
+
+ALTER TABLE `transjournal_queu_account` ADD `imp_file_name` VARCHAR(30) NOT NULL ;
+
+
+================
+
+14th October Done
+
+ALTER TABLE `assign_check` ADD `uid` INT( 11 ) NOT NULL AFTER `assign_check_id`
+
+ALTER TABLE `app_check` ADD `uid` INT( 11 ) NOT NULL AFTER `check_id`
+
+
+==============================
+16th October Done
+
+ALTER TABLE `master_ero` ADD `tax_pre_commission` DOUBLE( 10, 2 ) NULL AFTER `tax_preparation_fee`
+
+ALTER TABLE `master_ero` ADD `add_on_commission` DOUBLE( 10, 2 ) NULL AFTER `add_on_fee`
+
+ALTER TABLE `master_ero` ADD `tax_pre_commission_type` INT( 1 ) NULL COMMENT '1= Fixed Amount, 2 = percentage' AFTER `tax_pre_commission`
+
+ALTER TABLE `master_ero` ADD `add_on_commission_type` INT( 1 ) NULL COMMENT '1= Fixed Amount, 2 = percentage' AFTER `add_on_commission`
+
+
+==============================
+19th Octobaer Done
+
+ALTER TABLE `app_check` ADD `ach_export_date` INT( 20 ) NULL AFTER `exported_date`
+
+CREATE TABLE `generated_ach_file_info` (
+  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(100) NOT NULL,
+  `file_create_date` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  PRIMARY KEY (`file_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+ALTER TABLE `new_app` CHANGE `status` `status` INT(2) NOT NULL COMMENT '0=Pending,1=ready to print, 2=check printed, 3= voided check, 4 = paid, 5 = voided payment'
+
+ALTER TABLE `new_app` ADD `direct_deposit_time` INT NULL

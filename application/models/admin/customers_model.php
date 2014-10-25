@@ -16,9 +16,9 @@ class Customers_model extends CI_Model {
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
     	if($this->author->objlogin->uid != '1'){
-    		$sql = "select * from new_applicent  where uid = '" . $this->author->objlogin->uid . "' ORDER BY first_name ASC";
+    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
     	}else{
-    		$sql = "select * from new_applicent ORDER BY first_name ASC";
+    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid ORDER BY c.first_name ASC";
     	}
     	
     	$res = $this->db->query($sql);
@@ -36,7 +36,7 @@ class Customers_model extends CI_Model {
     	/*if($this->author->objlogin->uid != '1'){
     		$sql = "select * from new_applicent ORDER BY first_name ASC";
     	}else{*/
-    		$sql = "select * from new_applicent where uid = '" . $_GET['empid'] . "' ORDER BY first_name ASC";
+    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $_GET['empid'] . "' ORDER BY c.first_name ASC";
     	//}
     	 
     	$res = $this->db->query($sql);

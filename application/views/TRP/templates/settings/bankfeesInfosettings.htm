@@ -185,9 +185,9 @@ $(function(){
                 number: true
             },*/
             add_on_fee1 :{
-                required: true,
+               // required: true,
                 number: true,
-                range: [1, 40]
+                range: [0, 40]
             }
         },
         messages: {
@@ -200,14 +200,14 @@ $(function(){
             },
             sb_fee1 :{
                 number: 'Please enter only number!',
-                val_range: 'Please enter amount between 1 and 40',
+                val_range: 'Please enter amount between 1 and 40'
             },
             /*e_file_fee1 :{
                 number: 'Please enter only number!'
             },*/
             add_on_fee1 :{
                 number: 'Please enter only number!',
-                range: 'Please enter amount between 1 and 40',
+                range: 'Please enter amount between 0 and 40'
             }
         },
         submitHandler: function(form) {

@@ -293,16 +293,21 @@
 						         <!-- Panel start -->
 						
 							<div class="form-group form-group1" style="padding-bottom:0px;">
-								<div class="col-md-3 "></div>
-								<div class="col-md-6 " style="border:1px solid #eee; border-radius:4px; padding:8px 28px 12px;">
-						                <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Refund Amount </label>
+                                <div class="col-md-1 ">
+                                </div>
+                                <div class="col-md-5 " style="border:1px solid #eee; border-radius:4px; padding:8px 10px 12px;">
+                                    <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Expected Refund Amount </label>
+                                    <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="expected_refund_amt_3">$0.00</label>
+                                </div>
+								<div class="col-md-5 " style="border:1px solid #eee; border-radius:4px; padding:8px 10px 12px;  margin-left: 10px;">
+						                <label for="cell_phone" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Actual Refund Amount </label>
 						                <label for="cell_phone" style="padding:0px; font-weight: 600;" class="control-label col-md-12 text-center" id="total_refund_amt_3">$0.00</label>
 	                                </div>
-								<div class="col-md-3 ">
+								<div class="col-md-1 ">
 								</div>
 							</div>
 							
-							<div class="col-md-12 text-center" style="padding-left:0px;" >
+							<div class="col-md-12 text-center" style="padding-left:140px;" >
 				            <img src="../backend/img/refund_minus_icon_small.png" align="middle"  />
 				            </div>
 				            
@@ -499,7 +504,7 @@
             
 <script type="text/javascript">
 var dataClient = [];
-var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Status","Action"];
+var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Created Date","Payment <br>Method","Action"];
 
 function loadObject() {
     {dataLoad}
@@ -585,7 +590,7 @@ function loadClients() {
              htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
              htm +='<td class="capitalize">'+obj.firstname+' '+obj.lastname+' </td>';
              htm +='<td>'+obj.format_date+'</td>';
-             htm +='<td class="hidden-xs hidden-sm">'+appststus+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">'+obj.payment_method+'</td>';
              
               htm +='<td class="text-center">';
               if(obj.status == '1'){
