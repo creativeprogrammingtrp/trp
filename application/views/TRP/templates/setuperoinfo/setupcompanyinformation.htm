@@ -529,7 +529,7 @@
                        class="control-label col-md-12">Bank Transmission Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
                 <div class="col-md-12 nopadding">
                 
-                    <input type="text" class="form-control ui-wizard-content" value="" name="bank_transmission_fee" id="bank_transmission_fee">
+                    <input type="text" class="form-control ui-wizard-content" value="" name="bank_transmission_fee" id="bank_transmission_fee" disabled="disabled">
                            
                            
                 </div>
@@ -541,7 +541,7 @@
                        class="control-label col-md-12">SB Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
                 <div class="col-md-12 nopadding">
                 
-                    <input type="text" class="form-control ui-wizard-content" name="sb_fee" id="sb_fee" value="">
+                    <input type="text" class="form-control ui-wizard-content" name="sb_fee" id="sb_fee" value="" disabled="disabled">
                            
                 
                 </div>
@@ -1529,10 +1529,10 @@ $(function(){
                             e.closest('.help-block').remove();
                         },
                         rules: {
-                        	efin: {
+                        	/*efin: {
                                 required: true,
                                 minlength: 6
-                            },
+                            },*/
                             company_name: {
                                 required: true
                             },

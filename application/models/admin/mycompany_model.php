@@ -461,8 +461,9 @@ class Mycompany_model extends CI_Model {
             'created' => strtotime(gmdate("Y-m-d H:i:s")),
             'access' => strtotime(gmdate("Y-m-d H:i:s")),
             'login' => strtotime(gmdate("Y-m-d H:i:s")),
-            'efin' => $this->lib->escape($_POST['eifn']),
+            'efin' => $this->lib->escape($_POST['efin']),
             'ptin' => $this->lib->escape($_POST['ptin']),
+            'is_employee' => '1'
         );
         $sql = "select uid  from users where uid = '" . $author . "' ";
         $res = $this->db->query($sql);
@@ -484,6 +485,13 @@ class Mycompany_model extends CI_Model {
                     'rid' => $this->lib->escape($_POST['role'])
                 );
                 $this->db->insert('users_roles', $users_roles);
+
+
+                $data_masterero = array(
+                    'uid' => $last_id
+                );
+
+                $this->db->insert(' master_ero', $data_masterero);
             } 
         }
         return $this->loadList();
@@ -512,6 +520,7 @@ class Mycompany_model extends CI_Model {
             'access' => strtotime(gmdate("Y-m-d H:i:s")),
             'login' => strtotime(gmdate("Y-m-d H:i:s")),
             'ptin' => $this->lib->escape($_POST['ptin']),
+            'is_employee' => '1'
         );
         $sql = "select uid  from users where uid = '" . $ero_id . "' ";
         $res = $this->db->query($sql);
@@ -533,6 +542,12 @@ class Mycompany_model extends CI_Model {
                     'rid' => $this->lib->escape($_POST['role'])
                 );
                 $this->db->insert('users_roles', $users_roles);
+
+                $data_masterero = array(
+                    'uid' => $last_id
+                );
+
+                $this->db->insert(' master_ero', $data_masterero);
             }
         }
         return $this->loadListForAdmin($ero_id);

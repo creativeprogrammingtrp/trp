@@ -279,15 +279,18 @@ AND users.efin =".$this->CI->author->objlogin->efin."");
 				//if(! isset($this->CI->menu)){
 //					$this->CI->menu = new Menu();	
 //				}  
-				$officedata = $this->getOfficeInfo();
+
 				//selectedOffice
                                 $data['company_info'] = $this->company_info;
                                 $data['company_setting'] = $this->company_setting;
                                 $data['compiliance_test'] = $this->compiliance_test_setting;
                                 $data['order_supplies_setting'] = $this->order_supplies_setting;
-                                $data['alloffice'] = $officedata['officeCombo'];
-                                $data['selectedCompanyName'] = $officedata['selectedOffice'];
-                                
+
+                if($this->CI->author->objlogin->isemployee == 0) { // if this is employee
+                    $officedata = $this->getOfficeInfo();
+                    $data['alloffice'] = $officedata['officeCombo'];
+                    $data['selectedCompanyName'] = $officedata['selectedOffice'];
+                }
 
                 ($this->CI->author->objlogin->firstname != '') ? $data['login_name'] = $this->CI->author->objlogin->firstname.' '.$this->CI->author->objlogin->lastname : $data['login_name'] = $this->CI->author->objlogin->name;
 				

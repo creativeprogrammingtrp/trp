@@ -92,12 +92,22 @@ class Clientcenter extends CI_Controller{
     	
     	$data['states'] = $this->m_com->loadStatesList();
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPendingFundsApplication());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('clientCenter/pending_funds_applications.htm', $data);
-	    		exit();
-	    	}
-    	}else{
+
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPendingFundsApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/pending_funds_applications.htm', $data);
+                    exit();
+                }
+            }else{ // if employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPendingFundsApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/pending_funds_applications_employee.htm', $data);
+                    exit();
+                }
+            }
+
+    	}else{ // if admin
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPendingFundsApplicationForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
     			$this->system->parse_templace('clientCenter/pending_funds_applications_admin.htm', $data);
@@ -111,11 +121,19 @@ class Clientcenter extends CI_Controller{
     	$data = array();
     	$data['states'] = $this->m_com->loadStatesList();
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadReadyToPrintApplication());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('clientCenter/ready_to_print_applications.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadReadyToPrintApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/ready_to_print_applications.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadReadyToPrintApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/ready_to_print_applications_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadReadyToPrintApplicationForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -130,11 +148,19 @@ class Clientcenter extends CI_Controller{
     	$data = array();
     	$data['states'] = $this->m_com->loadStatesList();
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPrintedApplication());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('clientCenter/printed_applications.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPrintedApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/printed_applications.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPrintedApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/printed_applications_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPrintedApplicationForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -149,11 +175,19 @@ class Clientcenter extends CI_Controller{
     	$data['states'] = $this->m_com->loadStatesList();
     	
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedApplication());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('clientCenter/voided_applications.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/voided_applications.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/voided_applications_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedApplicationForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -169,10 +203,18 @@ class Clientcenter extends CI_Controller{
         $data['states'] = $this->m_com->loadStatesList();
 
         if($this->author->objlogin->uid != '1'){
-            $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPaidApplication());
-            if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-                $this->system->parse_templace('clientCenter/paid_applications.htm', $data);
-                exit();
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPaidApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/paid_applications.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPaidApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/paid_applications_employee.htm', $data);
+                    exit();
+                }
             }
         }else{
             $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadPaidApplicationForAdmin());
@@ -188,10 +230,18 @@ class Clientcenter extends CI_Controller{
         $data['states'] = $this->m_com->loadStatesList();
 
         if($this->author->objlogin->uid != '1'){
-            $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedPaymentApplication());
-            if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-                $this->system->parse_templace('clientCenter/voided_payment_applications.htm', $data);
-                exit();
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedPaymentApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/voided_payment_applications.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedPaymentApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/voided_payment_applications_employee.htm', $data);
+                    exit();
+                }
             }
         }else{
             $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadVoidedPaymentApplicationForAdmin());
@@ -208,11 +258,19 @@ class Clientcenter extends CI_Controller{
     	$data = array();
     	$data['states'] = $this->m_com->loadStatesList();
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadAllApplication());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('clientCenter/all_applications.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadAllApplication());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/all_applications.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadAllApplicationForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('clientCenter/all_applications_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadAllApplicationForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {

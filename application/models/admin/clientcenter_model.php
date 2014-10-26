@@ -684,9 +684,65 @@ class Clientcenter_model extends CI_Model {
     	 
     	 
     }
-    
-    
-    
+
+
+    function loadPendingFundsApplicationForEmployee(){
+        $data = array();
+        $todate = date('Y-m-d');
+        $todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
+
+        // $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(na.create_date)) <= '".$todate_date."'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+
+
+    }
     
     function loadPendingFundsApplicationForAdmin(){
     	$data = array();
@@ -780,11 +836,11 @@ class Clientcenter_model extends CI_Model {
     	$data = array();
     	
     	//$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."'  AND app_from = 'newApplication'  AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
-    	if($this->author->objlogin->uid != '1'){
+    	//if($this->author->objlogin->uid != '1'){
     		$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
-    	}else{
-    		$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
-    	}
+    	//}else{
+    	//	$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+    	//}
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
     	$row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
@@ -833,7 +889,66 @@ class Clientcenter_model extends CI_Model {
     	}
     	return $data;
     }
-    
+
+
+    function loadReadyToPrintApplicationForEmployee(){
+        $data = array();
+
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."'  AND app_from = 'newApplication'  AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        //if($this->author->objlogin->uid != '1'){
+            $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+       // }else{
+          //  $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+       // }
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+    }
+
     
     function loadReadyToPrintApplicationForAdmin(){
     	$data = array();
@@ -958,8 +1073,77 @@ class Clientcenter_model extends CI_Model {
     	}
     	return $data;
     }
-    
-    
+
+    function loadPrintedApplicationForEmployee(){
+        $data = array();
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."'  AND app_from = 'newApplication' AND na.status = '2' AND u.uid = na.author_id ORDER BY app_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            $currenttime = $this->lib->getTimeGMT();
+
+            $getcheckDetails = $this->loadCheckDetailsByAppId($row["app_id"]);
+
+            $issuetime = $getcheckDetails[0]["issue_date"];  // integer
+
+            $timeAfterOneHour = $issuetime+60*60; // next one hours integer
+
+            if($currenttime >= $issuetime && $currenttime <= $timeAfterOneHour) {
+                $row["void_status"] = "true";
+
+            }else{
+                $row["void_status"] = "false";
+            }
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+
     function loadPrintedApplicationForAdmin(){
     	$data = array();
     	$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, e.company_name, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, master_ero e, new_applicent a  where a.applicent_id = na.applicent_id AND na.status = '2' AND u.uid = na.author_id AND e.uid = na.uid ORDER BY na.app_id DESC";
@@ -1082,7 +1266,62 @@ class Clientcenter_model extends CI_Model {
     	}
     	return $data;
     }
-    
+
+
+    function loadVoidedApplicationForEmployee(){
+        $data = array();
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '3' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."' AND app_from = 'newApplication'  AND na.status = '3' AND u.uid = na.author_id ORDER BY app_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+
     function loadVoidedApplicationForAdmin(){
     	$data = array();
     	$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, e.company_name, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, master_ero e, new_applicent a  where a.applicent_id = na.applicent_id  AND na.status = '3' AND u.uid = na.author_id  AND e.uid = na.uid  ORDER BY na.app_id DESC";
@@ -1203,6 +1442,71 @@ class Clientcenter_model extends CI_Model {
         return $data;
     }
 
+    function loadPaidApplicationForEmployee(){
+        $data = array();
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '4' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            $currenttime = $this->lib->getTimeGMT();
+
+            $issuetime = $row["direct_deposit_time"];  // integer
+
+            $timeAfterOneHour = $issuetime+60*60; // next one hours integer
+
+            if($currenttime >= $issuetime && $currenttime <= $timeAfterOneHour) {
+                $row["void_status"] = "true";
+
+            }else{
+                $row["void_status"] = "false";
+            }
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+    }
 
     function loadPaidApplicationForAdmin(){
         $data = array();
@@ -1274,6 +1578,59 @@ class Clientcenter_model extends CI_Model {
     function loadVoidedPaymentApplication(){
         $data = array();
         $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.status = '5' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    function loadVoidedPaymentApplicationForEmployee(){
+        $data = array();
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '5' AND u.uid = na.author_id ORDER BY na.app_id DESC";
 
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
@@ -1400,7 +1757,11 @@ class Clientcenter_model extends CI_Model {
     	//$todate = date('Y-m-d');
     	//AND create_date = '".$todate."'
     	if($this->author->objlogin->uid  != '1'){
-    		$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'  AND status = '0'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'  AND status = '0'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "'  AND status = '0'";
+            }
     	}
     	elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app  where status = '0'";
@@ -1417,8 +1778,12 @@ class Clientcenter_model extends CI_Model {
     	$todate = date('Y-m-d');
     	$todate_date = gmdate("Y-m-d", strtotime($todate));
     	
-    	if($this->author->objlogin->uid  != '1'){
-    		$sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '0'";
+    	if($this->author->objlogin->uid  != '1'){ //
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '0'";
+            }else{
+                $sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '0'";
+            }
     		//$sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where uid = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(create_date)) < '".$todate_date."' AND status = '0'";
     	}elseif($this->author->objlogin->uid  == '1'){
     		//$sql = "select count(app_id ) as total from new_app  where DATE(FROM_UNIXTIME(create_date)) < '".$todate_date."' AND status = '0'";
@@ -1434,7 +1799,11 @@ class Clientcenter_model extends CI_Model {
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
     	if($this->author->objlogin->uid  != '1'){
-    		$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '2'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '2'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '2'";
+            }
     	}
     	elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app  where  status = '2'";
@@ -1449,7 +1818,11 @@ class Clientcenter_model extends CI_Model {
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
     	if($this->author->objlogin->uid  != '1'){
-    		$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND create_date < '".$todate."' AND status = '3'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '3'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '3'";
+            }
     	}elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app  where status = '3'";
     	} 
@@ -1463,7 +1836,11 @@ class Clientcenter_model extends CI_Model {
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
     	if($this->author->objlogin->uid  != '1'){
-    		$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "'";
+            }
     	}elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app";
     	}
@@ -1478,7 +1855,11 @@ class Clientcenter_model extends CI_Model {
         $data = array();
         $todate = $this->lib->getTimeGMT();
         if($this->author->objlogin->uid  != '1'){
-            $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '4'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '4'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '4'";
+            }
         }elseif($this->author->objlogin->uid  == '1'){
             $sql = "select count(app_id ) as total from new_app WHERE  status = '4'";
         }
@@ -1493,7 +1874,11 @@ class Clientcenter_model extends CI_Model {
         $data = array();
         $todate = $this->lib->getTimeGMT();
         if($this->author->objlogin->uid  != '1'){
-            $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '5'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '5'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '5'";
+            }
         }elseif($this->author->objlogin->uid  == '1'){
             $sql = "select count(app_id ) as total from new_app  WHERE status = '5'";
         }
@@ -1615,7 +2000,59 @@ class Clientcenter_model extends CI_Model {
     	}
     	return $data;
     }
-    
+
+    function loadAllApplicationForEmployee(){
+        $data = array();
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND app_from = 'newApplication' AND u.uid = na.author_id  ORDER BY app_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // get benefits info
+            $sql_1 = "select * from  benefits  where app_id = '".$row["app_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['benefits'][] =  $row1;
+                }
+            }else{
+                $row['benefits'][] =  array();
+            }
+
+
+            // get prodcuct for Insurance
+            $sql_4 = "select * from  insurance  where app_id = '".$row["app_id"]."'";
+            $res_4 = $this->db->query($sql_4);
+
+            if(sizeof($res_4->result_array()) > 0){
+                foreach ($res_4->result_array() as $row4) {
+                    //$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
+
+                    // get additional information for Insurance
+                    $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where i.insurance_id = a.insurance_id AND a.aplicent_id = na.applicent_id AND a.insurance_id = '".$row4["insurance_id"]."'";
+                    $res_3 = $this->db->query($sql_3);
+
+                    //$row['app'] = $res_2->result_array();
+                    if(sizeof($res_3->result_array()) > 0){
+                        foreach ($res_3->result_array() as $row3) {
+                            $row4['i_additional'][] =  $row3;
+                        }
+                    }else{
+                        $row4['i_additional'] =  array();
+                    }
+
+                    $row['insurance'][] =  $row4;
+                }
+            }else{
+                $row['insurance'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+    }
     
     function loadAllApplicationForAdmin(){
     	$data = array();

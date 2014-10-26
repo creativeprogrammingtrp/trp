@@ -200,15 +200,24 @@ class Settings extends CI_Controller {
     	
          if (isset($_POST['add']) && !empty($_POST['add']) && $_POST['add'] == 'yes') {
          	if ($_POST['author'] == ""){
+
                 $check_ptin_exists = $this ->author ->check_ptin_exists($this ->input ->post('ptin'));
                 if($check_ptin_exists != 'ptinexit') {
-                    $checkUsername = $this->author->check_usernaem_exists($this->input->post('username'));
-                    if ($checkUsername == 'nameexit') {
-                        $data = "Username is already in use.";
+
+                    $check_efin_exists = $this ->author ->check_efin_exists($this ->input ->post('efin'));
+                    if($check_efin_exists != 'exit'){
+                        $checkUsername = $this->author->check_usernaem_exists($this->input->post('username'));
+                        if ($checkUsername == 'nameexit') {
+                            $data = "Username is already in use.";
+                            echo json_encode($data);
+                            exit();
+                        } else {
+                            echo json_encode($this->m_com->addUser());
+                            exit();
+                        }
+                    }else{
+                        $data = "EFIN is already in use.";
                         echo json_encode($data);
-                        exit();
-                    } else {
-                        echo json_encode($this->m_com->addUser());
                         exit();
                     }
                 }else{

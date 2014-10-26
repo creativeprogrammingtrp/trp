@@ -161,14 +161,18 @@ class Author{
 	//function checkLogin($t_user, $t_password){
 		if(trim($t_user) == '' || trim($t_password) == '' ) return false;
 		$t_password = $this->encode_password($t_password);
-		$re = $this->CI->db->query("SELECT users.uid FROM users join users_roles on users.uid = users_roles.uid WHERE status <> -1 and rid = 5 and name ='$t_user' ");
+		$re = $this->CI->db->query("SELECT users.uid, users.ptin FROM users join users_roles on users.uid = users_roles.uid WHERE status <> -1 and rid = 5 and name ='$t_user' ");
 		
 		$uid = 0;
+        $ptin = 0;
+       // $query = array();
+        $flag = 0;
                 $sql = '';
         if ($re->num_rows() > 0)
 		{
 			$row = $re->row_array();
-			$uid =  $row['uid']; 
+			$uid =  $row['uid'];
+            $ptin =  $row['ptin'];
 		}
 		/*else{
 			$re1 = $this->CI->db->query("SELECT users.uid FROM users join users_roles on users.uid = users_roles.uid WHERE status <> -1 and rid = 6 and name ='$t_user' ");
@@ -181,54 +185,72 @@ class Author{
 		//echo "SELECT * from users where (efin = '".$t_efin."')  AND  name = '$t_user' AND pass = '$t_password' ";
 		if ($uid != 0) // comments added by Azfar : if not admin
 		{
-            $sql = "SELECT * from users where (efin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' AND (status = '1' OR status = '2' OR status = '4')"; // user checking wih efin
+            $sql = "SELECT * from users where (efin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' AND (status = '0' OR status = '1' OR status = '2' OR status = '4')"; // user checking wih efin
+            $query = $this->CI->db->query($sql);
+
+            if ($query->num_rows() > 0){
+                $flag = 1;
+            }else{
+                $sql1 = "SELECT * from users where (ptin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' AND (status = '0' OR status = '1' OR status = '2' OR status = '4')"; // user checking wih efin
+                $query = $this->CI->db->query($sql1);
+                if ($query->num_rows() > 0){
+                    $flag = 1;
+                }
+            }
 			//$sql = "SELECT * from users where  name = '$t_user' AND pass = '$t_password' "; // user checking wihout efin
 		}
 		else{
-            $sql = "SELECT * from users where name = '$t_user' AND pass = '$t_password' AND (status = '1' OR status = '2' OR status = '4')";
+            $sql = "SELECT * from users where name = '$t_user' AND pass = '$t_password' AND (status = '0' OR status = '1' OR status = '2' OR status = '4')";
+            $query = $this->CI->db->query($sql);
+            $flag = 1;
         }
 
-		$query = $this->CI->db->query($sql);
+		//$query = $this->CI->db->query($sql);
 		
-		if ($query->num_rows() > 0){
-			$row = $query->row_array();
-			$this->objlogin->uid 			= $row["uid"];
-			$this->objlogin->ukey			= $row['ukey'];
-			$this->objlogin->name			= $row["name"];
-			$this->objlogin->pass			= $row["pass"];
-			$this->objlogin->mail			= $row["mail"];
-			$this->objlogin->firstname		= $row["firstname"];
-			$this->objlogin->lastname		= $row["lastname"];
-			$this->objlogin->phone			= $row["phone"];
-			$this->objlogin->mobile			= $row["mobile"];
-			$this->objlogin->address		= $row["address"];
-			$this->objlogin->city			= $row['city'];
-			$this->objlogin->state			= $row['state'];
-			$this->objlogin->zipcode		= $row['zipcode'];
-			$this->objlogin->country		= $row['country'];
-			$this->objlogin->efin			= $row['efin'];
-			$this->objlogin->created		= $row['created'];
-			$this->objlogin->access			= $row['access'];
-			$this->objlogin->login			= $row['login'];
-			$this->objlogin->status			= $row["status"];
-			$this->objlogin->picture		= $row["picture"];
-			$this->objlogin->data 			= $row['data'];
-			$this->objlogin->permission 	= array();
-			$this->getThisRole();
-			$this->UpdateLogin();
-			
-			$uid= $row["uid"];
-			// for get parent id for sigin in user.
-			$sql1 = "SELECT * from ero where author = '$uid'";
-			$query1 = $this->CI->db->query($sql1);
-			if ($query1->num_rows() > 0){
-				$row1 = $query1->row_array();
-				$this->objlogin->parentUid 	= $row1['uid'];
-			}else{
-				$this->objlogin->parentUid 	= 0;
-			}
-			return true;
-		}
+		if ($flag == 1){
+        //if ($query->num_rows() > 0){
+                $row = $query->row_array();
+                $this->objlogin->uid 			= $row["uid"];
+                $this->objlogin->ukey			= $row['ukey'];
+                $this->objlogin->name			= $row["name"];
+                $this->objlogin->pass			= $row["pass"];
+                $this->objlogin->mail			= $row["mail"];
+                $this->objlogin->firstname		= $row["firstname"];
+                $this->objlogin->lastname		= $row["lastname"];
+                $this->objlogin->phone			= $row["phone"];
+                $this->objlogin->mobile			= $row["mobile"];
+                $this->objlogin->address		= $row["address"];
+                $this->objlogin->city			= $row['city'];
+                $this->objlogin->state			= $row['state'];
+                $this->objlogin->zipcode		= $row['zipcode'];
+                $this->objlogin->country		= $row['country'];
+                $this->objlogin->efin			= $row['efin'];
+                $this->objlogin->created		= $row['created'];
+                $this->objlogin->access			= $row['access'];
+                $this->objlogin->login			= $row['login'];
+                $this->objlogin->status			= $row["status"];
+                $this->objlogin->picture		= $row["picture"];
+                $this->objlogin->data 			= $row['data'];
+                $this->objlogin->ptin 			= $row['ptin'];
+                $this->objlogin->isemployee 	= $row['is_employee'];
+
+                $this->objlogin->permission 	= array();
+                $this->getThisRole();
+                $this->UpdateLogin();
+
+                $uid= $row["uid"];
+                // for get parent id for sigin in user.
+                $sql1 = "SELECT * from ero where author = '$uid'";
+                $query1 = $this->CI->db->query($sql1);
+                if ($query1->num_rows() > 0){
+                    $row1 = $query1->row_array();
+                    $this->objlogin->parentUid 	= $row1['uid'];
+                }else{
+                    $this->objlogin->parentUid 	= 0;
+                }
+                return true;
+            }
+       // }
 		
 		
 		

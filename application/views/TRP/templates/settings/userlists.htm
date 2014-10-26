@@ -369,7 +369,7 @@
                 $("#add_email").val('');
                 $("#warninglogin").empty().append();
             }else{
-            	$("#warninglogin").empty().append($('<div class="alert alert-danger" style="padding-top:10px;margin-top:10px;border-radius:0px;border-right:0px;border-left:0px;" >Username is already in use.</div>'));
+            	$("#warninglogin").empty().append($('<div class="alert alert-danger" style="padding-top:10px;margin-top:10px;border-radius:0px;border-right:0px;border-left:0px;" >'+data+'.</div>'));
             }
         }, "json");
             return false;

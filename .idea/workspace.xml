@@ -2,51 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30efd993-18e4-436d-affe-5e1cad6b477b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/libraries/Excel.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications.htm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_admin.htm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_employee.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_employee.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_employee.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_employee.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_employee.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_employee.htm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_employee.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/author.php" afterPath="$PROJECT_DIR$/application/libraries/author.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/settings/bankfeesInfosettings.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/settings/bankfeesInfosettings.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/bankproducts.php" afterPath="$PROJECT_DIR$/application/controllers/admin/bankproducts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/services/benefits_orders.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/services/benefits_orders.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" afterPath="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" afterPath="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" afterPath="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" afterPath="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/customer/customer_list.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/customer/customer_list.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/customers_model.php" afterPath="$PROJECT_DIR$/application/models/admin/customers_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_script/db_script.txt" afterPath="$PROJECT_DIR$/db_script/db_script.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/services/insurance_policies.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/services/insurance_policies.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/mainpage-admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/mainpage-admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/message.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/message.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/mycompany_model.php" afterPath="$PROJECT_DIR$/application/models/admin/mycompany_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php.ini" afterPath="$PROJECT_DIR$/php.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/reporting/reporting.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/reporting/reporting.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/reporting.php" afterPath="$PROJECT_DIR$/application/controllers/admin/reporting.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/reporting_model.php" afterPath="$PROJECT_DIR$/application/models/admin/reporting_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/objlogin.php" afterPath="$PROJECT_DIR$/application/libraries/objlogin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" afterPath="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/settings.php" afterPath="$PROJECT_DIR$/application/controllers/admin/settings.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/system.php" afterPath="$PROJECT_DIR$/application/libraries/system.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_admin.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="trpgit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,83 +84,270 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="requirements" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
+      <file leaf-file-name="clientcenter_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/admin/clientcenter_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userlists.htm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.75" vertical-offset="4905" max-vertical-offset="6540">
-              <caret line="341" column="52" selection-start-line="341" selection-start-column="45" selection-end-line="341" selection-end-column="52" />
+            <state vertical-scroll-proportion="-2.8653846" vertical-offset="33936" max-vertical-offset="42143">
+              <caret line="2005" column="212" selection-start-line="2005" selection-start-column="212" selection-end-line="2005" selection-end-column="212" />
               <folding>
-                <marker date="1414154725000" expanded="true" signature="16446:16530" placeholder="..." />
+                <marker date="1414343050000" expanded="true" signature="298:374" placeholder="select * fro..master_ero..." />
+                <marker date="1414343050000" expanded="true" signature="2184:2318" placeholder="select m.*, ..master_ero..." />
+                <marker date="1414343050000" expanded="true" signature="23887:23949" placeholder="select assig..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="24437:24705" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="25909:26258" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="26470:26530" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="26847:26908" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="27223:27462" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="28558:28858" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="29070:29130" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="29447:29508" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="29823:30062" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="31176:31482" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="31713:31773" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="32149:32210" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="32568:32807" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="34052:34349" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="34560:34620" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="34933:34994" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="35303:35542" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="36233:36344" placeholder="select * fro..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="36516:36631" placeholder="select * fro..new_app_product..." />
+                <marker date="1414343050000" expanded="true" signature="37713:38013" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="38046:38294" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="38514:38574" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="38891:38952" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="39267:39506" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="40504:40810" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="40852:41100" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="41343:41403" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="41779:41840" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="42198:42437" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="43533:43830" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="44041:44101" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="44414:44475" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="44784:45023" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="45599:45899" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="46939:46999" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="47316:47377" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="47692:47931" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="48532:48838" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="49901:49961" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="50337:50398" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="50756:50995" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="51737:52034" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="53080:53140" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="53453:53514" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="53823:54062" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="54642:54942" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="55488:55548" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="55865:55926" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="56241:56480" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="57074:57380" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="57949:58009" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="58385:58446" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="58804:59043" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="59783:60083" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="60629:60689" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="61002:61063" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="61372:61611" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="62182:62482" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="63122:63182" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="63558:63619" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="63977:64216" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="64962:65268" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="65908:65968" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="66344:66405" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="66763:67002" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="67745:68042" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="68682:68742" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="69118:69179" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="69537:69776" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="70521:70821" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="71053:71113" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="71489:71550" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="71908:72147" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="72902:73208" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="73440:73500" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="73876:73937" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="74295:74534" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="75286:75583" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="75815:75875" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="76251:76312" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="76670:76909" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="77702:77815" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="77890:77953" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="78417:78530" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="78576:78695" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="78784:78847" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="79299:79445" placeholder="select count..." />
+                <marker date="1414343050000" expanded="true" signature="79491:79643" placeholder="select count..." />
+                <marker date="1414343050000" expanded="true" signature="80089:80152" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="80543:80655" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="80701:80819" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="80908:80972" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="81361:81473" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="81519:81637" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="81720:81783" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="82165:82260" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="82306:82407" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="82490:82533" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="82924:83036" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="83082:83200" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="83292:83355" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="83763:83875" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="83921:84039" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="84131:84194" placeholder="select count..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="84593:84893" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="84922:85170" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="85389:85449" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="85766:85827" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="86054:86293" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="86870:87150" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="87641:87701" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="88018:88079" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="88394:88633" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="89223:89509" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="90023:90083" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="90459:90520" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="90878:91117" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="91857:92134" placeholder="select na.*,..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="92625:92685" placeholder="select * fro..benefits..." />
+                <marker date="1414343050000" expanded="true" signature="92998:93059" placeholder="select * fro..insurance..." />
+                <marker date="1414343050000" expanded="true" signature="93368:93607" placeholder="select a.*, ..insurance_application_additional_info..." />
+                <marker date="1414343050000" expanded="true" signature="94288:94519" placeholder="select n.*, ..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="94548:94728" placeholder="select n.*, ..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="95149:95389" placeholder="select n.*, ..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="95427:95616" placeholder="select n.*, ..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="96042:96250" placeholder="select n.*, ..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="96288:96446" placeholder="select n.*, ..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="98878:98959" placeholder="select * fro..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="99242:99297" placeholder="select * fro..new_app..." />
+                <marker date="1414343050000" expanded="true" signature="99587:99684" placeholder="select * fro..assign_check..." />
+                <marker date="1414343050000" expanded="true" signature="99978:100050" placeholder="select * fro..assign_check..." />
+                <marker date="1414343050000" expanded="true" signature="100335:100409" placeholder="select * fro..transjournal_queu_account..." />
+                <marker date="1414343050000" expanded="true" signature="100721:100797" placeholder="select * fro..transjournal_queu_account..." />
+                <marker date="1414343050000" expanded="true" signature="101089:101190" placeholder="select * fro..app_check..." />
+                <marker date="1414343050000" expanded="true" signature="101481:101557" placeholder="select * fro..app_check..." />
+                <marker date="1414343050000" expanded="true" signature="101846:102014" placeholder="select *, FR..app_check..." />
+                <marker date="1414343050000" expanded="true" signature="102564:102742" placeholder="select pc.*,..app_check..." />
+                <marker date="1414343050000" expanded="true" signature="103566:103961" placeholder="select pc.*,..app_check..." />
+                <marker date="1414343050000" expanded="true" signature="104585:104659" placeholder="UPDATE app_c..." />
+                <marker date="1414343050000" expanded="true" signature="104838:104914" placeholder="UPDATE app_c..." />
+                <marker date="1414343050000" expanded="true" signature="105674:105784" placeholder="select *, FR..generated_file_info..." />
+                <marker date="1414343050000" expanded="true" signature="106229:106343" placeholder="select *, FR..generated_ach_file_info..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/admin/settings.php">
+      <file leaf-file-name="all_applications_employee.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_employee.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="4005">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="author.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/libraries/author.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02377179" vertical-offset="825" max-vertical-offset="5325">
-              <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+            <state vertical-scroll-proportion="-488.125" vertical-offset="0" max-vertical-offset="12195">
+              <caret line="781" column="62" selection-start-line="781" selection-start-column="62" selection-end-line="781" selection-end-column="62" />
               <folding>
-                <marker date="1414157010000" expanded="true" signature="1831:1961" placeholder="select roles..roles..." />
-                <marker date="1414157010000" expanded="true" signature="2463:2496" placeholder="select * fro..roles..." />
-                <marker date="1414157010000" expanded="true" signature="3059:3157" placeholder="select roles..roles..." />
-                <marker date="1414157010000" expanded="true" signature="3362:3435" placeholder="select permi..roles_permission..." />
-                <marker date="1414157010000" expanded="true" signature="3769:3812" placeholder="SELECT * FRO..efins..." />
-                <marker date="1414157010000" expanded="true" signature="3879:3912" placeholder="SELECT * fro..users..." />
-                <marker date="1414157010000" expanded="true" signature="5444:5570" placeholder="SELECT users..users..." />
-                <marker date="1414157010000" expanded="true" signature="6197:6342" placeholder="SELECT * fro..users..." />
-                <marker date="1414157010000" expanded="true" signature="6517:6635" placeholder="SELECT * fro..users..." />
-                <marker date="1414157010000" expanded="true" signature="7889:7928" placeholder="SELECT * fro..ero..." />
-                <marker date="1414157010000" expanded="true" signature="9117:9179" placeholder="select efin ..users..." />
-                <marker date="1414157010000" expanded="true" signature="9489:9552" placeholder="select efin ..users..." />
-                <marker date="1414157010000" expanded="true" signature="9766:9815" placeholder="SELECT * FRO..efins..." />
-                <marker date="1414157010000" expanded="true" signature="10061:10109" placeholder="select mail ..users..." />
-                <marker date="1414157010000" expanded="true" signature="10310:10357" placeholder="select mail ..users..." />
-                <marker date="1414157010000" expanded="true" signature="10589:10640" placeholder="select name ..users..." />
-                <marker date="1414157010000" expanded="true" signature="10847:10883" placeholder="select * fro..roles..." />
-                <marker date="1414157010000" expanded="true" signature="11049:11079" placeholder="SELECT * FRO..users..." />
+                <marker date="1414343433000" expanded="true" signature="34494:34512" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editEro.htm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/editEro.htm">
+      <file leaf-file-name="voided_payment_applications.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-34.416668" vertical-offset="2174" max-vertical-offset="10395">
-              <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
+            <state vertical-scroll-proportion="12.75" vertical-offset="11031" max-vertical-offset="11640">
+              <caret line="715" column="53" selection-start-line="715" selection-start-column="53" selection-end-line="715" selection-end-column="53" />
+              <folding>
+                <marker date="1413980864000" expanded="true" signature="32457:32475" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="voided_payment_applications_employee.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_employee.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.9620254" vertical-offset="10442" max-vertical-offset="11700">
+              <caret line="717" column="24" selection-start-line="717" selection-start-column="24" selection-end-line="717" selection-end-column="24" />
+              <folding>
+                <marker date="1414342534000" expanded="true" signature="32602:32620" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paid_applications_employee.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_employee.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.541667" vertical-offset="11048" max-vertical-offset="12255">
+              <caret line="755" column="24" selection-start-line="755" selection-start-column="24" selection-end-line="755" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="message.htm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/message.htm">
+      <file leaf-file-name="voided_applications_employee.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_employee.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.083333" vertical-offset="4420" max-vertical-offset="6720">
-              <caret line="314" column="9" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
+            <state vertical-scroll-proportion="-12.5" vertical-offset="10455" max-vertical-offset="11700">
+              <caret line="717" column="24" selection-start-line="717" selection-start-column="24" selection-end-line="717" selection-end-column="24" />
+              <folding>
+                <marker date="1414348206000" expanded="true" signature="32570:32588" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_script.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db_script/db_script.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.74093264" vertical-offset="1731" max-vertical-offset="2310">
+              <caret line="144" column="2616" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="2616" />
               <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="printed_applications_employee.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_employee.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="8.75" vertical-offset="11520" max-vertical-offset="12240">
+              <caret line="754" column="24" selection-start-line="754" selection-start-column="24" selection-end-line="754" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pending_funds_applications_employee.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_employee.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.0" vertical-offset="8505" max-vertical-offset="10845">
+              <caret line="583" column="13" selection-start-line="583" selection-start-column="13" selection-end-line="583" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clientcenter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/admin/clientcenter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-63.75" vertical-offset="2475" max-vertical-offset="10650">
+              <caret line="267" column="118" selection-start-line="267" selection-start-column="89" selection-end-line="267" selection-end-column="118" />
+              <folding>
+                <marker date="1414342981000" expanded="true" signature="2308:2508" placeholder="..." />
+                <marker date="1414342981000" expanded="true" signature="2589:2828" placeholder="..." />
+                <marker date="1414342981000" expanded="true" signature="18619:18691" placeholder="update new_a..." />
+                <marker date="1414342981000" expanded="true" signature="23445:23571" placeholder="update new_a..." />
+                <marker date="1414342981000" expanded="true" signature="24603:24727" placeholder="update app_c..." />
+                <marker date="1414342981000" expanded="true" signature="24796:24854" placeholder="update new_a..." />
+                <marker date="1414342981000" expanded="true" signature="26454:26561" placeholder="Select * fro..app_check..." />
+                <marker date="1414342981000" expanded="true" signature="27643:27875" placeholder="update app_c..." />
+                <marker date="1414342981000" expanded="true" signature="28766:29063" placeholder="select na.*,..new_app..." />
+                <marker date="1414342981000" expanded="true" signature="29571:29669" placeholder="update new_a..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,12 +366,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/php.ini" />
-        <option value="$PROJECT_DIR$/application/libraries/Excel.php" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/settings/bankfeesInfosettings.htm" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" />
-        <option value="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_admin.htm" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm" />
@@ -242,16 +397,26 @@
         <option value="$PROJECT_DIR$/application/views/TRP/templates/dashboard.htm" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/accounts/alleros_admin.htm" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/accounts/ero_admin.htm" />
-        <option value="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
-        <option value="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm" />
-        <option value="$PROJECT_DIR$/application/models/admin/mycompany_model.php" />
-        <option value="$PROJECT_DIR$/db_script/db_script.txt" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/message.htm" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" />
-        <option value="$PROJECT_DIR$/application/libraries/author.php" />
         <option value="$PROJECT_DIR$/application/controllers/admin/settings.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm" />
+        <option value="$PROJECT_DIR$/db_script/db_script.txt" />
+        <option value="$PROJECT_DIR$/application/libraries/objlogin.php" />
+        <option value="$PROJECT_DIR$/application/libraries/author.php" />
+        <option value="$PROJECT_DIR$/application/libraries/system.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
+        <option value="$PROJECT_DIR$/application/models/admin/mycompany_model.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_employee.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_employee.htm" />
+        <option value="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
+        <option value="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_employee.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_employee.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_employee.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_employee.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_employee.htm" />
       </list>
     </option>
   </component>
@@ -321,6 +486,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="db_script" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -417,7 +596,105 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="settings" />
+              <option name="myItemId" value="clientCenter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trpgit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -529,22 +806,22 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27485853" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2166532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2166532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983023" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -552,8 +829,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27485853" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983023" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -562,10 +839,10 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21341956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2166532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -591,125 +868,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/new_application.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.88" vertical-offset="46756" max-vertical-offset="52965">
-          <caret line="3130" column="71" selection-start-line="3130" selection-start-column="49" selection-end-line="3130" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="14.666667" vertical-offset="352" max-vertical-offset="1320">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="1815">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.75" vertical-offset="615" max-vertical-offset="7125">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/libraries/system.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.68" vertical-offset="5836" max-vertical-offset="8430">
-          <caret line="408" column="59" selection-start-line="408" selection-start-column="59" selection-end-line="408" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/signin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="632">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/mainpage.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.84" vertical-offset="10338" max-vertical-offset="12435">
-          <caret line="702" column="13" selection-start-line="702" selection-start-column="13" selection-end-line="702" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8145">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/login.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.083333" vertical-offset="2842" max-vertical-offset="7575">
-          <caret line="204" column="72" selection-start-line="204" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/frontend/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86259544" vertical-offset="3560" max-vertical-offset="4275">
-          <caret line="275" column="14" selection-start-line="275" selection-start-column="14" selection-end-line="275" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/frontend/js/custom_mainpage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2877584" vertical-offset="1995" max-vertical-offset="3555">
-          <caret line="187" column="47" selection-start-line="187" selection-start-column="47" selection-end-line="187" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/admin/reporting_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665" vertical-offset="404" max-vertical-offset="36600">
-          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/admin/bureau_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="465">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/recent_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.058637083" vertical-offset="6292" max-vertical-offset="15240">
-          <caret line="417" column="44" selection-start-line="417" selection-start-column="44" selection-end-line="417" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin/adjustment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.125" vertical-offset="4680" max-vertical-offset="15135">
-          <caret line="341" column="0" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.04" vertical-offset="11178" max-vertical-offset="12390">
-          <caret line="782" column="25" selection-start-line="782" selection-start-column="25" selection-end-line="782" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.04" vertical-offset="1788" max-vertical-offset="2430">
-          <caret line="146" column="19" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin/bankproducts.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="570">
@@ -717,31 +875,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.625" vertical-offset="9135" max-vertical-offset="12165">
-          <caret line="626" column="46" selection-start-line="626" selection-start-column="46" selection-end-line="626" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_admin.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.898734" vertical-offset="10436" max-vertical-offset="11640">
           <caret line="711" column="47" selection-start-line="711" selection-start-column="47" selection-end-line="711" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.791667" vertical-offset="8597" max-vertical-offset="11640">
-          <caret line="592" column="72" selection-start-line="592" selection-start-column="72" selection-end-line="592" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="12.791667" vertical-offset="11032" max-vertical-offset="11640">
-          <caret line="715" column="53" selection-start-line="715" selection-start-column="53" selection-end-line="715" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -777,13 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.208333" vertical-offset="9307" max-vertical-offset="12330">
           <caret line="640" column="20" selection-start-line="640" selection-start-column="20" selection-end-line="640" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.7" vertical-offset="9075" max-vertical-offset="12165">
-          <caret line="634" column="10" selection-start-line="634" selection-start-column="10" selection-end-line="634" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -850,38 +980,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin/clientcenter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6594" max-vertical-offset="9780">
-          <caret line="457" column="39" selection-start-line="457" selection-start-column="39" selection-end-line="457" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7477" max-vertical-offset="11760">
-          <caret line="512" column="4" selection-start-line="512" selection-start-column="4" selection-end-line="512" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2399" max-vertical-offset="3030">
           <caret line="177" column="36" selection-start-line="177" selection-start-column="36" selection-end-line="177" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/admin/clientcenter_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="29905" max-vertical-offset="30630">
-          <caret line="2011" column="14" selection-start-line="2011" selection-start-column="14" selection-end-line="2011" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="75" max-vertical-offset="1230">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -892,90 +994,654 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/admin/mycompany_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6459" max-vertical-offset="10980">
-          <caret line="462" column="56" selection-start-line="462" selection-start-column="56" selection-end-line="462" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_script/db_script.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.088" vertical-offset="1550" max-vertical-offset="2175">
-          <caret line="107" column="69" selection-start-line="107" selection-start-column="69" selection-end-line="107" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/editEro.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-34.416668" vertical-offset="2174" max-vertical-offset="10395">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2174" max-vertical-offset="10395">
           <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/message.htm">
+    <entry file="file://$PROJECT_DIR$/application/controllers/signup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.083333" vertical-offset="4420" max-vertical-offset="6720">
-          <caret line="314" column="9" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="2205">
+          <caret line="83" column="43" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2994" max-vertical-offset="4140">
+          <caret line="216" column="25" selection-start-line="216" selection-start-column="25" selection-end-line="216" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/settings/userlists.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75" vertical-offset="4905" max-vertical-offset="6540">
-          <caret line="341" column="52" selection-start-line="341" selection-start-column="45" selection-end-line="341" selection-end-column="52" />
+        <state vertical-scroll-proportion="-55.0" vertical-offset="2130" max-vertical-offset="6540">
+          <caret line="230" column="31" selection-start-line="230" selection-start-column="31" selection-end-line="230" selection-end-column="31" />
           <folding>
-            <marker date="1414154725000" expanded="true" signature="16446:16530" placeholder="..." />
+            <marker date="1414256570000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin/settings.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="4005">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.041666668" vertical-offset="374" max-vertical-offset="1230">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/objlogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="555">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/compliancetest.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2940">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/system.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.28" vertical-offset="3166" max-vertical-offset="8475">
+          <caret line="222" column="29" selection-start-line="222" selection-start-column="29" selection-end-line="222" selection-end-column="29" />
+          <folding>
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT maste..master_ero..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..master_ero..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..exam_results..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orders..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..exam_results..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT pictu..users..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SElECT * FRO..*..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT cat_i..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SElECT * FRO..*..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT cat_i..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SElECT * FRO..*..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT cat_i..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT `id` ..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="SELECT `id` ..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="select sysva..sysvals..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="select sysva..sysvals..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="select sysva..sysvals..." />
+            <marker date="1414308208000" expanded="true" signature="-1:-1" placeholder="select * fro..site_info..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/ero_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125" vertical-offset="2730" max-vertical-offset="9630">
+          <caret line="187" column="18" selection-start-line="187" selection-start-column="18" selection-end-line="187" selection-end-column="18" />
+          <folding>
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select *,use..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select efin ..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select efin ..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update maste..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update efin_..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update maste..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update efin_..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update maste..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update efin_..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update maste..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update efin_..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select ero.*..users..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select * fro..service..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select uid f..service..." />
+            <marker date="1410356948000" expanded="true" signature="-1:-1" placeholder="select uid f..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/reporting_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.458333" vertical-offset="36007" max-vertical-offset="36600">
+          <caret line="2422" column="52" selection-start-line="2422" selection-start-column="52" selection-end-line="2422" selection-end-column="52" />
+          <folding>
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.*, ..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.*, ..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select * fro..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select * fro..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.*, ..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.*, ..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select * fro..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select * fro..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.app..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.*, ..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.*, ..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select * fro..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select * fro..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT FROM_..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT FROM_..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT FROM_..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT FROM_..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT FROM_..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT FROM_..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select b.*, ..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT DATE(..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.cre..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.cre..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.cre..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT a.cre..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT m.uid..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT m.uid..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT m.uid..new_app..." />
+            <marker date="1411979538000" expanded="true" signature="-1:-1" placeholder="SELECT m.uid..new_app..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/message.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.58" vertical-offset="2191" max-vertical-offset="6720">
+          <caret line="148" column="2" selection-start-line="148" selection-start-column="2" selection-end-line="148" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/setuperoinfo/setupcompanyinformation.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-44.08" vertical-offset="20806" max-vertical-offset="25590">
+          <caret line="1534" column="32" selection-start-line="1534" selection-start-column="32" selection-end-line="1534" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="1215">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/libraries/author.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02377179" vertical-offset="825" max-vertical-offset="5325">
-          <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+        <state vertical-scroll-proportion="-10.0" vertical-offset="3270" max-vertical-offset="5655">
+          <caret line="234" column="16" selection-start-line="234" selection-start-column="16" selection-end-line="234" selection-end-column="43" />
           <folding>
-            <marker date="1414157010000" expanded="true" signature="1831:1961" placeholder="select roles..roles..." />
-            <marker date="1414157010000" expanded="true" signature="2463:2496" placeholder="select * fro..roles..." />
-            <marker date="1414157010000" expanded="true" signature="3059:3157" placeholder="select roles..roles..." />
-            <marker date="1414157010000" expanded="true" signature="3362:3435" placeholder="select permi..roles_permission..." />
-            <marker date="1414157010000" expanded="true" signature="3769:3812" placeholder="SELECT * FRO..efins..." />
-            <marker date="1414157010000" expanded="true" signature="3879:3912" placeholder="SELECT * fro..users..." />
-            <marker date="1414157010000" expanded="true" signature="5444:5570" placeholder="SELECT users..users..." />
-            <marker date="1414157010000" expanded="true" signature="6197:6342" placeholder="SELECT * fro..users..." />
-            <marker date="1414157010000" expanded="true" signature="6517:6635" placeholder="SELECT * fro..users..." />
-            <marker date="1414157010000" expanded="true" signature="7889:7928" placeholder="SELECT * fro..ero..." />
-            <marker date="1414157010000" expanded="true" signature="9117:9179" placeholder="select efin ..users..." />
-            <marker date="1414157010000" expanded="true" signature="9489:9552" placeholder="select efin ..users..." />
-            <marker date="1414157010000" expanded="true" signature="9766:9815" placeholder="SELECT * FRO..efins..." />
-            <marker date="1414157010000" expanded="true" signature="10061:10109" placeholder="select mail ..users..." />
-            <marker date="1414157010000" expanded="true" signature="10310:10357" placeholder="select mail ..users..." />
-            <marker date="1414157010000" expanded="true" signature="10589:10640" placeholder="select name ..users..." />
-            <marker date="1414157010000" expanded="true" signature="10847:10883" placeholder="select * fro..roles..." />
-            <marker date="1414157010000" expanded="true" signature="11049:11079" placeholder="SELECT * FRO..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select roles..roles..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select * fro..roles..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select roles..roles..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select permi..roles_permission..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..efins..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..ero..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select efin ..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select efin ..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..efins..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select mail ..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select mail ..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select name ..users..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="select * fro..roles..." />
+            <marker date="1414307657000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..users..." />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/mycompany_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.875" vertical-offset="7680" max-vertical-offset="11205">
+          <caret line="539" column="37" selection-start-line="539" selection-start-column="37" selection-end-line="539" selection-end-column="37" />
+          <folding>
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select ero.*..users..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select ero.*..users..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select ero.*..users..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select * fro..master_ero..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select users..users..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select uid f..users..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select uid f..users..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select uid f..service..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select * fro..service..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select * fro..tblsates..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select appli..new_applicent..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select appli..new_applicent..." />
+            <marker date="1414320874000" expanded="true" signature="-1:-1" placeholder="select * fro..tblcontries..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10770">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.125" vertical-offset="1050" max-vertical-offset="1965">
+          <caret line="83" column="86" selection-start-line="83" selection-start-column="58" selection-end-line="83" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25" vertical-offset="10620" max-vertical-offset="11760">
+          <caret line="718" column="24" selection-start-line="718" selection-start-column="24" selection-end-line="718" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-75.0" vertical-offset="9780" max-vertical-offset="11760">
+          <caret line="772" column="9" selection-start-line="772" selection-start-column="9" selection-end-line="772" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625" vertical-offset="9135" max-vertical-offset="12165">
+          <caret line="626" column="46" selection-start-line="626" selection-start-column="46" selection-end-line="626" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.791667" vertical-offset="8597" max-vertical-offset="11640">
+          <caret line="592" column="72" selection-start-line="592" selection-start-column="72" selection-end-line="592" selection-end-column="72" />
+          <folding>
+            <marker date="1413798905000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125" vertical-offset="9075" max-vertical-offset="12165">
+          <caret line="634" column="10" selection-start-line="634" selection-start-column="10" selection-end-line="634" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/pending_funds_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0" vertical-offset="8505" max-vertical-offset="10845">
+          <caret line="583" column="13" selection-start-line="583" selection-start-column="13" selection-end-line="583" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.75" vertical-offset="11031" max-vertical-offset="11640">
+          <caret line="715" column="53" selection-start-line="715" selection-start-column="53" selection-end-line="715" selection-end-column="53" />
+          <folding>
+            <marker date="1413980864000" expanded="true" signature="32457:32475" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/admin/clientcenter_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8653846" vertical-offset="33936" max-vertical-offset="42143">
+          <caret line="2005" column="212" selection-start-line="2005" selection-start-column="212" selection-end-line="2005" selection-end-column="212" />
+          <folding>
+            <marker date="1414343050000" expanded="true" signature="298:374" placeholder="select * fro..master_ero..." />
+            <marker date="1414343050000" expanded="true" signature="2184:2318" placeholder="select m.*, ..master_ero..." />
+            <marker date="1414343050000" expanded="true" signature="23887:23949" placeholder="select assig..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="24437:24705" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="25909:26258" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="26470:26530" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="26847:26908" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="27223:27462" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="28558:28858" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="29070:29130" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="29447:29508" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="29823:30062" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="31176:31482" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="31713:31773" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="32149:32210" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="32568:32807" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="34052:34349" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="34560:34620" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="34933:34994" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="35303:35542" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="36233:36344" placeholder="select * fro..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="36516:36631" placeholder="select * fro..new_app_product..." />
+            <marker date="1414343050000" expanded="true" signature="37713:38013" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="38046:38294" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="38514:38574" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="38891:38952" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="39267:39506" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="40504:40810" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="40852:41100" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="41343:41403" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="41779:41840" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="42198:42437" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="43533:43830" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="44041:44101" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="44414:44475" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="44784:45023" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="45599:45899" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="46939:46999" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="47316:47377" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="47692:47931" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="48532:48838" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="49901:49961" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="50337:50398" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="50756:50995" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="51737:52034" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="53080:53140" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="53453:53514" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="53823:54062" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="54642:54942" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="55488:55548" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="55865:55926" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="56241:56480" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="57074:57380" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="57949:58009" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="58385:58446" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="58804:59043" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="59783:60083" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="60629:60689" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="61002:61063" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="61372:61611" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="62182:62482" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="63122:63182" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="63558:63619" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="63977:64216" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="64962:65268" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="65908:65968" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="66344:66405" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="66763:67002" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="67745:68042" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="68682:68742" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="69118:69179" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="69537:69776" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="70521:70821" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="71053:71113" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="71489:71550" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="71908:72147" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="72902:73208" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="73440:73500" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="73876:73937" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="74295:74534" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="75286:75583" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="75815:75875" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="76251:76312" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="76670:76909" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="77702:77815" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="77890:77953" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="78417:78530" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="78576:78695" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="78784:78847" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="79299:79445" placeholder="select count..." />
+            <marker date="1414343050000" expanded="true" signature="79491:79643" placeholder="select count..." />
+            <marker date="1414343050000" expanded="true" signature="80089:80152" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="80543:80655" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="80701:80819" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="80908:80972" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="81361:81473" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="81519:81637" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="81720:81783" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="82165:82260" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="82306:82407" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="82490:82533" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="82924:83036" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="83082:83200" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="83292:83355" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="83763:83875" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="83921:84039" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="84131:84194" placeholder="select count..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="84593:84893" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="84922:85170" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="85389:85449" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="85766:85827" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="86054:86293" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="86870:87150" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="87641:87701" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="88018:88079" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="88394:88633" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="89223:89509" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="90023:90083" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="90459:90520" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="90878:91117" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="91857:92134" placeholder="select na.*,..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="92625:92685" placeholder="select * fro..benefits..." />
+            <marker date="1414343050000" expanded="true" signature="92998:93059" placeholder="select * fro..insurance..." />
+            <marker date="1414343050000" expanded="true" signature="93368:93607" placeholder="select a.*, ..insurance_application_additional_info..." />
+            <marker date="1414343050000" expanded="true" signature="94288:94519" placeholder="select n.*, ..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="94548:94728" placeholder="select n.*, ..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="95149:95389" placeholder="select n.*, ..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="95427:95616" placeholder="select n.*, ..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="96042:96250" placeholder="select n.*, ..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="96288:96446" placeholder="select n.*, ..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="98878:98959" placeholder="select * fro..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="99242:99297" placeholder="select * fro..new_app..." />
+            <marker date="1414343050000" expanded="true" signature="99587:99684" placeholder="select * fro..assign_check..." />
+            <marker date="1414343050000" expanded="true" signature="99978:100050" placeholder="select * fro..assign_check..." />
+            <marker date="1414343050000" expanded="true" signature="100335:100409" placeholder="select * fro..transjournal_queu_account..." />
+            <marker date="1414343050000" expanded="true" signature="100721:100797" placeholder="select * fro..transjournal_queu_account..." />
+            <marker date="1414343050000" expanded="true" signature="101089:101190" placeholder="select * fro..app_check..." />
+            <marker date="1414343050000" expanded="true" signature="101481:101557" placeholder="select * fro..app_check..." />
+            <marker date="1414343050000" expanded="true" signature="101846:102014" placeholder="select *, FR..app_check..." />
+            <marker date="1414343050000" expanded="true" signature="102564:102742" placeholder="select pc.*,..app_check..." />
+            <marker date="1414343050000" expanded="true" signature="103566:103961" placeholder="select pc.*,..app_check..." />
+            <marker date="1414343050000" expanded="true" signature="104585:104659" placeholder="UPDATE app_c..." />
+            <marker date="1414343050000" expanded="true" signature="104838:104914" placeholder="UPDATE app_c..." />
+            <marker date="1414343050000" expanded="true" signature="105674:105784" placeholder="select *, FR..generated_file_info..." />
+            <marker date="1414343050000" expanded="true" signature="106229:106343" placeholder="select *, FR..generated_ach_file_info..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12135">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1413798977000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/all_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-488.125" vertical-offset="0" max-vertical-offset="12195">
+          <caret line="781" column="62" selection-start-line="781" selection-start-column="62" selection-end-line="781" selection-end-column="62" />
+          <folding>
+            <marker date="1414343433000" expanded="true" signature="34494:34512" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/paid_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.541667" vertical-offset="11048" max-vertical-offset="12255">
+          <caret line="755" column="24" selection-start-line="755" selection-start-column="24" selection-end-line="755" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/printed_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.75" vertical-offset="11520" max-vertical-offset="12240">
+          <caret line="754" column="24" selection-start-line="754" selection-start-column="24" selection-end-line="754" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9620254" vertical-offset="10442" max-vertical-offset="11700">
+          <caret line="717" column="24" selection-start-line="717" selection-start-column="24" selection-end-line="717" selection-end-column="24" />
+          <folding>
+            <marker date="1414342534000" expanded="true" signature="32602:32620" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/clientcenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-63.75" vertical-offset="2475" max-vertical-offset="10650">
+          <caret line="267" column="118" selection-start-line="267" selection-start-column="89" selection-end-line="267" selection-end-column="118" />
+          <folding>
+            <marker date="1414342981000" expanded="true" signature="2308:2508" placeholder="..." />
+            <marker date="1414342981000" expanded="true" signature="2589:2828" placeholder="..." />
+            <marker date="1414342981000" expanded="true" signature="18619:18691" placeholder="update new_a..." />
+            <marker date="1414342981000" expanded="true" signature="23445:23571" placeholder="update new_a..." />
+            <marker date="1414342981000" expanded="true" signature="24603:24727" placeholder="update app_c..." />
+            <marker date="1414342981000" expanded="true" signature="24796:24854" placeholder="update new_a..." />
+            <marker date="1414342981000" expanded="true" signature="26454:26561" placeholder="Select * fro..app_check..." />
+            <marker date="1414342981000" expanded="true" signature="27643:27875" placeholder="update app_c..." />
+            <marker date="1414342981000" expanded="true" signature="28766:29063" placeholder="select na.*,..new_app..." />
+            <marker date="1414342981000" expanded="true" signature="29571:29669" placeholder="update new_a..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_employee.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.5" vertical-offset="10455" max-vertical-offset="11700">
+          <caret line="717" column="24" selection-start-line="717" selection-start-column="24" selection-end-line="717" selection-end-column="24" />
+          <folding>
+            <marker date="1414348206000" expanded="true" signature="32570:32588" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_script/db_script.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74093264" vertical-offset="1731" max-vertical-offset="2310">
+          <caret line="144" column="2616" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="2616" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
   </component>

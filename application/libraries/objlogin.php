@@ -26,5 +26,7 @@ if(!class_exists('objlogin')){
 		var $data = '';
 		var $parentUid = '';
 		var $efin = '';
+        var $ptin = '';
+        var $isemployee = 0;
 	}
 }
