@@ -18,7 +18,11 @@ class Settings extends CI_Controller {
 
     public function index() {
         $data = array('title_page' => "Settings");
-        $this->system->parse("settings/settings.htm", $data);
+        if($this->author->objlogin->isemployee != 1) { // if not employee
+            $this->system->parse("settings/settings.htm", $data);
+        }else{
+            $this->system->parse("settings/settings_employee.htm", $data);
+        }
     }
 
     public function saveCompanyInfo() {
@@ -139,20 +143,36 @@ class Settings extends CI_Controller {
 
     public function showCompanyInformation() {
         $data = array();
-        $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
+        if($this->author->objlogin->isemployee != 1) { // if not employee
+            $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
+        }else{
+            $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfoForERO());
+        }
         $data['states'] = $this->m_com->loadStatesList();
         if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-            $this->system->parse_templace('settings/companyinformation.htm', $data);
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $this->system->parse_templace('settings/companyinformation.htm', $data);
+            }else{
+                $this->system->parse_templace('settings/companyinformation_employee.htm', $data);
+            }
             exit();
         }
     }
     
     public function showSetupCompanyInformation() {
     	$data = array();
-    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
+        if($this->author->objlogin->isemployee != 1) { // if not employee
+            $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
+        }else{
+            $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfoForEROForEmployee());
+        }
         $data['states'] = $this->m_com->loadStatesList();
     	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-    		$this->system->parse_templace('setuperoinfo/setupcompanyinformation.htm', $data);
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $this->system->parse_templace('setuperoinfo/setupcompanyinformation.htm', $data);
+            }else{
+                $this->system->parse_templace('setuperoinfo/setupcompanyinformation_employee.htm', $data);
+            }
     		exit();
     	}
     }
@@ -204,8 +224,10 @@ class Settings extends CI_Controller {
                 $check_ptin_exists = $this ->author ->check_ptin_exists($this ->input ->post('ptin'));
                 if($check_ptin_exists != 'ptinexit') {
 
+                    /*
                     $check_efin_exists = $this ->author ->check_efin_exists($this ->input ->post('efin'));
                     if($check_efin_exists != 'exit'){
+                    */
                         $checkUsername = $this->author->check_usernaem_exists($this->input->post('username'));
                         if ($checkUsername == 'nameexit') {
                             $data = "Username is already in use.";
@@ -215,11 +237,11 @@ class Settings extends CI_Controller {
                             echo json_encode($this->m_com->addUser());
                             exit();
                         }
-                    }else{
+                    /*}else{
                         $data = "EFIN is already in use.";
                         echo json_encode($data);
                         exit();
-                    }
+                    }*/
                 }else{
                     $data = "PTIN is already in use.";
                     echo json_encode($data);

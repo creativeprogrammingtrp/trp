@@ -12,7 +12,9 @@ class Reporting_model extends CI_Model {
     	$data = array();
     	//$todate = date('Y-m-d');
     	//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    	
+
+        $companyERO_id = $_GET['company'];
+
     	$before30 = date('Y-m-d', strtotime('-29 days'));
     	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     	 
@@ -20,35 +22,13 @@ class Reporting_model extends CI_Model {
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	
     	if($this->author->objlogin->uid != '1'){
-    	 $sql = "SELECT 
-    			a.app_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.*,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			c.*
-    			
-    			FROM new_app a, new_applicent c
-    			where c.applicent_id = a.applicent_id    			
-    			AND a.uid = '" . $this->author->objlogin->uid . "'
-    			AND a.posted_date != ''
-    			AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
-    			ORDER BY a.posted_date DESC
-    	"; 
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
+            }else{
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
+            }
     	}else{
-    		$sql = "SELECT
-    			a.app_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.*,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			c.*
-    
-    			FROM new_app a, new_applicent c
-    			where c.applicent_id = a.applicent_id
-    			
-    			AND a.posted_date != ''
-    AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
-    			ORDER BY a.posted_date DESC
-    	";
+    		$sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
     	}
     	//AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
     	//AND a.posted_date != ''
@@ -67,7 +47,9 @@ class Reporting_model extends CI_Model {
     	$data = array();
     	//$todate = date('Y-m-d');
     	//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    	
+
+        $companyERO_id = $_GET['company'];
+
     	$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
     	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     	 
@@ -75,35 +57,14 @@ class Reporting_model extends CI_Model {
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	
     	if($this->author->objlogin->uid != '1'){
-    	$sql = "SELECT
-    		a.app_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.*,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			c.*
-    
-    			FROM new_app a, new_applicent c
-    			where c.applicent_id = a.applicent_id
-    			AND a.uid = '" . $this->author->objlogin->uid . "'
-    			AND a.posted_date != ''
-    			AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
-    			ORDER BY a.posted_date DESC
-    	";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
+            }else{
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
+            }
     	}
     	else{
-    		$sql = "SELECT
-    		a.app_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.*,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			c.*
-    		
-    			FROM new_app a, new_applicent c
-    			where c.applicent_id = a.applicent_id
-    		    			AND a.posted_date != ''
-    		    			AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
-    		    			ORDER BY a.posted_date DESC
-    		    			";
+    		$sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC ";
     	}
     	$res = $this->db->query($sql);
     	 
@@ -121,6 +82,7 @@ class Reporting_model extends CI_Model {
     	//$todate = date('Y-m-d');
     	//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
 
+        $companyERO_id = $_GET['company'];
     	
     	$before30 = date('Y-m-d', strtotime('-29 days'));
     	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -129,35 +91,13 @@ class Reporting_model extends CI_Model {
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	
     	if($this->author->objlogin->uid != '1'){
-    	
-     			$sql = "SELECT
-    			a.app_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.*,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			c.*
-    
-    			FROM new_app a, new_applicent c
-    			where c.applicent_id = a.applicent_id
-    			AND a.uid = '" . $this->author->objlogin->uid."'
-    			AND a.create_date != ''
-    			AND a.posted_date IS NULL
-    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    			ORDER BY a.create_date DESC";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND a.create_date != '' AND a.posted_date IS NULL AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY a.create_date DESC";
+            }else{
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND a.create_date != '' AND a.posted_date IS NULL AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY a.create_date DESC";
+            }
     	}else{
-    			$sql = "SELECT
-    			a.app_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.*,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			c.*
-    		
-    			FROM new_app a, new_applicent c
-    			where c.applicent_id = a.applicent_id
-    			AND a.create_date != ''
-    			AND a.posted_date IS NULL
-    		    AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    		    ORDER BY a.create_date DESC";
+    			$sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.create_date != '' AND a.posted_date IS NULL AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY a.create_date DESC";
     	}
     	//
     	$res = $this->db->query($sql);
@@ -176,7 +116,8 @@ class Reporting_model extends CI_Model {
     	 
     	//$todate = date('Y-m-d');
     	//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    
+
+        $companyERO_id = $_GET['company'];
     	
     	$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
     	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -186,34 +127,13 @@ class Reporting_model extends CI_Model {
     	 
     	 
     	if($this->author->objlogin->uid != '1'){
-	    	 $sql = "SELECT
-	    	a.app_id,
-	    	FROM_UNIXTIME(a.create_date) AS create_date1,
-	    	a.*,
-	    	FROM_UNIXTIME(a.posted_date) AS posted_date1,
-	    	c.*
-	    
-	    	FROM new_app a, new_applicent c
-	    	where c.applicent_id = a.applicent_id
-	    	AND a.uid = '" . $this->author->objlogin->uid . "'
-	    	AND a.create_date != ''
-	    	AND a.posted_date IS NULL
-	    	AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-	    	ORDER BY a.create_date DESC
-	    	";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND a.create_date != '' AND a.posted_date IS NULL AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY a.create_date DESC";
+            }else{
+                $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND a.create_date != '' AND a.posted_date IS NULL AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY a.create_date DESC";
+            }
     	}else{
-    		$sql = "SELECT
-	    	a.app_id,
-	    	FROM_UNIXTIME(a.create_date) AS create_date1,
-	    	a.*,
-	    	FROM_UNIXTIME(a.posted_date) AS posted_date1,
-	    	c.*
-	    	FROM new_app a, new_applicent c
-	    	where c.applicent_id = a.applicent_id
-    		AND a.create_date != ''
-    		AND a.posted_date IS NULL
-    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    		ORDER BY a.create_date DESC";
+    		$sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.create_date != '' AND a.posted_date IS NULL AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY a.create_date DESC";
     	}
 	    	 
     	$res = $this->db->query($sql);
@@ -231,7 +151,8 @@ class Reporting_model extends CI_Model {
     		 
     		//$todate = date('Y-m-d');
     		//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    	
+
+            $companyERO_id = $_GET['company'];
     		 
     		$before30 = date('Y-m-d', strtotime('-29 days'));
     		$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -240,33 +161,13 @@ class Reporting_model extends CI_Model {
     		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     		 
     		if($this->author->objlogin->uid != '1'){
-    		 
-    		$sql = "SELECT
-    		a.*,
-    		c.*,
-    		FROM_UNIXTIME(a.create_date) AS create_date1,
-    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    		u.name, u.firstname, u.lastname
-    		FROM new_app a, new_applicent c, users u
-    		where c.applicent_id = a.applicent_id
-    		AND a.uid = '" . $this->author->objlogin->uid . "'
-    		AND u.uid = a.author_id
-    		AND a.create_date != ''
-    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    		ORDER BY c.first_name ASC";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.name, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY c.first_name ASC";
+                }else{
+                    $sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.name, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY c.first_name ASC";
+                }
     		}else{
-    		$sql = "SELECT
-    		a.*,
-    		c.*,
-    		FROM_UNIXTIME(a.create_date) AS create_date1,
-    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    		u.name, u.firstname, u.lastname
-    		FROM new_app a, new_applicent c, users u
-    		where c.applicent_id = a.applicent_id
-    		AND u.uid = a.author_id
-    		AND a.create_date != ''
-    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    		ORDER BY c.first_name ASC";
+    		$sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.name, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY c.first_name ASC";
     		}
     	//AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '2014-08-17'
     		$res = $this->db->query($sql);
@@ -326,7 +227,8 @@ class Reporting_model extends CI_Model {
     	
     		//$todate = date('Y-m-d');
     		//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    	
+
+            $companyERO_id = $_GET['company'];
     		 
     		$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
     		$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -336,35 +238,13 @@ class Reporting_model extends CI_Model {
     	
     	
     		if($this->author->objlogin->uid != '1'){
-    		
-    			$sql = "SELECT
-	    		a.*,
-	    		c.*,
-	    		FROM_UNIXTIME(a.create_date) AS create_date1,
-	    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-	    		u.name, u.firstname, u.lastname
-	    	
-	    		FROM new_app a, new_applicent c, users u
-	    		where c.applicent_id = a.applicent_id
-	    		AND a.uid = '" . $this->author->objlogin->uid . "'
-	    		AND u.uid = a.author_id
-	    		AND a.create_date != ''
-	    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-	    		ORDER BY c.first_name ASC
-	    		";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.name, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY c.first_name ASC";
+                }else{
+                    $sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.name, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY c.first_name ASC";
+                }
     		}else{
-    			$sql = "SELECT
-	    		a.*,
-	    		c.*,
-	    		FROM_UNIXTIME(a.create_date) AS create_date1,
-	    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-	    		u.name, u.firstname, u.lastname
-	    		FROM new_app a, new_applicent c, users u
-	    		where c.applicent_id = a.applicent_id
-				AND u.uid = a.author_id
-    			AND a.create_date != ''
-    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    			ORDER BY c.first_name ASC";
+    			$sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.name, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' ORDER BY c.first_name ASC";
     		}
     	
     		$res = $this->db->query($sql);
@@ -426,7 +306,8 @@ class Reporting_model extends CI_Model {
     		 
     		//$todate = date('Y-m-d');
     		//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    		 
+
+           // $companyERO_id = $_GET['company'];
     		 
     		$before30 = date('Y-m-d', strtotime('-29 days'));
     		$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -436,73 +317,10 @@ class Reporting_model extends CI_Model {
     		 
     		 
     		if($this->author->objlogin->uid != '1'){
-    			$sql = "SELECT
-    			a.app_id,
-    			a.author_id as employee_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.create_date,
-    			sum(a.app_tax_preparation_fee) as app_tax_preparation_fee,
-    			sum(a.app_sb_fee) as app_sb_fee,
-    			sum(a.app_bank_transmission_fee) as app_bank_transmission_fee,
-    			sum(a.app_add_on_fee) as app_add_on_fee,
-    			sum(a.audit_guard_fee) as audit_guard_fee,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			a.posted_date,
-    			sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee,
-    			sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee,
-    			sum(a.app_actual_sb_fee) as app_actual_sb_fee,
-    			sum(a.app_actual_add_on_fee) as app_actual_add_on_fee,
-    			sum(a.actual_audit_guard_fee) as actual_audit_guard_fee,
-    			sum(a.app_refund_amt) as app_refund_amt,
-    			a.payment_method,
-    			a.payment_status,
-    			u.uid,
-    			u.firstname,
-    			u.lastname
-    			 
-    			FROM new_app a, users u, ero e
-    			where a.uid = e.uid
-    			AND   e.author = a.author_id
-    			AND  u.uid = e.author
-    			
-    			AND a.create_date != ''
-    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    			GROUP BY a.author_id
-    			ORDER BY u.firstname ASC
-    			";
+    			$sql = "SELECT a.app_id, a.author_id as employee_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.create_date, sum(a.app_tax_preparation_fee) as app_tax_preparation_fee, sum(a.app_sb_fee) as app_sb_fee, sum(a.app_bank_transmission_fee) as app_bank_transmission_fee, sum(a.app_add_on_fee) as app_add_on_fee, sum(a.audit_guard_fee) as audit_guard_fee, FROM_UNIXTIME(a.posted_date) AS posted_date1, a.posted_date, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee, sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee, sum(a.app_actual_sb_fee) as app_actual_sb_fee, sum(a.app_actual_add_on_fee) as app_actual_add_on_fee, sum(a.actual_audit_guard_fee) as actual_audit_guard_fee, sum(a.app_refund_amt) as app_refund_amt, a.payment_method, a.payment_status, u.uid, u.firstname, u.lastname FROM new_app a, users u, ero e where a.uid = e.uid AND   e.author = a.author_id AND  u.uid = e.author AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY a.author_id ORDER BY u.firstname ASC";
     		}else{
     			
-	    	    $sql = "SELECT
-	    		a.app_id,
-	    		a.author_id as employee_id, 
-	    		FROM_UNIXTIME(a.create_date) AS create_date1,
-	    		a.create_date,
-	    		sum(a.app_tax_preparation_fee) as app_tax_preparation_fee,
-	    		sum(a.app_sb_fee) as app_sb_fee,
-	    		sum(a.app_bank_transmission_fee) as app_bank_transmission_fee,
-	    		sum(a.app_add_on_fee) as app_add_on_fee,
-	    		sum(a.audit_guard_fee) as audit_guard_fee,
-	    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-	    		a.posted_date,
-	    		sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee,
-	    		sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee,
-	    		sum(a.app_actual_sb_fee) as app_actual_sb_fee,
-	    		sum(a.app_actual_add_on_fee) as app_actual_add_on_fee,
-	    		sum(a.actual_audit_guard_fee) as actual_audit_guard_fee,
-	    		sum(a.app_refund_amt) as app_refund_amt,
-	    		a.payment_method,
-	    		a.payment_status,
-	    		u.uid,
-	    		u.firstname,
-	    		u.lastname
-	    		 
-	    		FROM new_app a, users u
-	    		where u.uid = a.author_id
-	    		AND a.create_date != ''
-	    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-	    		GROUP BY a.author_id
-	    		ORDER BY u.firstname ASC
-	    		";
+	    	    $sql = "SELECT a.app_id, a.author_id as employee_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.create_date, sum(a.app_tax_preparation_fee) as app_tax_preparation_fee, sum(a.app_sb_fee) as app_sb_fee, sum(a.app_bank_transmission_fee) as app_bank_transmission_fee, sum(a.app_add_on_fee) as app_add_on_fee, sum(a.audit_guard_fee) as audit_guard_fee, FROM_UNIXTIME(a.posted_date) AS posted_date1, a.posted_date, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee, sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee, sum(a.app_actual_sb_fee) as app_actual_sb_fee, sum(a.app_actual_add_on_fee) as app_actual_add_on_fee, sum(a.actual_audit_guard_fee) as actual_audit_guard_fee, sum(a.app_refund_amt) as app_refund_amt, a.payment_method, a.payment_status, u.uid, u.firstname, u.lastname FROM new_app a, users u where u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY a.author_id ORDER BY u.firstname ASC";
     		}
     		$res = $this->db->query($sql);
     		 
@@ -524,74 +342,9 @@ class Reporting_model extends CI_Model {
 	    		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate))); 
     			 
 	    		if($this->author->objlogin->uid != '1'){
-    			$sql = "SELECT
-    			a.app_id,
-    			a.author_id as employee_id,
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.create_date,
-    			sum(a.app_tax_preparation_fee) as app_tax_preparation_fee,
-    			sum(a.app_sb_fee) as app_sb_fee,
-    			sum(a.app_bank_transmission_fee) as app_bank_transmission_fee,
-    			sum(a.app_add_on_fee) as app_add_on_fee,
-    			sum(a.audit_guard_fee) as audit_guard_fee,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			a.posted_date,
-    			sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee,
-    			sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee,
-    			sum(a.app_actual_sb_fee) as app_actual_sb_fee,
-    			sum(a.app_actual_add_on_fee) as app_actual_add_on_fee,
-    			sum(a.actual_audit_guard_fee) as actual_audit_guard_fee,
-    			sum(a.app_refund_amt) as app_refund_amt,
-    			a.payment_method,
-    			a.payment_status,
-    			u.uid,
-    			u.firstname,
-    			u.lastname
-    		
-    			 
-    			FROM new_app a, users u, ero e
-    			where a.uid = e.uid
-    			AND   e.author = a.author_id
-    			AND  u.uid = e.author
-    			
-    			AND a.create_date != ''
-    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    			GROUP BY a.author_id
-    			ORDER BY u.firstname ASC
-    			";
+    			    $sql = "SELECT a.app_id, a.author_id as employee_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.create_date, sum(a.app_tax_preparation_fee) as app_tax_preparation_fee, sum(a.app_sb_fee) as app_sb_fee, sum(a.app_bank_transmission_fee) as app_bank_transmission_fee, sum(a.app_add_on_fee) as app_add_on_fee, sum(a.audit_guard_fee) as audit_guard_fee, FROM_UNIXTIME(a.posted_date) AS posted_date1, a.posted_date, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee, sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee, sum(a.app_actual_sb_fee) as app_actual_sb_fee, sum(a.app_actual_add_on_fee) as app_actual_add_on_fee, sum(a.actual_audit_guard_fee) as actual_audit_guard_fee, sum(a.app_refund_amt) as app_refund_amt, a.payment_method, a.payment_status, u.uid, u.firstname, u.lastname FROM new_app a, users u, ero e where a.uid = e.uid AND   e.author = a.author_id AND  u.uid = e.author AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY a.author_id ORDER BY u.firstname ASC";
 	    		}else{
-	    			$sql = "SELECT
-	    			a.app_id,
-	    			a.author_id as employee_id,
-	    			FROM_UNIXTIME(a.create_date) AS create_date1,
-	    			a.create_date,
-	    			sum(a.app_tax_preparation_fee) as app_tax_preparation_fee,
-	    			sum(a.app_sb_fee) as app_sb_fee,
-	    			sum(a.app_bank_transmission_fee) as app_bank_transmission_fee,
-	    			sum(a.app_add_on_fee) as app_add_on_fee,
-	    			sum(a.audit_guard_fee) as audit_guard_fee,
-	    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-	    			a.posted_date,
-	    			sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee,
-	    			sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee,
-	    			sum(a.app_actual_sb_fee) as app_actual_sb_fee,
-	    			sum(a.app_actual_add_on_fee) as app_actual_add_on_fee,
-	    			sum(a.actual_audit_guard_fee) as actual_audit_guard_fee,
-	    			sum(a.app_refund_amt) as app_refund_amt,
-	    			a.payment_method,
-	    			a.payment_status,
-	    			u.uid,
-	    			u.firstname,
-	    			u.lastname
-	    			
-	    			
-	    			FROM new_app a, users u
-	    			where u.uid = a.author_id
-	    			AND a.create_date != ''
-	    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-	    			GROUP BY a.author_id
-	    			ORDER BY u.firstname ASC
-	    			";
+	    			$sql = "SELECT a.app_id, a.author_id as employee_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.create_date, sum(a.app_tax_preparation_fee) as app_tax_preparation_fee, sum(a.app_sb_fee) as app_sb_fee, sum(a.app_bank_transmission_fee) as app_bank_transmission_fee, sum(a.app_add_on_fee) as app_add_on_fee, sum(a.audit_guard_fee) as audit_guard_fee, FROM_UNIXTIME(a.posted_date) AS posted_date1, a.posted_date, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee, sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee, sum(a.app_actual_sb_fee) as app_actual_sb_fee, sum(a.app_actual_add_on_fee) as app_actual_add_on_fee, sum(a.actual_audit_guard_fee) as actual_audit_guard_fee, sum(a.app_refund_amt) as app_refund_amt, a.payment_method, a.payment_status, u.uid, u.firstname, u.lastname FROM new_app a, users u where u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY a.author_id ORDER BY u.firstname ASC";
 	    		}
     			 
     			$res = $this->db->query($sql);
@@ -610,41 +363,14 @@ class Reporting_model extends CI_Model {
     		$data = array();
     		 
     		$employeeId = $_GET['empid'];
+
+            $companyERO_id = $_GET['company'];
     		 
     		if($this->author->objlogin->uid != '1'){
-    		$sql = "SELECT
-    		a.*,
-    		c.*,
-    		FROM_UNIXTIME(a.create_date) AS create_date1,
-    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    		
-    		u.uid, u.firstname, u.lastname
-    	
-    		FROM new_app a, new_applicent c, users u
-    		where c.applicent_id = a.applicent_id
-    		AND a.uid = '" . $this->author->objlogin->uid . "'
-    		AND u.uid = a.author_id
-    		AND a.create_date != ''
-    		AND a.uid = '$employeeId'
-    		ORDER BY c.first_name ASC    		
-    		";
+    		$sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.uid, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND u.uid = a.author_id AND a.create_date != '' AND a.uid = '$employeeId' ORDER BY c.first_name ASC";
     		}
     		else{
-    			$sql = "SELECT
-    		a.*,
-    		c.*,
-    		FROM_UNIXTIME(a.create_date) AS create_date1,
-    		FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			
-    		u.uid, u.firstname, u.lastname
-   
-    		FROM new_app a, new_applicent c, users u
-    		where c.applicent_id = a.applicent_id
-    		AND u.uid = a.author_id
-    		AND a.create_date != ''
-    		AND a.uid = '$employeeId'
-    		ORDER BY c.first_name ASC
-    		";
+    			$sql = "SELECT a.*, c.*, FROM_UNIXTIME(a.create_date) AS create_date1, FROM_UNIXTIME(a.posted_date) AS posted_date1, u.uid, u.firstname, u.lastname FROM new_app a, new_applicent c, users u where c.applicent_id = a.applicent_id AND u.uid = a.author_id AND a.create_date != '' AND a.uid = '$employeeId' ORDER BY c.first_name ASC";
     		}
     		$res = $this->db->query($sql);
     	
@@ -702,45 +428,9 @@ class Reporting_model extends CI_Model {
     	$data = array();
     	 
     	if($this->author->objlogin->uid != '1'){
-    	$sql = "SELECT
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.create_date,
-    			sum(a.app_tax_preparation_fee) as app_tax_preparation_fee,
-    			sum(a.app_sb_fee) as app_sb_fee,
-    			sum(a.app_bank_transmission_fee) as app_bank_transmission_fee,
-    			sum(a.app_add_on_fee) as app_add_on_fee,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			a.posted_date,
-    			sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee,
-    			sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee,
-    			sum(a.app_actual_sb_fee) as app_actual_sb_fee,
-    			sum(a.app_actual_add_on_fee) as app_actual_add_on_fee,
-    
-    			c.first_name,
-    			c.last_name,
-    			c.ss_number,
-    			FROM new_app where c.applicent_id = a.applicent_id
-    			group by DATE(create_date1), DATE(posted_date1)";
+    	$sql = "SELECT FROM_UNIXTIME(a.create_date) AS create_date1, a.create_date, sum(a.app_tax_preparation_fee) as app_tax_preparation_fee, sum(a.app_sb_fee) as app_sb_fee, sum(a.app_bank_transmission_fee) as app_bank_transmission_fee, sum(a.app_add_on_fee) as app_add_on_fee, FROM_UNIXTIME(a.posted_date) AS posted_date1, a.posted_date, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee, sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee, sum(a.app_actual_sb_fee) as app_actual_sb_fee, sum(a.app_actual_add_on_fee) as app_actual_add_on_fee, c.first_name, c.last_name, c.ss_number, FROM new_app where c.applicent_id = a.applicent_id group by DATE(create_date1), DATE(posted_date1)";
     	}else{
-    		$sql = "SELECT
-    			FROM_UNIXTIME(a.create_date) AS create_date1,
-    			a.create_date,
-    			sum(a.app_tax_preparation_fee) as app_tax_preparation_fee,
-    			sum(a.app_sb_fee) as app_sb_fee,
-    			sum(a.app_bank_transmission_fee) as app_bank_transmission_fee,
-    			sum(a.app_add_on_fee) as app_add_on_fee,
-    			FROM_UNIXTIME(a.posted_date) AS posted_date1,
-    			a.posted_date,
-    			sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee,
-    			sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee,
-    			sum(a.app_actual_sb_fee) as app_actual_sb_fee,
-    			sum(a.app_actual_add_on_fee) as app_actual_add_on_fee,
-    		
-    			c.first_name,
-    			c.last_name,
-    			c.ss_number,
-    			FROM new_app where c.applicent_id = a.applicent_id
-    			group by DATE(create_date1), DATE(posted_date1)";
+    		$sql = "SELECT FROM_UNIXTIME(a.create_date) AS create_date1, a.create_date, sum(a.app_tax_preparation_fee) as app_tax_preparation_fee, sum(a.app_sb_fee) as app_sb_fee, sum(a.app_bank_transmission_fee) as app_bank_transmission_fee, sum(a.app_add_on_fee) as app_add_on_fee, FROM_UNIXTIME(a.posted_date) AS posted_date1, a.posted_date, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee, sum(a.app_actual_bank_transmission_fee) as app_actual_bank_transmission_fee, sum(a.app_actual_sb_fee) as app_actual_sb_fee, sum(a.app_actual_add_on_fee) as app_actual_add_on_fee, c.first_name, c.last_name, c.ss_number, FROM new_app where c.applicent_id = a.applicent_id group by DATE(create_date1), DATE(posted_date1)";
     	}
     	//group by app_id";
     	//group by DATE(create_date1), DATE(posted_date1)";
@@ -808,7 +498,8 @@ class Reporting_model extends CI_Model {
     		 
     		//$todate = date('Y-m-d');
     		//$before30 = date('Y-m-d', strtotime('-29 days')); //date('Y-m-d',strtotime($todate)+30);
-    	
+
+            $companyERO_id = $_GET['company'];
     		 
     		$before30 = date('Y-m-d', strtotime('-29 days'));
     		$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -835,21 +526,13 @@ class Reporting_model extends CI_Model {
     	    			";
     		*/
     		if($this->author->objlogin->uid != '1'){
-    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				AND b.author_id = '" . $this->author->objlogin->uid . "'
-    			    				AND b.create_date != ''
-    			    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    			    				ORDER BY b.create_date DESC";
-    			
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $companyERO_id . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }else{
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }
     		}else{
-    		$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from 
-    				benefits b, new_applicent a 
-    				where b.applicent_id = a.applicent_id 
-    				AND b.create_date != ''
-    	    		AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    	    		ORDER BY b.create_date DESC";
+    		    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
     		}
     		//
     		$res = $this->db->query($sql);
@@ -893,7 +576,9 @@ class Reporting_model extends CI_Model {
     	
     	function loadDiscountBenefitsRevenueReportDatePicker() {
     		$data = array();
-    		 
+
+            $companyERO_id = $_GET['company'];
+
     		$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 	    	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
 	    		 
@@ -917,20 +602,13 @@ class Reporting_model extends CI_Model {
     	    			";
     		*/
     		if($this->author->objlogin->uid != '1'){
-    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				AND b.uid = '" . $this->author->objlogin->uid . "'
-    		    				AND b.create_date != ''
-    		    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    		    				ORDER BY b.create_date DESC";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $companyERO_id . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }else{
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }
     		}else{
-    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    			    				AND b.create_date != ''
-    			    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    			    				ORDER BY b.create_date DESC";
+    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
     		}
     		//
     		$res = $this->db->query($sql);
@@ -974,37 +652,22 @@ class Reporting_model extends CI_Model {
     
     function loadDiscountBenefitsBenefitsSoldReport() {
     	$data = array();
-    
+
+        $companyERO_id = $_GET['company'];
+
     	$before30 = date('Y-m-d', strtotime('-29 days'));
     	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     	 
     	$todate = date('Y-m-d');
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	if($this->author->objlogin->uid != '1'){
-    		$sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, 
-    			FROM_UNIXTIME(create_date) as create_date2,
-				SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN 1 ELSE 0 END) AS medical,
-				SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle,
-				SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN 1 ELSE 0 END) AS combination
-				from benefits
-        			WHERE create_date != ''
-        			AND b.uid = '" . $this->author->objlogin->uid . "'
-        			AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date'
-        			GROUP BY DATE(FROM_UNIXTIME(create_date))
-        			ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC
-        			";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, FROM_UNIXTIME(create_date) as create_date2, SUM(CASE WHEN benefits_item = 'Medical Package' THEN 1 ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN 1 ELSE 0 END) AS combination from benefits WHERE create_date != '' AND uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(create_date)) ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC";
+            }else{
+                $sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, FROM_UNIXTIME(create_date) as create_date2, SUM(CASE WHEN benefits_item = 'Medical Package' THEN 1 ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN 1 ELSE 0 END) AS combination from benefits WHERE create_date != '' AND author_id = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(create_date)) ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC";
+            }
     	}else{
-    		$sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date,
-    		FROM_UNIXTIME(create_date) as create_date2,
-    		SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN 1 ELSE 0 END) AS medical,
-    		SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle,
-    		SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN 1 ELSE 0 END) AS combination
-    		from benefits
-    		WHERE create_date != ''
-    		AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date'
-    		GROUP BY DATE(FROM_UNIXTIME(create_date))
-    		ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC
-    		";
+    		$sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, FROM_UNIXTIME(create_date) as create_date2, SUM(CASE WHEN benefits_item = 'Medical Package' THEN 1 ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN 1 ELSE 0 END) AS combination from benefits WHERE create_date != '' AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(create_date)) ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC";
     	}
         			//
     	$res = $this->db->query($sql);
@@ -1019,37 +682,22 @@ class Reporting_model extends CI_Model {
     	
     	function loadDiscountBenefitsBenefitsSoldReportDatePicker() {
     		$data = array();
-    	
+
+            $companyERO_id = $_GET['company'];
+
     		$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 	    	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
 	    		 
     		$todate = $_GET['enddate']; //$this->lib->escape($_POST['enddate']);
     		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     		if($this->author->objlogin->uid != '1'){
-    		$sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date,
-    		FROM_UNIXTIME(create_date) as create_date2,
-    		SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN 1 ELSE 0 END) AS medical,
-    		SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle,
-    		SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN 1 ELSE 0 END) AS combination
-    		from benefits
-    		WHERE create_date != ''
-    		AND b.uid = '" . $this->author->objlogin->uid . "'
-    		AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date'
-    		GROUP BY DATE(FROM_UNIXTIME(create_date))
-    		ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC
-    		";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, FROM_UNIXTIME(create_date) as create_date2, SUM(CASE WHEN benefits_item = 'Medical Package' THEN 1 ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN 1 ELSE 0 END) AS combination from benefits WHERE create_date != '' AND uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(create_date)) ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC";
+                }else{
+                    $sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, FROM_UNIXTIME(create_date) as create_date2, SUM(CASE WHEN benefits_item = 'Medical Package' THEN 1 ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN 1 ELSE 0 END) AS combination from benefits WHERE create_date != '' AND author_id = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(create_date)) ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC";
+                }
     		}else{
-    			$sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date,
-    			FROM_UNIXTIME(create_date) as create_date2,
-    			SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN 1 ELSE 0 END) AS medical,
-    			SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle,
-    			SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN 1 ELSE 0 END) AS combination
-    			from benefits
-    			WHERE create_date != ''
-    			AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date'
-    			GROUP BY DATE(FROM_UNIXTIME(create_date))
-    			ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC
-    			";
+    			$sql = "SELECT DATE(FROM_UNIXTIME(create_date)) as create_date1, create_date, FROM_UNIXTIME(create_date) as create_date2, SUM(CASE WHEN benefits_item = 'Medical Package' THEN 1 ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN 1 ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN 1 ELSE 0 END) AS combination from benefits WHERE create_date != '' AND DATE(FROM_UNIXTIME(create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(create_date)) ORDER BY DATE(FROM_UNIXTIME(create_date)) DESC";
     		}
     		//
     		$res = $this->db->query($sql);
@@ -1067,7 +715,9 @@ class Reporting_model extends CI_Model {
     	
     	function loadDiscountBenefitsCustomerReport() {
     		$data = array();
-    		
+
+            $companyERO_id = $_GET['company'];
+
     		$before30 = date('Y-m-d', strtotime('-29 days'));
     		$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     		 
@@ -1091,20 +741,13 @@ class Reporting_model extends CI_Model {
     	    			";
     		*/
     		if($this->author->objlogin->uid != '1'){
-    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				AND b.author_id = '" . $this->author->objlogin->uid . "'
-    		    				AND b.create_date != ''
-    		    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    		    				ORDER BY b.create_date DESC";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $companyERO_id . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }else{
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }
     		}else{
-    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    			    				AND b.create_date != ''
-    			    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    			    				ORDER BY b.create_date DESC";
+    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
     			
     		}
     		//
@@ -1149,6 +792,8 @@ class Reporting_model extends CI_Model {
     	
     	function loadDiscountBenefitsCustomerReportDatePicker() {
     		$data = array();
+
+            $companyERO_id = $_GET['company'];
     	
     		$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 	    	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -1156,21 +801,13 @@ class Reporting_model extends CI_Model {
     		$todate = $_GET['enddate']; //$this->lib->escape($_POST['enddate']);
     		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     		if($this->author->objlogin->uid != '1'){
-    		$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				AND b.author_id = '" . $this->author->objlogin->uid . "'
-    		    				AND b.create_date != ''
-    		    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    		    				ORDER BY b.create_date DESC";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $companyERO_id . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }else{
+                    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
+                }
     		}else{
-    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				
-    			    				AND b.create_date != ''
-    			    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    			    				ORDER BY b.create_date DESC";
+    			$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' ORDER BY b.create_date DESC";
     			
     		}
     		//
@@ -1214,6 +851,8 @@ class Reporting_model extends CI_Model {
     		
     		function loadDiscountBenefitsEmployeeReport() {
     			$data = array();
+
+                //$companyERO_id = $_GET['company'];
     		
     			$before30 = date('Y-m-d', strtotime('-29 days'));
     			$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -1221,40 +860,9 @@ class Reporting_model extends CI_Model {
     			$todate = date('Y-m-d');
     			$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     			if($this->author->objlogin->uid != '1'){
-    			$sql = "SELECT 
-    			FROM_UNIXTIME(b.create_date) as create_date1, b.create_date,
-    			SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical,
-    			SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle,
-    			SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination,
-    			u.uid,
-    			u.firstname,
-    			u.lastname
-    			FROM benefits b, users u, ero e
-    			where a.uid = e.uid
-    			AND   e.author = a.author_id
-    			AND  u.uid = e.author
-    			
-    			AND b.create_date != ''
-    			AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    			GROUP BY b.author_id
-    			ORDER BY u.firstname ASC
-    			";
+    			    $sql = "SELECT FROM_UNIXTIME(b.create_date) as create_date1, b.create_date, SUM(CASE WHEN benefits_item = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination, u.uid, u.firstname, u.lastname FROM benefits b, users u, ero e where b.uid = e.uid AND   e.author = b.author_id AND  u.uid = e.author AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' GROUP BY b.author_id ORDER BY u.firstname ASC";
     			}else {
-    				$sql = "SELECT
-    				FROM_UNIXTIME(b.create_date) as create_date1, b.create_date,
-    				SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical,
-    				SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle,
-    				SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination,
-    				u.uid,
-    				u.firstname,
-    				u.lastname
-    				FROM benefits b, users u
-    				where u.uid = b.author_id
-    				AND b.create_date != ''
-    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    				GROUP BY b.author_id
-    				ORDER BY u.firstname ASC
-    				";
+    				$sql = "SELECT FROM_UNIXTIME(b.create_date) as create_date1, b.create_date, SUM(CASE WHEN benefits_item = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination, u.uid, u.firstname, u.lastname FROM benefits b, users u where u.uid = b.author_id AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' GROUP BY b.author_id ORDER BY u.firstname ASC";
     			}
     			//
     				$res = $this->db->query($sql);
@@ -1269,47 +877,18 @@ class Reporting_model extends CI_Model {
     			
     			function loadDiscountBenefitsEmployeeReportDatePicker() {
     				$data = array();
-    			
+
+                   // $companyERO_id = $_GET['company'];
+
     				$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 			    	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
 			    		 
 		    		$todate = $_GET['enddate']; //$this->lib->escape($_POST['enddate']);
 		    		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
 		    		if($this->author->objlogin->uid != '1'){
-    				$sql = "SELECT
-    				FROM_UNIXTIME(b.create_date) as create_date1, b.create_date,
-    				SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical,
-    				SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle,
-    				SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination,
-    				u.uid,
-    				u.firstname,
-    				u.lastname
-    				FROM benefits b, users u, ero e
-	    			where a.uid = e.uid
-	    			AND   e.author = a.author_id
-	    			AND  u.uid = e.author
-	    			
-    				AND b.create_date != ''
-    				AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-    				GROUP BY b.author_id
-    				ORDER BY u.firstname ASC
-    				";
+    				$sql = "SELECT FROM_UNIXTIME(b.create_date) as create_date1, b.create_date, SUM(CASE WHEN benefits_item = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination, u.uid, u.firstname, u.lastname FROM benefits b, users u, ero e where b.uid = e.uid AND   e.author = b.author_id AND  u.uid = e.author AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' GROUP BY b.author_id ORDER BY u.firstname ASC";
 		    		}else{
-		    			$sql = "SELECT
-		    			FROM_UNIXTIME(b.create_date) as create_date1, b.create_date,
-		    			SUM(CASE WHEN `benefits_item` = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical,
-		    			SUM(CASE WHEN `benefits_item` = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle,
-		    			SUM(CASE WHEN `benefits_item` = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination,
-		    			u.uid,
-		    			u.firstname,
-		    			u.lastname
-		    			FROM benefits b, users u
-		    			where u.uid = b.author_id
-		    			AND b.create_date != ''
-		    			AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date'
-		    			GROUP BY b.author_id
-		    			ORDER BY u.firstname ASC
-		    			";
+		    			$sql = "SELECT FROM_UNIXTIME(b.create_date) as create_date1, b.create_date, SUM(CASE WHEN benefits_item = 'Medical Package' THEN benefits_price ELSE 0 END) AS medical, SUM(CASE WHEN benefits_item = 'Lifestyle Package' THEN benefits_price ELSE 0 END) AS lifestyle, SUM(CASE WHEN benefits_item = 'Combination Package' THEN benefits_price ELSE 0 END) AS combination, u.uid, u.firstname, u.lastname FROM benefits b, users u where u.uid = b.author_id AND b.create_date != '' AND DATE(FROM_UNIXTIME(b.create_date)) between '$before30_date' AND '$todate_date' GROUP BY b.author_id ORDER BY u.firstname ASC";
 		    		}
     				//
     				$res = $this->db->query($sql);
@@ -1343,19 +922,9 @@ class Reporting_model extends CI_Model {
     			    			ORDER BY c.first_name ASC
     			    			";*/
     				if($this->author->objlogin->uid != '1'){
-    				$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				AND b.author_id = '".$employeeId."'
-    				    				AND b.create_date != ''
-    				    				ORDER BY a.first_name ASC";
+    				    $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '".$employeeId."' AND b.create_date != '' ORDER BY a.first_name ASC";
     				}else {
-    					$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from
-    				benefits b, new_applicent a
-    				where b.applicent_id = a.applicent_id
-    				AND b.author_id = '".$employeeId."'
-    				    				AND b.create_date != ''
-    				    				ORDER BY a.first_name ASC";
+    					$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '".$employeeId."' AND b.create_date != '' ORDER BY a.first_name ASC";
     					
     				}
     			    			////AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
@@ -1420,17 +989,9 @@ class Reporting_model extends CI_Model {
     					";
     					*/
     					if($this->author->objlogin->uid != '1'){
-	    					$sql = "select b.*, a.*, DATE(FROM_UNIXTIME(b.create_date)) as  create_date1, FROM_UNIXTIME(b.create_date) as  create_date2 from
-		    				benefits b, new_applicent a
-		    				where b.applicent_id = a.applicent_id
-		    				AND DATE(FROM_UNIXTIME(b.create_date)) = '$activedate'
-		    				ORDER BY a.first_name ASC";
+	    					$sql = "select b.*, a.*, DATE(FROM_UNIXTIME(b.create_date)) as  create_date1, FROM_UNIXTIME(b.create_date) as  create_date2 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(b.create_date)) = '$activedate' ORDER BY a.first_name ASC";
     					}else{
-    						$sql = "select b.*, a.*, DATE(FROM_UNIXTIME(b.create_date)) as  create_date1, FROM_UNIXTIME(b.create_date) as  create_date2 from
-    						benefits b, new_applicent a
-    						where b.applicent_id = a.applicent_id
-    						AND DATE(FROM_UNIXTIME(b.create_date)) = '$activedate'
-    						ORDER BY a.first_name ASC";
+    						$sql = "select b.*, a.*, DATE(FROM_UNIXTIME(b.create_date)) as  create_date1, FROM_UNIXTIME(b.create_date) as  create_date2 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(b.create_date)) = '$activedate' ORDER BY a.first_name ASC";
     					}
     					////AND a.author_id = '$employeeId'
     					////AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
@@ -1474,7 +1035,9 @@ class Reporting_model extends CI_Model {
     				    				
     			function loadInsurancesRevenueReport() {
     				$data = array();
-    				 
+
+                    $companyERO_id = $_GET['company'];
+
     				$before30 = date('Y-m-d', strtotime('-29 days'));
     				$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     				 
@@ -1500,18 +1063,13 @@ class Reporting_model extends CI_Model {
 			    			    			";*/
 			    			    			//
     				if($this->author->objlogin->uid != '1'){
-    				 		$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  
-    				 				from insurance i, new_applicent a  
-    				 				where i.applicent_id = a.applicent_id 
-    				 				AND i.author_id = '" . $this->author->objlogin->uid . "'
-    				 				AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    				 				ORDER BY i.create_date DESC";
+                        if($this->author->objlogin->isemployee != 1) { // if not employee
+                            $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                        }else{
+                            $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                        }
     				}else{
-    					$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-    				 				from insurance i, new_applicent a
-    				 				where i.applicent_id = a.applicent_id
-    					    		AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    					    		ORDER BY i.create_date DESC";
+    					$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
     				}
     				 		$res = $this->db->query($sql);
 			    				 
@@ -1569,6 +1127,8 @@ class Reporting_model extends CI_Model {
     				
     				function loadInsurancesRevenueReportDatePicker() {
     					$data = array();
+
+                        $companyERO_id = $_GET['company'];
     						
     					$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 				    	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -1576,19 +1136,14 @@ class Reporting_model extends CI_Model {
 			    		$todate = $_GET['enddate']; //$this->lib->escape($_POST['enddate']);
 			    		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));	
     						
-			    		if($this->author->objlogin->uid != '1'){	
-    					$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  
-    				 				from insurance i, new_applicent a  
-    				 				where i.applicent_id = a.applicent_id 
-    				 				AND i.author_id = '" . $this->author->objlogin->uid . "'
-    				 				AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    				 				ORDER BY i.create_date DESC";
+			    		if($this->author->objlogin->uid != '1'){
+                            if($this->author->objlogin->isemployee != 1) { // if not employee
+                                $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                            }else{
+                                $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                            }
 			    		}else{
-			    			$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-    				 				from insurance i, new_applicent a
-    				 				where i.applicent_id = a.applicent_id
-			    			    	AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-			    			    	ORDER BY i.create_date DESC";
+			    			$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
 			    		}	
     							    			//
     						$res = $this->db->query($sql);
@@ -1648,7 +1203,9 @@ class Reporting_model extends CI_Model {
     			
     			function loadInsurancesInsuranceSoldReport() {
     				$data = array();
-    			
+
+                    $companyERO_id = $_GET['company'];
+
     				$before30 = date('Y-m-d', strtotime('-29 days'));
     				$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     			
@@ -1656,46 +1213,13 @@ class Reporting_model extends CI_Model {
     				$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     			
     				if($this->author->objlogin->uid != '1'){
-	    				$sql = "SELECT
-	    				DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-	    				FROM_UNIXTIME(i.create_date) as create_date2,
-	    				SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-	    				SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-	    				SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-	    				SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-	    				SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-	    				SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-	    				u.uid,
-	    				u.firstname,
-	    				u.lastname
-	    				FROM  insurance i, users u
-	    				where u.uid = i.author_id
-	    				AND i.author_id = '" . $this->author->objlogin->uid . "'
-	    				AND i.create_date != ''
-	    				AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-	    				GROUP BY DATE(FROM_UNIXTIME(i.create_date))
-	    				ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC
-	    				";
+                        if($this->author->objlogin->isemployee != 1) { // if not employee
+                            $sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM  insurance i, users u where u.uid = i.author_id AND i.uid = '" . $companyERO_id . "' AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(i.create_date)) ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC";
+                        }else{
+                            $sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM  insurance i, users u where u.uid = i.author_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(i.create_date)) ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC";
+                        }
     				}else{
-    					$sql = "SELECT
-    					DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-    					FROM_UNIXTIME(i.create_date) as create_date2,
-    					SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-    					SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-    					SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-    					SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-    					SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-    					SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM  insurance i, users u
-    					where u.uid = i.author_id
-    					AND i.create_date != ''
-    					AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    					GROUP BY DATE(FROM_UNIXTIME(i.create_date))
-    					ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC
-    					";
+    					$sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM  insurance i, users u where u.uid = i.author_id AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(i.create_date)) ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC";
     				}
     				//
     				$res = $this->db->query($sql);
@@ -1710,7 +1234,9 @@ class Reporting_model extends CI_Model {
     			
     			function loadInsurancesInsuranceSoldReportDatePicker() {
     				$data = array();
-    				 
+
+                    $companyERO_id = $_GET['company'];
+
     				$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 			    	$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
 			    		 
@@ -1718,46 +1244,13 @@ class Reporting_model extends CI_Model {
 		    		$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     				 
 		    		if($this->author->objlogin->uid != '1'){
-    				$sql = "SELECT
-    				DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-    				FROM_UNIXTIME(i.create_date) as create_date2,
-    				SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-    				SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-    				SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-    				SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-    				SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-    				SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-    				u.uid,
-    				u.firstname,
-    				u.lastname
-    				FROM  insurance i, users u
-    				where u.uid = i.author_id
-    				AND i.author_id = '" . $this->author->objlogin->uid . "'
-    				AND i.create_date != ''
-    				AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    				GROUP BY DATE(FROM_UNIXTIME(i.create_date))
-    				ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC
-    				";
+                        if($this->author->objlogin->isemployee != 1) { // if not employee
+                            $sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM  insurance i, users u where u.uid = i.author_id AND i.uid = '" . $companyERO_id . "' AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(i.create_date)) ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC";
+                        }else{
+                            $sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM  insurance i, users u where u.uid = i.author_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(i.create_date)) ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC";
+                        }
 		    		}else{
-		    			$sql = "SELECT
-		    			DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-		    			FROM_UNIXTIME(i.create_date) as create_date2,
-		    			SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-		    			SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-		    			SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-		    			SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-		    			SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-		    			SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-		    			u.uid,
-		    			u.firstname,
-		    			u.lastname
-		    			FROM  insurance i, users u
-		    			where u.uid = i.author_id
-		    			AND i.create_date != ''
-		    			AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-		    			GROUP BY DATE(FROM_UNIXTIME(i.create_date))
-		    			ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC
-		    			";
+		    			$sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM  insurance i, users u where u.uid = i.author_id AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(i.create_date)) ORDER BY DATE(FROM_UNIXTIME(i.create_date)) DESC";
 		    		}
     				//
     				$res = $this->db->query($sql);
@@ -1772,7 +1265,9 @@ class Reporting_model extends CI_Model {
     				
     				function loadInsurancesCustomerReport() {
     					$data = array();
-    						
+
+                        $companyERO_id = $_GET['company'];
+
     					$before30 = date('Y-m-d', strtotime('-29 days'));
     					$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     						
@@ -1780,19 +1275,14 @@ class Reporting_model extends CI_Model {
     					$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     					
     					if($this->author->objlogin->uid != '1'){
-    						$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  
-    				 				from insurance i, new_applicent a  
-    				 				where i.applicent_id = a.applicent_id 
-    				 				AND i.author_id = '" . $this->author->objlogin->uid . "'
-    				 				AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    				 				ORDER BY i.create_date DESC";
+                            if($this->author->objlogin->isemployee != 1) { // if not employee
+                                $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                            }else{
+                                $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                            }
     					}
     					else{
-    						$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-    				 				from insurance i, new_applicent a
-    				 				where i.applicent_id = a.applicent_id
-    						    	AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    						    	ORDER BY i.create_date DESC";
+    						$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
     					}    			//
     						$res = $this->db->query($sql);
     				
@@ -1848,6 +1338,8 @@ class Reporting_model extends CI_Model {
     					
     				function loadInsurancesCustomerReportDatePicker() {
     						$data = array();
+
+                        $companyERO_id = $_GET['company'];
     								    				
     						$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 			    			$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -1856,18 +1348,13 @@ class Reporting_model extends CI_Model {
 		    				$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
 
 		    				if($this->author->objlogin->uid != '1'){
-								$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  
-    				 				from insurance i, new_applicent a  
-    				 				where i.applicent_id = a.applicent_id 
-    				 				AND i.author_id = '" . $this->author->objlogin->uid . "'
-    				 				AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    				 				ORDER BY i.create_date DESC";
+                                if($this->author->objlogin->isemployee != 1) { // if not employee
+                                    $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                                }else{
+                                    $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
+                                }
 		    				}else{
-		    					$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-    				 				from insurance i, new_applicent a
-    				 				where i.applicent_id = a.applicent_id
-		    					    AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-		    					    ORDER BY i.create_date DESC";
+		    					$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' ORDER BY i.create_date DESC";
 		    				}
     							    			//
     						$res = $this->db->query($sql);
@@ -1924,7 +1411,9 @@ class Reporting_model extends CI_Model {
     				
     				function loadInsurancesEmployeeReport() {
     					$data = array();
-    					 
+
+                        //$companyERO_id = $_GET['company'];
+
     					$before30 = date('Y-m-d', strtotime('-29 days'));
     					$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     					 
@@ -1932,47 +1421,9 @@ class Reporting_model extends CI_Model {
     					$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     					 
     					if($this->author->objlogin->uid != '1'){
-    					$sql = "SELECT
-    					DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-    					FROM_UNIXTIME(i.create_date) as create_date2,
-    					SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-    					SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-    					SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-    					SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-    					SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-    					SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM insurance i, users u, ero e
-		    			where i.uid = e.uid
-		    			AND   e.author = i.author_id
-		    			AND  u.uid = e.author
-    					AND i.create_date != ''
-    					AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    					GROUP BY u.firstname
-    					ORDER BY u.firstname ASC
-    					";
+    					$sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM insurance i, users u, ero e where i.uid = e.uid AND   e.author = i.author_id AND  u.uid = e.author AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.firstname ORDER BY u.firstname ASC";
     					}else{
-    						$sql = "SELECT
-    						DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-    						FROM_UNIXTIME(i.create_date) as create_date2,
-    						SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-    						SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-    						SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-    						SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-    						SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-    						SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-    						u.uid,
-    						u.firstname,
-    						u.lastname
-    						FROM insurance i, users u
-    						where u.uid = i.author_id
-    						AND i.create_date != ''
-    						AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    						GROUP BY u.firstname
-    						ORDER BY u.firstname ASC
-    						";
+    						$sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM insurance i, users u where u.uid = i.author_id AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.firstname ORDER BY u.firstname ASC";
     					}
     					//
     					$res = $this->db->query($sql);
@@ -1986,54 +1437,18 @@ class Reporting_model extends CI_Model {
     					
     					function loadInsurancesEmployeeReportDatePicker() {
     						$data = array();
-    					
+
+                            //$companyERO_id = $_GET['company'];
+
     						$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 			    			$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
 			    		 
 		    				$todate = $_GET['enddate']; //$this->lib->escape($_POST['enddate']);
 		    				$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
 		    				if($this->author->objlogin->uid != '1'){
-    						$sql = "SELECT
-    					DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-    					FROM_UNIXTIME(i.create_date) as create_date2,
-    					SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-    					SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-    					SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-    					SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-    					SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-    					SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM insurance i, users u, ero e
-		    			where i.uid = e.uid
-		    			AND   e.author = i.author_id
-		    			AND  u.uid = e.author
-    					AND i.create_date != ''
-    					AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-    					GROUP BY u.firstname
-    					ORDER BY u.firstname ASC
-    					";
+    						$sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM insurance i, users u, ero e where i.uid = e.uid AND   e.author = i.author_id AND  u.uid = e.author AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.firstname ORDER BY u.firstname ASC";
 		    				}else{
-		    					$sql = "SELECT
-		    					DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date,
-		    					FROM_UNIXTIME(i.create_date) as create_date2,
-		    					SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family,
-		    					SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth,
-		    					SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance,
-		    					SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance,
-		    					SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance,
-		    					SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty,
-		    					u.uid,
-		    					u.firstname,
-		    					u.lastname
-		    					FROM insurance i, users u
-		    					where u.uid = i.author_id
-		    					AND i.create_date != ''
-		    					AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date'
-		    					GROUP BY u.firstname
-		    					ORDER BY u.firstname ASC
-		    					";
+		    					$sql = "SELECT DATE(FROM_UNIXTIME(i.create_date)) as create_date1, i.create_date, FROM_UNIXTIME(i.create_date) as create_date2, SUM(CASE WHEN insurance_item = 'Family Individual' THEN 1 ELSE 0 END) AS family, SUM(CASE WHEN insurance_item = 'Group Health' THEN 1 ELSE 0 END) AS groupHealth, SUM(CASE WHEN insurance_item = 'Life Insurance & Annuities' THEN 1 ELSE 0 END) AS lifeInsurance, SUM(CASE WHEN insurance_item = 'Auto Insurance' THEN 1 ELSE 0 END) AS autoInsurance, SUM(CASE WHEN insurance_item = 'Home Insurance' THEN 1 ELSE 0 END) AS homeInsurance, SUM(CASE WHEN insurance_item = 'Property & Casualty' THEN 1 ELSE 0 END) AS propertyCasualty, u.uid, u.firstname, u.lastname FROM insurance i, users u where u.uid = i.author_id AND i.create_date != '' AND DATE(FROM_UNIXTIME(i.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.firstname ORDER BY u.firstname ASC";
 		    				}
     						//
     						$res = $this->db->query($sql);
@@ -2051,20 +1466,13 @@ class Reporting_model extends CI_Model {
     						$data = array();
     					
     						$employeeId = $_GET['empid'];
-    						
+
+                            $companyERO_id = $_GET['company'];
+
     						if($this->author->objlogin->uid != '1'){
-    							$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-    				 				from insurance i, new_applicent a
-    				 				where i.applicent_id = a.applicent_id
-    								AND i.uid = '" . $this->author->objlogin->uid."'
-    				 				AND i.author_id = '".$employeeId."'
-    						    	ORDER BY i.create_date DESC";
+    							$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.uid = '" . $companyERO_id."' AND i.author_id = '".$employeeId."' ORDER BY i.create_date DESC";
     						}else{
-    							$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-    				 				from insurance i, new_applicent a
-    				 				where i.applicent_id = a.applicent_id
-    				 				AND i.author_id = '".$employeeId."'
-    						    	ORDER BY i.create_date DESC";
+    							$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.author_id = '".$employeeId."' ORDER BY i.create_date DESC";
     						}
     						$res = $this->db->query($sql);
     					
@@ -2123,19 +1531,16 @@ class Reporting_model extends CI_Model {
     	function loadInsurancesSoldCustomerReport() {
     		$data = array();
     		$activedate = $_GET['activedate'];
+            $companyERO_id = $_GET['company'];
+
     		if($this->author->objlogin->uid != '1'){
-    		$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-			from insurance i, new_applicent a
-    		where i.applicent_id = a.applicent_id
-    		AND i.uid = '" . $this->author->objlogin->uid."'
-    		AND DATE(FROM_UNIXTIME(i.create_date)) = '$activedate'
-    		ORDER BY i.create_date DESC";
+                if($this->author->objlogin->isemployee != 1) { // if not employee
+                    $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.uid = '" . $companyERO_id . "' AND DATE(FROM_UNIXTIME(i.create_date)) = '$activedate' ORDER BY i.create_date DESC";
+                }else{
+                    $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid."' AND DATE(FROM_UNIXTIME(i.create_date)) = '$activedate' ORDER BY i.create_date DESC";
+                }
     		}else{
-    			$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1
-			from insurance i, new_applicent a
-    		where i.applicent_id = a.applicent_id
-    			AND DATE(FROM_UNIXTIME(i.create_date)) = '$activedate'
-    			ORDER BY i.create_date DESC";
+    			$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1 from insurance i, new_applicent a where i.applicent_id = a.applicent_id AND DATE(FROM_UNIXTIME(i.create_date)) = '$activedate' ORDER BY i.create_date DESC";
     		}
     		$res = $this->db->query($sql);
     								    						    				
@@ -2189,7 +1594,9 @@ class Reporting_model extends CI_Model {
     	
     	function loadTotalIncomeRevenueReport() {
     		$data = array();
-    			
+
+            $companyERO_id = $_GET['company'];
+
     		$before30 = date('Y-m-d', strtotime('-29 days'));
     					$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     					 
@@ -2197,41 +1604,9 @@ class Reporting_model extends CI_Model {
     					$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     			
     					if($this->author->objlogin->uid != '1'){
-    		$sql = "SELECT
-    		a.create_date,
-    		FROM_UNIXTIME(b.create_date) as  create_date1,
-    		SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    		SUM(app_actual_add_on_fee) AS actAddonFee,
-    		SUM(actual_audit_guard_fee) AS actAuditGuardFee,
-    		SUM(b.benefits_price) AS totalBenefits
-    		FROM new_app a,  benefits b
-    		where 
-    		a.uid = b.uid
-    		AND a.create_date != ''
-    		AND b.uid = '" . $this->author->objlogin->uid."'
-    		AND a.uid = '" . $this->author->objlogin->uid."'
-    		AND b.benefits_status != '2'
-    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    		GROUP BY DATE(FROM_UNIXTIME(a.create_date)) , DATE(FROM_UNIXTIME(b.create_date))
-    		ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC
-    		";
+    		$sql = "SELECT a.create_date, FROM_UNIXTIME(b.create_date) as  create_date1, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee, SUM(b.benefits_price) AS totalBenefits FROM new_app a,  benefits b where a.uid = b.uid AND a.create_date != '' AND b.uid = '" . $companyERO_id."' AND a.uid = '" . $companyERO_id."' AND b.benefits_status != '2' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(a.create_date)) , DATE(FROM_UNIXTIME(b.create_date)) ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC";
     					}else{
-    						$sql = "SELECT
-    						a.create_date,
-    						FROM_UNIXTIME(a.create_date) as  create_date1,
-    						SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    						SUM(app_actual_add_on_fee) AS actAddonFee,
-    						SUM(actual_audit_guard_fee) AS actAuditGuardFee,
-    						SUM(b.benefits_price) AS totalBenefits
-    						FROM new_app a,  benefits b
-    						where
-    						a.author_id = b.author_id
-    						AND b.benefits_status != '2'
-    						AND a.create_date != ''
-    						AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    						GROUP BY DATE(FROM_UNIXTIME(a.create_date))
-    						ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC
-    						";
+    						$sql = "SELECT a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee, SUM(b.benefits_price) AS totalBenefits FROM new_app a,  benefits b where a.author_id = b.author_id AND b.benefits_status != '2' AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(a.create_date)) ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC";
     					}
     		//
     		$res = $this->db->query($sql);
@@ -2245,6 +1620,8 @@ class Reporting_model extends CI_Model {
     		
     		function loadTotalIncomeRevenueReportDatePicker() {
     			$data = array();
+
+                $companyERO_id = $_GET['company'];
     			 
     			$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 			    $before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
@@ -2253,40 +1630,9 @@ class Reporting_model extends CI_Model {
 		    	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     			 
 		    	if($this->author->objlogin->uid != '1'){
-    			$sql = "SELECT
-    			a.create_date,
-    			FROM_UNIXTIME(a.create_date) as  create_date1,
-    			SUM(b.benefits_price) AS totalBenefits,
-    			SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    			SUM(app_actual_add_on_fee) AS actAddonFee,
-    			SUM(actual_audit_guard_fee) AS actAuditGuardFee
-    			FROM new_app a, benefits b
-    			where
-    			a.author_id = b.author_id
-    			AND b.uid = '" . $this->author->objlogin->uid."'
-    			AND a.uid = '" . $this->author->objlogin->uid."'
-    			AND b.benefits_status != '2'
-    			AND a.create_date != ''
-    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    			GROUP BY DATE(FROM_UNIXTIME(a.create_date))
-    			ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC
-    			";
+    			$sql = "SELECT a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(b.benefits_price) AS totalBenefits, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee FROM new_app a, benefits b where a.author_id = b.author_id AND b.uid = '" . $companyERO_id."' AND a.uid = '" . $companyERO_id."' AND b.benefits_status != '2' AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(a.create_date)) ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC";
 		    	}else{
-		    		$sql = "SELECT
-		    		a.create_date,
-		    		FROM_UNIXTIME(a.create_date) as  create_date1,
-		    		SUM(b.benefits_price) AS totalBenefits,
-		    		SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-		    		SUM(app_actual_add_on_fee) AS actAddonFee,
-		    		SUM(actual_audit_guard_fee) AS actAuditGuardFee
-		    		FROM new_app a, benefits b
-		    		where
-		    		a.author_id = b.author_id
-		    		AND a.create_date != ''
-		    		AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-		    		GROUP BY DATE(FROM_UNIXTIME(a.create_date))
-		    		ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC
-		    		";
+		    		$sql = "SELECT a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(b.benefits_price) AS totalBenefits, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee FROM new_app a, benefits b where a.author_id = b.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY DATE(FROM_UNIXTIME(a.create_date)) ORDER BY DATE(FROM_UNIXTIME(a.create_date)) DESC";
 		    	}
     			//SUM(CASE WHEN benefits_item != '' THEN benefits_price ELSE 0 END) AS totalBenefits,
     			$res = $this->db->query($sql);
@@ -2300,7 +1646,9 @@ class Reporting_model extends CI_Model {
     		
     		function loadServiceBureauRevenueReport() {
     				$data = array();
-    				 
+
+                $companyERO_id = $_GET['company'];
+
     				$before30 = date('Y-m-d', strtotime('-29 days'));
     				$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
     			
@@ -2308,41 +1656,9 @@ class Reporting_model extends CI_Model {
     				$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     				 
     				if($this->author->objlogin->uid != '1'){
-    				 $sql = "SELECT m.uid, m.p_efin, m.service_bureau_num ,
-    					a.create_date,
-    				 	FROM_UNIXTIME(a.create_date) as  create_date1,
-    					
-    					SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    					SUM(app_actual_add_on_fee) AS actAddonFee,
-    					SUM(actual_audit_guard_fee) AS actAuditGuardFee,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM new_app a, users u, master_ero m 
-    				 	WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND service_bureau_num = '".$this->author->objlogin->efin."'
-    					AND u.uid = a.author_id
-    					AND a.create_date != ''
-    					AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    					GROUP BY u.uid
-    					ORDER BY u.firstname ASC";
+    				 $sql = "SELECT m.uid, m.p_efin, m.service_bureau_num , a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee, u.uid, u.firstname, u.lastname FROM new_app a, users u, master_ero m WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND service_bureau_num = '".$companyERO_id."' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.uid ORDER BY u.firstname ASC";
     				}else{
-    					$sql = "SELECT m.uid, m.p_efin, m.service_bureau_num ,
-    					a.create_date,
-    				 	FROM_UNIXTIME(a.create_date) as  create_date1,
-    	
-    					SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    					SUM(app_actual_add_on_fee) AS actAddonFee,
-    					SUM(actual_audit_guard_fee) AS actAuditGuardFee,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM new_app a, users u, master_ero m
-    				 	WHERE m.is_service_bureau = '1' AND u.uid = m.uid 
-						AND u.uid = a.author_id
-    					AND a.create_date != ''
-    					AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    					GROUP BY u.uid
-    					ORDER BY u.firstname ASC";
+    					$sql = "SELECT m.uid, m.p_efin, m.service_bureau_num , a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee, u.uid, u.firstname, u.lastname FROM new_app a, users u, master_ero m WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.uid ORDER BY u.firstname ASC";
     				}
     				//
     				$res = $this->db->query($sql);
@@ -2356,7 +1672,9 @@ class Reporting_model extends CI_Model {
     		
     		function loadServiceBureauRevenueReportDatePicker() {
     					$data = array();
-    						
+
+                $companyERO_id = $_GET['company'];
+
     					$before30 = $_GET['startdate'];  //$this->lib->escape($_POST['startdate']);
 			    			$before30_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$before30)));
 			    		 
@@ -2381,41 +1699,9 @@ class Reporting_model extends CI_Model {
     					";*/
     					//
 		    			if($this->author->objlogin->uid != '1'){
-    					$sql = "SELECT m.uid, m.p_efin, m.service_bureau_num ,
-    					a.create_date,
-    					FROM_UNIXTIME(a.create_date) as  create_date1,
-    					SUM(CASE WHEN benefits_item != '' THEN benefits_price ELSE 0 END) AS totalBenefits,
-    					SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    					SUM(app_actual_add_on_fee) AS actAddonFee,
-    					SUM(actual_audit_guard_fee) AS actAuditGuardFee,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM new_app a, users u,
-						master_ero m WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND service_bureau_num = '".$this->author->objlogin->efin."'
-    					AND u.uid = a.author_id
-    					AND a.create_date != ''
-    					AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-    					GROUP BY u.uid
-    					ORDER BY u.firstname ASC";
+    					    $sql = "SELECT m.uid, m.p_efin, m.service_bureau_num , a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(CASE WHEN benefits_item != '' THEN benefits_price ELSE 0 END) AS totalBenefits, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee, u.uid, u.firstname, u.lastname FROM new_app a, users u, master_ero m WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND service_bureau_num = '".$companyERO_id."' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.uid ORDER BY u.firstname ASC";
 		    			}else{
-		    					$sql = "SELECT m.uid, m.p_efin, m.service_bureau_num ,
-    					a.create_date,
-    					FROM_UNIXTIME(a.create_date) as  create_date1,
-    					SUM(CASE WHEN benefits_item != '' THEN benefits_price ELSE 0 END) AS totalBenefits,
-    					SUM(app_actual_tax_preparation_fee) AS actTaxFee,
-    					SUM(app_actual_add_on_fee) AS actAddonFee,
-    					SUM(actual_audit_guard_fee) AS actAuditGuardFee,
-    					u.uid,
-    					u.firstname,
-    					u.lastname
-    					FROM new_app a, users u,
-						master_ero m WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND service_bureau_num = '".$this->author->objlogin->efin."'
-		    			AND u.uid = a.author_id
-		    			AND a.create_date != ''
-		    			AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date'
-		    			GROUP BY u.uid
-		    			ORDER BY u.firstname ASC";
+		    				$sql = "SELECT m.uid, m.p_efin, m.service_bureau_num , a.create_date, FROM_UNIXTIME(a.create_date) as  create_date1, SUM(CASE WHEN benefits_item != '' THEN benefits_price ELSE 0 END) AS totalBenefits, SUM(app_actual_tax_preparation_fee) AS actTaxFee, SUM(app_actual_add_on_fee) AS actAddonFee, SUM(actual_audit_guard_fee) AS actAuditGuardFee, u.uid, u.firstname, u.lastname FROM new_app a, users u, master_ero m WHERE m.is_service_bureau = '1' AND u.uid = m.uid AND service_bureau_num = '".$this->author->objlogin->efin."' AND u.uid = a.author_id AND a.create_date != '' AND DATE(FROM_UNIXTIME(a.create_date)) between '$before30_date' AND '$todate_date' GROUP BY u.uid ORDER BY u.firstname ASC";
 		    				}
     							
     					$res = $this->db->query($sql);

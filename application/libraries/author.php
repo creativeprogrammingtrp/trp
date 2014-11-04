@@ -185,16 +185,29 @@ class Author{
 		//echo "SELECT * from users where (efin = '".$t_efin."')  AND  name = '$t_user' AND pass = '$t_password' ";
 		if ($uid != 0) // comments added by Azfar : if not admin
 		{
-            $sql = "SELECT * from users where (efin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' AND (status = '0' OR status = '1' OR status = '2' OR status = '4')"; // user checking wih efin
+            $sql = "SELECT * from users where (efin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' "; // user checking wih efin
             $query = $this->CI->db->query($sql);
 
             if ($query->num_rows() > 0){
-                $flag = 1;
+                $row = $query->row_array();
+                if($row["status"] == 3 OR $row["status"] == 5){
+                    $flag = 2; // if account diactivated or rejected
+                }else{
+                    $flag = 1;
+                }
+
+               // echo "1-". $query->num_rows();
             }else{
-                $sql1 = "SELECT * from users where (ptin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' AND (status = '0' OR status = '1' OR status = '2' OR status = '4')"; // user checking wih efin
+                $sql1 = "SELECT * from users where (ptin = ".$t_efin.")  AND  name = '$t_user' AND pass = '$t_password' "; // user checking wih efin
                 $query = $this->CI->db->query($sql1);
                 if ($query->num_rows() > 0){
-                    $flag = 1;
+                    $row = $query->row_array();
+                    if($row["status"] == 3 OR $row["status"] == 5){
+                        $flag = 2; // if account diactivated or rejected
+                    }else{
+                        $flag = 1;
+                    }
+                   // echo "2-". $query->num_rows();
                 }
             }
 			//$sql = "SELECT * from users where  name = '$t_user' AND pass = '$t_password' "; // user checking wihout efin
@@ -202,7 +215,11 @@ class Author{
 		else{
             $sql = "SELECT * from users where name = '$t_user' AND pass = '$t_password' AND (status = '0' OR status = '1' OR status = '2' OR status = '4')";
             $query = $this->CI->db->query($sql);
-            $flag = 1;
+            if ($query->num_rows() > 0) {
+                $flag = 1;
+            }
+           // $flag = 1;
+           // echo "3-". $query->num_rows();
         }
 
 		//$query = $this->CI->db->query($sql);
@@ -248,13 +265,13 @@ class Author{
                 }else{
                     $this->objlogin->parentUid 	= 0;
                 }
-                return true;
+                //return $flag;
             }
        // }
+
+        return $flag;
 		
-		
-		
-		return false;
+		//return false;
 	}
 	
 	function UpdateLogin(){   	    

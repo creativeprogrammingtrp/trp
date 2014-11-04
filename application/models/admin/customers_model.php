@@ -16,7 +16,11 @@ class Customers_model extends CI_Model {
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
     	if($this->author->objlogin->uid != '1'){
-    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
+            }else{
+                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.author_id = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
+            }
     	}else{
     		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid ORDER BY c.first_name ASC";
     	}

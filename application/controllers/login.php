@@ -22,12 +22,15 @@ class Login extends CI_Controller{
 		$this->name 	= $this->lib->escape($_POST["u"]);
 		$this->pass 	= $this->lib->escape($_POST["p"]);
                 
-		$page = 'no';      
-		if($this->author->checkLogin($this->efin,$this->name, $this->pass)){
+		$page = 'no';
+        $checkStatus = $this->author->checkLogin($this->efin,$this->name, $this->pass);
+		if($checkStatus == 1){
 		//if($this->author->checkLogin($this->name, $this->pass)){
 			$this->session->set_userdata('sess_login', $this->author->objlogin);    
                 $page = "OK";
-		}
+		}elseif($checkStatus == 2){
+            $page = "Reject";
+        }
 		echo $page;	
 	}
 	

@@ -13,7 +13,23 @@ class Reporting extends CI_Controller{
 
     public function index(){
         $data = array('title_page'=>"Reporting");
-        $this->system->parse("reporting/reporting.htm",$data);
+        $data['widthfromadmin'] = ($this->author->objlogin->role['rid'] == 3)?'col-md-12':'col-md-6';
+
+
+        if($this->author->objlogin->isemployee != 1) { // if not employee
+
+            $officedata = $this->system->getOfficeInfo();
+
+            $data['alloffice'] = $officedata['officeCombo'];
+            $data['selectedCompanyName'] = $officedata['selectedOffice'];
+            $this->system->parse("reporting/reporting.htm", $data);
+        }else{
+            $data['hidefromadmin'] = ($this->author->objlogin->role['rid'] == 3)?'style="display:none"':'';
+            $data['hidefromEmployee'] = ($this->author->objlogin->isemployee == 1)?'style="display:none"':'';
+            $this->system->parse("reporting/reporting_employee.htm", $data);
+        }
+
+
     }
     
     public function showBankProductFundedReport() {

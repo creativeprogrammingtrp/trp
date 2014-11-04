@@ -602,7 +602,7 @@ class Adjustment extends CI_Controller{
        				</tr>';
         }
         $html_old .= '</table>';
-
+        $html_old .= '<input type="hidden" name="itemsAcc[]" value="">';
 
     	$data['result'] = htmlspecialchars(json_encode($result));
     	//echo htmlspecialchars($string, ENT_COMPAT,'ISO-8859-1', true);
@@ -658,7 +658,8 @@ class Adjustment extends CI_Controller{
 
             $transactionCode = $pcheck['transaction_code']; // '320'; // 3 digit
 
-            $w_amount = $pcheck['check_amount']; // '26420';
+            $w_amount = str_replace(".","",$pcheck['check_amount']); // '26420';
+            //str_replace($vowels, "", "Hello World of PHP");
             $amount = str_pad($w_amount, 10, "0", STR_PAD_LEFT); // 10 digit
 
             $w_additional = $pcheck['w_individual_name'];  // 'MARY MOORE';
@@ -686,7 +687,7 @@ class Adjustment extends CI_Controller{
 
             $blankSpace = str_pad('', 3); // 3 digit
 
-            $w_tamount = $totalCheckAmount; //116564;
+            $w_tamount = str_replace(".","",$totalCheckAmount); //116564;
             $tamount = str_pad($w_tamount, 13, "0", STR_PAD_LEFT);// 13 digit
 
             $blankspace2 = str_pad('', 126);// 126 digit

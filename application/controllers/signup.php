@@ -38,31 +38,35 @@ class Signup extends CI_Controller{
 		$fromName = "ScaleFinancial.com";
 		$fromEmail = "info@scalefinancial.com";
 		$mailcontent = '';
-		$mailTo = $result[0]['mail'];
-		
-		$mailcontent .= "Dear ".$result[0]['name'];
-		$mailcontent .= "<p>We got password recovery request from you.</p>";
-		$mailcontent .= "<p>Your login info:</p>";
-		$mailcontent .= "<p>Username: ".$result[0]['name']."</p>";
-		$mailcontent .= "<p>Password: ".$result[0]['pass']."</p>";
-		$mailcontent .= "<p>Regards,<br>".$fromName."</p>";
-		$mailcontent .= "<p>&nbsp;</p>";
-		
-		//$to = 'zishanmomin@gmail.com';
-		$to = 'shuvro@osourcebd.com';
-		$subject = 'Forgot Password request from ScaleFinancial.com';
-		
-		$body = "<html><head><title>$subject</title></head><body> {$mailcontent} <br> <br> <br>Regards,<br><b>Priyank</b></body></html>";
-		
-		$headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		$headers .= 'From: '.$fromName.'<'.$fromEmail.'>' . "\r\n";
-		
-		
-		if(mail($to, $subject,$body, $headers)){
-			echo "ok";
-		}else{
-			echo "error";
-		}
+        if(sizeof($result) >0 ) {
+            $mailTo = $result[0]['mail'];
+
+            $mailcontent .= "Dear " . $result[0]['name'];
+            $mailcontent .= "<p>We got password recovery request from you.</p>";
+            $mailcontent .= "<p>Your login info:</p>";
+            $mailcontent .= "<p>Username: " . $result[0]['name'] . "</p>";
+            $mailcontent .= "<p>Password: " . $result[0]['pass'] . "</p>";
+            $mailcontent .= "<p>Regards,<br>" . $fromName . "</p>";
+            $mailcontent .= "<p>&nbsp;</p>";
+
+            //$to = 'zishanmomin@gmail.com';
+            $to = $mailTo; //'shuvro@osourcebd.com';
+            $subject = 'Forgot Password request from ScaleFinancial.com';
+
+            $body = "<html><head><title>$subject</title></head><body> {$mailcontent} <br> <br> <br>Regards,<br><b>Priyank</b></body></html>";
+
+            $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: ' . $fromName . '<' . $fromEmail . '>' . "\r\n";
+
+
+            if (mail($to, $subject, $body, $headers)) {
+                echo "ok";
+            } else {
+                echo "error";
+            }
+        }else{
+            echo "error";
+        }
 		//$this->lib->mail_simple($mailTo, "Password Recovery Email.", $this->lib->getMailInfor('site_info', 'email'), $this->lib->getMailInfor('site_info', 'signature'), $mailcontent);
 		
 	}
@@ -111,11 +115,11 @@ class Signup extends CI_Controller{
 			$mailcontent .= "<p>We're thrilled to have you on board. Be sure to save these account details for future reference: </p>";
 			$mailcontent .= "<p>Your username is: ". $this ->input ->post('username') ."</p>";
 			$mailcontent .= "<p>Forgot your password? <a href='#'>Find it here</a></p>";
-			$mailcontent .= "<strong>LETÕS GET STARTED! </strong>";
+			$mailcontent .= "<strong>LETï¿½S GET STARTED! </strong>";
 			$mailcontent .= "<p>To get started go to TRPPlus.com and sign in. Once your signed in you will need to complete the company registration and finish the training</p>";
 			$mailcontent .= "<p>&nbsp;</p>";
 			$mailcontent .= "<p>&nbsp;</p>";
-			$mailcontent .= "<p>Questions? Concerns? DonÕt hesitate to get in touch.</p>";
+			$mailcontent .= "<p>Questions? Concerns? Donï¿½t hesitate to get in touch.</p>";
 			$mailcontent .= "<p>&nbsp;</p>";
 			$mailcontent .= "<p>&nbsp;</p>";
 			$mailcontent .= "<p>Happy working,<br>The Scale Financial Crew </p>";

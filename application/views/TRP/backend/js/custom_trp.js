@@ -6093,7 +6093,7 @@ function showFormAddService(parent){
             parent_body.modal('show');	
     });
      $parent.find(".btn-cancel").click(function(){
-              parent_body.find("#modal_addservice").modal('hide');
+              parent_body.findShowAllEros
     });
 }
 

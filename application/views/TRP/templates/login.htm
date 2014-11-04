@@ -194,7 +194,8 @@
 							
 						</section>
 					</div>
-                    <div class="grid_3 successmessage" style="margin: 0px;width: 250px;display:none;"><h3 style="font-size:16px">Email sent successfully.</h3></div>
+                    <div class="grid_3 successmessage" style="margin: 0px;width: 250px;display:none;"><h3 style="font-size:16px">Password Recovery Email Sent Successfully.</h3></div>
+                    <div class="grid_3 errormessage" style="margin: 0px;width: 250px;display:none;"><h3 style="font-size:16px; color :#de6666;">EFIN / PTIN # or Username Not Match.</h3></div>
 					<div class="grid_3 signup_signin"  style="width: 250px; margin:0px;">
 						<div id="signup" class="">
 						    <header class="reveal-modal-header">
@@ -205,7 +206,7 @@
 						        <form action="" method="post" class="signin" id="formLogin" name="formLogin"  ><!--onsubmit="return login_('efin_signin','username_signin','password_signin');"-->
 
             <p class="clearfix">
-                <label>EFIN :</label>
+                <label>EFIN / PTIN #:</label>
                 <input type="text" value="" id="efin_signin" />
             </p>
             <p class="clearfix">
@@ -238,7 +239,7 @@
 						        <form action="#" method="post" class="signin" id="forgotpassword_form" name="forgotpassword_form"  ><!--onsubmit="return login_('efin_signin','username_signin','password_signin');"-->
 
             <p class="clearfix">
-                <label>EFIN :</label>
+                <label>EFIN / PTIN # :</label>
                 <input type="text" value="" id="f_efin_signin" name="f_efin_signin" />
             </p>
             <p class="clearfix">
@@ -470,16 +471,21 @@
 	        			senddata : 'yes',
 	                    
 	        			f_efin_signin : $("#f_efin_signin").val(),
-	        			f_username_signin : $("#f_username_signin").val(),
+	        			f_username_signin : $("#f_username_signin").val()
 	        			     
 	        		}, function(data) {
 	        			if(data == 'ok'){
 							$('#f_efin_signin').val('');
 							$('#f_username_signin').val('');	
 							$('.signup_signin').slideUp("slow");
-							$('.successmessage').show();
-	                         scrolFocus(".successmessage");     
-	        			}
+                            $('.errormessage').hide();
+                            $('.successmessage').show();
+	                        scrolFocus(".successmessage");
+	        			}else{
+                            $('.successmessage').hide();
+                            $('.errormessage').show();
+                            scrolFocus(".errormessage");
+                        }
 	        			
 	        		}, "html");
 

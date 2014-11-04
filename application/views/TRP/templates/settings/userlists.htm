@@ -70,12 +70,13 @@
                                     <input type="text" class="form-control ui-wizard-content" name="add_ptin" value="" id="add_ptin">
                                 </div>
                             </div>
-                            <div class="form-group">
+                           <!-- <div class="form-group">
                                 <label for="add_efin" class="control-label col-md-4">EFIN # (Optional)</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control ui-wizard-content" name="add_efin" value="" id="add_efin">
                                 </div>
                             </div>
+                            -->
                             <div class="form-group">
                                 <label for="add_first_name" class="control-label col-md-4">First Name</label>
                                 <div class="col-md-6">
@@ -342,7 +343,7 @@
             $.post("index.php/admin/settings/addUser", {
             add : 'yes',
             ptin : $("#add_ptin").val(),
-            efin : $("#add_efin").val(),
+           // efin : $("#add_efin").val(),
             first_name : $("#add_first_name").val(),
             last_name : $("#add_last_name").val(),
             username : $("#add_user_name").val(),
@@ -361,7 +362,7 @@
                 loadClients();
                 
                 $("#add_ptin").val('');
-                $("#add_efin").val('');
+               // $("#add_efin").val('');
                 $("#add_first_name").val('');
                 $("#add_last_name").val('');
                 $("#add_user_name").val('');

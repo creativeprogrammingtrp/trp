@@ -63,7 +63,7 @@ AND users_roles.rid = 5
 AND efin_pefin.pefin =".$this->author->objlogin->efin."
         ORDER BY users.uid DESC";
     	} else {
-    		$sql = "select *,users.name as username ,users.efin as user_efin,roles.name as role  from users join roles  join users_roles join master_ero  on users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid = master_ero.uid where status <> 3 and  users_roles.rid = 5 ORDER BY users.uid DESC";
+    		$sql = "select *,users.name as username ,users.efin as user_efin,roles.name as role  from users join roles  join users_roles join master_ero  on users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid = master_ero.uid where  users_roles.rid = 5 ORDER BY users.uid DESC";
     	}
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
@@ -376,7 +376,7 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
             'company_name' => $this->lib->escape($_POST['company_name']),
             'business_addr_1' => $this->lib->escape($_POST['address_1']),
             'business_addr_2' => $this->lib->escape($_POST['address_2']),
-        		'business_phone' => $this->lib->escape($_POST['com_phoneno']),
+        	'business_phone' => $this->lib->escape($_POST['com_phoneno']),
             'business_zip' => $this->lib->escape($_POST['zipcode']),
             'business_city' => $this->lib->escape($_POST['city']),
             'business_state' => $this->lib->escape($_POST['state']),
@@ -485,16 +485,25 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
     
     	$this->db->where('uid', $this->lib->escape($_POST['uid']));
     	$this->db->update('users', $data);
-    	if ($_POST['option'] == 'allero') {
-    		return $this->loadAllEros();
-    	} else if ($_POST['option'] == 'pendingero') {
-    		return $this->loadEro();
-    	}elseif ($_POST['option'] == 'pendingregistrationero'){
-    		return $this->loadPendingRegistrationEro();
-    	} 
-    	else {
-    		return $this->loadApprovedEro();
-    	}
+
+        if($this->author->objlogin->uid != '1'){
+            if ($_POST['option'] == 'allero') {
+
+                return $this->loadAllEros();
+            } else if ($_POST['option'] == 'pendingero') {
+                return $this->loadEro();
+            }elseif ($_POST['option'] == 'pendingregistrationero'){
+                return $this->loadPendingRegistrationEro();
+            }
+            else {
+                return $this->loadApprovedEro();
+            }
+        }else{
+            if ($_POST['option'] == 'allero') {
+
+                return $this->loadAllErosForAdmin();
+            }
+        }
     }
 
     public function resetPassword() {

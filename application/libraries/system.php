@@ -112,6 +112,7 @@ class System{
 			$data_main['list_baner_right'] = $this->list_baner_right;
 			$data_main['style'] = ($this->CI->author->objlogin->role['rid'] == 5)?'style="display:none"':'';
 			$data_main['hidefromadmin'] = ($this->CI->author->objlogin->role['rid'] == 3)?'style="display:none"':'';
+            $data_main['hidefromEmployee'] = ($this->CI->author->objlogin->isemployee == 1)?'style="display:none"':'';
 			$data_main['message'] = $this->message;
 			$data_main['client_center_top'] = $this->client_center_top;
 			if(count($this->timeclock) > 0){
@@ -242,10 +243,18 @@ AND users.efin =".$this->CI->author->objlogin->efin."");
 		
 		//if($result->num_rows() > 0){
 			//$res = $result->result_array();
+        $htm .='<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">';
 			foreach ($result as $resul){
-				$htm .= '<option value="'.$resul["company_name"].'">'.$resul["company_name"].'</option>';
+            //<?php if ($row[month] == 'January') echo ' selected="selected"';
+				$htm .= '<option value="'.$resul["uid"].'"';
+                if(isset($_POST['office_list'])){
+                    if($resul["uid"] == $_POST['office_list']){
+                        $htm .= 'selected="selected"';
+                    }
+                }
+                $htm .= '>'.$resul["company_name"].'</option>';
 			}
-			
+		$htm .= '</select>';
 			return  array('officeCombo' => $htm, 'selectedOffice' => $selectedOffice);
 		//}
 	}
@@ -286,10 +295,11 @@ AND users.efin =".$this->CI->author->objlogin->efin."");
                                 $data['compiliance_test'] = $this->compiliance_test_setting;
                                 $data['order_supplies_setting'] = $this->order_supplies_setting;
 
-                if($this->CI->author->objlogin->isemployee == 0) { // if this is employee
+                if($this->CI->author->objlogin->isemployee == 0) { // if this is ERO
                     $officedata = $this->getOfficeInfo();
                     $data['alloffice'] = $officedata['officeCombo'];
                     $data['selectedCompanyName'] = $officedata['selectedOffice'];
+
                 }
 
                 ($this->CI->author->objlogin->firstname != '') ? $data['login_name'] = $this->CI->author->objlogin->firstname.' '.$this->CI->author->objlogin->lastname : $data['login_name'] = $this->CI->author->objlogin->name;
@@ -524,6 +534,7 @@ AND users.efin =".$this->CI->author->objlogin->efin."");
 		}
 		return $value;
 	}
+
 	function set_sysvals($title,$value){
 		$value = serialize($value);
 		$sysval_id = 0;
@@ -539,6 +550,7 @@ AND users.efin =".$this->CI->author->objlogin->efin."");
 		}
 		return $sysval_id;
 	}
+
 	function loadTheme(){
 		$query = $this->CI->db->query("select sysval_value from sysvals where sysval_title = '_themes_'");
 		if ($query->num_rows() > 0){

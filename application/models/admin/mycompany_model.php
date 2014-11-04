@@ -79,8 +79,83 @@ class Mycompany_model extends CI_Model {
         }
         return $result;
     }
-    
-    
+
+
+    function loadInfoForERO() {
+        $check = false;
+
+
+
+
+        $sql_1 = "select *, efin as ero_efin from master_ero  where uid = '" . $this->author->objlogin->parentUid . "' ";
+        $res_1 = $this->db->query($sql_1);
+        if ($res_1->num_rows() > 0) {
+            $row_1 = $res_1->row_array();
+            if ($row_1['image'] !== '') {
+                $row_1['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row_1['image'] . '">';
+            } else {
+                $row_1['image'] = '';
+            }
+            $check = true;
+        }
+
+
+            $sql_2 = "select users.*, roles.name as role from users join users_roles join roles on users.uid = users_roles.uid and users_roles.rid = roles.rid where users.uid = '" . $this->author->objlogin->uid . "' ";
+        $res_2 = $this->db->query($sql_2);
+        if ($res_2->num_rows() > 0) {
+            $row_2 = $res_2->row_array();
+            $row_2['pass'] = $this->author->decode_password($row_2['pass']);
+            $row_2['disabled'] = ($this->author->objlogin->role['rid'] == 5) ? 'yes' : 'no';
+        }
+
+        if ($check == true) {
+            $result = array_merge($row_1, $row_2);
+           // $result = array_merge($row, $result1);
+        } else {
+            $result = $row_2;
+        }
+        return $result;
+    }
+
+
+    function loadInfoForEROForEmployee() {
+        $check = false;
+
+        $sql_1 = "select *, efin as ero_efin from master_ero  where uid = '" . $this->author->objlogin->parentUid . "' ";
+        $res_1 = $this->db->query($sql_1);
+        if ($res_1->num_rows() > 0) {
+            $row_1 = $res_1->row_array();
+            if ($row_1['image'] !== '') {
+                $row_1['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row_1['image'] . '">';
+            } else {
+                $row_1['image'] = '';
+            }
+            $check = true;
+        }
+
+
+        $sql = "select tax_preparation_fee as emp_tax_preparation_fee, bank_transmission_fee as  emp_bank_transmission_fee, sb_fee as emp_sb_fee, add_on_fee as emp_add_on_fee  from master_ero  where uid = '" . $this->author->objlogin->uid . "' ";
+        $res = $this->db->query($sql);
+        if ($res->num_rows() > 0) {
+            $row = $res->row_array();
+        }
+
+        $sql_2 = "select users.*, roles.name as role from users join users_roles join roles on users.uid = users_roles.uid and users_roles.rid = roles.rid where users.uid = '" . $this->author->objlogin->uid . "' ";
+        $res_2 = $this->db->query($sql_2);
+        if ($res_2->num_rows() > 0) {
+            $row_2 = $res_2->row_array();
+            $row_2['pass'] = $this->author->decode_password($row_2['pass']);
+            $row_2['disabled'] = ($this->author->objlogin->role['rid'] == 5) ? 'yes' : 'no';
+        }
+
+        if ($check == true) {
+            $result1 = array_merge($row_1, $row_2);
+            $result = array_merge($row, $result1);
+        } else {
+            $result = $row_2;
+        }
+        return $result;
+    }
 
     function saveCompany() {
         $file_id = (isset($_POST['file_id']) && $_POST['file_id'] != '') ? $_POST['file_id'] : '';
@@ -90,6 +165,7 @@ class Mycompany_model extends CI_Model {
         $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $this->author->objlogin->uid));
         
         $data = array(
+            'efin' => $this->lib->escape($_POST['efin']),
             'p_efin' => $this->lib->escape($_POST['p_efin']),
         		'service_bureau_num' => $this->lib->escape($_POST['service_bureau_num']),
         		'is_parent_efin' => $this->lib->escape($_POST['is_parent_efin']),
@@ -154,6 +230,7 @@ class Mycompany_model extends CI_Model {
         $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $ero_id));
 
         $data = array(
+            'efin' => $this->lib->escape($_POST['efin']),
             'p_efin' => $this->lib->escape($_POST['p_efin']),
             'service_bureau_num' => $this->lib->escape($_POST['service_bureau_num']),
             'is_parent_efin' => $this->lib->escape($_POST['is_parent_efin']),
@@ -214,6 +291,7 @@ class Mycompany_model extends CI_Model {
     	$filename = $file_id . '.' . $ext;
     
     	$data = array(
+                'efin' => $this->lib->escape($_POST['efin']),
     			'p_efin' => $this->lib->escape($_POST['p_efin']),
     			'image' => $this->lib->escape($filename),
     			'company_name' => $this->lib->escape($_POST['company_name']),
@@ -242,19 +320,23 @@ class Mycompany_model extends CI_Model {
     		$data['efin'] = $this->lib->escape($_POST['efin']);
     		$this->db->insert("master_ero", $data);
     	}
-    
-    	// if(isset($_POST['bank_name'])){
-    	$this->saveBankAccount();
-    	//}
-    
+
+        if($this->author->objlogin->isemployee != 1) { // if not employee
+            // if(isset($_POST['bank_name'])){
+            $this->saveBankAccount();
+            //}
+        }
     	// if(isset($_POST['tax_preparation_fee'])){
     	$this->saveBankFees();
     	// }
     
     	$this->saveSetupProfile();
-    
-    
-    	return $this->loadInfor();
+
+        if($this->author->objlogin->isemployee != 1) { // if not employee
+            return $this->loadInfor();
+        }else{
+            return $this->loadInfoForEROForEmployee();
+        }
     }
     
     function checkParentEFINStatus(){
@@ -461,7 +543,7 @@ class Mycompany_model extends CI_Model {
             'created' => strtotime(gmdate("Y-m-d H:i:s")),
             'access' => strtotime(gmdate("Y-m-d H:i:s")),
             'login' => strtotime(gmdate("Y-m-d H:i:s")),
-            'efin' => $this->lib->escape($_POST['efin']),
+            //'efin' => $this->lib->escape($_POST['efin']),
             'ptin' => $this->lib->escape($_POST['ptin']),
             'is_employee' => '1'
         );
@@ -491,7 +573,7 @@ class Mycompany_model extends CI_Model {
                     'uid' => $last_id
                 );
 
-                $this->db->insert(' master_ero', $data_masterero);
+                $this->db->insert('master_ero', $data_masterero);
             } 
         }
         return $this->loadList();
@@ -659,10 +741,20 @@ class Mycompany_model extends CI_Model {
 		}
 		
 		*/
-		
-		$sql1 = "select applicent_id as app_id,uid,first_name,last_name,ss_number from new_applicent where uid = '".$this->author->objlogin->uid."' ORDER BY first_name ASC";
-		$res1 = $this->db->query($sql1);
-		
+        if($this->author->objlogin->uid != '1') {
+            if ($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql1 = "select applicent_id as app_id,uid,first_name,last_name,ss_number from new_applicent where uid = '" . $this->author->objlogin->uid . "' ORDER BY first_name ASC";
+                $res1 = $this->db->query($sql1);
+            }else{
+                $sql1 = "select applicent_id as app_id,uid,first_name,last_name,ss_number from new_applicent where author_id = '" . $this->author->objlogin->uid . "' ORDER BY first_name ASC";
+                $res1 = $this->db->query($sql1);
+            }
+        }else{ // for admin
+            $sql1 = "select applicent_id as app_id,uid,first_name,last_name,ss_number from new_applicent ORDER BY first_name ASC";
+            $res1 = $this->db->query($sql1);
+        }
+
+
 		foreach ($res1->result_array() as $row1) {
 			// $data = $res->row_array();
 			$first_name1 = $row1['first_name'];

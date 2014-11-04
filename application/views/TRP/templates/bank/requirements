@@ -32,7 +32,7 @@ Bank ID                            808
 
 14. (d) Have to be add Time under Positive pay view section.
 
-15. Have to be fixed fileAcc when not found previous account info
+15. (d) Have to be fixed fileAcc when not found previous account info
 
 16. (d) have to be add ERO column under coustomer section from admin panel as like Insurance tab. and have to be delete DOB.
 
@@ -54,13 +54,58 @@ Bank ID                            808
 
 25. (d) after complete step-1, & step 2 it's repeating all the steps agian. so it's error.
 
-26. have to be add EFIN under add employee.
+26. (d) have to be add EFIN under add employee.
 
 27. udner ERO, after click on view all, we need back button under all customer list page.
 
 28. under funded report : Posted date, name, expected refund, actual refund , fees (Txt fee, addon ffee, audint ffe), refund to customer, payment type.
 
 20. (d) delete all info from db.
+
+21. (d) Have to be remove By employee from bank product report for Employee.
+
+22. (d) Discount benefits & Insurance report by employee will be remove, and Total Income & service burue also will be remove for employee
+
+23. (d) under customer tab, need to show Date (Custoemr create data.) from Admin, ERO, Employee.
+
+24. (d) Account Temporarily Deactivated.
+
+25. (d) Under Setting : for employee: Under company setting tab: every thing will come from ero information. so employee will not be able to change any thing.
+    profile setting will be same as it is now, have to be remove Employee & Banking info for employee, and fees info will be same as it is now.
+
+26. (d) For the company setup with modal box that will be same functionality like setting tab.
+
+27. (d) Have to be add EFIN / PTIN # with login screen
+
+28. (d) Forgot password, add PTIN also for recover employee password.
+
+29. (d) make insurance tab for employee
+
+30. (d) make bemefits tab for employee
+
+30. (d) xHave to be remove EFIN from Add employee page. bcz. we can login in with this system through PTIN #.
+
+31. 1)      In the Detail Record, the amount will be in positions 35-44 (should be 10-digits long). Currently this is in positions 35-43. Please add one additional leading zero to this field.
+
+32. 2)      In the Trailer Record, the Total Amount should be in positions 26-38. Currently this is in positions 26-37 (should be 13-digits long). Please add one additional leading zero to this field.
+
+33. New applciation cursor is not showing.
+
+34. New aplciation .00 need to show by default when inputing amount.
+
+35. cancel button will go to the dashboard
+
+36. add those customers again to Zishan ERO
+
+37. For Parent EROs call the tab “ERO Accounts”. Make it like Admin ERO tab. yes... you need only one tab iike admin ERO tab, you don't need pending , approved or rejected with separated tab.. under parent ERO panel.
+
+38. parent ERO will be able to See only  child ERO information? like Company setting, profile setting, bank fee, employee, bank info etc.
+
+39. From admin panel & prent ERO under all ERO page it's now showing all the ERO with employee, but it's should show only ERO accounts not EMPLOYEE.. So for admins, only show all ERO not their employees. If admin wants to see employee for each ERO, he can click on Edit button for that
+
+40. have to be add confirmation message when any status will change like Approved, Rejected etc.
+
+41. Have to be read full ACH formate doc and have to be make Question.
 
 
 
@@ -69,7 +114,6 @@ Bank ID                            808
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-==-==-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-1. As employee: under bank prodcut Employee column will be removed from every tab.
-
+1. (d) As employee: under bank prodcut Employee column will be removed from every tab.
 
 

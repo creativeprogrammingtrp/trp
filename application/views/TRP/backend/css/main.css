@@ -2972,6 +2972,15 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	background-repeat: no-repeat;
     margin:30px 0px;
 }
+
+.setup_steps1_emp{
+    height: 78px;
+    background: url("../img/setup_steps_icons_emp.png");
+    background-repeat: no-repeat;
+
+    margin:30px 82px;
+}
+
 .step1{
 	background-position: 22px 0px;
 }
@@ -2998,7 +3007,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 
 
-		
+
+
+
+
+
 /* w-iconbox */
 .w-iconbox {
 	position: relative;

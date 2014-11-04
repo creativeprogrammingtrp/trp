@@ -115,11 +115,19 @@ public function addNewApplicent() {
     	$data['states'] = $this->m_com->loadStatesList();
     	
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingInsurance());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('services/pending_insurance.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingInsurance());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/pending_insurance.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingInsuranceForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/pending_insurance_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingInsuranceForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -133,11 +141,19 @@ public function addNewApplicent() {
     	$data = array();
     	$data['states'] = $this->m_com->loadStatesList();
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveInsurance());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('services/active_insurance.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveInsurance());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/active_insurance.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveInsuranceForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/active_insurance_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveInsuranceForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -151,11 +167,19 @@ public function addNewApplicent() {
     	$data = array();
     	$data['states'] = $this->m_com->loadStatesList();
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledInsurance());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('services/cancelled_insurance.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledInsurance());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/cancelled_insurance.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledInsuranceForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/cancelled_insurance_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledInsuranceForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -170,11 +194,19 @@ public function addNewApplicent() {
     	$data['states'] = $this->m_com->loadStatesList();
     	
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingBenefits());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('services/pending_benefits.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingBenefits());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/pending_benefits.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingBenefitsForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/pending_benefits_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showPendingBenefitsForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -189,11 +221,19 @@ public function addNewApplicent() {
     	$data['states'] = $this->m_com->loadStatesList();
     	
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveBenefits());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('services/active_benefits.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveBenefits());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/active_benefits.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveBenefitsForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/active_benefits_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showActiveBenefitsForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -208,11 +248,19 @@ public function addNewApplicent() {
     	$data['states'] = $this->m_com->loadStatesList();
     	
     	if($this->author->objlogin->uid != '1'){
-	    	$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledBenefits());
-	    	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-	    		$this->system->parse_templace('services/cancelled_benefits.htm', $data);
-	    		exit();
-	    	}
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledBenefits());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/cancelled_benefits.htm', $data);
+                    exit();
+                }
+            }else{
+                $data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledBenefitsForEmployee());
+                if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+                    $this->system->parse_templace('services/cancelled_benefits_employee.htm', $data);
+                    exit();
+                }
+            }
     	}else{
     		$data['dataLoad'] = "dataClient = " . json_encode($this->m_services->showCancelledBenefitsForAdmin());
     		if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {

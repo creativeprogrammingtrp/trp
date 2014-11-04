@@ -141,9 +141,12 @@ $(function(){
     		e:efin,u:username,p:password
     	},
     	function(data){
-    		if(data === 'OK'){
+    		if(data == 'OK'){
     			 goHome();
-    		}else{
+    		}else if(data == 'Reject'){
+                $("#warninglogin").empty().append($('<div class="alert alert-error" style="padding-top:10px;margin-top:10px;border-radius:0px;border-right:0px;border-left:0px;" >Account Temporarily Deactivated.</div>'));
+            }
+            else{
                     $("#warninglogin").empty().append($('<div class="alert alert-error" style="padding-top:10px;margin-top:10px;border-radius:0px;border-right:0px;border-left:0px;" >The EFIN or name or password incorrect.</div>'));  
                 }
     	});

@@ -19,7 +19,13 @@ class Ero extends CI_Controller{
     
     public function index(){
     	$data = array('title_page'=>"Ero");
-    	$this->system->parse("accounts/ero_admin.htm",$data);
+        if($this->author->objlogin->uid != '1') {
+            if ($this->author->objlogin->isemployee != 1) { // if not employee
+                $this->system->parse("accounts/ero.htm", $data);
+            }
+        }else {
+            $this->system->parse("accounts/ero_admin.htm", $data);
+        }
     }
     
     

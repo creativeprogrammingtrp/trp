@@ -1,0 +1,796 @@
+
+<form class="form-horizontal form-box remove-margin" method="post" action="" id="form_validation_company_info" novalidate="novalidate">
+    <!-- Form Header -->
+    
+
+
+		<!-- Panel start --> 
+    <!-- Form Content -->
+    <div class="form-box-content">
+        <!-- First Step -->
+        <div class="step ui-formwizard-content" id="advanced-first" style="display: block;">  
+            
+            <div class="col-md-4" style="padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Company Info</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-briefcase"></i></span>
+        </header>
+        <div class="panel-body">
+        
+            <input type="hidden" name="is_view" id="is_view" value="">
+            <input type="hidden" name="pefin_status" id="pefin_status" value="">
+            
+             <div class="form-group">
+                <div class="col-md-12 choose_file">
+                   <ul class="thumbnails clearfix">
+                    <li>
+                        <a class="thumbnail" style="width:285px;height:78px;overflow: hidden;" name="name"  id="signature_show1" href="javascript:void(0)">
+                            <img style="width:160px;height:120px;" align="middle" name="name" class="img-rounded" alt="Logo" src="../backend/img/placeholders/image_light_160x120.png">
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-md-12 choose_file">         
+                    <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_bt1" value="" >Upload Logo</button>
+                    <!--<input type="file" class="form-control" name="example-file" id="example-file">-->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 form-group1">
+	                <label for="company_name1" class="control-label col-md-12">Company Name<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" name="company_name1" required="" id="company_name1" value="">
+	                </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="efin1" class="control-label col-md-12">EFIN #</label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" disabled="disabled" class="form-control ui-wizard-content" value="" name="efin1" id="efin1">
+	                </div>
+	            </div>    
+            </div>
+            
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="p_efin1" class="control-label col-md-12"> &nbsp; <input type="checkbox" name="pefin_check_box" value="" id="pefin_check_box"> Do you have Parent EFIN #? </label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" disabled="disabled" class="form-control ui-wizard-content" value=""  name="p_efin1" id="p_efin1">
+	                </div>
+	                <div class="col-md-12 efincheckloader" style="display:none;">
+	                	<span class="loader-04 icon-2x loader"></span>
+	                	<span id="pefinsuccess" class="text-success" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-ok"></i></span>
+	                	<span id="pefinerror" class="text-danger" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-remove"></i> This Parent EFIN # does not exist.</span>
+	                </div>
+	             </div>   
+            </div>
+            
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="service_bureau_efin" class="control-label col-md-12" style='padding-right:0px;'> &nbsp; <input type="checkbox" name="pservice_bureau_check_box" value="" id="pservice_bureau_check_box"> Do you have Service Bureau EFIN#? </label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" disabled="disabled" class="form-control ui-wizard-content" value=""  name="service_bureau_efin" id="service_bureau_efin">
+	                </div> 
+	                <div class="col-md-12 sbefincheckloader" style="display:none;">
+	                	<span class="loader-04 icon-2x sbloader"></span>
+	                	<span id="sbefinsuccess" class="text-success" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-ok"></i></span>
+	                	<span id="sbefinerror" class="text-danger" style="display:none; font-size:16px; margin-top:6px"><i class="glyphicon-remove"></i> This Service Bureau EFIN # does not exist</span>
+	                </div>
+	            </div>    
+            </div>
+       </div> <!-- Panel body end -->
+    </section> <!--  Section end -->
+      </div>  
+         
+           
+           
+           <div class="col-md-4" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Business Address</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-map"></i></span>
+        </header>
+        <div class="panel-body">
+
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="address_11" class="control-label col-md-12">Address Line 1<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content" name="address_11" id="address_11" value="">
+	                </div>
+	            </div>    
+            </div>
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="address_21"
+	                       class="control-label col-md-12">Address Line 2</label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="address_21" id="address_21"
+	                           value="">
+	                </div>
+	             </div>   
+            </div>
+            
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="com_phoneno"
+	                       class="control-label col-md-12">Phone #<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="com_phoneno" id="com_phoneno"
+	                           value="">
+	                </div>
+	            </div> 
+            </div>
+            
+            
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="city1"
+	                       class="control-label col-md-12">City<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="city1" id="city1" value="">
+	                </div>
+	             </div>
+            </div>
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label class="control-label col-md-12" for="state1">State<span class="required1">*</span></label>                   
+	                <div class="col-md-12 nopadding">
+	                    <select id="state1" name="state1" class="form-control">
+	                        
+	                    </select>
+	                </div>
+	            </div>    
+            </div>
+            
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="zipcode1"
+	                       class="control-label col-md-12">Zip<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="zipcode1" id="zipcode1"
+	                           value="">
+	                </div>
+	            </div> 
+            </div>
+</div>
+</section>
+</div>
+
+<div class="col-md-4" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Mailing Address</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-map"></i></span>
+        </header>
+        <div class="panel-body">
+        
+            
+            <div class="form-group" style="margin-bottom:36px;">
+            	<div class="col-md-12 form-group1">
+	                <div class="checkbox same1 col-md-12">
+	                    <input type="checkbox" value="option1" name="example-checkbox1" id="example-checkbox11"> Same as above
+	                </div>
+	            </div>    
+            </div>
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="address_1_m1"
+	                       class="control-label col-md-12">Address Line 1<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="address_1_m1" id="address_1_m1"
+	                           value="">
+	                </div>
+	            </div>    
+            </div>
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="address_2_m1"
+	                       class="control-label col-md-12">Address Line 2</label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="address_2_m1" id="address_2_m1"
+	                           value="">
+	                </div>
+	             </div>   
+            </div>
+           
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="city_m1"
+	                       class="control-label col-md-12">City<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="city_m1" id="city_m1" value="">
+	                </div>
+	            </div>    
+            </div>
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label class="control-label col-md-12" for="state_m">State<span class="required1">*</span></label>                   
+	                <div class="col-md-12 nopadding" id="state_m1_data">
+	                   <select id="state_m1" name="state_m" class="form-control">
+	                   </select>
+	                        
+	                   
+	                </div>
+               </div> 
+            </div>
+             <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="zipcode_m1"
+	                       class="control-label col-md-12">Zip<span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="zipcode_m1" id="zipcode_m1"
+	                           value="">
+	                </div>
+	            </div>    
+            </div>
+</div>
+</section>
+</div>
+<div style="clear:both;"></div>
+<div class="col-md-12" style=""> 
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Software</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-cd"></i></span>
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+            
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Taxwise" > Taxwise <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Crosslink" > Crosslink <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="SimpleTax" > SimpleTax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="ProSeries" > ProSeries <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Lacerte" > Lacerte <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="ATX" > ATX <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="TurboTax" > TurboTax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Drake" > Drake <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Ultra Tax" > Ultra Tax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Tax Act" > Tax Act <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="TaxSlayer" > TaxSlayer <br>
+            	<input type="radio" class="tax1" name="tax" id="tax1" value="Other" > Other <br>
+            </div>
+            <!-- 
+                <label for="tax" class="control-label col-md-3">Tax Software</label>
+
+                <div class="col-md-4">
+                    <select class="form-control" name="tax" id="tax1">
+                        <option value="Taxwise">Taxwise</option>
+                        <option value="Crosslink">Crosslink</option>
+                        <option value="SimpleTax">SimpleTax</option>
+                        <option value="ProSeries">ProSeries</option>
+                        <option value="Lacerte">Lacerte</option>
+                        <option value="ATX">ATX</option>
+                        <option value="TurboTax">TurboTax</option>
+                        <option value="Drake">Drake</option>
+                        <option value="Ultra Tax">Ultra Tax</option>
+                        <option value="Tax Act">Tax Act</option>
+                        <option value="TaxSlayer">TaxSlayer</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                 -->
+            </div>
+</div>
+</section>
+</div>
+            <!--              <div class="wizard-steps row">
+                                    <div class="col-md-4 text-center active">4. Bank</div>
+                                </div>
+            
+            
+                                <div class="form-group">
+                                    <label for="example-advanced-bankname"
+                                           class="control-label col-md-3">Bank Name</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control ui-wizard-content"
+                                               name="example-advanced-bankname" id="bank_name"
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-advanced-routing"
+                                           class="control-label col-md-3">Routing</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control ui-wizard-content"
+                                               name="example-advanced-routing" id="bank_routing"
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-advanced-account"
+                                           class="control-label col-md-3">Account</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control ui-wizard-content"
+                                               name="example-advanced-account" id="bank_account"
+                                               value="">
+                                    </div>
+                                </div>-->
+            
+                
+
+                    
+
+                    
+                        
+                    
+                
+            
+				<div class="modal fade1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>		<!-- // step end -->	
+    </div> <!-- Form body end -->
+   
+    
+    <!--
+    <div class="col-md-12" id="companySaveBtn" style="padding-left: 30px; ">
+          <button class="btn btn-success" id="save" type="submit" >  &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+          
+          
+
+      </div>
+      -->
+      <div class="col-md-12" id="companySaveBtnLoad" style="display:none; padding-left: 30px">
+          <button  class=" btn btn-success" type="submit">
+                     <i class="glyphicon-refresh"></i> Saving... 
+                </button>
+      </div>
+</form>
+<br>
+<br>
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+
+var dataClient = [];
+var objGallery = [];
+var fileID = '';
+var extention = '';
+var uploadImgProduct;
+//var states = ;
+
+function loadObject() {
+	 /* Initialize Form Validation */
+   /* $('#form_validation_company_info').validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+            e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+        	company_name1: {
+                required: true,
+                minlength: 2
+            }
+        },
+        messages: {
+        	company_name1: {
+                required: 'Please enter a Company name',
+                minlength: 'Your username must consist of at least 2 characters'
+            }
+        },
+        formOptions: {
+            success: function(data) {
+                // On success status returned
+            	alert('Form Submitted 2!');
+            },
+            beforeSubmit: function(data) {
+                alert('Form Submitted!');
+            },
+            dataType: 'json',
+            resetForm: true
+        }
+    });*/
+
+// End form validation
+
+        {dataLoad}
+        loadClients();
+}
+
+function loadClients() {
+        if(dataClient.disabled == 'yes') $("#efin1").attr('disabled','disabled');
+	$("#efin1").val(dataClient.ero_efin);
+	$("#p_efin1").val(dataClient.p_efin);
+        if(dataClient.image !== ""){
+            $("#signature_show1").empty().append(dataClient.image);
+        } 
+        $("#service_bureau_efin").val(dataClient.service_bureau_num);    
+        (dataClient.is_parent_efin === '1') ?  $("#pefin_check_box").attr("checked",true) : $("#pefin_check_box").attr("checked",false)  ;
+        (dataClient.is_service_bureau === '1') ?  $("#pservice_bureau_check_box").attr("checked",true) : $("#pservice_bureau_check_box").attr("checked",false)  ;
+	
+        if(dataClient.p_efin != ''){
+        	if(dataClient.is_view === '0' && dataClient.pefin_status === '1' ||  dataClient.pefin_status === '0') 
+        	{
+        		$("#pefin_check_box").attr('disabled','disabled');
+        		if(dataClient.is_service_bureau === '1') $("#pservice_bureau_check_box").attr('disabled','disabled'); 
+        	}
+        	else if(dataClient.is_view === '1' && dataClient.pefin_status === '2'){
+        		$("#pefin_check_box").removeAttr('disabled');
+        		$("#p_efin1").removeAttr('disabled');
+        		
+        		if(dataClient.is_service_bureau === '1') $("#pservice_bureau_check_box").attr('disabled','disabled'); else $('#service_bureau_efin').removeAttr('disabled');
+        		
+        		$(".efincheckloader").css('display','block');
+        		$(".loader").css('display','none');
+        		
+        		$("#pefinerror").css('display','block');
+        		 $("#pefinerror").empty().append('Parent EFIN is Rejected.');
+        		//$("#sbefinerror").css('display','block');
+        	}
+        }
+        
+        
+        $("#is_view").val(dataClient.is_view);
+        $("#pefin_status").val(dataClient.pefin_status);
+        
+    $("#company_name1").val(dataClient.company_name);
+    $("#com_phoneno").val(dataClient.business_phone);
+	$("#address_11").val(dataClient.business_addr_1);
+	$("#address_21").val(dataClient.business_addr_2);
+	$("#zipcode1").val(dataClient.business_zip);
+	$("#city1").val(dataClient.business_city);
+	$("#state1").empty().append('{states}');
+	//$("#state_m1_data").html({states});
+	$("#state1").val(dataClient.business_state);
+        (dataClient.same_as === '1') ?  $("#example-checkbox11").attr("checked",true) : $("#example-checkbox11").attr("checked",false)  ;
+	$("#address_1_m1").val(dataClient.mail_addr_1);
+	$("#address_2_m1").val(dataClient.mail_addr_2);
+	$("#zipcode_m1").val(dataClient.mail_zip);
+	$("#city_m1").val(dataClient.mail_city);
+	$("#state_m1").empty().append('{states}');
+	$("#state_m1").val(dataClient.mail_state);
+	$("#tax1").val(dataClient.tax_software);
+	
+	//(dataClient.tax_software === $(".tax1").val()) ?  $(".tax1").attr("checked",true) : $(".tax1").attr("checked",false)  ;
+	$('input:radio[name="tax"]').filter('[value="'+dataClient.tax_software+'"]').attr('checked', true);
+	
+}
+
+function same_check(){
+	 
+    $('#example-checkbox11').change(function () {
+         if($(this).is(":checked")){
+            $("#address_1_m1").val($("#address_11").val());
+            $("#address_2_m1").val($("#address_21").val());
+            $("#zipcode_m1").val($("#zipcode1").val());
+            $("#city_m1").val($("#city1").val());
+            $("#state_m1").val($("#state1").val());
+        }else{
+            $("#address_1_m1").val("");
+            $("#address_2_m1").val("");
+            $("#zipcode_m1").val("");
+            $("#city_m1").val("");
+            $("#state_m1").val("");
+        }
+    });
+    
+}
+/*
+function clickSave() {
+	$("#save").click(function() {
+ 
+		$.post("index.php/admin/settings/saveCompanyInfo", {
+			senddata : 'yes',
+                        uid:dataClient.uid,
+			company_name : $("#company_name1").val(),
+			efin : $("#efin1").val(),
+			p_efin : $("#p_efin1").val(),
+			
+			service_bureau_num : $("#service_bureau_efin").val(),
+			is_parent_efin : $("#pefin_check_box").is(':checked') ? 1 : 0,
+			is_service_bureau : $("#pservice_bureau_check_box").is(':checked') ? 1 : 0,
+					
+				is_view : $("#is_view").val(),
+				pefin_status : $("#pefin_status").val(),
+								
+			
+			address_1 : $("#address_11").val(),
+			address_2 : $("#address_21").val(),
+			zipcode : $("#zipcode1").val(),
+			city : $("#city1").val(),
+			state : $("#state1").val(),
+			same_as : $("#example-checkbox11").is(':checked') ? 1 : 0,
+			address_1_m : $("#address_1_m1").val(),
+			address_2_m : $("#address_2_m1").val(),
+			zipcode_m : $("#zipcode_m1").val(),
+			city_m : $("#city_m1").val(),
+			state_m : $("#state_m1").val(),
+			tax:$("input:radio[name=tax]:checked").val(),
+			//tax : $("#tax1").val(),
+                        file_id: fileID,
+                        ext:extention
+                 
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+                               // $('.fade1').modal('show');
+                               // $("#one").trigger('click');
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+}
+*/
+
+function checkParentEFIN() {
+	
+ 
+		$.post("index.php/admin/settings/checkParentEFINInfo", {
+			senddata : 'yes',
+            uid:dataClient.uid,
+			p_efin : $("#p_efin1").val(),
+			     
+		}, function(data) {
+			if (data == '0') {
+				$("#pefinerror").css('display','block');
+                $(".loader").css('display','none');
+                $("#pefinsuccess").css('display','none');
+			}
+			else if(data != '0' && data != ''){
+				$("#pefinerror").css('display','none');
+				$("#pefinsuccess").css('display','block');
+                $(".loader").css('display','none');
+			}
+		}, "json");
+
+		return false;
+	
+}
+
+function checkSBEFIN() {
+	
+	 
+	$.post("index.php/admin/settings/checkSBEFINInfo", {
+		senddata : 'yes',
+        uid:dataClient.uid,
+        service_bureau_num : $("#service_bureau_efin").val()
+		// sbefincheckloader sbloader sbefinerror
+	}, function(data) {
+		if (data == '0') {
+			$("#sbefinerror").css('display','block');
+			$("#sbefinsuccess").css('display','none');
+            $(".sbloader").css('display','none');
+		}
+		else{
+			$("#sbefinerror").css('display','none');
+			$("#sbefinsuccess").css('display','block');
+            $(".sbloader").css('display','none');
+		}
+	}, "json");
+
+	return false;
+
+}
+
+
+function uploadGallery(){   
+        uploadImgProduct = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_bt1',
+            max_file_size : '80mb',
+            url : 'plupload/server/uploadLogo.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+            ]
+        });
+        uploadImgProduct.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct.start();
+            }, 50);
+        });
+       
+        uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                $("#signature_show1").empty();
+                objGallery = obj;
+                fileID = obj.file_id;
+                extention = obj.ext;
+                show_signature();   
+            }
+        }, 'json');
+        uploadImgProduct.init();
+    }
+    function CancelUploadProduct(){	
+        uploadImgProduct.stop(); 
+    }
+    function show_signature(){
+        var newImg = document.createElement('img');
+        document.getElementById("signature_show1").appendChild(newImg);
+        newImg.width = objGallery.width;
+        newImg.height = objGallery.height;
+        newImg.src = "plupload/thumb.php?id="+objGallery.file_id;  
+    }
+   
+$(function(){
+	
+	
+
+	loadObject();
+	same_check();
+	//clickSave();
+        uploadGallery();
+        
+
+        // page masking
+        $("#efin1").mask("999999");
+        $("#p_efin1").mask("999999");
+        $("#service_bureau_efin").mask("999999");
+        $("#zipcode1").mask("99999");
+        $("#zipcode_m1").mask("99999");
+        $("#com_phoneno").mask("(999) 999-9999");
+        
+        $("#pefin_check_box").click(function(){
+        	//$("#pefin_check_box").is(':checked') ? $("#p_efin1").removeAttr('disabled') : $("#p_efin1").attr('disabled','disabled');
+    		
+    		$("#pefin_check_box").is(':checked') ? $("#p_efin1").removeAttr('disabled') : $("#p_efin1").attr('disabled','disabled');
+    	});
+        
+        $("#pservice_bureau_check_box").click(function(){
+        	$("#pservice_bureau_check_box").is(':checked') ? $("#service_bureau_efin").removeAttr('disabled') : $("#service_bureau_efin").attr('disabled','disabled');
+    		//$("#service_bureau_efin").removeAttr('disabled');
+    	});
+        
+        $( "#p_efin1" ).blur(function() {
+        	$('.efincheckloader').css('display','block');
+        	checkParentEFIN();
+        	//alert( "Handler for .blur() called." );
+        });
+        
+        
+        
+        $( "#service_bureau_efin" ).blur(function() {
+        	
+        	$('.sbefincheckloader').css('display','block');
+        	checkSBEFIN();
+        	//alert( "Handler for .blur() called." );
+        });
+        
+        // Form validation
+        
+        
+        /* Initialize Form Validation */
+        $('#form_validation_company_info').validate({
+            errorClass: 'help-block',
+            errorElement: 'span',
+            errorPlacement: function(error, e) {
+                e.parents('.form-group1 > div').append(error);
+            },
+            highlight: function(e) {
+                $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+                $(e).closest('.help-block').remove();
+            },
+            success: function(e) {
+                // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+              //  e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
+                e.closest('.form-group1').removeClass('has-success has-error');
+                e.closest('.help-block').remove();
+            },
+            rules: {
+            	company_name1 : {
+                    required: true
+                },
+                address_11 : { required: true },
+                com_phoneno  : { required: true },
+                zipcode1  : { required: true, number: true },
+                city1  : { required: true },
+                state1  : { required: true },
+                address_1_m1 : { required: true },
+                zipcode_m1 : { required: true, number: true },
+                city_m1 : { required: true },
+                state_m : { required: true },
+            },
+            messages: {
+            	    
+            	company_name1 :{
+                    number: 'Please enter your company name.'
+                }
+            },
+            submitHandler: function(form) {
+            	$('#companySaveBtn').hide();
+				$('#companySaveBtnLoad').show();
+				
+            	$.post("index.php/admin/settings/saveCompanyInfo", {
+        			senddata : 'yes',
+                                uid:dataClient.uid,
+        			company_name : $("#company_name1").val(),
+        			efin : $("#efin1").val(),
+        			p_efin : $("#p_efin1").val(),
+        			
+        			service_bureau_num : $("#service_bureau_efin").val(),
+        			is_parent_efin : $("#pefin_check_box").is(':checked') ? 1 : 0,
+        			is_service_bureau : $("#pservice_bureau_check_box").is(':checked') ? 1 : 0,
+        					
+        				is_view : $("#is_view").val(),
+        				pefin_status : $("#pefin_status").val(),
+        								
+        			com_phoneno : $("#com_phoneno").val(),
+        			address_1 : $("#address_11").val(),
+        			address_2 : $("#address_21").val(),
+        			zipcode : $("#zipcode1").val(),
+        			city : $("#city1").val(),
+        			state : $("#state1").val(),
+        			same_as : $("#example-checkbox11").is(':checked') ? 1 : 0,
+        			address_1_m : $("#address_1_m1").val(),
+        			address_2_m : $("#address_2_m1").val(),
+        			zipcode_m : $("#zipcode_m1").val(),
+        			city_m : $("#city_m1").val(),
+        			state_m : $("#state_m1").val(),
+        			tax:$("input:radio[name=tax]:checked").val(),
+        			//tax : $("#tax1").val(),
+                                file_id: fileID,
+                                ext:extention
+                         
+        		}, function(data) {
+        			if (typeof (data) == 'object') {
+        				dataClient = data;
+        				$('#companySaveBtn').show();
+						$('#companySaveBtnLoad').hide();
+                                       // $('.fade1').modal('show');
+                                       // $("#one").trigger('click');
+        			}
+        			loadClients();
+        		}, "json");
+
+        		return false;
+            }
+             
+        });
+    	/*End Form validation*/
+        
+        
+});
+
+
+</script>

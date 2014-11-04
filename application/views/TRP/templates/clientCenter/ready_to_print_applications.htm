@@ -510,11 +510,11 @@ var heads = ["Name","Contact Info","Audit Guard","Net Refund","Employee","Create
 
 function loadObject() {
     {dataLoad}
-    loadClients();
+    loadClientsReadyToPrint();
 }
 
 
-function loadClients() {
+function loadClientsReadyToPrint() {
     var htm = ''; 
     htm +='<thead>';
                 htm +='<tr>';
@@ -618,6 +618,9 @@ function loadClients() {
     $("#state").empty().append('{states}');
     
 }
+
+
+
 /*
 
 function editEnable(parent) {
@@ -712,8 +715,12 @@ $(function(){
 	//$('#toppart').remove();
 	$(".toottip_product").tooltip(); 
 	cancelEditApplicationModal('body_edit_application_ready_to_print');
-	
-	
+
+
+    $('#modal_check_for_print').on('hidden.bs.modal', function () {
+        window.location.reload(true);
+    });
+    
 	 $('#ready_to_print_apptable').dataTable( {
      	"sDom": 'T<"clear">lfrtip',
 		"aaSorting": [[6,'desc']],

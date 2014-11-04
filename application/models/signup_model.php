@@ -60,13 +60,27 @@ class Signup_model extends CI_Model
 		$name = $this ->lib ->escape($this ->input ->post('f_username_signin'));
 		$efin = $this ->lib ->escape($this ->input ->post('f_efin_signin'));
 		$sql = "Select * from users where name='$name' AND efin='$efin'";
-		
 		$res = $this->db->query($sql);
-		foreach ($res->result_array() as $row) {
-			//$row["format_date"] = gmdate("m-d-Y", $row["created"]);
-			$row["pass"] = $this ->author ->decode_password($row["pass"]);
-			$data[] = $row;
-		}
+        $data = array();
+
+        if ($res->num_rows() > 0){
+            foreach ($res->result_array() as $row) {
+                //$row["format_date"] = gmdate("m-d-Y", $row["created"]);
+                $row["pass"] = $this ->author ->decode_password($row["pass"]);
+                $data[] = $row;
+            }
+        }else{
+            $sql1 = "Select * from users where name='$name' AND ptin='$efin'";
+            $res1 = $this->db->query($sql1);
+            if ($res1->num_rows() > 0) {
+                foreach ($res1->result_array() as $row1) {
+                    //$row["format_date"] = gmdate("m-d-Y", $row["created"]);
+                    $row1["pass"] = $this->author->decode_password($row1["pass"]);
+                    $data[] = $row1;
+                }
+            }
+        }
+
 		return $data;
 	}
 }

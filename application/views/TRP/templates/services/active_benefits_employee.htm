@@ -1,5 +1,5 @@
 <!-- New App tab -->
-<table id="customerlist_apptable" class="table table-striped">
+<table id="active_benefits_apptable" class="table table-striped">
 </table>
 <!-- End New App tab -->
 <div class="clear1"></div>
@@ -9,7 +9,7 @@
             
 <script type="text/javascript">
 var dataClient = [];
-var heads = ["Name","Contact Info","ERO","Create Date","Action"];
+var heads = ["Name","Contact Info","Benefits","Price","Created Date","Status","Action"];
 
 function loadObject() {
     {dataLoad}
@@ -27,6 +27,8 @@ function loadClients() {
                     htm +='<th class="hidden-xs hidden-sm">'+heads[2]+'</th>';
                     htm +='<th class="hidden-xs hidden-sm">'+heads[3]+'</th>';
                     htm +='<th class="hidden-xs hidden-sm">'+heads[4]+'</th>';
+                    htm +='<th class="cell-small text-center">'+heads[5]+'</th>';
+                    htm +='<th class="cell-small text-center">'+heads[6]+'</th>';
                 htm +='</tr>';
     htm +='</thead>';
     htm +='<tbody>';
@@ -35,18 +37,30 @@ function loadClients() {
            var obj = dataClient[i];
            var uid = obj.uid;
           // var appid = obj.app_id;
-           var parent = 'body_customer_info_edit';
+           var parent = 'body_benefits_info_edit';
            var count = 0;
              htm +='<tr>';
             
              htm +='<td class="text-left hidden-xs capitalize"><strong>'+obj.first_name+' '+obj.last_name+'</strong><br>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';
              htm +='<td><strong>'+obj.cell_phone+'</strong></td>';
-             htm +='<td class="hidden-xs hidden-sm">'+obj.company_name+'</td>';
-             htm +='<td class="hidden-xs hidden-sm">'+obj.format_date+'</td>';
-
+             htm +='<td class="hidden-xs hidden-sm">'+obj.benefits_item+'</td>';
+             htm +='<td class="hidden-xs hidden-sm">'+obj.benefits_price+'</td>';
+             htm +='<td>'+obj.format_date+'';
+             var appststus = '';
+             if(obj.benefits_status == '0')
+            	 appststus = 'Pending';
+             else if(obj.benefits_status == '1')
+            	 appststus = 'Active';
+             else if(obj.benefits_status == '2')
+            	 appststus = 'Canceled';
+             
+             
+             htm +='<td class="hidden-xs hidden-sm">'+appststus+'</td>';
+             
               htm +='<td class="text-center">';
                         htm +='<div class="btn-group">'; 
-                        htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editCustomer(\''+obj.applicent_id+'\',\''+parent+'\')" >View</a>';
+                        htm += '<a class="btn btn-xs btn-success EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="editBenefits(\''+obj.benefits_id+'\',\''+parent+'\')" >View</a>';
+                       //  htm += '<a class="btn btn-xs btn-danger deleteEro" rel="tooltip" title="Delete" data-toggle="tooltip" href="#"  data-original-title="Delete" id ="" ><i class="icon-remove"></i></a>';   
                        htm += '</div>';
                 htm += '</td>'
              
@@ -56,7 +70,7 @@ function loadClients() {
     }
    htm +=' </tbody>';
 
-    $("#customerlist_apptable").empty().append(htm);	
+    $("#active_benefits_apptable").empty().append(htm);	
     
     //$("#state").empty().append('{states}');
     
@@ -64,16 +78,17 @@ function loadClients() {
 
 
 $(function(){
-	
 	loadObject();
 	
-	clickToEditCustomerInfo('body_customer_info_edit');
+	clickToEditBenefitsInfo('body_benefits_info_edit');
+	
+	 
 	
 	
 	
-	 $('#customerlist_apptable').dataTable( {
+	 $('#active_benefits_apptable').dataTable( {
      	"sDom": 'T<"clear">lfrtip',
-		"aaSorting": [[3,'desc']],
+		"aaSorting": [[0,'asc']],
      	"oTableTools": {
  			//"aButtons": [ "xls", "pdf","copy", "print" ]
      		"aButtons": [
@@ -104,7 +119,7 @@ $(function(){
                  		]
  		},
  		"aoColumnDefs": [
-  		                { 'bSortable': false, 'aTargets': [0 ] }
+  		                { 'bSortable': false, 'aTargets': [-1 ] }
   		             ]
      } );
 	 $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');

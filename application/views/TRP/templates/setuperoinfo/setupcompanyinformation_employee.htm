@@ -1,0 +1,1567 @@
+
+
+<!-- //// -->
+<style>
+
+</style>
+<form style="margin-top:0px" id="basic-wizard" action="#" method="post" class="form-horizontal form-box">
+  
+    <div class="form-box-content">
+
+        <!-- First Step -->
+        <div id="first" class="step">
+        <!-- <img alt="" style="margin-left:7px; margin-top: 14px;" src="../backend/img/steps/step_1.png">-->
+        <div class="setup_steps1_emp step1"></div>
+            <!-- Step Info -->
+            
+             <div class="col-md-4" style="padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Company Info</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-briefcase"></i></span>
+        </header>
+        <div class="panel-body">
+            
+             <div class="form-group">
+                 
+                <div class="col-md-12 choose_file">
+                   <ul class="thumbnails clearfix">
+                    <li>
+                        <a class="thumbnail" style="width:255px;height:120px;overflow: hidden;" name="name"  id="signature_show" href="javascript:void(0)">
+                            <img style="width:160px;height:120px;" name="name" class="img-rounded" alt="Logo" src="../backend/img/placeholders/image_light_160x120.png">
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="upload" class="control-label col-md-12"></label>  
+                <div class="col-md-12 choose_file">         
+                    <button type="button" class="btn btn-success col-md-12 " name="upload" id="upload_bt" value="" >Upload Logo</button>
+                    <!--<input type="file" class="form-control" name="example-file" id="example-file">-->
+                </div>
+            </div>
+            <div class="form-group">
+            	<div class="col-md-12 form-group1">
+	                <label for="company_name"
+	                       class="control-label col-md-12">Company Name <span class="required1">*</span></label>
+	                <div class="col-md-12 nopadding">
+	                    <input type="text" class="form-control ui-wizard-content"
+	                           name="company_name" id="company_name" value="">
+	                </div>
+	            </div>    
+            </div>
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="efin"
+                       class="control-label col-md-12">EFIN #</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content" readonly="readonly" disabled="" value="" name="efin" id="efin">
+                </div>
+             </div>   
+            </div>
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="p_efin"
+                       class="control-label col-md-12">Parent EFIN #</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           value="" name="example-advanced-parent-efin"
+                           id="p_efin">
+                </div>
+            </div>    
+            </div>
+            
+
+</div>
+</section>
+</div>
+
+
+ <div class="col-md-4" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Business Address</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-map"></i></span>
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="address_1"
+                       class="control-label col-md-12">Address Line 1 <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="address_1" id="address_1" value="">
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="address_2"
+                       class="control-label col-md-12">Address Line 2</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="address_2" id="address_2"
+                           value="">
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="phoneno"
+                       class="control-label col-md-12">Phone # <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="phoneno" id="phoneno"
+                           value="">
+                </div>
+            </div>
+			</div>
+				
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="city"
+                       class="control-label col-md-12">City <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="city" id="city" value="">
+                </div>
+            </div>
+            </div>
+            
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label class="control-label col-md-12" for="state">State <span class="required1">*</span></label>                   
+                <div class="col-md-12 nopadding">
+                    <select id="state" name="state" class="form-control">
+                        <option value="">State</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="zipcode"
+                       class="control-label col-md-12">Zip <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="zipcode" id="zipcode"
+                           value="">
+                </div>
+            </div>
+            </div>
+            
+            </div>
+            </section>
+            </div>
+            
+            <div class="col-md-4" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Mailing Address</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-map"></i></span>
+        </header>
+        <div class="panel-body">
+        
+            <div class="form-group" style="margin-bottom:36px;">
+            <div class="col-md-12 form-group1">
+                <div class="checkbox same1 col-md-12">
+                    <label for="example-checkbox1"> <input type="checkbox" value="option1" name="example-checkbox1" id="example-checkbox1">
+                        Same as above </label>
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="address_1_m"
+                       class="control-label col-md-12">Address Line 1 <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="address_1_m" id="address_1_m"
+                           value="">
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="address_2_m"
+                       class="control-label col-md-12">Address Line 2</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="address_2_m" id="address_2_m"
+                           value="">
+                </div>
+            </div>
+            </div>
+            
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="city_m"
+                       class="control-label col-md-12">City <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="city_m" id="city_m" value="">
+                </div>
+            </div>
+            </div>
+            
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label class="control-label col-md-12" for="state_m">State <span class="required1">*</span></label>                   
+                <div class="col-md-12 nopadding">
+                    <select id="state_m" name="state_m" class="form-control">
+                        <option value="">State</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            
+            <div class="form-group">
+            <div class="col-md-12 form-group1">
+                <label for="zipcode_m"
+                       class="control-label col-md-12">Zip <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="zipcode_m" id="zipcode_m"
+                           value="">
+                </div>
+            </div>
+            </div>
+</div>
+</section>
+</div>
+
+<div style="clear:both;"></div>
+<div class="col-md-12" style=""> 
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Software</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-info-sign"></i></span>
+        </header>
+        <div class="panel-body">
+            
+            <div class="form-group">
+            
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Taxwise" > Taxwise <br>
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Crosslink" > Crosslink <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax" value="SimpleTax" > SimpleTax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax" value="ProSeries" > ProSeries <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Lacerte" > Lacerte <br>
+            	<input type="radio" class="tax1" name="tax" id="tax" value="ATX" > ATX <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax" value="TurboTax" > TurboTax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Drake" > Drake <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Ultra Tax" > Ultra Tax <br>
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Tax Act" > Tax Act <br>
+            </div>
+            <div class="col-md-2">
+            	<input type="radio" class="tax1" name="tax" id="tax" value="TaxSlayer" > TaxSlayer <br>
+            	<input type="radio" class="tax1" name="tax" id="tax" value="Other" > Other <br>
+            </div>
+            
+            <!--    <label for="tax" class="control-label col-md-3">Tax Software <span class="required1">*</span></label>
+
+                <div class="col-md-4">
+                    <select class="form-control" name="tax" id="tax">
+                        <option value=""></option>
+                        <option value="Taxwise">Taxwise</option>
+                        <option value="Crosslink">Crosslink</option>
+                        <option value="SimpleTax">SimpleTax</option>
+                        <option value="ProSeries">ProSeries</option>
+                        <option value="Lacerte">Lacerte</option>
+                        <option value="ATX">ATX</option>
+                        <option value="TurboTax">TurboTax</option>
+                        <option value="Drake">Drake</option>
+                        <option value="Ultra Tax">Ultra Tax</option>
+                        <option value="Tax Act">Tax Act</option>
+                        <option value="TaxSlayer">TaxSlayer</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                -->
+            </div>
+            
+     </div>
+     </section>
+     </div>
+            
+           <!-- Form Buttons -->
+        <div class="form-group form-actions1">
+        <div class="col-md-6 text-left">
+        
+                <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
+                <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+            </div>
+            <div class="col-md-6 text-right" style="padding-right: 23px">
+            <button type="submit"  class="btn btn-success nextSave">  &nbsp; &nbsp;  <i class="icon-long-arrow-right"></i> &nbsp; Next &nbsp; &nbsp; </button>
+              <!-- <input type="submit" class="btn btn-success nextSave" id="next" value="Next"> -->  
+            </div>
+        </div>
+        <!-- END Form Buttons --> 
+        </div>
+        <!-- END First Step -->
+
+        <!-- Second Step -->
+        <div id="second" class="step">
+        <!-- <img alt="" style="margin-left:7px; margin-top: 14px;" src="../backend/img/steps/step_1_done_step_2_start.png">-->
+        <div class="setup_steps1_emp step2"></div>
+            
+        	<!-- Profile Settings -->
+        	
+        	<div class="col-md-12" style="padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Setup Profile Settings Info</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-user"></i></span>
+        </header>
+        <div class="panel-body" style="padding:0px;">
+        
+        <div class="col-md-5" style="padding:10px 0 0 20px;">
+        	<div class="form-group1">
+                <label for="username"
+                       class="control-label col-md-12"><i class="icon-user"></i> Username</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="example-advanced-username" value="" readonly="readonly" disabled=""
+                           id="username">
+                </div>
+                
+            </div>
+            <div class="form-group1">
+                <label for="role" class="control-label col-md-12"><i class="glyphicon-user_add"></i> Role</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" disabled="disabled" class="form-control ui-wizard-content"
+                           name="example-advanced-role" readonly="readonly" disabled="" id="role">
+                </div>
+            </div>
+			 <div class="form-group1">
+                <label for="ptin"
+                       class="control-label col-md-12"><i class="gemicon-small-task"></i> PTIN #</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="example-advanced-ptin" id="ptin">
+                </div>
+            </div>
+           </div>
+           
+           <div class="col-md-2" style="min-height: 285px;	background-image: url('../backend/img/line.png'); background-repeat: no-repeat;background-position: top center;">
+			        </div> 
+            <div class="col-md-5" style="padding:10px 20px 0 0px">
+            <div class="form-group1">
+                <label for="first_name"
+                       class="control-label col-md-12"><i class="glyphicon-nameplate"></i> First Name <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="first_name" id="first_name">
+                </div>
+            </div>
+            <div class="form-group1">
+                <label for="last_name"
+                       class="control-label col-md-12"><i class="glyphicon-nameplate"></i> Last Name <span class="required1">*</span></label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="last_name" id="last_name">
+                </div>
+            </div>
+            <div class="form-group1">
+                <label for="email"
+                       class="control-label col-md-12"><i class="icon-envelope-alt"></i> Email Address</label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="email" id="email">
+                </div>
+            </div>
+            <div class="form-group1">
+                <label for="phone"
+                       class="control-label col-md-12"><i class="icon-phone"></i> Contact Number </label>
+                <div class="col-md-12 nopadding">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="phone" id="phone">
+                </div>
+            </div>
+		<!-- 
+            <div class="form-group1">
+                <label for="cell_phone"
+                       class="control-label col-md-12">Cell Phone</label>
+                <div class="col-md-12">
+                    <input type="text" class="form-control ui-wizard-content"
+                           name="cell_phone" id="cell_phone">
+                </div>
+            </div>
+             -->
+            </div>
+            <!-- <div class="form-group1">
+                <label for="reset_p"
+                       class="control-label col-md-12"></label>
+                <div class="col-md-12">
+                    <input type="button" value="Reset Password" id="reset_p"
+                           class="btn btn-info ui-wizard-content ui-formwizard-button">
+                </div>
+            </div>
+             -->
+        </div>
+        </section>
+        </div>	
+        	<!-- End Profile Settings -->
+            <!-- Form Buttons -->
+        <div class="form-group form-actions1">
+            <div class="col-md-6 text-left" style="padding-left: 23px">
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+                <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
+            </div>
+            <div class="col-md-6 text-right" style="padding-right: 23px">
+            <button type="submit" id="next" class="btn btn-success nextSave">  &nbsp; &nbsp;  <i class="icon-long-arrow-right"></i> &nbsp; Next &nbsp; &nbsp; </button>
+                <!-- <input type="submit" class="btn btn-success nextSave" id="next" value="Next"> -->
+            </div>
+        </div>
+        <!-- END Form Buttons -->
+        </div>
+        <!-- END Second Step -->
+
+
+        
+        <!-- Four Step -->
+        <div id="four" class="step">
+        <!-- <img alt="" style="margin-left:7px; margin-top: 14px;" src="../backend/img/steps/step_3_done_step_4_start.png">-->
+        <div class="setup_steps1_emp step3"></div>
+        <div class="col-md-12" style=" padding-top: 25px;" >
+	<section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Setup Bank Fees Info</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-dollar"></i></span>
+        </header>
+        <div class="panel-body">
+		<!-- Panel start --> 
+            <!-- Step Info -->
+            
+            <!-- END Step Info -->
+            
+            <div class="form-group">
+            <div class="col-md-3 form-group1">
+                <label for="tax_preparation_fee"
+                       class="control-label col-md-12">Tax Preparation Fee <i class="icon-question-sign toottip_product"data-toggle="tooltip"  data-original-title="Tax Preparation Fee "></i></label>
+                <div class="col-md-12 nopadding">
+                
+                    <input type="text"  class="form-control ui-wizard-content" value="" name="tax_preparation_fee" id="tax_preparation_fee">
+                           
+                
+                </div>
+             </div>
+             <div class="col-md-3 form-group1">
+             <label for="bank_transmission_fee"
+                       class="control-label col-md-12">Bank Transmission Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
+                <div class="col-md-12 nopadding">
+                
+                    <input type="text" class="form-control ui-wizard-content" value="19.95" name="bank_transmission_fee" id="bank_transmission_fee" readonly="readonly" disabled="disabled">
+                           
+                           
+                </div>
+             </div>
+             
+             <div class="col-md-3 form-group1">
+             
+             <label for="sb_fee"
+                       class="control-label col-md-12">SB Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
+                <div class="col-md-12 nopadding">
+                
+                    <input type="text" class="form-control ui-wizard-content" name="sb_fee" id="sb_fee" value=""  readonly="readonly" disabled="disabled">
+                           
+                
+                </div>
+             </div>
+             <!-- 
+             <div class="col-md-3 form-group1">
+             <label for="e_file_fee"
+                       class="control-label col-md-12">E-file Fee</label>
+                <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control ui-wizard-content" name="e_file_fee" id="e_file_fee" value="">
+                           
+                </div>
+                </div>
+             </div>
+             -->
+             <div class="col-md-3 form-group1">
+             <label for="add_on_fee"
+                       class="control-label col-md-12">Add On Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="Add On Fee"></i></label>
+                <div class="col-md-12 nopadding">
+                
+                    <input type="text" class="form-control ui-wizard-content" name="add_on_fee" id="add_on_fee" value="">
+                           
+                
+                </div>
+             </div>
+            </div>
+            
+            
+            
+
+            <!-- Form Buttons -->
+        
+        <!-- END Form Buttons -->
+        </div>
+        </section>
+        </div>
+        
+        <div class="form-group form-actions1">
+            <div class="col-md-6 text-left" style="padding-left:23px;">
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+                <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
+            </div>
+            <div class="col-md-6 text-right" style="padding-right:23px;">
+            <button type="submit" id="nextReview" class="btn btn-success ">  &nbsp; &nbsp;  <i class="icon-long-arrow-right"></i> &nbsp; Next &nbsp; &nbsp; </button>
+                <!-- <input type="submit" class="btn btn-success" id="next" value="Next"> -->
+            </div>
+        </div>
+         </div>
+        <!-- END Four Step -->
+
+<!-- Five Step -->
+        <div id="five" class="step">
+       <!--  <img alt="" style="margin-left:7px; margin-top: 14px;" src="../backend/img/steps/step_4_done_step_5_start.png">-->
+         <div class="setup_steps1_emp step4"></div>
+        
+        	<!-- Company Setting info review -->
+            <div class="col-md-6" style="padding-top:25px;">  
+            
+            <section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Company Settings</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-briefcase"></i></span>
+        </header>
+        <div class="panel-body">                 
+             
+             <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="" class="control-label col-md-12"><i class="icon-briefcase"></i> &nbsp; <strong>Company</strong></label>
+              </div>
+             <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="company_name"
+                       class="control-label col-md-5">Company Name </label>
+                <div class="col-md-7">
+                	<p id="rev_company_name"></p>
+                </div>
+            </div>
+            
+             <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="efin3"
+                       class="control-label col-md-5">EFIN #</label>
+                <div class="col-md-7">
+                	<p id="rev_efin"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="p_efin"
+                       class="control-label col-md-5">Parent EFIN #</label>
+                <div class="col-md-7">
+                	<p id="rev_p_efin"></p>
+                </div>
+            </div>
+            
+            <hr style="border-bottom: 1px dotted #333; border-top: none; margin:20px 7px 16px;">
+
+			<div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="" class="control-label col-md-12"><i class="gemicon-small-map"></i> &nbsp; <strong>Business Address</strong></label>
+              </div>
+           
+
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="address_1"
+                       class="control-label col-md-5">Address Line 1</label>
+                <div class="col-md-7">
+                	<p id="rev_address_1"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="address_2"
+                       class="control-label col-md-5">Address Line 2</label>
+                <div class="col-md-7">
+                	<p id="rev_address_2"></p>
+                </div>
+            </div>
+            
+
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="phoneno"
+                       class="control-label col-md-5">Phone #</label>
+                <div class="col-md-7">
+                	<p id="rev_phoneno"></p>
+                </div>
+            </div>
+
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="city"
+                       class="control-label col-md-5">City</label>
+                <div class="col-md-7">
+                	<p id="rev_city"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label class="control-label col-md-5" for="state">State</label>                   
+                <div class="col-md-7">
+                	<p id="rev_state"></p>
+                </div>
+            </div>
+
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="zipcode"
+                       class="control-label col-md-5">Zip</label>
+                <div class="col-md-7">
+                	<p id="rev_zipcode"></p>
+                </div>
+            </div>
+            
+            <hr style="border-bottom: 1px dotted #333; border-top: none; margin:22px 7px 19px;">
+
+			<div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
+                <label for="" class="control-label col-md-12"><i class="gemicon-small-map"></i> &nbsp; <strong>Mailing Address</strong></label>
+              </div>
+              
+            
+            
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="address_1_m"
+                       class="control-label col-md-5">Address Line 1</label>
+                <div class="col-md-7">
+                	<p id="rev_address_1_m"></p>
+                    
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="address_2_m"
+                       class="control-label col-md-5">Address Line 2</label>
+                <div class="col-md-7">
+                	<p id="rev_address_2_m"></p>
+                </div>
+            </div>
+            
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="city_m"
+                       class="control-label col-md-5">City</label>
+                <div class="col-md-7">
+                	<p id="rev_city_m"></p>
+                   
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label class="control-label col-md-5" for="state_m">State</label>                   
+                <div class="col-md-7">
+                	<p id="rev_state_m"></p>
+                   
+                </div>
+            </div>
+            
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="zipcode_m"
+                       class="control-label col-md-5">Zip</label>
+                <div class="col-md-7">
+                	<p id="rev_zipcode_m"></p>
+                   
+                </div>
+            </div>
+				<hr style="border-bottom: 1px dotted #333; border-top: none; margin:22px 7px 19px;">
+
+			<div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="" class="control-label col-md-12"><i class="gemicon-small-map"></i> &nbsp; <strong>Software</strong></label>
+              </div>
+            
+
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="tax" class="control-label col-md-5">Tax Software</label>
+
+                <div class="col-md-7">
+                	<p id="rev_tax"></p>
+                </div>
+            </div>
+          </div>
+          </section>  
+           
+                   
+            </div>
+        <!-- End Company setting info review -->
+        
+        <!-- Profile Setting info review -->
+            <div class="col-md-6" style="padding-top:25px;">
+            <section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Profile Settings</span>
+	       <span class="tools pull-right icons" style=""><i class="icon-user"></i></span>
+        </header>
+        <div class="panel-body">
+            
+            	<div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="username"
+                       class="control-label col-md-5">Username</label>
+                <div class="col-md-7">
+                	<p id="rev_username"></p>
+                </div>
+                
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="role" class="control-label col-md-5">Role</label>
+                <div class="col-md-7">
+                	<p id="rev_role"></p>
+                </div>
+            </div>
+			 <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="ptin" class="control-label col-md-5">PTIN #</label>
+                <div class="col-md-7">
+                	<p id="rev_ptin"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="first_name" class="control-label col-md-5">First Name</label>
+                <div class="col-md-7">
+                	<p id="rev_first_name"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="last_name" class="control-label col-md-5">Last Name</label>
+                <div class="col-md-7">
+                	<p id="rev_last_name"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="email" class="control-label col-md-5">Email Address</label>
+                <div class="col-md-7">
+                	<p id="rev_email"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="phone"
+                       class="control-label col-md-5">Contact Number </label>
+                <div class="col-md-7">
+                	<p id="rev_phone"></p>
+                </div>
+            </div>
+
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="cell_phone" class="control-label col-md-5">Cell Phone</label>
+                <div class="col-md-7">
+                	<p id="rev_cell_phone"></p>
+                </div>
+            </div>
+           </div>
+           </section>
+            </div>
+            
+
+            
+            <div class="col-md-6">
+            <section class="panel">
+    	<header class="panel-heading">
+	       <span class="title" style="">Bank Fees Info</span>
+	       <span class="tools pull-right icons" style=""><i class="gemicon-small-dollar"></i></span>
+        </header>
+        <div class="panel-body">
+            
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="efintax" class="control-label col-md-5">Tax Preparation Fee</label>
+                <div class="col-md-7">
+                	<p id="rev_tax_preparation_fee"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="p_efin" class="control-label col-md-5">Bank Transmission Fee</label>
+                <div class="col-md-7">
+                	<p id="rev_bank_transmission_fee"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="company_name" class="control-label col-md-5">SB Fee</label>
+                <div class="col-md-7">
+                	<p id="rev_sb_fee"></p>
+                </div>
+            </div>
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="company_name" class="control-label col-md-5">E-file Fee</label>
+                <div class="col-md-7">
+                	<p id="rev_e_file_fee"></p>
+                </div>
+            </div>
+            
+            <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
+                <label for="company_name" class="control-label col-md-5">Add On Fee</label>
+                <div class="col-md-7">
+                	<p id="rev_add_on_fee"></p>
+                </div>
+            </div>
+            
+            </div>
+            </section>
+            </div>
+            
+		<!-- End Profile setting info review -->
+		
+		<div style="clear:both;"></div>
+            <!-- Form Buttons -->
+        <div class="form-group form-actions1" style=" margin: 0px; padding: 2px 0px;" ">
+            <div class="col-md-6 text-left">
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+                <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
+                
+            </div>
+            <div class="col-md-6 text-right">
+            <button type="submit" id="submitCompanySetupBtn" class="btn btn-success ">  &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Submit &nbsp; &nbsp; </button>
+            	<!-- <button type="submit" class="btn btn-success" value="Submit" id="submitCompanySetupBtn">Submit</button> --> 
+               <!-- <input type="submit" class="btn btn-success" id="btnSubmitForm" value="Submit"> --> 
+            </div>
+        </div>
+        <!-- END Form Buttons -->
+         </div>
+        <!-- END Five Step -->
+        
+        
+	<!-- Six Step -->
+        <div id="six" class="step">
+        <!-- <img alt="" style="margin-left:7px; margin-top: 14px;" src="../backend/img/steps/step_5_done_step_6_start.png"> -->
+          <div class="setup_steps1_emp step5"></div>
+            <!-- Step Info -->
+            
+            <!-- END Step Info -->
+            
+           <div class="form-group" style="padding-top:30px;">
+			  <div class="col-md-2 text-center"> 
+			  </div>
+			                <div class="col-md-8 text-center">                   
+			                       <h4 style="color:#333">Thank you for setting up the company profile</h4><p style='font-weight: 300;'>We are now in the process of reviewing your application. This process typically takes 24-48 business hours. But no need to wait for us, you can start your compliance training</p>
+			                </div>
+			  <div class="col-md-2 text-center"> 
+			  </div>
+            </div>
+
+            <!-- Form Buttons -->
+        <div class="form-group form-actions1" style="padding-top:30px;">
+            <div class="col-md-6 text-left">
+            	<!-- <button type="button" class="btn btn-danger" id="close_setup">Back</button> -->
+            	<button type="button" class="btn btn-danger" id="close_setup"><i class="icon-remove-sign"></i> &nbsp; Back &nbsp; &nbsp;</button>
+                <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
+            </div>
+            <div class="col-md-6 text-right">
+            	<button type="button" class="btn btn-success" id="startTrainingBtn" onclick="top.location='index.php/admin/training'"><i class="icon-long-arrow-right"></i> &nbsp; Start My Training &nbsp; &nbsp;</button>
+                <!-- <input type="submit" class="btn btn-success" id="next" value="Next"> -->
+            </div>
+        </div>
+        <!-- END Form Buttons -->
+         </div>
+        <!-- END Six Step -->
+        
+        
+        <!-- Start success message modal -->
+        <div class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Confirmation:</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Your Setup Company Information Save successfully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          <!-- End Success message modal -->          
+        
+    </div>
+    <!-- END Form Content -->
+</form>
+<!-- Reset password modal -->
+<div id="modal_reset_pass" class="modal slide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Reset Password</h4>
+            </div>
+            <div class="modal-body">
+            	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
+                    <div class="form-box-content">
+                        <!-- First Step -->
+                        <div class="step ui-formwizard-content">
+                            <div class="form-group">
+                                <label for="current_p" class="control-label col-md-4">Current Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-current_p" value="" id="current_p">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_p" class="control-label col-md-4">New Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-new_p" value="" id="new_p">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_p" class="control-label col-md-4">Confirm New Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control ui-wizard-content" name="example-advanced-confirm_p" value="" id="confirm_p">
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <input type="button" value="Save" id="save_re"
+                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                    <input type="button" value="Cancel" id="cancel_re"
+                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  End Reset password modal -->
+<!-- /// -->
+
+
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+
+var dataClient = [];
+var objGallery = [];
+var fileID = '';
+var extention = '';
+var uploadImgProduct;
+
+function loadObject() {
+        {dataLoad}
+        loadClients();
+}
+
+function reset_pass(){
+	$("#save_re").click(function() {
+		if($("#new_p").val() !== $("#confirm_p").val()){
+			alert("New password and confirm new password is not equal");
+			return false;
+		}
+		$.post("index.php/admin/settings/resetPassword", {
+			reset_p : 'yes',
+			current_p:$("#current_p").val(),
+			new_p:$("#new_p").val()
+		}, function(data) {
+			if (data == 'ok') {
+				$('#modal_reset_pass').modal('hide');
+			}else{
+				alert(data);
+				return false;	
+			}
+		}, "json");
+		return false;
+	});
+}
+
+function loadClients() {
+        if(dataClient.disabled == 'yes') 
+        	$("#efin").attr('disabled','disabled');
+
+	$("#efin").val(dataClient.ero_efin);
+	$("#p_efin").val(dataClient.p_efin);
+	$("#p_efin").attr('disabled','disabled');
+        if(dataClient.image !== ""){
+            $("#signature_show").empty().append(dataClient.image);
+        } 
+	$("#company_name").val(dataClient.company_name);
+	$("#address_1").val(dataClient.business_addr_1);
+	$("#address_2").val(dataClient.business_addr_2);
+    $("#phoneno").val(dataClient.business_phone);
+	$("#zipcode").val(dataClient.business_zip);
+	$("#city").val(dataClient.business_city);
+    $("#state").empty().append('{states}');
+	$("#state").val(dataClient.business_state);
+        (dataClient.same_as === '1') ?  $("#example-checkbox1").attr("checked",true) : $("#example-checkbox1").attr("checked",false)  ;
+	$("#address_1_m").val(dataClient.mail_addr_1);
+	$("#address_2_m").val(dataClient.mail_addr_2);
+	$("#zipcode_m").val(dataClient.mail_zip);
+	$("#city_m").val(dataClient.mail_city);
+    $("#state_m").empty().append('{states}');
+	$("#state_m").val(dataClient.mail_state);
+	$("#tax").val(dataClient.tax_software);
+	$('input:radio[name="tax"]').filter('[value="'+dataClient.tax_software+'"]').attr('checked', true);
+	
+	/*For profile part*/
+	  if(dataClient.disabled == 'yes') $("#role").attr('disabled','disabled');
+		$("#username").val(dataClient.name);
+		$("#role").val('Employee');
+		$("#ptin").val(dataClient.ptin);
+		$("#first_name").val(dataClient.firstname);
+		$("#last_name").val(dataClient.lastname);
+		$("#email").val(dataClient.mail);
+		$("#phone").val(dataClient.phone);
+		//$("#cell_phone").val(dataClient.mobile);
+	/*End for profile part*/	
+	
+	/* Bank Account */
+		//$("#bank_name").val(dataClient.bank_name);
+		//$("#bank_routing").val(dataClient.bank_routing);
+		//$("#b_account_no").val(dataClient.bank_account);
+	
+	/* Bank Account Fee*/
+	
+	/* Bank Fee */
+		$("#tax_preparation_fee").val(dataClient.emp_tax_preparation_fee);
+		//$("#bank_transmission_fee").val(dataClient.emp_bank_transmission_fee);
+		//$("#sb_fee").val(dataClient.emp_sb_fee);
+		//$("#e_file_fee").val(dataClient.e_file_fee);
+		$("#add_on_fee").val(dataClient.emp_add_on_fee);
+	/* End Bank Fee*/	
+}
+
+/*
+function clickSaveProfile() {
+	$("#save_p").click(function() {
+
+		$.post("index.php/admin/settings/saveProfileInfo", {
+			load_p : 'yes',
+			username : $("#username").val(),
+			role : $("#role").val(),
+			ptin : $("#ptin").val(),
+			first_name : $("#first_name").val(),
+			last_name : $("#last_name").val(),
+			email : $("#email").val(),
+			phone : $("#phone").val(),
+			cell_phone : $("#cell_phone").val()
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+					$('#modal_success').modal('show');
+                                $("#two").trigger('click');
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+}
+*/
+
+function setReviewPage() {
+	$("#nextReview").click(function() {
+		
+		$("#rev_company_name").html($("#company_name").val());
+		$("#rev_efin").html($("#efin").val());
+		$("#rev_p_efin").html($("#p_efin").val());
+		$("#rev_address_1").html($("#address_1").val());
+		$("#rev_address_2").html($("#address_2").val());
+		$("#rev_phoneno").html($("#phoneno").val());
+        $("#rev_zipcode").html($("#zipcode").val());
+		$("#rev_city").html($("#city").val());
+		$("#rev_state").html($("#state").val());
+		
+		
+		$("#rev_address_1_m").html($("#address_1_m").val());
+		$("#rev_address_2_m").html($("#address_2_m").val());
+		$("#rev_zipcode_m").html($("#zipcode_m").val());
+		$("#rev_city_m").html($("#city_m").val());
+		$("#rev_state_m").html($("#state_m").val());
+		$("#rev_tax").html($("#tax").val());
+		
+		$("#rev_username").html($("#username").val());
+		$("#rev_role").html($("#role").val());
+		$("#rev_ptin").html($("#ptin").val());
+		$("#rev_first_name").html($("#first_name").val());
+		$("#rev_last_name").html($("#last_name").val());
+		$("#rev_email").html($("#email").val());
+		$("#rev_phone").html($("#phone").val());
+		//$("#rev_cell_phone").html($("#cell_phone").val());
+		
+		
+		//$("#rev_bank_name").html($("#bank_name").val());
+		//$("#rev_bank_routing").html($("#bank_routing").val());
+		//$("#rev_b_account_no").html($("#b_account_no").val());
+		
+		$("#rev_tax_preparation_fee").html($("#tax_preparation_fee").val());
+		$("#rev_bank_transmission_fee").html($("#bank_transmission_fee").val());
+		$("#rev_sb_fee").html($("#sb_fee").val());
+		//$("#rev_e_file_fee").html($("#e_file_fee").val()); 
+		$("#rev_add_on_fee").html($("#add_on_fee").val());
+		
+	});
+}
+	
+function same_check(){
+	 
+    $('#example-checkbox1').change(function () {
+         if($(this).is(":checked")){
+            $("#address_1_m").val($("#address_1").val());
+            $("#address_2_m").val($("#address_2").val());
+            $("#zipcode_m").val($("#zipcode").val());
+            $("#city_m").val($("#city").val());
+            $("#state_m").val($("#state").val());
+        }else{
+            $("#address_1_m").val("");
+            $("#address_2_m").val("");
+            $("#zipcode_m").val("");
+            $("#city_m").val("");
+            $("#state_m").val("");
+        }
+    });
+    
+}
+
+function clickSave() {
+	$(".nextSave").click(function() {
+		$.post("index.php/admin/settings/saveSetupCompanyInfo", {
+			senddata : 'yes',
+                        uid:dataClient.uid,
+			company_name : $("#company_name").val(),
+			efin : $("#efin").val(),
+			p_efin : $("#p_efin").val(),
+			address_1 : $("#address_1").val(),
+			address_2 : $("#address_2").val(),
+            phoneno : $("#phoneno").val(),
+			zipcode : $("#zipcode").val(),
+			city : $("#city").val(),
+			state : $("#state").val(),
+			same_as : $("#example-checkbox1").is(':checked') ? 1 : 0,
+			address_1_m : $("#address_1_m").val(),
+			address_2_m : $("#address_2_m").val(),
+			zipcode_m : $("#zipcode_m").val(),
+			city_m : $("#city_m").val(),
+			state_m : $("#state_m").val(),
+			tax : $("#tax").val(),
+                        file_id: fileID,
+                        ext:extention,
+                        
+            load_p : 'yes',
+			username : $("#username").val(),
+			role : $("#role").val(),
+			ptin : $("#ptin").val(),
+			first_name : $("#first_name").val(),
+			last_name : $("#last_name").val(),
+			email : $("#email").val(),
+			phone : $("#phone").val(),
+			//cell_phone : $("#cell_phone").val(),
+			
+			//bank_name : $("#bank_name").val(),
+			//bank_routing: $("#bank_routing").val(),
+			//b_account_name : $("#b_account_no").val(),
+			
+			tax_preparation_fee : $("#tax_preparation_fee").val(),
+			bank_transmission_fee : $("#bank_transmission_fee").val(),
+			sb_fee : $("#sb_fee").val(),
+			//e_file_fee: $("#e_file_fee").val(), 
+			add_on_fee : $("#add_on_fee").val(),
+			complete_status : '0'
+			
+                 
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+					/*if($("#next").val()=='Submit' ){
+                                $('.fade').modal('show');
+                                $("#one").trigger('click');
+                                $("#setupcompanybutton").attr('disabled','disabled');
+                                $("#setupcompanyli").css('disabled','disabled');
+                                $("#setupcompanyli").attr('class','overlay');
+                                $("#badge_setup_company").css('display','block');
+                                
+					}*/
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+	
+	
+	$("#nextReview").click(function() {
+		$.post("index.php/admin/settings/saveSetupCompanyInfo", {
+			senddata : 'yes',
+                        uid:dataClient.uid,
+			company_name : $("#company_name").val(),
+			efin : $("#efin").val(),
+			p_efin : $("#p_efin").val(),
+			address_1 : $("#address_1").val(),
+			address_2 : $("#address_2").val(),
+            phoneno : $("#phoneno").val(),
+			zipcode : $("#zipcode").val(),
+			city : $("#city").val(),
+			state : $("#state").val(),
+			same_as : $("#example-checkbox1").is(':checked') ? 1 : 0,
+			address_1_m : $("#address_1_m").val(),
+			address_2_m : $("#address_2_m").val(),
+			zipcode_m : $("#zipcode_m").val(),
+			city_m : $("#city_m").val(),
+			state_m : $("#state_m").val(),
+			tax : $("#tax").val(),
+                        file_id: fileID,
+                        ext:extention,
+                        
+            load_p : 'yes',
+			username : $("#username").val(),
+			role : $("#role").val(),
+			ptin : $("#ptin").val(),
+			first_name : $("#first_name").val(),
+			last_name : $("#last_name").val(),
+			email : $("#email").val(),
+			phone : $("#phone").val(),
+			//cell_phone : $("#cell_phone").val(),
+			
+			//bank_name : $("#bank_name").val(),
+			//bank_routing: $("#bank_routing").val(),
+			//b_account_name : $("#b_account_no").val(),
+			
+			tax_preparation_fee : $("#tax_preparation_fee").val(),
+			bank_transmission_fee : $("#bank_transmission_fee").val(),
+			sb_fee : $("#sb_fee").val(),
+			//e_file_fee: $("#e_file_fee").val(), 
+			add_on_fee : $("#add_on_fee").val(),
+			complete_status : '0'
+                 
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+					/*if($("#nextReview").val()=='Next' ){
+                                $('.fade').modal('show');
+                                $("#one").trigger('click');
+                                $("#setupcompanybutton").attr('disabled','disabled');
+                                $("#setupcompanyli").css('disabled','disabled');
+                                $("#setupcompanyli").attr('class','overlay');
+                                $("#badge_setup_company").css('display','block');
+                                $("#setuptestbutton").removeAttr('disabled');
+                                
+                                
+					}*/
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+	
+	
+	$("#submitCompanySetupBtn").click(function() {
+		$.post("index.php/admin/settings/saveSetupCompanyInfo", {
+			senddata : 'yes',
+                        uid:dataClient.uid,
+			company_name : $("#company_name").val(),
+			efin : $("#efin").val(),
+			p_efin : $("#p_efin").val(),
+			address_1 : $("#address_1").val(),
+			address_2 : $("#address_2").val(),
+            phoneno : $("#phoneno").val(),
+			zipcode : $("#zipcode").val(),
+			city : $("#city").val(),
+			state : $("#state").val(),
+			same_as : $("#example-checkbox1").is(':checked') ? 1 : 0,
+			address_1_m : $("#address_1_m").val(),
+			address_2_m : $("#address_2_m").val(),
+			zipcode_m : $("#zipcode_m").val(),
+			city_m : $("#city_m").val(),
+			state_m : $("#state_m").val(),
+			//tax : $("#tax").val(),
+			tax:$("input:radio[name=tax]:checked").val(),
+                        file_id: fileID,
+                        ext:extention,
+                        
+            load_p : 'yes',
+			username : $("#username").val(),
+			role : $("#role").val(),
+			ptin : $("#ptin").val(),
+			first_name : $("#first_name").val(),
+			last_name : $("#last_name").val(),
+			email : $("#email").val(),
+			phone : $("#phone").val(),
+			//cell_phone : $("#cell_phone").val(),
+			
+			//bank_name : $("#bank_name").val(),
+			//bank_routing: $("#bank_routing").val(),
+			//b_account_name : $("#b_account_no").val(),
+			
+			tax_preparation_fee : $("#tax_preparation_fee").val(),
+			bank_transmission_fee : $("#bank_transmission_fee").val(),
+			sb_fee : $("#sb_fee").val(),
+			//e_file_fee: $("#e_file_fee").val(), 
+			add_on_fee : $("#add_on_fee").val(),
+			complete_status : '1'			
+                 
+		}, function(data) {
+			if (typeof (data) == 'object') {
+				dataClient = data;
+					//if($("#nextReview").html()=='Next' ){
+                               // $('.fade').modal('show');
+                                //$("#one").trigger('click');
+                                $("#setupcompanybutton").attr('disabled','disabled');
+                                $("#setupcompanyli").css('disabled','disabled');
+                                $("#setupcompanyli").attr('class','overlay');
+                                $("#badge_setup_company").css('display','block');
+                                $("#setuptestbutton").removeAttr('disabled');
+                                
+                                
+					//}
+			}
+			loadClients();
+		}, "json");
+
+		return false;
+	});
+}
+
+function uploadGallery(){   
+        uploadImgProduct = new plupload.Uploader({
+            runtimes : 'gears,html5,flash,silverlight,browserplus',
+            browse_button : 'upload_bt',
+            max_file_size : '80mb',
+            url : 'plupload/server/uploadLogo.php',
+            flash_swf_url : 'plupload/js/plupload.flash.swf',
+            silverlight_xap_url : 'plupload/js/plupload.silverlight.xap',
+            filters : [
+                {title : "My Storage files", extensions : "jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG"}
+            ]
+        });
+        uploadImgProduct.bind('FilesAdded', function(up, files) {
+            objGallery = [];
+            currentFile = files[0];
+            setTimeout(function () {	 
+                uploadImgProduct.start();
+            }, 50);
+        });
+       
+        uploadImgProduct.bind('FileUploaded', function(up, file, dataJson) {
+            var obj = jQuery.parseJSON(dataJson.response);
+            if(obj.error === ''){
+                $("#signature_show").empty();
+                objGallery = obj;
+                fileID = obj.file_id;
+                extention = obj.ext;
+                show_signature();   
+            }
+        }, 'json');
+        uploadImgProduct.init();
+    }
+    function CancelUploadProduct(){	
+        uploadImgProduct.stop(); 
+    }
+    function show_signature(){
+        var newImg = document.createElement('img');
+        document.getElementById("signature_show").appendChild(newImg);
+        newImg.width = objGallery.width;
+        newImg.height = objGallery.height;
+        newImg.src = "plupload/thumb.php?id="+objGallery.file_id;  
+    }
+   
+$(function(){
+	loadObject();
+	same_check();
+	clickSave();
+    uploadGallery();
+        
+    $(".toottip_product").tooltip(); 
+    
+    setReviewPage();
+        
+        
+        
+        $("#reset_p").click(function(){
+    		$("#modal_reset_pass").modal('show');	
+    	});
+    	$("#cancel_re").click(function(){
+    		$("#modal_reset_pass").modal('hide');
+    	});
+    	
+    	
+    	$("#close_setup").click(function(){
+    		$("#modal_company_setup").modal('hide');
+    	});
+    
+    	
+    	/*
+        $("#change_username").click(function(){
+    		$("#username").removeAttr('disabled');
+    	});
+    	*/
+    	//clickSaveProfile();
+    	reset_pass();	
+
+    	$("#phoneno").mask("(999) 999-9999");
+    	$("#zipcode").mask("99999");
+    	$("#zipcode_m").mask("99999");
+    	
+    	var form = $("#basic-wizard");
+
+        // hide/show the button appropriately when a step is shown
+        form.bind("step_shown", function(e, data){
+        	
+        	//alert(data);	
+            if(data != undefined && !data.isFirstStep){
+                form.find(":reset").show();
+            }else {
+                form.find(":reset").hide();
+            }
+        });
+        
+       /*
+        form.formwizard({
+            focusFirstInput: true,
+            disableUIStyles: true
+        }).trigger("step_shown"); // trigger once at page load;
+        */
+        /* Initialize Advanced Wizard */
+                form.formwizard({
+                    focusFirstInput: true,
+                    disableUIStyles: true,
+                    formPluginEnabled: true,
+                    validationEnabled: true,
+                    validationOptions: {
+                        errorClass: 'help-block',
+                        errorElement: 'span',
+                        errorPlacement: function(error, e) {
+                            e.parents('.form-group1 > div').append(error);
+                        },
+                        highlight: function(e) {
+                            $(e).closest('.form-group1').removeClass('has-success has-error').addClass('has-error');
+                            $(e).closest('.help-block').remove();
+                        },
+                        success: function(e) {
+                            // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                            //e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
+                            e.closest('.form-group1').removeClass('has-success has-error');
+                            e.closest('.help-block').remove();
+                        },
+                        rules: {
+                        	/*efin: {
+                                required: true,
+                                minlength: 6
+                            },*/
+                            company_name: {
+                                required: true
+                            },
+                            address_1 :{
+                                required: true	
+                            },
+                            phoneno : {
+                               required: true        
+                            },
+                            city :{
+                                required: true	
+                            },
+                            state :{
+                                required: true
+                            },
+                            zipcode :{
+                                required: true,
+                                minlength: 5,
+                                maxlength: 5,
+                                number: true
+                            },
+                            address_1_m :{
+                                required: true  
+                            },
+                            city_m :{
+                                required: true  
+                            },
+                            state_m :{
+                                required: true
+                            },
+                            zipcode_m :{
+                                required: true,
+                                minlength: 5,
+                                maxlength: 5,
+                                number: true
+                            },
+                            tax :{
+                                required: true
+                            },
+                            phone : {
+                                required: true
+                            },
+                            
+                            last_name :{
+                                required: true
+                            },
+                            first_name :{
+                                required: true
+                            },
+                            val_confirm_password: {
+                                required: true,
+                                minlength: 5,
+                                equalTo: '#val_password'
+                            },
+                            email: {
+                                required: true,
+                                email: true
+                            },
+
+                            tax_preparation_fee :{
+                            	required: true,
+                            	number: true 
+                            },
+                           	add_on_fee:{
+                           		//required: true,
+                           		number: true 
+                           	}
+                        },
+                        messages: {
+                        	efin: {
+                                required: 'Please enter a EFIN #',
+                                minlength: 'Your username must consist of at least 6 nimbers'
+                            },
+                            company_name: {
+                                required: 'Please provide a company_name',
+                            },
+                            address_1 : 'Please enter your Business Address.',
+                            phoneno : 'Please enter your phone number.',
+                            city : 'Please enter City',
+                            
+                            state :'Please enter a State',
+                            
+                            zipcode :{
+                                required: 'Please enter a Zipcode',
+                                minlength: 'Your zipcode must be at least 5 characters long',
+                                maxlength: 'Your zipcode should not more then 5 characters long',
+                                number: 'Please enter only number!'
+                            },
+
+                            address_1_m : 'Please enter your Mailing Address.',
+                            
+                            city_m : 'Please enter City',
+                            
+                            state_m :'Please enter State',
+                            
+                            zipcode_m :{
+                                required: 'Please enter Zipcode',
+                                minlength: 'Your zipcode must be at least 5 characters long',
+                                number: 'Please enter only number!'
+                            },
+                            tax :'Please select Tax Software',   
+                            phone : 'Please enter your phone no',
+                            last_name : 'Please enter your last name',
+                            first_name : 'Please enter your first name',
+                           
+                            email: 'Please enter a valid email address',
+
+                            tax_preparation_fee: 'Please enter only amount!',
+                            add_on_fee: 'Please enter only amount!'
+                        }
+                    },
+                    formOptions: {
+                        success: function(data) {
+                            // On success status returned
+                        },
+                        beforeSubmit: function(data) {
+                            alert('Form Submitted!'); // not working
+                        },
+                        dataType: 'json',  // not working
+                        resetForm: true  // not working
+                    },
+                    inAnimation: {height: 'show'},
+                    outAnimation: {height: 'hide'}
+                }).trigger("step_shown"); // trigger once at page load;;
+        
+});
+
+
+</script>

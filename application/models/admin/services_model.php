@@ -261,7 +261,7 @@ class Services_model extends CI_Model {
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
 
-    	$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '0' ORDER BY i.insurance_id DESC";
+    	$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.uid = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '0' ORDER BY i.insurance_id DESC";
     	
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
@@ -310,7 +310,60 @@ class Services_model extends CI_Model {
     	
     	return $data;
     }
-    
+
+    function showPendingInsuranceForEmployee(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+
+        $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '0' ORDER BY i.insurance_id DESC";
+
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // Get Grouped Applicent Info if selected more then one
+
+            $sql_1 = "select i.*, a.* from insurance_applicent i, new_applicent a  where a.applicent_id = i.applicent_id  AND i.insurance_id = '".$row["insurance_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['applicents'][] =  $row1;
+                }
+            }else{
+                $row['applicents'] =  array();
+            }
+
+            // get Notes for Insurance
+            $sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, insurance i, users u  where u.uid = n.create_by AND i.insurance_id = n.new_app_id AND n.new_app_id = '".$row["insurance_id"]."'  AND note_from = 'insurance'";
+            $res_2 = $this->db->query($sql_2);
+
+            if(sizeof($res_2->result_array()) > 0){
+                foreach ($res_2->result_array() as $row2) {
+                    $row2["note_create_date"] = gmdate("F j, Y, g:i a", $row2["create_date"]);
+                    $row['notes'][] =  $row2;
+                }
+            }else{
+                $row['notes'] =  array();
+            }
+
+            // get additional information for Insurance
+            $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where a.insurance_id = i.insurance_id AND na.applicent_id = a.aplicent_id AND a.insurance_id = '".$row["insurance_id"]."'";
+            $res_3 = $this->db->query($sql_3);
+
+            if(sizeof($res_3->result_array()) > 0){
+                foreach ($res_3->result_array() as $row3) {
+                    $row['i_additional'][] =  $row3;
+                }
+            }else{
+                $row['i_additional'] =  array();
+            }
+
+            $data[] = $row;
+        }
+
+        return $data;
+    }
     
     function showPendingInsuranceForAdmin(){
     	$data = array();
@@ -373,7 +426,7 @@ class Services_model extends CI_Model {
     	
     	//$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'insurance' || insurance_item != '') AND na.create_date < '".$todate."' AND na.insurance_status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
     	//$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '1' ORDER BY i.insurance_id DESC";
-    	$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '1' ORDER BY i.insurance_id DESC";
+    	$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.uid = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '1' ORDER BY i.insurance_id DESC";
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
     		$row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
@@ -427,7 +480,67 @@ class Services_model extends CI_Model {
     	
     	return $data;
     }
-    
+
+    function showActiveInsuranceForEmployee(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'insurance' || insurance_item != '') AND na.create_date < '".$todate."' AND na.insurance_status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        //$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '1' ORDER BY i.insurance_id DESC";
+        $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '1' ORDER BY i.insurance_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // Get Grouped Applicent Info if selected more then one
+
+            $sql_1 = "select i.*, a.* from insurance_applicent i, new_applicent a  where a.applicent_id = i.applicent_id  AND i.insurance_id = '".$row["insurance_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            //$row['app'] = $res_1->result_array();
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['applicents'][] =  $row1;
+                }
+            }else{
+                $row['applicents'] =  array();
+            }
+
+            // get Notes for Insurance
+            $sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, insurance i, users u  where u.uid = n.create_by AND i.insurance_id = n.new_app_id AND n.new_app_id = '".$row["insurance_id"]."'  AND note_from = 'insurance'";
+            $res_2 = $this->db->query($sql_2);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_2->result_array()) > 0){
+                foreach ($res_2->result_array() as $row2) {
+                    $row2["note_create_date"] = gmdate("F j, Y, g:i a", $row2["create_date"]);
+                    $row['notes'][] =  $row2;
+                }
+            }else{
+                $row['notes'] =  array();
+            }
+
+            // get additional information for Insurance
+            $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where a.insurance_id = i.insurance_id AND na.applicent_id = a.aplicent_id AND i.insurance_id = '".$row["insurance_id"]."'";
+            $res_3 = $this->db->query($sql_3);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_3->result_array()) > 0){
+                foreach ($res_3->result_array() as $row3) {
+                    $row['i_additional'][] =  $row3;
+                }
+            }else{
+                $row['i_additional'] =  array();
+            }
+
+
+            $data[] = $row;
+        }
+
+        //print_r($data);
+
+        return $data;
+    }
     
     function showActiveInsuranceForAdmin(){
     	
@@ -497,7 +610,7 @@ class Services_model extends CI_Model {
     	$todate = $this->lib->getTimeGMT();
     	//$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'insurance' || insurance_item != '')	 AND na.create_date < '".$todate."' AND na.insurance_status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
     	//$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '2' ORDER BY i.insurance_id DESC";
-    	$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '2' ORDER BY i.insurance_id DESC";
+    	$sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.uid = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '2' ORDER BY i.insurance_id DESC";
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
     		$row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
@@ -547,6 +660,64 @@ class Services_model extends CI_Model {
     		$data[] = $row;
     	}
     	return $data;
+    }
+
+
+    function showCancelledInsuranceForEmployee(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'insurance' || insurance_item != '')	 AND na.create_date < '".$todate."' AND na.insurance_status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        //$sql = "select i.*, ia.*, a.* from insurance i, insurance_applicent ia, new_applicent a  where i.insurance_id = ia.insurance_id AND ia.uid = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.create_date < '".$todate."' AND i.status = '2' ORDER BY i.insurance_id DESC";
+        $sql = "select i.*, a.*, FROM_UNIXTIME(i.create_date) as  create_date1  from insurance i, new_applicent a  where i.applicent_id = a.applicent_id AND i.author_id = '" . $this->author->objlogin->uid . "' AND i.insurance_status = '2' ORDER BY i.insurance_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // Get Grouped Applicent Info if selected more then one
+
+            $sql_1 = "select i.*, a.* from insurance_applicent i, new_applicent a  where a.applicent_id = i.applicent_id  AND i.insurance_id = '".$row["insurance_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            //$row['app'] = $res_1->result_array();
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['applicents'][] =  $row1;
+                }
+            }else{
+                $row['applicents'] =  array();
+            }
+
+            // get Notes for Insurance
+            $sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, insurance i, users u  where u.uid = n.create_by AND i.insurance_id = n.new_app_id AND n.new_app_id = '".$row["insurance_id"]."'  AND note_from = 'insurance'";
+            $res_2 = $this->db->query($sql_2);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_2->result_array()) > 0){
+                foreach ($res_2->result_array() as $row2) {
+                    $row2["note_create_date"] = gmdate("F j, Y, g:i a", $row2["create_date"]);
+                    $row['notes'][] =  $row2;
+                }
+            }else{
+                $row['notes'] =  array();
+            }
+
+            // get additional information for Insurance
+            $sql_3 = "select a.*, na.first_name, na.last_name from insurance_application_additional_info a, insurance i, new_applicent na  where a.insurance_id = i.insurance_id AND na.applicent_id = a.aplicent_id AND i.insurance_id = '".$row["insurance_id"]."'";
+            $res_3 = $this->db->query($sql_3);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_3->result_array()) > 0){
+                foreach ($res_3->result_array() as $row3) {
+                    $row['i_additional'][] =  $row3;
+                }
+            }else{
+                $row['i_additional'] =  array();
+            }
+
+
+            $data[] = $row;
+        }
+        return $data;
     }
     
     function showCancelledInsuranceForAdmin(){
@@ -610,7 +781,7 @@ class Services_model extends CI_Model {
     function showPendingBenefits(){
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
-    	$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '0' ORDER BY b.benefits_id DESC";
+    	$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '0' ORDER BY b.benefits_id DESC";
     	
     	//$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'benefits' || benefits_item != '') AND na.benefits_status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
     	$res = $this->db->query($sql);
@@ -650,7 +821,51 @@ class Services_model extends CI_Model {
     	}
     	return $data;
     }
-    
+
+    function showPendingBenefitsForEmployee(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+        $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '0' ORDER BY b.benefits_id DESC";
+
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'benefits' || benefits_item != '') AND na.benefits_status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+
+            // Get Grouped Applicent Info if selected more then one
+            $sql_1 = "select i.*, a.* from benefits_applicent i, new_applicent a  where a.applicent_id = i.applicent_id  AND i.benefits_id = '".$row["benefits_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            //$row['app'] = $res_1->result_array();
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['applicents'][] =  $row1;
+                }
+            }else{
+                $row['applicents'] =  array();
+            }
+
+
+            // get Notes for Benefits
+            //$sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, new_app a, users u  where u.uid = n.create_by AND a.app_id = n.new_app_id AND n.new_app_id = '".$row["app_id"]."'  AND note_from = 'benefits'";
+            $sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, benefits b, users u  where u.uid = n.create_by AND b.benefits_id = n.new_app_id AND n.new_app_id = '".$row["benefits_id"]."'  AND note_from = 'benefits'";
+            $res_2 = $this->db->query($sql_2);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_2->result_array()) > 0){
+                foreach ($res_2->result_array() as $row2) {
+                    $row2["note_create_date"] = gmdate("F j, Y, g:i a", $row2["create_date"]);
+                    $row['notes'][] =  $row2;
+                }
+            }else{
+                $row['notes'] =  array();
+            }
+
+            $data[] = $row;
+        }
+        return $data;
+    }
+
     function showPendingBenefitsForAdmin(){
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
@@ -701,7 +916,7 @@ class Services_model extends CI_Model {
     	//$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '1' ORDER BY b.benefits_id DESC";
     	//$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'benefits' || benefits_item != '') AND na.benefits_status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
     	
-    	$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '1' ORDER BY b.benefits_id DESC";
+    	$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '1' ORDER BY b.benefits_id DESC";
     	
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
@@ -739,6 +954,53 @@ class Services_model extends CI_Model {
     		$data[] = $row;
     	}
     	return $data;
+    }
+
+
+    function showActiveBenefitsForEmployee(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+        //$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '1' ORDER BY b.benefits_id DESC";
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'benefits' || benefits_item != '') AND na.benefits_status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+
+        $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '1' ORDER BY b.benefits_id DESC";
+
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+            // Get Grouped Applicent Info if selected more then one
+            //$sql_1 = "select i.*, a.* from benefits_applicent i, new_applicent a  where a.applicent_id = i.uid  AND i.app_id = '".$row["app_id"]."'";
+            $sql_1 = "select i.*, a.* from benefits_applicent i, new_applicent a  where a.applicent_id = i.applicent_id  AND i.benefits_id = '".$row["benefits_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            //$row['app'] = $res_1->result_array();
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['applicents'][] =  $row1;
+                }
+            }else{
+                $row['applicents'] =  array();
+            }
+
+            // get Notes for Benefits
+            //$sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, new_app a, users u  where u.uid = n.create_by AND a.app_id = n.new_app_id AND n.new_app_id = '".$row["app_id"]."' AND note_from = 'benefits'";
+            $sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, benefits b, users u  where u.uid = n.create_by AND b.benefits_id = n.new_app_id AND n.new_app_id = '".$row["benefits_id"]."'  AND note_from = 'benefits'";
+            $res_2 = $this->db->query($sql_2);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_2->result_array()) > 0){
+                foreach ($res_2->result_array() as $row2) {
+                    $row2["note_create_date"] = gmdate("F j, Y, g:i a", $row2["create_date"]);
+                    $row['notes'][] =  $row2;
+                }
+            }else{
+                $row['notes'] =  array();
+            }
+
+
+            $data[] = $row;
+        }
+        return $data;
     }
     
     function showActiveBenefitsForAdmin(){
@@ -792,7 +1054,7 @@ class Services_model extends CI_Model {
     	$todate = $this->lib->getTimeGMT();
     	//$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '2' ORDER BY b.benefits_id DESC";
     	//$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'benefits' || benefits_item != '') AND na.benefits_status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
-    	$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '2' ORDER BY b.benefits_id DESC";
+    	$sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.uid = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '2' ORDER BY b.benefits_id DESC";
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
     		$row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
@@ -829,6 +1091,51 @@ class Services_model extends CI_Model {
     		$data[] = $row;
     	}
     	return $data;
+    }
+
+
+    function showCancelledBenefitsForEmployee(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+        //$sql = "select b.*, ba.*, a.* from benefits b, benefits_applicent ba, new_applicent a  where b.benefits_id = ba.benefits_id AND ba.uid = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.create_date < '".$todate."' AND b.status = '2' ORDER BY b.benefits_id DESC";
+        //$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND (app_from = 'benefits' || benefits_item != '') AND na.benefits_status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select b.*, a.*, FROM_UNIXTIME(b.create_date) as  create_date1 from benefits b, new_applicent a where b.applicent_id = a.applicent_id AND b.author_id = '" . $this->author->objlogin->uid . "' AND b.benefits_status = '2' ORDER BY b.benefits_id DESC";
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
+            // Get Grouped Applicent Info if selected more then one
+            //$sql_1 = "select i.*, a.* from benefits_applicent i, new_applicent a  where a.applicent_id = i.uid  AND i.app_id = '".$row["app_id"]."'";
+            $sql_1 = "select i.*, a.* from benefits_applicent i, new_applicent a  where a.applicent_id = i.applicent_id  AND i.benefits_id = '".$row["benefits_id"]."'";
+            $res_1 = $this->db->query($sql_1);
+
+            //$row['app'] = $res_1->result_array();
+            if(sizeof($res_1->result_array()) > 0){
+                foreach ($res_1->result_array() as $row1) {
+                    $row['applicents'][] =  $row1;
+                }
+            }else{
+                $row['applicents'] =  array();
+            }
+
+            // get Notes for Benefits
+            //$sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, new_app a, users u  where u.uid = n.create_by AND a.app_id = n.new_app_id AND n.new_app_id = '".$row["app_id"]."'  AND note_from = 'benefits'";
+            $sql_2 = "select n.*, u.firstname, u.lastname from newapp_benefits_insurance_note n, benefits b, users u  where u.uid = n.create_by AND b.benefits_id = n.new_app_id AND n.new_app_id = '".$row["benefits_id"]."'  AND note_from = 'benefits'";
+            $res_2 = $this->db->query($sql_2);
+
+            //$row['app'] = $res_2->result_array();
+            if(sizeof($res_2->result_array()) > 0){
+                foreach ($res_2->result_array() as $row2) {
+                    $row2["note_create_date"] = gmdate("F j, Y, g:i a", $row2["create_date"]);
+                    $row['notes'][] =  $row2;
+                }
+            }else{
+                $row['notes'] =  array();
+            }
+
+
+            $data[] = $row;
+        }
+        return $data;
     }
     
     function showCancelledBenefitsForAdmin(){

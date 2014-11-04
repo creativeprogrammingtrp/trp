@@ -161,14 +161,14 @@ $(function() {
 	});
 	
 	$("#print_check_btn").click(function(){
-		
+
 		var arr = [];
     	var ids='';
     	var i = 0;
         var startpoint = $('#starting_check_no').val();
 
-    	    $('.ready_to_print_check_modal:checked').each(function(){        
-    	    	arr[i++] = $(this).val();	
+    	    $('.ready_to_print_check_modal:checked').each(function(){
+    	    	arr[i++] = $(this).val();
     	    });
     	    //alert(arr.length);
     	    if(arr.length > 0){
@@ -185,13 +185,18 @@ $(function() {
                 success: function(message){
                 //	alert(message);
                        // $("#body_check_for_print").empty().append(message);
+                    //$(this).parent().appendTo(message);
+                    $("#modal_check_for_print").modal('hide');
+
                     var dataClient = message;
-                    loadClients();
+                    loadClientsReadyToPrint();
                       //  $(".print_check").css('display','block');
                         return false;
                 }
 			});
 	});
+
+
 	
 });
 </script>
