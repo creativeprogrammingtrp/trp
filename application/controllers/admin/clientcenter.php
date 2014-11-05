@@ -18,6 +18,7 @@ class Clientcenter extends CI_Controller{
     public function newapp(){
     	$data = array();
     	$data['title_page'] = "BankProducts";
+        $data['curPageURLServer'] = $this->system->URL_server__();
     	//$data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadBankingData());
     	$resultdata = $this->m_clientcenter->loadBankingData();
     	

@@ -85,28 +85,31 @@ Bank ID                            808
 
 30. (d) xHave to be remove EFIN from Add employee page. bcz. we can login in with this system through PTIN #.
 
-31. 1)      In the Detail Record, the amount will be in positions 35-44 (should be 10-digits long). Currently this is in positions 35-43. Please add one additional leading zero to this field.
+31. In the Detail Record, the amount will be in positions 35-44 (should be 10-digits long). Currently this is in positions 35-43. Please add one additional leading zero to this field.
 
-32. 2)      In the Trailer Record, the Total Amount should be in positions 26-38. Currently this is in positions 26-37 (should be 13-digits long). Please add one additional leading zero to this field.
+32. In the Trailer Record, the Total Amount should be in positions 26-38. Currently this is in positions 26-37 (should be 13-digits long). Please add one additional leading zero to this field.
 
-33. New applciation cursor is not showing.
+33. (d) New applciation cursor is not showing.
 
-34. New aplciation .00 need to show by default when inputing amount.
+34. (d) New aplciation .00 need to show by default when inputing amount.
 
-35. cancel button will go to the dashboard
-
-36. add those customers again to Zishan ERO
+35. (d) cancel button will go to the dashboard
 
 37. For Parent EROs call the tab “ERO Accounts”. Make it like Admin ERO tab. yes... you need only one tab iike admin ERO tab, you don't need pending , approved or rejected with separated tab.. under parent ERO panel.
 
 38. parent ERO will be able to See only  child ERO information? like Company setting, profile setting, bank fee, employee, bank info etc.
 
-39. From admin panel & prent ERO under all ERO page it's now showing all the ERO with employee, but it's should show only ERO accounts not EMPLOYEE.. So for admins, only show all ERO not their employees. If admin wants to see employee for each ERO, he can click on Edit button for that
+39. (d) From admin panel & prent ERO under all ERO page it's now showing all the ERO with employee, but it's should show only ERO accounts not EMPLOYEE.. So for admins, only show all ERO not their employees. If admin wants to see employee for each ERO, he can click on Edit button for that
 
 40. have to be add confirmation message when any status will change like Approved, Rejected etc.
 
+
+
 41. Have to be read full ACH formate doc and have to be make Question.
 
+42. have to be send PSD for TRP plus files.
+
+36. add those customers again to Zishan ERO
 
 
 

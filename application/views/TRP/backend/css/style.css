@@ -14,11 +14,11 @@
 }
 
 ::selection {
-    background: transparent; 
+    background-color: #7cc3ef;
 }
 
 ::-moz-selection {
-    background: transparent; 
+    background-color: #7cc3ef;
 }
 
 .wrapper-demo {

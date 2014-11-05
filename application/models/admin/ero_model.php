@@ -25,7 +25,7 @@ FROM users, efin_pefin, roles, users_roles, master_ero
 AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
 AND efin_pefin.uid = users.uid
-    
+and is_employee != 1
 AND users_roles.rid = 5
 AND efin_pefin.pefin =".$this->author->objlogin->efin." 
         ORDER BY users.uid DESC";
@@ -58,12 +58,14 @@ FROM users, efin_pefin, roles, users_roles, master_ero
 AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
 AND efin_pefin.uid = users.uid
-    
+AND users.is_employee == 1
 AND users_roles.rid = 5
 AND efin_pefin.pefin =".$this->author->objlogin->efin."
         ORDER BY users.uid DESC";
     	} else {
-    		$sql = "select *,users.name as username ,users.efin as user_efin,roles.name as role  from users join roles  join users_roles join master_ero  on users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid = master_ero.uid where  users_roles.rid = 5 ORDER BY users.uid DESC";
+    		$sql = "select *,users.name as username ,users.efin as user_efin,roles.name as role
+from users, roles, users_roles, master_ero
+where users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid = master_ero.uid and is_employee != 1  AND users_roles.rid = 5  ORDER BY users.uid DESC";
     	}
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {

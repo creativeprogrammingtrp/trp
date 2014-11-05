@@ -448,7 +448,7 @@ hr{
 						                <label for="total_refund_amt_3" style="padding-right:0px; font-weight: 600;" class="control-label col-md-12 text-center">Refund Amount </label>
 						                
 		                                       
-		                                        <input type="text" class="form-control text-center" name="total_refund_amt_3" id="total_refund_amt_3" onkeyup="calculateNetRefund();">
+		                                        <input data-a-dec="." data-a-sep="" type="text" class="form-control text-center" name="total_refund_amt_3" id="total_refund_amt_3" onkeyup="calculateNetRefund();">
 		                                        
 		                                
 	                                </div>
@@ -476,7 +476,7 @@ hr{
 								<div class="col-md-12 " style="border: 2px solid #eee; border-radius: 4px; padding: 50px 28px 12px; margin-top: -36px; background-color: #fff;">
 						                <label for="tax_preparation_fee_3" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Tax Preparation Fee</label>
 						                <div class="col-md-3 " style="padding:0px">
-						                <input type="text"  class="form-control text-right" id="tax_preparation_fee_3" name="tax_preparation_fee_3" value="{tax_preparation_fee}" onkeyup="calculateNetRefund();">
+						                <input type="text" data-a-dec="." data-a-sep=""  class="form-control text-right" id="tax_preparation_fee_3" name="tax_preparation_fee_3" value="{tax_preparation_fee}" onkeyup="calculateNetRefund();">
 		                                </div>        
 		                                <div class="clear"></div>
 		                                <hr class="dottline" style="border-top:2px dotted #eee; margin-top:8px; margin-bottom:8px;">
@@ -500,7 +500,7 @@ hr{
 		                                
 		                                <label for="add_on_fee_3" style="padding-right:0px; font-weight: 600; " class="control-label col-md-9 text-left">Add On Fee</label>
 						                <div class="col-md-3 " style="padding:0px">
-						                <input type="text" class="form-control text-right" name="add_on_fee_3" id="add_on_fee_3" value="{add_on_fee}" onkeyup="calculateNetRefund();">
+						                <input type="text" data-a-dec="." data-a-sep="" class="form-control text-right" name="add_on_fee_3" id="add_on_fee_3" value="{add_on_fee}" onkeyup="calculateNetRefund();">
 		                                </div>        
 		                                <div class="clear"></div>
 		                                
@@ -637,7 +637,7 @@ hr{
 						            <div class="form-group1 form-actions" style="margin-top:30px; border-top: 0px;">
 						            <div class="col-md-12 text-left">
 						            	<div class="col-md-6 text-left">
-						                     <button  class="btn btn-danger btn-lg" type="button" id="back" >
+						                     <button  class="btn btn-danger btn-lg" type="button" id="back_to_dashboard"  >
 				                                <i class="icon-redo"></i> Cancel
 				                            </button>
 						                </div>
@@ -2123,8 +2123,8 @@ hr{
  <!-- <script type="text/javascript" src="../backend/js/jquery.zclip.min.js"></script> --> 
  <script type="text/javascript" src="../backend/js/ZeroClipboard1.js"></script>
  	<script type="text/javascript">
- 	
- 	
+
+    var url_server__ = '{curPageURLServer}';
  	
  	var allSelectedItems = '';
  	var totalFees = 0; // it all benefit total
@@ -2143,6 +2143,17 @@ hr{
  		ZeroClipboard.setMoviePath('../backend/js/ZeroClipboard.swf');
  		
  		$(function() {
+
+            $('#total_refund_amt_3').autoNumeric('init');
+            $('#tax_preparation_fee_3').autoNumeric('init');
+            $('#add_on_fee_3').autoNumeric('init');
+
+            $('#back_to_dashboard').click(function() {
+                //var clip = new ZeroClipboard.Client();
+                //window.location = "/admin/dashboard";
+                window.location.href = (url_server__+'admin/dashboard');
+            });
+
             $("#d_clip_button1").click(function() {
                     var clip = new ZeroClipboard.Client();
 

@@ -34,7 +34,7 @@ class Ero extends CI_Controller{
         $data['dataLoad'] = "dataClient = " . json_encode($this->ero->loadAllEros());
         $data['style'] = ($this->author->objlogin->role['rid'] == 5)?'style="display:none"':'';
         if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-            $this->system->parse_templace('accounts/alleros.htm', $data);
+            $this->system->parse_templace('accounts/alleros_for_parent.htm', $data);
             exit();
         }
     }
