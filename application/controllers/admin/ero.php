@@ -155,7 +155,7 @@ class Ero extends CI_Controller{
         if( isset($_POST['load_payment']) && !empty($_POST['load_payment']) && $_POST['load_payment'] == 'yes' ){
         	echo json_encode($this->ero->savePaymentInfo());
         	exit;
-        } 
+        }
         if( isset($_POST['load_bank']) && !empty($_POST['load_bank']) && $_POST['load_bank'] == 'yes' ){
         	echo json_encode($this->ero->saveBankInfo());
         	exit;
@@ -164,7 +164,11 @@ class Ero extends CI_Controller{
         	echo json_encode($this->ero->saveEroStatusChangeInfo());
         	exit;
         }
-        
+
+        if( isset($_POST['load_child_status']) && !empty($_POST['load_child_status']) && $_POST['load_child_status'] == 'yes' ){
+            echo json_encode($this->ero->saveChieldEroStatusChangeInfo());
+            exit;
+        }
     }
     
     

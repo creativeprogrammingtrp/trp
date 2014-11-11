@@ -85,7 +85,15 @@ hr{
 }
 
 </style>
-<div style="padding-top:29px;margin-bottom:29px; padding-left:24px;" class="col-md-12"><h2 style="margin:0px; color:#54565F;"><i class="icon-users4"></i> &nbsp;{title_page}</h2></div>
+<div style="padding-top:29px;margin-bottom:29px; padding-left:24px;" class="col-md-6"><h2 style="margin:0px; color:#54565F;"><i class="icon-users4"></i> &nbsp;{title_page}</h2></div>
+<div class="col-md-6" style="padding-top:43px;margin-bottom:30px; padding-left:24px;  padding-right:20px; text-align: right;  height: 75px;">
+    <form method="post" name="office" action="" {hidefromEmployee}s>
+    <!--<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">-->
+    {alloffice}
+    <!--</select>-->
+
+    </form>
+</div>
 
 <div style="clear:both"></div>
 <div class="tab-content tab-content-default">
@@ -743,10 +751,12 @@ hr{
    <!-- <script src="../backend/js/flot-chart.js"></script> -->
    
    <script>
-   
+
+       var company = $('#office_list').val();
+
    	function showCustomerList(){
 		$.ajax({
-             url: 'index.php/admin/customers/showCustomerList?ajax=1',
+             url: 'index.php/admin/customers/showCustomerList?ajax=1&company='+company,
              cache: false,
              success: function(message){
             	 //alert(message);

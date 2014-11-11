@@ -5079,6 +5079,34 @@ function ClickToEditEroStatus(option, parent) {
     });
 }
 
+
+
+function ClickToEditChildEroStatus(option, parent) {
+    var $parent = $("#" + parent);
+
+    $parent.find("#save_parent_ero_status").click(function() {
+        //alert('d');
+        $.post(url_base_path__ + 'admin/ero/ClickToEditEro', {
+            option: option,
+            load_child_status: 'yes',
+            uid: $parent.find("#author1").val(),
+            ero_status : $parent.find("#ero_state").val(),
+
+
+        }, function(data) {
+            if (typeof (data) == 'object') {
+                dataClient = data;
+                $parent.modal('hide');
+            }
+            loadClients();
+        }, "json");
+
+        return false;
+    });
+
+
+}
+
 function clickToEditBankInfo(option, parent) {
     var $parent = $("#" + parent);
     
@@ -5200,22 +5228,20 @@ function clickToEditApplicationInfo(parent){
                  email_add: { required: true, email: true},
                  
              },
-             messages: {
+                messages: {
              	first_name: { required: 'Please enter a first name'},
-                 last_name: { required: 'Please enter a last name'},
-                 ss_number: { required: 'Please enter SSN number '},
-                 dob: { required: 'Please enter your DOB'},
-                 street_address: { required: 'Please enter Address'},
-                 city: { required: 'Please enter city'},
-                 state: { required: 'Please select state'},
-                 zip_code: { required: 'Please enter zip code',
-                 			maxlength: 'Please enter no more then 5 digit.'},
-                 cell_phone: { required: 'Please enter phone number'},
-                 email_add: { required: 'Please enter a email address',
-                 	 		email: 'Please enter a valid email address'},
-                 
-                 
-             },
+                last_name: { required: 'Please enter a last name'},
+                ss_number: { required: 'Please enter SSN number '},
+                dob: { required: 'Please enter your DOB'},
+                street_address: { required: 'Please enter Address'},
+                city: { required: 'Please enter city'},
+                state: { required: 'Please select state'},
+                zip_code: { required: 'Please enter zip code',
+                maxlength: 'Please enter no more then 5 digit.'},
+                cell_phone: { required: 'Please enter phone number'},
+                email_add: { required: 'Please enter a email address',
+                email: 'Please enter a valid email address'}
+                },
              submitHandler: function(form) {
              	
            	  $.post(url_base_path__ + "admin/clientcenter/updateApplicationInfo", {

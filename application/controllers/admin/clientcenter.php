@@ -514,7 +514,8 @@ class Clientcenter extends CI_Controller{
         //$this->load->view('pdfreport', $data);
 
        // $this->m_clientcenter->();
-        echo $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadReadyToPrintApplication());
+       // echo $data['dataLoad'] = "dataClient = " . json_encode($this->m_clientcenter->loadReadyToPrintApplication());
+        echo "All check printed successfully.";
 
     }
 

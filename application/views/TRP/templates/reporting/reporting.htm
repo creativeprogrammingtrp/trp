@@ -41,7 +41,7 @@ div.DTTT_container {
 <div class="col-md-6" style="padding-top:33px;margin-bottom:25px; padding-left:24px;"><h2 style="margin:0px; color:#54565F;"><i class="icon-bars"></i> &nbsp;{title_page}</h2></div>
 
 <div class="col-md-6" style="padding-top:43px;margin-bottom:30px; padding-left:24px;  padding-right:20px; text-align: right;  height: 75px;">
-<form method="post" name="office" action="" {hidefromEmployee} {hidefromadmin}>
+<form method="post" name="office" action="" {hidefromEmployee}s>
 <!--<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">-->
     {alloffice}
 <!--</select>-->
@@ -1393,7 +1393,6 @@ function showBankProductByCustomrReport(){
 	});	
 }
 
-
 function showBankProductByEmployeeReport(){
 	$.ajax({
                 url: 'index.php/admin/reporting/showBankProductByEmployeeReport?ajax=1&company='+company,
@@ -1558,9 +1557,6 @@ function loadReportByTabSelection(tabsel){
  	 		showDiscountBenefitsEmployeeReport();
  	 		$("#discount_benefits_employees_report").show();
  	 	}
-		
-	     
-		
 	}else if(tabs == '#insurance_report'){
 		var val1 = $('#insurance_report_list_drop').find('.selectric').find('.label').html();
 	    
@@ -1594,7 +1590,6 @@ function loadReportByTabSelection(tabsel){
  			$("#service_bureau_revenue_report").show();
  	 	}
 	}
-	
 }
 
 
@@ -1609,13 +1604,11 @@ function loadReport(val){
 	$('#bank_products_unfunded_report').hide();
 	$('#bank_products_customer_report').hide();
 	$('#bank_products_employee_report').hide();
-	
-	
+
 	$('#discount_benefits_revenue_report').hide();
 	$('#discount_benefits_benefits_sold_report').hide();
 	$('#discount_benefits_customers_report').hide();
 	$('#discount_benefits_employees_report').hide();
-	
 
 	$('#insurance_revenue_report').hide();
 	$('#insurance_sold_report').hide();
@@ -1623,11 +1616,8 @@ function loadReport(val){
 	$('#insurance_employees_report').hide();
 	
 	$('#total_income_revenue_report').hide();
-	
 	$('#service_bureau_revenue_report').hide();
 	$('#service_bureau_ero_report').hide();
-	
-	
 	   
 	//var classname = $(item).attr('class');
 	

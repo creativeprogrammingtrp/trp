@@ -146,7 +146,13 @@ $(function() {
                 cache: false,
                 success: function(message){
                 //	alert(message);
-                        $("#body_direct_deposit").empty().append(message);
+                    if (confirm('All Application Marked as Paid Successfully.')) {
+                        //alert('All Check Printed Successfully.');
+                        $("#modal_direct_deposit").modal('hide');
+                    }else{
+                        $("#modal_direct_deposit").modal('hide');
+                    }
+                       // $("#body_direct_deposit").empty().append(message);
                       //  $(".print_check").css('display','block');
                         return false;
                 }

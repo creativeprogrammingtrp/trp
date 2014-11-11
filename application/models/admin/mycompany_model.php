@@ -289,7 +289,9 @@ class Mycompany_model extends CI_Model {
     	$file_id = (isset($_POST['file_id']) && $_POST['file_id'] != '') ? $_POST['file_id'] : '';
     	$ext = $_POST['ext'];
     	$filename = $file_id . '.' . $ext;
-    
+
+        $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $this->author->objlogin->uid));
+
     	$data = array(
                 'efin' => $this->lib->escape($_POST['efin']),
     			'p_efin' => $this->lib->escape($_POST['p_efin']),
@@ -331,6 +333,20 @@ class Mycompany_model extends CI_Model {
     	// }
     
     	$this->saveSetupProfile();
+
+
+        if ($query1->num_rows() > 0) {
+
+        }else{
+            $data1 = array(
+                'uid' => $this->author->objlogin->uid,
+                'efin' => $this->lib->escape($_POST['efin']),
+                'pefin' => $this->lib->escape($_POST['p_efin']),
+                'service_buraue' => $this->lib->escape($_POST['service_bureau_num']),
+                'add_date' => $this->lib->getTimeGMT()
+            );
+            $this->db->insert("efin_pefin", $data1);
+        }
 
         if($this->author->objlogin->isemployee != 1) { // if not employee
             return $this->loadInfor();

@@ -19,6 +19,12 @@ class Customers extends CI_Controller {
     	$data = array();
     	$data['title_page'] = 'Customers';
     	$data['states'] = $this->m_com->loadStatesList();
+
+        $officedata = $this->system->getOfficeInfo();
+        $data['alloffice'] = $officedata['officeCombo'];
+        $data['selectedCompanyName'] = $officedata['selectedOffice'];
+
+        $data['hidefromEmployee'] = ($this->author->objlogin->isemployee == 1)?'style="display:none"':'';
     	$this->system->parse("customer/customers.htm", $data);
     }
    

@@ -143,7 +143,7 @@ AND master_ero.p_efin =".$this->author->objlogin->efin."
     	if ($this->author->objlogin->role['rid'] == 5) {
     		$sql = "SELECT users.* , roles.*, users_roles.*, master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role, efin_pefin.efin as efin, efin_pefin.pefin as pefin, efin_pefin.status as efin_status
 FROM users, efin_pefin, roles, users_roles, master_ero
- Where users_roles.rid = roles.rid
+ Wher e users_roles.rid = roles.rid
 AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
 AND efin_pefin.uid = users.uid
@@ -290,7 +290,7 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
 
     public function approveEro($efin) {
     	if($this->author->objlogin->role['rid'] == 5){
-    	$sql = "update users set status = 2 where status = 1 and efin = '" . $efin . "' ";
+    	//$sql = "update users set status = 2 where status = 1 and efin = '" . $efin . "' ";
     	
     	// update master ero with parent efin status
     	$sql2 = "update  master_ero set is_view = 1, pefin_status = 1 where pefin_status = 0 and efin = '" . $efin . "' ";
@@ -301,10 +301,59 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
     	$this->db->query($sql3);
     	
     	}else{
-        $sql = "update users set status = 4 where status = 1 and efin = '" . $efin . "' ";
+        //$sql = "update users set status = 4 where status = 1 and efin = '" . $efin . "' ";
     	}
-        $this->db->query($sql);
-        return $this->loadEro();
+       // $this->db->query($sql);
+        //return $this->loadEro();
+        return $this->loadAllEros();
+    }
+
+
+    public function saveChieldEroStatusChangeInfo() {
+
+        $status = $this->lib->escape($_POST['ero_status']);
+        $uid = $this->lib->escape($_POST['uid']);
+
+        // update master ero with parent efin status
+        $sql2 = "update  master_ero set is_view = 1, pefin_status = $status where  uid = '" . $uid . "' ";
+        $this->db->query($sql2);
+
+        // update efin_pefin ero with parent efin status
+        if($status == 1){
+            $sql3 = "update efin_pefin set status = $status, is_view = 2, approved_date = '".$this->lib->getTimeGMT()."' where uid = '" . $uid . "' ";
+        }else{
+            $sql3 = "update efin_pefin set status = $status, is_view = 2, reject_date = '".$this->lib->getTimeGMT()."' where uid = '" . $uid . "' ";
+        }
+        $this->db->query($sql3);
+
+        return $this->loadAllEros();
+/*
+        $data = array(
+            'status' => $this->lib->escape($_POST['ero_status'])
+
+        );
+
+        $this->db->where('uid', $this->lib->escape($_POST['uid']));
+        $this->db->update('users', $data);
+
+        if($this->author->objlogin->uid != '1'){
+            if ($_POST['option'] == 'allero') {
+
+                return $this->loadAllEros();
+            } else if ($_POST['option'] == 'pendingero') {
+                return $this->loadEro();
+            }elseif ($_POST['option'] == 'pendingregistrationero'){
+                return $this->loadPendingRegistrationEro();
+            }
+            else {
+                return $this->loadApprovedEro();
+            }
+        }else{
+            if ($_POST['option'] == 'allero') {
+
+                return $this->loadAllErosForAdmin();
+            }
+        }*/
     }
 
     public function rejectEro($efin) {

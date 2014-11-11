@@ -14,13 +14,9 @@ Bank ID                            808
 (d) 5. new application: if applicant choose insurance then system will send email as order receipt from Scalefinsncial.com with ERO info, applicent infi & insurance info
 (d) 5.1. have to be set default routing no.
 
-6. insurance : it will send email with all the selected applicent info
+7. (d) void & reprint
 
-(d) 7. void & reprint
-
-8. have to be work on ACH to ERO
-
-9. (d)ERO edit section for bank fees tab.
+9. (d) ERO edit section for bank fees tab.
 
 10. (d) Have to be work on commission part
 
@@ -38,17 +34,12 @@ Bank ID                            808
 
 17. (d) So from abnk accouunt > ready to payout page,  when customer select direct diposit then it will not show the print button, it will show Initiate button. and after click on that button it will show one confirmaitn info, and if yes then that account will go to the PAID.
 
-18. So from admin section when admin will clcik on generat file for ACH to ERO then system will check all the DIrect diposited application for generate file.
 
 19. (d) Pending fund, ready to payout, printed check, voidied check, paid, voided payments, all applications.
 
-20. For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
-
-21. under bank account or any other places we have to be implement refresh option after make any event. like after print
 
 22. (d) have to be add column header with transjournal file uplaod section
 
-23. layout if change resulation
 
 24. (d) after deactivated any ERO then can login with our sytem. but it's not should login with system.
 
@@ -56,9 +47,8 @@ Bank ID                            808
 
 26. (d) have to be add EFIN under add employee.
 
-27. udner ERO, after click on view all, we need back button under all customer list page.
 
-28. under funded report : Posted date, name, expected refund, actual refund , fees (Txt fee, addon ffee, audint ffe), refund to customer, payment type.
+28. (d) under funded report : Posted date, name, expected refund, actual refund , fees (Txt fee, addon ffee, audint ffe), refund to customer, payment type.
 
 20. (d) delete all info from db.
 
@@ -85,9 +75,9 @@ Bank ID                            808
 
 30. (d) xHave to be remove EFIN from Add employee page. bcz. we can login in with this system through PTIN #.
 
-31. In the Detail Record, the amount will be in positions 35-44 (should be 10-digits long). Currently this is in positions 35-43. Please add one additional leading zero to this field.
+31. d) In the Detail Record, the amount will be in positions 35-44 (should be 10-digits long). Currently this is in positions 35-43. Please add one additional leading zero to this field.
 
-32. In the Trailer Record, the Total Amount should be in positions 26-38. Currently this is in positions 26-37 (should be 13-digits long). Please add one additional leading zero to this field.
+32. d) In the Trailer Record, the Total Amount should be in positions 26-38. Currently this is in positions 26-37 (should be 13-digits long). Please add one additional leading zero to this field.
 
 33. (d) New applciation cursor is not showing.
 
@@ -95,27 +85,56 @@ Bank ID                            808
 
 35. (d) cancel button will go to the dashboard
 
-37. For Parent EROs call the tab “ERO Accounts”. Make it like Admin ERO tab. yes... you need only one tab iike admin ERO tab, you don't need pending , approved or rejected with separated tab.. under parent ERO panel.
-
-38. parent ERO will be able to See only  child ERO information? like Company setting, profile setting, bank fee, employee, bank info etc.
-
 39. (d) From admin panel & prent ERO under all ERO page it's now showing all the ERO with employee, but it's should show only ERO accounts not EMPLOYEE.. So for admins, only show all ERO not their employees. If admin wants to see employee for each ERO, he can click on Edit button for that
 
-40. have to be add confirmation message when any status will change like Approved, Rejected etc.
+42. (d) have to be send PSD for TRP plus files.
 
+36. (d) add those customers again to Zishan ERO
 
+37. (d) For Parent EROs call the tab “ERO Accounts”. Make it like Admin ERO tab. yes... you need only one tab iike admin ERO tab, you don't need pending , approved or rejected with separated tab.. under parent ERO panel.
 
-41. Have to be read full ACH formate doc and have to be make Question.
+38. (d) parent ERO will be able to See only  child ERO information? like Company setting, profile setting, bank fee, employee, bank info etc.
 
-42. have to be send PSD for TRP plus files.
+43. (d) After uplaod transjournal file report is not showing into funded report.
 
-36. add those customers again to Zishan ERO
+44. (d) after print all the applciation it;s not shoing any message, so need to show success message.
 
+45. (d) when adding parent EFIN # form setup page step 1. then it's not adding entry into efin_pefin table for create relation.
 
+46. (d) after uplaod transjournal file posted date is not adding correctly. is's showig amount formate. have to be chagne
 
+47. (d) add company dropdown under admin section with Reporting & customer tab like parent EFIN.
+
+48. (d) Have to be remove Add NewApplication button for admin section.
+
+49. (d) Change ststus (approved or Reject) form parent ERO is not woring. it's should show child ERO approved or reject status.
+
+50. (d) Positive pay file is not generating proper way, it's writing all the info in one line.
+
+41. (d) Have to be read full ACH formate doc and have to be make Question.
+
+8. have to be work on ACH to ERO
+
+18. So from admin section when admin will clcik on generat file for ACH to ERO then system will check all the DIrect diposited application for generate file.
+
+51. Under Customer from admin & parent ERO section we have to be add All under dropdown box.
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-==-==-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+6. insurance : it will send email with all the selected applicent info
+
+40. have to be add confirmation message when any status will change like Approved, Rejected etc.
+
+20. For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
+
+21. under bank account or any other places we have to be implement refresh option after make any event. like after print
+
+23. layout if change resulation
+
+27. udner ERO, after click on view all, we need back button under all customer list page.
+
 
 1. (d) As employee: under bank prodcut Employee column will be removed from every tab.
 

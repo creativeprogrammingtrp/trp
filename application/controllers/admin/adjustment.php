@@ -638,7 +638,7 @@ class Adjustment extends CI_Controller{
         $accountNo =  str_pad($w_accountNo, 15, "0", STR_PAD_LEFT);
         $filestatus = '0';
 
-        $fullHeader = str_pad($default.''.$bankid.''.$accountNo.''.$filestatus, 165);
+        $fullHeader = str_pad($default.''.$bankid.''.$accountNo.''.$filestatus, 165)."\n";
 
         fwrite($myfile, $fullHeader);
 
@@ -665,7 +665,8 @@ class Adjustment extends CI_Controller{
             $w_additional = $pcheck['w_individual_name'];  // 'MARY MOORE';
             $additioanl = str_pad($w_additional, 120); // 110 digit
 
-            $fullbody = $serial_no . '' . $issueDate . '' . $accountno . '' . $transactionCode . '' . $amount . '' . $additioanl;
+            $fullbody = $serial_no . '' . $issueDate . '' . $accountno . '' . $transactionCode . '' . $amount . '' . $additioanl."\n";
+            //$fullbody = $serial_no . '' . $issueDate . '' . $accountno . '' . $transactionCode . '' . $amount ."\n";
 
             fwrite($myfile, $fullbody);
 
@@ -692,7 +693,8 @@ class Adjustment extends CI_Controller{
 
             $blankspace2 = str_pad('', 126);// 126 digit
 
-            $fulltrailer = $spaceWithandsign . '' . $recordCount . '' . $blankSpace . '' . $tamount . '' . $blankspace2;
+            $fulltrailer = $spaceWithandsign . '' . $recordCount . '' . $blankSpace . '' . $tamount . '' . $blankspace2."\n";
+        //$fulltrailer = $spaceWithandsign . '' . $recordCount . '' . $blankSpace . '' . $tamount."\n";
 
             fwrite($myfile, $fulltrailer);
 
@@ -783,210 +785,203 @@ class Adjustment extends CI_Controller{
     }
 
 
-    public function generateACHFile() {
+    public function generateACHFile()
+    {
         $data = array();
-        $filename = 'AE'.date('mdyhis');
-        $myfile = fopen("./arp_inbound/".$filename.".txt", "w") or die("Unable to open file!");
+        $filename = 'AE' . date('mdyhis');
+        $myfile = fopen("./arp_inbound/" . $filename . ".txt", "w") or die("Unable to open file!");
 
         $totalAmount = 0;
 
+        $last_file_ID_modifier = $this->m_clientcenter->loadLastFileIDModifier();
+
+        $totalPayAmount = 0;
+        $totalDebitPayAmount = 0;
+        $t8_entry_hash = 0;
+        $totalEntry_hash = 0;
+
         // Header Part
-        $Record_ID_H = 'HD';
-        $File_Control_Number = $filename;
-        $File_Date = date('Y-m-d');
+        $t1_record_type = '1'; // Constant
+        $t1_priority_code = '01'; // Constant
+        $t1_Wells_fargo_r_t_no = str_pad('091000019', 10, " ", STR_PAD_LEFT); // Constant b091000019, (b=space)
+        $t1_file_ID = 'EDIMN00004'; // Wells Fargo- assigned ID
+        $t1_file_creation_date = date('ymd');
+        $t1_file_creation_time = date('hi');
 
-        $fullHeader = $Record_ID_H.'|'.$File_Control_Number.'|'.$File_Date."\n";
+        // incremental (A, B, C...)
+        if (count($last_file_ID_modifier) > 0) {
+            $file_ID_modifier1 = $last_file_ID_modifier['file_ID_modifier'];
+            $file_ID_modifier = $file_ID_modifier1++;
+        } else {
+            $file_ID_modifier = 'A';
+        }
 
+        $t1_record_size = '094'; // Constant
+        $t1_blocking_factor = '10'; // Constant
+        $t1_format_code = '1'; // Constant
+        $t1_origination_bank = str_pad('WELLS FARGO', 23); // Constant
+        $t1_company_name = str_pad('TRP SOLUTION', 23); // Constant
+        $t1_reference_code = str_pad('', 8); // Constant
+
+        $fullHeader = $t1_record_type . "" . $t1_priority_code . "" . $t1_Wells_fargo_r_t_no . "$t1_file_ID" . "$t1_file_creation_date" . "$t1_file_creation_time" . "$file_ID_modifier" . "$t1_record_size" . "$t1_blocking_factor" . "$t1_format_code" . "$t1_origination_bank" . "$t1_company_name" . "$t1_reference_code" . "\n";
         fwrite($myfile, $fullHeader);
 
-        // body part
+        //===================================
 
-        $printedCheck = $this->m_clientcenter->loadAllPrintedCheckForExportIntoACH();
-        $totalCheckAmount = 0.00;
-//print_r($printedCheck);
-        $k = 0;
-        foreach($printedCheck as $pcheck) {
+        // Have to be start loop here batch wise.
+        $eroList = $this->m_clientcenter->loadListOfEROForACHExport();
+        $ecount = 1;
+        $batchTotal = 0;
+        foreach ($eroList as $erol) {
+            $batchTotal++;
+
+            $t5_record_type = "1"; // Constant
+            $t5_service_class_code = "200";
+            $t5_company_name = str_pad("SCALE FINANCIAL", 16);
+            $t5_company_discretionary_data = str_pad("", 20);
+            $t5_company_ID = "1464683532";
+            $t5_SEC_code = "CCD";
+            $t5_company_entry_description = str_pad("PAYOUT", 10);
+
+            $todate = strtoupper(date('mdy'));
+
+            $t5_company_descriptive_date = $todate;
+            $t5_effective_entry_date = $todate; // need talk with Ishan
+            $t5_settlement_date = str_pad("", 3); // Constant
+            $t5_originator_status_code = "1"; // Constant
+            $t5_wells_fargo_r_t_no = "09100001"; // Constant
+            $t5_batch_number = str_pad($ecount, 7, "0", STR_PAD_LEFT); // Assigned starting from 0000001 in ascending sequence for each company/batch header record.
+
+            $fullType5 = $t5_record_type . "" . $t5_service_class_code . "" . $t5_company_name . "" . $t5_company_discretionary_data . "" . $t5_company_ID . "" . $t5_SEC_code . "" . $t5_company_entry_description . "" . $t5_company_descriptive_date . "" . $t5_effective_entry_date . "" . $t5_settlement_date . "" . $t5_originator_status_code . "" . $t5_wells_fargo_r_t_no . "" . $t5_batch_number."\n";
+            fwrite($myfile, $fullType5);
+
+            // body part
+            $dipositedApp = $this->m_clientcenter->loadAllPaidACHApplicationForExportIntoACHByERO($erol['uid']);
+            $totalCheckAmount = 0.00;
+            //print_r($printedCheck);
+            $k = 0;
+            foreach ($dipositedApp as $dipApp) {
+                //1 1 1 9  0 0 6  5
+                //3 7 1 3  7 1 3  7
+                //3 7 1 27 0 0 18 35 =  91
+
+                // 100 - 91 = 9
+
+                // calculate amount that have to be pay
+                $taxPay = floatval($dipApp['app_actual_tax_preparation_fee_sum']);
+                $AddOnPay = floatval($dipApp['app_actual_add_on_fee_sum']);
+
+                $taxPayCommission = floatval($dipApp['tax_pre_commission']);
+                $AddOnPayCommission = floatval($dipApp['add_on_commission']);
+
+                $taxPayCommissionType = intval($dipApp['tax_pre_commission_type']); // 1 = Fixed & 2 = percentage
+                $AddOnPayCommissionType = intval($dipApp['add_on_commission_type']); // 1 = Fixed & 2 = percentage
+
+                $txaAmount = 0;
+                $AddonAmount = 0;
+
+                if ($taxPayCommissionType == 1) {
+                    $txaAmount = floatval($taxPay) - floatval($taxPayCommission);
+                } else {
+                    $txaAmountPer = floatval($taxPay) * intval($taxPayCommission) / 100;
+                    $txaAmount = floatval($taxPay) - floatval($txaAmountPer);
+                }
 
 
-            // calculate amount that have to be pay
-            $taxPay = floatval($pcheck['app_actual_tax_preparation_fee_sum']);
-            $AddOnPay = floatval($pcheck['app_actual_add_on_fee_sum']);
+                if ($AddOnPayCommissionType == 1) {
+                    $AddonAmount = floatval($AddOnPay) - floatval($AddOnPayCommission);
+                } else {
+                    $AddonAmountPer = floatval($AddOnPay) * intval($AddOnPayCommission) / 100;
+                    $AddonAmount = floatval($AddOnPay) - floatval($AddonAmountPer);
+                }
 
-            $taxPayCommission = floatval($pcheck['tax_pre_commission']);
-            $AddOnPayCommission = floatval($pcheck['add_on_commission']);
+                $totalPayAmount = floatval($txaAmount) + floatval($AddonAmount);
 
-            $taxPayCommissionType = intval($pcheck['tax_pre_commission_type']); // 1 = Fixed & 2 = percentage
-            $AddOnPayCommissionType = intval($pcheck['add_on_commission_type']); // 1 = Fixed & 2 = percentage
+                $t6_record_type = "6"; // Constant
+                $t6_transaction_code = "27"; //  debit code
+                $t6_receiving_DFI_r_t_number = substr($dipApp['bank_routing'], 0, -1); // have to be get first 8 digit from bank_routing
+                $t6_r_t_number_check_digit = substr($dipApp['bank_routing'], -1);; // have to be get last digit from bank_routing
+                $t6_receiving_DFI_account_number = substr($dipApp['bank_account'], 0, 17); // bank_account
 
-            $txaAmount = 0;
-            $AddonAmount = 0;
+                $w_tamount = str_replace(".","",$totalPayAmount); //116564;
+                $tamount = str_pad($w_tamount, 10, "0", STR_PAD_LEFT);// 13 digit
 
-            if($taxPayCommissionType == 1) {
-                 $txaAmount = floatval($taxPay) - floatval($taxPayCommission);
-            }else{
-                $txaAmountPer = floatval($taxPay) * intval($taxPayCommission)/100;
-                 $txaAmount = floatval($taxPay) - floatval($txaAmountPer);
+
+                $t6_amount = $tamount; // w_amount
+
+                $t6_individual_ID = str_pad($dipApp['efin'], 15, "0", STR_PAD_LEFT);
+
+                $eroname = $dipApp['firstname']." ".$dipApp['lastname'];
+                //$lastname =
+                $t6_individual_name = str_pad($eroname, 22);
+
+                $t6_discretionary_data = str_pad('', 2); // 3 digit
+                $t6_Addenda_record_indicator = "0";
+
+                $t6_trace_number = "09100001".str_pad(1, 7, "0", STR_PAD_LEFT);
+
+                $fullType6 = $t6_record_type . "" . $t6_transaction_code . "" . $t6_receiving_DFI_r_t_number . "" . $t6_r_t_number_check_digit . "" . $t6_receiving_DFI_account_number . "" . $t6_amount . "" . $t6_individual_ID . "" . $t6_individual_name . "" . $t6_discretionary_data . "" . $t6_Addenda_record_indicator . "" . $t6_trace_number."\n";
+
+                fwrite($myfile, $fullType6);
+
+                $t7_record_type = "7";
+                $t7_addenda_type_code = "05";
+                $t7_payment_related_information = str_pad("", 80); // need to talk with
+                $t7_addenda_sequence_number = "0001"; // Sequential number beginning with 0001; Resets to 0001 for the beginning of each Entry Detail record
+                $t7_entry_detail_sequence_number = str_pad(1, 7, "0", STR_PAD_LEFT); // Same as the last seven digits of the trace number of the related entry detail record.
+
+                $fulType7 = $t7_record_type . "" . $t7_addenda_type_code . "" . $t7_payment_related_information . "" . $t7_addenda_sequence_number . "" . $t7_entry_detail_sequence_number."\n";
+
+                fwrite($myfile, $fulType7);
+
+                $t8_record_type = "8";
+                $t8_service_class_code = "200";
+                $t8_entry_addenda_count = str_pad(2, 6, "0", STR_PAD_LEFT); // Total number of entry detail and addenda records in the batch. Right-justify and zero-fill the field.
+                $t8_entry_hash = str_pad(substr($dipApp['bank_routing'], 0, -1), 10, "0", STR_PAD_LEFT);
+                $t8_total_batch_debit_entry_dollar_amount = str_pad($w_tamount, 12, "0", STR_PAD_LEFT); // The sum of entry detail debit totals within the batch. Right-justify and zero-fill the field.
+                $t8_Total_batch_credit_entry_dollar_amount = str_pad("", 12, "0"); // The sum of entry detail credit totals within the batch. Right-justify and zero-fill the field.
+                $t8_company_ID = "1464683532"; // Should be the same company ID used in the company/batch header record for this batch.
+                $t8_message_authentication_code = str_pad("", 19);
+                $t8_blank = str_pad("", 6);
+                $t8_wells_fargo_r_t_number = "09100001";
+                $t8_batch_number = str_pad($ecount, 7, "0", STR_PAD_LEFT);
+
+
+                $fullType8 = $t8_record_type . "" . $t8_service_class_code . "" . $t8_entry_addenda_count . "" . $t8_entry_hash . "" . $t8_total_batch_debit_entry_dollar_amount . "" . $t8_Total_batch_credit_entry_dollar_amount . "" . $t8_company_ID . "" . $t8_message_authentication_code . "" . $t8_blank . "" . $t8_wells_fargo_r_t_number . "" . $t8_batch_number."\n";
+
+                fwrite($myfile, $fullType8);
+
+                $totalAmount = floatval($totalAmount) + floatval($totalPayAmount);
+
+                // update exported time
+
+                //$this->m_clientcenter->updateACHExportTImeForAllPrintedCheckForExport($pcheck['check_id']);
+
+                $k++;
+
             }
-
-
-            if($AddOnPayCommissionType == 1) {
-                 $AddonAmount = floatval($AddOnPay) - floatval($AddOnPayCommission);
-            }else{
-                $AddonAmountPer = floatval($AddOnPay) * intval($AddOnPayCommission)/100;
-                $AddonAmount = floatval($AddOnPay) - floatval($AddonAmountPer);
-            }
-
-            $totalPayAmount =  floatval($txaAmount) + floatval($AddonAmount);
-
-
-            // Paymnet Record
-            $PY_Record_ID_B = 'PY'; // Always PY (uppercase).
-            $PY_Payment_Method = 'DAC'; // Identifies the payment type. DAC = Domestic ACH transaction
-            $PY_Credit_Debit_Flag = 'C'; // Specifies whether the transaction is a credit or debit (C or D).
-            $PY_Transaction_Number = ''; // Unique transaction control number assigned by your company. See ACH Formate Specs.pdf page # 20
-
-            $PY_Value_Date = date('Y-m-d'); // *** This is the value date for wires and the effective date for ACH transfers. For checks, this is the date printed on the check. See ACH Formate Specs.pdf page # 20
-
-            $PY_Effective_Date = ''; // Effective date of the transaction in format YYYY-MM-DD.
-
-            $PY_Process_Date = ''; // Process date of the transaction in format YYYY-MM-DD.
-
-            $PY_Payment_Amount = number_format($totalPayAmount, 2); // this is static now, but it will be calcualted depend on db record.
-
-            $PY_Currency = 'USD';
-
-            $PY_Originating_Account_Type = ''; // For DAC transactions with a Standard Entry Class code of IAT, this field is not required. See ACH Formate Specs.pdf page # 23
-//
-            $PY_Originating_Account = '5284810933';
-
-            $PY_Originating_Account_Currency = 'USD';
-
-            $PY_Originating_Bank_ID_Type = 'ABA';
-
-            $PY_Originating_Bank_ID = '808';
-
-
-            $PY_Receiving_Party_Account_Type = 'D';
-
-            $PY_Receiving_Party_Account = $pcheck['bank_account']; // dentifies the account number of the receiving party. For DAC transactions except those with an SEC code of IAT, max length is 17 characters.
-
-            $PY_Receiving_Account_Currency = 'USD';
-
-            $PY_Receiving_Bank_Primary_ID_Type = 'ABA';
-
-            $PY_Receiving_Bank_Primary_ID = $pcheck['bank_routing']; // If field 18 is ABA, enter the nine-digit ABA routing/transit number. this is ERO defined routing number
-
-            $PY_Receiving_Bank_Secondary_ID = '';
-
-            $PY_EDD_Handling_Code = '';
-
-            $PY_PDP_Handling_Code = '';
-
-            $PY_Invoice_Manager_Flag = '';
-
-            $PY_CEO_Company_ID = '';
-
-            $PY_Originating_Party_to_Receiving_Party_Information = '';
-            $PY_Exchange_Rate = '';
-            $PY_Consumer_Payment_Indicator = '';
-            $PY_Filler = '';
-
-            $full_py = $PY_Record_ID_B.'|'.$PY_Payment_Method.'|'.$PY_Credit_Debit_Flag.'|'.$PY_Transaction_Number.'|'.$PY_Value_Date.'|'.$PY_Effective_Date.'|'.$PY_Process_Date.'|'.$PY_Payment_Amount.'|'.$PY_Currency.'|'.$PY_Originating_Account_Type.'|'.$PY_Originating_Account.'|'.$PY_Originating_Account_Currency.'|'.$PY_Originating_Bank_ID_Type.'|'.$PY_Originating_Bank_ID.'|'.$PY_Receiving_Party_Account_Type.'|'.$PY_Receiving_Party_Account.'|'.$PY_Receiving_Account_Currency.'|'.$PY_Receiving_Bank_Primary_ID_Type.'|'.$PY_Receiving_Bank_Primary_ID.'|'.$PY_Receiving_Bank_Secondary_ID.'|'.$PY_EDD_Handling_Code.'|'.$PY_PDP_Handling_Code.'|'.$PY_Invoice_Manager_Flag.'|'.$PY_CEO_Company_ID.'|'.$PY_Originating_Party_to_Receiving_Party_Information.'|'.$PY_Exchange_Rate.'|'.$PY_Consumer_Payment_Indicator.'|'.$PY_Filler."\n";
-
-
-            // Payment name and address record – originating party
-            $PR_Record_ID = 'PA'; // Always PA (uppercase).
-            $PR_Address_Indicator = 'PR'; // PR or O2 (uppercase) to indicate that this record is for the originating party.
-            $PR_Name = 'TRP SOLUTIONS';
-            $PR_Additional_Name = '';
-            $PR_Identification_Number = ''; // don't understand. page # 35.
-            $PR_Address_Line_1 = ''; // have to be get address form Ishan
-            $PR_Address_Line_2 = '';// have to be get address form Ishan
-            $PR_Address_Line_3 = '';
-            $PR_City = '';
-            $PR_State_Province = '';
-            $PR_Postal_Code = '';
-
-            $PR_Country_Code = '';
-            $PR_Country_Name = '';
-            $PR_Email_Address = '';
-            $PR_Phone_Number = '';
-            $PR_Phone_international_access_code = '';
-
-            $fullPR = $PR_Record_ID.'|'.$PR_Address_Indicator.'|'.$PR_Name.'|'.$PR_Additional_Name.'|'.$PR_Identification_Number.'|'.$PR_Address_Line_1.'|'.$PR_Address_Line_2.'|'.$PR_Address_Line_3.'|'.$PR_City.'|'.$PR_State_Province.'|'.$PR_Postal_Code.'|'.$PR_Country_Code.'|'.$PR_Country_Name.'|'.$PR_Email_Address.'|'.$PR_Phone_Number.'|'.$PR_Phone_international_access_code."\n";
-
-
-            // originating bank
-
-
-            // Payment name and address record – receiving party
-
-            $PR_Record_ID_2 = 'PA'; // Always PA (uppercase).
-            $PR_Address_Indicator_2 = 'PE'; // PR or O2 (uppercase) to indicate that this record is for the originating party.
-            $PR_Name_2 = $pcheck['company_name'];
-            $PR_Additional_Name_2 = '';
-            $PR_Identification_Number_2 = ''; // don't understand. page # 35.
-            $PR_Address_Line_1_2 = $pcheck['business_addr_1']; // have to be get address form Ishan
-            $PR_Address_Line_2_2 = $pcheck['business_addr_2'];// have to be get address form Ishan
-            $PR_Address_Line_3_2 = '';
-            $PR_City_2 = $pcheck['business_city'];
-            $PR_State_Province_2 = $pcheck['business_state'];
-            $PR_Postal_Code_2 = $pcheck['business_zip'];
-
-            $PR_Country_Code_2 = '';
-            $PR_Country_Name_2 = '';
-            $PR_Email_Address_2 = '';
-            $PR_Phone_Number_2 = '';
-
-            $fullPR_1 = $PR_Record_ID_2.'|'.$PR_Address_Indicator_2.'|'.$PR_Name_2.'|'.$PR_Additional_Name_2.'|'.$PR_Identification_Number_2.'|'.$PR_Address_Line_1_2.'|'.$PR_Address_Line_2_2.'|'.$PR_Address_Line_3_2.'|'.$PR_City_2.'|'.$PR_State_Province_2.'|'.$PR_Postal_Code_2.'|'.$PR_Country_Code_2.'|'.$PR_Country_Name_2.'|'.$PR_Email_Address_2.'|'.$PR_Phone_Number_2."\n";
-
-            //Supplemental ACH record
-
-            $ACH_Record_ID = 'AC';
-            $ACH_Company_ID = ''; // have to be get compay id form Ishan.
-            $ACH_FX_Contract_Number = '';
-            $ACH_FX_Type = '';
-            $ACH_ACH_Format_Code = 'CCP';
-            $ACH_International_Type_Code = '';
-            $ACH_Intermediary_Bank_ID_Type = '';
-            $ACH_Intermediary_Bank_ID = '';
-            $ACH_Second_Intermediary_Bank_ID_Type = '';
-            $ACH_Second_Intermediary_Bank_ID = '';
-            $ACH_SEPA_end_to_end_reference_number = '';
-            $ACH_SEPA_Category_Purpose_Code = '';
-            $ACH_SEPA_Payment_Purpose_Code = '';
-
-            $ACHFull = $ACH_Record_ID.'|'.$ACH_Company_ID.'|'.$ACH_FX_Contract_Number.'|'.$ACH_FX_Type.'|'.$ACH_ACH_Format_Code.'|'.$ACH_International_Type_Code.'|'.$ACH_Intermediary_Bank_ID_Type.'|'.$ACH_Intermediary_Bank_ID.'|'.$ACH_Second_Intermediary_Bank_ID_Type.'|'.$ACH_Second_Intermediary_Bank_ID.'|'.$ACH_SEPA_end_to_end_reference_number.'|'.$ACH_SEPA_Category_Purpose_Code.'|'.$ACH_SEPA_Payment_Purpose_Code."\n";
-
-            fwrite($myfile, $full_py);
-            fwrite($myfile, $fullPR);
-            fwrite($myfile, $fullPR_1);
-            fwrite($myfile, $ACHFull);
-
-            $totalAmount = floatval($totalAmount)+floatval($totalPayAmount);
-
-            // update exported time
-
-            //$this->m_clientcenter->updateACHExportTImeForAllPrintedCheckForExport($pcheck['check_id']);
-
-            $k++;
-
+            $totalDebitPayAmount += $totalPayAmount;
+            $totalEntry_hash += $t8_entry_hash;
+            $ecount++;
         }
-        // Trailer part
 
-        $TR_Record_ID = 'TR';
-        $TR_Payment_count = $k;
-        $TR_Payment_amount = number_format($totalAmount,2);
+        $t9_record_type = "9"; //
+        $t9_batch_count = str_pad($batchTotal, 6, "0", STR_PAD_LEFT); // Number of batches in the file. Right-justify and zero-fill the field.
+        $t9_block_count = str_pad("", 8); // Total number of records in the file, divided by ten and rounded up. Right-justify and zero-fill the field. All records in the file, including this one, are included in the block count.  Example: a file with 95 records would have a block count of 000010.
+        $t9_entry_addenda_record_count = ""; // otal number of entry detail and addenda records in the file. Right-justify and zero-fill the field.
+        $t9_entry_hash_total = str_pad($totalEntry_hash, 6, "0", STR_PAD_LEFT);
+        $t9_total_file_debit_entry_amount = str_pad($totalDebitPayAmount, 12, "0", STR_PAD_LEFT);
+        $t9_total_file_credit_entry_amount = str_pad("", 12, "0", STR_PAD_LEFT);
+        $t9_filler = str_pad("", 39);
 
+        $t9_full9 = $t9_record_type."".$t9_batch_count."".$t9_block_count."".$t9_entry_addenda_record_count."".$t9_entry_hash_total."".$t9_total_file_debit_entry_amount."".$t9_total_file_credit_entry_amount."".$t9_filler."\n";
 
-        $fulltrailer = $TR_Record_ID . '|' . $TR_Payment_count . '|' . $TR_Payment_amount."\n";
-
-        fwrite($myfile, $fulltrailer);
+        fwrite($myfile, $t9_full9);
 
         fclose($myfile);
 
 
-        if(sizeof($printedCheck) > 0){
+        if(sizeof($dipositedApp) > 0){
 
             // add exported file name into database for download
             $this->m_clientcenter->addNewFileInfoWithAllEROPaymentInfoForExport($filename);

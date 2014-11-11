@@ -2106,7 +2106,7 @@ class Clientcenter_model extends CI_Model {
     	}
     	return $data;
     }
-    
+
     
     function loadSelectedReadyToPrintApplication($ids){
     	$data = array();
@@ -2468,6 +2468,69 @@ class Clientcenter_model extends CI_Model {
             return array();
         }
     }
+
+    function loadLastFileIDModifier(){
+
+        $todate = date('Y-m-d');
+        $todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
+
+        $sql = "select *, FROM_UNIXTIME(file_create_date) as  file_create_date  from generated_ach_file_info  where DATE(FROM_UNIXTIME(file_create_date)) = '$todate_date' ORDER BY file_id DESC limit 1";
+        $res = $this->db->query($sql);
+
+        if(sizeof($res->result_array()) > 0){
+
+            foreach ($res->result_array() as $row) {
+                $row["formated_file_create_date"] = gmdate("m/d/y H:i:s", strtotime($row["file_create_date"]));
+                $data[] = $row;
+            }
+            return $data;
+
+        }else{
+            return array();
+        }
+    }
+
+
+    function loadListOfEROForACHExport(){
+
+        //$todate = date('Y-m-d');
+        //$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
+
+        $sql = "select * from  new_app  where payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL  GROUP BY uid ORDER BY uid DESC";
+        $res = $this->db->query($sql);
+
+        if(sizeof($res->result_array()) > 0){
+
+            foreach ($res->result_array() as $row) {
+              //  $row["formated_file_create_date"] = gmdate("m/d/y H:i:s", strtotime($row["file_create_date"]));
+                $data[] = $row;
+            }
+            return $data;
+
+        }else{
+            return array();
+        }
+    }
+
+    function loadAllPaidACHApplicationForExportIntoACHByERO($eroid){
+
+        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid  Group by a.uid";
+        $res = $this->db->query($sql);
+
+        if(sizeof($res->result_array()) > 0){
+
+            foreach ($res->result_array() as $row) {
+              //  $row["formated_check_issue_date"] = gmdate("mdy", strtotime($row["check_issue_date"]));
+               // $row["formated_check_issue_date_full"] = gmdate("m-d-Y", strtotime($row["check_issue_date"]));
+                $data[] = $row;
+            }
+            return $data;
+        }else{
+            return array();
+        }
+    }
+
+
 }
 
 ?>

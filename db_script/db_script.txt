@@ -147,3 +147,8 @@ ALTER TABLE `master_ero` CHANGE `efin` `efin` VARCHAR(200) CHARACTER SET latin1 
 ALTER TABLE `users`  ADD `is_employee` INT(1) NOT NULL DEFAULT '0' COMMENT '0 = ERO, 1 = employee'
 
 qubee@qubee.com.bd
+
+==================================
+9th November
+
+ ALTER TABLE `new_app` ADD `ach_export_date` INT( 15 ) NULL

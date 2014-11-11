@@ -15,14 +15,17 @@ class Customers_model extends CI_Model {
     function showCustomerList(){
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
+
+        $companyERO_id = $_GET['company'];
+
     	if($this->author->objlogin->uid != '1'){
             if($this->author->objlogin->isemployee != 1) { // if not employee
-                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
+                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
             }else{
                 $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.author_id = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
             }
     	}else{
-    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid ORDER BY c.first_name ASC";
+    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
     	}
     	
     	$res = $this->db->query($sql);

@@ -28,7 +28,7 @@ class Reporting_model extends CI_Model {
                 $sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.author_id = '" . $this->author->objlogin->uid . "' AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
             }
     	}else{
-    		$sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where c.applicent_id = a.applicent_id AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
+    		$sql = "SELECT a.app_id, FROM_UNIXTIME(a.create_date) AS create_date1, a.*, FROM_UNIXTIME(a.posted_date) AS posted_date1, c.* FROM new_app a, new_applicent c where  c.applicent_id = a.applicent_id AND a.uid = '" . $companyERO_id . "' AND a.posted_date != '' AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date' ORDER BY a.posted_date DESC";
     	}
     	//AND DATE(FROM_UNIXTIME(a.posted_date)) between '$before30_date' AND '$todate_date'
     	//AND a.posted_date != ''

@@ -220,8 +220,9 @@ FROM users, roles, users_roles, master_ero
  Where users_roles.rid = roles.rid
 AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
-AND users_roles.rid = 3
-AND users.efin =".$this->CI->author->objlogin->efin."");
+AND (users.status != 3 OR users.status != 5)
+AND users_roles.rid = 5
+AND is_employee = 0");
 			if ($sql1->num_rows() > 0) {
 				$res1 = $sql1->result_array();
 			}

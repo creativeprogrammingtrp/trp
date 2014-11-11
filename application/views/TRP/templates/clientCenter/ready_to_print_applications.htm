@@ -708,9 +708,50 @@ function printCheckModal1(actionFrom){
     });
 }
 
+function initiateAppModal1(actionFrom){
+    $(".initiate1").click(function(){
+
+
+        var arr = [];
+        var ids='';
+        var i = 0;
+        $('.direct_deposit_app:checked').each(function(){
+            arr[i++] = $(this).val();
+        });
+        //alert(arr.length);
+        if(arr.length > 0){
+            ids = arr.join(",");
+        }else{
+            ids = $(this).val();
+        }
+
+
+
+        $.ajax({
+            url: 'index.php/admin/clientcenter/showSelectedDirectDepositApplicationFromAdmin?ajax=1&ids='+ids+'',
+            cache: false,
+            success: function(message){
+                //	alert(message);
+                $("#body_direct_deposit").empty().append(message);
+                //  $(".print_check").css('display','block');
+                return false;
+            }
+        });
+
+
+        if(actionFrom != ''){
+            var $parent = $("#" + actionFrom);
+            $parent.closest("#modal_editApplication").modal('hide');
+        }
+
+        $("#modal_direct_deposit").modal('show');
+    });
+}
+
 $(function(){
 	loadObject();
 	printCheckModal1('body_edit_application_ready_to_print');
+    initiateAppModal1('body_edit_application_ready_to_print');
 	clickToEditApplicationInfo('body_edit_application_ready_to_print');
 	//$('#toppart').remove();
 	$(".toottip_product").tooltip(); 
@@ -718,6 +759,10 @@ $(function(){
 
 
     $('#modal_check_for_print').on('hidden.bs.modal', function () {
+        window.location.reload(true);
+    });
+
+    $('#modal_direct_deposit').on('hidden.bs.modal', function () {
         window.location.reload(true);
     });
     
