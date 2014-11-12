@@ -5,7 +5,11 @@
 <button class="btn btn-info btn-lg print_check" type="button" id="print" value="Print" style="margin-right:0px; display:none; float:right;">
          <i class="icon-print"></i> Print Check
 </button>
-
+    &nbsp;
+    &nbsp;
+    <button class="btn btn-info btn-lg direct_diposit" type="button" id="direct_diposit" value="direct_diposit" style="margin-right:10px; display:none; float:right;">
+    <i class="icon-library2"></i> Direct Deposit
+</button>
 
 
 <!--
@@ -112,6 +116,7 @@ function showRecentApplication(){
                 success: function(message){
                         $("#recent_application").empty().append(message);
                         $(".print_check").css('display','none');
+                        $(".direct_diposit").css('display','none');
                         return false;
                 }
 	});	
@@ -124,6 +129,7 @@ function showPendingFundsApplication(){
                 success: function(message){
                         $("#pending_funds").empty().append(message);
                         $(".print_check").css('display','none');
+                        $(".direct_diposit").css('display','none');
                         return false;
                 }
 	});	
@@ -136,6 +142,7 @@ function showReadyToPrintApplication(){
                 success: function(message){
                         $("#ready_print").empty().append(message);
                         $(".print_check").css('display','block');
+                        $(".direct_diposit").css('display','block');
                         return false;
                 }
 	});	
@@ -148,6 +155,7 @@ function showPrintedApplication(){
                 success: function(message){
                         $("#printed_checks").empty().append(message);
                         $(".print_check").css('display','none');
+                        $(".direct_diposit").css('display','none');
                         return false;
                 }
 	});	
@@ -161,6 +169,7 @@ function showVoidedApplication(){
                 success: function(message){
                         $("#voided_application").empty().append(message);
                         $(".print_check").css('display','none');
+                        $(".direct_diposit").css('display','none');
                         return false;
                 }
 	});	
@@ -174,6 +183,7 @@ function showPaidApplication(){
         success: function(message){
             $("#paid_application").empty().append(message);
             $(".print_check").css('display','none');
+            $(".direct_diposit").css('display','none');
             return false;
         }
     });
@@ -186,6 +196,7 @@ function showVoidedPaymentApplication(){
         success: function(message){
             $("#voided_payment_application").empty().append(message);
             $(".print_check").css('display','none');
+            $(".direct_diposit").css('display','none');
             return false;
         }
     });
@@ -198,6 +209,7 @@ function showAllApplication(){
                 success: function(message){
                         $("#all_applications").empty().append(message);
                         $(".print_check").css('display','none');
+                        $(".direct_diposit").css('display','none');
                         return false;
                 }
 	});	
@@ -235,11 +247,51 @@ function printCheckModal(){
 }
 
 
+function initiateAppModal(actionFrom){
+    $(".direct_diposit").click(function(){
+
+
+        var arr = [];
+       // var ids='';
+        var i = 0;
+        $('.direct_deposit_app_modal:checked').each(function(){
+            arr[i++] = $(this).val();
+        });
+        //alert(arr.length);
+        //if(arr.length > 0){
+         var ids = arr.join(",");
+        //}else{
+          //  ids = $(this).val();
+        //}
+
+
+
+        $.ajax({
+            url: 'index.php/admin/clientcenter/showSelectedDirectDepositApplication?ajax=1&ids='+ids+'',
+            cache: false,
+            success: function(message){
+                //	alert(message);
+                $("#body_direct_deposit").empty().append(message);
+                //  $(".print_check").css('display','block');
+                return false;
+            }
+        });
+
+
+        if(actionFrom != ''){
+            var $parent = $("#" + actionFrom);
+            $parent.closest("#modal_editApplication").modal('hide');
+        }
+
+        $("#modal_direct_deposit").modal('show');
+    });
+}
 
 
 
             $(function() {
             	printCheckModal();
+                initiateAppModal();
             	//printCheckModal1();
             	
             	// Javascript to enable link to tab

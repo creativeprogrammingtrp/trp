@@ -7,7 +7,7 @@ class Clientcenter extends CI_Controller{
         $this->load->model("admin/mycompany_model", "m_com");
     }
     function perms(){
-        $perms['Client Center'] = array('index','newapp','saveNewApplicationInfo','showRecentApplication','nextstep','updateApplicationInfo','showPendingFundsApplication','showReadyToPrintApplication','showSelectedReadyToPrintApplication','showAllApplication', 'showPrintedApplication','showVoidedApplication','generatePdfSelectedReadyToPrintApplication','setCheckAsVoid','setCheckAsVoidAndReprint','showSelectedReadyToPrintApplicationFromAdmin','showSelectedDirectDepositApplicationFromAdmin','makeAllApplicationAsPaid','showPaidApplication','showVoidedPaymentApplication','makePaymentAsVoid');
+        $perms['Client Center'] = array('index','newapp','saveNewApplicationInfo','showRecentApplication','nextstep','updateApplicationInfo','showPendingFundsApplication','showReadyToPrintApplication','showSelectedReadyToPrintApplication','showAllApplication', 'showPrintedApplication','showVoidedApplication','generatePdfSelectedReadyToPrintApplication','setCheckAsVoid','setCheckAsVoidAndReprint','showSelectedReadyToPrintApplicationFromAdmin','showSelectedDirectDepositApplicationFromAdmin','showSelectedDirectDepositApplication','makeAllApplicationAsPaid','showPaidApplication','showVoidedPaymentApplication','makePaymentAsVoid');
         return $perms;			
     }
     public function index(){
@@ -365,8 +365,27 @@ class Clientcenter extends CI_Controller{
         $data = array();
         //$selectedApp = $this->m_clientcenter->loadSelectedDirectDepositApplication($_GET['ids']);
         //  print_r($selectedApp);
+       // if($_GET['ids'] != '') {
+            $data['dataLoad'] = "dataClientDirectDeposit = " . json_encode($this->m_clientcenter->loadSelectedDirectDepositApplication($_GET['ids']));
+        //}else{
+          //  $data['dataLoad'] = "dataClientDirectDeposit = " . json_encode($this->m_clientcenter->loaAllDirectDepositApplication();
+        //}
+        //$data['states'] = $this->m_com->loadStatesList();
+        if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+            $this->system->parse_templace('clientCenter/modal_direct_deposit_applications.htm', $data);
+            exit();
+        }
+    }
 
-        $data['dataLoad'] = "dataClientDirectDeposit = " . json_encode($this->m_clientcenter->loadSelectedDirectDepositApplication($_GET['ids']));
+    public function showSelectedDirectDepositApplication() {
+        $data = array();
+        //$selectedApp = $this->m_clientcenter->loadSelectedDirectDepositApplication($_GET['ids']);
+        //  print_r($selectedApp);
+        if($_GET['ids'] != '') {
+            $data['dataLoad'] = "dataClientDirectDeposit = " . json_encode($this->m_clientcenter->loadSelectedDirectDepositApplication($_GET['ids']));
+        }else{
+            $data['dataLoad'] = "dataClientDirectDeposit = " . json_encode($this->m_clientcenter->loadAllDirectDepositApplication());
+        }
 
         //$data['states'] = $this->m_com->loadStatesList();
         if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
@@ -684,7 +703,6 @@ class Clientcenter extends CI_Controller{
             echo json_encode('Time Out, You can\'t  Void this Application.');
            // echo json_encode('<div class="col-md-12 tempmessage"><div class="alert alert-warning"><i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">Time Out, You can\'t  Void this Application.</strong></div></div> <br>');
         }
-
 
 
         //      echo json_encode('<div class="col-md-12 "><div class="alert alert-success"><i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">Selected Check Voided Successfully.</strong></div></div> <br><br>');

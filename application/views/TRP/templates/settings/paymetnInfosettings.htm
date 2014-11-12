@@ -125,13 +125,48 @@ function clickSavePaymentInfo() {
 	});
 }
 */
+
+
 $(function(){
 	
 	loadObject();
 	//clickSavePaymentInfo();
-	
-	
-	/* Initialize Form Validation */
+
+    $.validator.addMethod("routingCheck", function (value, element) {
+
+        var rvalue = value; // this value for the $("#bank_routing1").val();
+
+        var checkdigit = 0;
+        var checkdigit22 = 0;
+        var arr = rvalue.split('');
+
+        var pone = arr[0] * 3;
+        var ptwo = arr[1] * 7;
+        var pthr = arr[2] * 1;
+        var pfou = arr[3] * 3;
+        var pfiv = arr[4] * 7;
+        var psix = arr[5] * 1;
+        var psev = arr[6] * 3;
+        var peig = arr[7] * 7;
+
+        var total = pone+ptwo+pthr+pfou+pfiv+psix+psev+peig;
+
+        var hightTenMultiply = 10;
+        var i=1;
+
+        for(var i=1; total > hightTenMultiply ; i++) {
+            hightTenMultiply = 10 * i;
+        }
+
+        if (hightTenMultiply >= total) {
+            checkdigit = parseInt(hightTenMultiply) - parseInt(total);
+        }
+
+        return checkdigit == arr[8];
+    }, 'Routing Number is not correct.');
+
+
+    /* Initialize Form Validation */
     $('#bankingForm').validate({
         errorClass: 'help-block',
         errorElement: 'span',
@@ -158,11 +193,13 @@ $(function(){
                 required: true,
                 minlength: 9,
                 maxlength: 9,
-                number: true
+                number: true,
+                routingCheck: true
             },
             bank_name1 :{
                 required: true
-            }
+            },
+
         },
         messages: {
         	b_account_no1 :{

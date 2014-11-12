@@ -2128,28 +2128,6 @@ class Clientcenter_model extends CI_Model {
     	return $data;
      }
 
-
-    function loadSelectedDirectDepositApplication($ids){
-        $data = array();
-        $todate = $this->lib->getTimeGMT();
-        if($this->author->objlogin->uid != '1'){
-            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
-        }else{
-            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
-        }
-        $res = $this->db->query($sql);
-
-        //$data[] = $res->result_array();
-
-        foreach ($res->result_array() as $row) {
-            $data[] = $row;
-        }
-        // print_r($data);
-
-        return $data;
-    }
-
-
     function loadAllReadyToPrintApplication(){
         $data = array();
         $todate = $this->lib->getTimeGMT();
@@ -2171,6 +2149,49 @@ class Clientcenter_model extends CI_Model {
 
 
     }
+
+    function loadSelectedDirectDepositApplication($ids){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+        if($this->author->objlogin->uid != '1'){
+            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+        }else{
+            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+        }
+        $res = $this->db->query($sql);
+
+        //$data[] = $res->result_array();
+
+        foreach ($res->result_array() as $row) {
+            $data[] = $row;
+        }
+        // print_r($data);
+
+        return $data;
+    }
+
+    function loadAllDirectDepositApplication(){
+        $data = array();
+        $todate = $this->lib->getTimeGMT();
+        if($this->author->objlogin->uid != '1'){
+            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' ORDER BY n.app_id DESC";
+        }else{
+            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Direct Deposit'  ORDER BY n.app_id DESC";
+        }
+        $res = $this->db->query($sql);
+
+        //$data[] = $res->result_array();
+
+        foreach ($res->result_array() as $row) {
+            $data[] = $row;
+        }
+        // print_r($data);
+
+        return $data;
+    }
+
+
+
     
    
     public function updateApplicationInfo() {

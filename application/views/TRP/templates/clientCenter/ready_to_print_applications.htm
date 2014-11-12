@@ -251,9 +251,9 @@
 				                              <i class="glyphicon-download_alt"></i> Download
 				                         </button>
 				                         <!-- &nbsp; &nbsp; 
-				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
-				                              <i class="icon-save"></i> Save
-				                         </button>
+                                             <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
+                                                  <i class="icon-save"></i> Save
+                                             </button>
 				                          -->
 				                         &nbsp; &nbsp; 
 				                         <button  class="btn btn-white-red" type="button" id="downlaod" value="Downlaod">
@@ -728,7 +728,7 @@ function initiateAppModal1(actionFrom){
 
 
         $.ajax({
-            url: 'index.php/admin/clientcenter/showSelectedDirectDepositApplicationFromAdmin?ajax=1&ids='+ids+'',
+            url: 'index.php/admin/clientcenter/showSelectedDirectDepositApplication?ajax=1&ids='+ids+'',
             cache: false,
             success: function(message){
                 //	alert(message);

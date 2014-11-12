@@ -33,6 +33,7 @@ class System{
         var $selectedCompanyName = '';
         var $selectedCompanyId = '';
 		var $alloffice = '';
+    var $allofficewithAll = '';
 		
 	var $timeclock = array(); 
 	
@@ -184,6 +185,7 @@ class System{
 	
 	function getOfficeInfo(){
 		$htm = '';
+        $htmc = '';
 		$check = false;
 		
 		if($this->CI->author->objlogin->role['rid'] == 5){
@@ -193,6 +195,7 @@ FROM users, efin_pefin, roles, users_roles, master_ero
 AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
 AND efin_pefin.uid = users.uid
+AND (users.status != 3 OR users.status != 5)
 AND efin_pefin.status = 1
 AND users_roles.rid = 5
 AND efin_pefin.pefin =".$this->CI->author->objlogin->efin."");
@@ -207,6 +210,7 @@ FROM users, roles, users_roles, master_ero
  Where users_roles.rid = roles.rid
 AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
+AND (users.status != 3 OR users.status != 5)
 AND users_roles.rid = 5
 AND users.efin =".$this->CI->author->objlogin->efin."");
 		//echo $sql1->num_rows(); //$this->CI->author->objlogin->efin;
@@ -256,7 +260,32 @@ AND is_employee = 0");
                 $htm .= '>'.$resul["company_name"].'</option>';
 			}
 		$htm .= '</select>';
-			return  array('officeCombo' => $htm, 'selectedOffice' => $selectedOffice);
+
+        // for customer page
+
+        $htmc .='<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">';
+        $htmc .='<option value="All"';
+        if(isset($_POST['office_list'])){
+            if( $_POST['office_list'] == 'All'){
+                $htmc .= 'selected="selected"';
+            }
+        }
+        $htmc .='>All</option>';
+        foreach ($result as $resul1){
+            //<?php if ($row[month] == 'January') echo ' selected="selected"';
+
+
+            $htmc .= '<option value="'.$resul1["uid"].'"';
+
+            if(isset($_POST['office_list'])){
+                if($resul1["uid"] == $_POST['office_list']){
+                    $htmc .= 'selected="selected"';
+                }
+            }
+            $htmc .= '>'.$resul1["company_name"].'</option>';
+        }
+        $htmc .= '</select>';
+			return  array('officeCombo' => $htm, 'selectedOffice' => $selectedOffice, 'officeComboWithAll' => $htmc,);
 		//}
 	}
 	
@@ -299,6 +328,7 @@ AND is_employee = 0");
                 if($this->CI->author->objlogin->isemployee == 0) { // if this is ERO
                     $officedata = $this->getOfficeInfo();
                     $data['alloffice'] = $officedata['officeCombo'];
+                    $data['allofficewithAll'] = $officedata['officeComboWithAll'];
                     $data['selectedCompanyName'] = $officedata['selectedOffice'];
 
                 }

@@ -131,7 +131,7 @@ class Adjustment extends CI_Controller{
                         // update founded account no
                         $bankingFees = floatval($fullAppData1['app_tax_preparation_fee']) + floatval($fullAppData1['app_bank_transmission_fee']) + floatval($fullAppData1['app_sb_fee']) + floatval($fullAppData1['app_add_on_fee']);
                         $productFees = floatval($fullAppData1['app_benefit']);
-                        $amount = str_replace(',', '', $fTransData->w_amount);
+                        $amount = str_replace(',', '', $fTransData['w_amount']);
 
                         $actualRefundAmount = floatval($amount) - (floatval($bankingFees) + floatval($productFees));
 
@@ -149,7 +149,7 @@ class Adjustment extends CI_Controller{
                             'w_individual_id' => $fTransData['w_individual_id'],
                             'w_individual_name' => $fTransData['w_individual_name'],
                             'w_descr_date' => '',
-                            'w_ccls' => $fTransData->w_ccls,
+                            'w_ccls' => $fTransData['w_ccls'],
                             'w_company_id' => $fTransData['w_company_id'],
                             'w_company_name' => $fTransData['w_company_name'],
                             'w_discr_date' => '',
@@ -167,7 +167,7 @@ class Adjustment extends CI_Controller{
                             'app_actual_refund_amount' => $actualRefundAmount
                         );
 
-                        $this->db->where('assign_acc_no', $fTransData->w_account_no);
+                        $this->db->where('assign_acc_no', $fTransData['w_account_no']);
                         $this->db->update('new_app', $data7);
 
 
@@ -900,7 +900,7 @@ class Adjustment extends CI_Controller{
                 $t6_record_type = "6"; // Constant
                 $t6_transaction_code = "27"; //  debit code
                 $t6_receiving_DFI_r_t_number = substr($dipApp['bank_routing'], 0, -1); // have to be get first 8 digit from bank_routing
-                $t6_r_t_number_check_digit = substr($dipApp['bank_routing'], -1);; // have to be get last digit from bank_routing
+                $t6_r_t_number_check_digit = substr($dipApp['bank_routing'], -1); // have to be get last digit from bank_routing
                 $t6_receiving_DFI_account_number = substr($dipApp['bank_account'], 0, 17); // bank_account
 
                 $w_tamount = str_replace(".","",$totalPayAmount); //116564;
@@ -967,9 +967,9 @@ class Adjustment extends CI_Controller{
 
         $t9_record_type = "9"; //
         $t9_batch_count = str_pad($batchTotal, 6, "0", STR_PAD_LEFT); // Number of batches in the file. Right-justify and zero-fill the field.
-        $t9_block_count = str_pad("", 8); // Total number of records in the file, divided by ten and rounded up. Right-justify and zero-fill the field. All records in the file, including this one, are included in the block count.  Example: a file with 95 records would have a block count of 000010.
-        $t9_entry_addenda_record_count = ""; // otal number of entry detail and addenda records in the file. Right-justify and zero-fill the field.
-        $t9_entry_hash_total = str_pad($totalEntry_hash, 6, "0", STR_PAD_LEFT);
+        $t9_block_count = str_pad("", 6); // Total number of records in the file, divided by ten and rounded up. Right-justify and zero-fill the field. All records in the file, including this one, are included in the block count.  Example: a file with 95 records would have a block count of 000010.
+        $t9_entry_addenda_record_count = str_pad("", 8); // otal number of entry detail and addenda records in the file. Right-justify and zero-fill the field.
+        $t9_entry_hash_total = str_pad($totalEntry_hash, 10, "0", STR_PAD_LEFT);
         $t9_total_file_debit_entry_amount = str_pad($totalDebitPayAmount, 12, "0", STR_PAD_LEFT);
         $t9_total_file_credit_entry_amount = str_pad("", 12, "0", STR_PAD_LEFT);
         $t9_filler = str_pad("", 39);

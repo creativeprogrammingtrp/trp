@@ -22,6 +22,7 @@ class Customers extends CI_Controller {
 
         $officedata = $this->system->getOfficeInfo();
         $data['alloffice'] = $officedata['officeCombo'];
+        $data['allofficewithAll'] = $officedata['officeComboWithAll'];
         $data['selectedCompanyName'] = $officedata['selectedOffice'];
 
         $data['hidefromEmployee'] = ($this->author->objlogin->isemployee == 1)?'style="display:none"':'';

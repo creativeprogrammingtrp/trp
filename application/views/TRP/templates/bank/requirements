@@ -113,11 +113,13 @@ Bank ID                            808
 
 41. (d) Have to be read full ACH formate doc and have to be make Question.
 
-8. have to be work on ACH to ERO
+8. (d) have to be work on ACH to ERO
 
-18. So from admin section when admin will clcik on generat file for ACH to ERO then system will check all the DIrect diposited application for generate file.
+18. (d) So from admin section when admin will clcik on generat file for ACH to ERO then system will check all the DIrect diposited application for generate file.
 
-51. Under Customer from admin & parent ERO section we have to be add All under dropdown box.
+51. (d) Under Customer from admin & parent ERO section we have to be add All under dropdown box.
+
+52. (d) have to be work on routing no validation in setting page, setup page.
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-==-==-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -127,11 +129,11 @@ Bank ID                            808
 
 40. have to be add confirmation message when any status will change like Approved, Rejected etc.
 
-20. For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
+20. (d) For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
 
 21. under bank account or any other places we have to be implement refresh option after make any event. like after print
 
-23. layout if change resulation
+23. (d) layout if change resulation
 
 27. udner ERO, after click on view all, we need back button under all customer list page.
 

@@ -6150,6 +6150,12 @@ function cancelPrinting(){
 
 }
 
+function cancelDeposit(){
+
+    $("#modal_direct_deposit").modal('hide');
+
+}
+
 function showOrderSuppliesSetup(parent){
 	
     var $parent = $("#"+parent);

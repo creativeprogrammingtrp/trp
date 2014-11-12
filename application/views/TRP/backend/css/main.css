@@ -109,7 +109,7 @@ body {
 }
 
 #page-content {
-    margin: 0 0 0 200px;
+    margin: 0 0 0 185px;
    /* padding: 20px;*/
     background-color: #fff;
     /*border-left: 1px solid #ccc;*/
@@ -2546,7 +2546,7 @@ a:focus {
     }
 
     #widgets {
-        background-color: #565656;
+       /* background-color: #565656;*/
         width: 100%;
     }
 

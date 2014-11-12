@@ -9,7 +9,70 @@ class Customers_model extends CI_Model {
         parent::__construct();
     }
 
-    
+    function getAllErosUnderParentERO(){
+
+        $check = false;
+
+        if($this->author->objlogin->role['rid'] == 5){
+            $sql = $this->db->query("SELECT users.uid
+FROM users, efin_pefin, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND efin_pefin.uid = users.uid
+AND (users.status != 3 OR users.status != 5)
+AND efin_pefin.status = 1
+AND users_roles.rid = 5
+AND efin_pefin.pefin =".$this->author->objlogin->efin."");
+
+            if ($sql->num_rows() > 0) {
+                $res = $sql->result_array();
+                $check = true;
+            }
+
+            $sql1 = $this->db->query("SELECT users.uid
+FROM users, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND (users.status != 3 OR users.status != 5)
+AND users_roles.rid = 5
+AND users.efin =".$this->author->objlogin->efin."");
+            //echo $sql1->num_rows(); //$this->CI->author->objlogin->efin;
+            //exit;
+            if ($sql1->num_rows() > 0) {
+                $res1 = $sql1->result_array();
+            }
+        }else{
+            $sql1 = $this->db->query("SELECT users.uid
+FROM users, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND (users.status != 3 OR users.status != 5)
+AND users_roles.rid = 5
+AND is_employee = 0");
+            if ($sql1->num_rows() > 0) {
+                $res1 = $sql1->result_array();
+            }
+        }
+
+
+        if ($check == true) {
+            $result = array_merge($res1, $res);
+
+        } else {
+            $result = $res1;
+           // return $comma_separated = implode(",", $result);
+        }
+
+        foreach ($result as $row) {
+
+            $data[] = $row['uid'];
+        }
+        return $comma_separated = implode(",", $data);
+
+    }
 
    
     function showCustomerList(){
@@ -18,14 +81,28 @@ class Customers_model extends CI_Model {
 
         $companyERO_id = $_GET['company'];
 
+        // get all ero id under parent ero if select All
+
+        if($companyERO_id == 'All'){
+            $alleros =  $this->getAllErosUnderParentERO();
+        }
+        //echo $alleros;
     	if($this->author->objlogin->uid != '1'){
             if($this->author->objlogin->isemployee != 1) { // if not employee
-                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
+                if($companyERO_id == 'All') {
+                    $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid IN (" . $alleros . ") ORDER BY c.first_name ASC";
+                }else{
+                    $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
+                }
             }else{
                 $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.author_id = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
             }
     	}else{
-    		$sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
+            if($companyERO_id == 'All') {
+                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid IN (" . $alleros . ") ORDER BY c.first_name ASC";
+            }else{
+                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
+            }
     	}
     	
     	$res = $this->db->query($sql);
