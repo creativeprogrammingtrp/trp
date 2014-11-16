@@ -145,13 +145,15 @@ $(function() {
                 url: 'index.php/admin/clientcenter/makeAllApplicationAsPaid?ajax=1&ids='+ids,
                 cache: false,
                 success: function(message){
-                //	alert(message);
-                    if (confirm('All Application Marked as Paid Successfully.')) {
+                	alert('All Application Marked as Paid Successfully.');
+
+                    $("#modal_direct_deposit").modal('hide');
+                    /*if (confirm('All Application Marked as Paid Successfully.')) {
                         //alert('All Check Printed Successfully.');
                         $("#modal_direct_deposit").modal('hide');
                     }else{
                         $("#modal_direct_deposit").modal('hide');
-                    }
+                    }*/
                        // $("#body_direct_deposit").empty().append(message);
                       //  $(".print_check").css('display','block');
                         return false;

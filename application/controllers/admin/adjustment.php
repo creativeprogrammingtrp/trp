@@ -901,7 +901,7 @@ class Adjustment extends CI_Controller{
                 $t6_transaction_code = "27"; //  debit code
                 $t6_receiving_DFI_r_t_number = substr($dipApp['bank_routing'], 0, -1); // have to be get first 8 digit from bank_routing
                 $t6_r_t_number_check_digit = substr($dipApp['bank_routing'], -1); // have to be get last digit from bank_routing
-                $t6_receiving_DFI_account_number = substr($dipApp['bank_account'], 0, 17); // bank_account
+                $t6_receiving_DFI_account_number = str_pad(substr($dipApp['bank_account'], 0, 17), 17, "0"); // bank_account
 
                 $w_tamount = str_replace(".","",$totalPayAmount); //116564;
                 $tamount = str_pad($w_tamount, 10, "0", STR_PAD_LEFT);// 13 digit
@@ -955,8 +955,8 @@ class Adjustment extends CI_Controller{
 
                 // update exported time
 
-                //$this->m_clientcenter->updateACHExportTImeForAllPrintedCheckForExport($pcheck['check_id']);
-
+                $this->m_clientcenter->updateACHExportTImeForAllPrintedCheckForExport($dipApp['app_id']);
+                                       //  updateACHExportTImeForAllPrintedCheckForExport
                 $k++;
 
             }

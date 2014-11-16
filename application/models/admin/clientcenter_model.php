@@ -2421,10 +2421,10 @@ class Clientcenter_model extends CI_Model {
 
     }
 
-    function updateACHExportTImeForAllPrintedCheckForExport($checkid)
+    function updateACHExportTImeForAllPrintedCheckForExport($appid)
     {
         $todate = $this->lib->getTimeGMT();
-        $sql = "UPDATE app_check SET ach_export_date = '$todate' WHERE check_id = '$checkid'";
+        $sql = "UPDATE  new_app SET ach_export_date = '$todate' WHERE app_id = '$appid'";
         $this->db->query($sql);
 
     }
@@ -2535,7 +2535,7 @@ class Clientcenter_model extends CI_Model {
 
     function loadAllPaidACHApplicationForExportIntoACHByERO($eroid){
 
-        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid  Group by a.uid";
+        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND a.uid= '$eroid' Group by a.uid";
         $res = $this->db->query($sql);
 
         if(sizeof($res->result_array()) > 0){

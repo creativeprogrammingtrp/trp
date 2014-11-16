@@ -3,22 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="30efd993-18e4-436d-affe-5e1cad6b477b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/adjustment.php" afterPath="$PROJECT_DIR$/application/controllers/admin/adjustment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" afterPath="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/frontend/css/base.css" afterPath="$PROJECT_DIR$/application/views/TRP/frontend/css/base.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" afterPath="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" afterPath="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" afterPath="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/customer/customers.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin/customers.php" afterPath="$PROJECT_DIR$/application/controllers/admin/customers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/admin/customers_model.php" afterPath="$PROJECT_DIR$/application/models/admin/customers_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/header.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/header.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/backend/css/main.css" afterPath="$PROJECT_DIR$/application/views/TRP/backend/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/mainpage.htm" afterPath="$PROJECT_DIR$/application/views/TRP/mainpage.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/settings/paymetnInfosettings.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/settings/paymetnInfosettings.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" afterPath="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications_admin.htm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" afterPath="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/system.php" afterPath="$PROJECT_DIR$/application/libraries/system.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="trpgit.iws" />
@@ -57,21 +46,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="clientcenter.htm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.94" vertical-offset="3348" max-vertical-offset="6825">
-              <caret line="233" column="86" selection-start-line="233" selection-start-column="51" selection-end-line="233" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ready_to_print_applications.htm" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ready_to_print_applications.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4059406" vertical-offset="4959" max-vertical-offset="12540">
-              <caret line="347" column="72" selection-start-line="347" selection-start-column="72" selection-end-line="347" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3129" max-vertical-offset="12540">
+              <caret line="211" column="40" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -80,8 +59,8 @@
       <file leaf-file-name="system.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/libraries/system.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.125" vertical-offset="3399" max-vertical-offset="9120">
-              <caret line="212" column="44" selection-start-line="212" selection-start-column="44" selection-end-line="212" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="7057" max-vertical-offset="9120">
+              <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
               <folding>
                 <marker date="1415696389000" expanded="true" signature="5105:5479" placeholder="SELECT maste..master_ero..." />
                 <marker date="1415696389000" expanded="true" signature="5638:5800" placeholder="SELECT * FRO..master_ero..." />
@@ -118,20 +97,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="custom_trp.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js">
+      <file leaf-file-name="adjustment.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/admin/adjustment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.192307" vertical-offset="91989" max-vertical-offset="93180">
-              <caret line="6152" column="22" selection-start-line="6152" selection-start-column="9" selection-end-line="6152" selection-end-column="22" />
+            <state vertical-scroll-proportion="-20.958334" vertical-offset="13132" max-vertical-offset="15075">
+              <caret line="909" column="50" selection-start-line="909" selection-start-column="50" selection-end-line="909" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requirements" pinned="false" current-in-tab="false">
+      <file leaf-file-name="requirements" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.566667" vertical-offset="1633" max-vertical-offset="2235">
+            <state vertical-scroll-proportion="0.57641196" vertical-offset="1663" max-vertical-offset="2445">
               <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding />
             </state>
@@ -141,12 +120,42 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="mainpage.htm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/mainpage.htm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5101" max-vertical-offset="12450">
+              <caret line="357" column="109" selection-start-line="357" selection-start-column="109" selection-end-line="357" selection-end-column="109" />
+              <folding>
+                <marker date="1415880704000" expanded="true" signature="16281:16338" placeholder="..." />
+                <marker date="1415880704000" expanded="true" signature="16339:17504" placeholder="..." />
+                <marker date="1415880704000" expanded="true" signature="16363:16382" placeholder="..." />
+                <marker date="1415880704000" expanded="true" signature="16383:17488" placeholder="..." />
+                <marker date="1415880704000" expanded="true" signature="16420:16509" placeholder="..." />
+                <marker date="1415880704000" expanded="true" signature="16604:17212" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/TRP/frontend/css/base.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="47190" max-vertical-offset="50265">
+              <caret line="3165" column="32" selection-start-line="3165" selection-start-column="32" selection-end-line="3165" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="modal_direct_deposit_applications.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2" vertical-offset="1765" max-vertical-offset="2520">
-              <caret line="125" column="20" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="20" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="2550">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <marker date="1415875885000" expanded="true" signature="5133:5290" placeholder="{...}" />
+                <marker date="1415875885000" expanded="true" signature="5294:5383" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,21 +170,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal_ready_to_print_applications.htm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.75" vertical-offset="488" max-vertical-offset="3240">
-              <caret line="45" column="128" selection-start-line="45" selection-start-column="114" selection-end-line="45" selection-end-column="128" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="clientcenter.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/admin/clientcenter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.458333" vertical-offset="949" max-vertical-offset="10950">
-              <caret line="80" column="24" selection-start-line="80" selection-start-column="24" selection-end-line="80" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6277" max-vertical-offset="10950">
+              <caret line="488" column="51" selection-start-line="488" selection-start-column="51" selection-end-line="488" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -184,8 +183,8 @@
       <file leaf-file-name="clientcenter_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/admin/clientcenter_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.56" vertical-offset="32142" max-vertical-offset="38445">
-              <caret line="2178" column="164" selection-start-line="2178" selection-start-column="164" selection-end-line="2178" selection-end-column="164" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="37831" max-vertical-offset="38445">
+              <caret line="2537" column="305" selection-start-line="2537" selection-start-column="16" selection-end-line="2537" selection-end-column="305" />
               <folding />
             </state>
           </provider>
@@ -208,9 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_applications_employee.htm" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/voided_payment_applications.htm" />
-        <option value="$PROJECT_DIR$/application/controllers/login.php" />
         <option value="$PROJECT_DIR$/application/libraries/author.php" />
         <option value="$PROJECT_DIR$/application/models/signup_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/signup.php" />
@@ -250,15 +246,18 @@
         <option value="$PROJECT_DIR$/application/views/TRP/templates/settings/paymetnInfosettings.htm" />
         <option value="$PROJECT_DIR$/application/views/TRP/backend/css/custom_trp.css" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/header.htm" />
-        <option value="$PROJECT_DIR$/application/controllers/admin/adjustment.php" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm" />
-        <option value="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/admin/clientcenter.php" />
         <option value="$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" />
         <option value="$PROJECT_DIR$/application/views/TRP/backend/css/main.css" />
-        <option value="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
         <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm" />
+        <option value="$USER_HOME$/Desktop/index.html" />
+        <option value="$PROJECT_DIR$/application/models/admin/clientcenter_model.php" />
+        <option value="$PROJECT_DIR$/application/controllers/admin/adjustment.php" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/frontend/css/base.css" />
+        <option value="$PROJECT_DIR$/application/views/TRP/mainpage.htm" />
+        <option value="$PROJECT_DIR$/application/views/TRP/templates/bank/requirements" />
       </list>
     </option>
   </component>
@@ -300,6 +299,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -426,66 +426,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TRP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reporting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trpgit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trpgit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TRP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientCenter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trpgit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trpgit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -554,7 +494,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -583,6 +522,7 @@
     <property name="database.results.filters.show" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="SearchEverywhereHistoryKey" value="clie&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/application/models/admin/clientcenter_model.php&#10;adj&#9;null&#9;null&#10;db_sc&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/db_script/db_script.txt&#10;re&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/application/views/TRP/templates/bank/requirements&#10;pri&#9;FILE&#9;file:///Volumes/HD2/sits/trpgit/application/views/TRP/templates/clientCenter/printed_applications_admin.htm" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -667,7 +607,6 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27427185" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -677,6 +616,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -708,30 +648,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/reporting/bankProductUnfundexReport.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.125" vertical-offset="315" max-vertical-offset="1950">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm_x">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5913622" vertical-offset="1560" max-vertical-offset="10860">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/datafile.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.02" vertical-offset="4059" max-vertical-offset="6510">
-          <caret line="294" column="67" selection-start-line="294" selection-start-column="55" selection-end-line="294" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="10693" max-vertical-offset="15090">
@@ -914,7 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2400">
           <caret line="150" column="34" selection-start-line="150" selection-start-column="34" selection-end-line="150" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
@@ -925,7 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1149" max-vertical-offset="13950">
           <caret line="90" column="60" selection-start-line="90" selection-start-column="49" selection-end-line="90" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="211" max-vertical-offset="1140">
           <caret line="33" column="94" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="13920">
           <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -949,7 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.08" vertical-offset="1936" max-vertical-offset="3765">
           <caret line="136" column="76" selection-start-line="136" selection-start-column="76" selection-end-line="136" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,7 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7410" max-vertical-offset="9720">
           <caret line="480" column="1" selection-start-line="480" selection-start-column="1" selection-end-line="480" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,7 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.458333" vertical-offset="1177" max-vertical-offset="4575">
           <caret line="92" column="37" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,24 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12335526" vertical-offset="270" max-vertical-offset="36225">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin/adjustment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="36.25" vertical-offset="12375" max-vertical-offset="15075">
-          <caret line="767" column="17" selection-start-line="767" selection-start-column="17" selection-end-line="767" selection-end-column="17" />
-          <folding>
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415786257000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -998,7 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.3333335" vertical-offset="10582" max-vertical-offset="12375">
           <caret line="714" column="30" selection-start-line="714" selection-start-column="12" selection-end-line="714" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1006,15 +896,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="570">
           <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/clientcenter.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.94" vertical-offset="3348" max-vertical-offset="6825">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3348" max-vertical-offset="6825">
           <caret line="233" column="86" selection-start-line="233" selection-start-column="51" selection-end-line="233" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,29 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40789473" vertical-offset="1267" max-vertical-offset="5025">
           <caret line="101" column="134" selection-start-line="101" selection-start-column="134" selection-end-line="101" selection-end-column="134" />
-          <folding>
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="SELECT users..users..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select c.*, ..new_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select c.*, ..new_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select c.*, ..new_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select c.*, ..new_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select c.*, ..new_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select c.*, ..new_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select na.*,..new_app..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select na.*,..new_app..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select * fro..benefits..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select * fro..insurance..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select b.*, ..benefits..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select i.*, ..benefits_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select i.*, ..insurance_applicent..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select n.*, ..newapp_benefits_insurance_note..." />
-            <marker date="1415698429000" expanded="true" signature="-1:-1" placeholder="select a.*, ..insurance_application_additional_info..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,14 +917,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.04467354" vertical-offset="26" max-vertical-offset="705">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="488" max-vertical-offset="3240">
+          <caret line="45" column="128" selection-start-line="45" selection-start-column="114" selection-end-line="45" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="91989" max-vertical-offset="93180">
+          <caret line="6152" column="22" selection-start-line="6152" selection-start-column="9" selection-end-line="6152" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="38003" max-vertical-offset="56565">
+          <caret line="2548" column="38" selection-start-line="2548" selection-start-column="38" selection-end-line="2548" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.098684214" vertical-offset="0" max-vertical-offset="720">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/libraries/system.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.125" vertical-offset="3399" max-vertical-offset="9120">
-          <caret line="212" column="44" selection-start-line="212" selection-start-column="44" selection-end-line="212" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="7057" max-vertical-offset="9120">
+          <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
           <folding>
             <marker date="1415696389000" expanded="true" signature="5105:5479" placeholder="SELECT maste..master_ero..." />
             <marker date="1415696389000" expanded="true" signature="5638:5800" placeholder="SELECT * FRO..master_ero..." />
@@ -1097,69 +990,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/admin/clientcenter_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.56" vertical-offset="32142" max-vertical-offset="38445">
-          <caret line="2178" column="164" selection-start-line="2178" selection-start-column="164" selection-end-line="2178" selection-end-column="164" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_ready_to_print_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.75" vertical-offset="488" max-vertical-offset="3240">
-          <caret line="45" column="128" selection-start-line="45" selection-start-column="114" selection-end-line="45" selection-end-column="128" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/js/custom_trp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.192307" vertical-offset="91989" max-vertical-offset="93180">
-          <caret line="6152" column="22" selection-start-line="6152" selection-start-column="9" selection-end-line="6152" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2" vertical-offset="1765" max-vertical-offset="2520">
-          <caret line="125" column="20" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/backend/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="38003" max-vertical-offset="56565">
-          <caret line="2548" column="38" selection-start-line="2548" selection-start-column="38" selection-end-line="2548" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="37831" max-vertical-offset="38445">
+          <caret line="2537" column="305" selection-start-line="2537" selection-start-column="16" selection-end-line="2537" selection-end-column="305" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin/clientcenter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.458333" vertical-offset="949" max-vertical-offset="10950">
-          <caret line="80" column="24" selection-start-line="80" selection-start-column="24" selection-end-line="80" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6277" max-vertical-offset="10950">
+          <caret line="488" column="51" selection-start-line="488" selection-start-column="51" selection-end-line="488" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/modal_direct_deposit_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="2550">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <marker date="1415875885000" expanded="true" signature="5133:5290" placeholder="{...}" />
+            <marker date="1415875885000" expanded="true" signature="5294:5383" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3129" max-vertical-offset="12540">
+          <caret line="211" column="40" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/frontend/css/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="47190" max-vertical-offset="50265">
+          <caret line="3165" column="32" selection-start-line="3165" selection-start-column="32" selection-end-line="3165" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/TRP/mainpage.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5101" max-vertical-offset="12450">
+          <caret line="357" column="109" selection-start-line="357" selection-start-column="109" selection-end-line="357" selection-end-column="109" />
+          <folding>
+            <marker date="1415880704000" expanded="true" signature="16281:16338" placeholder="..." />
+            <marker date="1415880704000" expanded="true" signature="16339:17504" placeholder="..." />
+            <marker date="1415880704000" expanded="true" signature="16363:16382" placeholder="..." />
+            <marker date="1415880704000" expanded="true" signature="16383:17488" placeholder="..." />
+            <marker date="1415880704000" expanded="true" signature="16420:16509" placeholder="..." />
+            <marker date="1415880704000" expanded="true" signature="16604:17212" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/adjustment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.958334" vertical-offset="13132" max-vertical-offset="15075">
+          <caret line="909" column="50" selection-start-line="909" selection-start-column="50" selection-end-line="909" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/bank/requirements">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.566667" vertical-offset="1633" max-vertical-offset="2235">
+        <state vertical-scroll-proportion="0.57641196" vertical-offset="1663" max-vertical-offset="2445">
           <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/TRP/templates/clientCenter/ready_to_print_applications.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4059406" vertical-offset="4959" max-vertical-offset="12540">
-          <caret line="347" column="72" selection-start-line="347" selection-start-column="72" selection-end-line="347" selection-end-column="72" />
-          <folding />
-        </state>
       </provider>
     </entry>
   </component>
