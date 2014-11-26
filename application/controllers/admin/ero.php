@@ -42,7 +42,11 @@ class Ero extends CI_Controller{
     public function ShowAllErosForAdmin(){
     	$data = array();
     	$data['dataLoad'] = "dataClient = " . json_encode($this->ero->loadAllErosForAdmin());
+       // $this->ero->generateCheckRange();
+
     	$data['states'] = $this->m_com->loadStatesList();
+        $data['checkList'] = $this->ero->loadFreeCheckList();
+
     	$data['style'] = ($this->author->objlogin->role['rid'] == 5)?'style="display:none"':'';
     	if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
     		$this->system->parse_templace('accounts/alleros_admin.htm', $data);

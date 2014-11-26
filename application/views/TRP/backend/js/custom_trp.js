@@ -224,6 +224,7 @@ function editEro(uid, parent) {
 
 function editEroFromAdmin(uid, parent) {
     var $parent = $("#" + parent);
+    var htm='';
     for (var k = 0; k < dataClient.length; k++) {
         var obj_ero = dataClient[k];
         if (obj_ero.uid == uid) {
@@ -292,6 +293,40 @@ function editEroFromAdmin(uid, parent) {
             $parent.find("#tax_preparation_commission1").val(obj_ero.tax_pre_commission);
             $parent.find("#add_on_commission1_type").val(obj_ero.add_on_commission_type);
             $parent.find("#add_on_commission1").val(obj_ero.add_on_commission);
+
+
+
+
+            htm +='<table class="table table-striped" id="bank_products_employee_report_result">';
+
+            htm +='<thead>';
+                htm +='<tr>';
+                htm +='<th class="hidden-xs hidden-sm">Start No</th>';
+                htm +='<th class="hidden-xs hidden-sm">End No</th>';
+                //htm +='<th class="hidden-xs hidden-sm">Assign Time</th>';
+                htm +='<th class="hidden-xs hidden-sm">In Hand</th>';
+                htm +='</tr>';
+                htm +='</thead>';
+            htm +='<tbody>';
+            var assignNumberLength =  obj_ero.assigned_checked;
+            for(var i = 0 ; i < assignNumberLength.length ; i++){
+                var obja = assignNumberLength[i];
+                htm +='<tr>';
+                htm +='<td>'+obja.starting_no+'</td>';
+                htm +='<td class="hidden-xs hidden-sm capitalize">'+obja.ending_no+'</td>';
+                htm +='<td class="hidden-xs hidden-sm">'+obja.in_hand+'</td>';
+               // htm +='<td class="hidden-xs hidden-sm">'+obj.username+'</td>';
+
+
+
+
+
+                htm +='</tr>';
+            }
+            htm +=' </tbody>';
+            htm +='</table>';
+
+            $parent.find('#assign_check_numbers_list').empty().html(htm);
 
         }
     }
@@ -924,7 +959,8 @@ function editApplication(uid, parent) {
 	            html+= '</div>';
 	            html+= '</section>';
 	            $parent.find('#bank_insurance_additional_info').css('display','block');
-	            $parent.find('#bank_insurance_additional_info').empty().html(html);    
+	            $parent.find('#bank_insurance_additional_info').empty().html(html);
+
            } // end additional condition 
 		}// end insurance loop
 		} // end insurance condition

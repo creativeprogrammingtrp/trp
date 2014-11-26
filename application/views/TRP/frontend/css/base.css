@@ -49,11 +49,15 @@ h2 {
 	font-size:24px;
 	color:#88a919;
 	margin-bottom:.8em;
+    color: #192d38;
+    font-weight:300;
 	}
 h3 {
 	font-size:24px;
 	color:#88a919;
 	margin-bottom:.8em;
+    color: #192d38;
+    font-weight:300;
 	}
 h4 {
 	font-size:1em;
@@ -61,18 +65,33 @@ h4 {
 	margin:0;
 	color:#88a919;
 	text-transform:uppercase;
+    color: #192d38;
+    font-weight:300;
 	}
 h5 {
 	font-size:1em;
 	line-height:20px;
 	margin:0;
+    color: #192d38;
+    font-weight:300;
 	}
 h6 {
 	font-family:'Open Sans', sans-serif;
 	font-size:1em;
 	line-height:20px;
 	color:#88a919;
+    color: #192d38;
+    font-weight:300;
 	}
+
+.privacypolicy p{
+    text-align: justify;
+}
+
+.termsofservice p{
+    text-align: justify;
+}
+
 .bordered {
 	background:url(../images/hr-double.gif) 0 100% repeat-x;
 	padding-bottom:.8em;
@@ -3163,7 +3182,7 @@ color: #24536b;
 	border-right: 1px solid #dedede;
 	padding: 30px 15px;
 	/*border-radius:5px;*/
-	min-height:690px; /*732px;*/
+	min-height:615px; /*732px;*/
 }
 
 
@@ -3297,8 +3316,9 @@ abbr {
     color: #54565f;
     padding-bottom: 8px;
 	padding: 10px;
-	
-	font-weight: 500;
+
+    font-size: 19px;
+    font-weight: 300;
 	margin: 0px;
 	
 }

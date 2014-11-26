@@ -149,6 +149,17 @@ ALTER TABLE `users`  ADD `is_employee` INT(1) NOT NULL DEFAULT '0' COMMENT '0 = 
 qubee@qubee.com.bd
 
 ==================================
-9th November
+9th November Done
 
  ALTER TABLE `new_app` ADD `ach_export_date` INT( 15 ) NULL
+
+
+ =================================
+
+23rd November
+
+ CREATE TABLE `trpgit`.`check_range` (`check_range_id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, `start_no` INT(20) NOT NULL, `end_no` INT(20) NOT NULL, `create_time` INT(15) NOT NULL, `assign_time` INT(15) NULL, `uid` INT(11) NULL) ENGINE = InnoDB;
+
+ALTER TABLE `assign_check` ADD `in_hand` INT( 11 ) NULL AFTER `ending_no`
+
+ALTER TABLE `assign_check` CHANGE `in_hand` `in_hand` INT( 11 ) NOT NULL DEFAULT '0'

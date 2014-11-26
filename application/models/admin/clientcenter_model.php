@@ -2080,7 +2080,7 @@ class Clientcenter_model extends CI_Model {
     		$res_4 = $this->db->query($sql_4);
     
     		if(sizeof($res_4->result_array()) > 0){
-    			foreach ($res_4->result_array() as $row4) {
+    			foreach ($res_4->cresult_array() as $row4) {
     				//$row4["product_create_date"] = gmdate("F j, Y, g:i a", $row4["create_date"]);
     
     				// get additional information for Insurance
@@ -2442,13 +2442,14 @@ class Clientcenter_model extends CI_Model {
     }
 
 
-    function addNewFileInfoWithAllEROPaymentInfoForExport($filename)
+    function addNewFileInfoWithAllEROPaymentInfoForExport($filename, $file_ID_modifier)
     {
 
         $data = array(
             'file_name' => $filename,
             'file_create_date' => $this->lib->getTimeGMT(),
-            'created_by' => $this->author->objlogin->uid
+            'created_by' => $this->author->objlogin->uid,
+            'file_ID_modifier' => $file_ID_modifier
         );
 
         $this->db->insert("generated_ach_file_info", $data);
@@ -2505,7 +2506,6 @@ class Clientcenter_model extends CI_Model {
                 $data[] = $row;
             }
             return $data;
-
         }else{
             return array();
         }
@@ -2533,9 +2533,10 @@ class Clientcenter_model extends CI_Model {
         }
     }
 
-    function loadAllPaidACHApplicationForExportIntoACHByERO($eroid){
+    function loadAllPaidACHApplicationForExportIntoACHByERO(){
 
-        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND a.uid= '$eroid' Group by a.uid";
+        //$sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL AND a.uid= '$eroid' Group by a.uid";
+        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL Group by a.uid";
         $res = $this->db->query($sql);
 
         if(sizeof($res->result_array()) > 0){

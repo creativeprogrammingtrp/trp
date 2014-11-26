@@ -12,7 +12,7 @@ class Settings extends CI_Controller {
     }
 
     function perms() {
-        $perms['Settings'] = array('index', 'profileSetting', 'showCompanyInformation', 'showSetupCompanyInformation', 'saveCompanyInfo','saveSetupCompanyInfo', 'saveProfileInfo', 'resetPassword','showUserLists','showUserForm','addUser','deleteUser','ShowService','saveService','deleteService','savePaymentInfo','showPaymentInfo','showBankFeesInfo','saveBankingFeesInfo','checkParentEFINInfo','checkSBEFINInfo','saveCompanyInfoFromAdmin','saveProfileInfoFromAdmin','saveBankingFeesInfoFromAdmin','savePaymentInfoFromAdmin');
+        $perms['Settings'] = array('index', 'profileSetting', 'showCompanyInformation', 'showSetupCompanyInformation', 'saveCompanyInfo','saveSetupCompanyInfo', 'saveProfileInfo', 'resetPassword','showUserLists','showUserForm','addUser','deleteUser','ShowService','saveService','deleteService','savePaymentInfo','showPaymentInfo','showBankFeesInfo','saveBankingFeesInfo','checkParentEFINInfo','checkSBEFINInfo','saveCompanyInfoFromAdmin','saveProfileInfoFromAdmin','saveBankingFeesInfoFromAdmin','savePaymentInfoFromAdmin','assignCheckNo');
         return $perms;
     }
 
@@ -73,6 +73,14 @@ class Settings extends CI_Controller {
             exit();
         }
     }
+
+    public function assignCheckNo() {
+        if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
+            echo json_encode($this->m_com->saveAssignCheckNumber());
+            exit();
+        }
+    }
+
 
     public function saveProfileInfoFromAdmin() {
         if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {

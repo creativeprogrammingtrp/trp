@@ -9,7 +9,7 @@ class Adjustment extends CI_Controller{
     }
     
     function perms(){
-        $perms['Bank Adjustment'] = array('index','ShowPenddingApprove','generateFile','download','generateExcel','generateACHFile');
+        $perms['Bank Adjustment'] = array('index','ShowPenddingApprove','generateFile','download','generateExcel','generateACHFile','generateACHFileCSVFormat');
         return $perms;			
     }
     
@@ -335,7 +335,6 @@ class Adjustment extends CI_Controller{
                             }
 
                             $state++;
-
 
                             // for get transaction info
                             if (strpos($eachline[0], 'CR') !== false || strpos($eachline[0], 'DR') !== false) {
@@ -792,9 +791,11 @@ class Adjustment extends CI_Controller{
         $myfile = fopen("./arp_inbound/" . $filename . ".txt", "w") or die("Unable to open file!");
 
         $totalAmount = 0;
+        $dipositedApp = array();
 
         $last_file_ID_modifier = $this->m_clientcenter->loadLastFileIDModifier();
 
+        $file_ID_modifier = '';
         $totalPayAmount = 0;
         $totalDebitPayAmount = 0;
         $t8_entry_hash = 0;
@@ -809,8 +810,9 @@ class Adjustment extends CI_Controller{
         $t1_file_creation_time = date('hi');
 
         // incremental (A, B, C...)
+       // echo "last-".count($last_file_ID_modifier);
         if (count($last_file_ID_modifier) > 0) {
-            $file_ID_modifier1 = $last_file_ID_modifier['file_ID_modifier'];
+            $file_ID_modifier1 = $last_file_ID_modifier[0]['file_ID_modifier'];
             $file_ID_modifier = $file_ID_modifier1++;
         } else {
             $file_ID_modifier = 'A';
@@ -984,10 +986,142 @@ class Adjustment extends CI_Controller{
         if(sizeof($dipositedApp) > 0){
 
             // add exported file name into database for download
-            $this->m_clientcenter->addNewFileInfoWithAllEROPaymentInfoForExport($filename);
+            $this->m_clientcenter->addNewFileInfoWithAllEROPaymentInfoForExport($filename,$file_ID_modifier);
             echo json_encode($this->m_clientcenter->loadACHWxportedFileList());
         }else{
             unlink("./arp_inbound/".$filename.".txt");
+            echo json_encode("No new record found for generate file. Please try again when record will be available.");
+        }
+
+        //echo "test2";
+
+        // exit();
+
+    }
+
+    public function generateACHFileCSVFormat()
+    {
+        $data = array();
+        $filename = 'AE' . date('mdyhis');
+        $myfile = fopen("./arp_inbound/" . $filename . ".csv", "w") or die("Unable to open file!");
+
+        $totalAmount = 0;
+        $dipositedApp = array();
+
+        $totalPayAmount = 0;
+        $totalDebitPayAmount = 0;
+        $t8_entry_hash = 0;
+        $totalEntry_hash = 0;
+
+        // Header Part
+        $headerpart = array('PAYMTHD','CRDDBTFL','VALDT','PAYAMT','PMTFMTCD','ORIGACCTTY','ORIGACCT','ORIGBNKIDTY','ORIGBNKID',
+        'RCVPRTYACCTTY','RCVPRTYACCT','RCVBNKIDTY','RCVBNKID','ORIGPRTYNM','ORIGBNKNM','RCVPRTYNM','RCVBNKNM','ACHCMPID');
+
+        fputcsv($myfile, $headerpart);
+
+
+        //===================================
+
+        // Have to be start loop here batch wise.
+
+
+
+            // body part
+            $dipositedApp = $this->m_clientcenter->loadAllPaidACHApplicationForExportIntoACHByERO();
+            $totalCheckAmount = 0.00;
+            //print_r($printedCheck);
+            $k = 0;
+        $ecount = 1;
+        $batchTotal = 0;
+            foreach ($dipositedApp as $dipApp) {
+                $batchTotal++;
+                // calculate amount that have to be pay
+                $taxPay = floatval($dipApp['app_actual_tax_preparation_fee_sum']);
+                $AddOnPay = floatval($dipApp['app_actual_add_on_fee_sum']);
+
+                $taxPayCommission = floatval($dipApp['tax_pre_commission']);
+                $AddOnPayCommission = floatval($dipApp['add_on_commission']);
+
+                $taxPayCommissionType = intval($dipApp['tax_pre_commission_type']); // 1 = Fixed & 2 = percentage
+                $AddOnPayCommissionType = intval($dipApp['add_on_commission_type']); // 1 = Fixed & 2 = percentage
+
+                $txaAmount = 0;
+                $AddonAmount = 0;
+
+                if ($taxPayCommissionType == 1) {
+                    $txaAmount = floatval($taxPay) - floatval($taxPayCommission);
+                } else {
+                    $txaAmountPer = floatval($taxPay) * intval($taxPayCommission) / 100;
+                    $txaAmount = floatval($taxPay) - floatval($txaAmountPer);
+                }
+
+                if ($AddOnPayCommissionType == 1) {
+                    $AddonAmount = floatval($AddOnPay) - floatval($AddOnPayCommission);
+                } else {
+                    $AddonAmountPer = floatval($AddOnPay) * intval($AddOnPayCommission) / 100;
+                    $AddonAmount = floatval($AddOnPay) - floatval($AddonAmountPer);
+                }
+
+                $totalPayAmount = floatval($txaAmount) + floatval($AddonAmount);
+
+                $eroname = $dipApp['firstname']." ".$dipApp['lastname'];
+
+                $PAYMTHD = 'DAC';
+                $CRDDBTFL = 'C';
+                $todate = strtoupper(date('m/d/Y'));
+                $VALDT = $todate;
+                $PAYAMT = $totalPayAmount; // Payment amount i
+                $PMTFMTCD = 'CCD';
+                $ORIGACCTTY = 'D';
+                $ORIGACCT = '5284810933';
+                $ORIGBNKIDTY = 'ABA';
+                $ORIGBNKID = '091000019';
+                $RCVPRTYACCTTY = 'D';
+                $RCVPRTYACCT = str_pad(substr($dipApp['bank_account'], 0, 17), 17, "0"); //account number of the ERO.
+                $RCVBNKIDTY = 'ABA';
+                $RCVBNKID = substr($dipApp['bank_routing'], 0, -1); // ERO ROuting number
+                $ORIGPRTYNM = 'TRP SOLUTION';
+                $ORIGBNKNM = 'WELLS FARGO';
+                $RCVPRTYNM = $eroname; // ERO name
+                $RCVBNKNM = $dipApp["bank_name"]; //ERO bank name
+                $ACHCMPID = '1464683532';
+
+
+$totalRepetate = array($PAYMTHD,$CRDDBTFL,$VALDT,$PAYAMT,$PMTFMTCD, $ORIGACCTTY,$ORIGACCT, $ORIGBNKIDTY,$ORIGBNKID,$RCVPRTYACCTTY,$RCVPRTYACCT
+, $RCVBNKIDTY, $RCVBNKID, $ORIGPRTYNM, $ORIGBNKNM,$RCVPRTYNM,$RCVBNKNM,$ACHCMPID);
+
+                fputcsv($myfile, $totalRepetate);
+
+                $totalAmount = floatval($totalAmount) + floatval($totalPayAmount);
+
+                // update exported time
+
+                $this->m_clientcenter->updateACHExportTImeForAllPrintedCheckForExport($dipApp['app_id']);
+                //  updateACHExportTImeForAllPrintedCheckForExport
+                $k++;
+                $ecount++;
+
+
+            }
+
+
+        $TRAILER = 'TRAILER';
+        $Payment_count = $batchTotal;
+        $Payment_amount = $totalAmount;
+
+        $trailertotal = array($TRAILER,$Payment_count,$Payment_amount);
+        fputcsv($myfile, $trailertotal);
+
+        fclose($myfile);
+
+
+        if(sizeof($dipositedApp) > 0){
+
+            // add exported file name into database for download
+            $this->m_clientcenter->addNewFileInfoWithAllEROPaymentInfoForExport($filename);
+            echo json_encode($this->m_clientcenter->loadACHWxportedFileList());
+        }else{
+            unlink("./arp_inbound/".$filename.".csv");
             echo json_encode("No new record found for generate file. Please try again when record will be available.");
         }
 

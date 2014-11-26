@@ -663,7 +663,6 @@ class Clientcenter extends CI_Controller{
             //$this->db->query($sql2);
 
 
-
             echo json_encode('<div class="col-md-12 tempmessage"><div class="alert alert-success"><i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">Selected Check Voided & re-printed Successfully.</strong></div></div> <br><br>');
             // exit;
         }else{

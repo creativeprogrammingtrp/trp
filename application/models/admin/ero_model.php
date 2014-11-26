@@ -75,7 +75,17 @@ where users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid
     		} else {
     			$row['image'] = '';
     		}
-    		$data[] = $row;
+
+
+
+            $sql_sub = "Select * from assign_check where uid = '".$row["uid"]."'";
+            $res_sub = $this->db->query($sql_sub);
+
+            $row['assigned_checked'] = $res_sub->result_array();
+
+            $data[] = $row;
+
+
     	}
     	return $data;
     }
@@ -689,6 +699,81 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
         $this->db->where("author", $author);
         $this->db->update('ero', array('status_ero' => -1));
         return $this->ShowUserLists();
+    }
+
+    public function generateCheckRange(){
+        $start = 5000;
+        $end = 100000;
+        $range = 4999;
+        $first = 0;
+        $second = 0;
+
+        $till = $end/$range;
+
+        $start_array = array();
+        //$end_array = array();
+
+        for ($i = 0; $i < $till; $i++){
+
+            if($start == 5000){
+                 $first = $start;
+                 $second = $start+$range;
+
+                //echo $first. "-";
+               // echo $second. "<br>";
+                $start = $second+1;
+               // $start_array[] = $first. "-" .$second;
+
+                $data = array(
+                    'start_no' => $first,
+                    'end_no' => $second,
+                    'create_time' => $this->lib->getTimeGMT()
+                );
+
+            }else{
+                 $first = $start;
+                 $second = $start+$range;
+
+                $start = $second+1;
+               // $start_array[] = $first. "-".$second;
+                //echo $first. "-";
+                //echo $second. "<br>";
+                $data = array(
+                    'start_no' => $first,
+                    'end_no' => $second,
+                    'create_time' => $this->lib->getTimeGMT()
+                );
+            }
+            $this->db->insert('check_range', $data);
+
+        }
+      //  print_r($start_array);
+        //return $start_array;
+
+    }
+
+    function loadFreeCheckList() {
+        //$data = array();
+        $html = '';
+        $sql = "select * from check_range where assign_time IS NULL AND uid IS NULL";
+        $res = $this->db->query($sql);
+        //print_r ($res->result_array());
+        //exit;
+        //$html .= '';
+        $html .= '<option value="">Select Range</option>';
+        foreach ($res->result_array() as $row) {
+            // $data = $res->row_array();
+            $start_no = $row['start_no'];
+            $end_no = $row['end_no'];
+            $check_range_id = $row['check_range_id'];
+
+            $html .= '<option value="'.$check_range_id.'-'.$start_no.'-'.$end_no.'">'.$start_no.' - '.$end_no.'</option>';
+
+        }
+        //$html .= '</select>';
+        //print_r($html);
+        //exit;
+        return $html;
     }
 
 }

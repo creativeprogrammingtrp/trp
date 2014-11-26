@@ -56,6 +56,7 @@ $(function(){
     			$("#phone_signup").focus();	
     		}
     	}
+
         if($('#username_signup').val() === ''){
 		$('#username_signup').css("border", '#66B9E3 1px solid');
 		if(checkError === false){
@@ -86,11 +87,23 @@ $(function(){
         		}
     		}*/
     	}
+
+        if($("#ch1").is(':checked')){
+
+        }else{
+            $('.niceCheck').css("border", '#66B9E3 1px solid');
+            if(checkError === false){
+                checkError = true;
+                $("#ch1").focus();
+            }
+        }
+
+//        $("#ch1").is(':checked') ? 1 : 0,
         
         if(checkError === true) return false;
          $.ajax({
             type: 'post',
-            url: url_base_path__+'signup/register',
+            url: url_base_path__+'signup/register77',
             data:
             {
                 save_data:'yes',

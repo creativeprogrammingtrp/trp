@@ -354,6 +354,35 @@ class Mycompany_model extends CI_Model {
             return $this->loadInfoForEROForEmployee();
         }
     }
+
+    function saveAssignCheckNumber(){
+
+        $selectedCheckRange = explode("-",$this->lib->escape($_POST['check_list']));
+        $startingNo = $selectedCheckRange[1];
+        $endingNo = $selectedCheckRange[2];
+        $id = $selectedCheckRange[0];
+        $inhand = $endingNo - $startingNo;
+
+        $data1 = array(
+            'uid' => $this->lib->escape($_POST['ero_id']),
+            'starting_no' => $startingNo,
+            'ending_no' => $endingNo,
+            'in_hand' => $inhand,
+            'assign_date' => $this->lib->getTimeGMT(),
+            'author_id ' => $this->author->objlogin->uid
+        );
+        $this->db->insert("assign_check", $data1);
+
+        $data2 = array(
+            'uid' => $this->lib->escape($_POST['ero_id']),
+            'assign_time' => $this->lib->getTimeGMT()
+        );
+
+        $this->db->where('check_range_id', $id);
+        $this->db->update('check_range', $data2);
+
+        return  $this->ero->loadAllErosForAdmin();
+    }
     
     function checkParentEFINStatus(){
     	$query = $this->db->get_where('users', array('efin' => $this->lib->escape($_POST['p_efin'])));
@@ -667,6 +696,7 @@ class Mycompany_model extends CI_Model {
         $this->db->delete('service');
         return $this->loadServiceList();
     }
+
 
     function saveService() {
         $file_id = (isset($_POST['file_id']) && $_POST['file_id'] != '') ? $_POST['file_id'] : '';

@@ -19,6 +19,7 @@
                     <!-- <li {style} ><a href="#service" onclick="showServicesEro()">Services</a></li> -->
                     <li class=""><a href="#payment-info">Banking Info</a></li>
                     <li class=""><a href="#banking">Fees Info</a></li>
+                    <li class=""><a href="#check-assigned">Check Assigned</a></li>
                 </ul>
 
                 <div class="row" id="body_allero">
@@ -614,6 +615,8 @@
 </form>
                         	
                         </div>
+
+
                         
                         <div id="banking" class="tab-pane">
                         <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="bankingFeesForm12" novalidate="novalidate">
@@ -756,7 +759,75 @@
 </form>
                         
                         </div>
-                        
+
+                        <div id="check-assigned" class="tab-pane">
+                            <form class="form-horizontal form-box remove-margin ui-formwizard"  method="post" id="checkAssignForm" novalidate="novalidate">
+                                <!-- Form Header -->
+                                <!-- Form Content -->
+
+                                <div style="margin: 0 0 0 13px; padding-top: 25px;" class="col-md-5">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            <span style="" class="title">Check Number Assigned</span>
+                                            <span style="" class="tools pull-right icons"><i class="glyphicon-bank"></i></span>
+                                        </header>
+                                        <div class="panel-body">
+
+                                            <div class="form-box-content">
+                                                <!-- First Step -->
+                                                <div class="step ui-formwizard-content" id="advanced-first1" style="display: block;">
+
+                                                    <div class="form-group">
+                                                        <label for="bank_name1" class="control-label col-md-12">Select Check Range<span class="required1">*</span></label>
+                                                        <div class="col-md-12 nopadding">
+                                                            <select class="form-control" name="check_list" id="check_list">
+                                                                {checkList}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <div style="padding-top: 25px;" class="col-md-1">&nbsp;
+                                </div>
+
+                                <div style="padding-top: 25px; width: 46%" class="col-md-6">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            <span style="" class="title">Assigned Check Number</span>
+                                            <span style="" class="tools pull-right icons"><i class="glyphicon-bank"></i></span>
+                                        </header>
+                                        <div class="panel-body" id="assign_check_numbers_list">
+
+                                        </div>
+                                    </section>
+                                </div>
+
+
+                                <div style="clear: both;"></div>
+
+                                <div class="col-md-12" style="padding-left:25px; padding-bottom:20px;">
+
+                                    <button type="submit" id="save_assign_Check" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+
+                                    <!--
+                                                        <input type="submit" value="Save" id="save_payment"
+                                                               class="btn btn-success ui-wizard-content ui-formwizard-button">
+                                                        <input type="button" value="Cancel" id="cancel1"
+                                                               class="btn btn-danger ui-wizard-content ui-formwizard-button">
+                                                                -->
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
                        <input type="hidden" name="uid_master" value="" id="uid_master" > 
                     </div>
 
@@ -1097,7 +1168,7 @@ function check_is_nan(value){
 
 	}
         
-       
+
         
 	function showCustomerReportByEro(empId){
 		$.ajax({
@@ -1548,7 +1619,7 @@ function check_is_nan(value){
 			        rules: {
 			        	
 			        	first_name : { required: true },
-			        	last_name  : { required: true },
+			        	last_name  : { required: true }
 			            
 			        },
 			        messages: {
@@ -1878,6 +1949,58 @@ function check_is_nan(value){
          
     });
 	/*End Form validation*/
+
+        /* Initialize Form Validation */
+        $('#checkAssignForm').validate({
+            errorClass: 'help-block',
+            errorElement: 'span',
+            errorPlacement: function(error, e) {
+                e.parents('.form-group > div').append(error);
+            },
+            highlight: function(e) {
+                $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                $(e).closest('.help-block').remove();
+            },
+            success: function(e) {
+                // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
+                //  e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
+                e.closest('.form-group').removeClass('has-success has-error');
+                e.closest('.help-block').remove();
+            },
+            rules: {
+
+                check_list : { required: true }
+            },
+            messages: {
+
+            },
+            submitHandler: function(form) {
+
+                $('#save_p').hide();
+                $('#profileSaveBtnLoad').show();
+
+                $.post("index.php/admin/settings/assignCheckNo", {
+                    load_p : 'yes',
+                    check_list : $("#check_list").val(),
+                    ero_id : $("#ero_id").val()
+                }, function(data) {
+                    if (typeof (data) == 'object') {
+                        dataClient = data;
+
+                        $('#save_p').show();
+                        $('#profileSaveBtnLoad').hide();
+                        $("#modal_editEro").modal('hide');
+                        //$('#modal_success1').modal('show');
+                        //$("#two").trigger('click');
+                    }
+                    loadClients();
+                }, "json");
+
+                return false;
+            }
+
+        });
+        /*End Form validation*/
 	
 	// End save payment info	
 			 	

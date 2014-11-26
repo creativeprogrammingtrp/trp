@@ -52,11 +52,15 @@ Bank ID                            808
 
 20. (d) delete all info from db.
 
+20. (d) For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
+
 21. (d) Have to be remove By employee from bank product report for Employee.
 
 22. (d) Discount benefits & Insurance report by employee will be remove, and Total Income & service burue also will be remove for employee
 
 23. (d) under customer tab, need to show Date (Custoemr create data.) from Admin, ERO, Employee.
+
+23. (d) layout if change resulation
 
 24. (d) Account Temporarily Deactivated.
 
@@ -121,23 +125,224 @@ Bank ID                            808
 
 52. (d) have to be work on routing no validation in setting page, setup page.
 
+53. (d) After open direct diposit modal box, when clciking on cancel button then it going to paid tab. but it should not go to that tab.
+
+54. have to be add routing # checing method with new application (under disbarsemnt method section)
+
+55. have to be find out where uAdmin theam added the code for mobile or tab. we need everything will be the same for pc, mobile & tab version.
+
+56. (d) Have to be remove plus section & First 5 Bank Products under pricing secton, and Unlimited Insurance Policies & Employee Training will be check mark.
+
+57. (d) Basic title will be change with "One Simple Pricing" & sub title will be Bank Products, Benefits & Insurance.
+
+58. (d) Choose a Plan this text will be remove.
+
+59. (d) Thums up icone will be replace with roket icon under pricing .
+
+60. (d) Have to be add assign check no form admin section under ERO > edit 'have to be add new tab after fees info'
+
+61. have to be cehck from employee sction for print check with assign  cehck no (check no will be assign from main ERO. not for each employee)
+
+62. (d) Home page Priceing section: free entire line will be remove, left text and check mark will be more bigger. and entire white box will be more smaller from left & right side.
+
+63. (d) Have to be create privacy policy & terms of use this 2 page form pfront end
+
+64. have to be create check print layout. and other info will got from ishan later.
+
+65. (d) Under sign up page, above Sign up button have to be I agree with Terms & Condition check box and if clcik on that link then it will go the the seperate page with terms & condition info.
+
+66. (d) ERO agreement info will be add with Training page. above the Compliance Law we have to be add ERO Agreement with agreement info.
+
+67. (d) Have to be add routing mu check functionality after first time login and step -1 .
+
+68. (d) 19.95 /each with pricing section in home page
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-==-==-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 
 6. insurance : it will send email with all the selected applicent info
 
 40. have to be add confirmation message when any status will change like Approved, Rejected etc.
 
-20. (d) For the direct deposit we have to be add another new button called "Direct deposit" after Print Cehck button under rady to print page. and after clcik on that button it will show all the account info thsoe payment method is Direct deposit as like ad print cehck modal box. and after cldick on paid button it all the selected account will go to the ready to payout to PAaid section.
-
 21. under bank account or any other places we have to be implement refresh option after make any event. like after print
 
-23. (d) layout if change resulation
-
 27. udner ERO, after click on view all, we need back button under all customer list page.
-
 
 1. (d) As employee: under bank prodcut Employee column will be removed from every tab.
 
 
+-- phpMyAdmin SQL Dump
+-- version 3.3.9.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Nov 18, 2014 at 01:10 PM
+-- Server version: 5.5.9
+-- PHP Version: 5.3.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `trpgit`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `benefits`
+--
+
+CREATE TABLE `benefits` (
+  `benefits_id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_id` int(11) DEFAULT NULL COMMENT 'this app id related with bank product new applciation table',
+  `applicent_id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL COMMENT 'this is the ID of the parent ERO',
+  `benefits_item` varchar(100) NOT NULL,
+  `benefits_price` double(10,2) NOT NULL,
+  `benefits_item_desc` varchar(100) NOT NULL,
+  `benefits_img_source` varchar(20) NOT NULL,
+  `create_date` int(11) NOT NULL,
+  `benefits_status` int(2) NOT NULL COMMENT '0=Pending,1=active, 2=canceled',
+  `payment_status` int(2) NOT NULL COMMENT '1=paid, 2 = unpaid',
+  `author_id` int(11) NOT NULL COMMENT 'who creating this benefits',
+  PRIMARY KEY (`benefits_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `benefits`
+--
+
+INSERT INTO `benefits` VALUES(1, 1, 2, 144, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416292876, 0, 0, 144);
+INSERT INTO `benefits` VALUES(2, 2, 3, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293233, 0, 0, 144);
+INSERT INTO `benefits` VALUES(3, 4, 5, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293611, 0, 0, 144);
+INSERT INTO `benefits` VALUES(4, 5, 6, 144, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416293709, 0, 0, 144);
+INSERT INTO `benefits` VALUES(5, 6, 7, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293767, 0, 0, 144);
+INSERT INTO `benefits` VALUES(6, 7, 8, 189, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416294269, 0, 0, 189);
+INSERT INTO `benefits` VALUES(7, 8, 9, 189, 'Medical Package', 90.00, 'Discount Savings on Medical Benefits', 'icon-aid', 1416294367, 0, 0, 189);
+INSERT INTO `benefits` VALUES(8, 9, 10, 189, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416294452, 0, 0, 189);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `new_app`
+--
+
+CREATE TABLE `new_app` (
+  `app_id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(10) NOT NULL,
+  `applicent_id` int(11) NOT NULL,
+  `app_total_refund_amt` double(10,2) NOT NULL,
+  `app_tax_preparation_fee` double(10,2) DEFAULT '0.00',
+  `app_bank_transmission_fee` double(10,2) DEFAULT '0.00',
+  `app_sb_fee` double(10,2) DEFAULT '0.00',
+  `app_e_file_fee` double(10,2) DEFAULT '0.00',
+  `app_add_on_fee` double(10,2) DEFAULT '0.00',
+  `app_actual_tax_preparation_fee` double(10,2) DEFAULT '0.00',
+  `app_actual_bank_transmission_fee` double(10,2) DEFAULT '0.00',
+  `app_actual_sb_fee` double(10,2) DEFAULT '0.00',
+  `app_actual_add_on_fee` double(10,2) DEFAULT '0.00',
+  `audit_guard_item` varchar(50) DEFAULT NULL,
+  `audit_guard_item_desc` varchar(100) DEFAULT NULL,
+  `audit_guard_img_source` varchar(100) DEFAULT NULL,
+  `audit_guard_fee` double(10,2) DEFAULT '0.00',
+  `actual_audit_guard_fee` double(10,2) DEFAULT '0.00',
+  `deposit_amount` double(10,2) DEFAULT '0.00',
+  `posted_date` int(20) DEFAULT NULL COMMENT 'when getting the text file form bank.',
+  `app_total_fees` double(10,2) DEFAULT '0.00',
+  `app_refund_amt` double(10,2) DEFAULT '0.00',
+  `app_benefit` double(10,2) DEFAULT '0.00',
+  `app_net_refund_amt` double(10,2) DEFAULT '0.00',
+  `app_actual_refund_amount` double(10,2) DEFAULT NULL,
+  `payment_method` varchar(20) DEFAULT NULL,
+  `create_date` int(11) NOT NULL,
+  `card_number` varchar(50) DEFAULT NULL,
+  `app_bank_name` varchar(100) DEFAULT NULL,
+  `app_account_no` varchar(50) DEFAULT NULL,
+  `app_routing_no` varchar(50) DEFAULT NULL,
+  `assign_acc_no` varchar(20) NOT NULL,
+  `assign_routing_no` varchar(20) NOT NULL,
+  `status` int(2) NOT NULL COMMENT '0=Pending,1=ready to print, 2=check printed, 3= voided check, 4 = paid, 5 = voided payment',
+  `payment_status` int(2) NOT NULL COMMENT '0= pending, 1=Partial, 2 = Full',
+  `author_id` int(11) NOT NULL COMMENT 'who (employee) submit this application',
+  `w_application` varchar(5) DEFAULT NULL COMMENT 'Application or Type. DDA or SAV',
+  `w_group_number` int(20) DEFAULT NULL,
+  `w_process_date` varchar(10) DEFAULT NULL COMMENT 'If transactions are listed on the report, this is the date the items will post. Or If there are no transactions to report, this is the date the tranjournal was created.',
+  `w_group_name` varchar(50) DEFAULT NULL COMMENT 'normally your company name',
+  `w_tran` varchar(2) DEFAULT NULL COMMENT 'Tran. Will be CR for a credit entry or DR for a debit entry.',
+  `w_account_no` int(20) DEFAULT NULL COMMENT 'For account range customers, each account number is a WPIC (Wells Fargo Payment Identification Code) that identifies the client account that you need to credit or debit.',
+  `w_amount` double DEFAULT NULL COMMENT 'Amount. Dollar amount of the transaction. If the amount is zero, the transaction is a prenote.',
+  `w_entry_desc` varchar(100) DEFAULT NULL COMMENT 'Description of the transaction provided by the originating company.',
+  `w_spin` varchar(2) DEFAULT NULL COMMENT 'A two-digit number identifying the delivery time for the entries for this report. ',
+  `w_org` int(1) DEFAULT NULL COMMENT 'Org. Code identifying where the transaction originated: 1= Sent by a non-government (commercial) entity. & 2 = Sent by Federal government entity.',
+  `w_individual_id` varchar(100) DEFAULT NULL COMMENT 'Individual ID. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include a ID number to identify the client or individual for whom the transaction is intended, such as an employee number or customer number.',
+  `w_individual_name` varchar(100) DEFAULT NULL COMMENT 'Individual Name. The information included in this field depends on the SEC code for the transaction. For many transactions, this field may include the name of the client or individual for whom the transaction is intended.',
+  `w_descr_date` varchar(10) DEFAULT NULL COMMENT 'Descr Date. Reference date provided by the originator for descriptive purposes only.',
+  `w_ccls` varchar(10) DEFAULT NULL COMMENT 'CCLS. Standard Entry Class (SEC) code identifying the type of ACH activity being processed.',
+  `w_company_id` int(20) DEFAULT NULL COMMENT 'Company ID. Unique number used by the originating company sending this transaction.',
+  `w_company_name` varchar(100) DEFAULT NULL COMMENT 'Company Name. Name of the company sending this transaction.',
+  `w_discr_date` varchar(10) DEFAULT NULL COMMENT 'Discr Data. Discretionary data. This field may include codes to enable specialized handling of the entry. This field must be returned intact for any returned entry. For IAT transactions, this is the OFAC screening indicator and secondary OFAC screening indicator (positions 77 and 78) from the detail record.',
+  `w_trace` int(20) DEFAULT NULL COMMENT 'Trace Number. A unique trace number assigned to the entry by the originating institution. The first eight digits of the trace number are the routing/transit number of the sending institution.',
+  `imp_file_name` varchar(30) NOT NULL,
+  `direct_deposit_time` int(11) DEFAULT NULL,
+  `ach_export_date` int(15) DEFAULT NULL,
+  PRIMARY KEY (`app_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `new_app`
+--
+
+INSERT INTO `new_app` VALUES(1, 144, 2, 4400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4190.05, 200.00, 3990.05, NULL, 'Check', 1416292876, '', '', '', '', '19330000000000031', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(2, 144, 3, 2400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 2190.05, 160.00, 2030.05, NULL, 'Check', 1416293233, '', '', '', '', '19330000000000032', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(3, 144, 4, 5000.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4790.05, 40.00, 4750.05, NULL, 'Check', 1416293305, '', '', '', '', '19330000000000033', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(4, 144, 5, 4400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4190.05, 160.00, 4030.05, NULL, 'Direct Deposit', 1416293611, '', 'HSBC', '12345678901234567', '123122334', '19330000000000034', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(5, 144, 6, 5000.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4790.05, 200.00, 4590.05, NULL, 'Direct Deposit', 1416293709, '', 'BRAC BANK', '12345678901234568', '123456789', '19330000000000035', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(6, 144, 7, 2300.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 2090.05, 160.00, 1930.05, NULL, 'Check', 1416293767, '', '', '', '', '19330000000000036', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(7, 189, 8, 2700.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 2640.05, 200.00, 2440.05, NULL, 'Check', 1416294269, '', '', '', '', '19330000000000037', '111900659', 0, 0, 189, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(8, 189, 9, 2900.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 2840.05, 130.00, 2710.05, NULL, 'Direct Deposit', 1416294367, '', 'HSBC', '10987654321234567', '123452345', '19330000000000038', '111900659', 0, 0, 189, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(9, 189, 10, 3100.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 3040.05, 160.00, 2880.05, NULL, 'Direct Deposit', 1416294452, '', 'NCC BANK', '12345678901234587', '343434343', '19330000000000039', '111900659', 0, 0, 189, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `new_applicent`
+--
+
+CREATE TABLE `new_applicent` (
+  `applicent_id` int(10) NOT NULL AUTO_INCREMENT,
+  `uid` int(10) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `ss_number` varchar(100) NOT NULL,
+  `dob` varchar(100) NOT NULL,
+  `add_spouse` varchar(5) NOT NULL,
+  `sp_first_name` varchar(100) NOT NULL,
+  `sp_last_name` varchar(100) NOT NULL,
+  `sp_ssn_no` varchar(50) NOT NULL,
+  `sp_dob` varchar(15) NOT NULL,
+  `street_address_1` text NOT NULL,
+  `street_address_2` text NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `zip_code` varchar(10) NOT NULL,
+  `country` varchar(20) NOT NULL,
+  `cell_phone` varchar(20) NOT NULL,
+  `email_add` varchar(30) NOT NULL,
+  `create_date` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  PRIMARY KEY (`applicent_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `new_applicent`
+--
+
+INSERT INTO `new_applicent` VALUES(1, 144, 'TEST', 'DATA60', '312-31-2312', '23/12/3123', '0', '', '', '', '', 'test address', '', 'dkaka', 'Alabama', '12345', '', '(231) 231-2312', 'data60@gmail.com', 1416292635, 144);
+INSERT INTO `new_applicent` VALUES(2, 144, 'TEST', 'DATA60', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'sfsdf', 'Alabama', '42342', '', '(234) 234-2342', 'r@r.com', 1416292876, 144);
+INSERT INTO `new_applicent` VALUES(3, 144, 'TEST', 'DATA61', '132-13-1231', '23/12/3123', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23232', '', '(432) 341-2312', 'data61@gmail.com', 1416293233, 144);
+INSERT INTO `new_applicent` VALUES(4, 144, 'TEST', 'DATA62', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32221', '', '(423) 421-3123', 'data62@gmail.com', 1416293305, 144);
+INSERT INTO `new_applicent` VALUES(5, 144, 'TEST', 'DATA63', '324-23-4234', '34/23/4234', '0', '', '', '', '', 'test', '', 'dhaka', 'Alabama', '12345', '', '(423) 423-4234', 'data63@gmail.com', 1416293611, 144);
+INSERT INTO `new_applicent` VALUES(6, 144, 'TEST', 'DATA64', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23222', '', '(221) 312-3123', 'data64@gmail.com', 1416293709, 144);
+INSERT INTO `new_applicent` VALUES(7, 144, 'TEST', 'DATA65', '342-34-2342', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23222', '', '(312) 312-3123', 'data65@gmail.com', 1416293767, 144);
+INSERT INTO `new_applicent` VALUES(8, 189, 'TEST', 'DATA66', '432-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '12345', '', '(434) 234-2342', 'data66@gmail.com', 1416294269, 189);
+INSERT INTO `new_applicent` VALUES(9, 189, 'TEST', 'DATA67', '321-31-2312', '32/13/1231', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32122', '', '(423) 423-4234', 'data67@gmail.com', 1416294367, 189);
+INSERT INTO `new_applicent` VALUES(10, 189, 'TEST', 'DATA68', '312-31-2312', '31/23/1231', '0', '', '', '', '', 'test', '', 'dhaka', 'Alaska', '31232', '', '(123) 124-5435', 'data68@gmail.com', 1416294452, 189);

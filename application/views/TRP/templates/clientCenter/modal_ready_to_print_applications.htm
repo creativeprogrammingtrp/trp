@@ -183,17 +183,18 @@ $(function() {
                 cache: false,
                // dataType: "json",
                 success: function(message){
-                //	alert(message);
+                	alert('All Check Printed Successfully.');
                      //   $("#body_check_for_print").empty().append(message);
                     //$(this).parent().appendTo(message);
+                    $("#modal_check_for_print").modal('hide');
 
-                    if (confirm('All Check Printed Successfully.')) {
+                    /*if (confirm('All Check Printed Successfully.')) {
                         //alert('All Check Printed Successfully.');
                         $("#modal_check_for_print").modal('hide');
                     }else{
                         $("#modal_check_for_print").modal('hide');
                     }
-
+*/
 
                    // var dataClient = message;
                    // loadClientsReadyToPrint();

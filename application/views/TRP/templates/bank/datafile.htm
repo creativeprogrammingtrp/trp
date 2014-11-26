@@ -88,7 +88,7 @@
                     <div class="panel-body">
 
                         <div class="col-md-12 text-center" style="padding:0px;">
-                            <button value="Next" onclick="javascript:generateACHFile();" id="generateAchFile" type="submit" name="generateFile" class=" btn btn-success">Generate ACH to ERO Text File</button>
+                            <button value="Next" onclick="javascript:generateACHFileCSVFormat();" id="generateAchFile" type="submit" name="generateFile" class=" btn btn-success">Generate ACH to ERO Text File</button>
                             <button value="View" id="viewGeneratedAchFile" type="button" name="view" class=" btn btn-success">View</button>
 
                             <button value=""  type="button" class=" btn btn-success btn-lg step1load" style="display:none;">&nbsp;  <i class="glyphicon-refresh"></i> &nbsp; Creating File...  &nbsp;</button>
@@ -350,13 +350,13 @@
     }
 
 
-    function generateACHFile() {
-
+    //function generateACHFile() {
+    function generateACHFileCSVFormat() {
 
         if (confirm("Are you sure you want to generate file for ACH to ERO?")){
 
             $.ajax({
-                url: url_base_path__+"admin/adjustment/generateACHFile",
+                url: url_base_path__+"admin/adjustment/generateACHFileCSVFormat",
                 cache: false,
                 type: "POST",
                 dataType: 'json',
@@ -376,7 +376,7 @@
 
                     }else{
                         // Console.log('test3');
-                        $('#generatemessage').html(data);
+                        $('#generateACHmessage').html(data);
                         $('#generatedFileForWellsFargos').css('display', 'none');
                         $('#dataFileUplaodResult').css('display', 'none');
                         $('#generatedACHFileForWellsFargos').css('display', 'block');
