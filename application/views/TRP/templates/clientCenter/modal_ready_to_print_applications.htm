@@ -110,7 +110,7 @@ function loadClients() {
 
     $("#starting_check_no").val(assignno);
 
-   // console.log(assignno);
+    // console.log(assignno);
     var checkNo = 1;
     for(var i = 0 ; i < dataClientPrint.length ; i++){
     	//alert(dataClientPrint[i]);
@@ -131,13 +131,13 @@ function loadClients() {
         assignno = parseInt(assignno+checkNo);
         checkNo++;
     }
-   htm +='</tbody>';
+    htm +='</tbody>';
 
 
    
-   $("#print_check_list_table").empty().append(htm);	
+    $("#print_check_list_table").empty().append(htm);
     
-   //$("#state").empty().append('{states}');
+    //$("#state").empty().append('{states}');
     
 }
 

@@ -157,6 +157,10 @@ Bank ID                            808
 
 68. (d) 19.95 /each with pricing section in home page
 
+69. After print any check we have to be reduce total in_hand checks.
+
+
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-==-==-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 6. insurance : it will send email with all the selected applicent info
@@ -336,7 +340,7 @@ CREATE TABLE `new_applicent` (
 -- Dumping data for table `new_applicent`
 --
 
-INSERT INTO `new_applicent` VALUES(1, 144, 'TEST', 'DATA60', '312-31-2312', '23/12/3123', '0', '', '', '', '', 'test address', '', 'dkaka', 'Alabama', '12345', '', '(231) 231-2312', 'data60@gmail.com', 1416292635, 144);
+
 INSERT INTO `new_applicent` VALUES(2, 144, 'TEST', 'DATA60', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'sfsdf', 'Alabama', '42342', '', '(234) 234-2342', 'r@r.com', 1416292876, 144);
 INSERT INTO `new_applicent` VALUES(3, 144, 'TEST', 'DATA61', '132-13-1231', '23/12/3123', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23232', '', '(432) 341-2312', 'data61@gmail.com', 1416293233, 144);
 INSERT INTO `new_applicent` VALUES(4, 144, 'TEST', 'DATA62', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32221', '', '(423) 421-3123', 'data62@gmail.com', 1416293305, 144);

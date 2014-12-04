@@ -99,6 +99,30 @@
             </div>
         </div>
 
+    <div style="clear:both;"></div>
+    <div class="col-md-5" style="padding:25px 0px 0px;" >
+        <div class="col-md-12" style="padding: 0px;" >
+            <section class="panel">
+                <header class="panel-heading">
+                    <span class="title" style="">ACH to Customer</span>
+	                    <span class="tools pull-right icons" style="">
+					        <i class="icon-user"></i>
+	    		        </span>
+                </header>
+                <div class="panel-body">
+
+                    <div class="col-md-12 text-center" style="padding:0px;">
+                        <button value="Next" onclick="javascript:generateACHFileCSVForCustomerFormat();" id="generateAchFileForCustomer" type="submit" name="generateAchFileForCustomer" class=" btn btn-success">Generate ACH to Customer Text File</button>
+                        <button value="View" id="viewGeneratedAchFileForCustomer" type="button" name="view" class=" btn btn-success">View</button>
+
+                        <button value=""  type="button" class=" btn btn-success btn-lg step1load" style="display:none;">&nbsp;  <i class="glyphicon-refresh"></i> &nbsp; Creating File...  &nbsp;</button>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
         <div style="clear:both;"></div>
 
         <div class="col-md-6" id="generatedFileForWellsFargos" style="padding:25px 15px 0px 0px; display: none;" >
@@ -189,20 +213,43 @@
             </div>
         </div>
         <div style="clear:both;"></div>
+    <div class="col-md-6" id="generatedACHFileForCustomerWellsFargos" style="padding:25px 15px 0px 0px; display: none;" >
+        <div id="generateACHCustomerMessage"></div>
+        <div class="col-md-12" style="padding: 0px;" >
+            <section class="panel">
+                <header class="panel-heading">
+                    <span class="title" style=""> Generated ACH to Customer Files For Wells Fargo	 </span>
+	                    <span class="tools pull-right icons" style="">
+					        <i class="icon-user"></i>
+	    		        </span>
+                </header>
+                <div class="panel-body">
+
+                    <table id="generated_ACH_file_list" class="table table-striped">
+                    </table>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
 	</div>
 </div>
 
 <script>
     var dataClient = [];
     var dataClientACH = [];
+    var dataClientACHCustomer = [];
     var heads = ["Name","Created Date & Time","Action"];
     var headsACH = ["Name","Created Date & Time","Action"];
 
     function loadObject() {
         {dataLoad}
         {dataLoadACH}
+        {dataLoadACHCustomer}
         loadClients();
         loadClientsACH();
+        loadClientsACHCustomer();
     }
 
 
@@ -225,7 +272,7 @@
 
             var count = 0;
             htm +='<tr>';
-            htm +='<td class="capitalize">'+obj.file_name+'.txt </td>';
+            htm +='<td class="capitalize">'+obj.file_name+' </td>';
             htm +='<td>'+obj.formated_file_create_date+'</td>';
 
             htm +='<td class="text-center">';
@@ -263,7 +310,7 @@
 
             var count = 0;
             htm +='<tr>';
-            htm +='<td class="capitalize">'+objACH.file_name+'.txt </td>';
+            htm +='<td class="capitalize">'+objACH.file_name+' </td>';
             htm +='<td>'+objACH.formated_file_create_date+'</td>';
 
             htm +='<td class="text-center">';
@@ -277,6 +324,44 @@
         htm +=' </tbody>';
 
         $("#generated_file_list").empty().append(htm);
+
+        // $("#state").empty().append('{states}');
+
+    }
+
+    function loadClientsACHCustomer() {
+        var htm = '';
+        htm +='<thead>';
+        htm +='<tr>';
+        htm +='<th class="hidden-xs hidden-sm">'+headsACH[0]+'</th>';
+        htm +='<th>'+headsACH[1]+'</th>';
+        htm +='<th class="text-center">'+headsACH[2]+'</th>';
+        htm +='</tr>';
+        htm +='</thead>';
+        htm +='<tbody>';
+
+        for(var i = 0 ; i < dataClientACHCustomer.length ; i++){
+            var objACH = dataClientACHCustomer[i];
+            var uid = objACH.uid;
+            // var appid = obj.app_id;
+            var parent = 'body_edit_application_printed';
+
+            var count = 0;
+            htm +='<tr>';
+            htm +='<td class="capitalize">'+objACH.file_name+' </td>';
+            htm +='<td>'+objACH.formated_file_create_date+'</td>';
+
+            htm +='<td class="text-center">';
+            htm += '<a class="btn btn-xs btn-primary VoidApplication" rel="tooltip" title="Void" data-toggle="tooltip" href="'+url_base_path__+'admin/adjustment/download/'+objACH.file_name+'"  data-original-title="Void" id =""  onclick="" >Download</a>';
+            htm += '</td>'
+
+
+
+            htm +='</tr>';
+        }
+        htm +=' </tbody>';
+
+        $("#generated_ACH_file_list").empty().append(htm);
 
         // $("#state").empty().append('{states}');
 
@@ -309,6 +394,7 @@
                         $('#generatedFileForWellsFargos').css('display', 'block');
                         $('#dataFileUplaodResult').css('display', 'none');
                         $('#generatedACHFileForWellsFargos').css('display', 'none');
+                        $('#generatedACHFileForCustomerWellsFargos').css('display','none');
 
                     }else{
                        // Console.log('test3');
@@ -316,7 +402,7 @@
                         $('#generatedFileForWellsFargos').css('display', 'block');
                         $('#dataFileUplaodResult').css('display', 'none');
                         $('#generatedACHFileForWellsFargos').css('display', 'none');
-
+                        $('#generatedACHFileForCustomerWellsFargos').css('display','none');
                     }
 
                     //  $(".print_check").css('display','block');
@@ -373,6 +459,7 @@
                         $('#generatedFileForWellsFargos').css('display', 'none');
                         $('#dataFileUplaodResult').css('display', 'none');
                         $('#generatedACHFileForWellsFargos').css('display', 'block');
+                        $('#generatedACHFileForCustomerWellsFargos').css('display','none');
 
                     }else{
                         // Console.log('test3');
@@ -380,6 +467,7 @@
                         $('#generatedFileForWellsFargos').css('display', 'none');
                         $('#dataFileUplaodResult').css('display', 'none');
                         $('#generatedACHFileForWellsFargos').css('display', 'block');
+                        $('#generatedACHFileForCustomerWellsFargos').css('display','none');
 
                     }
 
@@ -391,11 +479,51 @@
         }
     }
 
+    //function generateACHFileFor Customer() {
+    function generateACHFileCSVForCustomerFormat() {
+
+        if (confirm("Are you sure you want to generate file for ACH to Customer?")){
+
+            $.ajax({
+                url: url_base_path__+"admin/adjustment/generateACHFileCSVFormatForCustomer",
+                cache: false,
+                type: "POST",
+                dataType: 'json',
+                success: function(data){
+                    if (typeof (data) == 'object') {
+                        //  Console.log('test');
+                        //	alert(message);
+                        // $("#body_check_for_print").empty().append(message);
+                        //var obj = jQuery.parseJSON(data);
+
+                        dataClientACHCustomer = data;
+                        loadClientsACHCustomer();
+
+                        $('#generatedFileForWellsFargos').css('display', 'none');
+                        $('#dataFileUplaodResult').css('display', 'none');
+                        $('#generatedACHFileForCustomerWellsFargos').css('display','block');
+                        $('#generatedACHFileForWellsFargos').css('display', 'none');
+
+                    }else{
+                        // Console.log('test3');
+                        $('#generateACHCustomerMessage').html(data);
+                        $('#generatedFileForWellsFargos').css('display', 'none');
+                        $('#dataFileUplaodResult').css('display', 'none');
+                        $('#generatedACHFileForWellsFargos').css('display', 'none');
+                        $('#generatedACHFileForCustomerWellsFargos').css('display','block');
+
+                    }
+
+                    //  $(".print_check").css('display','block');
+                    return false;
+                }
+            });
+
+        }
+    }
 
     $(function() {
         loadObject();
-
-
 
         $('#viewresult').click(function(e) {
             //e.preventDefault();
@@ -404,8 +532,8 @@
             $('#generatedACHFileForWellsFargos').css('display','none');
 
             $('#dataFileUplaodResult').css('display','block');
+            $('#generatedACHFileForCustomerWellsFargos').css('display','none');
         });
-
 
         $('#viewGeneratedFile').click(function(e) {
             //e.preventDefault();
@@ -413,6 +541,7 @@
             $('#generatedFileForWellsFargos').css('display','block');
             $('#dataFileUplaodResult').css('display','none');
             $('#generatedACHFileForWellsFargos').css('display','none');
+            $('#generatedACHFileForCustomerWellsFargos').css('display','none');
         });
 
         $('#viewGeneratedAchFile').click(function(e) {
@@ -421,6 +550,16 @@
             $('#generatedFileForWellsFargos').css('display','none');
             $('#dataFileUplaodResult').css('display','none');
             $('#generatedACHFileForWellsFargos').css('display','block');
+            $('#generatedACHFileForCustomerWellsFargos').css('display','none');
+        });
+
+        $('#viewGeneratedAchFileForCustomer').click(function(e) {
+            //e.preventDefault();
+            //$(this).tab('show');
+            $('#generatedFileForWellsFargos').css('display','none');
+            $('#dataFileUplaodResult').css('display','none');
+            $('#generatedACHFileForWellsFargos').css('display','none');
+            $('#generatedACHFileForCustomerWellsFargos').css('display','block');
         });
 
     });
