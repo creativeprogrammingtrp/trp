@@ -78,8 +78,8 @@ body {
 }
 
 #page-container {
-    width: 100%;
-    min-width: 320px;
+    /*width: 1279px;*/
+    min-width: 1250px; /*320px;*/
     max-width: 1920px;
     margin: 0 auto;
 }
@@ -1906,7 +1906,7 @@ textarea.textarea-editor:focus {
 }
 
 .help-block {
-    color: #999;
+    color: #b94a48; /*#999;*/
     font-weight: normal;
 }
 
@@ -2338,282 +2338,11 @@ a:focus {
 =================================================================
 */
 
-/* Large screens */
-@media (min-width: 1200px) {
 
-    .fixed #page-container {
-        width: 1140px !important;
-    }
 
-    .fixed #inner-container {
-        border-left: 1px solid #ccc !important;
-        border-right: 1px solid #ccc !important;
-    }
-}
 
-/* Mobile up to portrait tablet to landscape and desktop */
-@media (max-width: 991px) {
 
-    #page-sidebar {
-        width: 100%;
-        background: #ddd;
-        border: none;
-        z-index: 999;
-        position: relative;
-    }
 
-    #page-sidebar.navbar-collapse.collapse {
-        display: none !important;
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-
-    header.navbar-fixed-top + #inner-container > #page-sidebar,
-    header.navbar-fixed-bottom + #inner-container > #page-sidebar {
-        position: fixed;
-        height: 340px !important;
-        overflow-y: scroll !important;
-    }
-
-    header.navbar-fixed-top + #inner-container > #page-sidebar {
-        top: 40px;
-    }
-
-    header.navbar-fixed-bottom + #inner-container > #page-sidebar {
-        bottom: 40px;
-    }
-
-    #sidebar-search .input-group {
-        width: 100%;
-    }
-
-    #sidebar-search input[type="text"] {
-        width: 80%;
-        max-width: 800px;
-        min-width: 250px;
-    }
-
-    #sidebar-search button {
-        float: right;
-        margin-right: 10px;
-    }
-
-    #page-content {
-        margin: 0;
-        border: none;
-    }
-
-    footer {
-        margin: 0;
-        border-left: none;
-    }
-
-    .nav-dash > li > a {
-        font-size: 26px;
-        width: 72px;
-        height: 72px;
-        padding: 20px 12px 5px;
-    }
-
-    .dash-tile-header {
-        padding-left: 4px;
-    }
-
-    .dash-tile-text {
-        font-size: 28px;
-    }
-}
-
-/* Mobile up to portrait tablet */
-@media (max-width: 767px) {
-
-    body {
-        padding: 0;
-    }
-
-    body.login {
-        padding: 20px 0;
-    }
-
-    #login-container {
-        width: 300px;
-        padding: 20px 10px;
-    }
-
-    #widgets .dropdown-toggle {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    #page-content {
-        padding: 15px;
-    }
-
-    .page-header,
-    .nav-dash,
-    .sub-header {
-        margin: 15px -15px;
-    }
-
-    #nav-info,
-    .page-header-top {
-        margin: -15px -15px 15px;
-    }
-
-    .nav-dash > li > a {
-        font-size: 22px;
-        width: 62px;
-        height: 62px;
-        padding: 14px 8px 1px;
-    }
-
-    .chart-live {
-        height: 300px;
-        margin: -15px;
-    }
-
-    .fc-header-title h2 {
-        font-size: 1.1em;
-    }
-
-    .inbox-menu {
-        float: none;
-        width: auto;
-        margin-bottom: 10px;
-    }
-
-    .inbox-menu .nav {
-        margin-bottom: 10px;
-    }
-
-    .inbox-messages-outer {
-        margin-left: 0;
-    }
-
-    .inbox-messages-list {
-        width: 180px;
-    }
-
-    .inbox-messages-list > input {
-        width: 166px;
-    }
-
-    .chat-people {
-        width: 160px;
-    }
-
-    .chat-messages .chat-msg-left {
-        margin-right: 0;
-    }
-
-    .chat-messages .chat-msg-right {
-        margin-left: 0;
-    }
-
-    .chat-people img {
-        display: none;
-    }
-}
-
-/* Landscape phones and down */
-@media (max-width: 480px) {
-
-    #page-container.header-fixed-top {
-        padding: 80px 0 0;
-    }
-
-    #page-container.header-fixed-bottom {
-        padding: 0 0 80px;
-    }
-
-    header.navbar {
-        height: auto;
-    }
-
-    header.navbar-fixed-top + #inner-container > #page-sidebar,
-    header.navbar-fixed-bottom + #inner-container > #page-sidebar {
-        position: fixed;
-        height: 340px !important;
-        overflow-y: scroll !important;
-    }
-
-    header.navbar-fixed-top + #inner-container > #page-sidebar {
-        top: 80px;
-    }
-
-    header.navbar-fixed-bottom + #inner-container > #page-sidebar {
-        bottom: 80px;
-    }
-
-    #widgets {
-       /* background-color: #565656;*/
-        width: 100%;
-    }
-
-    #widgets > li:last-child {
-        float: right;
-    }
-
-    #widgets .widget > li {
-        width: 190px;
-    }
-
-    #widgets > li.divider-vertical {
-        display: none;
-    }
-
-    .dropdown-left-responsive .dropdown-menu {
-        left: 0 !important;
-        right: auto !important;
-    }
-
-    .dropdown-center-responsive .dropdown-menu {
-        left: -80px !important;
-        right: auto !important;
-    }
-
-    #twitter-widget .media .pull-left,
-    #messages-widget .media .pull-left {
-        float: left;
-    }
-
-    .nav-dash > li {
-        margin: 0 5px;
-    }
-
-    .fc-header td {
-        display: block;
-    }
-
-    .fc-header-right {
-        padding-left: 10px;
-    }
-
-    .inbox-messages-list {
-        width: auto;
-        border-bottom: 10px solid #fff;
-    }
-
-    .inbox-messages-list > input {
-        width: auto;
-    }
-
-    .inbox-messages-list,
-    .inbox-messages-container {
-        display: block;
-    }
-
-    .chat-people {
-        width: auto;
-        float: none;
-        height: 250px;
-    }
-
-    .chat-messages {
-        margin: 0;
-        height: 300px;
-    }
-}
 
 /*
 =================================================================
@@ -2621,39 +2350,6 @@ a:focus {
 =================================================================
 */
 
-/* Put your high resolution backgrounds here */
-@media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
-only screen and (-moz-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min-device-pixel-ratio: 1.5) {
-
-    body.login {
-        background-image: url('../img/template/login_bg@2x.png');
-    }
-
-    #nav-info > li {
-        background-image: url('../img/template/nav_info_seperator@2x.png');
-    }
-
-    .table thead .sorting { background-image: url('../img/jquery.datatables/sort_both@2x.png'); }
-    .table thead .sorting_asc { background-image: url('../img/jquery.datatables/sort_asc@2x.png'); }
-    .table thead .sorting_desc { background-image: url('../img/jquery.datatables/sort_desc@2x.png'); }
-    .table thead .sorting_asc_disabled { background-image: url('../img/jquery.datatables/sort_asc_disabled@2x.png'); }
-    .table thead .sorting_desc_disabled { background-image: url('../img/jquery.datatables/sort_desc_disabled@2x.png'); }
-
-    .loader-01 { background-image: url('../img/loading.gifs/loading01@2x.gif'); }
-    .loader-02 { background-image: url('../img/loading.gifs/loading02@2x.gif'); }
-    .loader-03 { background-image: url('../img/loading.gifs/loading03@2x.gif'); }
-    .loader-04 { background-image: url('../img/loading.gifs/loading04@2x.gif'); }
-    .loader-05 { background-image: url('../img/loading.gifs/loading05@2x.gif'); }
-    .loader-06 { background-image: url('../img/loading.gifs/loading06@2x.gif'); }
-    .loader-07 { background-image: url('../img/loading.gifs/loading07@2x.gif'); }
-    .loader-08 { background-image: url('../img/loading.gifs/loading08@2x.gif'); }
-    .loader-09 { background-image: url('../img/loading.gifs/loading09@2x.gif'); }
-    .loader-10 { background-image: url('../img/loading.gifs/loading10@2x.gif'); }
-    .loader-11 { background-image: url('../img/loading.gifs/loading11@2x.gif'); }
-    .loader-12 { background-image: url('../img/loading.gifs/loading12@2x.gif'); }
-}
 
 
 .nav-dash > li{

@@ -163,3 +163,20 @@ qubee@qubee.com.bd
 ALTER TABLE `assign_check` ADD `in_hand` INT( 11 ) NULL AFTER `ending_no`
 
 ALTER TABLE `assign_check` CHANGE `in_hand` `in_hand` INT( 11 ) NOT NULL DEFAULT '0'
+
+
+
+
+3rd Dec
+
+ALTER TABLE `new_app` ADD `ach_customer_export_date` INT( 20 ) NULL AFTER `ach_export_date`
+
+CREATE TABLE `generated_ach_customer_file_info` (
+`file_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+`file_name` varchar( 100 ) NOT NULL ,
+`file_create_date` int( 11 ) NOT NULL ,
+`created_by` int( 11 ) NOT NULL ,
+`file_ID_modifier` varchar( 5 ) NOT NULL ,
+PRIMARY KEY ( `file_id` )
+) ENGINE = InnoDB DEFAULT CHARSET = latin1 AUTO_INCREMENT =1;
+

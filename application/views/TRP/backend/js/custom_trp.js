@@ -1242,6 +1242,20 @@ function editApplicationAfterDeposit(uid, parent) {
                	$parent.find("#print_check_icon").removeClass('icon-print').addClass('icon-busy');
                	
                 }
+           else if(obj_ero.status == '4'){
+               appststus = 'PAID';
+               $parent.find("#ap_status_div").removeClass('alert-success').addClass('alert-warning');
+               $parent.find("#app_status_btn").css('display','none');
+              // $parent.find("#print_check_icon").removeClass('icon-print').addClass('icon-busy');
+
+           }
+           else if(obj_ero.status == '5'){
+               appststus = 'VOIDED PAYMENT';
+               $parent.find("#ap_status_div").removeClass('alert-success').addClass('alert-warning');
+               $parent.find("#app_status_btn").css('display','none');
+               //$parent.find("#print_check_icon").removeClass('icon-print').addClass('icon-busy');
+
+           }
            
            $parent.find("#app_status").html(appststus);
            $parent.find("#app_status_btn").val(obj_ero.app_id);

@@ -103,7 +103,7 @@ $(function(){
         if(checkError === true) return false;
          $.ajax({
             type: 'post',
-            url: url_base_path__+'signup/register77',
+            url: url_base_path__+'signup/register',
             data:
             {
                 save_data:'yes',

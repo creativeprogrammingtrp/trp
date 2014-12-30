@@ -83,8 +83,9 @@ $.fn.mobileMenu = function(options) {
 		
 		//menu exists, and browser is mobile width
 		if(isMobile()){
-			$('.select-menu').show();
-			$('nav.primary .sf-menu').hide();
+			//$('.select-menu').show();
+			//$('nav.primary .sf-menu').hide();
+            $('.select-menu').hide();
 		}
 			
 		//otherwise, hide the mobile menu

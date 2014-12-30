@@ -20,7 +20,8 @@ div.button_control{
     margin-right: 30px;
 }
 #inner-container{
-	background:#353F54;	
+	background:#353F54;
+    /*width: 1279px;*/
 }
 .navbar.navbar-inverse{
 	background:#fff;	

@@ -2594,21 +2594,6 @@ file that was distributed with this source code.
     padding: 4px;
 }
 
-@media (min-width: 767px) {
-    .bootstrap-timepicker-widget.modal {
-        width: 200px;
-        margin-left: -100px;
-    }
-}
-
-@media (max-width: 767px) {
-    .bootstrap-timepicker {
-        width: 100%;
-    }
-    .bootstrap-timepicker .dropdown-menu {
-        width: 100%;
-    }
-}
 
 /*
 =================================================================
@@ -3566,16 +3551,6 @@ MIT License
     background-position: -12px 2px;
 }
 
-@media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
-only screen and (-moz-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min-device-pixel-ratio: 1.5) {
-    .chzn-rtl .chzn-search input, .chzn-container-single .chzn-single abbr, .chzn-container-single .chzn-single div b, .chzn-container-single .chzn-search input, .chzn-container-multi .chzn-choices .search-choice .search-choice-close, .chzn-container .chzn-results-scroll-down span, .chzn-container .chzn-results-scroll-up span {
-        background-image: url('../img/jquery.chosen/chosen-sprite@2x.png') !important;
-        background-repeat: no-repeat !important;
-        background-size: 52px 37px !important;
-    }
-}
 
 /*
 =================================================================

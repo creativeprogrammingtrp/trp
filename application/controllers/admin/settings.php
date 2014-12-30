@@ -81,7 +81,6 @@ class Settings extends CI_Controller {
         }
     }
 
-
     public function saveProfileInfoFromAdmin() {
         if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
             echo json_encode($this->m_com->saveProfileFromAdmin());
@@ -132,7 +131,8 @@ class Settings extends CI_Controller {
 
     public function saveBankingFeesInfoFromAdmin() {
         if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
-            echo json_encode($this->m_com->saveBankFeesFromAdmin());
+            //echo json_encode($this->m_com->saveBankFeesFromAdmin());
+            echo $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->saveBankFeesFromAdmin());
             exit();
         }
     }

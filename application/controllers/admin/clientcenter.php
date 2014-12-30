@@ -7,7 +7,7 @@ class Clientcenter extends CI_Controller{
         $this->load->model("admin/mycompany_model", "m_com");
     }
     function perms(){
-        $perms['Client Center'] = array('index','newapp','saveNewApplicationInfo','showRecentApplication','nextstep','updateApplicationInfo','showPendingFundsApplication','showReadyToPrintApplication','showSelectedReadyToPrintApplication','showAllApplication', 'showPrintedApplication','showVoidedApplication','generatePdfSelectedReadyToPrintApplication','setCheckAsVoid','setCheckAsVoidAndReprint','showSelectedReadyToPrintApplicationFromAdmin','showSelectedDirectDepositApplicationFromAdmin','showSelectedDirectDepositApplication','makeAllApplicationAsPaid','showPaidApplication','showVoidedPaymentApplication','makePaymentAsVoid');
+        $perms['Client Center'] = array('index','newapp','saveNewApplicationInfo','showRecentApplication','nextstep','updateApplicationInfo','showPendingFundsApplication','showReadyToPrintApplication','showSelectedReadyToPrintApplication','showAllApplication', 'showPrintedApplication','showVoidedApplication','generatePdfSelectedReadyToPrintApplication','setCheckAsVoid','setCheckAsVoidAndReprint','showSelectedReadyToPrintApplicationFromAdmin','showSelectedDirectDepositApplicationFromAdmin','showSelectedDirectDepositApplication','makeAllApplicationAsPaid','showPaidApplication','showVoidedPaymentApplication','makePaymentAsVoid','pdf','viewcheck','showSelectedCheckApp','checkCheckNoValidaty');
         return $perms;			
     }
     public function index(){
@@ -253,7 +253,6 @@ class Clientcenter extends CI_Controller{
         }
     }
 
-
     
     public function showAllApplication() {
     	$data = array();
@@ -319,6 +318,42 @@ class Clientcenter extends CI_Controller{
     }
 
 
+    public function showSelectedCheckApp() {
+        $data = array();
+        if($_GET['ids'] != ''){
+            $data['dataLoad'] = "dataClientPrint = " . json_encode($this->m_clientcenter->loadSelectedReadyToPrintApplication($_GET['ids']));
+        }else{
+            $data['dataLoad'] = "dataClientPrint = " . json_encode($this->m_clientcenter->loadAllReadyToPrintApplication());
+        }
+
+        // print_r($data['dataLoad']);
+
+        // check Assign Check list that will got from Wells Fargo
+
+        //if($_GET['ids'] != '') {
+        //    $assignChecksNo = $this->m_clientcenter->loadUncompletedAssignCheckRangeById($_GET['ids']);
+        //}else{
+        $assignChecksNo = $this->m_clientcenter->loadUncompletedAssignCheckRange();
+        //}
+
+        // check last generated check no.
+        $lastPrintedCheckNo = $this->m_clientcenter->loadLastPrintedCheckNo();
+
+        if($lastPrintedCheckNo != ''){
+            $lastPrintedCheckNo = intval($lastPrintedCheckNo)+1;
+        }else{
+            $lastPrintedCheckNo = intval($assignChecksNo['starting_no']);
+        }
+
+        $data['lastPrintedCheckNo'] = json_encode($lastPrintedCheckNo);
+
+
+        //$data['states'] = $this->m_com->loadStatesList();
+        if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
+            $this->system->parse_templace('clientCenter/modal_print_check_applications.htm', $data);
+            exit();
+        }
+    }
 
 
     public function showSelectedReadyToPrintApplicationFromAdmin() {
@@ -394,7 +429,7 @@ class Clientcenter extends CI_Controller{
         }
     }
 
-    public function generatePdfSelectedReadyToPrintApplication() {
+    public function generatePdfSelectedReadyToPrintApplication() {//////////
     	$data = array();
 
         if($this->author->objlogin->parentUid > 0){
@@ -405,7 +440,7 @@ class Clientcenter extends CI_Controller{
         }
 
         $startingCheckNo = $_GET['startp'];
-
+/*
     	if($_GET['ids'] != ''){
     		//$data['dataLoad'] = "dataClientPrint = " . json_encode($this->m_clientcenter->loadSelectedReadyToPrintApplication($_GET['ids']));
             $dataLoad = $this->m_clientcenter->loadSelectedReadyToPrintApplication($_GET['ids']);
@@ -446,7 +481,7 @@ class Clientcenter extends CI_Controller{
             }
 
 
-    	}
+    	}*/
 
 
         //for pdf generate
@@ -497,33 +532,64 @@ class Clientcenter extends CI_Controller{
         // ---------------------------------------------------------
 
         // set font
-        $pdf->SetFont('times', '', 10);
+        //$pdf->SetFont('times', '', 10);
+// set font
+        $pdf->SetFont('helvetica', '', 10);
 
         // add a page
         $pdf->AddPage();
 
-        // set font
-        $pdf->SetFont('helvetica', 'B', 20);
+
 
         //$pdf->Write(0, 'Example of HTML Justification', '', 0, 'L', true, 0, false, false, 0);
 
         // create some HTML content
        // $html = '<img src="'.base_url().'img/logo.png" border="0" /><span style="text-align:justify;">a <u>abc</u> abcdefghijkl (abcdef) abcdefg <b>abcdefghi</b> a ((abc)) abcd <img src="'.base_url().'img/1.png" border="0" height="41" width="41" /> <img src="'.base_url().'img/1.png" alt="test alt attribute" width="80" height="60" border="0" /> abcdef abcdefg <b>abcdefghi</b> a abc abcd abcdef abcdefg <b>abcdefghi</b> a abc abcd abcdef abcdefg <b>abcdefghi</b> a <u>abc</u> abcd abcdef abcdefg <b>abcdefghi</b> a abc \(abcd\) abcdef abcdefg <b>abcdefghi</b> a abc \\\(abcd\\\) abcdef abcdefg <b>abcdefghi</b> a abc abcd abcdef abcdefg <b>abcdefghi</b> a abc abcd abcdef abcdefg <b>abcdefghi</b> a abc abcd abcdef abcdefg abcdefghi a abc abcd <a href="http://tcpdf.org">abcdef abcdefg</a> start a abc before <span style="background-color:yellow">yellow color</span> after a abc abcd abcdef abcdefg abcdefghi a abc abcd end abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi a abc abcd abcdef abcdefg abcdefghi<br />abcd abcdef abcdefg abcdefghi<br />abcd abcde abcdef</span>';
-        $html = '<img src="'.base_url().'img/logo.png" border="0" />';
+        $html = '<div>
+            <div style="width: 200px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><img src="'.base_url().'img/logo.png" border="0" /></div>
+            <div style="width: 200px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">WELLS FARGO</div>
+            <div style="text-align: center; width: 120px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><u>12-123</u><br>6789</div>
+            <div style="text-align: right; width: 120px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"> <div  >123456</div></div>
+
+            <div class="clear1" style="margin-bottom: 30px; clear: both;"></div>
+            <div class="col-md-1 border1" style="width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">PAY<br>TO THE<br> ORDER <br> OF</div>
+            <div class="col-md-7" style="width: 58.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="border-bottom: 1px solid;  margin-top: 55px;">Tow thousend fifty nine.</div></div>
+            <div class="col-md-2 border1" style=" margin-top: 20px; width: 16.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">DATE
+            <BR>
+                <div style="border-bottom: 1px solid;  margin-top: 15px;">03/12/2014</div>
+            </div>
+            <div class="col-md-2 border1" style="margin-top: 20px; width: 16.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">AMOUNT <br> <div class="border" style=" font-weight: bold; margin-top: 3px; padding: 6px;"> $2059.00</div> </div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-1 border1"  style=" margin-top: 55px; width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">MEMO</div>
+            <div class="col-md-7" style="width: 58.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="border-bottom: 1px solid;  margin-top: 55px;">This is test memo for this check</div></div>
+            <div class="col-md-4 border1" style=" margin-top: 75px; width: 33.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">
+                <div style="border-bottom: 1px solid;"></div>
+            </div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-8" style="width: 66.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="borderbottom: 1px solid;  margin-top: 55px;"></div></div>
+            <div class="col-md-4" style="width: 33.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style=" margin-top: 5px; text-align: center;">AUTHORIZED SIGNATURE</div></div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-12" style="width: 100%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="borderbottom: 1px solid;  margin-top: 0px; text-align: center"> ." 123456 :. 873366637388333 :. 837887890 ".</div></div>
+            <div class="clear1" style="clear: both;"></div>
+        </div>';
 
         // set core font
-        $pdf->SetFont('helvetica', '', 10);
+        //$pdf->SetFont('helvetica', '', 10);
 
         // output the HTML content
-        $pdf->writeHTML($html, true, 0, true, true);
+        $pdf->writeHTML($html, true, false, true, false, '');
+       // $pdf->writeHTML($html, true, 0, true, true);
 
-        $pdf->Ln();
+        //$pdf->Ln();
 
         // set UTF-8 Unicode font
-        $pdf->SetFont('dejavusans', '', 10);
+        //$pdf->SetFont('dejavusans', '', 10);
 
         // output the HTML content
-        $pdf->writeHTML($html, true, 0, true, true);
+        //$pdf->writeHTML($html, true, 0, true, true);
 
         // move pointer to last page
         $pdf->lastPage();
@@ -539,6 +605,66 @@ class Clientcenter extends CI_Controller{
 
     }
 
+    function pdf()
+    {
+        $this->load->helper('file');
+        $this->load->helper(array('dompdf', 'file'));
+      //  $dompdf = $this->load->helper('dompdf');
+
+        // page info here, db calls, etc.
+        //$html = $this->load->view('controller/viewfile', $data, true);
+        //pdf_create($html, 'filename');
+       // or
+
+        $html = '<div>
+            <div style="width: 200px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><img width="172" height="61" src="'.base_url().'img/logo.png" border="0" /></div>
+            <div style="width: 200px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">WELLS FARGO</div>
+            <div style="text-align: center; width: 120px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><u>12-123</u><br>6789</div>
+            <div style="text-align: right; width: 120px; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"> <div  >123456</div></div>
+
+            <div class="clear1" style="margin-bottom: 30px; clear: both;"></div>
+            <div class="col-md-1 border1" style="width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">PAY<br>TO THE<br> ORDER <br> OF</div>
+            <div class="col-md-7" style="width: 55.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="border-bottom: 1px solid;  margin-top: 55px;">Tow thousend fifty nine.</div></div>
+            <div class="col-md-2 border1" style=" margin-top: 20px; width: 16.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">DATE
+            <BR>
+                <div style="border-bottom: 1px solid;  margin-top: 15px;">03/12/2014</div>
+            </div>
+            <div class="col-md-2 border1" style="margin-top: 20px; width: 16.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">AMOUNT <br> <div class="border" style=" font-weight: bold; margin-top: 3px; padding: 6px;"> $2059.00</div> </div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-1 border1"  style=" margin-top: 55px; width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">MEMO</div>
+            <div class="col-md-7" style="width: 55.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="border-bottom: 1px solid;  margin-top: 55px;">This is test memo for this check</div></div>
+            <div class="col-md-4 border1" style=" margin-top: 75px; width: 33.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">
+                <div style="border-bottom: 1px solid;"></div>
+            </div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-8" style="width: 63.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="borderbottom: 1px solid;  margin-top: 55px;"></div></div>
+            <div class="col-md-4" style="width: 33.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style=" margin-top: 5px; text-align: center;">AUTHORIZED SIGNATURE</div></div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-12" style="width: 100%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="borderbottom: 1px solid;  margin-top: 0px; text-align: center"> ." 123456 :. 873366637388333 :. 837887890 ".</div></div>
+            <div class="clear1" style="clear: both;"></div>
+        </div>';
+
+        //$data = pdf_create($html, '', false);
+        pdf_create($html, 'pdfgeneratedtest');
+
+        echo '<script type="text/javascript" language="javascript">
+                window.open("http://localhost/trpgit/pdfgeneratedtest.pdf", "_blank");
+            </script>';
+
+       // $output = $dompdf->output();
+        //$file_to_save = './printitem/file2.pdf';
+        //file_put_contents($file_to_save, $output);
+       // $dompdf->load_html($html);
+       // $dompdf->render();
+       // $output = $this->output();
+       // $file_to_save = './printitem/file2.pdf';
+       // file_put_contents($file_to_save, $output);
+        //write_file('name', $data);
+        //if you want to write it to disk and/or send it as an attachment
+    }
 
     function makeAllApplicationAsPaid(){
 
@@ -550,15 +676,25 @@ class Clientcenter extends CI_Controller{
         }
 
         if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {
-
             foreach($dataLoad as $datas) {
-
                  $sql2 = "update  new_app set status = 4, direct_deposit_time = '".$this->lib->getTimeGMT()."' where app_id = '" . $datas['app_id'] . "' "; // status = 4 = it's paid deposit.
                  $this->db->query($sql2);
             }
-
             echo "Selected Application is Changed as Paid.";
+        }
+    }
 
+    function checkCheckNoValidaty(){
+        $checkAvailability = $this->m_clientcenter->loadAndCheckUncompletedAssignCheckRange($_GET['cehckNo']);
+
+        if(sizeof($checkAvailability) > 0 AND $checkAvailability['starting_no'] != ''){
+            // This check no is is valid. so now need to check that is this check already printed or not.
+            $checkAlreadyPrinted = $this->m_clientcenter->CheckPrintedAssignCheckRange($_GET['cehckNo']);
+            if($checkAlreadyPrinted){
+                echo "Your given check no is already used.";
+            }
+        }else{
+            echo "This check no is not valid.";
         }
     }
 
@@ -597,7 +733,6 @@ class Clientcenter extends CI_Controller{
         }else{
             echo json_encode('<div class="col-md-12 tempmessage"><div class="alert alert-warning"><i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">Time Out, You can\'t  Void this check. Contact with Admin.</strong></div></div> <br>');
         }
-
 
 
   //      echo json_encode('<div class="col-md-12 "><div class="alert alert-success"><i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">Selected Check Voided Successfully.</strong></div></div> <br><br>');
@@ -647,22 +782,17 @@ class Clientcenter extends CI_Controller{
                         're_print_check_id' => $resData[0]['check_id'],
                         'author_id' => $this->author->objlogin->uid,
 
-
                 );
                 $this->db->insert("app_check", $dataRePrint);
                 $lastCheckId = $this->db->insert_id();
 
             }
 
-
-
-
             $sql = "update  app_check set transaction_code = '430', re_print = 'Yes' , re_print_check_id = '".$lastCheckId."' where app_id = '" . $appid . "' AND transaction_code = '320' AND re_print IS NULL AND check_no = '".$resData[0]['check_no']."'";
             $this->db->query($sql);
 
             //$sql2 = "update  new_app set status = 3 where app_id = '" . $appid . "'";
             //$this->db->query($sql2);
-
 
             echo json_encode('<div class="col-md-12 tempmessage"><div class="alert alert-success"><i class="icon-print"></i> &nbsp; &nbsp;  STATUS: <strong id="app_status">Selected Check Voided & re-printed Successfully.</strong></div></div> <br><br>');
             // exit;
@@ -716,9 +846,13 @@ class Clientcenter extends CI_Controller{
     		exit;
     	}
     }
-    
-   
-    
+
+
+    public function viewcheck(){
+        $data = array('title_page'=>"View Check");
+        //$this->system->parse("clientCenter/viewpdf.htm",$data);
+        $this->system->parse_templace('clientCenter/viewpdf.htm', $data);
+    }
 }
     
 ?>

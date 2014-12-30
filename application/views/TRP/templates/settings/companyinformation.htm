@@ -566,13 +566,21 @@ function checkParentEFIN() {
 			senddata : 'yes',
             uid:dataClient.uid,
 			p_efin : $("#p_efin1").val(),
+            ownefin : $("#efin1").val()
 			     
 		}, function(data) {
-			if (data == '0') {
+			if (data == '0' || data == '') {
+                $("#pefinerror").html('<i class="glyphicon-remove"></i> This Parent EFIN # does not exist.');
 				$("#pefinerror").css('display','block');
                 $(".loader").css('display','none');
                 $("#pefinsuccess").css('display','none');
 			}
+            else if (data == '2' || data == '') {
+                $("#pefinerror").html('<i class="glyphicon-remove"></i> Please don\'t use your own EFIN # here.');
+                $("#pefinerror").css('display','block');
+                $(".loader").css('display','none');
+                $("#pefinsuccess").css('display','none');
+            }
 			else if(data != '0' && data != ''){
 				$("#pefinerror").css('display','none');
 				$("#pefinsuccess").css('display','block');
@@ -590,14 +598,23 @@ function checkSBEFIN() {
 	$.post("index.php/admin/settings/checkSBEFINInfo", {
 		senddata : 'yes',
         uid:dataClient.uid,
-        service_bureau_num : $("#service_bureau_efin").val()
+        service_bureau_num : $("#service_bureau_efin").val(),
+        ownefin : $("#efin1").val()
 		// sbefincheckloader sbloader sbefinerror
 	}, function(data) {
-		if (data == '0') {
-			$("#sbefinerror").css('display','block');
+		if (data == '0' || data == '') {
+            $("#sbefinerror").html('<i class="glyphicon-remove"></i> This Service Bureau EFIN # does not exist');
+            $("#sbefinerror").css('display','block');
 			$("#sbefinsuccess").css('display','none');
             $(".sbloader").css('display','none');
 		}
+        else if (data == '2' || data == '') {
+            $("#sbefinerror").html('<i class="glyphicon-remove"></i>Please don\'t use your own EFIN # here.');
+            $("#sbefinerror").css('display','block');
+            $("#sbefinsuccess").css('display','none');
+            $(".sbloader").css('display','none');
+
+        }
 		else{
 			$("#sbefinerror").css('display','none');
 			$("#sbefinsuccess").css('display','block');

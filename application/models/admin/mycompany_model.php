@@ -57,7 +57,7 @@ class Mycompany_model extends CI_Model {
         $res_1 = $this->db->query($sql_1);
         if ($res_1->num_rows() > 0) {
             $row_1 = $res_1->row_array();
-            if ($row_1['image'] !== '') {
+            if ($row_1['image'] !== '' || $row_1['image'] !== NULL) {
                 $row_1['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row_1['image'] . '">';
             } else {
                 $row_1['image'] = '';
@@ -91,7 +91,7 @@ class Mycompany_model extends CI_Model {
         $res_1 = $this->db->query($sql_1);
         if ($res_1->num_rows() > 0) {
             $row_1 = $res_1->row_array();
-            if ($row_1['image'] !== '') {
+            if ($row_1['image'] !== '' || $row_1['image'] !== NULL) {
                 $row_1['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row_1['image'] . '">';
             } else {
                 $row_1['image'] = '';
@@ -125,7 +125,7 @@ class Mycompany_model extends CI_Model {
         $res_1 = $this->db->query($sql_1);
         if ($res_1->num_rows() > 0) {
             $row_1 = $res_1->row_array();
-            if ($row_1['image'] !== '') {
+            if ($row_1['image'] !== '' || $row_1['image'] !== NULL) {
                 $row_1['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row_1['image'] . '">';
             } else {
                 $row_1['image'] = '';
@@ -295,6 +295,7 @@ class Mycompany_model extends CI_Model {
     	$data = array(
                 'efin' => $this->lib->escape($_POST['efin']),
     			'p_efin' => $this->lib->escape($_POST['p_efin']),
+                'service_bureau_num' => $this->lib->escape($_POST['service_bureau_efin']),
     			'image' => $this->lib->escape($filename),
     			'company_name' => $this->lib->escape($_POST['company_name']),
     			'business_addr_1' => $this->lib->escape($_POST['address_1']),
@@ -385,13 +386,34 @@ class Mycompany_model extends CI_Model {
     }
     
     function checkParentEFINStatus(){
-    	$query = $this->db->get_where('users', array('efin' => $this->lib->escape($_POST['p_efin'])));
-    	 if($query->num_rows() > 0) { return 1;}else{  return 0;}	
+
+        $p_efin = $this->lib->escape($_POST['p_efin']);
+        $ownefin = $this->lib->escape($_POST['ownefin']);
+
+        if($p_efin == $ownefin){
+            return 2; // if own EFIN is using
+        }else if($p_efin == ''){
+            return 0; // if own EFIN is using
+        }
+        else{
+            $query = $this->db->get_where('users', array('efin' => $this->lib->escape($_POST['p_efin'])));
+            if($query->num_rows() > 0) { return 1;}else{  return 0;}
+        }
+
     }
     
     function checkSBEFINStatus(){
-    	$query = $this->db->get_where('users', array('efin' => $this->lib->escape($_POST['service_bureau_num'])));
-    	if($query->num_rows() > 0) { return 1;}else{  return 0;}
+        $sbno = $this->lib->escape($_POST['service_bureau_num']);
+        $ownefin = $this->lib->escape($_POST['ownefin']);
+        if($sbno == $ownefin){
+            return 2; // if own EFIN is using
+        }else if($sbno == ''){
+            return 0; // if own EFIN is using
+        }
+        else{
+                $query = $this->db->get_where('users', array('efin' => $sbno));
+                if($query->num_rows() > 0) { return 1;}else{  return 0;}
+        }
     }
     
     
@@ -527,11 +549,11 @@ class Mycompany_model extends CI_Model {
 
     function saveBankFeesFromAdmin(){
         $ero_id = $this->lib->escape($_POST['ero_id']);
-
-        if($this->lib->escape($_POST['add_on_fee']) != 0){
+// add_on_commission1
+        if($this->lib->escape($_POST['add_on_fee']) != 0 && $this->lib->escape($_POST['add_on_commission1']) == ''){
             $addonfeeComm = 10.00;
         }else{
-            $addonfeeComm = 0.00;
+            $addonfeeComm = $this->lib->escape($_POST['add_on_commission1']);
         }
 
         $data = array(
@@ -542,7 +564,7 @@ class Mycompany_model extends CI_Model {
             'add_on_fee' => $this->lib->escape($_POST['add_on_fee']),
             'tax_pre_commission_type' => $this->lib->escape($_POST['tax_preparation_commission1_type']),
             'tax_pre_commission' => $this->lib->escape($_POST['tax_preparation_commission1']),
-            'add_on_commission_type' => 1,
+            'add_on_commission_type' => $this->lib->escape($_POST['add_on_commission1_type']),
             'add_on_commission' => $addonfeeComm
         );
 

@@ -425,9 +425,7 @@ class Adjustment extends CI_Controller{
                                     'imp_file_name' => $filename
                                 );
 
-
                                 $result[] = $data1;
-
 
                                 //$this->db->where('assign_acc_no', $accountno);
                                 //$this->db->update('new_app', $data);
@@ -1001,10 +999,31 @@ class Adjustment extends CI_Controller{
 
     }
 
+    public function udate($format = 'u', $utimestamp = null) {
+        if (is_null($utimestamp))
+            $utimestamp = microtime(true);
+
+        $timestamp = floor($utimestamp);
+        $milliseconds = round(($utimestamp - $timestamp) * 1000000);
+
+        return date(preg_replace('`(?<!\\\\)u`', $milliseconds, $format), $timestamp);
+    }
+
     public function generateACHFileCSVFormat()
     {
         $data = array();
-        $filename = 'AE' . date('mdyhis'). ".csv";
+
+        //$date = date_create(date('Y-m-d H:i:s:u'));
+
+        // $fdate = date_format($date, 'hisu');
+
+       // $date = new DateTime();
+        $nanoS = substr($this->udate('u'),0,2);
+        $fdate = $this->udate('His').$nanoS; //$date->format('Y-m-d H:i:s:u');
+
+
+        //$filename = 'trps.' . date('hisu'). ".csv";
+        $filename = 'trps.' . $fdate. ".csv";
         $myfile = fopen("./arp_inbound/" . $filename, "w") or die("Unable to open file!");
 
         $totalAmount = 0;
@@ -1029,7 +1048,7 @@ class Adjustment extends CI_Controller{
 
 
             // body part
-            $dipositedApp = $this->m_clientcenter->loadAllPaidACHApplicationForExportIntoACHByERO();
+            $dipositedApp = $this->m_clientcenter->loadAllApplicationForExportIntoACHByERO();
             $totalCheckAmount = 0.00;
             //print_r($printedCheck);
             $k = 0;
@@ -1042,6 +1061,8 @@ class Adjustment extends CI_Controller{
                 $taxPay = floatval($dipApp['app_actual_tax_preparation_fee_sum']);
                 $AddOnPay = floatval($dipApp['app_actual_add_on_fee_sum']);
 
+                $sbFeePay = floatval($dipApp['calculatd_sb_fee']);
+
                 $taxPayCommission = floatval($dipApp['tax_pre_commission']);
                 $AddOnPayCommission = floatval($dipApp['add_on_commission']);
 
@@ -1051,21 +1072,29 @@ class Adjustment extends CI_Controller{
                 $txaAmount = 0;
                 $AddonAmount = 0;
 
-                if ($taxPayCommissionType == 1) {
-                    $txaAmount = floatval($taxPay) - floatval($taxPayCommission);
-                } else {
-                    $txaAmountPer = floatval($taxPay) * intval($taxPayCommission) / 100;
-                    $txaAmount = floatval($taxPay) - floatval($txaAmountPer);
+                if($taxPay != '') {
+                    if ($taxPayCommissionType == 1) {
+                        $txaAmount = floatval($taxPay) - floatval($taxPayCommission);
+                    } else {
+                        $txaAmountPer = floatval($taxPay) * intval($taxPayCommission) / 100;
+                        $txaAmount = floatval($taxPay) - floatval($txaAmountPer);
+                    }
+                }else{
+                    $txaAmount = floatval($taxPay);
                 }
 
-                if ($AddOnPayCommissionType == 1) {
-                    $AddonAmount = floatval($AddOnPay) - floatval($AddOnPayCommission);
-                } else {
-                    $AddonAmountPer = floatval($AddOnPay) * intval($AddOnPayCommission) / 100;
-                    $AddonAmount = floatval($AddOnPay) - floatval($AddonAmountPer);
+                if($AddOnPay != '') {
+                    if ($AddOnPayCommissionType == 1) {
+                        $AddonAmount = floatval($AddOnPay) - floatval($AddOnPayCommission);
+                    } else {
+                        $AddonAmountPer = floatval($AddOnPay) * intval($AddOnPayCommission) / 100;
+                        $AddonAmount = floatval($AddOnPay) - floatval($AddonAmountPer);
+                    }
+                }else{
+                    $AddonAmount = floatval($AddOnPay);
                 }
 
-                $totalPayAmount = floatval($txaAmount) + floatval($AddonAmount);
+                $totalPayAmount = floatval($txaAmount) + floatval($AddonAmount) + floatval($sbFeePay);
 
                 $eroname = $dipApp['firstname']." ".$dipApp['lastname'];
 
@@ -1073,12 +1102,12 @@ class Adjustment extends CI_Controller{
                 $CRDDBTFL = 'C';
                 $todate = strtoupper(date('m/d/Y'));
                 $VALDT = $todate;
-                $PAYAMT = $totalPayAmount; // Payment amount i
+                $PAYAMT = number_format($totalPayAmount,2); // Payment amount i
                 $PMTFMTCD = 'CCD';
                 $ORIGACCTTY = 'D';
                 $ORIGACCT = '5284810933';
                 $ORIGBNKIDTY = 'ABA';
-                $ORIGBNKID = '091000019';
+                $ORIGBNKID = '111900659';
                 $RCVPRTYACCTTY = 'D';
                 $RCVPRTYACCT = str_pad(substr($dipApp['bank_account'], 0, 17), 17, "0"); //account number of the ERO.
                 $RCVBNKIDTY = 'ABA';
@@ -1099,7 +1128,7 @@ $totalRepetate = array($PAYMTHD,$CRDDBTFL,$VALDT,$PAYAMT,$PMTFMTCD, $ORIGACCTTY,
 
                 // update exported time
 
-                $this->m_clientcenter->updateACHExportTImeForAllPrintedCheckForExport($dipApp['uid']);
+                $this->m_clientcenter->updateACHExportTImeForAllApplicationForExportACHtoERO($dipApp['uid']);
                 //  updateACHExportTImeForAllPrintedCheckForExport
                 $k++;
                 $ecount++;
@@ -1108,7 +1137,7 @@ $totalRepetate = array($PAYMTHD,$CRDDBTFL,$VALDT,$PAYAMT,$PMTFMTCD, $ORIGACCTTY,
 
         $TRAILER = 'TRAILER';
         $Payment_count = $batchTotal;
-        $Payment_amount = $totalAmount;
+        $Payment_amount = number_format($totalAmount,2);
 
         $trailertotal = array($TRAILER,$Payment_count,$Payment_amount);
         fputcsv($myfile, $trailertotal);
@@ -1137,7 +1166,8 @@ $totalRepetate = array($PAYMTHD,$CRDDBTFL,$VALDT,$PAYAMT,$PMTFMTCD, $ORIGACCTTY,
     public function generateACHFileCSVFormatForCustomer()
     {
         $data = array();
-        $filename = 'AE' . date('mdyhis'). ".csv";
+        $fdate = $this->udate('Hisu'); //$date->format('Y-m-d H:i:s:u');
+        $filename = 'trps.' . $fdate. ".csv";
         $myfile = fopen("./arp_inbound/" . $filename, "w") or die("Unable to open file!");
 
         $totalAmount = 0;
@@ -1204,12 +1234,12 @@ $totalRepetate = array($PAYMTHD,$CRDDBTFL,$VALDT,$PAYAMT,$PMTFMTCD, $ORIGACCTTY,
             $CRDDBTFL = 'C';
             $todate = strtoupper(date('m/d/Y'));
             $VALDT = $todate;
-            $PAYAMT = $totalPayAmount; // Payment amount i
+            $PAYAMT = number_format($totalPayAmount,2); // Payment amount i
             $PMTFMTCD = 'PPD';
             $ORIGACCTTY = 'D';
             $ORIGACCT = '5284810933';
             $ORIGBNKIDTY = 'ABA';
-            $ORIGBNKID = '091000019';
+            $ORIGBNKID = '111900659';
             $RCVPRTYACCTTY = 'D';
             $RCVPRTYACCT = str_pad(substr($dipApp['app_account_no'], 0, 17), 17, "0"); //account number of the Customer.
             $RCVBNKIDTY = 'ABA';
@@ -1240,7 +1270,7 @@ $totalRepetate = array($PAYMTHD,$CRDDBTFL,$VALDT,$PAYAMT,$PMTFMTCD, $ORIGACCTTY,
 
         $TRAILER = 'TRAILER';
         $Payment_count = $batchTotal;
-        $Payment_amount = $totalAmount;
+        $Payment_amount = number_format($totalAmount,2);
 
         $trailertotal = array($TRAILER,$Payment_count,$Payment_amount);
         fputcsv($myfile, $trailertotal);

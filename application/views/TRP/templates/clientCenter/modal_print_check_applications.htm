@@ -1,0 +1,245 @@
+<style>
+.table thead > tr > th{
+	border-top:1px solid #efefef;
+}
+.table{	
+	 background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    border-radius: 3px;
+    border-top: 1px solid #efefef;
+    /*box-shadow: 0 0 1px 1px #efefef;*/
+    clear: both;
+    margin-bottom: 0 !important;
+    max-width: none !important;
+}
+</style>
+
+<div id="pv_table">
+    <div class="col-md-12 error-message-main" style="display: none;">
+        <div class="alert alert-danger error-message">
+        </div>
+    </div>
+<table id="print_check_list_table" class="table table-striped">
+                </table>
+ <div style="clear:both"></div><br>
+    <form name="form_check_print" id="form_check_print" action="index.php/admin/bankproducts/chkprint1">
+<div class="form-group form-group1" >
+    <div class="col-md-12 text-left">
+
+        <button  class="btn btn-danger " type="button" id="cancel_print" onclick="javascript:cancelPrinting();" >
+            <i class="icon-repeat"></i> Cancel
+        </button>
+
+        <button  class=" btn btn-info" type="submit" id="print_check_btn" value="printCheckBtn">
+           <i class="icon-print"></i>  Print
+        </button>
+
+        <div  style="clear:both"></div>
+    </div>
+</div>
+    </form>
+ <div style="clear:both"></div>
+</div>
+
+
+
+		            <script type="text/javascript">
+var dataClientPrint = [];
+var heads = ["Name","SSN","Net Refund","Assigned Check #"];
+
+function loadObject() {
+    {dataLoad}
+    loadClients();
+}
+
+
+function loadClients() {
+	$("#total_check_printd").html(dataClientPrint.length);
+    var htm = ''; 
+    htm +='<thead>';
+                htm +='<tr>';
+                	htm +='<th class="hidden-xs hidden-sm"><input type="checkbox" name="ready_to_print_check_modal" id="ready_to_print_check_modal" value=""></th>';
+                	htm +='<th class="hidden-xs hidden-sm" >Name</th>';
+                	htm +='<th class="hidden-xs hidden-sm">SSN</th>';
+                	htm +='<th class="hidden-xs hidden-sm">Net Refund</th>';
+                	htm +='<th class="hidden-xs hidden-sm">Assigned Check #</th>';
+                htm +='</tr>';
+    htm +='</thead>';
+    htm +='<tbody>';
+
+    // get last printed check no
+    var assignno = parseInt({lastPrintedCheckNo});
+
+    $("#starting_check_no").val(assignno);
+
+    // console.log(assignno);
+    var checkNo = 1;
+    for(var i = 0 ; i < dataClientPrint.length ; i++){
+    	//alert(dataClientPrint[i]);
+           var obj = dataClientPrint[i];
+
+           var uid = obj.uid;
+          // var appid = obj.app_id;
+          // var parent = 'body_edit_application_ready_to_print';
+           var count = 0;
+             htm +='<tr>';
+             htm +='<td><input type="checkbox" checked="checked" class="ready_to_print_check_modal" name="ready_to_print_check_modal" id="ready_to_print_check_modal" value="'+obj.app_id+'"></td>';
+             htm +='<td class="text-left hidden-xs"><strong>'+obj.first_name+' '+obj.last_name+'</strong></td>';
+             htm +='<td>XXX-XX-'+obj.ss_number.substring(7,11);+'</td>';             
+             htm +='<td class="hidden-xs hidden-sm">$'+obj.app_actual_refund_amount+'</td>';
+             //htm +='<td class="hidden-xs hidden-sm">$'+obj.app_net_refund_amt+'</td>';
+             htm +='<td class="hidden-xs hidden-sm"><input type="text" class="form-control" id="starting_check_no" name="starting_check_no" value="'+assignno+'" placeholder="XXX XXX XXX XXX"></td>';
+           	 htm +='</tr>';
+        assignno = parseInt(assignno+checkNo);
+        checkNo++;
+    }
+    htm +='</tbody>';
+
+
+   
+    $("#print_check_list_table").empty().append(htm);
+    
+    //$("#state").empty().append('{states}');
+    
+}
+
+
+
+$(function() {
+	
+	loadObject();
+
+    $('#starting_check_no').blur(function() {
+        // do something
+       // alert( $('#starting_check_no').val());
+        $("#print_check_btn").attr("disabled", "disabled");
+        $('.error-message-main').css('display','none');
+        var arr = [];
+        var ids='';
+        var i = 0;
+       // var startpoint = $('#starting_check_no').val();
+
+        $('.ready_to_print_check_modal:checked').each(function(){
+            arr[i++] = $(this).val();
+        });
+        //alert(arr.length);
+        if(arr.length > 0){
+            ids = arr.join(",");
+        }
+
+
+        var cehckNo = $('#starting_check_no').val();
+
+
+
+        $.ajax({
+            //url: 'index.php/admin/clientcenter/generatePdfSelectedReadyToPrintApplication?ajax=1&ids='+ids+'&startp='+startpoint,
+            url: 'index.php/admin/clientcenter/checkCheckNoValidaty?ajax=1&ids='+ids+'&cehckNo='+cehckNo,
+            cache: false,
+            // dataType: "json",
+            success: function(message){
+                //alert(message);
+                //alert('All Check Printed Successfully.');
+                //   $("#body_check_for_print").empty().append(message);
+                //$(this).parent().appendTo(message);
+                //$("#modal_check_for_print").modal('hide');
+
+                // var dataClient = message;
+                // loadClientsReadyToPrint();
+                //  $(".print_check").css('display','block');
+
+                // console.log('printed');
+
+                if(message != ''){
+                    $('.error-message-main').css('display','block');
+                    $('.error-message').html(message);
+                }else{
+
+                    $('#starting_check_no').val(cehckNo);
+                    $('.error-message-main').css('display','none');
+                    $("#print_check_btn").removeAttr("disabled");
+                }
+                return false;
+            }
+        });
+
+    });
+
+    $( "#form_check_print" ).submit(function( event ) {
+
+       // event.preventDefault();
+
+        var arr = [];
+        var ids='';
+        var i = 0;
+        var startpoint = $('#starting_check_no').val();
+
+        $('.ready_to_print_check_modal:checked').each(function(){
+            arr[i++] = $(this).val();
+        });
+        //alert(arr.length);
+        if(arr.length > 0){
+            ids = arr.join(",");
+        }
+        else{
+            ids = $(this).val();
+        }
+
+        $("#form_check_print").attr("action", "index.php/admin/bankproducts/chkprint/print/1/ids/"+ids+"/"+startpoint);
+
+       // $('#form_check_print').submit();
+    });
+
+
+	$("#print_check_btn11").click(function(e){
+
+ /*       $('#modal_check_for_print').load('index.php/admin/clientcenter/pdf');
+        e.preventDefault();
+        return false;
+*/
+		var arr = [];
+    	var ids='';
+    	var i = 0;
+        var startpoint = $('#starting_check_no').val();
+
+    	    $('.ready_to_print_check_modal:checked').each(function(){
+    	    	arr[i++] = $(this).val();
+    	    });
+    	    //alert(arr.length);
+    	    if(arr.length > 0){
+    	     	ids = arr.join(",");
+    	    }
+    	    else{
+    	    	ids = $(this).val();
+    	    }
+
+    	   /* $.ajax({
+                //url: 'index.php/admin/clientcenter/generatePdfSelectedReadyToPrintApplication?ajax=1&ids='+ids+'&startp='+startpoint,
+                url: 'index.php/admin/clientcenter/pdf?ajax=1&ids='+ids+'&startp='+startpoint,
+                cache: false,
+               // dataType: "json",
+                success: function(message){
+                	alert('All Check Printed Successfully.');
+                     //   $("#body_check_for_print").empty().append(message);
+                    //$(this).parent().appendTo(message);
+                    //$("#modal_check_for_print").modal('hide');
+
+                   // printPDF();
+                 //   window.open('index.php/admin/clientcenter/viewcheck/', '_blank');
+                  //  window.open('index.php/admin/clientcenter/viewcheck', '_blank');
+
+
+                   // var dataClient = message;
+                   // loadClientsReadyToPrint();
+                      //  $(".print_check").css('display','block');
+
+                   // console.log('printed');
+                       return false;
+                }
+			});*/
+	});
+
+
+	
+});
+</script>

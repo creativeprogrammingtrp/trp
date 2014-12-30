@@ -117,7 +117,7 @@ Bank ID                            808
 
 41. (d) Have to be read full ACH formate doc and have to be make Question.
 
-8. (d) have to be work on ACH to ERO
+8.  (d) have to be work on ACH to ERO
 
 18. (d) So from admin section when admin will clcik on generat file for ACH to ERO then system will check all the DIrect diposited application for generate file.
 
@@ -127,9 +127,9 @@ Bank ID                            808
 
 53. (d) After open direct diposit modal box, when clciking on cancel button then it going to paid tab. but it should not go to that tab.
 
-54. have to be add routing # checing method with new application (under disbarsemnt method section)
+54. (d) have to be add routing # checing method with new application (under disbarsemnt method section)
 
-55. have to be find out where uAdmin theam added the code for mobile or tab. we need everything will be the same for pc, mobile & tab version.
+55. (d) have to be find out where uAdmin theam added the code for mobile or tab. we need everything will be the same for pc, mobile & tab version.
 
 56. (d) Have to be remove plus section & First 5 Bank Products under pricing secton, and Unlimited Insurance Policies & Employee Training will be check mark.
 
@@ -147,7 +147,7 @@ Bank ID                            808
 
 63. (d) Have to be create privacy policy & terms of use this 2 page form pfront end
 
-64. have to be create check print layout. and other info will got from ishan later.
+64. (d) have to be create check print layout. and other info will got from ishan later.
 
 65. (d) Under sign up page, above Sign up button have to be I agree with Terms & Condition check box and if clcik on that link then it will go the the seperate page with terms & condition info.
 
@@ -157,7 +157,62 @@ Bank ID                            808
 
 68. (d) 19.95 /each with pricing section in home page
 
-69. After print any check we have to be reduce total in_hand checks.
+69. (d) After print any check we have to be reduce total in_hand checks.
+
+70. (d) Signup problem in front end
+
+71. (d) After registering any NEW ERO, when this ERO loing  in whth system then under ERO menu it's showing own ERO info. this page will show only chield ERO. ont otheres.
+
+72. (d) Duplicate EFIN or PTIN check is not working when adding any employee.
+
+73. (d) ach file name is not correct.
+
+74. (d) from admin panel addon fee percentage save functionality is not working.
+
+75. (d) under ERO accounts edit is not working.
+
+76. (d) have to be add content for Compince test and agrement under training.
+
+77. (d) have to be remove parent EFIN no form abhone user
+
+78. (d) need to modify ACH file generation for SB accounts.
+
+79. (d) Have to be add new filtering for PEFIN & SB from setting page.
+
+80. Have to be add new filtering for PEFIN & SB from initial setup page.
+
+81. (d) under print cehck page [12/23/14, 12:40:22 PM] Ishan Pittalia: It is the way it's already is. We list all the fees on their. Tax prep, SB, bank product, add on etc
+                           [12/23/14, 12:41:20 PM] Ishan Pittalia: Total refund amount minus all the fees charge. And total refund customer gets at the ebd
+                           [12/23/14, 12:41:21 PM] Ishan Pittalia: End
+
+82. (-d) have to be add modal window after click on print button for get check number.
+
+83. (-d) Have to be cut down the last 3 digit from the nano secound for the ACH to ERO file name.
+
+84. (-d)After signup as new ERO then on setup page parent SB EFIN is missing.
+
+85. From seting page paernt EFIN & Parent SB EFIN is not working properly. where same EFIN added under parent efin & parent sb field.
+
+86. Under reporting secion under SB tab, have to be remove all the things and have to be add only date, SB fee & total.
+
+87. (-d) If any ERO not changrging any Add on fee then Scale Financila will not get any add on commission.
+
+88. (-d) from admin panel under fees section, commision part is not saving data into databse, but sending data through post.
+
+89. (-d) after Tax preparation commision have to be add tax preparation commission type.
+
+90. have to be add Save successfully modal wndow for every where and that box will show for 2 scound, after 2 seound that box automatically will be hide.
+
+91. (-d) have to be work with ACH to ERO it's not generating properly.
+
+92. have to be check all the page for print button.
+
+
+
+
+
+
+
 
 
 
@@ -215,14 +270,14 @@ CREATE TABLE `benefits` (
 -- Dumping data for table `benefits`
 --
 
-INSERT INTO `benefits` VALUES(1, 1, 2, 144, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416292876, 0, 0, 144);
-INSERT INTO `benefits` VALUES(2, 2, 3, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293233, 0, 0, 144);
-INSERT INTO `benefits` VALUES(3, 4, 5, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293611, 0, 0, 144);
-INSERT INTO `benefits` VALUES(4, 5, 6, 144, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416293709, 0, 0, 144);
-INSERT INTO `benefits` VALUES(5, 6, 7, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293767, 0, 0, 144);
-INSERT INTO `benefits` VALUES(6, 7, 8, 189, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416294269, 0, 0, 189);
-INSERT INTO `benefits` VALUES(7, 8, 9, 189, 'Medical Package', 90.00, 'Discount Savings on Medical Benefits', 'icon-aid', 1416294367, 0, 0, 189);
-INSERT INTO `benefits` VALUES(8, 9, 10, 189, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416294452, 0, 0, 189);
+INSERT INTO `benefits` VALUES(9, 10, 11, 144, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416292876, 0, 0, 144);
+INSERT INTO `benefits` VALUES(10, 11, 12, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293233, 0, 0, 144);
+INSERT INTO `benefits` VALUES(11, 13, 14, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293611, 0, 0, 144);
+INSERT INTO `benefits` VALUES(12, 14, 15, 144, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416293709, 0, 0, 144);
+INSERT INTO `benefits` VALUES(13, 15, 16, 144, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416293767, 0, 0, 144);
+INSERT INTO `benefits` VALUES(14, 16, 17, 197, 'Combination Package', 160.00, 'Discount Savings on Total Package', 'icon-loop', 1416294269, 0, 0, 197);
+INSERT INTO `benefits` VALUES(15, 17, 18, 197, 'Medical Package', 90.00, 'Discount Savings on Medical Benefits', 'icon-aid', 1416294367, 0, 0, 197);
+INSERT INTO `benefits` VALUES(16, 18, 19, 197, 'Lifestyle Package', 120.00, 'Discount Savings on Lifestyle Needs', 'icon-food', 1416294452, 0, 0, 197);
 
 -- --------------------------------------------------------
 
@@ -295,15 +350,15 @@ CREATE TABLE `new_app` (
 -- Dumping data for table `new_app`
 --
 
-INSERT INTO `new_app` VALUES(1, 144, 2, 4400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4190.05, 200.00, 3990.05, NULL, 'Check', 1416292876, '', '', '', '', '19330000000000031', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(2, 144, 3, 2400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 2190.05, 160.00, 2030.05, NULL, 'Check', 1416293233, '', '', '', '', '19330000000000032', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(3, 144, 4, 5000.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4790.05, 40.00, 4750.05, NULL, 'Check', 1416293305, '', '', '', '', '19330000000000033', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(4, 144, 5, 4400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4190.05, 160.00, 4030.05, NULL, 'Direct Deposit', 1416293611, '', 'HSBC', '12345678901234567', '123122334', '19330000000000034', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(5, 144, 6, 5000.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4790.05, 200.00, 4590.05, NULL, 'Direct Deposit', 1416293709, '', 'BRAC BANK', '12345678901234568', '123456789', '19330000000000035', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(6, 144, 7, 2300.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 2090.05, 160.00, 1930.05, NULL, 'Check', 1416293767, '', '', '', '', '19330000000000036', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(7, 189, 8, 2700.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 2640.05, 200.00, 2440.05, NULL, 'Check', 1416294269, '', '', '', '', '19330000000000037', '111900659', 0, 0, 189, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(8, 189, 9, 2900.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 2840.05, 130.00, 2710.05, NULL, 'Direct Deposit', 1416294367, '', 'HSBC', '10987654321234567', '123452345', '19330000000000038', '111900659', 0, 0, 189, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `new_app` VALUES(9, 189, 10, 3100.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 3040.05, 160.00, 2880.05, NULL, 'Direct Deposit', 1416294452, '', 'NCC BANK', '12345678901234587', '343434343', '19330000000000039', '111900659', 0, 0, 189, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
+INSERT INTO `new_app` VALUES(10, 144, 11, 4400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4190.05, 200.00, 3990.05, NULL, 'Check', 1416292876, '', '', '', '', '19330000000002251', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(11, 144, 12, 2400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 2190.05, 160.00, 2030.05, NULL, 'Check', 1416293233, '', '', '', '', '19330000000002252', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(12, 144, 13, 5000.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4790.05, 40.00, 4750.05, NULL, 'Check', 1416293305, '', '', '', '', '19330000000002253', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(13, 144, 14, 4400.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4190.05, 160.00, 4030.05, NULL, 'Direct Deposit', 1416293611, '', 'HSBC', '12345678901234567', '123122334', '19330000000002254', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(14, 144, 15, 5000.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 4790.05, 200.00, 4590.05, NULL, 'Direct Deposit', 1416293709, '', 'BRAC BANK', '12345678901234568', '123456789', '19330000000002255', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(15, 144, 16, 2300.00, 150.00, 19.95, 10.00, 0.00, 30.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 209.95, 2090.05, 160.00, 1930.05, NULL, 'Check', 1416293767, '', '', '', '', '19330000000002256', '111900659', 0, 0, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(16, 197, 17, 2700.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 2640.05, 200.00, 2440.05, NULL, 'Check', 1416294269, '', '', '', '', '19330000000002257', '111900659', 0, 0, 197, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(17, 197, 18, 2900.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 2840.05, 130.00, 2710.05, NULL, 'Direct Deposit', 1416294367, '', 'HSBC', '10987654321234567', '123452345', '19330000000002258', '111900659', 0, 0, 197, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `new_app` VALUES(18, 197, 19, 3100.00, 20.00, 19.95, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 0.00, 'Audit Guard Protection', 'Secure your clients from IRS Audits', 'icon-shield', 40.00, 0.00, 0.00, NULL, 59.95, 3040.05, 160.00, 2880.05, NULL, 'Direct Deposit', 1416294452, '', 'NCC BANK', '12345678901234587', '343434343', '19330000000002259', '111900659', 0, 0, 197, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -341,12 +396,39 @@ CREATE TABLE `new_applicent` (
 --
 
 
-INSERT INTO `new_applicent` VALUES(2, 144, 'TEST', 'DATA60', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'sfsdf', 'Alabama', '42342', '', '(234) 234-2342', 'r@r.com', 1416292876, 144);
-INSERT INTO `new_applicent` VALUES(3, 144, 'TEST', 'DATA61', '132-13-1231', '23/12/3123', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23232', '', '(432) 341-2312', 'data61@gmail.com', 1416293233, 144);
-INSERT INTO `new_applicent` VALUES(4, 144, 'TEST', 'DATA62', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32221', '', '(423) 421-3123', 'data62@gmail.com', 1416293305, 144);
-INSERT INTO `new_applicent` VALUES(5, 144, 'TEST', 'DATA63', '324-23-4234', '34/23/4234', '0', '', '', '', '', 'test', '', 'dhaka', 'Alabama', '12345', '', '(423) 423-4234', 'data63@gmail.com', 1416293611, 144);
-INSERT INTO `new_applicent` VALUES(6, 144, 'TEST', 'DATA64', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23222', '', '(221) 312-3123', 'data64@gmail.com', 1416293709, 144);
-INSERT INTO `new_applicent` VALUES(7, 144, 'TEST', 'DATA65', '342-34-2342', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23222', '', '(312) 312-3123', 'data65@gmail.com', 1416293767, 144);
-INSERT INTO `new_applicent` VALUES(8, 189, 'TEST', 'DATA66', '432-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '12345', '', '(434) 234-2342', 'data66@gmail.com', 1416294269, 189);
-INSERT INTO `new_applicent` VALUES(9, 189, 'TEST', 'DATA67', '321-31-2312', '32/13/1231', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32122', '', '(423) 423-4234', 'data67@gmail.com', 1416294367, 189);
-INSERT INTO `new_applicent` VALUES(10, 189, 'TEST', 'DATA68', '312-31-2312', '31/23/1231', '0', '', '', '', '', 'test', '', 'dhaka', 'Alaska', '31232', '', '(123) 124-5435', 'data68@gmail.com', 1416294452, 189);
+INSERT INTO `new_applicent` VALUES(11, 144, 'TEST', 'DATA50', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'sfsdf', 'Alabama', '42342', '', '(234) 234-2342', 'data50@gmail.com', 1416292876, 144);
+INSERT INTO `new_applicent` VALUES(12, 144, 'TEST', 'DATA51', '132-13-1231', '23/12/3123', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23232', '', '(432) 341-2312', 'data51@gmail.com', 1416293233, 144);
+INSERT INTO `new_applicent` VALUES(13, 144, 'TEST', 'DATA52', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32221', '', '(423) 421-3123', 'data52@gmail.com', 1416293305, 144);
+INSERT INTO `new_applicent` VALUES(14, 144, 'TEST', 'DATA53', '324-23-4234', '34/23/4234', '0', '', '', '', '', 'test', '', 'dhaka', 'Alabama', '12345', '', '(423) 423-4234', 'data53@gmail.com', 1416293611, 144);
+INSERT INTO `new_applicent` VALUES(15, 144, 'TEST', 'DATA54', '423-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23222', '', '(221) 312-3123', 'data54@gmail.com', 1416293709, 144);
+INSERT INTO `new_applicent` VALUES(16, 144, 'TEST', 'DATA55', '342-34-2342', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '23222', '', '(312) 312-3123', 'data55@gmail.com', 1416293767, 144);
+INSERT INTO `new_applicent` VALUES(17, 197, 'TEST', 'DATA56', '432-42-3423', '34/23/4234', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '12345', '', '(434) 234-2342', 'data56@gmail.com', 1416294269, 197);
+INSERT INTO `new_applicent` VALUES(18, 197, 'TEST', 'DATA57', '321-31-2312', '32/13/1231', '0', '', '', '', '', 'test address', '', 'dhaka', 'Alaska', '32122', '', '(423) 423-4234', 'data57@gmail.com', 1416294367, 197);
+INSERT INTO `new_applicent` VALUES(19, 197, 'TEST', 'DATA58', '312-31-2312', '31/23/1231', '0', '', '', '', '', 'test', '', 'dhaka', 'Alaska', '31232', '', '(123) 124-5435', 'data58@gmail.com', 1416294452, 197);
+
+
+
+ERO - A : EFIN # 888888
+
+ERO - B : EFIN # 797979 : SB : 888888
+
+Application:
+
+1. A  SBFee :10.00 BankFee: 20 adonfee: 15.00
+2. A  SBFee :10.00 BankFee: 20 adonfee: 15.00
+3. B  SBFee :10.00 BankFee: 20 adonfee: 15.00
+4. B  SBFee :10.00 BankFee: 20 adonfee: 15.00
+5. B  SBFee :10.00 BankFee: 20 adonfee: 15.00
+6. A  SBFee :10.00 BankFee: 20 adonfee: 15.00
+7. A  SBFee :10.00 BankFee: 20 adonfee: 15.00
+
+
+
+
+
+
+
+
+
+
+

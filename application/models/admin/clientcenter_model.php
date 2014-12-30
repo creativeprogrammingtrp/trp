@@ -2273,7 +2273,7 @@ class Clientcenter_model extends CI_Model {
     //
 
     function loadUncompletedAssignCheckRange(){
-        $sql = "select * from assign_check where complete_date IS NULL AND uid='".$this->author->objlogin->uid."'";
+        $sql = "select * from assign_check where complete_date IS NULL AND uid='".$this->author->objlogin->parentUid."' ORDER BY assign_check_id ASC LIMIT 1";
         $res = $this->db->query($sql);
 
         if(sizeof($res->result_array()) > 0){
@@ -2281,6 +2281,36 @@ class Clientcenter_model extends CI_Model {
             return $resul[0];
         }else{
             return array();
+        }
+    }
+
+
+    function loadAndCheckUncompletedAssignCheckRange($cehckNo){
+        $sql = "select * from assign_check where complete_date IS NULL AND uid='".$this->author->objlogin->parentUid."' AND starting_no <= '".$cehckNo."' AND  ending_no >= '".$cehckNo."' ORDER BY assign_check_id ASC LIMIT 1";
+        $res = $this->db->query($sql);
+
+        if(sizeof($res->result_array()) > 0){
+            $resul = $res->result_array();
+            return $resul[0];
+            //return true;
+        }else{
+            return array();
+            //return false;
+        }
+    }
+
+
+    function CheckPrintedAssignCheckRange($cehckNo){
+        $sql = "select * from app_check where check_no = '".$cehckNo."'";
+        $res = $this->db->query($sql);
+
+        if(sizeof($res->result_array()) > 0){
+            //$resul = $res->result_array();
+            //return $resul[0];
+            return true;
+        }else{
+            //return array();
+            return false;
         }
     }
 
@@ -2428,6 +2458,13 @@ class Clientcenter_model extends CI_Model {
         $this->db->query($sql);
     }
 
+    function updateACHExportTImeForAllApplicationForExportACHtoERO($uid)
+    {
+        $todate = $this->lib->getTimeGMT();
+        $sql = "UPDATE  new_app SET ach_export_date = '$todate' WHERE uid = '$uid' AND imp_file_name IS NOT NULL AND ach_export_date IS NULL";
+        $this->db->query($sql);
+    }
+
 
     function updateACHExportTImeForAllDepositedCustomerForExport($app_id)
     {
@@ -2572,17 +2609,54 @@ class Clientcenter_model extends CI_Model {
     }
 
 
+    function loadAllApplicationForExportIntoACHByERO(){
+
+        //$sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL AND a.uid= '$eroid' Group by a.uid";
+        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum, SUM(a.app_actual_sb_fee) as app_actual_sb_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND ach_export_date IS NULL AND imp_file_name IS NOT NULL Group by a.uid";
+        $res = $this->db->query($sql);
+
+        $totalSBFee = 0.00;
+
+        if(sizeof($res->result_array()) > 0){
+
+            foreach ($res->result_array() as $row) {
+                //  $row["formated_check_issue_date"] = gmdate("mdy", strtotime($row["check_issue_date"]));
+                // $row["formated_check_issue_date_full"] = gmdate("m-d-Y", strtotime($row["check_issue_date"]));
+                foreach($res->result_array() as $row1){
+                    if($row["efin"] == $row1["p_efin"]){
+                        $totalSBFee = floatval($totalSBFee)+floatval($row1["app_actual_sb_fee_sum"]);
+                    }
+                }
+                $row["calculatd_sb_fee"] =$totalSBFee;
+                $totalSBFee = 0.00;
+                $data[] = $row;
+            }
+            return $data;
+        }else{
+            return array();
+        }
+    }
+
     function loadAllPaidACHApplicationForExportIntoACHByERO(){
 
         //$sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL AND a.uid= '$eroid' Group by a.uid";
-        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL Group by a.uid";
+        $sql = "select u.firstname,u.lastname, a.*, e.*, sum(a.app_actual_tax_preparation_fee) as app_actual_tax_preparation_fee_sum, SUM(a.app_actual_add_on_fee) as app_actual_add_on_fee_sum, SUM(a.app_actual_sb_fee) as app_actual_sb_fee_sum  from users u, new_app a,  master_ero e WHERE  a.uid = e.uid AND u.uid = e.uid AND payment_method = 'Direct Deposit' AND direct_deposit_time IS NOT NULL AND ach_export_date IS NULL Group by a.uid";
         $res = $this->db->query($sql);
+
+        $totalSBFee = 0.00;
 
         if(sizeof($res->result_array()) > 0){
 
             foreach ($res->result_array() as $row) {
               //  $row["formated_check_issue_date"] = gmdate("mdy", strtotime($row["check_issue_date"]));
                // $row["formated_check_issue_date_full"] = gmdate("m-d-Y", strtotime($row["check_issue_date"]));
+                foreach($res->result_array() as $row1){
+                    if($row["efin"] == $row1["p_efin"]){
+                        $totalSBFee = floatval($totalSBFee)+floatval($row1["app_actual_sb_fee_sum"]);
+                    }
+                }
+                $row["calculatd_sb_fee"] =$totalSBFee;
+                $totalSBFee = 0.00;
                 $data[] = $row;
             }
             return $data;

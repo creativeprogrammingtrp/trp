@@ -1033,7 +1033,7 @@ function check_is_nan(value){
                         status = '<span class="label label-warning">Rejected</span>' ;
                    }
                      htm +='<tr>';
-                     htm +='<td><a href="javascript:void(0)" onclick="editEroFromAdmin(\''+uid+'\',\''+parent+'\')">'+obj.user_efin+'</a></td>';
+                     htm +='<td><a href="javascript:void(0)" onclick="editEro(\''+uid+'\',\''+parent+'\')">'+obj.user_efin+'</a></td>';
                      htm +='<td class="hidden-xs hidden-sm capitalize">'+obj.firstname+' '+obj.lastname+'</td>';
                      htm +='<td class="hidden-xs hidden-sm">'+obj.company_name+'</td>';
                      htm +='<td class="hidden-xs hidden-sm">'+obj.username+'</td>';
@@ -1046,7 +1046,7 @@ function check_is_nan(value){
                      
                      	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
                      //	htm +='<div class="btn-group">';
-                 		htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEroFromAdmin(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
+                 		htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEro(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
                   		htm += '&nbsp; <a class="btn btn-xs btn-success ChangeStatus" rel="tooltip" title="Change Status" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+efin+'"  onclick="changeEroStatus(\''+uid+'\',\''+obj.status+'\',\'modal_changeStatus\')" ><i class="glyphicon-settings"></i></a>';
                   		htm += '&nbsp; <a class="btn btn-xs btn-info EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="showCustomerReportByEro(\''+obj.uid+'\')" >View All</a>';
                   		//htm += '<a class="btn btn-xs btn-danger reject" rel="tooltip" title="Reject" data-toggle="tooltip" href="#" data-original-title="Delete" id="'+efin+'" onclick="reject(\''+efin+'\')" ><i class="icon-unlock-alt"></i></a>';

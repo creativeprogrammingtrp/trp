@@ -70,7 +70,7 @@ where users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
     		$row["format_date"] = gmdate("m/d/y", $row["created"]);
-    		if ($row['image'] !== '') {
+    		if ($row['image'] !== '' || $row['image'] !== NULL) {
     			$row['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row['image'] . '">';
     		} else {
     			$row['image'] = '';
@@ -112,7 +112,7 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin."
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
             $row["format_date"] = gmdate("m/d/y", $row["created"]);
-            if ($row['image'] !== '') {
+            if ($row['image'] !== '' || $row['image'] !== NULL) {
                 $row['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row['image'] . '">';
             } else {
                 $row['image'] = '';

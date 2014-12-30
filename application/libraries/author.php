@@ -263,7 +263,7 @@ class Author{
                     $row1 = $query1->row_array();
                     $this->objlogin->parentUid 	= $row1['uid'];
                 }else{
-                    $this->objlogin->parentUid 	= 0;
+                    $this->objlogin->parentUid 	= $uid;
                 }
                 //return $flag;
             }
@@ -341,7 +341,7 @@ class Author{
     function check_ptin_exists($ptin){
         $exists = '';
 
-        $sql =  'select ptin from users where ptin = "'.$ptin.'" ';
+        $sql =  'select ptin, efin from users where ptin = "'.$ptin.'" OR efin = "'.$ptin.'"';
         $res = $this->CI->db->query($sql);
         if($res ->num_rows() >  0){
             $exists = 'ptinexit';

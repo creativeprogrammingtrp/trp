@@ -13,6 +13,7 @@
     max-width: none !important;
 }
 </style>
+
 <div id="pv_table">
 <div class="col-md-12 text-left" style="padding-top:20px;">
              	 <div class="col-md-8 text-left">
@@ -38,12 +39,12 @@
 </div>
 <table id="print_check_list_table" class="table table-striped">
                 </table>
- <div style="clear:both"></div>
- <br>
- <div class="form-group form-group1" >
-                     	<div class="col-md-12 text-left">
-		            	
-		                     <button  class="btn btn-danger " type="button" id="cancel_print" onclick="javascript:cancelPrinting();" >
+ <div style="clear:both"></div><br>
+<div class="form-group form-group1" >
+    <div class="col-md-12 text-left">
+
+        <button  class="btn btn-
+ danger " type="button" id="cancel_print" onclick="javascript:cancelPrinting();" >
                                 <i class="icon-repeat"></i> Cancel
                             </button>
 		                
@@ -80,7 +81,9 @@
     </div>
     </div>
 </div>
-		            
+
+<iframe src="index.php/printitem/pdfgeneratedtest.pdf" id="pdfDoc" style="display:none"></iframe>
+
 		            <script type="text/javascript">
 var dataClientPrint = [];
 var heads = ["Name","SSN","Net Refund","Assigned Check #"];
@@ -141,6 +144,13 @@ function loadClients() {
     
 }
 
+function printPDF(){
+   // var pdf = document.getElementById("pdfDoc").print();
+    //pdf.focus();
+    //pdf.print();
+    //document.getElementById("pdfDoc").print();
+    //$('pdfDoc').print();
+}
 
 $(function() {
 	
@@ -159,9 +169,13 @@ $(function() {
 		$('#pv_check').hide();
 		$('#pv_table').show();
 	});
-	
-	$("#print_check_btn").click(function(){
 
+	$("#print_check_btn").click(function(e){
+
+ /*       $('#modal_check_for_print').load('index.php/admin/clientcenter/pdf');
+        e.preventDefault();
+        return false;
+*/
 		var arr = [];
     	var ids='';
     	var i = 0;
@@ -179,29 +193,32 @@ $(function() {
     	    }
 
     	    $.ajax({
-                url: 'index.php/admin/clientcenter/generatePdfSelectedReadyToPrintApplication?ajax=1&ids='+ids+'&startp='+startpoint,
+                //url: 'index.php/admin/clientcenter/generatePdfSelectedReadyToPrintApplication?ajax=1&ids='+ids+'&startp='+startpoint,
+                url: 'index.php/admin/clientcenter/pdf?ajax=1&ids='+ids+'&startp='+startpoint,
                 cache: false,
                // dataType: "json",
                 success: function(message){
                 	alert('All Check Printed Successfully.');
                      //   $("#body_check_for_print").empty().append(message);
                     //$(this).parent().appendTo(message);
-                    $("#modal_check_for_print").modal('hide');
+                    //$("#modal_check_for_print").modal('hide');
 
+                   // printPDF();
+                    window.open('index.php/admin/clientcenter/viewcheck/', '_blank');
+                  //  window.open('index.php/admin/clientcenter/viewcheck', '_blank');
                     /*if (confirm('All Check Printed Successfully.')) {
                         //alert('All Check Printed Successfully.');
                         $("#modal_check_for_print").modal('hide');
                     }else{
                         $("#modal_check_for_print").modal('hide');
-                    }
-*/
+                    }*/
 
                    // var dataClient = message;
                    // loadClientsReadyToPrint();
                       //  $(".print_check").css('display','block');
 
                    // console.log('printed');
-                        return false;
+                       return false;
                 }
 			});
 	});

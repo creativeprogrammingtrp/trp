@@ -567,7 +567,7 @@ hr{
                                     
                                     <div id="direct_deposit-box"  style="display:none">
 							            <div class="form-group">
-							            		<div class="col-md-12">
+							            		<div class="col-md-12 form-group1">
 							            		<label for="ss_number" class="control-label col-md-12">Bank Name</label>
 								                
 								                	
@@ -579,14 +579,18 @@ hr{
 							            
 							            <div class="form-group">
 							            	
-								                <div class="col-md-6">
+								                <div class="col-md-6 form-group1">
 								                	<label for="ss_number" class="control-label col-md-9">Routing Number</label>
-								                    <input type="text" class="form-control ui-wizard-content" name="routing_number" id="routing_number" value="">
+
+								                        <input type="text" class="form-control ui-wizard-content" name="routing_number" id="routing_number" value="">
+
 								                </div>
 								                
-							                	<div class="col-md-6">
+							                	<div class="col-md-6 form-group1">
 							                		<label for="dob" class="control-label col-md-9">Account Number</label>
-							                    <input type="text" class="form-control ui-wizard-content" name="acount_number" id="acount_number" value="">
+
+                                                        <input type="text" class="form-control ui-wizard-content" name="acount_number" id="acount_number" value="">
+
 							                	</div>
 							                
 							            </div>
@@ -601,9 +605,11 @@ hr{
                                     <div id="debit_card-box" style="display:none">
 							            <div class="form-group">
 							            	
-								                <div class="col-md-12">
+								                <div class="col-md-12 form-group1">
 								                	<label for="ss_number" class="control-label col-md-12">Enter Card Number:</label>
-								                    <input type="text" class="form-control ui-wizard-content" name="card_number" id="card_number" value="">
+
+								                        <input type="text" class="form-control ui-wizard-content" name="card_number" id="card_number" value="">
+
 								                </div>
 							                	
 							                
@@ -623,7 +629,7 @@ hr{
 				          </div>  
 						</div>
 						<div style="clear:both;"></div>
-						            <div class="form-group1 form-actions" style="margin-top:30px; border-top: 0px;">
+						            <div class="form-group form-actions" style="margin-top:30px; border-top: 0px;">
 						            <div class="col-md-12 text-left">
 						            	<div class="col-md-6 text-left">
 						                     <button  class="btn btn-danger btn-lg" type="button" id="back_to_dashboard"  >
@@ -1498,6 +1504,7 @@ hr{
                       </button>                   
                     </div>  
                  </div>
+                 <div style="clear:both;"></div>
              </div>
          </div>
      </div>
@@ -1594,7 +1601,8 @@ hr{
 						  </section>
 					  </div>
 				  </div>
-			  </form>        
+			  </form>
+                <div style="clear:both;"></div>
 			</div>
 		</div>
 	</div>
@@ -1718,7 +1726,8 @@ hr{
 						  </section>
 					  </div>
 				  </div>
-			  </form>        
+			  </form>
+                <div style="clear:both;"></div>
 			</div>
 		</div>
 	</div>
@@ -1822,7 +1831,8 @@ hr{
 						  </section>
 					  </div>
 				  </div>
-			  </form>        
+			  </form>
+                <div style="clear:both;"></div>
 			</div>
 		</div>
 	</div>
@@ -1948,7 +1958,8 @@ hr{
 						  </section>
 					  </div>
 				  </div>
-			  </form>        
+			  </form>
+                <div style="clear:both;"></div>
 			</div>
 		</div>
 	</div>
@@ -2007,7 +2018,8 @@ hr{
 						  </section>
 					  </div>
 				  </div>
-			  </form>        
+			  </form>
+                <div style="clear:both;"></div>
 			</div>
 		</div>
 	</div>
@@ -2100,7 +2112,8 @@ hr{
 					  </div>
 				  </div>
 			  </form>   
-			  <input type="hidden" name="temp_selected_item"  id="temp_selected_item">     
+			  <input type="hidden" name="temp_selected_item"  id="temp_selected_item">
+                <div style="clear:both;"></div>
 			</div>
 		</div>
 	</div>
@@ -2926,15 +2939,7 @@ function removeSelectedProductInfo2(data){
            dependent.toggle(); 
         });
         
-       
-        
-        
-        
-        
-        
-    
-        
-        
+
         /*$(".next_tab").click(function ()
    		{ 	var target = $(".nav-tabs li.active");
    		    var sibbling;
@@ -3009,7 +3014,42 @@ function removeSelectedProductInfo2(data){
         		    return isNaN(value) && isNaN($(params).val()) 
         		        || (Number(value) < Number($(params).val())); 
         		},'Must be less than total refund.');
-        
+
+
+
+        jQuery.validator.addMethod("routingCheck", function (value, element) {
+
+            var rvalue = value; // this value for the $("#bank_routing1").val();
+
+            var checkdigit = 0;
+            var checkdigit22 = 0;
+            var arr = rvalue.split('');
+
+            var pone = arr[0] * 3;
+            var ptwo = arr[1] * 7;
+            var pthr = arr[2] * 1;
+            var pfou = arr[3] * 3;
+            var pfiv = arr[4] * 7;
+            var psix = arr[5] * 1;
+            var psev = arr[6] * 3;
+            var peig = arr[7] * 7;
+
+            var total = pone+ptwo+pthr+pfou+pfiv+psix+psev+peig;
+
+            var hightTenMultiply = 10;
+            var i=1;
+
+            for(var i=1; total > hightTenMultiply ; i++) {
+                hightTenMultiply = 10 * i;
+            }
+
+            if (hightTenMultiply >= total) {
+                checkdigit = parseInt(hightTenMultiply) - parseInt(total);
+            }
+
+            return checkdigit == arr[8];
+        }, 'Routing Number is not correct.');
+
         /**/
            /* Initialize Form Validation */
                 $('#applicant_info_form').validate({
@@ -3028,25 +3068,108 @@ function removeSelectedProductInfo2(data){
                         e.closest('.help-block').remove();
                     },
                     rules: {
-                    	first_name: { required: true },
-                        last_name: { required: true},
-                        ss_number: { required: true},
-                        dob: { required: true},
-                        street_address: { required: true},
-                        city: { required: true},
-                        state: { required: true},
-                        zip_code: { required: true, maxlength: 5,  number: true},
-                        cell_phone: { required: true},
-                        email_add: { required: true, email: true},
-                        total_refund_amt_3: { required: true, number: true, greaterThan: '#total_fees'},
-                        DisbursmentMethod: { required: true},
-                        card_number: {creditcard: true,  maxlength: 16},
-                        tax_preparation_fee_3: { number: true, lessThan: '#total_refund_amt_3'},
-                        bank_transmission_fee_3: { number: true},
-                        sb_fee_3: { number: true, range: [1, 40]},
+                        first_name: {required: true},
+                        last_name: {required: true},
+                        ss_number: {required: true},
+                        dob: {required: true},
+                        street_address: {required: true},
+                        city: {required: true},
+                        state: {required: true},
+                        zip_code: {required: true, maxlength: 5, number: true},
+                        cell_phone: {required: true},
+                        email_add: {required: true, email: true},
+                        total_refund_amt_3: {required: true, number: true, greaterThan: '#total_fees'},
+                        DisbursmentMethod: {required: true},
+                        card_number: {creditcard: true, maxlength: 16},
+                        tax_preparation_fee_3: {number: true, lessThan: '#total_refund_amt_3'},
+                        bank_transmission_fee_3: {number: true},
+                        sb_fee_3: {number: true, range: [1, 40]},
                         /*e_file_fee_3: { number: true},*/
-                        add_on_fee_3: { number: true, range: [1, 40], lessThan: '#total_refund_amt_3'}
-                    },
+                        add_on_fee_3: {number: true, range: [1, 40], lessThan: '#total_refund_amt_3'},
+                        bank_name : {
+                            required: function (element) {
+                                if ($("#DisbursmentMethod2").is(':checked')) {
+                                    var e = document.getElementById("bank_name");
+                                    if (e.value == "") {
+                                        return true;
+                                    }
+                                    else {
+                                        return false;
+                                    }
+
+                                }
+                                else {
+                                    return false;
+                                }
+                            }
+                        },
+                        routing_number: {
+                            required: function (element) {
+                                if ($("#DisbursmentMethod2").is(':checked')) {
+                                    var e = document.getElementById("routing_number");
+                                    if (e.value == "") {
+                                        return true;
+                                    }
+                                    else {
+                                        return false;
+                                    }
+
+                                }
+                                else {
+                                    return false;
+                                }
+                            },routingCheck: function (element) {
+                                if ($("#DisbursmentMethod2").is(':checked')) {
+                                    return true;
+                                }
+                                else {
+                                    return false;
+                                }
+                            },
+                            minlength: 9,
+                            maxlength: 9,
+                            number: true
+                        },
+                        acount_number : {
+                            required: function (element) {
+                                if ($("#DisbursmentMethod2").is(':checked')) {
+                                    var e = document.getElementById("acount_number");
+                                    if (e.value == "") {
+                                        return true;
+                                    }
+                                    else {
+                                        return false;
+                                    }
+
+                                }
+                                else {
+                                    return false;
+                                }
+                            },
+                            minlength: 5,
+                            number: true
+                        },
+                        card_number: {
+                            required: function (element) {
+                                if ($("#DisbursmentMethod2").is(':checked')) {
+                                    var e = document.getElementById("card_number");
+                                    if (e.value == "") {
+                                        return true;
+                                    }
+                                    else {
+                                        return false;
+                                    }
+
+                                }
+                                else {
+                                    return false;
+                                }
+                            },
+                            minlength: 5,
+                            number: true
+                        }
+
+            },
                     messages: {
                     	first_name: { required: 'Please enter a first name'},
                         last_name: { required: 'Please enter a last name'},
@@ -3065,12 +3188,30 @@ function removeSelectedProductInfo2(data){
                         card_number: {maxlength: 'Please enter no more then 16 digit.'},
                         sb_fee_3 :{
                             number: 'Please enter only number!',
-                            range: 'Please enter amount between 1 and 40',
+                            range: 'Please enter amount between 1 and 40'
                         }
                         ,
                         add_on_fee_3 :{
                             number: 'Please enter only number!',
-                            range: 'Please enter amount between 1 and 40',
+                            range: 'Please enter amount between 1 and 40'
+                        },
+                        acount_number :{
+                            required: 'Please enter a bank account number',
+                            minlength: 'Your account number must be at least 5 characters long',
+                            number: 'Please enter only number!'
+                        },
+                        routing_number :{
+                            required: 'Please enter valid bank routing number.',
+                            minlength: 'Your bank routing number must be at least 9 characters long',
+                            maxlength: 'Your bank routing number should not more then 9 characters long',
+                            number: 'Please enter only number!'
+                        },
+                        bank_name : 'Please enter bank name.'
+                        ,
+                        card_number :{
+                            required: 'Please enter a valid card number',
+                            minlength: 'Your card number must be at least 5 characters long',
+                            number: 'Please enter only number!'
                         }
                         
                     },
@@ -3384,7 +3525,7 @@ function removeSelectedProductInfo2(data){
            	year_auto:{ required: true },
            	make_auto:{ required: true },
            	model_auto:{ required: true },
-           	coverage_auto:{ required: true },
+           	coverage_auto:{ required: true }
            },
            messages: {
         	   
@@ -3478,7 +3619,7 @@ function removeSelectedProductInfo2(data){
           	$('.step1btn').hide();
    			$('.step1load').show();
      		 	$.post("index.php/admin/services/addinsuranceNext", {
-      			senddata : 'yes',
+      			senddata : 'yes'
     		}, function(data) {
     			if (data) {
     				
