@@ -1063,11 +1063,11 @@ class Adjustment extends CI_Controller{
 
                 $sbFeePay = floatval($dipApp['calculatd_sb_fee']);
 
-                $taxPayCommission = floatval($dipApp['tax_pre_commission']);
-                $AddOnPayCommission = floatval($dipApp['add_on_commission']);
+                $taxPayCommission = floatval($dipApp['act_tax_pre_commission']);
+                $AddOnPayCommission = floatval($dipApp['act_add_on_commission']);
 
-                $taxPayCommissionType = intval($dipApp['tax_pre_commission_type']); // 1 = Fixed & 2 = percentage
-                $AddOnPayCommissionType = intval($dipApp['add_on_commission_type']); // 1 = Fixed & 2 = percentage
+                $taxPayCommissionType = intval($dipApp['act_tax_pre_commission_type']); // 1 = Fixed & 2 = percentage
+                $AddOnPayCommissionType = intval($dipApp['act_add_on_commission_type']); // 1 = Fixed & 2 = percentage
 
                 $txaAmount = 0;
                 $AddonAmount = 0;

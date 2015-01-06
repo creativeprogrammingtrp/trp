@@ -19,7 +19,7 @@ class Ero_model extends CI_Model {
     	//print_r($this->author->objlogin);
     	//exit;
     	if ($this->author->objlogin->role['rid'] == 5) {
-    		 $sql = "SELECT users.* , roles.*, users_roles.*, master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role, efin_pefin.efin as efin, efin_pefin.pefin as pefin, efin_pefin.status as efin_status
+            $sql = "SELECT users.* , roles.*, users_roles.*, master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role, efin_pefin.efin as efin, efin_pefin.pefin as pefin, efin_pefin.status as efin_status
 FROM users, efin_pefin, roles, users_roles, master_ero
  Where users_roles.rid = roles.rid
 AND users.uid = users_roles.uid
@@ -27,7 +27,7 @@ AND users.uid = master_ero.uid
 AND efin_pefin.uid = users.uid
 and is_employee != 1
 AND users_roles.rid = 5
-AND efin_pefin.pefin =".$this->author->objlogin->efin." 
+AND efin_pefin.pefin =".$this->author->objlogin->efin."
         ORDER BY users.uid DESC";
     	} else {
     		 $sql = "select *,users.name as username ,users.efin as user_efin,roles.name as role  from users join roles  join users_roles join master_ero  on users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid = master_ero.uid where status <> 3 and  users_roles.rid = 5 ORDER BY users.uid DESC";
@@ -43,6 +43,38 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin."
     		$data[] = $row;
     	}
     	return $data;
+    }
+
+    public function loadAllSb() {
+        $data = array();
+        $sql = "";
+        //print_r($this->author->objlogin);
+        //exit;
+        if ($this->author->objlogin->role['rid'] == 5) {
+            $sql = "SELECT users.* , roles.*, users_roles.*, master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role, efin_pefin.efin as efin, efin_pefin.pefin as pefin, efin_pefin.status as efin_status
+FROM users, efin_pefin, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND efin_pefin.uid = users.uid
+and is_employee != 1
+AND users_roles.rid = 5
+AND efin_pefin.service_buraue =".$this->author->objlogin->efin."
+        ORDER BY users.uid DESC";
+        } else {
+            $sql = "select *,users.name as username ,users.efin as user_efin,roles.name as role  from users join roles  join users_roles join master_ero  on users_roles.rid = roles.rid and  users.uid = users_roles.uid and users.uid = master_ero.uid where status <> 3 and  users_roles.rid = 5 ORDER BY users.uid DESC";
+        }
+        $res = $this->db->query($sql);
+        foreach ($res->result_array() as $row) {
+            $row["format_date"] = gmdate("m/d/y", $row["created"]);
+            if ($row['image'] !== '') {
+                $row['image'] = '<img  src="' . $this->system->URL_server__() . 'data/logo/' . $row['image'] . '">';
+            } else {
+                $row['image'] = '';
+            }
+            $data[] = $row;
+        }
+        return $data;
     }
 
     
@@ -318,22 +350,59 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
         return $this->loadAllEros();
     }
 
+    public function saveChieldSBStatusChangeInfo() {
+
+       // $status = $this->lib->escape($_POST['ero_status']);
+        $sb_status = $this->lib->escape($_POST['ero_sb_status']);
+        $uid = $this->lib->escape($_POST['uid']);
+
+        $data1 = array('is_view' => 1);
+
+        //if($status != 'null'){$data1['pefin_status'] = $status;}
+        if($sb_status != 'null'){$data1['p_service_bureau_status'] = $sb_status;}
+
+        $this->db->where('uid', $uid);
+        $this->db->update('master_ero', $data1);
+
+        // update efin_pefin ero with parent efin status
+
+        if($sb_status == 1){
+            $sql4 = "update efin_pefin set p_service_bureau_status = $sb_status, is_view = 2, approved_date = '".$this->lib->getTimeGMT()."' where uid = '" . $uid . "' ";
+        }else if($sb_status == 2){
+            $sql4 = "update efin_pefin set p_service_bureau_status = $sb_status, is_view = 2, reject_date = '".$this->lib->getTimeGMT()."' where uid = '" . $uid . "' ";
+        }
+
+        $this->db->query($sql4);
+
+        return $this->loadAllSb();
+
+    }
 
     public function saveChieldEroStatusChangeInfo() {
 
         $status = $this->lib->escape($_POST['ero_status']);
+        //$sb_status = $this->lib->escape($_POST['ero_sb_status']);
         $uid = $this->lib->escape($_POST['uid']);
 
         // update master ero with parent efin status
-        $sql2 = "update  master_ero set is_view = 1, pefin_status = $status where  uid = '" . $uid . "' ";
-        $this->db->query($sql2);
+        //$sql2 = "update  master_ero set is_view = 1, pefin_status = $status where  uid = '" . $uid . "' ";
+        //$this->db->query($sql2);
+
+        $data1 = array('is_view' => 1);
+
+        if($status != 'null'){$data1['pefin_status'] = $status;}
+       // if($sb_status != 'null'){$data1['p_service_bureau_status'] = $sb_status;}
+
+        $this->db->where('uid', $uid);
+        $this->db->update('master_ero', $data1);
 
         // update efin_pefin ero with parent efin status
         if($status == 1){
             $sql3 = "update efin_pefin set status = $status, is_view = 2, approved_date = '".$this->lib->getTimeGMT()."' where uid = '" . $uid . "' ";
-        }else{
+        }else if($status == 2){
             $sql3 = "update efin_pefin set status = $status, is_view = 2, reject_date = '".$this->lib->getTimeGMT()."' where uid = '" . $uid . "' ";
         }
+
         $this->db->query($sql3);
 
         return $this->loadAllEros();

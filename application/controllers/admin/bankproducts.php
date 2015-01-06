@@ -27,6 +27,7 @@ class Bankproducts extends CI_Controller{
 
     public function chkprint()
     {
+        $this->load->helper('towords_helper');
         $data = array();
 
         $data['title_page'] = "BankProducts";
@@ -125,13 +126,240 @@ class Bankproducts extends CI_Controller{
 
 
 
-
+                    //$obj = new toWords($datas['app_actual_refund_amount']);
+                    $obj = new toWords( $datas['app_actual_refund_amount'],'','/100');
+                   // echo $obj->words;
                     // page info here, db calls, etc.
                     //$html = $this->load->view('controller/viewfile', $data, true);
                     //pdf_create($html, 'filename');
                     // or
 
+                    $amountasword = $obj->words;
+                    if(strlen($amountasword) > 40){
+                        $amountasword  = $amountasword;
+                    }else{
+                        $amountasword = $amountasword.''.$amount_end = str_pad('', 10, "*");
+                    }
+
+                    $appbenefitswithAuditGuard = floatval($datas['app_benefit']);
+                    $actualBenefits = floatval($appbenefitswithAuditGuard) - floatval($datas['actual_audit_guard_fee']);
+
                     $html = '
+<style>@page {
+            margin-top: 0.4em;
+            margin-left: 0.4em;
+
+            margin-bottom: 0.4em;
+        }
+
+        </style>
+        <div>
+            <div class="col-md-2 border1" style="  width: 95.6667%; float: right; min-height: 1px; padding-left: 15px; padding-right: 15px;  margin-top: 45px; text-align: right;"><small style="font-size: 11px;">DATE</small> : '.gmdate("m/d/Y").'</div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-1 border1" style="width: 4.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; margin-top: 24px;">&nbsp;</div>
+            <div class="col-md-7" style="width: 64.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 10px;"><div style="border-bottom: 1px solid;  margin-top: 24px;">'.$datas['first_name'].' '.$datas['last_name'].'</div></div>
+
+            <div class="col-md-2 border1" style=" width: 25.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">&nbsp; <br> <div class="border" style=" text-align:right; font-weight: bold; margin-top: 9px; margin-left:70px; padding: 3px 6px 3px 10px; font-size:15px;"> '.number_format($datas['app_actual_refund_amount'],2).'</div> </div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-1 border1" style="width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">&nbsp;</div>
+            <div class="col-md-1 border1"  style=" margin-top: 10px; width: 82%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; text-transform:capitalize;">'.$amountasword.'</div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-1 border1"  style=" margin-top: 50px; width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><br><br><br><br>&nbsp;</div>
+            <div class="col-md-7" style="width: 55.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="  margin-top: 50px;">&nbsp;</div></div>
+            <div class="col-md-4 border1" style=" width: 25.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">
+                <div style=" margin-top: 22px;"><img src="' . base_url() . 'img/sign.png" border="0" /></div>
+            </div>
+            <div class="clear1" style="clear: both;"></div>
+
+
+
+<br>
+            <!--<div style="border-top:1px dotted #999999;">&nbsp;</div>-->
+
+        <div style="margin-top:67px;">
+            <table  width="100%">
+                <tr>
+                    <td width="40%">&nbsp;</td>
+                    <td width="60%" style="text-align:right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="40%" valign="top"  style="font-size:10px;">'.$datas['first_name'].' '.$datas['last_name'].' <br> '.$datas['street_address_1'].' <br> '.$datas['city'].', '.$datas['state'].', '.$datas['zip_code'].' <br> '.$datas['cell_phone'].'</td>
+                    <td width="60%">
+                        <table width="100%">
+                            <tr>
+                                <td width="50%" ></td>
+                                <td width="25%"  style="text-align:right;"><u>Expected</u></td>
+                                <td width="25%"  style="text-align:right;"><u>ACTUAL</u></td>
+                            </tr>
+
+                            <tr>
+                                <td>REFUND AMOUNT</td>
+                                <td style="text-align:right;">'.$datas['app_total_refund_amt'].'</td>
+                                <td style="text-align:right;">'.$datas['deposit_amount'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td  style="font-size:10px;">Tax Preparation</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_tax_preparation_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Bank Transmission</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_bank_transmission_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">SB Fee</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_sb_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Add On Fee</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_add_on_fee'].'</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:10px;">Audit Guard</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['actual_audit_guard_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Benefits</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.number_format($actualBenefits,2).'</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td>Refund Amount</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_refund_amount'].'</td>
+                            </tr>
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+<br>
+    <!--<div style="border-top:1px dotted #999999;">&nbsp;</div>-->
+        <div  style="margin-top:65px;">
+            <table width="100%">
+                <tr>
+                    <td width="40%">&nbsp;</td>
+                    <td width="60%" style="text-align:right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="40%"  valign="top" style="font-size:10px;">'.$datas['first_name'].' '.$datas['last_name'].' <br> '.$datas['street_address_1'].' <br> '.$datas['city'].', '.$datas['state'].', '.$datas['zip_code'].' <br> '.$datas['cell_phone'].'</td>
+                    <td width="60%">
+                        <table width="100%">
+                            <tr>
+                                <td width="50%" ></td>
+                                <td width="25%"  style="text-align:right;"><u>Expected</u></td>
+                                <td width="25%"  style="text-align:right;"><u>ACTUAL</u></td>
+                            </tr>
+
+                            <tr>
+                                <td>REFUND AMOUNT</td>
+                                <td style="text-align:right;">'.$datas['app_total_refund_amt'].'</td>
+                                <td style="text-align:right;">'.$datas['deposit_amount'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Tax Preparation</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_tax_preparation_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Bank Transmission</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_bank_transmission_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">SB Fee</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_sb_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Add On Fee</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_add_on_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Audit Guard</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['actual_audit_guard_fee'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td style="font-size:10px;">Benefits</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.number_format($actualBenefits,2).'</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td>Refund Amount</td>
+                                <td>&nbsp;</td>
+                                <td style="text-align:right;">'.$datas['app_actual_refund_amount'].'</td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        ';
+                    //$data = pdf_create($html, '', false);
+                    pdf_create($html, 'generatedpdf');
+
+                }
+        }
+
+        $this->system->parse("clientCenter/clientcenter.htm",$data);
+
+        //if (isset($_GET['print']) && $_GET['print'] == 1) {
+        if ($ajaxvalue == 1 && $ids != '') {
+            echo '<script type="text/javascript" language="javascript">
+                                window.open("http://scalefinancial.com/printitem/generatedpdf.pdf", "_blank");
+                              // window.open("http://localhost/trpgit/printitem/generatedpdf.pdf", "_blank");
+                        </script>';
+        }
+    }
+
+
+
+
+/*
+ *
+ *  $html = '
 <style>@page {
             margin-top: 0.4em;
             margin-left: 0.4em;
@@ -143,6 +371,7 @@ class Bankproducts extends CI_Controller{
             <div style="text-align: right; width: 10.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"> <div>' . $checkNo . '</div></div>
 
             <div class="clear1" style="margin-bottom: 30px; clear: both;"></div>
+
             <div class="col-md-1 border1" style="width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">PAY<br>TO THE<br> ORDER <br> OF</div>
             <div class="col-md-7" style="width: 50.3333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><div style="border-bottom: 1px solid;  margin-top: 50px;">'.$datas['first_name'].' '.$datas['last_name'].'</div></div>
             <div class="col-md-2 border1" style=" margin-top: 20px; width: 10.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">DATE
@@ -150,6 +379,9 @@ class Bankproducts extends CI_Controller{
                 <div style="border-bottom: 1px solid;  margin-top: 15px;">'.gmdate("d/m/Y").'</div>
             </div>
             <div class="col-md-2 border1" style="margin-top: 20px; width: 13.6667%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;">AMOUNT <br> <div class="border" style=" border:1px solid; font-weight: bold; margin-top: 3px; padding: 6px;"> $'.number_format($datas['app_actual_refund_amount'],2).'</div> </div>
+            <div class="clear1" style="clear: both;"></div>
+
+            <div class="col-md-1 border1"  style=" margin-top: 55px; width: 90%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><br>'.$obj->words.'</div>
             <div class="clear1" style="clear: both;"></div>
 
             <div class="col-md-1 border1"  style=" margin-top: 55px; width: 8.33333%; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px;"><br><br><br><br>MEMO</div>
@@ -326,25 +558,8 @@ class Bankproducts extends CI_Controller{
             </table>
         </div>
         </div>
-        ';
-                    //$data = pdf_create($html, '', false);
-                    pdf_create($html, 'pdfgeneratedtest');
+        ';*/
 
-                }
-        }
-
-        $this->system->parse("clientCenter/clientcenter.htm",$data);
-
-        //if (isset($_GET['print']) && $_GET['print'] == 1) {
-        if ($ajaxvalue == 1 && $ids != '') {
-            echo '<script type="text/javascript" language="javascript">
-                             window.open("http://scalefinancial.com/printitem/pdfgeneratedtest.pdf", "_blank");
-                              // window.open("http://localhost/trpgit/printitem/pdfgeneratedtest.pdf", "_blank");
-                        </script>';
-        }
-    }
-    
-    
 
 }
     

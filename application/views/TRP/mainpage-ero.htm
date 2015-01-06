@@ -167,7 +167,8 @@
                             </li>
                              -->
                             <li>
-                                <a id="menu-insurance" href="index.php/admin/services/insurancePolicies"><i class="icon-umbrella"></i>Insurance</a>
+                                <a id="menu-insurance" href="javascript:void(0)"><i class="icon-umbrella"></i>Insurance</a>
+                                <!--<a id="menu-insurance" href="index.php/admin/services/insurancePolicies"><i class="icon-umbrella"></i>Insurance</a>
                                 <ul>
                                     <li>
                                         <a href="index.php/admin/services/insurance"><i class="icon-plus-sign"></i>Add New</a>
@@ -175,10 +176,11 @@
                                     <li>
                                         <a href="index.php/admin/services/insurancePolicies"><i class="icon-umbrella"></i>Policies</a>
                                     </li>
-                                 </ul>   
+                                 </ul> -->
                             </li>
                             <li>
-                                <a id="menu-benifits" href="index.php/admin/services/benefitsOrders"><i class="icon-aid"></i>Benefits</a>
+                                <a id="menu-benifits" href="javascript:void(0)"><i class="icon-aid"></i>Benefits</a>
+                                <!--<a id="menu-benifits" href="index.php/admin/services/benefitsOrders"><i class="icon-aid"></i>Benefits</a>
                                 <ul>
                                     <li>
                                         <a href="index.php/admin/services/benefits"><i class="icon-plus-sign"></i>Add New</a>
@@ -186,7 +188,7 @@
                                     <li>
                                         <a href="index.php/admin/services/benefitsOrders"><i class="icon-aid"></i>Orders</a>
                                     </li>
-                                 </ul> 
+                                 </ul>-->
                             </li>
                             <!-- 
                             <li>
@@ -219,7 +221,7 @@
                                 <a id="menu-customers" href="index.php/admin/customers"><i class="icon-users4"></i>Customers</a>
 
                             </li>
-                            <li {hidefromEmployee}>
+                            <li {hidefromEmployee} >
                                 <a id="menu-accounts" href="index.php/admin/ero"><i class="icon-users4"></i>ERO Accounts</a>
                                <!-- <ul class="sub-menu">
                                     <li>
@@ -230,6 +232,10 @@
                                     </li>
                                 </ul>
                                 -->
+                            </li>
+
+                            <li {hidefromEmployee} >
+                                <a id="menu-sb-accounts" href="index.php/admin/sb"><i class="icon-users4"></i>SB Accounts</a>
                             </li>
 							<!-- 
 							<li>
@@ -514,8 +520,21 @@
         <script src="../backend/js/flot/jquery.flot.stack.js"></script>
         <script src="../backend/js/flot/jquery.flot.crosshair.js"></script>
 
-      
-       
+    <!-- start Have to be remove this part later-->
+    <div class="modal fade-comming-message fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                    <h2>Comming Soon.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Have to be remove this part later-->
         <script>
        
       //Nested Side Bar Menu (Mar 20th, 09)
@@ -589,6 +608,24 @@
 		
             var url_base_path__ = '{url_base_path}';
             $(function() {
+                <!-- start Have to be remove this part later-->
+                $("#menu-benifits").click(function(){
+                    $('.fade-comming-message').modal('show');
+
+                    setTimeout(function() {
+                        $('.fade-comming-message').modal('hide')
+                    }, 2000);
+                });
+
+                $("#menu-insurance").click(function(){
+                    $('.fade-comming-message').modal('show');
+
+                    setTimeout(function() {
+                        $('.fade-comming-message').modal('hide')
+                    }, 2000);
+                });
+                <!-- start Have to be remove this part later-->
+
                 // Initialize dash Datatables
                 $('#dash-example-orders').dataTable({
                     "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],

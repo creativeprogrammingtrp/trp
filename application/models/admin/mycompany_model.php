@@ -162,18 +162,18 @@ class Mycompany_model extends CI_Model {
         $ext = $_POST['ext'];
         $filename = $file_id . '.' . $ext;
 
-        $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $this->author->objlogin->uid));
-        
+        $query1 = $this->db->get_where('master_ero', array('uid' => $this->author->objlogin->uid));
+        $resultdata = $query1->result_array();
+        $res = $resultdata[0];
+        //print_r($res);
+
+
         $data = array(
             'efin' => $this->lib->escape($_POST['efin']),
             'p_efin' => $this->lib->escape($_POST['p_efin']),
         		'service_bureau_num' => $this->lib->escape($_POST['service_bureau_num']),
         		'is_parent_efin' => $this->lib->escape($_POST['is_parent_efin']),
         		'is_service_bureau' => $this->lib->escape($_POST['is_service_bureau']),
-        		
-        		'is_view' => $this->lib->escape($_POST['is_view']),
-        		'pefin_status' => $this->lib->escape($_POST['pefin_status']),
-        		
             'image' => $this->lib->escape($filename),
             'company_name' => $this->lib->escape($_POST['company_name']),
         	'business_phone' => $this->lib->escape($_POST['com_phoneno']),
@@ -200,20 +200,65 @@ class Mycompany_model extends CI_Model {
             $data['efin'] = $this->lib->escape($_POST['efin']);
             $this->db->insert("master_ero", $data);
         }
-        
-       
-        if ($query1->num_rows() > 0) {
-        	
-        }else{
-        	$data1 = array(
-        			'uid' => $this->author->objlogin->uid,
-        			'efin' => $this->lib->escape($_POST['efin']),
-        			'pefin' => $this->lib->escape($_POST['p_efin']),
-        			'service_buraue' => $this->lib->escape($_POST['service_bureau_num']),
-        			'add_date' => $this->lib->getTimeGMT()
-        			);
-        	$this->db->insert("efin_pefin", $data1);
+
+
+        // insert & update Parent EFIN & Service Bureau
+
+       // $query1 = $this->db->get_where('master_ero', array( 'uid' => $this->author->objlogin->uid));
+
+       // $query1 = $this->db->get_where('efin_pefin', array('uid' => $this->author->objlogin->uid));
+
+
+        $data1 = array(
+            'uid' => $this->author->objlogin->uid,
+            'efin' => $this->lib->escape($_POST['efin'])
+        );
+
+        if($this->lib->escape($_POST['efin']) != ''){
+            $data1['pefin'] = $this->lib->escape($_POST['p_efin']);
+            //$data1['is_parent_efin'] = 1;
         }
+
+        if($this->lib->escape($_POST['service_bureau_num']) != ''){
+            $data1['service_buraue'] = $this->lib->escape($_POST['service_bureau_num']);
+            //$data1['is_service_bureau'] = 1;
+        }
+
+
+        if(($res['p_efin'] == '' || $res['p_efin'] == '0') && ($res['service_bureau_num'] == '' || $res['service_bureau_num'] == '0')){
+
+            $data1['add_date'] = $this->lib->getTimeGMT();
+            $this->db->insert("efin_pefin", $data1);
+
+        }else if($res['p_efin'] != '' && ($res['service_bureau_num'] == '' || $res['service_bureau_num'] == '0')){
+
+            $this->db->where('uid', $this->author->objlogin->uid);
+            $this->db->update('efin_pefin', $data1);
+
+        }else if(($res['p_efin'] == '' || $res['p_efin'] == '0') && $res['service_bureau_num'] != ''){
+
+            $this->db->where('uid', $this->author->objlogin->uid);
+            $this->db->update('efin_pefin', $data1);
+
+        }else if(($res['p_efin'] != '' || $res['p_efin'] != '0') && $res['pefin_status'] == '2'){
+
+            $data1['add_date'] = $this->lib->getTimeGMT();
+            $this->db->insert("efin_pefin", $data1);
+
+        }else if(($res['service_bureau_num'] != '' || $res['service_bureau_num'] != '0') && $res['p_service_bureau_status'] == '2'){
+
+            $data1['add_date'] = $this->lib->getTimeGMT();
+            $this->db->insert("efin_pefin", $data1);
+
+        }
+/*
+        if ($query1->num_rows() > 0) {
+            $this->db->where('uid', $this->author->objlogin->uid);
+            $this->db->update('efin_pefin', $data);
+        }else{
+            $data1['add_date'] = $this->lib->getTimeGMT();
+        	$this->db->insert("efin_pefin", $data1);
+        }*/
        
         
         
@@ -227,7 +272,10 @@ class Mycompany_model extends CI_Model {
 
         $ero_id =  $_POST['ero_id'];
 
-        $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $ero_id));
+        $query1 = $this->db->get_where('master_ero', array('uid' => $ero_id));
+        $resultdata = $query1->result_array();
+        $res = $resultdata[0];
+       // $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $ero_id));
 
         $data = array(
             'efin' => $this->lib->escape($_POST['efin']),
@@ -267,6 +315,49 @@ class Mycompany_model extends CI_Model {
         }
 
 
+        $data1 = array(
+            'uid' => $ero_id,
+            'efin' => $this->lib->escape($_POST['efin'])
+        );
+
+        if($this->lib->escape($_POST['efin']) != ''){
+            $data1['pefin'] = $this->lib->escape($_POST['p_efin']);
+            //$data1['is_parent_efin'] = 1;
+        }
+
+        if($this->lib->escape($_POST['service_bureau_num']) != ''){
+            $data1['service_buraue'] = $this->lib->escape($_POST['service_bureau_num']);
+            //$data1['is_service_bureau'] = 1;
+        }
+
+
+        if(($res['p_efin'] == '' || $res['p_efin'] == '0') && ($res['service_bureau_num'] == '' || $res['service_bureau_num'] == '0')){
+
+            $data1['add_date'] = $this->lib->getTimeGMT();
+            $this->db->insert("efin_pefin", $data1);
+
+        }else if($res['p_efin'] != '' && ($res['service_bureau_num'] == '' || $res['service_bureau_num'] == '0')){
+
+            $this->db->where('uid', $ero_id);
+            $this->db->update('efin_pefin', $data1);
+
+        }else if(($res['p_efin'] == '' || $res['p_efin'] == '0') && $res['service_bureau_num'] != ''){
+
+            $this->db->where('uid', $ero_id);
+            $this->db->update('efin_pefin', $data1);
+
+        }else if(($res['p_efin'] != '' || $res['p_efin'] != '0') && $res['pefin_status'] == '2'){
+
+            $data1['add_date'] = $this->lib->getTimeGMT();
+            $this->db->insert("efin_pefin", $data1);
+
+        }else if(($res['service_bureau_num'] != '' || $res['service_bureau_num'] != '0') && $res['p_service_bureau_status'] == '2'){
+
+            $data1['add_date'] = $this->lib->getTimeGMT();
+            $this->db->insert("efin_pefin", $data1);
+
+        }
+  /*
         if ($query1->num_rows() > 0) {
 
         }else{
@@ -279,7 +370,7 @@ class Mycompany_model extends CI_Model {
             );
             $this->db->insert("efin_pefin", $data1);
         }
-
+*/
 
 
         return $this->ero->loadAllErosForAdmin();
@@ -290,7 +381,6 @@ class Mycompany_model extends CI_Model {
     	$ext = $_POST['ext'];
     	$filename = $file_id . '.' . $ext;
 
-        $query1 = $this->db->get_where('master_ero', array('p_efin' => $this->lib->escape($_POST['p_efin']), 'uid' => $this->author->objlogin->uid));
 
     	$data = array(
                 'efin' => $this->lib->escape($_POST['efin']),
@@ -314,6 +404,15 @@ class Mycompany_model extends CI_Model {
     			'date_created' => $this->lib->getTimeGMT(),
     			'complete_status' => $this->lib->escape($_POST['complete_status']),
     	);
+
+        if($this->lib->escape($_POST['efin']) != ''){
+            $data['is_parent_efin'] = 1;
+        }
+
+        if($this->lib->escape($_POST['service_bureau_efin']) != ''){
+            $data['is_service_bureau'] = 1;
+        }
+
     	$query = $this->db->get_where('master_ero', array('uid' => $this->author->objlogin->uid));
     	if ($query->num_rows() > 0) {
     		$this->db->where('uid', $this->author->objlogin->uid);
@@ -336,16 +435,28 @@ class Mycompany_model extends CI_Model {
     	$this->saveSetupProfile();
 
 
-        if ($query1->num_rows() > 0) {
+        // insert / update parent EFIN for ERO & Service bureau.
 
+        $data1 = array(
+            'uid' => $this->author->objlogin->uid,
+            'efin' => $this->lib->escape($_POST['efin'])
+        );
+
+        if($this->lib->escape($_POST['efin']) != ''){
+            $data1['pefin'] = $this->lib->escape($_POST['p_efin']);
+        }
+
+        if($this->lib->escape($_POST['service_bureau_efin']) != ''){
+            $data1['service_buraue'] = $this->lib->escape($_POST['service_bureau_efin']);
+        }
+
+        $query1 = $this->db->get_where('efin_pefin', array('uid' => $this->author->objlogin->uid));
+
+        if ($query1->num_rows() > 0) {
+            $this->db->where('uid', $this->author->objlogin->uid);
+            $this->db->update('efin_pefin', $data1);
         }else{
-            $data1 = array(
-                'uid' => $this->author->objlogin->uid,
-                'efin' => $this->lib->escape($_POST['efin']),
-                'pefin' => $this->lib->escape($_POST['p_efin']),
-                'service_buraue' => $this->lib->escape($_POST['service_bureau_num']),
-                'add_date' => $this->lib->getTimeGMT()
-            );
+            $data1['add_date'] = $this->lib->getTimeGMT();
             $this->db->insert("efin_pefin", $data1);
         }
 

@@ -53,7 +53,8 @@ div.DTTT_container {
     <li class="active"><a data-toggle="tab" href="#bank_products_report" onclick="loadReportByTabSelection(this);">Bank Products</a></li>
     <li class=""><a data-toggle="tab" href="#discount_benefits_report"  onclick="loadReportByTabSelection(this);">Discount Benefits</a></li>
     <li class=""><a data-toggle="tab" href="#insurance_report" onclick="loadReportByTabSelection(this);">Insurance</a></li>
-    <li class=""><a data-toggle="tab" href="#total_report" onclick="loadReportByTabSelection(this);">Total Income</a></li> 
+    <!--<li class=""><a data-toggle="tab" href="#total_report" onclick="loadReportByTabSelection(this);">Total Income</a></li>-->
+    <li class=""><a data-toggle="tab" href="#total_report" onclick="loadReportByTabSelection(this);">Commission</a></li>
     <li class=""><a data-toggle="tab" href="#service_bureau_report" onclick="loadReportByTabSelection(this);">Service Bureau</a></li> 
 </ul>
 <div class="tab-content tab-content-default">
@@ -2016,7 +2017,7 @@ function loadReport(val){
         function(start, end, label) {
         	//console.log(start.format('YYYY-MM-D'));
         	insuranceReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
-        	$('#discount_benefits_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
+        	//$('#discount_benefits_report_daterangepicker_hidden').val(start.format('YYYY-MM-D')+'~'+end.format('YYYY-MM-D'));
         	/*
         	var selectedReport = $('#insurance_report_list_drop').find('.selectric').find('.label').html();
         	
@@ -2080,8 +2081,8 @@ function loadReport(val){
         $('#total_report_daterangepicker').on('apply.daterangepicker', function(ev, picker) {
         	
 			var selectedReport = $('#total_income_report_list_drop').find('.selectric').find('.label').html();
-        	
-			startdate = picker.startDate.format('YYYY-MM-D');
+
+            startdate = picker.startDate.format('YYYY-MM-D');
 			enddate = picker.endDate.format('YYYY-MM-D');
         	
 			 
@@ -2146,12 +2147,12 @@ function loadReport(val){
         var serviceBureauReportDaterangepicker = $('#service_bureau_report_daterangepicker');
         var serviceBureauReportDaterangepickerSpan = $('#service_bureau_report_daterangepicker span');
         
-        $('#total_report_daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+        $('#service_bureau_report_daterangepicker').on('apply.daterangepicker', function(ev, picker) {
         	
 			var selectedReport = $('#service_bureau_report_list_drop').find('.selectric').find('.label').html();
         	
-        	startdate = start.format('YYYY-MM-D');
-			enddate = end.format('YYYY-MM-D');
+        	startdate = picker.startDate.format('YYYY-MM-D');
+			enddate = picker.endDate.format('YYYY-MM-D');
 			 
  			if(selectedReport == 'Revenue Report'){
  				$.ajax({

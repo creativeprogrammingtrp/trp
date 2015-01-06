@@ -132,7 +132,7 @@ class System{
 		else echo $this->content_site;
 	}
 	function check_ero_done(){
-		$result = $this->CI->database->db_result("SELECT master_ero.uid FROM master_ero join users on master_ero.uid = users.uid WHERE master_ero.uid = ".$this->CI->author->objlogin->uid." & master_ero.efin <> '' AND master_ero.company_name <> '' AND master_ero.business_addr_1 <> '' AND master_ero.business_zip <> '' AND master_ero.business_city <> '' AND users.firstname <> '' AND users.lastname <> '' AND users.mail <> ''");
+		$result = $this->CI->database->db_result("SELECT master_ero.uid FROM master_ero join users on master_ero.uid = users.uid WHERE master_ero.uid = ".$this->CI->author->objlogin->uid." AND master_ero.efin <> '' AND master_ero.company_name <> '' AND master_ero.business_addr_1 <> '' AND master_ero.business_zip <> '' AND master_ero.business_city <> '' AND users.firstname <> '' AND users.lastname <> '' AND users.mail <> '' AND master_ero.complete_status = '1' ");
 		if($result == NULL || $result == "") return 0;
 	 	else return 1;
 	}
@@ -140,7 +140,7 @@ class System{
                 $sql = $this->CI->db->query("SELECT * FROM master_ero join users on master_ero.uid = users.uid WHERE master_ero.uid = ".$this->CI->author->objlogin->uid." AND master_ero.complete_status = '1' ");
                 if($sql ->num_rows() > 0){
                     $res = $sql ->row_array();
-                    if($res['data'] ==  1){
+                    if($res['complete_status'] ==  1){
                         $this->company_setting = true;
                     }
                     $this->company_info = true;
@@ -153,10 +153,10 @@ class System{
     		$res = $sql ->row_array();
     		
     		$this->compiliance_test_setting = true;
-    	}
-    }    
-    
-    
+    	}else{
+
+        }
+    }
     
     function checkOrderSuppliesSetting(){
     	$sql = $this->CI->db->query("SELECT * FROM orders where uid = ".$this->CI->author->objlogin->uid." AND order_from = 1");
@@ -232,7 +232,6 @@ AND is_employee = 0");
 			}
 		}
 		
-		
 		if($this->CI->author->objlogin->role['rid'] == 5)
 			$selectedOffice = $res1[0]['company_name']; 
 		else 
@@ -288,7 +287,112 @@ AND is_employee = 0");
 			return  array('officeCombo' => $htm, 'selectedOffice' => $selectedOffice, 'officeComboWithAll' => $htmc,);
 		//}
 	}
-	
+
+    function getSBOfficeInfo(){
+        $htm = '';
+        $htmc = '';
+        $check = false;
+
+        if($this->CI->author->objlogin->role['rid'] == 5){
+            $sql = $this->CI->db->query("SELECT users.uid , master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role, efin_pefin.efin as efin, efin_pefin.pefin as pefin, efin_pefin.status as efin_status
+FROM users, efin_pefin, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND efin_pefin.uid = users.uid
+AND (users.status != 3 OR users.status != 5)
+AND efin_pefin.p_service_bureau_status = 1
+AND users_roles.rid = 5
+AND efin_pefin.pefin =".$this->CI->author->objlogin->efin."");
+
+            if ($sql->num_rows() > 0) {
+                $res = $sql->result_array();
+                $check = true;
+            }
+
+            $sql1 = $this->CI->db->query("SELECT users.uid , master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role
+FROM users, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND (users.status != 3 OR users.status != 5)
+AND users_roles.rid = 5
+AND users.efin =".$this->CI->author->objlogin->efin."");
+            //echo $sql1->num_rows(); //$this->CI->author->objlogin->efin;
+            //exit;
+            if ($sql1->num_rows() > 0) {
+                $res1 = $sql1->result_array();
+            }
+        }else{
+            $sql1 = $this->CI->db->query("SELECT users.uid , master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role
+FROM users, roles, users_roles, master_ero
+ Where users_roles.rid = roles.rid
+AND users.uid = users_roles.uid
+AND users.uid = master_ero.uid
+AND (users.status != 3 OR users.status != 5)
+AND users_roles.rid = 5
+AND is_employee = 0");
+            if ($sql1->num_rows() > 0) {
+                $res1 = $sql1->result_array();
+            }
+        }
+
+        if($this->CI->author->objlogin->role['rid'] == 5)
+            $selectedOffice = $res1[0]['company_name'];
+        else
+            $selectedOffice = 'Company Name';//$_POST['office_list'];
+
+        if ($check == true) {
+            $result = array_merge($res1, $res);
+        } else {
+            $result = $res1;
+        }
+        //return $result;
+
+
+        //if($result->num_rows() > 0){
+        //$res = $result->result_array();
+        $htm .='<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">';
+        foreach ($result as $resul){
+            //<?php if ($row[month] == 'January') echo ' selected="selected"';
+            $htm .= '<option value="'.$resul["uid"].'"';
+            if(isset($_POST['office_list'])){
+                if($resul["uid"] == $_POST['office_list']){
+                    $htm .= 'selected="selected"';
+                }
+            }
+            $htm .= '>'.$resul["company_name"].'</option>';
+        }
+        $htm .= '</select>';
+
+        // for customer page
+
+        $htmc .='<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">';
+        $htmc .='<option value="All"';
+        if(isset($_POST['office_list'])){
+            if( $_POST['office_list'] == 'All'){
+                $htmc .= 'selected="selected"';
+            }
+        }
+        $htmc .='>All</option>';
+        foreach ($result as $resul1){
+            //<?php if ($row[month] == 'January') echo ' selected="selected"';
+
+
+            $htmc .= '<option value="'.$resul1["uid"].'"';
+
+            if(isset($_POST['office_list'])){
+                if($resul1["uid"] == $_POST['office_list']){
+                    $htmc .= 'selected="selected"';
+                }
+            }
+            $htmc .= '>'.$resul1["company_name"].'</option>';
+        }
+        $htmc .= '</select>';
+        return  array('officeCombo' => $htm, 'selectedOffice' => $selectedOffice, 'officeComboWithAll' => $htmc,);
+        //}
+    }
+
 	function parse_data(){
 		$data = array();
 		$check_done = $this->check_ero_done();
@@ -338,10 +442,12 @@ AND is_employee = 0");
                 $data['user_avatar'] = $this->getAvatarByUserId();
 				$data['ukey'] = $this ->CI ->author ->objlogin ->ukey;
 				
-				if($this->company_info == 1 && $this->company_setting == 1 && $this->compiliance_test_setting == 1 && $this->order_supplies_setting == 1){
+				if($this->company_info == 1 && $this->company_setting == 1 && $this->compiliance_test_setting == 1 && $this->order_supplies_setting == 1 && $check_done == 1){
 					$this->client_center_top =  $this->CI->parser->parse($this->theme.'/templates/client_center_top.htm', $data,true);
+
 				}else{
-                     ($this->CI->author->objlogin->role['rid'] == 5 && $check_done == 0) ? $this->message = $this->CI->parser->parse($this->theme.'/templates/message.htm', $data, true) : "";
+                   // $this->message = $this->CI->parser->parse($this->theme.'/templates/message.htm', $data, true);
+                     ($this->CI->author->objlogin->role['rid'] == 5) ? $this->message = $this->CI->parser->parse($this->theme.'/templates/message.htm', $data, true) : "";
 				}
 				
 				
@@ -369,9 +475,9 @@ AND is_employee = 0");
 		);
 		$this->timeclock = $arr_time;
 	}	
-        //insert code here 
+    //insert code here
 
-        function load_categories_navbar2($class="navbar_item",$icon="icon-caret-down",$wrap="div",$type=1)
+    function load_categories_navbar2($class="navbar_item",$icon="icon-caret-down",$wrap="div",$type=1)
 	{
            
             $check_auto_deli = false;
@@ -465,6 +571,7 @@ AND is_employee = 0");
 		}
 		$this->content_site = str_replace("download.php", $this->URL_server__()."download.php", $this->content_site);	
 	}
+
 	// base url
 	function URL_server__() {
 		$pageURL = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
@@ -475,6 +582,7 @@ AND is_employee = 0");
 		}
 		return $pageURL;
 	}
+
 	// clean Url
 	function cleanUrl(){
 		$st = $this->URL_server__();
@@ -483,6 +591,7 @@ AND is_employee = 0");
 		}
 		return $st;
 	}
+
 	// goto page
 	function URLgoto($page){
 		if(isset($page) && $page != ''){

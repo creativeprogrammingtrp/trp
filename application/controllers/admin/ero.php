@@ -173,6 +173,12 @@ class Ero extends CI_Controller{
             echo json_encode($this->ero->saveChieldEroStatusChangeInfo());
             exit;
         }
+
+        if( isset($_POST['load_child_sb_status']) && !empty($_POST['load_child_sb_status']) && $_POST['load_child_sb_status'] == 'yes' ){
+            echo json_encode($this->ero->saveChieldSBStatusChangeInfo());
+            exit;
+        }
+
     }
     
     

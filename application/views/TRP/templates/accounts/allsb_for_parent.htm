@@ -19,7 +19,6 @@
                     <!-- <li {style} ><a href="#service" onclick="showServicesEro()">Services</a></li> -->
                     <li class=""><a href="#payment-info">Banking Info</a></li>
                     <li class=""><a href="#banking">Fees Info</a></li>
-                    <li class=""><a href="#check-assigned">Check Assigned</a></li>
                 </ul>
 
                 <div class="row" id="body_allero">
@@ -57,7 +56,7 @@
 
                                     <div class="form-group">
                                         <div class="col-md-12 choose_file">         
-                                            <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_logo" value="" >Upload Logo</button>
+                                           <!-- <button type="submit" class="btn btn-success col-md-12 " name="upload " id="upload_logo" value="" >Upload Logo</button>-->&nbsp;
                                         </div>
                                     </div>
                                          
@@ -312,7 +311,7 @@
 </section>
 </div>
 
-                                        
+             <!--
               <div style="padding-left: 18px" id="companySaveBtn" class="col-md-12">
 		          <button type="submit" id="save" class="btn btn-success">  &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
 		      </div>
@@ -321,7 +320,7 @@
 		          <button type="submit" class=" btn btn-success">
 		                     <i class="glyphicon-refresh"></i> Saving... 
 		                </button>
-		      </div>
+		      </div>-->
                                             
                                     </div> <!--  End of  -->
 
@@ -427,23 +426,14 @@
                                     </div>
                                     
                                     
-                                                <div class="col-md-12" style="padding-left: 30px;  padding-bottom:20px;">
+                                               <div class="col-md-12" style="padding-left: 30px;  padding-bottom:20px;">
+                                                   <!--
+                                                    <button type="submit" id="save_p" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+                                                       <button type="submit" class=" btn btn-success" style="display:none;" id="profileSaveBtnLoad"> <i class="glyphicon-refresh"></i> Saving... </button>
+                                                       <button data-target=".bs-modal-sm" data-toggle="modal" type="button" id="reset_p1" class="btn btn-info"> &nbsp; &nbsp; <i class="icon-lock"></i> &nbsp;  Change Password &nbsp; &nbsp; </button>
+                                                   -->
+                                                                                            </div>
 
- <button type="submit" id="save_p" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
-	<button type="submit" class=" btn btn-success" style="display:none;" id="profileSaveBtnLoad"> <i class="glyphicon-refresh"></i> Saving... </button>
-	<button data-target=".bs-modal-sm" data-toggle="modal" type="button" id="reset_p1" class="btn btn-info"> &nbsp; &nbsp; <i class="icon-lock"></i> &nbsp;  Change Password &nbsp; &nbsp; </button>
-	
-
-                                                    <!-- <input type="submit" value="Save" id="save_p"
-                                                           class="btn btn-success ui-wizard-content ui-formwizard-button">
-                                                    <input type="submit" value="Cancel" id="cancel"
-                                                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
-                                                           
-                                                    <input type="button" value="Reset Password" id="reset_p" class="btn btn-info ui-wizard-content ui-formwizard-button">
-                                                     -->
-                                                
-                                         </div>
-                                            
                                             
                                 </form> 
 
@@ -503,10 +493,9 @@
                        <div id="user-account" class="tab-pane col-md-12" style="padding-bottom:10px;">
                               <form novalidate="novalidate" id="advanced-wizard" method="post" class="form-horizontal remove-margin ui-formwizard">
                                 <div class="form-group">
-                                    <div class="col-md-11" style="margin-left: 64px; padding-top: 19px;">
-                                        <!-- <input type="button" style="float:right" class="btn btn-success ui-wizard-content ui-formwizard-button" id="add_new_user" value="Add User"> -->
+                                    <!--<div class="col-md-11" style="margin-left: 64px; padding-top: 19px;">
                                         <button class="btn btn-lg btn-success" style="margin-right: 0px; display: block; float: right;" id="add_new_user" type="button"> &nbsp; &nbsp;  <i class="icon-plus-sign"></i> &nbsp; Add Employee &nbsp; &nbsp; </button>                      
-                                    </div>
+                                    </div>-->
                                 </div>
                                 
                                 <div style="margin: 0 0 0 13px; padding-top: 0px; width: 98%;" class="col-md-12">
@@ -601,22 +590,15 @@
             
                 <div class="col-md-12" style="padding-left:25px; padding-bottom:20px;">
 
-                    <button type="submit" id="save_payment" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+                    <!--<button type="submit" id="save_payment" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>-->
 
-<!-- 
-                    <input type="submit" value="Save" id="save_payment"
-                           class="btn btn-success ui-wizard-content ui-formwizard-button">
-                    <input type="button" value="Cancel" id="cancel1"
-                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
-                            -->
+
                 </div>
             
 	
 </form>
                         	
                         </div>
-
-
                         
                         <div id="banking" class="tab-pane">
                         <form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="bankingFeesForm12" novalidate="novalidate">
@@ -681,7 +663,7 @@
 
 
 	</div>
-
+<!--
     <div style="margin: 0 0 0 13px; padding-top: 25px; width: 98%;" class="col-md-12">
         <section class="panel">
             <header class="panel-heading">
@@ -695,7 +677,15 @@
                     <div class="step ui-formwizard-content" id="" style="display: block;">
 
 
-
+                            <div class="form-group1 col-md-3">
+                                <label for="tax_preparation_commission1_type" class="control-label col-md-12">Commission Type <i data-original-title="Tax Preparation Commission Type" data-toggle="tooltip" class="icon-question4 toottip_product"></i></label>
+                                <div class="col-md-12 nopadding">
+                                    <select class="form-control ui-wizard-content" name="tax_preparation_commission1_type" id="tax_preparation_commission1_type">
+                                        <option value="1">Fixed Amount</option>
+                                        <option value="2">Percentage</option>
+                                    </select>
+                                </div>
+                           </div>
 
                         <div class="col-md-3  form-group1">
                             <label for="add_on_commission1" class="control-label col-md-12">Add On Commission <i data-original-title="Add On Commission for Scale Financial" data-toggle="tooltip" class="icon-question4 toottip_product "></i></label>
@@ -722,15 +712,7 @@
                         </div>
 
 
-                        <div class="form-group1 col-md-3">
-                            <label for="tax_preparation_commission1_type" class="control-label col-md-12">Tax Commission Type <i data-original-title="Tax Preparation Commission Type" data-toggle="tooltip" class="icon-question4 toottip_product"></i></label>
-                            <div class="col-md-12 nopadding">
-                                <select class="form-control ui-wizard-content" name="tax_preparation_commission1_type" id="tax_preparation_commission1_type">
-                                    <option value="1">Fixed Amount</option>
-                                    <option value="2">Percentage</option>
-                                </select>
-                            </div>
-                        </div>
+
 
 
 
@@ -743,91 +725,18 @@
 
 
     </div>
+                            -->
                 <div class="col-md-12 " style="padding:20px;">
 
-                    <button type="submit" id="save_bank" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
+    <!--                <button type="submit" id="save_bank" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>-->
 
-<!-- 
-                    <input type="submit" value="Save" id="save_bank"
-                           class="btn btn-success ui-wizard-content ui-formwizard-button">
-                    <input type="button" value="Cancel" id="cancel3"
-                           class="btn btn-danger ui-wizard-content ui-formwizard-button">
-                            -->
                 </div>
             
             
 </form>
                         
                         </div>
-
-                        <div id="check-assigned" class="tab-pane">
-                            <form class="form-horizontal form-box remove-margin ui-formwizard"  method="post" id="checkAssignForm" novalidate="novalidate">
-                                <!-- Form Header -->
-                                <!-- Form Content -->
-
-                                <div style="margin: 0 0 0 13px; padding-top: 25px;" class="col-md-5">
-                                    <section class="panel">
-                                        <header class="panel-heading">
-                                            <span style="" class="title">Check Number Assigned</span>
-                                            <span style="" class="tools pull-right icons"><i class="glyphicon-bank"></i></span>
-                                        </header>
-                                        <div class="panel-body">
-
-                                            <div class="form-box-content">
-                                                <!-- First Step -->
-                                                <div class="step ui-formwizard-content" id="advanced-first1" style="display: block;">
-
-                                                    <div class="form-group">
-                                                        <label for="bank_name1" class="control-label col-md-12">Select Check Range<span class="required1">*</span></label>
-                                                        <div class="col-md-12 nopadding">
-                                                            <select class="form-control" name="check_list" id="check_list">
-                                                                {checkList}
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-
-                                <div style="padding-top: 25px;" class="col-md-1">&nbsp;
-                                </div>
-
-                                <div style="padding-top: 25px; width: 46%" class="col-md-6">
-                                    <section class="panel">
-                                        <header class="panel-heading">
-                                            <span style="" class="title">Assigned Check Number</span>
-                                            <span style="" class="tools pull-right icons"><i class="glyphicon-bank"></i></span>
-                                        </header>
-                                        <div class="panel-body" id="assign_check_numbers_list">
-
-                                        </div>
-                                    </section>
-                                </div>
-
-
-                                <div style="clear: both;"></div>
-
-                                <div class="col-md-12" style="padding-left:25px; padding-bottom:20px;">
-
-                                    <button type="submit" id="save_assign_Check" class="btn btn-success"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Save &nbsp; &nbsp; </button>
-
-                                    <!--
-                                                        <input type="submit" value="Save" id="save_payment"
-                                                               class="btn btn-success ui-wizard-content ui-formwizard-button">
-                                                        <input type="button" value="Cancel" id="cancel1"
-                                                               class="btn btn-danger ui-wizard-content ui-formwizard-button">
-                                                                -->
-                                </div>
-
-
-                            </form>
-
-                        </div>
-
+                        
                        <input type="hidden" name="uid_master" value="" id="uid_master" > 
                     </div>
 
@@ -903,6 +812,9 @@
 
                             <div class="form-group form-actions div_group">
                                 <div class="col-md-10 col-md-offset-2">
+
+
+
                                     <div class="form-group form-actions button_group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <button data-target=".bs-modal-sm" data-toggle="modal" type="submit" id="save_service"  class="btn btn-success"><i class="icon-ok"></i> Save</button>
@@ -921,7 +833,20 @@
 </div>
 <!--end -->
 
-
+<div class="modal fade_message fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <h2>Status Changed Successfully.</h2>
+                <!--<button type="button" id="fade_message_ok" class="btn btn-success" style="display: inline-block;"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Ok &nbsp; &nbsp; </button>-->
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--modal tab user account -->
 
@@ -1014,22 +939,34 @@
             	<form class="form-horizontal form-box remove-margin ui-formwizard" method="post" id="advanced-wizard" novalidate="novalidate">
                     <div class="form-box-content">   
                         <div class="step ui-formwizard-content">
-                            
+                            <!--
                              <div class="form-group">
-                                <label for="role" class="control-label col-md-4">Status</label>
+                                <label for="ero_state" class="control-label col-md-5">Parent EFIN # Status</label>
                                 <div class="col-md-6">
                                     <select id="ero_state" name="ero_state" class="form-control">
-                                        <option value="1">Pending Approval</option>
-                                        <option value="2">Approve</option>
-                                        <option value="3">Reject</option>
-                                        <option value="5">Deactivate</option>
+                                        <option value=""></option>
+                                        <option value="1">Approve</option>
+                                        <option value="2">Reject</option>
                                     </select>
                                 </div>
                             </div>
+-->
+                            <div class="form-group">
+                                <label for="ero_sb_state" class="control-label col-md-5">Service Bureau EFIN # Status</label>
+                                <div class="col-md-6">
+                                    <select id="ero_sb_state" name="ero_sb_state" class="form-control">
+                                        <option value=""></option>
+                                        <option value="1">Approve</option>
+                                        <option value="2">Reject</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <div class="form-group form-actions">
                                 <div class="col-md-7"></div>
                                 <div class="col-md-offset-2">
-                                    <input type="button" value="Save" id="save_status"
+                                    <input type="button" value="Save" id="save_parent_sb_status"
                                            class="btn btn-success ui-wizard-content ui-formwizard-button">
                                     <input type="button" value="Cancel" id="cancel_status"
                                            class="btn btn-danger ui-wizard-content ui-formwizard-button">
@@ -1044,20 +981,6 @@
     </div>
 </div>
 
-
-<div class="modal fade-success fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                <h4 class="modal-title">Message</h4>
-            </div>
-            <div class="modal-body">
-                <h2>Save successfully.</h2>
-            </div>
-        </div>
-    </div>
-</div>
 <!--end -->
 
 
@@ -1087,7 +1010,7 @@ function check_is_nan(value){
         var fileID = '';
 	var extention = '';
         
-        var heads = ["EFIN #","Name","Company","User Name","Email Address","Contact #","Created Date","Status","Action"];
+        var heads = ["EFIN #","Name","Company","Email Address","Contact #","Created Date","Status","Action"];
 	function loadObject() {
 		{dataLoad}
                 loadClients();  
@@ -1105,7 +1028,7 @@ function check_is_nan(value){
                             htm +='<th class=" text-center">'+heads[5]+'</th>';
                           	htm +='<th class="hidden-xs hidden-sm">'+heads[6]+'</th>';                          	
                             htm +='<th class="hidden-xs hidden-sm">'+heads[7]+'</th>';
-                            htm +='<th class="hidden-xs hidden-sm">'+heads[8]+'</th>';
+                           // htm +='<th class="hidden-xs hidden-sm">'+heads[8]+'</th>';
                             
 
                             
@@ -1121,22 +1044,16 @@ function check_is_nan(value){
                    var status = '' ;
                    var uid = obj.uid;
                    var parent = 'body_allero';
-                   if(obj.status == 1){    
-                   status = '<span class="label label-warning">Pending Approval</span>';
+                   if(obj.p_service_bureau_status == 1){
+                   status = '<span class="label label-success">Approved</span>';
                    }else if(obj.status == 2){
-                        status = '<span class="label label-success">Approved</span>' ;
-                   }else if(obj.status == 4){
-                        status = '<span class="label label-warning">Pending Registration</span>' ;
-                   }else if(obj.status == 3){
-                        status = '<span class="label label-danger">Rejected</span>' ;
-                   }else if(obj.status == 5){
-                        status = '<span class="label label-default">Deactivated</span>' ; ""; 
+                        status = '<span class="label label-warning">Rejected</span>' ;
                    }
                      htm +='<tr>';
-                     htm +='<td><a href="javascript:void(0)" onclick="editEroFromAdmin(\''+uid+'\',\''+parent+'\')">'+obj.user_efin+'</a></td>';
+                     htm +='<td><a href="javascript:void(0)" onclick="editEro(\''+uid+'\',\''+parent+'\')">'+obj.user_efin+'</a></td>';
                      htm +='<td class="hidden-xs hidden-sm capitalize">'+obj.firstname+' '+obj.lastname+'</td>';
                      htm +='<td class="hidden-xs hidden-sm">'+obj.company_name+'</td>';
-                     htm +='<td class="hidden-xs hidden-sm">'+obj.username+'</td>';
+                     //htm +='<td class="hidden-xs hidden-sm">'+obj.username+'</td>';
                      htm +='<td><a href="javascript:void(0)">'+obj.mail+'</a></td>';
                      
                      //htm +='<td class="hidden-xs hidden-sm">'+obj.lastname+'</td>';
@@ -1146,9 +1063,9 @@ function check_is_nan(value){
                      
                      	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
                      //	htm +='<div class="btn-group">';
-                 		htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEroFromAdmin(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
-                  		htm += '&nbsp; <a class="btn btn-xs btn-success ChangeStatus" rel="tooltip" title="Change Status" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+efin+'"  onclick="changeEroStatus(\''+uid+'\',\''+obj.status+'\',\'modal_changeStatus\')" ><i class="glyphicon-settings"></i></a>';
-                  		htm += '&nbsp; <a class="btn btn-xs btn-info EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="showCustomerReportByEro(\''+obj.uid+'\')" >View All</a>';
+                 		//htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEro(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
+                  		htm += '&nbsp; <a class="btn btn-xs btn-success ChangeStatus" rel="tooltip" title="Change Status" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+efin+'"  onclick="changeEroStatus(\''+uid+'\',\''+obj.efin_status+'\',\'modal_changeStatus\',\''+obj.p_service_bureau_status+'\')" ><i class="glyphicon-settings"></i></a>';
+                  		htm += '&nbsp; <a class="btn btn-xs btn-info ViewApplication" rel="tooltip" title="View All Customer" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="View All Customer" id =""  onclick="showCustomerReportByEro(\''+obj.uid+'\')" >View All</a>';
                   		//htm += '<a class="btn btn-xs btn-danger reject" rel="tooltip" title="Reject" data-toggle="tooltip" href="#" data-original-title="Delete" id="'+efin+'" onclick="reject(\''+efin+'\')" ><i class="icon-unlock-alt"></i></a>';
                 	//htm += '</div>';
                  		
@@ -1169,14 +1086,14 @@ function check_is_nan(value){
 
 	}
         
-
+       
         
 	function showCustomerReportByEro(empId){
 		$.ajax({
 	                url: 'index.php/admin/customers/showCustomerReportByEro?ajax=1&empid='+empId+'',
 	                cache: false,
 	                success: function(message){
-	                        $("#all_ero").empty().append(message);
+	                        $("#all_sb").empty().append(message);
 	                        return false;
 	                }
 		});	
@@ -1290,7 +1207,7 @@ function check_is_nan(value){
          //clickSaveProfile('allero','body_allero');
          //ClickToEditPaymentInfo('allero','body_allero');
          //clickToEditBankInfo('allero','body_allero');
-         ClickToEditEroStatus('allero','modal_changeStatus');
+        ClickToEditChildSbStatus('allero','modal_changeStatus');
          same_check('body_allero');
          showEditEroModal('modal_tab_allero');
          uploadGallery();
@@ -1313,14 +1230,14 @@ function check_is_nan(value){
          	"oTableTools": {
      			//"aButtons": [ "xls", "pdf","copy", "print" ]
          		"aButtons": [
-    						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
-                     		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5],},
-                             { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ],},
+    						{ "sExtends":     "xls", "sButtonText": "Excel	", "sFileName": "recentApplication-*.pdf", "mColumns": [ 0, 1, 2, 3, 4, 5 ]},
+                     		{"sExtends":     "pdf", "sButtonText": "PDF", "sFileName": "recentApplication-*.pdf", "sPdfOrientation": "landscape", "mColumns": [ 0, 1, 2, 3, 4, 5]},
+                             { "sExtends":     "print", "sButtonText": "Print", "mColumns": [ 0, 1, 2, 3, 4, 5 ]},
                      		]
      		},
-     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [7] }],
+     		"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [6] }],
        		"bAutoWidth": false,
-       		"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+       		"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
          });
 		
 		$('#modal_list_user').dataTable( {
@@ -1550,12 +1467,7 @@ function check_is_nan(value){
 			     				$('#companySaveBtn').show();
 								$('#companySaveBtnLoad').hide();
 								$("#modal_editEro").modal('hide');
-
-                                $('.fade-success').modal('show');
-
-                                setTimeout(function() {
-                                    $('.fade-success').modal('hide')
-                                }, 2000);
+			                                    // $('.fade1').modal('show');
 			                                    // $("#one").trigger('click');
 			     			}
 			     			loadClients();
@@ -1602,6 +1514,11 @@ function check_is_nan(value){
             $("#modal_changeStatus").modal('hide');
         });
 
+        $("#fade_message_ok").click(function(){
+            $(".fade_message").modal('hide');
+        });
+
+
 			 	
 			 	$("#phone").mask("(999) 999-9999");
 				
@@ -1625,7 +1542,7 @@ function check_is_nan(value){
 			        rules: {
 			        	
 			        	first_name : { required: true },
-			        	last_name  : { required: true }
+			        	last_name  : { required: true },
 			            
 			        },
 			        messages: {
@@ -1655,12 +1572,6 @@ function check_is_nan(value){
 			    				$('#save_p').show();
 			    				$('#profileSaveBtnLoad').hide();
 			    				$("#modal_editEro").modal('hide');
-
-                                $('.fade-success').modal('show');
-
-                                setTimeout(function() {
-                                    $('.fade-success').modal('hide')
-                                }, 2000);
 			    								//$('#modal_success1').modal('show');
 			                                    //$("#two").trigger('click');
 			    			}
@@ -1758,12 +1669,6 @@ function check_is_nan(value){
             if (typeof(data) == 'object') {
                 dataClient = data;
                 $("#modal_adduser").modal('hide');
-
-                $('.fade-success').modal('show');
-
-                setTimeout(function() {
-                    $('.fade-success').modal('hide')
-                }, 2000);
                // $('#modal_success').modal('show');
                // $(":input:not(input[type='button'])").val("");
                 loadClients();
@@ -1854,12 +1759,6 @@ function check_is_nan(value){
     				$('#bankingSaveBtn').show();
     				$('#bankingSaveBtnLoad').hide();
     				$("#modal_editEro").modal('hide');
-
-                    $('.fade-success').modal('show');
-
-                    setTimeout(function() {
-                        $('.fade-success').modal('hide')
-                    }, 2000);
     							//$('#modal_success2').modal('show');
                                 //    $("#two").trigger('click');
     			}
@@ -1962,16 +1861,9 @@ function check_is_nan(value){
     				$('#feesSaveBtn').show();
     				$('#feesSaveBtnLoad').hide();
     				$("#modal_editEro").modal('hide');
-
-                    $('.fade-success').modal('show');
-
-                    setTimeout(function() {
-                        $('.fade-success').modal('hide')
-                    }, 2000);
     					//$('#modal_success3').modal('show');
                           //          $("#two").trigger('click');
     			}
-
     			loadClients();
     		}, "json");
 
@@ -1980,64 +1872,6 @@ function check_is_nan(value){
          
     });
 	/*End Form validation*/
-
-        /* Initialize Form Validation */
-        $('#checkAssignForm').validate({
-            errorClass: 'help-block',
-            errorElement: 'span',
-            errorPlacement: function(error, e) {
-                e.parents('.form-group > div').append(error);
-            },
-            highlight: function(e) {
-                $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
-                $(e).closest('.help-block').remove();
-            },
-            success: function(e) {
-                // You can remove the .addClass('has-success') part if you don't want the inputs to get green after success!
-                //  e.closest('.form-group1').removeClass('has-success has-error').addClass('has-success');
-                e.closest('.form-group').removeClass('has-success has-error');
-                e.closest('.help-block').remove();
-            },
-            rules: {
-
-                check_list : { required: true }
-            },
-            messages: {
-
-            },
-            submitHandler: function(form) {
-
-                $('#save_p').hide();
-                $('#profileSaveBtnLoad').show();
-
-                $.post("index.php/admin/settings/assignCheckNo", {
-                    load_p : 'yes',
-                    check_list : $("#check_list").val(),
-                    ero_id : $("#ero_id").val()
-                }, function(data) {
-                    if (typeof (data) == 'object') {
-                        dataClient = data;
-
-                        $('#save_p').show();
-                        $('#profileSaveBtnLoad').hide();
-                        $("#modal_editEro").modal('hide');
-
-                        $('.fade-success').modal('show');
-
-                        setTimeout(function() {
-                            $('.fade-success').modal('hide')
-                        }, 2000);
-                        //$('#modal_success1').modal('show');
-                        //$("#two").trigger('click');
-                    }
-                    loadClients();
-                }, "json");
-
-                return false;
-            }
-
-        });
-        /*End Form validation*/
 	
 	// End save payment info	
 			 	

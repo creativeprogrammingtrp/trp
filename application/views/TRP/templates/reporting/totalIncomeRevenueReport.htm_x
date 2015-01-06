@@ -22,10 +22,11 @@ function loadClients() {
     htm +='<thead>';
     	
     	htm +='<tr>';
-	    	htm +='<th class="text-center">Date</th>';
-			htm +='<th class="text-center">Tax Preparation</th>';
-			htm +='<th class="text-center">Add-On</th>';
-    		htm +='<th class="hidden-xs hidden-sm">Total</th>';
+	    	htm +='<th class="text-center">Date Created</th>';
+			htm +='<th class="text-center">Bank Products</th>';
+			htm +='<th class="text-center">Discount Benefits</th>';
+			htm +='<th  >Insurance</th>';
+    		htm +='<th class="hidden-xs hidden-sm">Total Revenue</th>';
     	htm +='</tr>';
    
     htm +='</thead>';
@@ -34,35 +35,45 @@ function loadClients() {
     htm +='<tbody>';
     var parent = 'body_insurance_info_edit';
     
-    var totalTaxFee = 0;
-    var totalAddOnFee = 0;
+    var totalBankProduct = 0;
+    var totalBenefits = 0;
     var totalTotalRevenue = 0;
     
     for(var i = 0 ; i < dataClientIR.length ; i++){
            var obj = dataClientIR[i];
            var uid = obj.uid;
+           
+            	
+           var appststus = '';
+           if(obj.package_status == '0')
+          	 appststus = 'Pending';
+           else if(obj.package_status == '1')
+          	 appststus = 'Active';
+           else if(obj.package_status == '2')
+          	 appststus = 'Canceled';
             
            var totalRevenue = 0;
-           //var benefitsT = check_is_nan(parseFloat(obj.totalBenefits));
+           var benefitsT = check_is_nan(parseFloat(obj.totalBenefits));
            
            var actualTax = check_is_nan(parseFloat(obj.actTaxFee));
            var actualAddOn = check_is_nan(parseFloat(obj.actAddonFee));
-           //var actualAuditGuard = check_is_nan(parseFloat(obj.actAuditGuardFee));
+           var actualAuditGuard = check_is_nan(parseFloat(obj.actAuditGuardFee));
            
-           //var bankProducts = actualTax+actualAddOn+actualAuditGuard;
+           var bankProducts = actualTax+actualAddOn+actualAuditGuard;
            
-           totalRevenue += (actualTax+actualAddOn);
-
-        totalTaxFee += actualTax;
-        totalAddOnFee += actualAddOn;
+           totalRevenue += (benefitsT+bankProducts);
+           
+           totalBankProduct += bankProducts;
+           totalBenefits += benefitsT;
            
            totalTotalRevenue +=totalRevenue;
            
             htm +='<tr>';
             
             htm +='<td class=" text-center border-right">'+obj.app_create_date+'</td>';
-        	htm +='<td class="text-center">'+toUSD(check_is_nan(actualTax))+'</td>';
-        	htm +='<td class="text-center ">'+toUSD(check_is_nan(actualAddOn))+'</td>';
+        	htm +='<td class="text-center">'+toUSD(check_is_nan(bankProducts))+'</td>';
+        	htm +='<td class="text-center ">'+toUSD(check_is_nan(benefitsT))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm  text-center"></td>';
         	
         	htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+toUSD(check_is_nan(totalRevenue))+'</td>';
              
@@ -73,8 +84,9 @@ function loadClients() {
    htm +='<tfoot>';
 	htm +='<tr>';
 		htm +='<td class=" text-center" >Total</td>';
-		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalTaxFee))+'</span></td>';
-		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalAddOnFee))+'</span></td>';
+		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalBankProduct))+'</span></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalBenefits))+'</span></td>';
+		htm +='<td class=" text-center" ><span></span></td>';
 		htm +='<td class="text-center">'+toUSD(check_is_nan(totalTotalRevenue))+'</td>';
 	htm +='</tr>  ';
 htm +='</tfoot>';

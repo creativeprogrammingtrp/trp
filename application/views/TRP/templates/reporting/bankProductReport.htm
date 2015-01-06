@@ -26,7 +26,7 @@ function loadClients() {
     		htm +='<th rowspan="2"  class="text-center">Actual Refund</th>';
     		htm +='<th colspan="3"  class="text-center">Fees</th>';
             htm +='<th rowspan="2" class="text-left">Refund to Customer</th>';
-            htm +='<th rowspan="2" class="text-left">Payment</th>';
+            htm +='<th rowspan="2" class="text-left">Commission</th>';
    
     	htm +='</tr>';
     	htm +='<tr>';
@@ -48,6 +48,7 @@ function loadClients() {
     var totalapp_actual_sb_fee = 0;  
     var totalactual_audit_guard_fee = 0;
     var totaldeposit_amount = 0;
+    var totalCommission_amount = 0;
     
     if(dataClient.length >0){
     for(var i = 0 ; i < dataClient.length ; i++){
@@ -56,15 +57,21 @@ function loadClients() {
            var count = 0;
            //var actuallTotal = 0;
            //var expetTotal = 0;
+
+        var totalCommission = parseFloat(obj.act_add_on_commission1)+parseFloat(obj.act_tax_pre_commission1);
+
           
            totalapp_net_refund_amt += parseFloat(obj.app_net_refund_amt);
            totalapp_actual_refund_amount += parseFloat(obj.app_actual_refund_amount);
           // totalaudit_guard_fee += parseFloat(obj.audit_guard_fee);
            totalapp_actual_tax_preparation_fee += parseFloat(obj.app_actual_tax_preparation_fee);
-           totalapp_actual_sb_fee += parseFloat(obj.app_actual_sb_fee);
+           totalapp_actual_sb_fee += parseFloat(obj.app_actual_add_on_fee);
            totalactual_audit_guard_fee += parseFloat(obj.actual_audit_guard_fee);
            totaldeposit_amount += parseFloat(obj.deposit_amount);
-            
+        totalCommission_amount += parseFloat(totalCommission);
+
+        var totalAddonFeeTaxCommFee = parseFloat(obj.app_actual_add_on_fee)+parseFloat(obj.app_actual_tax_preparation_fee);
+        var finalEROCommission = parseFloat(totalAddonFeeTaxCommFee) - parseFloat(totalCommission);
            
            var appststus = '';
            if(obj.payment_status == '0')
@@ -85,10 +92,10 @@ function loadClients() {
             htm +='<td class="text-center border-right">'+toUSD(check_is_nan(obj.deposit_amount))+'</td>';
 
         	htm +='<td class="text-center">'+toUSD(check_is_nan(obj.app_actual_tax_preparation_fee))+'</td>';
-        	htm +='<td class="hidden-xs hidden-sm text-center">'+toUSD(check_is_nan(obj.app_actual_sb_fee))+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm text-center">'+toUSD(check_is_nan(obj.app_actual_add_on_fee))+'</td>';
         	htm +='<td class="text-right text-center">'+toUSD(check_is_nan(obj.actual_audit_guard_fee))+'</td>';
             htm +='<td class="text-center border-right">'+toUSD(check_is_nan(obj.app_actual_refund_amount))+'</td>';
-        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+appststus+'</td>';
+        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+toUSD(check_is_nan(finalEROCommission))+'</td>';
              
             htm +='</tr>';
    } 
@@ -105,7 +112,7 @@ function loadClients() {
  
      	htm +='<td class="text-center">0.00</td>';
      	htm +='<td class="hidden-xs hidden-sm text-center">0.00</td>';
-     	htm +='<td class="hidden-xs hidden-sm border-left text-center "></td>';
+     	htm +='<td class="hidden-xs hidden-sm border-left text-center ">0.00</td>';
           
          htm +='</tr>';
     }
@@ -124,7 +131,7 @@ function loadClients() {
 		htm +='<td class="hidden-xs hidden-sm text-center"><span>'+toUSD(check_is_nan(totalapp_actual_sb_fee))+'</span></td>';
 		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalactual_audit_guard_fee))+'</span></td>';
         htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalapp_actual_refund_amount))+'</span></td>';
-		htm +='<td class="text-center"></td>';
+		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalCommission_amount))+'</span></td>';
 	htm +='</tr>  ';
 htm +='</tfoot>';
      

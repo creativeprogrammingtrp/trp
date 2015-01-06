@@ -1,0 +1,180 @@
+<style>
+    .table thead > tr > th{
+        padding-bottom:5px;
+        padding-top:5px;
+    }
+
+    div.DTTT_container {
+        float: right;
+        margin: 14px -18px 0 0;
+        padding-left: 0;
+        position: relative;
+    }
+    .daterangepicker td.active, .daterangepicker td.active:hover {
+        background-color: #357ebd;
+        border-color: #3071a9;
+        color: #fff;
+    }
+
+    .daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
+        background: none repeat scroll 0 0 #08c;
+        border: 1px solid #08c;
+        color: #fff;
+    }
+
+    .datapickerposition{
+        /*margin-left: 215px;*/
+        margin-top: 17px;
+        position: absolute;
+    }
+
+    .ffSelectWrapper{background:#fff;width:130px}
+</style>
+<div style="padding-top:29px;margin-bottom:29px; padding-left:24px;" class="col-md-6"><h2 style="margin:0px; color:#54565F;"><i class="icon-user"></i> &nbsp;{title_page}</h2></div>
+
+<div class="col-md-6" style="padding-top:43px;margin-bottom:30px; padding-left:24px;  padding-right:20px; text-align: right;  height: 75px;">
+    <form method="post" name="office" action="" {hidefromEmployee}s>
+    <!--<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">-->
+    {alloffice}
+    <!--</select>-->
+
+    </form>
+</div>
+
+<ul data-toggle="tabs" class="nav nav-tabs push">
+    <li class=""><a data-toggle="tab" href="#service_bureau_report" onclick="showServiceBureauRevenueReport();">Report</a></li>
+    <li class=""><a href="#all_sb" onclick="ChangeContent(35);">All Accounts</a></li>
+    <!--<li {style} class=""><a href="#pending_registration"  onclick="ChangeContent(13);">Pending Registration</a></li>
+    <li class=""><a href="#pending_approval"  onclick="ChangeContent(5);">Pending Approval</a></li>-->
+    
+<!--    <li class=""><a href="#approval" onclick="ChangeContent(6);">Approved</a></li>-->
+<!--    <li class=""><a href="#rejected" onclick="ChangeContent(7);">Rejected</a></li>-->
+</ul>
+<div class="tab-content tab-content-default">
+    <div id="service_bureau_report" class="tab-pane tab-pane-width  active" >
+
+        <div class="datapickerposition" style="" id="service_bureau_report_daterangepicker_div">
+            <div id="service_bureau_report_daterangepicker" class="btn btn-default">
+                <i class="icon-calendar"></i>
+                <span></span>
+                <b class="caret"></b>
+            </div>
+            <input type="hidden" name="service_bureau_report_daterangepicker_hidden" id="service_bureau_report_daterangepicker_hidden" value="" />
+        </div>
+
+        <div id="service_bureau_revenue_report" class="tab-pane active ">
+
+        </div>
+
+    </div>
+    <div id="all_sb" class="tab-pane tab-pane-width"></div>
+    <div id="pending_registration" class="tab-pane" > </div>
+    <div id="pending_approval" class="tab-pane" > </div>
+<!--    <div id="approval" class="tab-pane"></div>-->
+<!--    <div id="rejected" class="tab-pane"></div>-->
+</div>
+
+<script type="text/javascript" src="plupload/js/plupload.full.js"></script>
+<script type="text/javascript">
+
+
+    function toUSD(number) {
+        var number = number.toString(),
+                dollars = number.split('.')[0],
+                cents = (number.split('.')[1] || '') +'00';
+        dollars = dollars.split('').reverse().join('')
+                .replace(/(\d{3}(?!$))/g, '$1,')
+                .split('').reverse().join('');
+        return '$' + dollars + '.' + cents.slice(0, 2);
+    }
+
+    function check_is_nan(value){
+        if(isNaN(value))
+        {return 0;}
+        return value;
+    }
+
+    var company = $('#office_list').val();
+
+       function ShowAllSb() {
+           $.ajax({
+               url: 'index.php/admin/sb/ShowAllSb?ajax=1',
+               cache: false,
+               success: function(message) {
+                   $("#all_sb").empty().append(message);
+                   return false;
+               }
+           });
+       }
+
+       function showServiceBureauRevenueReport(){
+           $.ajax({
+               url: 'index.php/admin/reporting/showServiceBureauRevenueReport?ajax=1&company='+company,
+               cache: false,
+               success: function(message){
+                   $("#service_bureau_revenue_report").empty().append(message);
+                   return false;
+               }
+           });
+       }
+
+       $(function() {
+           //ShowAllSb();
+           showServiceBureauRevenueReport();
+           $('#appBtnArea').remove();
+
+
+
+
+           // Initialize DateRangePicker Advanced
+           var serviceBureauReportDaterangepicker = $('#service_bureau_report_daterangepicker');
+           var serviceBureauReportDaterangepickerSpan = $('#service_bureau_report_daterangepicker span');
+
+           $('#service_bureau_report_daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+
+               var selectedReport = $('#service_bureau_report_list_drop').find('.selectric').find('.label').html();
+
+               startdate = picker.startDate.format('YYYY-MM-D');
+               enddate = picker.endDate.format('YYYY-MM-D');
+
+               //if(selectedReport == 'Revenue Report'){
+                   $.ajax({
+                       url: 'index.php/admin/reporting/showServiceBureauRevenueReportDatePicker?ajax=1&startdate='+startdate+'&enddate='+enddate+'&company='+company,
+                       cache: false,
+                       success: function(message){
+                           $("#service_bureau_revenue_report").empty().append(message);
+                           return false;
+                       }
+                   });
+             //  }
+
+           });
+
+           serviceBureauReportDaterangepicker.daterangepicker({
+                       startDate: moment().subtract('days', 29),
+                       endDate: moment(),
+                       ranges: {
+                           'Today': [moment(), moment()],
+                           'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                           'Last 7 Days': [moment().subtract('days', 6), moment()],
+                           'Last 30 Days': [moment().subtract('days', 29), moment()],
+                           'This Month': [moment().startOf('month'), moment().endOf('month')],
+                           'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                       },
+                       //opens: 'left',
+                       locale: {
+                           applyLabel: 'Submit',
+                           cancelLabel: 'Clear',
+                       }
+                   },
+                   function(start, end, label) {
+                       //console.log(start.format('YYYY-MM-D'));
+                       serviceBureauReportDaterangepickerSpan.html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+
+                   });
+
+           // Set the default content when page loads
+           serviceBureauReportDaterangepickerSpan.html(moment().subtract('days', 29).format('MMM D, YYYY') + ' - ' + moment().format('MMM D, YYYY'));
+
+       });
+</script>

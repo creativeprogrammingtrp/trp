@@ -191,9 +191,9 @@ Bank ID                            808
 
 84. (-d)After signup as new ERO then on setup page parent SB EFIN is missing.
 
-85. From seting page paernt EFIN & Parent SB EFIN is not working properly. where same EFIN added under parent efin & parent sb field.
+85. (-d) From seting page paernt EFIN & Parent SB EFIN is not working properly. where same EFIN added under parent efin & parent sb field.
 
-86. Under reporting secion under SB tab, have to be remove all the things and have to be add only date, SB fee & total.
+86. (-d) Under reporting secion under SB tab, have to be remove all the things and have to be add only date, SB fee & total.
 
 87. (-d) If any ERO not changrging any Add on fee then Scale Financila will not get any add on commission.
 
@@ -201,12 +201,106 @@ Bank ID                            808
 
 89. (-d) after Tax preparation commision have to be add tax preparation commission type.
 
-90. have to be add Save successfully modal wndow for every where and that box will show for 2 scound, after 2 seound that box automatically will be hide.
+90. (-d) have to be add Save successfully modal wndow for every where and that box will show for 2 scound, after 2 seound that box automatically will be hide.
 
 91. (-d) have to be work with ACH to ERO it's not generating properly.
 
-92. have to be check all the page for print button.
+92. (--d) have to be check all the page for print button.
 
+93. (-d) 1- have to be add accept or reject option for parent service bureau under parent ERO panel.
+
+94. (-d) 2 - have to be add parent efin or servcie buroue filtering into first time setup page.
+
+95. (-d) under employee first time setup page, parent EFIN & service bureau file will be none editable.
+
+98. (-d) have to be send email to customer after sumbit new application like give Customer Order Receipt.docx file
+
+    Subject Field should be:
+    TAX Refund--Scale Financial
+
+99. (d) have to be add another menu under ERO Accounts with SB Accounts.
+
+100. (d) From chagne status it will sow only one chagne status option not two.
+
+101. Under reporting page when user will clcik on Servcie Bureau tab, then top right dropdown box will show only approved chield SB account. but for other tab it will show approved parent ERO accounts.
+
+102. - have one issue with Exam part, Ishan will gave me the instruction later.
+
+96. - Also delete all other ERO accounts except Ishan, Zishan, and abahouston
+
+97. - Have you tested all the functionality of abahouston ERO account?
+
+103. (-d) save is not working under fee tab from admin section
+
+104. Modal box not working properly in small window.
+
+105. (-d) Just remove that column.
+     Instead add another column called Commission. This will show how much Commission ERO is getting from that customer.
+     This includes, TAX Prep fee + Add On Fee (only what ERO gets) + any other commision ERO is getting from that customer's application
+     For ERO, only Tax prep, ADD on is the total commission. For the ADD on for example, if we set 50% for TRP, then ERO gets $20 only if ADD is set at $40. make sense?
+     In Reporting under Bank Products only ERO commissions will show
+     IF ERO is SB also, then his ERO reports will be under bank products, and his SB fee reporting will be under Service Bureau tab
+
+106. (d) from left hand menu item, when user will click on Insurance & Benefits then it will show only Comming soon message ...
+
+107. (-d) So during the New appliation when ERO gets to benefits section and Insurance Section, it will show a message like Currently Not Available. So it will be easy to remove the message later
+        and add button will be disable those temprarily. but audit guard aprt wil be same as it is now.
+
+108. Another thing Azfar, could make "Today" as the default date range under reproting
+
+109. on application view page every where will Show "No Add on Product Selected"
+
+110. On application view page, if not item selected then it's showing $undefined. have to be fix it.
+
+111. (d) Have to be modify save functionality for save commission ration into new applciation table.
+
+112. (d) have to be modfy ach to ERo file generation functionality for get commision ration from new application table, currently it's getting ratioo form master ero table.
+
+113. (d) Under SB accounts the column head will be () EFIN, Name,Company name, Email , Contact, Created Date, Status, Action (Chagne status & View all).
+
+114. (d) under SB account view all is not working, and tool tip is not correct.
+
+115. (d) Under ERO account View all tool tip is not corrct.
+
+116. (d) Total Income under reporting part will be remove
+
+117. (d) Have to be add new reporting call Commission, Date, Tax Preparation, Add-On, Total (Date wise), where not canceled, posted date not null,
+
+118. under training > forms have to be add 2 pdf file for download ERO. Customer Authorization & Consent to Use of Tax Return Information
+
+119. (d) have to be cross check with the exam part, there has missing option ...
+
+120. (d) remove print check from top.
+
+121. Have to be add 3 application under zishan & ishan..
+
+122. from employee have to be cehck the reporitng and also have to be cehck the applciation like : main ERO added 1 applciation & employee added 2 application so total 3 ero will show the main aro & employee section.
+
+123. For Employee Panel:
+    1. SB fee is showing 0 by default. The SB fee under the employee panel should be the same as the ERO
+    2. There is error under reporting tab
+
+124. For Exam section:
+    1. Cross check all the questions and answer choices.
+    2. When you reach to the Exam section, the "Next" button should disappear, instead "Submit" button should appear.
+
+125. If the exam is not answere 100% correctly, then a message box should appear "Try Again. One or more questions answered Incorrectly"
+
+126. (d) Lets have SB accounts and Reporting in SB Account Tab
+     and remove Service Bureau from Reporting section add Reporting tab before All account under SB accounts. top drop down will show only the approved SB ERO company name.
+
+     So after you make those changes, for example. ERO does two applications with add-on commision on 50%. So for this two applications if ERO charges $40 he only get $20 for each application. So total add-on commission for this two application is $40.
+     Now after add-on commission is change in the admin panel to 25%. And ERO does another two applications and charged $40 in each application. He gets $10 from each. So the total add-commission for these two application is $20.
+     But the overall total add on commission for all 4 application is $40 + $20 = $60
+
+127.
+
+tax_pre_commission
+tax_pre_commission_type
+add_on_commission
+add_on_commission_type
+
+1= Fixed Amount, 2 = percentage
 
 
 

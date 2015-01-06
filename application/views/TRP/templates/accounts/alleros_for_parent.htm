@@ -813,19 +813,7 @@
                             <div class="form-group form-actions div_group">
                                 <div class="col-md-10 col-md-offset-2">
 
-                                    <div class="modal fade">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                                    <h4 class="modal-title">Warning</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Save successfully.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="form-group form-actions button_group">
                                         <div class="col-md-10 col-md-offset-2">
@@ -844,6 +832,21 @@
     </div>
 </div>
 <!--end -->
+
+<div class="modal fade_message fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <h2>Status Changed Successfully.</h2>
+                <!--<button type="button" id="fade_message_ok" class="btn btn-success" style="display: inline-block;"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Ok &nbsp; &nbsp; </button>-->
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--modal tab user account -->
 
@@ -938,14 +941,28 @@
                         <div class="step ui-formwizard-content">
                             
                              <div class="form-group">
-                                <label for="role" class="control-label col-md-4">Status</label>
+                                <label for="ero_state" class="control-label col-md-5">Parent EFIN # Status</label>
                                 <div class="col-md-6">
                                     <select id="ero_state" name="ero_state" class="form-control">
+                                        <option value=""></option>
                                         <option value="1">Approve</option>
                                         <option value="2">Reject</option>
                                     </select>
                                 </div>
                             </div>
+<!--
+                            <div class="form-group">
+                                <label for="ero_sb_state" class="control-label col-md-5">Service Bureau EFIN # Status</label>
+                                <div class="col-md-6">
+                                    <select id="ero_sb_state" name="ero_sb_state" class="form-control">
+                                        <option value=""></option>
+                                        <option value="1">Approve</option>
+                                        <option value="2">Reject</option>
+                                    </select>
+                                </div>
+                            </div>
+-->
+
                             <div class="form-group form-actions">
                                 <div class="col-md-7"></div>
                                 <div class="col-md-offset-2">
@@ -1047,8 +1064,8 @@ function check_is_nan(value){
                      	htm +='<td class="hidden-xs hidden-sm border-left text-center ">';
                      //	htm +='<div class="btn-group">';
                  		htm += '<a class="btn btn-xs btn-primary EditEro" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id ="'+efin+'"  onclick="editEro(\''+uid+'\',\''+parent+'\')" ><i class="icon-pencil"></i></a>';
-                  		htm += '&nbsp; <a class="btn btn-xs btn-success ChangeStatus" rel="tooltip" title="Change Status" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+efin+'"  onclick="changeEroStatus(\''+uid+'\',\''+obj.status+'\',\'modal_changeStatus\')" ><i class="glyphicon-settings"></i></a>';
-                  		htm += '&nbsp; <a class="btn btn-xs btn-info EditApplication" rel="tooltip" title="Edit" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="Edit" id =""  onclick="showCustomerReportByEro(\''+obj.uid+'\')" >View All</a>';
+                  		htm += '&nbsp; <a class="btn btn-xs btn-success ChangeStatus" rel="tooltip" title="Change Status" data-toggle="tooltip" href="#" data-original-title="Edit" id="'+efin+'"  onclick="changeEroStatus(\''+uid+'\',\''+obj.efin_status+'\',\'modal_changeStatus\',\''+obj.p_service_bureau_status+'\')" ><i class="glyphicon-settings"></i></a>';
+                  		htm += '&nbsp; <a class="btn btn-xs btn-info EditApplication" rel="tooltip" title="View All Customers" data-toggle="tooltip" href="javascript:void(0)"  data-original-title="View All Customers" id =""  onclick="showCustomerReportByEro(\''+obj.uid+'\')" >View All</a>';
                   		//htm += '<a class="btn btn-xs btn-danger reject" rel="tooltip" title="Reject" data-toggle="tooltip" href="#" data-original-title="Delete" id="'+efin+'" onclick="reject(\''+efin+'\')" ><i class="icon-unlock-alt"></i></a>';
                 	//htm += '</div>';
                  		
@@ -1496,6 +1513,11 @@ function check_is_nan(value){
         $("#cancel_status").click(function(){
             $("#modal_changeStatus").modal('hide');
         });
+
+        $("#fade_message_ok").click(function(){
+            $(".fade_message").modal('hide');
+        });
+
 
 			 	
 			 	$("#phone").mask("(999) 999-9999");

@@ -16,7 +16,7 @@
             
             <div class="form-group">
             	<div class="col-md-3 form-group1">
-	                <label for="efin"
+	                <label for="tax_preparation_fee1"
 	                       class="control-label col-md-12">Tax Preparation Fee <i class="icon-question4 toottip_product"data-toggle="tooltip"  data-original-title="Tax Preparation Fee "></i></label>
 	                <div class="col-md-12 nopadding">
 	                    <input type="text" class="form-control ui-wizard-content" value="" name="tax_preparation_fee1" id="tax_preparation_fee1">
@@ -24,7 +24,7 @@
 	             </div>
 	             
 	             <div class="col-md-3 form-group1">
-		             <label for="p_efin"
+		             <label for="bank_transmission_fee1"
 	                       class="control-label col-md-12">Bank Transmission Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
 	                <div class="col-md-12 nopadding">
 	                    <input type="text" class="form-control ui-wizard-content" value="19.95 " name="bank_transmission_fee1" disabled="disabled" id="bank_transmission_fee1">
@@ -32,7 +32,7 @@
 	             </div>
 	             
 	             <div class="col-md-3 form-group1">
-		             <label for="company_name"
+		             <label for="sb_fee1"
 	                       class="control-label col-md-12">SB Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
 	                <div class="col-md-12 nopadding">
 	                    <input type="text" class="form-control ui-wizard-content" name="sb_fee1" disabled="disabled" id="sb_fee1" value="">
@@ -40,7 +40,7 @@
 	             </div>
 	             
 	             <div class="col-md-3 form-group1">
-	             	<label for="company_name"
+	             	<label for="add_on_fee1"
                        class="control-label col-md-12">Add On Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Add On Fee"></i></label>
 	                <div class="col-md-12 nopadding">
 	                    <input type="text" class="form-control ui-wizard-content" name="add_on_fee1" id="add_on_fee1" value="">
@@ -64,19 +64,7 @@
             
                 
 
-                    <div id="modal_success3" class="modal slide">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Warning</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Save successfully.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
 
                     
@@ -99,7 +87,20 @@
                 </button>
       </div> 
 </form>
-
+<div id="modal_success3" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <h2>Save Successfully.</h2>
+                <!-- <button type="button" id="modal_success3_ok" class="btn btn-success" style="display: inline-block;"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Ok &nbsp; &nbsp; </button>-->
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -145,8 +146,13 @@ function clickSaveBankingInfo() {
 $(function(){
 	
 	loadObject();
-	
-	$(".toottip_product").tooltip(); 
+
+    $("#modal_success3_ok").click(function(){
+        $("#modal_success3").modal('hide');
+    });
+
+
+    $(".toottip_product").tooltip();
 	//clickSaveBankingInfo();
 	
 	/* Initialize Form Validation */
@@ -228,8 +234,12 @@ $(function(){
     				$('#feesSaveBtn').show();
     				$('#feesSaveBtnLoad').hide();
     				
-    					//$('#modal_success3').modal('show');
-                          //          $("#two").trigger('click');
+    					$('#modal_success3').modal('show');
+
+                    setTimeout(function() {
+                        $('#modal_success3').modal('hide')
+                    }, 2000);
+                        //$("#two").trigger('click');
     			}
     			loadClients();
     		}, "json");

@@ -102,6 +102,10 @@ function ChangeContent(type) {
         case 34:
         	showBankProductUnfundedReport();
             break;
+        case 35:
+            ShowAllSb();
+            break;
+
 
     }
 }
@@ -149,8 +153,10 @@ function editPaidApplicationForVoid(id, parent) {
 
 function editEro(uid, parent) {
     var $parent = $("#" + parent);
+    console.log(dataClient.length);
     for (var k = 0; k < dataClient.length; k++) {
         var obj_ero = dataClient[k];
+
         if (obj_ero.uid == uid) {
             $parent.find("#efin").val(obj_ero.user_efin);
             $parent.find("#parent_efin").val(obj_ero.p_efin);
@@ -281,7 +287,7 @@ function editEroFromAdmin(uid, parent) {
 
             $parent.find("#bank_name1").val(obj_ero.bank_name);
             $parent.find("#bank_routing1").val(obj_ero.bank_routing);
-            $parent.find("#b_account_name1").val(obj_ero.bank_account);
+            $parent.find("#b_account_no1").val(obj_ero.bank_account);
 
             $parent.find("#tax_preparation_fee1").val(obj_ero.tax_preparation_fee);
             $parent.find("#bank_transmission_fee1").val(obj_ero.bank_transmission_fee);
@@ -5141,12 +5147,47 @@ function ClickToEditChildEroStatus(option, parent) {
             load_child_status: 'yes',
             uid: $parent.find("#author1").val(),
             ero_status : $parent.find("#ero_state").val(),
-
+            //ero_sb_status : $parent.find("#ero_sb_state").val()
 
         }, function(data) {
             if (typeof (data) == 'object') {
                 dataClient = data;
                 $parent.modal('hide');
+                $('.fade_message').modal('show');
+                setTimeout(function() {
+                    $('.fade_message').modal('hide')
+                }, 2000);
+            }
+            loadClients();
+        }, "json");
+
+        return false;
+    });
+
+
+}
+
+
+function ClickToEditChildSbStatus(option, parent) {
+    var $parent = $("#" + parent);
+
+    $parent.find("#save_parent_sb_status").click(function() {
+        //alert('d');
+        $.post(url_base_path__ + 'admin/ero/ClickToEditEro', {
+            option: option,
+            load_child_sb_status: 'yes',
+            uid: $parent.find("#author1").val(),
+           // ero_status : $parent.find("#ero_state").val(),
+            ero_sb_status : $parent.find("#ero_sb_state").val()
+
+        }, function(data) {
+            if (typeof (data) == 'object') {
+                dataClient = data;
+                $parent.modal('hide');
+                $('.fade_message').modal('show');
+                setTimeout(function() {
+                    $('.fade_message').modal('hide')
+                }, 2000);
             }
             loadClients();
         }, "json");
@@ -5927,7 +5968,7 @@ function editUser(cid, author,parent) {
     parent_body.modal('show');
 }
 
-function changeEroStatus(uid, status ,modaldiv) {
+function changeEroStatus(uid, status ,modaldiv, sbstatus) {
 	
    // var id = $('#'.parent);  
     //alert(id);
@@ -5937,6 +5978,7 @@ function changeEroStatus(uid, status ,modaldiv) {
     
     //alert(parent_body);
 	$('#'+modaldiv).find("#ero_state").val(status);
+    $('#'+modaldiv).find("#ero_sb_state").val(sbstatus);
 	//alert(modaldiv);
 	$('#'+modaldiv).find("#author1").val(uid);
     

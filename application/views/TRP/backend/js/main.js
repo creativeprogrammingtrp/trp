@@ -528,6 +528,11 @@ function setupMenu(){
 		$('#primary-nav li a').removeClass('active');
 		$('#menu-clientCenter').addClass('active');	
 	}
+
+    if($('#page-container').hasClass('Sb')){
+        $('#primary-nav li a').removeClass('active');
+        $('#menu-sb-accounts').addClass('active');
+    }
 }
 /* Initialize WebApp when page loads */
 $(function(){ 

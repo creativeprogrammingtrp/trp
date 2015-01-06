@@ -33,7 +33,7 @@ class Clientcenter_model extends CI_Model {
  	else{
  		$parrentUid =$this->author->objlogin->uid;
  	}
- 	
+
  	$html = "";
  	$auditItm = '';
  	$data = array(
@@ -182,6 +182,10 @@ class Clientcenter_model extends CI_Model {
     			'app_account_no' => $this->lib->escape($_POST['acount_number']),
     			'app_routing_no' => $this->lib->escape($_POST['routing_number']),
 
+                'act_tax_pre_commission' => $data_load[0]['tax_pre_commission'],
+                'act_tax_pre_commission_type' => $data_load[0]['tax_pre_commission_type'],
+                'act_add_on_commission' => $data_load[0]['add_on_commission'],
+                'act_add_on_commission_type' => $data_load[0]['add_on_commission_type'],
 
     			'assign_acc_no' => $lastAssignAccNo,
     			'assign_routing_no' => '111900659',
@@ -522,8 +526,60 @@ class Clientcenter_model extends CI_Model {
         }
     	
     	// End send email to the customer
-    	
-    }
+
+        // send email to teh customer with bank prodcut info
+
+     $html2 .= "<h3>Scale Financial</h3>";
+     $html2 .= "<p>Thank you ".$this->lib->escape($_POST['first_name'])." ".$this->lib->escape($_POST['last_name'])." for using Scale Financial bank product. Following is the summary of the transaction.</p>";
+
+     $html2 .= "<br><table width='100%'>";
+     $html2 .= "<tr><td>".$data_load[0]['company_name']."</td></tr>";
+     $html2 .= "<tr><td>".$data_load[0]['firstname']." &nbsp; ".$data_load[0]['lastname']."</td></tr>";
+
+     $html2 .= "<tr><td>".$data_load[0]['business_addr_1']." ".$data_load[0]['business_addr_2']."</td></tr>";
+     $html2 .= "<tr><td>City:</td><td>".$data_load[0]['business_city'].", ".$data_load[0]['business_state'].", ".$data_load[0]['business_zip']."</td></tr>";
+
+     $html2 .= "<tr><td>".$data_load[0]['phone'].", ".$data_load[0]['business_phone']."</td></tr>";
+     $html2 .= "<tr><td>".$data_load[0]['mail']."</td></tr>";
+
+     $actualBenefits = floatval($this->lib->escape($_POST['total_benefit'])) - floatval($auditprice);
+
+     $html2 .= "</table>";
+     $html2 .= "<table width='100%'>";
+     $html2 .= "<tr><td colspan='2'></td></tr>";
+     $html2 .= "<tr><td>Total Expected TAX Refund:</td><td>".number_format($this->lib->escape($_POST['total_refund_amt_3']),2)."</td></tr>";
+     $html2 .= "<tr><td>Tax Preparation Fee:</td><td style='color:red;'>".number_format($this->lib->escape($_POST['tax_preparation_fee_3']),2)."</td></tr>";
+     $html2 .= "<tr><td>Bank Transmission Fee:</td><td style='color:red;'>".number_format($this->lib->escape($_POST['bank_transmission_fee_3']),2)."</td></tr>";
+     $html2 .= "<tr><td>Service Bureau Fee:</td><td style='color:red;'>".number_format($this->lib->escape($_POST['sb_fee_3']),2)."</td></tr>";
+     $html2 .= "<tr><td>Add on Fee:</td><td style='color:red;'>".number_format($this->lib->escape($_POST['add_on_fee_3']),2)."</td></tr>";
+     $html2 .= "<tr><td>Audit Guard Fee:</td><td style='color:red;'>".number_format($auditprice,2)."</td></tr>";
+     $html2 .= "<tr><td>Benefits:</td><td  style='color:red;'>".number_format($actualBenefits,2)."</td></tr>";
+     $html2 .= "<tr><td style='border-top:1px solid;'>Your Expected Refund Amount: </td><td  style='border-top:1px solid;'>".number_format($this->lib->escape($_POST['final_net_refund']),2)."</td></tr>";
+     $html2 .= "<tr><td></td><td></td></tr>";
+     $html2 .= "";
+     $html2 .= "</table>";
+     $html2 .= "<br><p>For Refund disbursement inquiry please contact your Tax Preparer Office or visit http://www.irs.gov/Refunds.</p>";
+     $html2 .= "<br><p>If above information is inaccurate and/or you did not consent to above mentioned fees to be deducted from your TAX Refund please contact Scale Financial immediately at support@scalefinancial.com anytime or call 480-452-6452 Monday-Friday 8 am-6 pm.</p>";
+
+
+     $to2 = $this->lib->escape($_POST['email_add']);
+     //$to = $this->lib->escape($_POST['email_add']);
+     $fromName2 = "ScaleFinancial.com";
+     $fromEmail2 = "info@scalefinancial.com";
+     $subject2 = 'TAX Refund--Scale Financial';
+
+     $headers2 = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+     $headers2 .= 'From: ' . $fromName2 . '<' . $fromEmail2 . '>' . "\r\n";
+
+     $body2 = "<html><head><title>$subject2</title></head><body> {$html2} <br> <br> <br>Regards,<br><b>scalefinancial.com</b></body></html>";
+     if (mail($to2, $subject2, $body2, $headers2)) {
+         //echo "ok";
+        // return $data;
+     } else {
+         //echo "error";
+         return false;
+     }
+ }
 
 
     function getLastAssignAccountNo(){

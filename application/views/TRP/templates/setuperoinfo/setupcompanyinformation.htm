@@ -27,8 +27,8 @@
                 <div class="col-md-12 choose_file">
                    <ul class="thumbnails clearfix">
                     <li>
-                        <a class="thumbnail" style="width:255px;height:120px;overflow: hidden;" name="name"  id="signature_show" href="javascript:void(0)">
-                            <img style="width:160px;height:120px;" name="name" class="img-rounded" alt="Logo" src="../backend/img/placeholders/image_light_160x120.png">
+                        <a class="thumbnail" style="width:255px;height:80px;overflow: hidden;" name="name"  id="signature_show" href="javascript:void(0)">
+                            <img style="width:160px;height:80px;" name="name" class="img-rounded" alt="Logo" src="../backend/img/placeholders/image_light_160x120.png">
                         </a>
                     </li>
                     </ul>
@@ -36,7 +36,7 @@
             </div>
             
             <div class="form-group">
-                <label for="upload" class="control-label col-md-12"></label>  
+                <label for="" class="control-label col-md-12"></label>
                 <div class="col-md-12 choose_file">         
                     <button type="button" class="btn btn-success col-md-12 " name="upload" id="upload_bt" value="" >Upload Logo</button>
                     <!--<input type="file" class="form-control" name="example-file" id="example-file">-->
@@ -66,20 +66,28 @@
                 <label for="p_efin"
                        class="control-label col-md-12">Parent EFIN #</label>
                 <div class="col-md-12 nopadding">
-                    <input type="text" class="form-control ui-wizard-content"
-                           value="" name="example-advanced-parent-efin"
-                           id="p_efin">
+                    <input type="text" class="form-control ui-wizard-content" value="" name="example-advanced-parent-efin" id="p_efin">
+                </div>
+
+                <div class="col-md-12 efincheckloader" style="display:none;">
+                    <span class="loader-04 icon-2x loader"></span>
+                    <span id="pefinsuccess" class="text-success" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-ok"></i></span>
+                    <span id="pefinerror" class="text-danger" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-remove"></i> This Parent EFIN # does not exist.</span>
                 </div>
             </div>    
             </div>
             <div class="form-group">
                 <div class="col-md-12 form-group1">
-                    <label for="p_efin"
+                    <label for="service_bureau_efin"
                            class="control-label col-md-12">Service Bureau EFIN #</label>
                     <div class="col-md-12 nopadding">
-                        <input type="text" class="form-control ui-wizard-content"
-                               value="" name="example-advanced-service-bureau-efin"
-                               id="service_bureau_efin">
+                        <input type="text" class="form-control ui-wizard-content" value="" name="example-advanced-service-bureau-efin" id="service_bureau_efin">
+                    </div>
+
+                    <div class="col-md-12 sbefincheckloader" style="display:none;">
+                        <span class="loader-04 icon-2x sbloader"></span>
+                        <span id="sbefinsuccess" class="text-success" style="display:none; font-size:16px; margin-top:6px;"> <i class="glyphicon-ok"></i></span>
+                        <span id="sbefinerror" class="text-danger" style="display:none; font-size:16px; margin-top:6px"><i class="glyphicon-remove"></i> This Service Bureau EFIN # does not exist</span>
                     </div>
                 </div>
             </div>
@@ -250,7 +258,7 @@
 	<section class="panel">
     	<header class="panel-heading">
 	       <span class="title" style="">Software</span>
-	       <span class="tools pull-right icons" style=""><i class="icon-info-sign"></i></span>
+	       <span class="tools pull-right icons" style=""><i class="icon-cd"></i></span>
         </header>
         <div class="panel-body">
             
@@ -312,7 +320,7 @@
         <div class="col-md-6 text-left">
         
                 <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
-                <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+                <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-undo"></i> &nbsp; Back &nbsp; &nbsp; </button>
             </div>
             <div class="col-md-6 text-right" style="padding-right: 23px">
             <button type="submit"  class="btn btn-success nextSave">  &nbsp; &nbsp;  <i class="icon-long-arrow-right"></i> &nbsp; Next &nbsp; &nbsp; </button>
@@ -428,7 +436,7 @@
             <!-- Form Buttons -->
         <div class="form-group form-actions1">
             <div class="col-md-6 text-left" style="padding-left: 23px">
-            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-undo"></i> &nbsp; Back &nbsp; &nbsp; </button>
                 <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
             </div>
             <div class="col-md-6 text-right" style="padding-right: 23px">
@@ -496,7 +504,7 @@
             <!-- Form Buttons -->
         <div class="form-group form-actions1">
             <div class="col-md-6 text-left" style="padding-left: 23px">
-            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-undo"></i> &nbsp; Back &nbsp; &nbsp; </button>
                <!--  <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
             </div>
             <div class="col-md-6 text-right" style="padding-right: 23px">
@@ -527,7 +535,7 @@
             <div class="form-group">
             <div class="col-md-3 form-group1">
                 <label for="tax_preparation_fee"
-                       class="control-label col-md-12">Tax Preparation Fee <i class="icon-question-sign toottip_product"data-toggle="tooltip"  data-original-title="Tax Preparation Fee "></i></label>
+                       class="control-label col-md-12">Tax Preparation Fee <i class="icon-question4 toottip_product"data-toggle="tooltip"  data-original-title="Tax Preparation Fee "></i></label>
                 <div class="col-md-12 nopadding">
                 
                     <input type="text"  class="form-control ui-wizard-content" value="" name="tax_preparation_fee" id="tax_preparation_fee">
@@ -537,7 +545,7 @@
              </div>
              <div class="col-md-3 form-group1">
              <label for="bank_transmission_fee"
-                       class="control-label col-md-12">Bank Transmission Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
+                       class="control-label col-md-12">Bank Transmission Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Bank Transmission Fee"></i></label>
                 <div class="col-md-12 nopadding">
                 
                     <input type="text" class="form-control ui-wizard-content" value="" name="bank_transmission_fee" id="bank_transmission_fee" disabled="disabled">
@@ -549,7 +557,7 @@
              <div class="col-md-3 form-group1">
              
              <label for="sb_fee"
-                       class="control-label col-md-12">SB Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
+                       class="control-label col-md-12">SB Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="SB Fee"></i></label>
                 <div class="col-md-12 nopadding">
                 
                     <input type="text" class="form-control ui-wizard-content" name="sb_fee" id="sb_fee" value="" disabled="disabled">
@@ -571,7 +579,7 @@
              -->
              <div class="col-md-3 form-group1">
              <label for="add_on_fee"
-                       class="control-label col-md-12">Add On Fee <i class="icon-question-sign toottip_product " data-toggle="tooltip"  data-original-title="Add On Fee"></i></label>
+                       class="control-label col-md-12">Add On Fee <i class="icon-question4 toottip_product " data-toggle="tooltip"  data-original-title="Add On Fee"></i></label>
                 <div class="col-md-12 nopadding">
                 
                     <input type="text" class="form-control ui-wizard-content" name="add_on_fee" id="add_on_fee" value="">
@@ -593,7 +601,7 @@
         
         <div class="form-group form-actions1">
             <div class="col-md-6 text-left" style="padding-left:23px;">
-            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-undo"></i> &nbsp; Back &nbsp; &nbsp; </button>
                 <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
             </div>
             <div class="col-md-6 text-right" style="padding-right:23px;">
@@ -638,7 +646,7 @@
                 </div>
             </div>
             <div class="form-group" style=" margin: 0px; padding: 2px 7px;"">
-                <label for="p_efin"
+                <label for="rev_p_efin"
                        class="control-label col-md-5">Parent EFIN #</label>
                 <div class="col-md-7">
                 	<p id="rev_p_efin"></p>
@@ -874,13 +882,13 @@
         <div class="panel-body">
             
             <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
-                <label for="efintax" class="control-label col-md-5">Tax Preparation Fee</label>
+                <label for="rev_tax_preparation_fee" class="control-label col-md-5">Tax Preparation Fee</label>
                 <div class="col-md-7">
                 	<p id="rev_tax_preparation_fee"></p>
                 </div>
             </div>
             <div class="form-group" style=" margin: 0px; padding: 2px 7px;">
-                <label for="p_efin" class="control-label col-md-5">Bank Transmission Fee</label>
+                <label for="rev_bank_transmission_fee" class="control-label col-md-5">Bank Transmission Fee</label>
                 <div class="col-md-7">
                 	<p id="rev_bank_transmission_fee"></p>
                 </div>
@@ -913,9 +921,9 @@
 		
 		<div style="clear:both;"></div>
             <!-- Form Buttons -->
-        <div class="form-group form-actions1" style=" margin: 0px; padding: 2px 0px;" ">
+        <div class="form-group form-actions1" style=" margin: 0px; padding: 2px 0px;" >
             <div class="col-md-6 text-left">
-            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-long-arrow-left"></i> &nbsp; Back &nbsp; &nbsp; </button>
+            <button type="reset" id="back"   class="btn btn-danger">  &nbsp; &nbsp;  <i class="icon-undo"></i> &nbsp; Back &nbsp; &nbsp; </button>
                 <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
                 
             </div>
@@ -952,7 +960,7 @@
         <div class="form-group form-actions1" style="padding-top:30px;">
             <div class="col-md-6 text-left">
             	<!-- <button type="button" class="btn btn-danger" id="close_setup">Back</button> -->
-            	<button type="button" class="btn btn-danger" id="close_setup"><i class="icon-remove-sign"></i> &nbsp; Back &nbsp; &nbsp;</button>
+            	<button type="button" class="btn btn-danger" id="close_setup"><i class="icon-undo"></i> &nbsp; Back &nbsp; &nbsp;</button>
                 <!-- <input type="reset" class="btn btn-danger" id="back" value="Back"> -->
             </div>
             <div class="col-md-6 text-right">
@@ -1071,6 +1079,8 @@ function reset_pass(){
 	});
 }
 
+
+
 function loadClients() {
         if(dataClient.disabled == 'yes') 
         	$("#efin").attr('disabled','disabled');
@@ -1127,6 +1137,74 @@ function loadClients() {
 		$("#add_on_fee").val(dataClient.add_on_fee);
 	/* End Bank Fee*/	
 }
+
+function checkParentEFIN() {
+
+
+    $.post("index.php/admin/settings/checkParentEFINInfo", {
+        senddata : 'yes',
+        uid:dataClient.uid,
+        p_efin : $("#p_efin").val(),
+        ownefin : $("#efin").val()
+
+    }, function(data) {
+        if (data == '0' || data == '') {
+            $("#pefinerror").html('<i class="glyphicon-remove"></i> This Parent EFIN # does not exist.');
+            $("#pefinerror").css('display','block');
+            $(".loader").css('display','none');
+            $("#pefinsuccess").css('display','none');
+        }
+        else if (data == '2' || data == '') {
+            $("#pefinerror").html('<i class="glyphicon-remove"></i> Please don\'t use your own EFIN # here.');
+            $("#pefinerror").css('display','block');
+            $(".loader").css('display','none');
+            $("#pefinsuccess").css('display','none');
+        }
+        else if(data != '0' && data != ''){
+            $("#pefinerror").css('display','none');
+            $("#pefinsuccess").css('display','block');
+            $(".loader").css('display','none');
+        }
+    }, "json");
+
+    return false;
+
+}
+
+function checkSBEFIN() {
+
+
+    $.post("index.php/admin/settings/checkSBEFINInfo", {
+        senddata : 'yes',
+        uid:dataClient.uid,
+        service_bureau_num : $("#service_bureau_efin").val(),
+        ownefin : $("#efin").val()
+        // sbefincheckloader sbloader sbefinerror
+    }, function(data) {
+        if (data == '0' || data == '') {
+            $("#sbefinerror").html('<i class="glyphicon-remove"></i> This Service Bureau EFIN # does not exist');
+            $("#sbefinerror").css('display','block');
+            $("#sbefinsuccess").css('display','none');
+            $(".sbloader").css('display','none');
+        }
+        else if (data == '2' || data == '') {
+            $("#sbefinerror").html('<i class="glyphicon-remove"></i>Please don\'t use your own EFIN # here.');
+            $("#sbefinerror").css('display','block');
+            $("#sbefinsuccess").css('display','none');
+            $(".sbloader").css('display','none');
+
+        }
+        else{
+            $("#sbefinerror").css('display','none');
+            $("#sbefinsuccess").css('display','block');
+            $(".sbloader").css('display','none');
+        }
+    }, "json");
+
+    return false;
+
+}
+
 
 /*
 function clickSaveProfile() {
@@ -1488,6 +1566,21 @@ $(function(){
     	$("#close_setup").click(function(){
     		$("#modal_company_setup").modal('hide');
     	});
+
+    $( "#p_efin" ).blur(function() {
+        $('.efincheckloader').css('display','block');
+        checkParentEFIN();
+        //alert( "Handler for .blur() called." );
+    });
+
+
+
+    $( "#service_bureau_efin" ).blur(function() {
+
+        $('.sbefincheckloader').css('display','block');
+        checkSBEFIN();
+        //alert( "Handler for .blur() called." );
+    });
     
     	
     	/*
@@ -1501,6 +1594,9 @@ $(function(){
     	$("#phoneno").mask("(999) 999-9999");
     	$("#zipcode").mask("99999");
     	$("#zipcode_m").mask("99999");
+
+    $("#p_efin").mask("999999");
+    $("#service_bureau_efin").mask("999999");
     	
     	var form = $("#basic-wizard");
 

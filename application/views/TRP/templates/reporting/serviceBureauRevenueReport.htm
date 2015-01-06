@@ -22,11 +22,11 @@ function loadClients() {
     htm +='<thead>';
     	
     	htm +='<tr>';
-	    	htm +='<th class="text-center">Name</th>';
-			htm +='<th class="text-center">Bank Products</th>';
-			htm +='<th class="text-center">Discount Benefits</th>';
-			htm +='<th  >Insurance</th>';
-    		htm +='<th class="hidden-xs hidden-sm">Total Revenue</th>';
+	    	htm +='<th class="text-center">Date</th>';
+			htm +='<th class="text-center">SB Fee</th>';
+			//htm +='<th class="text-center">Discount Benefits</th>';
+			//htm +='<th  >Insurance</th>';
+    		//htm +='<th class="hidden-xs hidden-sm">Total Revenue</th>';
     	htm +='</tr>';
    
     htm +='</thead>';
@@ -38,6 +38,8 @@ function loadClients() {
     var totalBankProduct = 0;
     var totalBenefits = 0;
     var totalTotalRevenue = 0;
+
+    var totalSBFee = 0;
     
     for(var i = 0 ; i < dataClientIR.length ; i++){
            var obj = dataClientIR[i];
@@ -58,9 +60,14 @@ function loadClients() {
            var actualTax = check_is_nan(parseFloat(obj.actTaxFee));
            var actualAddOn = check_is_nan(parseFloat(obj.actAddonFee));
            var actualAuditGuard = check_is_nan(parseFloat(obj.actAuditGuardFee));
-           
+
+           var actualSBFee = check_is_nan(parseFloat(obj.actSBFee));
+
+            totalSBFee += actualSBFee;
+
            var bankProducts = actualTax+actualAddOn+actualAuditGuard;
-           
+
+
            totalRevenue += (benefitsT+bankProducts);
            
            totalBankProduct += bankProducts;
@@ -69,13 +76,14 @@ function loadClients() {
            totalTotalRevenue +=totalRevenue;
            
             htm +='<tr>';
-            
-            htm +='<td class=" text-center border-right">'+obj.firstname+' '+obj.lastname+'</td>';
-        	htm +='<td class="text-center">'+toUSD(check_is_nan(bankProducts))+'</td>';
-        	htm +='<td class="text-center ">'+toUSD(check_is_nan(benefitsT))+'</td>';
-        	htm +='<td class="hidden-xs hidden-sm  text-center"></td>';
+            htm +='<td class="text-center">'+obj.app_create_date+'</td>';
+            htm +='<td class="text-center">'+toUSD(check_is_nan(actualSBFee))+'</td>';
+            //htm +='<td class=" text-center border-right">'+obj.firstname+' '+obj.lastname+'</td>';
+        	//htm +='<td class="text-center">'+toUSD(check_is_nan(bankProducts))+'</td>';
+        	//htm +='<td class="text-center ">'+toUSD(check_is_nan(benefitsT))+'</td>';
+        	//htm +='<td class="hidden-xs hidden-sm  text-center"></td>';
         	
-        	htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+toUSD(check_is_nan(totalRevenue))+'</td>';
+        	//htm +='<td class="hidden-xs hidden-sm border-left text-center ">'+toUSD(check_is_nan(totalRevenue))+'</td>';
              
             htm +='</tr>';
    } 		
@@ -84,10 +92,11 @@ function loadClients() {
    htm +='<tfoot>';
 	htm +='<tr>';
 		htm +='<td class=" text-center" >Total</td>';
-		htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalBankProduct))+'</span></td>';
-		htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalBenefits))+'</span></td>';
-		htm +='<td class=" text-center" ><span></span></td>';
-		htm +='<td class="text-center">'+toUSD(check_is_nan(totalTotalRevenue))+'</td>';
+    htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalSBFee))+'</span></td>';
+        //htm +='<td class=" text-center" ><span>'+toUSD(check_is_nan(totalBankProduct))+'</span></td>';
+		//htm +='<td class="text-center"><span>'+toUSD(check_is_nan(totalBenefits))+'</span></td>';
+		//htm +='<td class=" text-center" ><span></span></td>';
+		//htm +='<td class="text-center">'+toUSD(check_is_nan(totalTotalRevenue))+'</td>';
 	htm +='</tr>  ';
 htm +='</tfoot>';
      
@@ -114,11 +123,8 @@ $(function(){
      		"bLengthChange": false,
        		"bAutoWidth": false,  
        		"aoColumns": [
-       		            { sWidth: '15%' },
-       		            { sWidth: '20%' },
-       		            { sWidth: '25%' },
-       		            { sWidth: '15%' },
-       		            { sWidth: '15%' },
+       		            { sWidth: '40%' },
+       		            { sWidth: '60%' }
        		            ]
          });
 

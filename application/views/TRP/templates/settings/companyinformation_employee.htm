@@ -341,15 +341,15 @@
                     
                 
             
-				<div class="modal fade1">
+				<div class="modal fade1 fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Warning</h4>
+                                    <h4 class="modal-title">Message</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Save successfully.</p>
+                                    <h2>Save Successfully.</h2>
                                 </div>
                             </div>
                         </div>
@@ -443,7 +443,7 @@ function loadClients() {
         (dataClient.is_parent_efin === '1') ?  $("#pefin_check_box").attr("checked",true) : $("#pefin_check_box").attr("checked",false)  ;
         (dataClient.is_service_bureau === '1') ?  $("#pservice_bureau_check_box").attr("checked",true) : $("#pservice_bureau_check_box").attr("checked",false)  ;
 	
-        if(dataClient.p_efin != ''){
+        /*if(dataClient.p_efin != ''){
         	if(dataClient.is_view === '0' && dataClient.pefin_status === '1' ||  dataClient.pefin_status === '0') 
         	{
         		$("#pefin_check_box").attr('disabled','disabled');
@@ -462,7 +462,7 @@ function loadClients() {
         		 $("#pefinerror").empty().append('Parent EFIN is Rejected.');
         		//$("#sbefinerror").css('display','block');
         	}
-        }
+        }*/
         
         
         $("#is_view").val(dataClient.is_view);
@@ -777,7 +777,8 @@ $(function(){
         				dataClient = data;
         				$('#companySaveBtn').show();
 						$('#companySaveBtnLoad').hide();
-                                       // $('.fade1').modal('show');
+                                        $('.fade1').modal('show');
+
                                        // $("#one").trigger('click');
         			}
         			loadClients();

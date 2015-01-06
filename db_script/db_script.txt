@@ -156,7 +156,7 @@ qubee@qubee.com.bd
 
  =================================
 
-23rd November
+23rd November (done)
 
  CREATE TABLE `trpgit`.`check_range` (`check_range_id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, `start_no` INT(20) NOT NULL, `end_no` INT(20) NOT NULL, `create_time` INT(15) NOT NULL, `assign_time` INT(15) NULL, `uid` INT(11) NULL) ENGINE = InnoDB;
 
@@ -165,9 +165,9 @@ ALTER TABLE `assign_check` ADD `in_hand` INT( 11 ) NULL AFTER `ending_no`
 ALTER TABLE `assign_check` CHANGE `in_hand` `in_hand` INT( 11 ) NOT NULL DEFAULT '0'
 
 
+=================================
 
-
-3rd Dec
+3rd Dec (Done)
 
 ALTER TABLE `new_app` ADD `ach_customer_export_date` INT( 20 ) NULL AFTER `ach_export_date`
 
@@ -180,3 +180,22 @@ CREATE TABLE `generated_ach_customer_file_info` (
 PRIMARY KEY ( `file_id` )
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1 AUTO_INCREMENT =1;
 
+
+=================================
+
+
+30th December (done)
+
+ALTER TABLE `efin_pefin` ADD `p_service_bureau_status` INT( 1 ) NULL COMMENT '1=Approved,2=rejected' AFTER `status`
+
+ALTER TABLE `efin_pefin` CHANGE `pefin` `pefin` INT( 10 ) NULL ,
+CHANGE `service_buraue` `service_buraue` INT( 10 ) NULL ,
+CHANGE `status` `status` INT( 1 ) NULL COMMENT '1=Approved,2=rejected',
+CHANGE `p_service_bureau_status` `p_service_bureau_status` INT( 1 ) NULL DEFAULT NULL COMMENT '1=Approved,2=rejected',
+CHANGE `is_view` `is_view` INT( 1 ) NULL COMMENT '1=it''s not viewed by perent efin owner yet, 2= viewed ';
+
+
+
+1/5/14 done
+
+ALTER TABLE `new_app`  ADD `act_tax_pre_commission` DOUBLE(10,2) NULL AFTER `author_id`,  ADD `act_tax_pre_commission_type` INT(1) NULL COMMENT '1= Fixed Amount, 2 = percentage' AFTER `act_tax_pre_commission`,  ADD `act_add_on_commission` DOUBLE(10,2) NULL AFTER `act_tax_pre_commission_type`,  ADD `act_add_on_commission_type` INT(1) NULL COMMENT '1= Fixed Amount, 2 = percentage' AFTER `act_add_on_commission`

@@ -331,25 +331,27 @@
                                                value="">
                                     </div>
                                 </div>-->
-            
-                
 
-                    
 
-                    
-                        
-                    
-                
-            
-				<div class="modal fade1">
+
+
+
+
+
+
+
+
+
+				<div class="modal fade1 fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Warning</h4>
+                                    <h4 class="modal-title">Message</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>Save successfully.</p>
+                                <div class="modal-body" style="text-align: center;">
+                                    <h2>Save successfully.</h2>
+                                    <!--<button type="button" id="fade1_ok" class="btn btn-success" style="display: inline-block;"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Ok &nbsp; &nbsp; </button>-->
                                 </div>
                             </div>
                         </div>
@@ -371,7 +373,11 @@
                      <i class="glyphicon-refresh"></i> Saving... 
                 </button>
       </div>
+
 </form>
+<br>
+<br>
+<div style="clear:both;"></div>
 <br>
 <br>
 <script type="text/javascript" src="plupload/js/plupload.full.js"></script>
@@ -443,18 +449,16 @@ function loadClients() {
         (dataClient.is_parent_efin === '1') ?  $("#pefin_check_box").attr("checked",true) : $("#pefin_check_box").attr("checked",false)  ;
         (dataClient.is_service_bureau === '1') ?  $("#pservice_bureau_check_box").attr("checked",true) : $("#pservice_bureau_check_box").attr("checked",false)  ;
 	
-        if(dataClient.p_efin != ''){
-        	if(dataClient.is_view === '0' && dataClient.pefin_status === '1' ||  dataClient.pefin_status === '0') 
+        if(dataClient.p_efin != ""){
+        	if((dataClient.is_view == null || dataClient.is_view === '0' || dataClient.is_view === '1') && (dataClient.pefin_status === '1' ||  dataClient.pefin_status === '0' || dataClient.pefin_status == null))
         	{
         		$("#pefin_check_box").attr('disabled','disabled');
-        		if(dataClient.is_service_bureau === '1') $("#pservice_bureau_check_box").attr('disabled','disabled'); 
+        		//if(dataClient.is_service_bureau === '1') $("#pservice_bureau_check_box").attr('disabled','disabled');
         	}
         	else if(dataClient.is_view === '1' && dataClient.pefin_status === '2'){
         		$("#pefin_check_box").removeAttr('disabled');
         		$("#p_efin1").removeAttr('disabled');
-        		
-        		if(dataClient.is_service_bureau === '1') $("#pservice_bureau_check_box").attr('disabled','disabled'); else $('#service_bureau_efin').removeAttr('disabled');
-        		
+
         		$(".efincheckloader").css('display','block');
         		$(".loader").css('display','none');
         		
@@ -462,8 +466,28 @@ function loadClients() {
         		 $("#pefinerror").empty().append('Parent EFIN is Rejected.');
         		//$("#sbefinerror").css('display','block');
         	}
+
+
+
+            //if(dataClient.is_service_bureau === '1') $("#pservice_bureau_check_box").attr('disabled','disabled'); else $('#service_bureau_efin').removeAttr('disabled');
         }
-        
+
+    if(dataClient.p_service_bureau_status != 0 || dataClient.p_service_bureau_status != "" ){
+        if((dataClient.is_view == null || dataClient.is_view === '0' || dataClient.is_view === '1') && (dataClient.p_service_bureau_status === '1' ||  dataClient.p_service_bureau_status === '0')){
+
+            $("#pservice_bureau_check_box").attr('disabled','disabled');
+
+        }else if(dataClient.is_view === '1' && dataClient.p_service_bureau_status === '2'){
+            $("#pservice_bureau_check_box").removeAttr('disabled');
+            $("#service_bureau_efin").removeAttr('disabled');
+
+            $(".sbefincheckloader").css('display','block');
+            $(".sbloader").css('display','none');
+
+            $("#sbefinerror").css('display','block');
+            $("#sbefinerror").empty().append('Service Bureau EFIN is Rejected.');
+        }
+    }
         
         $("#is_view").val(dataClient.is_view);
         $("#pefin_status").val(dataClient.pefin_status);
@@ -678,8 +702,12 @@ $(function(){
 	same_check();
 	//clickSave();
         uploadGallery();
-        
 
+
+
+    $("#fade1_ok").click(function(){
+        $(".fade1").modal('hide');
+    });
         // page masking
         $("#efin1").mask("999999");
         $("#p_efin1").mask("999999");
@@ -794,8 +822,17 @@ $(function(){
         				dataClient = data;
         				$('#companySaveBtn').show();
 						$('#companySaveBtnLoad').hide();
+
+                        //$('.fade1').modal('show').delay(500).$('.fade1').modal('hide');
+                        $('.fade1').modal('show');
+
+                        //$('.fade1').fadeIn("slow");
+
+                        setTimeout(function() {
+                            $('.fade1').modal('hide')
+                        }, 2000);
                                        // $('.fade1').modal('show');
-                                       // $("#one").trigger('click');
+                                        //$("#one").trigger('click');
         			}
         			loadClients();
         		}, "json");

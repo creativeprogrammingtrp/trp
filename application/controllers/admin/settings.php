@@ -110,8 +110,6 @@ class Settings extends CI_Controller {
             exit();
         }
     }
-
-
     
     public function showPaymentInfo() {
     	$data = array();
@@ -131,8 +129,8 @@ class Settings extends CI_Controller {
 
     public function saveBankingFeesInfoFromAdmin() {
         if (isset($_POST['load_p']) && !empty($_POST['load_p']) && $_POST['load_p'] == 'yes') {
-            //echo json_encode($this->m_com->saveBankFeesFromAdmin());
-            echo $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->saveBankFeesFromAdmin());
+            echo json_encode($this->m_com->saveBankFeesFromAdmin());
+            //echo $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->saveBankFeesFromAdmin());
             exit();
         }
     }
@@ -154,7 +152,7 @@ class Settings extends CI_Controller {
         if($this->author->objlogin->isemployee != 1) { // if not employee
             $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfor());
         }else{
-            $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfoForERO());
+            $data['dataLoad'] = "dataClient = " . json_encode($this->m_com->loadInfoForERO()); // if employee
         }
         $data['states'] = $this->m_com->loadStatesList();
         if (!empty($_GET['ajax']) && $_GET['ajax'] == 1) {

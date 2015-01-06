@@ -10,15 +10,16 @@
             
                 <div class="col-md-10 col-md-offset-2">
 
-                    <div id="modal_success" class="modal slide">
+                    <div id="modal_success" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Warning</h4>
+                                    <h4 class="modal-title">Message</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>Save successfully.</p>
+                                <div class="modal-body" style="text-align: center;">
+                                    <h2>Save Successfully.</h2>
+                                    <!--<button type="button" id="modal_success_ok" class="btn btn-success" style="display: inline-block;"> &nbsp; &nbsp;  <i class="icon-ok"></i> &nbsp; Ok &nbsp; &nbsp; </button>-->
                                 </div>
                             </div>
                         </div>
@@ -276,6 +277,10 @@
         //add_new_user();
         getScriptBoostrap();
 
+        $("#modal_success_ok").click(function(){
+            $("#modal_success").modal('hide');
+        });
+
         /* Initialize Form Validation */
     $('#addUserForm').validate({
         errorClass: 'help-block',
@@ -357,7 +362,10 @@
             if (typeof(data) == 'object') {
                 dataClient = data;
                 $("#modal_adduser").modal('hide');
-               // $('#modal_success').modal('show');
+                $('#modal_success').modal('show');
+                setTimeout(function() {
+                    $('#modal_success').modal('hide')
+                }, 2000);
                // $(":input:not(input[type='button'])").val("");
                 loadClients();
                 
