@@ -222,7 +222,7 @@ Bank ID                            808
 
 100. (d) From chagne status it will sow only one chagne status option not two.
 
-101. Under reporting page when user will clcik on Servcie Bureau tab, then top right dropdown box will show only approved chield SB account. but for other tab it will show approved parent ERO accounts.
+101. (d) Under reporting page when user will clcik on Servcie Bureau tab, then top right dropdown box will show only approved chield SB account. but for other tab it will show approved parent ERO accounts.
 
 102. - have one issue with Exam part, Ishan will gave me the instruction later.
 
@@ -266,7 +266,7 @@ Bank ID                            808
 
 117. (d) Have to be add new reporting call Commission, Date, Tax Preparation, Add-On, Total (Date wise), where not canceled, posted date not null,
 
-118. under training > forms have to be add 2 pdf file for download ERO. Customer Authorization & Consent to Use of Tax Return Information
+118. (-d) under training > forms have to be add 2 pdf file for download ERO. Customer Authorization & Consent to Use of Tax Return Information
 
 119. (d) have to be cross check with the exam part, there has missing option ...
 
@@ -274,17 +274,17 @@ Bank ID                            808
 
 121. Have to be add 3 application under zishan & ishan..
 
-122. from employee have to be cehck the reporitng and also have to be cehck the applciation like : main ERO added 1 applciation & employee added 2 application so total 3 ero will show the main aro & employee section.
+122. (d) from employee have to be cehck the reporitng and also have to be cehck the applciation like : main ERO added 1 applciation & employee added 2 application so total 3 ero will show the main aro & employee section.
 
 123. For Employee Panel:
-    1. SB fee is showing 0 by default. The SB fee under the employee panel should be the same as the ERO
-    2. There is error under reporting tab
+    ----- 1. SB fee is showing 0 by default. The SB fee under the employee panel should be the same as the ERO
+    (d) 2. There is error under reporting tab
 
 124. For Exam section:
-    1. Cross check all the questions and answer choices.
-    2. When you reach to the Exam section, the "Next" button should disappear, instead "Submit" button should appear.
+    (d) 1. Cross check all the questions and answer choices.
+    (d) 2. When you reach to the Exam section, the "Next" button should disappear, instead "Submit" button should appear.
 
-125. If the exam is not answere 100% correctly, then a message box should appear "Try Again. One or more questions answered Incorrectly"
+125. (-d) If the exam is not answere 100% correctly, then a message box should appear "Try Again. One or more questions answered Incorrectly"
 
 126. (d) Lets have SB accounts and Reporting in SB Account Tab
      and remove Service Bureau from Reporting section add Reporting tab before All account under SB accounts. top drop down will show only the approved SB ERO company name.
@@ -293,7 +293,14 @@ Bank ID                            808
      Now after add-on commission is change in the admin panel to 25%. And ERO does another two applications and charged $40 in each application. He gets $10 from each. So the total add-commission for these two application is $20.
      But the overall total add on commission for all 4 application is $40 + $20 = $60
 
-127.
+127. efin_pefin table adding row , that is not correct...
+
+128. (d) bank product under employee not shiwing all applciation ifno, it should show all info (own, own ERO, own employee)
+
+129. (d) And reset all the assigned check numbers. The range should increment 500. Example 1000-1499, 1500-1999....
+
+130. Please upload this change also. Make sure it gets done. I'm visiting the ERO tomorrow and they will start printing check so it's very important you have this changes uploaded to the server
+
 
 tax_pre_commission
 tax_pre_commission_type

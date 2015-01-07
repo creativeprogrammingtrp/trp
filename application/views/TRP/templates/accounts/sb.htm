@@ -97,6 +97,7 @@
     var company = $('#office_list').val();
 
        function ShowAllSb() {
+           $('#office_list').css('display','none');
            $.ajax({
                url: 'index.php/admin/sb/ShowAllSb?ajax=1',
                cache: false,
@@ -108,6 +109,7 @@
        }
 
        function showServiceBureauRevenueReport(){
+           $('#office_list').css('display','block');
            $.ajax({
                url: 'index.php/admin/reporting/showServiceBureauRevenueReport?ajax=1&company='+company,
                cache: false,

@@ -630,8 +630,16 @@ class Clientcenter_model extends CI_Model {
     	$data = array();
     	$todate = date('Y-m-d');
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
-    	
-    	$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date > '".$todate_date."'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC LIMIT 5";
+        if($this->author->objlogin->uid != '1'){
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date > '" . $todate_date . "'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC LIMIT 5";
+            }else{
+                $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.create_date > '" . $todate_date . "'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC LIMIT 5";
+            }
+        }else{
+            $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.create_date > '" . $todate_date . "'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC LIMIT 5";
+        }
+
     	$res = $this->db->query($sql);
     	foreach ($res->result_array() as $row) {
     		$row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
@@ -748,7 +756,7 @@ class Clientcenter_model extends CI_Model {
         $todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
 
         // $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(na.create_date)) <= '".$todate_date."'  AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
-        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '0' AND u.uid = na.author_id ORDER BY na.app_id DESC";
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
             $row["format_date"] = gmdate("m/d/y", strtotime($row["create_date1"]));
@@ -952,7 +960,7 @@ class Clientcenter_model extends CI_Model {
 
         //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."'  AND app_from = 'newApplication'  AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
         //if($this->author->objlogin->uid != '1'){
-            $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+            $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
        // }else{
           //  $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
        // }
@@ -1132,7 +1140,7 @@ class Clientcenter_model extends CI_Model {
 
     function loadPrintedApplicationForEmployee(){
         $data = array();
-        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '2' AND u.uid = na.author_id ORDER BY na.app_id DESC";
         //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."'  AND app_from = 'newApplication' AND na.status = '2' AND u.uid = na.author_id ORDER BY app_id DESC";
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
@@ -1326,7 +1334,7 @@ class Clientcenter_model extends CI_Model {
 
     function loadVoidedApplicationForEmployee(){
         $data = array();
-        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '3' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '3' AND u.uid = na.author_id ORDER BY na.app_id DESC";
         //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.create_date < '".$todate."' AND app_from = 'newApplication'  AND na.status = '3' AND u.uid = na.author_id ORDER BY app_id DESC";
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
@@ -1500,7 +1508,7 @@ class Clientcenter_model extends CI_Model {
 
     function loadPaidApplicationForEmployee(){
         $data = array();
-        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '4' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '4' AND u.uid = na.author_id ORDER BY na.app_id DESC";
 
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
@@ -1686,7 +1694,7 @@ class Clientcenter_model extends CI_Model {
 
     function loadVoidedPaymentApplicationForEmployee(){
         $data = array();
-        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND na.status = '5' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '5' AND u.uid = na.author_id ORDER BY na.app_id DESC";
 
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
@@ -1795,7 +1803,11 @@ class Clientcenter_model extends CI_Model {
     	$data = array();
     	
     	if($this->author->objlogin->uid  != '1'){
-    		$sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'  AND status = '1'";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'  AND status = '1'";
+            }else{
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "'  AND status = '1'";
+            }
     	}
     	elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app  where status = '1'";
@@ -1816,7 +1828,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'  AND status = '0'";
             }else{
-                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "'  AND status = '0'";
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "'  AND status = '0'";
             }
     	}
     	elseif($this->author->objlogin->uid  == '1'){
@@ -1838,7 +1850,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '0'";
             }else{
-                $sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '0'";
+                $sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where uid = '" . $this->author->objlogin->parentUid . "' AND status = '0'";
             }
     		//$sql = "select count(app_id ) as total, DATE(FROM_UNIXTIME(create_date)) from new_app  where uid = '" . $this->author->objlogin->uid . "' AND DATE(FROM_UNIXTIME(create_date)) < '".$todate_date."' AND status = '0'";
     	}elseif($this->author->objlogin->uid  == '1'){
@@ -1858,7 +1870,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '2'";
             }else{
-                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '2'";
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "' AND status = '2'";
             }
     	}
     	elseif($this->author->objlogin->uid  == '1'){
@@ -1877,7 +1889,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '3'";
             }else{
-                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '3'";
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "' AND status = '3'";
             }
     	}elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app  where status = '3'";
@@ -1895,7 +1907,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "'";
             }else{
-                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "'";
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "'";
             }
     	}elseif($this->author->objlogin->uid  == '1'){
     		$sql = "select count(app_id ) as total from new_app";
@@ -1914,7 +1926,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '4'";
             }else{
-                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '4'";
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "' AND status = '4'";
             }
         }elseif($this->author->objlogin->uid  == '1'){
             $sql = "select count(app_id ) as total from new_app WHERE  status = '4'";
@@ -1933,7 +1945,7 @@ class Clientcenter_model extends CI_Model {
             if($this->author->objlogin->isemployee != 1) { // if not employee
                 $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->uid . "' AND status = '5'";
             }else{
-                $sql = "select count(app_id ) as total from new_app  where author_id = '" . $this->author->objlogin->uid . "' AND status = '5'";
+                $sql = "select count(app_id ) as total from new_app  where uid = '" . $this->author->objlogin->parentUid . "' AND status = '5'";
             }
         }elseif($this->author->objlogin->uid  == '1'){
             $sql = "select count(app_id ) as total from new_app  WHERE status = '5'";
@@ -1952,7 +1964,11 @@ class Clientcenter_model extends CI_Model {
     	$todate_date = gmdate("Y-m-d", strtotime(str_replace("-","/",$todate)));
     	
     	if($this->author->objlogin->uid != '1'){
-    		$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+            }else{
+                $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+            }
     	}else{
     		$sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.status = '1' AND u.uid = na.author_id ORDER BY na.app_id DESC";
     	}
@@ -2059,7 +2075,7 @@ class Clientcenter_model extends CI_Model {
 
     function loadAllApplicationForEmployee(){
         $data = array();
-        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.author_id = '" . $this->author->objlogin->uid . "' AND u.uid = na.author_id ORDER BY na.app_id DESC";
+        $sql = "select na.*, u.name, u.firstname, u.lastname, a.*, FROM_UNIXTIME(na.create_date) as  create_date1 from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->parentUid . "' AND u.uid = na.author_id ORDER BY na.app_id DESC";
         //$sql = "select na.*, u.name, u.firstname, u.lastname, a.* from new_app na, users u, new_applicent a  where a.applicent_id = na.applicent_id AND na.uid = '" . $this->author->objlogin->uid . "' AND app_from = 'newApplication' AND u.uid = na.author_id  ORDER BY app_id DESC";
         $res = $this->db->query($sql);
         foreach ($res->result_array() as $row) {
@@ -2167,11 +2183,12 @@ class Clientcenter_model extends CI_Model {
     function loadSelectedReadyToPrintApplication($ids){
     	$data = array();
     	$todate = $this->lib->getTimeGMT();
-    	if($this->author->objlogin->uid != '1'){
-    		$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Check' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
-    	}else{
-    		$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Check' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
-    	}
+    	//if($this->author->objlogin->uid != '1'){
+    		//$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Check' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Check' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+    	//}else{
+    	//	$sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Check' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+    	//}
     	$res = $this->db->query($sql);
     
     	//$data[] = $res->result_array();
@@ -2188,7 +2205,11 @@ class Clientcenter_model extends CI_Model {
         $data = array();
         $todate = $this->lib->getTimeGMT();
         if($this->author->objlogin->uid != '1'){
-            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Check' ORDER BY n.app_id DESC";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Check' ORDER BY n.app_id DESC";
+            }else{
+                $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->parentUid . "' AND n.status = '1' AND payment_method = 'Check' ORDER BY n.app_id DESC";
+            }
         }else{
             $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Check'  ORDER BY n.app_id DESC";
         }
@@ -2210,7 +2231,11 @@ class Clientcenter_model extends CI_Model {
         $data = array();
         $todate = $this->lib->getTimeGMT();
         if($this->author->objlogin->uid != '1'){
-            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+            }else{
+                $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->parentUid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
+            }
         }else{
             $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Direct Deposit' AND n.app_id in ($ids) ORDER BY n.app_id DESC";
         }
@@ -2230,7 +2255,11 @@ class Clientcenter_model extends CI_Model {
         $data = array();
         $todate = $this->lib->getTimeGMT();
         if($this->author->objlogin->uid != '1'){
-            $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' ORDER BY n.app_id DESC";
+            if($this->author->objlogin->isemployee != 1) { // if not employee
+                $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->uid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' ORDER BY n.app_id DESC";
+            }else{
+                $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.uid = '" . $this->author->objlogin->parentUid . "' AND n.status = '1' AND payment_method = 'Direct Deposit' ORDER BY n.app_id DESC";
+            }
         }else{
             $sql = "select n.*, a.* from new_app n, new_applicent a  where a.applicent_id = n.applicent_id AND n.status = '1' AND payment_method = 'Direct Deposit'  ORDER BY n.app_id DESC";
         }
@@ -2410,7 +2439,7 @@ class Clientcenter_model extends CI_Model {
 
 
     function loadLastPrintedCheckNo(){
-        $sql = "select * from app_check WHERE uid = '".$this->author->objlogin->uid."' ORDER BY check_id DESC limit 1";
+        $sql = "select * from app_check WHERE uid = '".$this->author->objlogin->parentUid."' ORDER BY check_id DESC limit 1";
         $res = $this->db->query($sql);
 
         if(sizeof($res->result_array()) > 0){

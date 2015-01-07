@@ -771,9 +771,9 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
     }
 
     public function generateCheckRange(){
-        $start = 5000;
+        $start = 1000;
         $end = 100000;
-        $range = 4999;
+        $range = 499;
         $first = 0;
         $second = 0;
 
@@ -784,7 +784,7 @@ AND efin_pefin.pefin =".$this->author->objlogin->efin." ORDER BY users.uid DESC"
 
         for ($i = 0; $i < $till; $i++){
 
-            if($start == 5000){
+            if($start == 1000){
                  $first = $start;
                  $second = $start+$range;
 

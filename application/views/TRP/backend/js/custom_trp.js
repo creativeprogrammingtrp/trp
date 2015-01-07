@@ -420,6 +420,7 @@ function editApplication(uid, parent) {
             	//producthtm += ''+obj_app_product.img_source+'';
             	//producthtm += '</div>';
           //  console.log(obj_ero.audit_guard_item);
+
             if(obj_ero.audit_guard_item != '' && obj_ero.audit_guard_item !== null){	
             	producthtm += '<div class="col-md-3 service_img">';
             		producthtm += '<div style="color:#525a5e;  padding-top:10px; margin-bottom: 5px" class="symbol gray">';
@@ -440,7 +441,11 @@ function editApplication(uid, parent) {
            // }
            
             //benefits
-            if(obj_ero.benefits.length > 0){
+
+            //console.log(obj_ero.benefits[0].benefits_item);
+
+            //if(obj_ero.benefits.length > 0){
+            if (typeof obj_ero.benefits[1] !== 'undefined' && obj_ero.benefits[1] !== null) {
             	//for(var i = 0 ; i < obj_ero.benefits.length ; i++){
         			obj_benefits_info = obj_ero.benefits[0];
         			

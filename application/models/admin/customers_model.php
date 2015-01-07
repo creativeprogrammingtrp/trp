@@ -13,6 +13,14 @@ class Customers_model extends CI_Model {
 
         $check = false;
 
+        if ($this->author->objlogin->isemployee != 1) { // if not employee
+            $pefin = $this->author->objlogin->efin;
+        }else{ // if it's employee
+            $sql_1 = $this->db->query("Select users.efin AS user_efin from users where uid = ".$this->author->objlogin->parentUid."");
+            $res_1 = $sql_1->result_array();
+            $pefin = $res_1[0]['user_efin']; //$this->CI->author->objlogin->efin;
+        }
+
         if($this->author->objlogin->role['rid'] == 5){
             $sql = $this->db->query("SELECT users.uid
 FROM users, efin_pefin, roles, users_roles, master_ero
@@ -23,7 +31,7 @@ AND efin_pefin.uid = users.uid
 AND (users.status != 3 OR users.status != 5)
 AND efin_pefin.status = 1
 AND users_roles.rid = 5
-AND efin_pefin.pefin =".$this->author->objlogin->efin."");
+AND efin_pefin.pefin =".$pefin."");
 
             if ($sql->num_rows() > 0) {
                 $res = $sql->result_array();
@@ -37,7 +45,7 @@ AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
 AND (users.status != 3 OR users.status != 5)
 AND users_roles.rid = 5
-AND users.efin =".$this->author->objlogin->efin."");
+AND users.efin =".$pefin."");
             //echo $sql1->num_rows(); //$this->CI->author->objlogin->efin;
             //exit;
             if ($sql1->num_rows() > 0) {
@@ -95,7 +103,7 @@ AND is_employee = 0");
                     $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $companyERO_id . "' ORDER BY c.first_name ASC";
                 }
             }else{
-                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.author_id = '" . $this->author->objlogin->uid . "' ORDER BY c.first_name ASC";
+                $sql = "select c.*, m.company_name from new_applicent c, master_ero m  where c.uid = m.uid AND  c.uid = '" . $this->author->objlogin->parentUid . "' ORDER BY c.first_name ASC";
             }
     	}else{
             if($companyERO_id == 'All') {

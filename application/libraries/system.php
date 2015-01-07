@@ -187,8 +187,31 @@ class System{
 		$htm = '';
         $htmc = '';
 		$check = false;
+
+
+
+
 		
 		if($this->CI->author->objlogin->role['rid'] == 5){
+
+            $pefin = 0;
+            if ($this->CI->author->objlogin->isemployee != 1) { // if not employee
+                $pefin = $this->CI->author->objlogin->efin;
+            }else{ // if it's employee
+                $sql_1 = $this->CI->db->query("Select users.efin AS user_efin from users where uid = ".$this->CI->author->objlogin->parentUid."");
+                $res_1 = $sql_1->result_array();
+                $pefin = $res_1[0]['user_efin']; //$this->CI->author->objlogin->efin;
+            }
+/*
+            if($this->author->objlogin->parentUid > 0){
+                $parrentUid = $this->author->objlogin->parentUid;
+            }
+            else{
+                $parrentUid = $this->author->objlogin->uid;
+            }
+*/
+
+
 		$sql = $this->CI->db->query("SELECT users.uid , master_ero.*, users.name AS username, users.efin AS user_efin, roles.name AS role, efin_pefin.efin as efin, efin_pefin.pefin as pefin, efin_pefin.status as efin_status
 FROM users, efin_pefin, roles, users_roles, master_ero
  Where users_roles.rid = roles.rid
@@ -198,7 +221,7 @@ AND efin_pefin.uid = users.uid
 AND (users.status != 3 OR users.status != 5)
 AND efin_pefin.status = 1
 AND users_roles.rid = 5
-AND efin_pefin.pefin =".$this->CI->author->objlogin->efin."");
+AND efin_pefin.pefin =".$pefin."");
 		
 		if ($sql->num_rows() > 0) {
 			$res = $sql->result_array();
@@ -212,7 +235,7 @@ AND users.uid = users_roles.uid
 AND users.uid = master_ero.uid
 AND (users.status != 3 OR users.status != 5)
 AND users_roles.rid = 5
-AND users.efin =".$this->CI->author->objlogin->efin."");
+AND users.efin =".$pefin."");
 		//echo $sql1->num_rows(); //$this->CI->author->objlogin->efin;
 		//exit;
 		if ($sql1->num_rows() > 0) {
@@ -352,7 +375,7 @@ AND is_employee = 0");
 
         //if($result->num_rows() > 0){
         //$res = $result->result_array();
-        $htm .='<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">';
+        $htm .='<select style="padding: 5px 10px;  float:right;" name="office_list" id="office_list" onchange="submit();">';
         foreach ($result as $resul){
             //<?php if ($row[month] == 'January') echo ' selected="selected"';
             $htm .= '<option value="'.$resul["uid"].'"';
@@ -367,7 +390,7 @@ AND is_employee = 0");
 
         // for customer page
 
-        $htmc .='<select style="padding: 5px 10px;" name="office_list" id="office_list" onchange="submit();">';
+        $htmc .='<select style="padding: 5px 10px; float:right;" name="office_list" id="office_list" onchange="submit();">';
         $htmc .='<option value="All"';
         if(isset($_POST['office_list'])){
             if( $_POST['office_list'] == 'All'){
@@ -435,6 +458,11 @@ AND is_employee = 0");
                     $data['allofficewithAll'] = $officedata['officeComboWithAll'];
                     $data['selectedCompanyName'] = $officedata['selectedOffice'];
 
+                }else{
+                    $officedata = $this->getOfficeInfo();
+                    $data['alloffice'] = $officedata['officeCombo'];
+                    $data['allofficewithAll'] = $officedata['officeComboWithAll'];
+                    $data['selectedCompanyName'] = $officedata['selectedOffice'];
                 }
 
                 ($this->CI->author->objlogin->firstname != '') ? $data['login_name'] = $this->CI->author->objlogin->firstname.' '.$this->CI->author->objlogin->lastname : $data['login_name'] = $this->CI->author->objlogin->name;
