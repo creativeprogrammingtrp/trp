@@ -11,7 +11,7 @@ class Clientcenter_model extends CI_Model {
 
     public function loadBankingData() {
         $data = array();
-        $query = $this->db->query("select * from master_ero  where uid = '" . $this->author->objlogin->uid . "'");
+        $query = $this->db->query("select * from master_ero  where uid = '" . $this->author->objlogin->parentUid . "'");
         
         if($query->num_rows() > 0){
         	$data_load = $query->row_array();
